@@ -9,7 +9,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/introduction' },
-      { text: 'Hooks', link: '/hooks' },
+      { text: 'Hooks', link: '/hooks', activeMatch: '/hooks/' },
     ],
 
     sidebar: {
@@ -42,6 +42,7 @@ export default defineConfig({
       '/hooks/': [
         {
           text: 'Hooks',
+          link: '/hooks',
           items: [
             { text: 'Using Hooks', link: '/hooks/' },
             { text: 'OnPlayerConnected', link: '/hooks/onplayerconnected' },
@@ -51,7 +52,10 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/CarbonCommunity/Carbon.Documentation' },
+      { icon: 'discord', link: 'https://discord.com/invite/carbonmod' },
+      { icon: 'twitter', link: 'https://twitter.com/CarbonModGG' },
+      { icon: 'youtube', link: 'https://www.youtube.com/@carbonmodgg' },
     ],
 
     footer: {
