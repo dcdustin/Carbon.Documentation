@@ -1,2 +1,4 @@
 docs/.vitepress/cache
 docs/.vitepress/dist
+.frontmatter
+frontmatter.json
