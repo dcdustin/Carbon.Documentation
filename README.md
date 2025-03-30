@@ -1,5 +1,3 @@
-[![Deploy VitePress site to Pages](https://github.com/CarbonCommunity/Carbon.Documentation/actions/workflows/deploy.yml/badge.svg)](https://github.com/CarbonCommunity/Carbon.Documentation/actions/workflows/deploy.yml)
-
 # Carbon.Documentation
 
 ### Simple Instructions
