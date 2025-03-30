@@ -9,3 +9,9 @@
 6. Run ``npx vitepress dev docs`` to preview changes.
 7. Edit some more, and watch it live update (OOH FANCY).
 7. Create PR and commit.
+
+
+### FrontMatter
+I recommend installing the FrontMatter extension for visual studio. It allows for easy management of the headers and such for each file. It also allows you to run the dev server with just a button push.
+
+I'll write instructions for this later, but for now just reach out to be if you wanna use it.

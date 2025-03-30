@@ -1,20 +1,4 @@
 import { defineConfig } from 'vitepress'
-import fs from 'fs'
-import path from 'path'
-
-function getHooks(dir: string): { text: string; link: string }[] {
-  const fullDir = path.resolve(__dirname, dir)
-  const files = fs.readdirSync(fullDir)
-  return files
-    .filter(file => file.endsWith('.md') && file.toLowerCase() !== 'index.md')
-    .map(file => {
-      const name = file.replace(/\.md$/, '')
-      return {
-        text: name.replace(/-/g, ' '),
-        link: `/${dir}/${name}`
-      }
-    })  
-}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -25,7 +9,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/introduction' },
-      { text: 'Hooks', link: '/hooks' },
+      { text: 'Hooks', link: '/hooks', activeMatch: '/hooks/' },
     ],
 
     sidebar: {
@@ -57,20 +41,22 @@ export default defineConfig({
       
       '/hooks/': [
         {
-          text: "Hooks",
+          text: 'Hooks',
+          link: '/hooks',
           items: [
-            {
-              text: "Animal (31)",
-              items: getHooks("../hooks/Animal")
-            }
+            { text: 'Using Hooks', link: '/hooks/' },
+            { text: 'OnPlayerConnected', link: '/hooks/onplayerconnected' },
           ]
         }
       ]
     },
- 
+
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ], 
+      { icon: 'github', link: 'https://github.com/CarbonCommunity/Carbon.Documentation' },
+      { icon: 'discord', link: 'https://discord.com/invite/carbonmod' },
+      { icon: 'twitter', link: 'https://twitter.com/CarbonModGG' },
+      { icon: 'youtube', link: 'https://www.youtube.com/@carbonmodgg' },
+    ],
 
     footer: {
       message: 'Released under the MIT License.',
@@ -82,4 +68,3 @@ export default defineConfig({
     }
   }
 })
- 

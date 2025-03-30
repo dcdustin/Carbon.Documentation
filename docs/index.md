@@ -8,8 +8,14 @@ hero:
   tagline: Carbon, making up most of the known universe since at least 1992
   actions:
     - theme: brand
-      text: Documentation
+      text: Join our Discord
+      link: https://discord.com/invite/carbonmod
+    - theme: alt
+      text: View Documentation
       link: /introduction
+    - theme: alt
+      text: View Hooks
+      link: /hooks
 
 features:
   - title: Simplified Administration
@@ -19,4 +25,3 @@ features:
   - title: Simplified Classes
     details: Carbon uses a single class to inherit from and all of its main features just work
 ---
-
