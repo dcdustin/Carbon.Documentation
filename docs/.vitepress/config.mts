@@ -1,4 +1,20 @@
 import { defineConfig } from 'vitepress'
+import fs from 'fs'
+import path from 'path'
+
+function getHooks(dir: string): { text: string; link: string }[] {
+  const fullDir = path.resolve(__dirname, dir)
+  const files = fs.readdirSync(fullDir)
+  return files
+    .filter(file => file.endsWith('.md') && file.toLowerCase() !== 'index.md')
+    .map(file => {
+      const name = file.replace(/\.md$/, '')
+      return {
+        text: name.replace(/-/g, ' '),
+        link: `/${dir}/${name}`
+      }
+    })  
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -41,18 +57,20 @@ export default defineConfig({
       
       '/hooks/': [
         {
-          text: 'Hooks',
+          text: "Hooks",
           items: [
-            { text: 'Using Hooks', link: '/hooks/' },
-            { text: 'OnPlayerConnected', link: '/hooks/onplayerconnected' },
+            {
+              text: "Animal (31)",
+              items: getHooks("../hooks/Animal")
+            }
           ]
         }
       ]
     },
-
+ 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
+    ], 
 
     footer: {
       message: 'Released under the MIT License.',
@@ -64,3 +82,4 @@ export default defineConfig({
     }
   }
 })
+ 
