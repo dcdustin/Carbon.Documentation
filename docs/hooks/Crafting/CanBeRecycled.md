@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanBeRecycled()
+private bool CanBeRecycled(Item item, Recycler recycler)
 {
 	Puts("CanBeRecycled has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Recycler]

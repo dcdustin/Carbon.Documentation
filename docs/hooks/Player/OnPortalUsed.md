@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPortalUsed()
+private void OnPortalUsed(BasePlayer player, BasePortal basePortal)
 {
 	Puts("OnPortalUsed has been fired!");
 }

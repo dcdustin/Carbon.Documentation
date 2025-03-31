@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnNewSave()
+private void OnNewSave(string strFilename)
 {
 	Puts("OnNewSave has been fired!");
 }

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCCTVDirectionChange()
+private object OnCCTVDirectionChange(CCTV_RC cCTV_RC, BasePlayer local0)
 {
 	Puts("OnCCTVDirectionChange has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CCTV_RC]

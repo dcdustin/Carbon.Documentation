@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUseUI()
+private bool CanUseUI(BasePlayer player, string json)
 {
 	Puts("CanUseUI has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Carbon.Common @ Oxide.Game.Rust.Cui.CuiHelper]

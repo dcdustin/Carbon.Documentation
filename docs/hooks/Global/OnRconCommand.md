@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRconCommand()
+private void OnRconCommand(System.Net.IPAddress ip, string command, System.String[] arguments)
 {
 	Puts("OnRconCommand has been fired!");
 }

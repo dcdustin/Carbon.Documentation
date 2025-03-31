@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerWantsMount()
+private object OnPlayerWantsMount(BasePlayer player, BaseMountable baseMountable)
 {
 	Puts("OnPlayerWantsMount has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseMountable]

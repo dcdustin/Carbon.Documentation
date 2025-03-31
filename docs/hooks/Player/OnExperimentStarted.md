@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExperimentStarted()
+private void OnExperimentStarted(Workbench workbench, BasePlayer local0)
 {
 	Puts("OnExperimentStarted has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemRecycleAmount()
+private void OnItemRecycleAmount(Item local3, int local4, Recycler recycler)
 {
 	Puts("OnItemRecycleAmount has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnChickenScared()
+private void OnChickenScared(Chicken chicken, BaseEntity threat)
 {
 	Puts("OnChickenScared has been fired!");
 }

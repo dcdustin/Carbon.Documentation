@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAffordUpgrade()
+private bool CanAffordUpgrade(BasePlayer player, BuildingBlock buildingBlock, BuildingGrade.Enum iGrade, ulong iSkin)
 {
 	Puts("CanAffordUpgrade has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BuildingBlock]

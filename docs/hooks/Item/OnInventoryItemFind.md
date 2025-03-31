@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private Item OnInventoryItemFind()
+private Item OnInventoryItemFind(PlayerInventory playerInventory)
 {
 	Puts("OnInventoryItemFind has been fired!");
 	return (Item)default;

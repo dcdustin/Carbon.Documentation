@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanAssignBed()
+private object CanAssignBed(BasePlayer player, SleepingBag sleepingBag, ulong local0)
 {
 	Puts("CanAssignBed has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SleepingBag]

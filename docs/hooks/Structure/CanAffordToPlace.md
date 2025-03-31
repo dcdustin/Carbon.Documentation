@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAffordToPlace()
+private bool CanAffordToPlace(BasePlayer local0, Planner planner, Construction component)
 {
 	Puts("CanAffordToPlace has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Planner]

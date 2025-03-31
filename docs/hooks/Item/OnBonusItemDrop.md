@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBonusItemDrop()
+private object OnBonusItemDrop(Item local5, BasePlayer local0)
 {
 	Puts("OnBonusItemDrop has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ LootContainer]

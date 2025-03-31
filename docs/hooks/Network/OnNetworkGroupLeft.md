@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnNetworkGroupLeft()
+private void OnNetworkGroupLeft(BaseNetworkable baseNetworkable)
 {
 	Puts("OnNetworkGroupLeft has been fired!");
 }

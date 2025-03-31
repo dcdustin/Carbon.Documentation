@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnFireworkDesignChange()
+private object OnFireworkDesignChange(PatternFirework patternFirework, ProtoBuf.PatternFirework.Design local0, BasePlayer player)
 {
 	Puts("OnFireworkDesignChange has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PatternFirework]

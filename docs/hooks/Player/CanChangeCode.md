@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanChangeCode()
+private object CanChangeCode(BasePlayer player, CodeLock codeLock, string local0, bool local1)
 {
 	Puts("CanChangeCode has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CodeLock]

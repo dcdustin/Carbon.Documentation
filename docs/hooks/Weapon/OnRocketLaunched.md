@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRocketLaunched()
+private void OnRocketLaunched(BasePlayer local0, BaseEntity local8)
 {
 	Puts("OnRocketLaunched has been fired!");
 }

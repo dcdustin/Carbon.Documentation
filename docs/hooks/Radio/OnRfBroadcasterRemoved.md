@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRfBroadcasterRemoved()
+private void OnRfBroadcasterRemoved(IRFObject obj, int frequency)
 {
 	Puts("OnRfBroadcasterRemoved has been fired!");
 }

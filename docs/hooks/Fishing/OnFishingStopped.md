@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFishingStopped()
+private void OnFishingStopped(BaseFishingRod baseFishingRod, BaseFishingRod.FailReason reason)
 {
 	Puts("OnFishingStopped has been fired!");
 }

@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHelicopterStrafeEnter()
+private object OnHelicopterStrafeEnter(PatrolHelicopterAI patrolHelicopterAI, UnityEngine.Vector3 position, BasePlayer strafeTarget)
 {
 	Puts("OnHelicopterStrafeEnter has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]

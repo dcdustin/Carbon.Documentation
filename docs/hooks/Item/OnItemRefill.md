@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnItemRefill()
+private object OnItemRefill(Item item, BasePlayer player)
 {
 	Puts("OnItemRefill has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemModRepair]

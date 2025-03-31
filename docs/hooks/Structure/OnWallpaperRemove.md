@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnWallpaperRemove()
+private object OnWallpaperRemove(BuildingBlock buildingBlock, int side)
 {
 	Puts("OnWallpaperRemove has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BuildingBlock]

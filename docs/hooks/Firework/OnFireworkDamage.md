@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnFireworkDamage()
+private object OnFireworkDamage(BaseFirework baseFirework)
 {
 	Puts("OnFireworkDamage has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseFirework]

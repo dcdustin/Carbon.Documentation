@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnButtonPress()
+private object OnButtonPress(PressButton pressButton, BasePlayer player)
 {
 	Puts("OnButtonPress has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PressButton]

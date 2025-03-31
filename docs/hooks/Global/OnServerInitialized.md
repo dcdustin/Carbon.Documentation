@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnServerInitialized()
+private void OnServerInitialized(bool initialLoad)
 {
 	Puts("OnServerInitialized has been fired!");
 }

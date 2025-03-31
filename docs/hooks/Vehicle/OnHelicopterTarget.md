@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHelicopterTarget()
+private object OnHelicopterTarget(HelicopterTurret helicopterTurret)
 {
 	Puts("OnHelicopterTarget has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ HelicopterTurret]

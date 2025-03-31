@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnClientCommand()
+private object OnClientCommand(Network.Connection connection, string local0)
 {
 	Puts("OnClientCommand has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ConsoleNetwork]

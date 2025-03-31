@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBoomboxStationUpdated()
+private void OnBoomboxStationUpdated(BoomBox boomBox, string local0, BasePlayer player)
 {
 	Puts("OnBoomboxStationUpdated has been fired!");
 }

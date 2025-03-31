@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnQuarryConsumeFuel()
+private void OnQuarryConsumeFuel(MiningQuarry miningQuarry, Item local0)
 {
 	Puts("OnQuarryConsumeFuel has been fired!");
 }

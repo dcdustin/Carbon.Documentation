@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBuildingSplit()
+private void OnBuildingSplit(BuildingManager.Building building, uint newID)
 {
 	Puts("OnBuildingSplit has been fired!");
 }

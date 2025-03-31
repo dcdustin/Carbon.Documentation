@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnLootEntity()
+private void OnLootEntity(PlayerLoot playerLoot, BaseEntity targetEntity)
 {
 	Puts("OnLootEntity has been fired!");
 }

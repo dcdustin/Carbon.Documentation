@@ -10,10 +10,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCupboardAuthorize()
+private object OnCupboardAuthorize(VehiclePrivilege vehiclePrivilege, BasePlayer player)
 {
 	Puts("OnCupboardAuthorize has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VehiclePrivilege]

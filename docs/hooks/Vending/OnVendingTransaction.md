@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnVendingTransaction()
+private bool OnVendingTransaction(VendingMachine vendingMachine, BasePlayer buyer, int sellOrderId, int numberOfTransactions, ItemContainer targetContainer)
 {
 	Puts("OnVendingTransaction has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VendingMachine]

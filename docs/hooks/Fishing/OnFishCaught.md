@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFishCaught()
+private void OnFishCaught(BaseFishingRod baseFishingRod, BaseFishingRod self1, BasePlayer local1)
 {
 	Puts("OnFishCaught has been fired!");
 }

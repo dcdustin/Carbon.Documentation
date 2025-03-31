@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private Item OnFuelItemCheck()
+private Item OnFuelItemCheck(EntityFuelSystem entityFuelSystem, StorageContainer local0)
 {
 	Puts("OnFuelItemCheck has been fired!");
 	return (Item)default;

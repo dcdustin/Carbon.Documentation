@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private float OnOvenTemperature()
+private float OnOvenTemperature(BaseOven baseOven)
 {
 	Puts("OnOvenTemperature has been fired!");
-	return (System.Single)default;
+	return (float)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseOven]

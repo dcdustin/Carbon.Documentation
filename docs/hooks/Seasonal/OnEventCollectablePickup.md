@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEventCollectablePickup()
+private object OnEventCollectablePickup(BasePlayer player, CollectableEasterEgg collectableEasterEgg)
 {
 	Puts("OnEventCollectablePickup has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CollectableEasterEgg]

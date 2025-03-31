@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerDeath()
+private object OnPlayerDeath(BasePlayer basePlayer, HitInfo info)
 {
 	Puts("OnPlayerDeath has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

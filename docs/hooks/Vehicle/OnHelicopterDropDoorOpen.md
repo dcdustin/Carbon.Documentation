@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHelicopterDropDoorOpen()
+private object OnHelicopterDropDoorOpen(CH47HelicopterAIController cH47HelicopterAIController)
 {
 	Puts("OnHelicopterDropDoorOpen has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CH47HelicopterAIController]

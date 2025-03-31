@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnVehiclePush()
+private object OnVehiclePush(BaseVehicle baseVehicle, BasePlayer player)
 {
 	Puts("OnVehiclePush has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseVehicle]

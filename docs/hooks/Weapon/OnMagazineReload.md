@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnMagazineReload()
+private bool OnMagazineReload(BaseProjectile baseProjectile, IAmmoContainer ammoSource, BaseProjectile self1)
 {
 	Puts("OnMagazineReload has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseProjectile]

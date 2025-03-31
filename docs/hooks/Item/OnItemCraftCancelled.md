@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemCraftCancelled()
+private void OnItemCraftCancelled(ItemCraftTask local1, ItemCrafter itemCrafter)
 {
 	Puts("OnItemCraftCancelled has been fired!");
 }

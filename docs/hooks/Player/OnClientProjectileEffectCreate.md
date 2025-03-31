@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnClientProjectileEffectCreate()
+private object OnClientProjectileEffectCreate(Network.Connection sourceConnection, BaseProjectile baseProjectile, string prefabName)
 {
 	Puts("OnClientProjectileEffectCreate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseProjectile]

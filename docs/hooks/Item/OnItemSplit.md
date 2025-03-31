@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private Item OnItemSplit()
+private Item OnItemSplit(Item item)
 {
 	Puts("OnItemSplit has been fired!");
 	return (Item)default;

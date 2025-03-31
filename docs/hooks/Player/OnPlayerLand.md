@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerLand()
+private object OnPlayerLand(BasePlayer basePlayer, float local0)
 {
 	Puts("OnPlayerLand has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

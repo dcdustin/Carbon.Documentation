@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerAssist()
+private object OnPlayerAssist(BasePlayer basePlayer, BasePlayer player)
 {
 	Puts("OnPlayerAssist has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

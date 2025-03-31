@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMetalDetectorFlagRequest()
+private void OnMetalDetectorFlagRequest(BaseMetalDetector baseMetalDetector, UnityEngine.Vector3 local1, BasePlayer local0)
 {
 	Puts("OnMetalDetectorFlagRequest has been fired!");
 }

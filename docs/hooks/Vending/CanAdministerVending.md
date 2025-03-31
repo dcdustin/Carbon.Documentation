@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAdministerVending()
+private bool CanAdministerVending(BasePlayer player, NPCVendingMachine nPCVendingMachine)
 {
 	Puts("CanAdministerVending has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ NPCVendingMachine]

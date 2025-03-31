@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private BuildingPrivlidge OnBuildingPrivilege()
+private BuildingPrivlidge OnBuildingPrivilege(BaseEntity baseEntity)
 {
 	Puts("OnBuildingPrivilege has been fired!");
 	return (BuildingPrivlidge)default;

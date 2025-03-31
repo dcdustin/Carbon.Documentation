@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnEntityDistanceCheck()
+private bool OnEntityDistanceCheck(BaseEntity ent, BasePlayer player, uint id, string debugName, float maximumDistance, bool checkParent)
 {
 	Puts("OnEntityDistanceCheck has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 :::

@@ -10,7 +10,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExcavatorMiningToggled()
+private void OnExcavatorMiningToggled(ExcavatorArm excavatorArm)
 {
 	Puts("OnExcavatorMiningToggled has been fired!");
 }

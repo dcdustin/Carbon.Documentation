@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnElevatorButtonPress()
+private object OnElevatorButtonPress(ElevatorLift elevatorLift, BasePlayer player, Elevator.Direction local0, bool local1)
 {
 	Puts("OnElevatorButtonPress has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ElevatorLift]

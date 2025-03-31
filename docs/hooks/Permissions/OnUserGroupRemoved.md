@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserGroupRemoved()
+private void OnUserGroupRemoved(string playerId, string group)
 {
 	Puts("OnUserGroupRemoved has been fired!");
 }

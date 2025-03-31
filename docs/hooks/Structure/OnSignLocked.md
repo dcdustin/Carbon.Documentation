@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSignLocked()
+private void OnSignLocked(PhotoFrame photoFrame, BasePlayer player)
 {
 	Puts("OnSignLocked has been fired!");
 }

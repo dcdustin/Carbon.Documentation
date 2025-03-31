@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnMlrsTarget()
+private object OnMlrsTarget(MLRS mLRS, UnityEngine.Vector3 worldPos, MLRS self1)
 {
 	Puts("OnMlrsTarget has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ MLRS]

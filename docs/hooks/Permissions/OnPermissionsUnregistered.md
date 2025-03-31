@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPermissionsUnregistered()
+private void OnPermissionsUnregistered(Oxide.Core.Plugins.Plugin plugin)
 {
 	Puts("OnPermissionsUnregistered has been fired!");
 }

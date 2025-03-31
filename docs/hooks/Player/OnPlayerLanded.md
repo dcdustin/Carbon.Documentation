@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerLanded()
+private void OnPlayerLanded(BasePlayer basePlayer, float local0)
 {
 	Puts("OnPlayerLanded has been fired!");
 }

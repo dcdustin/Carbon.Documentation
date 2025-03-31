@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGroupPermissionRevoked()
+private void OnGroupPermissionRevoked(string group, string permission)
 {
 	Puts("OnGroupPermissionRevoked has been fired!");
 }

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanCheckFuel()
+private bool CanCheckFuel(EntityFuelSystem entityFuelSystem, StorageContainer local0, BasePlayer player)
 {
 	Puts("CanCheckFuel has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EntityFuelSystem]

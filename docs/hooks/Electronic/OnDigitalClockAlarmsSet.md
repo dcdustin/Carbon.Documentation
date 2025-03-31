@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnDigitalClockAlarmsSet()
+private object OnDigitalClockAlarmsSet(DigitalClock digitalClock, ProtoBuf.DigitalClockMessage local0)
 {
 	Puts("OnDigitalClockAlarmsSet has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ DigitalClock]

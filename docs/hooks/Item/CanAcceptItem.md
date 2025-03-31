@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private ItemContainer.CanAcceptResult CanAcceptItem()
+private ItemContainer.CanAcceptResult CanAcceptItem(ItemContainer itemContainer)
 {
 	Puts("CanAcceptItem has been fired!");
 	return (ItemContainer.CanAcceptResult)default;

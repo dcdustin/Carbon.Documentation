@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnConstructorFail()
+private void OnConstructorFail(Oxide.Plugins.RustPlugin plugin, System.Exception exception)
 {
 	Puts("OnConstructorFail has been fired!");
 }

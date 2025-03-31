@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCodeChanged()
+private void OnCodeChanged(BasePlayer player, CodeLock codeLock, string local0, bool local1)
 {
 	Puts("OnCodeChanged has been fired!");
 }

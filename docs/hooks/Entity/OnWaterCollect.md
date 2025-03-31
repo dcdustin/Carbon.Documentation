@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnWaterCollect()
+private object OnWaterCollect(WaterPump waterPump, ItemDefinition local0)
 {
 	Puts("OnWaterCollect has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WaterPump]

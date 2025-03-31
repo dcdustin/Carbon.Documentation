@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnClientDisconnect()
+private void OnClientDisconnect(Network.Connection connection, string local0)
 {
 	Puts("OnClientDisconnect has been fired!");
 }

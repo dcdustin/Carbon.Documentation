@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCardSwipe()
+private object OnCardSwipe(CardReader cardReader, Keycard local1, BasePlayer player)
 {
 	Puts("OnCardSwipe has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CardReader]

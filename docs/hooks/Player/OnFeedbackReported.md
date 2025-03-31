@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFeedbackReported()
+private void OnFeedbackReported(BasePlayer basePlayer, string local0, string local1, Facepunch.Models.ReportType local2)
 {
 	Puts("OnFeedbackReported has been fired!");
 }

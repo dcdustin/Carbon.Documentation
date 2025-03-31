@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnOvenToggle()
+private object OnOvenToggle(BaseOven baseOven, BasePlayer player)
 {
 	Puts("OnOvenToggle has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseOven]

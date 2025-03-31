@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private int OnFuelAmountCheck()
+private int OnFuelAmountCheck(EntityFuelSystem entityFuelSystem, Item local0)
 {
 	Puts("OnFuelAmountCheck has been fired!");
-	return (System.Int32)default;
+	return (int)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EntityFuelSystem]

@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnVehicleModuleSelect()
+private object OnVehicleModuleSelect(Item local2, ModularCarGarage modularCarGarage, BasePlayer local0)
 {
 	Puts("OnVehicleModuleSelect has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ModularCarGarage]

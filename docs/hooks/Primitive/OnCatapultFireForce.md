@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCatapultFireForce()
+private void OnCatapultFireForce(Catapult catapult, BasePlayer shooter, float local1)
 {
 	Puts("OnCatapultFireForce has been fired!");
 }

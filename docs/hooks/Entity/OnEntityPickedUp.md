@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntityPickedUp()
+private void OnEntityPickedUp(BaseCombatEntity baseCombatEntity)
 {
 	Puts("OnEntityPickedUp has been fired!");
 }

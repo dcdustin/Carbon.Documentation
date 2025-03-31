@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnAnimalDungProduced()
+private void OnAnimalDungProduced(RidableHorse2 ridableHorse2)
 {
 	Puts("OnAnimalDungProduced has been fired!");
 }

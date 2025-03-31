@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private BaseCorpse OnCorpsePopulate()
+private BaseCorpse OnCorpsePopulate(NPCPlayer nPCPlayer, NPCPlayerCorpse local1)
 {
 	Puts("OnCorpsePopulate has been fired!");
 	return (BaseCorpse)default;

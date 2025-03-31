@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnInterferenceOthersUpdate()
+private object OnInterferenceOthersUpdate(AutoTurret autoTurret)
 {
 	Puts("OnInterferenceOthersUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AutoTurret]

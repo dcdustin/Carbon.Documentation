@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnAirdrop()
+private void OnAirdrop(CargoPlane cargoPlane)
 {
 	Puts("OnAirdrop has been fired!");
 }

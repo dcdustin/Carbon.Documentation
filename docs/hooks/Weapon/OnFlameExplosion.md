@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFlameExplosion()
+private void OnFlameExplosion(FlameExplosive flameExplosive, UnityEngine.Collider local1)
 {
 	Puts("OnFlameExplosion has been fired!");
 }

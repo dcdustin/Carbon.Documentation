@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCargoShipHarborLeave()
+private void OnCargoShipHarborLeave(CargoShip cargoShip)
 {
 	Puts("OnCargoShipHarborLeave has been fired!");
 }

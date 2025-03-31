@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnEntityFromOwnerCheck()
+private bool OnEntityFromOwnerCheck(BaseEntity ent, BasePlayer player, uint id, string debugName, bool includeMounted)
 {
 	Puts("OnEntityFromOwnerCheck has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 :::

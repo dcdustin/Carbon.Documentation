@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntitySpawn()
+private void OnEntitySpawn(BaseNetworkable networkable)
 {
 	Puts("OnEntitySpawn has been fired!");
 }

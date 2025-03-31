@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExplosiveThrown()
+private void OnExplosiveThrown(BasePlayer player, BaseEntity local3, ThrownWeapon thrownWeapon)
 {
 	Puts("OnExplosiveThrown has been fired!");
 }

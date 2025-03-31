@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGrowableGathered()
+private void OnGrowableGathered(GrowableEntity growableEntity, Item local0, BasePlayer player)
 {
 	Puts("OnGrowableGathered has been fired!");
 }

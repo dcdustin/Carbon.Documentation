@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnAIBrainStateSwitch()
+private bool OnAIBrainStateSwitch(BaseAIBrain baseAIBrain, BaseAIBrain self1, BaseAIBrain.BasicAIState newState)
 {
 	Puts("OnAIBrainStateSwitch has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseAIBrain]

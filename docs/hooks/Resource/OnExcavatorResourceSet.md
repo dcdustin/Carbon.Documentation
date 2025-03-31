@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnExcavatorResourceSet()
+private object OnExcavatorResourceSet(ExcavatorArm excavatorArm, string local0, BasePlayer player)
 {
 	Puts("OnExcavatorResourceSet has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ExcavatorArm]

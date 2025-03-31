@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanClientLogin()
+private bool CanClientLogin(Network.Connection connection)
 {
 	Puts("CanClientLogin has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 :::

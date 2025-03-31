@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnMarketplaceTerminalPurchase()
+private bool OnMarketplaceTerminalPurchase(MarketTerminal terminal, VendingMachine vending, BasePlayer player, int sellOrderIndex, int amount)
 {
 	Puts("OnMarketplaceTerminalPurchase has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ MarketTerminal]

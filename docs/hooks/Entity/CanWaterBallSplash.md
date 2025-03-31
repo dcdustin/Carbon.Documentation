@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanWaterBallSplash()
+private bool CanWaterBallSplash(ItemDefinition liquidDef, UnityEngine.Vector3 position, float radius, int amount)
 {
 	Puts("CanWaterBallSplash has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WaterBall]

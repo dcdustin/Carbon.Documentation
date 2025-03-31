@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnOvenCooked()
+private void OnOvenCooked(BaseOven baseOven, Item local0, BaseEntity local1)
 {
 	Puts("OnOvenCooked has been fired!");
 }

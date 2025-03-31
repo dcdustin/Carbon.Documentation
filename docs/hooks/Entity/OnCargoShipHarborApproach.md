@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCargoShipHarborApproach()
+private object OnCargoShipHarborApproach(CargoShip cargoShip)
 {
 	Puts("OnCargoShipHarborApproach has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CargoShip]

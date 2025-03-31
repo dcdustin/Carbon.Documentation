@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnTurretAssigned()
+private void OnTurretAssigned(AutoTurret autoTurret, ulong local0, BasePlayer player)
 {
 	Puts("OnTurretAssigned has been fired!");
 }

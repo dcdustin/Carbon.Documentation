@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnNativeCommandHasPermission()
+private bool OnNativeCommandHasPermission(ConsoleSystem.Arg arg)
 {
 	Puts("OnNativeCommandHasPermission has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 :::

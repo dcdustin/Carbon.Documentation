@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntityDismounted()
+private void OnEntityDismounted(BaseMountable baseMountable, BasePlayer player)
 {
 	Puts("OnEntityDismounted has been fired!");
 }

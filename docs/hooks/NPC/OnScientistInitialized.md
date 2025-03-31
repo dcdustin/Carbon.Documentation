@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnScientistInitialized()
+private void OnScientistInitialized(BradleyAPC bradleyAPC, ScientistNPC scientist, UnityEngine.Vector3 spawnPos)
 {
 	Puts("OnScientistInitialized has been fired!");
 }

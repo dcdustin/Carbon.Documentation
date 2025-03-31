@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanElevatorLiftMove()
+private bool CanElevatorLiftMove(ElevatorLift elevatorLift)
 {
 	Puts("CanElevatorLiftMove has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ElevatorLift]

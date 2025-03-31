@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerKeepAlive()
+private object OnPlayerKeepAlive(BasePlayer basePlayer, BasePlayer player)
 {
 	Puts("OnPlayerKeepAlive has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

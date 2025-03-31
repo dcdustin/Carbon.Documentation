@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerOfflineChat()
+private void OnPlayerOfflineChat(ulong playerid, string username, string message, ConVar.Chat.ChatChannel channel)
 {
 	Puts("OnPlayerOfflineChat has been fired!");
 }

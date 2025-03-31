@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRconConnection()
+private object OnRconConnection(System.Net.IPAddress address)
 {
 	Puts("OnRconConnection has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 :::

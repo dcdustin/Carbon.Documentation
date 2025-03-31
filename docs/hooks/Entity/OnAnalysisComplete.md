@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnAnalysisComplete()
+private void OnAnalysisComplete(SurveyCrater surveyCrater, BasePlayer player)
 {
 	Puts("OnAnalysisComplete has been fired!");
 }

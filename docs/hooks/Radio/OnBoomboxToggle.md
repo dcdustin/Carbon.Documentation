@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBoomboxToggle()
+private object OnBoomboxToggle(BoomBox boomBox, BasePlayer player, bool local0)
 {
 	Puts("OnBoomboxToggle has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BoomBox]

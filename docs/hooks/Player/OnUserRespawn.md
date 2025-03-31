@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserRespawn()
+private void OnUserRespawn(Oxide.Core.Libraries.Covalence.IPlayer player)
 {
 	Puts("OnUserRespawn has been fired!");
 }

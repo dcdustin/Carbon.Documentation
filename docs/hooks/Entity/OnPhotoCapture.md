@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPhotoCapture()
+private object OnPhotoCapture(PhotoEntity local5, Item local1, BasePlayer local0, System.Byte[] local2)
 {
 	Puts("OnPhotoCapture has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ InstantCameraTool]

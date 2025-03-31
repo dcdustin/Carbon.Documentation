@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCargoPlaneSignaled()
+private void OnCargoPlaneSignaled(BaseEntity local0, SupplySignal supplySignal)
 {
 	Puts("OnCargoPlaneSignaled has been fired!");
 }

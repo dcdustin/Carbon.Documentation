@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGroupDeleted()
+private void OnGroupDeleted(string group)
 {
 	Puts("OnGroupDeleted has been fired!");
 }

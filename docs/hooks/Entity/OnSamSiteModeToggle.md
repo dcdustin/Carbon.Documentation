@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnSamSiteModeToggle()
+private object OnSamSiteModeToggle(SamSite samSite, BasePlayer local0, bool local1)
 {
 	Puts("OnSamSiteModeToggle has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SamSite]

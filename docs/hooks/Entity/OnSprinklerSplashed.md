@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSprinklerSplashed()
+private void OnSprinklerSplashed(Sprinkler sprinkler)
 {
 	Puts("OnSprinklerSplashed has been fired!");
 }

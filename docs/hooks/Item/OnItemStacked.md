@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemStacked()
+private void OnItemStacked(Item local21, Item item, ItemContainer newcontainer)
 {
 	Puts("OnItemStacked has been fired!");
 }

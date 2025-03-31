@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerRespawned()
+private void OnPlayerRespawned(BasePlayer basePlayer)
 {
 	Puts("OnPlayerRespawned has been fired!");
 }

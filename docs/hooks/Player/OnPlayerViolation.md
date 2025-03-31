@@ -11,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnPlayerViolation()
 {
 	Puts("OnPlayerViolation has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AntiHack]

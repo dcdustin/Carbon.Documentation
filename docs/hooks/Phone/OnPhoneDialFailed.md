@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPhoneDialFailed()
+private void OnPhoneDialFailed(PhoneController phoneController, Telephone.DialFailReason reason, PhoneController self1)
 {
 	Puts("OnPhoneDialFailed has been fired!");
 }

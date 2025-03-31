@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRackedWeaponTake()
+private object OnRackedWeaponTake(Item local1, BasePlayer player, WeaponRack weaponRack)
 {
 	Puts("OnRackedWeaponTake has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WeaponRack]

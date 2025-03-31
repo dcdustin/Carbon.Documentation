@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUseFuel()
+private bool CanUseFuel(EntityFuelSystem entityFuelSystem, StorageContainer local0, float seconds, float fuelUsedPerSecond)
 {
 	Puts("CanUseFuel has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EntityFuelSystem]

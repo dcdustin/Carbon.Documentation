@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnTeamKick()
+private object OnTeamKick(RelationshipManager.PlayerTeam local1, BasePlayer local0, ulong local2)
 {
 	Puts("OnTeamKick has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ RelationshipManager]

@@ -11,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnEngineStart()
 {
 	Puts("OnEngineStart has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 :::

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnInventoryAmmoFind()
+private object OnInventoryAmmoFind(PlayerInventory playerInventory)
 {
 	Puts("OnInventoryAmmoFind has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PlayerInventory]

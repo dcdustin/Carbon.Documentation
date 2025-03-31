@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemUpgrade()
+private void OnItemUpgrade(Item item, Item local0, BasePlayer player)
 {
 	Puts("OnItemUpgrade has been fired!");
 }

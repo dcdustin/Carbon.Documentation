@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUpdateSign()
+private bool CanUpdateSign(BasePlayer player, CarvablePumpkin carvablePumpkin)
 {
 	Puts("CanUpdateSign has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CarvablePumpkin]

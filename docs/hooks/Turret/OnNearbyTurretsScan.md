@@ -10,7 +10,7 @@ Returning a non-null value cancels default behavior.
 private object OnNearbyTurretsScan()
 {
 	Puts("OnNearbyTurretsScan has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AutoTurret]

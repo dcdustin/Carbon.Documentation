@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnTimedExplosiveExplode()
+private object OnTimedExplosiveExplode(TimedExplosive timedExplosive)
 {
 	Puts("OnTimedExplosiveExplode has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ TimedExplosive]

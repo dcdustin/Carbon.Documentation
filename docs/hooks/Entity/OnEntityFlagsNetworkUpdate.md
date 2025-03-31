@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEntityFlagsNetworkUpdate()
+private object OnEntityFlagsNetworkUpdate(BaseEntity baseEntity)
 {
 	Puts("OnEntityFlagsNetworkUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseEntity]

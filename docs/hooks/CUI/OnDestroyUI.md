@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDestroyUI()
+private void OnDestroyUI(BasePlayer player, string name)
 {
 	Puts("OnDestroyUI has been fired!");
 }

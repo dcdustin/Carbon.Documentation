@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPayForPlacement()
+private object OnPayForPlacement(BasePlayer player, Planner planner, Construction component)
 {
 	Puts("OnPayForPlacement has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Planner]

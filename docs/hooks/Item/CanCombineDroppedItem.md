@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanCombineDroppedItem()
+private object CanCombineDroppedItem(DroppedItem droppedItem, DroppedItem di)
 {
 	Puts("CanCombineDroppedItem has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ DroppedItem]

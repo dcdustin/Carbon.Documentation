@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSignContentCopied()
+private void OnSignContentCopied(SignContent signContent, ISignage s, IUGCBrowserEntity b)
 {
 	Puts("OnSignContentCopied has been fired!");
 }

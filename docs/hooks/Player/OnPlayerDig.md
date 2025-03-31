@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerDig()
+private object OnPlayerDig(BasePlayer player, BaseDiggableEntity baseDiggableEntity)
 {
 	Puts("OnPlayerDig has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseDiggableEntity]

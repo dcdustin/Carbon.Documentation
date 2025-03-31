@@ -11,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private bool CanUseWires()
 {
 	Puts("CanUseWires has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WireTool]

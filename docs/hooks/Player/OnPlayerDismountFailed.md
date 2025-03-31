@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerDismountFailed()
+private void OnPlayerDismountFailed(BasePlayer local0, BaseMountable baseMountable)
 {
 	Puts("OnPlayerDismountFailed has been fired!");
 }

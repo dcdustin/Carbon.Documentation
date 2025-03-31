@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnIngredientsCollect()
+private object OnIngredientsCollect(ItemCrafter itemCrafter)
 {
 	Puts("OnIngredientsCollect has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemCrafter]

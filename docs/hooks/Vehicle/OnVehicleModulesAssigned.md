@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnVehicleModulesAssigned()
+private void OnVehicleModulesAssigned(ModularCar modularCar, Rust.Modular.ItemModVehicleModule[] socketItemDefs)
 {
 	Puts("OnVehicleModulesAssigned has been fired!");
 }

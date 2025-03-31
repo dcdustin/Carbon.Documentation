@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanPlaceOnRack()
+private bool CanPlaceOnRack(WeaponRack rack, BasePlayer player, Item item, int gridCellIndex, int rotation)
 {
 	Puts("CanPlaceOnRack has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WeaponRack]

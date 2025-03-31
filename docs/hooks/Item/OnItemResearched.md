@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemResearched()
+private void OnItemResearched(ResearchTable researchTable, int local2)
 {
 	Puts("OnItemResearched has been fired!");
 }

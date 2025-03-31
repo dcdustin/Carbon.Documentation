@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnItemUnwrap()
+private object OnItemUnwrap(Item item, BasePlayer player, ItemModUnwrap itemModUnwrap)
 {
 	Puts("OnItemUnwrap has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemModUnwrap]

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBookmarkControlEnd()
+private object OnBookmarkControlEnd(ComputerStation computerStation, BasePlayer ply, BaseEntity local0)
 {
 	Puts("OnBookmarkControlEnd has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ComputerStation]

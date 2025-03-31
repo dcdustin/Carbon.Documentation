@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnSaveLoad()
+private bool OnSaveLoad(System.Collections.Generic.Dictionary`2[[BaseEntity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[ProtoBuf.Entity, Rust.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] local1)
 {
 	Puts("OnSaveLoad has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SaveRestore]

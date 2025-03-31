@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAssignMission()
+private bool CanAssignMission(BasePlayer assignee, BaseMission mission, IMissionProvider provider)
 {
 	Puts("CanAssignMission has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseMission]

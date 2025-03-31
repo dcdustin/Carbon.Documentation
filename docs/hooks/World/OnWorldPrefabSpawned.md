@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnWorldPrefabSpawned()
+private void OnWorldPrefabSpawned(UnityEngine.GameObject local0, string category)
 {
 	Puts("OnWorldPrefabSpawned has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserKicked()
+private void OnUserKicked(Oxide.Core.Libraries.Covalence.IPlayer player, string reason)
 {
 	Puts("OnUserKicked has been fired!");
 }

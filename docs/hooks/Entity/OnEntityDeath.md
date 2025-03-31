@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntityDeath()
+private void OnEntityDeath(ResourceEntity resourceEntity)
 {
 	Puts("OnEntityDeath has been fired!");
 }

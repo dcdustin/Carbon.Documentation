@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnHelicopterDropCrate()
+private void OnHelicopterDropCrate(CH47HelicopterAIController cH47HelicopterAIController)
 {
 	Puts("OnHelicopterDropCrate has been fired!");
 }

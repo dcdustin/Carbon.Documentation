@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnItemCraft()
+private bool OnItemCraft(ItemCraftTask local0, BasePlayer owner, Item fromTempBlueprint)
 {
 	Puts("OnItemCraft has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemCrafter]

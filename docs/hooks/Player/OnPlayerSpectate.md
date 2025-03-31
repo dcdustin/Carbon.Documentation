@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPlayerSpectate()
+private object OnPlayerSpectate(BasePlayer basePlayer, BasePlayer self1)
 {
 	Puts("OnPlayerSpectate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private float OnChairComfort()
+private float OnChairComfort(BaseChair chair)
 {
 	Puts("OnChairComfort has been fired!");
-	return (System.Single)default;
+	return (float)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseChair]

@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnTrapDisarm()
+private object OnTrapDisarm(Landmine landmine, BasePlayer player)
 {
 	Puts("OnTrapDisarm has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Landmine]

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPermissionRegistered()
+private void OnPermissionRegistered(string permission, Oxide.Core.Plugins.Plugin plugin)
 {
 	Puts("OnPermissionRegistered has been fired!");
 }

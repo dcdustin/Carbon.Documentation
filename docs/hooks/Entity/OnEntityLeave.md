@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEntityLeave()
+private object OnEntityLeave(TriggerComfort triggerComfort)
 {
 	Puts("OnEntityLeave has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ TriggerComfort]

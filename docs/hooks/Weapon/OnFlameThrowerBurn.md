@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFlameThrowerBurn()
+private void OnFlameThrowerBurn(FlameThrower flameThrower, BaseEntity local13)
 {
 	Puts("OnFlameThrowerBurn has been fired!");
 }

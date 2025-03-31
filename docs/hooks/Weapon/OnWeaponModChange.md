@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnWeaponModChange()
+private object OnWeaponModChange(BaseProjectile baseProjectile, BaseProjectile self1)
 {
 	Puts("OnWeaponModChange has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseProjectile]

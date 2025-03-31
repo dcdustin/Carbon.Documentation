@@ -10,10 +10,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanPurchaseItem()
+private bool CanPurchaseItem(BasePlayer buyer, Item local15, System.Action`2[[BasePlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Item, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] onItemPurchased, VendingMachine vendingMachine, ItemContainer targetContainer)
 {
 	Puts("CanPurchaseItem has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VendingMachine]

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private Item OnFindBurnable()
+private Item OnFindBurnable(BaseOven baseOven)
 {
 	Puts("OnFindBurnable has been fired!");
 	return (Item)default;

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEntityReskin()
+private object OnEntityReskin(BaseEntity local3, ItemSkinDirectory.Skin local7, BasePlayer player)
 {
 	Puts("OnEntityReskin has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SprayCan]

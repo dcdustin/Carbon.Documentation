@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPoweredLightsPointAdd()
+private object OnPoweredLightsPointAdd(PoweredLightsDeployer poweredLightsDeployer, BasePlayer local3, UnityEngine.Vector3 local0, UnityEngine.Vector3 local1)
 {
 	Puts("OnPoweredLightsPointAdd has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PoweredLightsDeployer]

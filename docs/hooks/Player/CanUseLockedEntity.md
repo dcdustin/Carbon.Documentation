@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUseLockedEntity()
+private bool CanUseLockedEntity(BasePlayer player, KeyLock keyLock)
 {
 	Puts("CanUseLockedEntity has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ KeyLock]

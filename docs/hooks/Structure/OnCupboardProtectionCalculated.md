@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCupboardProtectionCalculated()
+private void OnCupboardProtectionCalculated(BuildingPrivlidge buildingPrivlidge, BuildingPrivlidge self1)
 {
 	Puts("OnCupboardProtectionCalculated has been fired!");
 }

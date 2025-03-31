@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnNpcConversationStart()
+private object OnNpcConversationStart(NPCTalking nPCTalking, BasePlayer ply, ConversationData local0)
 {
 	Puts("OnNpcConversationStart has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ NPCTalking]

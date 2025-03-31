@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnEyePosValidate()
+private bool OnEyePosValidate(AttackEntity attackEntity, BasePlayer player, UnityEngine.Vector3 eyePos, bool checkLineOfSight)
 {
 	Puts("OnEyePosValidate has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AttackEntity]

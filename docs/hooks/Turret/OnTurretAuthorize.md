@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnTurretAuthorize()
+private object OnTurretAuthorize(AutoTurret autoTurret, BasePlayer player)
 {
 	Puts("OnTurretAuthorize has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AutoTurret]

@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHammerHit()
+private object OnHammerHit(BasePlayer local0, HitInfo info)
 {
 	Puts("OnHammerHit has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Hammer]

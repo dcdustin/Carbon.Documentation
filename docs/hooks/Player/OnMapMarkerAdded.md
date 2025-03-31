@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMapMarkerAdded()
+private void OnMapMarkerAdded(BasePlayer basePlayer, ProtoBuf.MapNote local0)
 {
 	Puts("OnMapMarkerAdded has been fired!");
 }

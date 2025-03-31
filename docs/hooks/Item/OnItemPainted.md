@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemPainted()
+private void OnItemPainted(PaintedItemStorageEntity paintedItemStorageEntity, Item local0, BasePlayer player, System.Byte[] local1)
 {
 	Puts("OnItemPainted has been fired!");
 }

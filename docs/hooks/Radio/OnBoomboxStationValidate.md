@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnBoomboxStationValidate()
+private bool OnBoomboxStationValidate(string url)
 {
 	Puts("OnBoomboxStationValidate has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BoomBox]

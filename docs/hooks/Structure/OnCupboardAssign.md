@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCupboardAssign()
+private object OnCupboardAssign(BuildingPrivlidge priv, ulong targetId, BasePlayer player)
 {
 	Puts("OnCupboardAssign has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 :::

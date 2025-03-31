@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanRagdollDismount()
+private bool CanRagdollDismount(BaseRagdoll baseRagdoll, BasePlayer player)
 {
 	Puts("CanRagdollDismount has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseRagdoll]

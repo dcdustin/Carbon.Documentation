@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRfFrequencyChanged()
+private void OnRfFrequencyChanged(PagerEntity pagerEntity, int local0, BasePlayer player)
 {
 	Puts("OnRfFrequencyChanged has been fired!");
 }

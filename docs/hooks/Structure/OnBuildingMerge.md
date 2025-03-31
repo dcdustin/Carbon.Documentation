@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBuildingMerge()
+private void OnBuildingMerge(ServerBuildingManager serverBuildingManager)
 {
 	Puts("OnBuildingMerge has been fired!");
 }

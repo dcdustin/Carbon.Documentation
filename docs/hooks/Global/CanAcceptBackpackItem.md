@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAcceptBackpackItem()
+private bool CanAcceptBackpackItem(Item backpack, Item item)
 {
 	Puts("CanAcceptBackpackItem has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemModBackpack]

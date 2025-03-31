@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRespawnInformationGiven()
+private void OnRespawnInformationGiven(BasePlayer basePlayer, System.Collections.Generic.List`1[[ProtoBuf.RespawnInformation.SpawnOptions, Rust.Data, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] local0)
 {
 	Puts("OnRespawnInformationGiven has been fired!");
 }

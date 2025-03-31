@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnSprayCreate()
+private object OnSprayCreate(SprayCan sprayCan, UnityEngine.Vector3 local0, UnityEngine.Quaternion local5)
 {
 	Puts("OnSprayCreate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SprayCan]

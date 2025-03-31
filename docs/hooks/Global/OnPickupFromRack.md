@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPickupFromRack()
+private void OnPickupFromRack(WeaponRack rack, BasePlayer player, Item item, int mountSlotIndex, int playerBeltIndex, bool tryHold)
 {
 	Puts("OnPickupFromRack has been fired!");
 }

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHuntEventStart()
+private object OnHuntEventStart(EggHuntEvent eggHuntEvent)
 {
 	Puts("OnHuntEventStart has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EggHuntEvent]

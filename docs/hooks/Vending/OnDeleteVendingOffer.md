@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDeleteVendingOffer()
+private void OnDeleteVendingOffer(VendingMachine vendingMachine, int local1)
 {
 	Puts("OnDeleteVendingOffer has been fired!");
 }

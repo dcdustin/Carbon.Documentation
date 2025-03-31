@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnVehicleModuleSelected()
+private void OnVehicleModuleSelected(Item local2, ModularCarGarage modularCarGarage, BasePlayer local0)
 {
 	Puts("OnVehicleModuleSelected has been fired!");
 }

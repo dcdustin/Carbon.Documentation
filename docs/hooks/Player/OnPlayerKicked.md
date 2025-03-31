@@ -10,7 +10,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerKicked()
+private void OnPlayerKicked(Network.Connection local2, string toString())
 {
 	Puts("OnPlayerKicked has been fired!");
 }

@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExplosiveFuseSet()
+private void OnExplosiveFuseSet(TimedExplosive timedExplosive, float fuseLength)
 {
 	Puts("OnExplosiveFuseSet has been fired!");
 }

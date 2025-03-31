@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRidableAnimalClaim()
+private object OnRidableAnimalClaim(RidableHorse2 ridableHorse2, BasePlayer local0, Item local2)
 {
 	Puts("OnRidableAnimalClaim has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ RidableHorse2]

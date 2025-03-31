@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanBeHomingTargeted()
+private bool CanBeHomingTargeted(RoadFlare roadFlare)
 {
 	Puts("CanBeHomingTargeted has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ RoadFlare]

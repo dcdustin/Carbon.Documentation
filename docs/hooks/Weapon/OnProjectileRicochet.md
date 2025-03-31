@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnProjectileRicochet()
+private object OnProjectileRicochet(BasePlayer basePlayer, ProtoBuf.PlayerProjectileRicochet local0)
 {
 	Puts("OnProjectileRicochet has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

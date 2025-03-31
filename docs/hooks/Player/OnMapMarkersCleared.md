@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMapMarkersCleared()
+private void OnMapMarkersCleared(BasePlayer basePlayer)
 {
 	Puts("OnMapMarkersCleared has been fired!");
 }

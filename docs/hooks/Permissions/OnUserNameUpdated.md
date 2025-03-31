@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserNameUpdated()
+private void OnUserNameUpdated(string id, string oldName, string newName)
 {
 	Puts("OnUserNameUpdated has been fired!");
 }

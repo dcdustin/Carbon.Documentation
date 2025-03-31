@@ -11,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnPlayerAddModifiers()
 {
 	Puts("OnPlayerAddModifiers has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemModConsume]

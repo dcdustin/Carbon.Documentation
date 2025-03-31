@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanPickupEntity()
+private bool CanPickupEntity(BasePlayer player, BaseCombatEntity baseCombatEntity)
 {
 	Puts("CanPickupEntity has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseCombatEntity]

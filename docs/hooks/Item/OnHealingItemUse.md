@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHealingItemUse()
+private object OnHealingItemUse(MedicalTool medicalTool)
 {
 	Puts("OnHealingItemUse has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ MedicalTool]

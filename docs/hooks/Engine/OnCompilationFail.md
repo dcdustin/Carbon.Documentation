@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCompilationFail()
+private void OnCompilationFail(string file, Carbon.Core.ModLoader.CompilationResult result)
 {
 	Puts("OnCompilationFail has been fired!");
 }

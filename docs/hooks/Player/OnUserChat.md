@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserChat()
+private void OnUserChat(Oxide.Core.Libraries.Covalence.IPlayer player, string message)
 {
 	Puts("OnUserChat has been fired!");
 }

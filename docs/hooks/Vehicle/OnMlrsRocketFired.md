@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMlrsRocketFired()
+private void OnMlrsRocketFired(MLRS mLRS, ServerProjectile local7)
 {
 	Puts("OnMlrsRocketFired has been fired!");
 }

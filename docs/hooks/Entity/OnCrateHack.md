@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCrateHack()
+private void OnCrateHack(HackableLockedCrate hackableLockedCrate)
 {
 	Puts("OnCrateHack has been fired!");
 }

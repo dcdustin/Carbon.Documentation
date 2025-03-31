@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnTechTreeNodeUnlock()
+private object OnTechTreeNodeUnlock(Workbench workbench, TechTreeData.NodeInstance local4, BasePlayer local0)
 {
 	Puts("OnTechTreeNodeUnlock has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Workbench]

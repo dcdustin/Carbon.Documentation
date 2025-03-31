@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEngineStatsRefresh()
+private object OnEngineStatsRefresh(VehicleModuleEngine vehicleModuleEngine, Rust.Modular.EngineStorage engineStorage)
 {
 	Puts("OnEngineStatsRefresh has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VehicleModuleEngine]

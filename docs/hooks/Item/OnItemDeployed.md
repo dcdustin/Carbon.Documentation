@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemDeployed()
+private void OnItemDeployed(Deployer deployer, BaseEntity local1, BaseEntity local4)
 {
 	Puts("OnItemDeployed has been fired!");
 }

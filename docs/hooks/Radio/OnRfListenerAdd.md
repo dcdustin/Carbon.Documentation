@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRfListenerAdd()
+private object OnRfListenerAdd(IRFObject obj, int frequency)
 {
 	Puts("OnRfListenerAdd has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ RFManager]

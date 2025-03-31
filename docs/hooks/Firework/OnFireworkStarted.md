@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFireworkStarted()
+private void OnFireworkStarted(BaseFirework baseFirework)
 {
 	Puts("OnFireworkStarted has been fired!");
 }

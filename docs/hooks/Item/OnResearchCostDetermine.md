@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private int OnResearchCostDetermine()
+private int OnResearchCostDetermine(ItemDefinition info)
 {
 	Puts("OnResearchCostDetermine has been fired!");
-	return (System.Int32)default;
+	return (int)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ResearchTable]

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnActiveTelephoneUpdated()
+private void OnActiveTelephoneUpdated(BasePlayer basePlayer)
 {
 	Puts("OnActiveTelephoneUpdated has been fired!");
 }

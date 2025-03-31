@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnLootSpawn()
+private object OnLootSpawn(LootContainer lootContainer)
 {
 	Puts("OnLootSpawn has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ LootContainer]

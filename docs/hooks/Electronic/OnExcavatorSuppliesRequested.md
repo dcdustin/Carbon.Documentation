@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExcavatorSuppliesRequested()
+private void OnExcavatorSuppliesRequested(ExcavatorSignalComputer excavatorSignalComputer, BasePlayer player, BaseEntity local0)
 {
 	Puts("OnExcavatorSuppliesRequested has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnClientAuth()
+private void OnClientAuth(Network.Connection connection)
 {
 	Puts("OnClientAuth has been fired!");
 }

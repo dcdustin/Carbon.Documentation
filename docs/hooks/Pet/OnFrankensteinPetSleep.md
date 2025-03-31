@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnFrankensteinPetSleep()
+private object OnFrankensteinPetSleep(FrankensteinPet local0, FrankensteinTable frankensteinTable, BasePlayer owner)
 {
 	Puts("OnFrankensteinPetSleep has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ FrankensteinTable]

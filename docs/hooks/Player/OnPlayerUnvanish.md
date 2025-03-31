@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerUnvanish()
+private void OnPlayerUnvanish(BasePlayer local0)
 {
 	Puts("OnPlayerUnvanish has been fired!");
 }

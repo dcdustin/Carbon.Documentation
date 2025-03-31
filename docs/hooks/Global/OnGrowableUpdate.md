@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGrowableUpdate()
+private void OnGrowableUpdate(GrowableEntity growable)
 {
 	Puts("OnGrowableUpdate has been fired!");
 }

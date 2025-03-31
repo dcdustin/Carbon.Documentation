@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnIORefCleared()
+private void OnIORefCleared(IOEntity.IORef iORef)
 {
 	Puts("OnIORefCleared has been fired!");
 }

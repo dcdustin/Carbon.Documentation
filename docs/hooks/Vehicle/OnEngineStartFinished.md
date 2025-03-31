@@ -10,7 +10,7 @@ Returning a non-null value cancels default behavior.
 private object OnEngineStartFinished()
 {
 	Puts("OnEngineStartFinished has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 :::

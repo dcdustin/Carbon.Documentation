@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnDecayHeal()
+private object OnDecayHeal(DecayEntity decayEntity)
 {
 	Puts("OnDecayHeal has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ DecayEntity]

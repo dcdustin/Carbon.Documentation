@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMeleeThrown()
+private void OnMeleeThrown(BasePlayer local0, Item local1)
 {
 	Puts("OnMeleeThrown has been fired!");
 }

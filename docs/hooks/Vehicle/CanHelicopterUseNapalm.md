@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanHelicopterUseNapalm()
+private bool CanHelicopterUseNapalm(PatrolHelicopterAI patrolHelicopterAI)
 {
 	Puts("CanHelicopterUseNapalm has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]

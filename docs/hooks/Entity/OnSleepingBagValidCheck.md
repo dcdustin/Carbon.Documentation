@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnSleepingBagValidCheck()
+private bool OnSleepingBagValidCheck(SleepingBag sleepingBag, ulong playerID, bool ignoreTimers)
 {
 	Puts("OnSleepingBagValidCheck has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SleepingBag]

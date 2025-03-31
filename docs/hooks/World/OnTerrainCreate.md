@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnTerrainCreate()
+private void OnTerrainCreate(TerrainGenerator terrainGenerator)
 {
 	Puts("OnTerrainCreate has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemRemovedFromContainer()
+private void OnItemRemovedFromContainer(ItemContainer itemContainer)
 {
 	Puts("OnItemRemovedFromContainer has been fired!");
 }

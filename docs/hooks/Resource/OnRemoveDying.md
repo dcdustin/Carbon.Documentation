@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRemoveDying()
+private object OnRemoveDying(GrowableEntity growableEntity, BasePlayer receiver)
 {
 	Puts("OnRemoveDying has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ GrowableEntity]

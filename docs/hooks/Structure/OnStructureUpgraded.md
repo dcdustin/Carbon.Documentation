@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnStructureUpgraded()
+private void OnStructureUpgraded(BuildingBlock buildingBlock, BasePlayer player, BuildingGrade.Enum type, ulong skin)
 {
 	Puts("OnStructureUpgraded has been fired!");
 }

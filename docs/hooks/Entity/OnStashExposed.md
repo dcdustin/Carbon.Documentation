@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnStashExposed()
+private void OnStashExposed(StashContainer entity, BasePlayer basePlayer)
 {
 	Puts("OnStashExposed has been fired!");
 }

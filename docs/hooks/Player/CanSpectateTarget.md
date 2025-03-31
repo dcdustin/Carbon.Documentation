@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanSpectateTarget()
+private object CanSpectateTarget(BasePlayer basePlayer, string strName)
 {
 	Puts("CanSpectateTarget has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

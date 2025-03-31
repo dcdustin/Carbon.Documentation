@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBoomboxStationUpdate()
+private object OnBoomboxStationUpdate(BoomBox boomBox, string local0, BasePlayer player)
 {
 	Puts("OnBoomboxStationUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BoomBox]

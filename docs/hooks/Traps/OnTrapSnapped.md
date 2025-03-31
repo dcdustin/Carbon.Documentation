@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnTrapSnapped()
+private void OnTrapSnapped(BaseTrapTrigger baseTrapTrigger)
 {
 	Puts("OnTrapSnapped has been fired!");
 }

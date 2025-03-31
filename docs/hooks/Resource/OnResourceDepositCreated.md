@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnResourceDepositCreated()
+private void OnResourceDepositCreated(ResourceDepositManager.ResourceDeposit local1)
 {
 	Puts("OnResourceDepositCreated has been fired!");
 }

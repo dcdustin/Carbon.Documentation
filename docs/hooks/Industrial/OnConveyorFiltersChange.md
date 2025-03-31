@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnConveyorFiltersChange()
+private object OnConveyorFiltersChange(IndustrialConveyor industrialConveyor, BasePlayer player, ProtoBuf.IndustrialConveyor.ItemFilterList local0)
 {
 	Puts("OnConveyorFiltersChange has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ IndustrialConveyor]

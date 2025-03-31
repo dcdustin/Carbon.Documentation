@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEngineStatsRefreshed()
+private void OnEngineStatsRefreshed(VehicleModuleEngine vehicleModuleEngine, Rust.Modular.EngineStorage engineStorage)
 {
 	Puts("OnEngineStatsRefreshed has been fired!");
 }

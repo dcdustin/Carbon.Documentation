@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFreeableContainerReleaseStarted()
+private void OnFreeableContainerReleaseStarted(FreeableLootContainer freeableLootContainer, BasePlayer player)
 {
 	Puts("OnFreeableContainerReleaseStarted has been fired!");
 }

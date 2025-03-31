@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerMetabolize()
+private void OnPlayerMetabolize(PlayerMetabolism playerMetabolism, BaseCombatEntity ownerEntity, float delta)
 {
 	Puts("OnPlayerMetabolize has been fired!");
 }

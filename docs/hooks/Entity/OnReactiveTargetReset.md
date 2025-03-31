@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnReactiveTargetReset()
+private void OnReactiveTargetReset(ReactiveTarget reactiveTarget)
 {
 	Puts("OnReactiveTargetReset has been fired!");
 }

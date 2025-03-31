@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserApproved()
+private void OnUserApproved(string username, string userid, string ip)
 {
 	Puts("OnUserApproved has been fired!");
 }

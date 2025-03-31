@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDispenserGathered()
+private void OnDispenserGathered(ResourceDispenser resourceDispenser, BasePlayer entity, Item local7)
 {
 	Puts("OnDispenserGathered has been fired!");
 }

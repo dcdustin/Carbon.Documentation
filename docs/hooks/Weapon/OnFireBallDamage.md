@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFireBallDamage()
+private void OnFireBallDamage(FireBall fireBall, BaseCombatEntity local4, HitInfo local2)
 {
 	Puts("OnFireBallDamage has been fired!");
 }

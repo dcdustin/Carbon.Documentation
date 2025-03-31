@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnActiveItemChanged()
+private void OnActiveItemChanged(BasePlayer basePlayer, Item local1, Item local2)
 {
 	Puts("OnActiveItemChanged has been fired!");
 }

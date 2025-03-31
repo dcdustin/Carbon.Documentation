@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUnlock()
+private bool CanUnlock(BasePlayer player, ModularCarCodeLock modularCarCodeLock, string codeEntered)
 {
 	Puts("CanUnlock has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ModularCarCodeLock]

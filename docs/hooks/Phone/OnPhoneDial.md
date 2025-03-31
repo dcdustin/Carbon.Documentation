@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnPhoneDial()
+private object OnPhoneDial(PhoneController phoneController, PhoneController local0, PhoneController self1)
 {
 	Puts("OnPhoneDial has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PhoneController]

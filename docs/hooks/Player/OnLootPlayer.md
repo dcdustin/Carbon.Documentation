@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnLootPlayer()
+private void OnLootPlayer(BasePlayer basePlayer, BasePlayer local0)
 {
 	Puts("OnLootPlayer has been fired!");
 }

@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnNpcConversationResponded()
+private void OnNpcConversationResponded(NPCTalking nPCTalking, BasePlayer local0, ConversationData local3, ConversationData.ResponseNode local4)
 {
 	Puts("OnNpcConversationResponded has been fired!");
 }

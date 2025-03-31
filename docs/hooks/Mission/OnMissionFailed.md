@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMissionFailed()
+private void OnMissionFailed(BaseMission baseMission)
 {
 	Puts("OnMissionFailed has been fired!");
 }

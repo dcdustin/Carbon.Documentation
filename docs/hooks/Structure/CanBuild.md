@@ -10,10 +10,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanBuild()
+private object CanBuild(Planner planner, Construction local1, Construction.Target local3)
 {
 	Puts("CanBuild has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Planner]

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanExplosiveStick()
+private bool CanExplosiveStick(TimedExplosive timedExplosive)
 {
 	Puts("CanExplosiveStick has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ TimedExplosive]

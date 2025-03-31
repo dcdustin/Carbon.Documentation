@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSurveyGather()
+private void OnSurveyGather(SurveyCharge surveyCharge)
 {
 	Puts("OnSurveyGather has been fired!");
 }

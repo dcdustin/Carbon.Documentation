@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBookmarkControlEnded()
+private void OnBookmarkControlEnded(ComputerStation computerStation, BasePlayer local0, IRemoteControllable local6)
 {
 	Puts("OnBookmarkControlEnded has been fired!");
 }

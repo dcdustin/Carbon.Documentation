@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnEntityVisibilityCheck()
+private bool OnEntityVisibilityCheck(BaseEntity ent, BasePlayer player, uint id, string debugName, float maximumDistance)
 {
 	Puts("OnEntityVisibilityCheck has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 :::

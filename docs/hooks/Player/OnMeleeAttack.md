@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnMeleeAttack()
+private object OnMeleeAttack(BasePlayer local0, HitInfo local3)
 {
 	Puts("OnMeleeAttack has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseMelee]

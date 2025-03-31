@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnMapMarkersClear()
+private object OnMapMarkersClear(BasePlayer basePlayer, BasePlayer self1)
 {
 	Puts("OnMapMarkersClear has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BasePlayer]

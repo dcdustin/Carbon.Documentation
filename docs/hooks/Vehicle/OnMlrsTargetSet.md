@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMlrsTargetSet()
+private void OnMlrsTargetSet(MLRS mLRS, MLRS self1, MLRS self2)
 {
 	Puts("OnMlrsTargetSet has been fired!");
 }

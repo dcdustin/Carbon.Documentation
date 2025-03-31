@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnHotAirBalloonToggled()
+private void OnHotAirBalloonToggled(HotAirBalloon hotAirBalloon, BasePlayer player)
 {
 	Puts("OnHotAirBalloonToggled has been fired!");
 }

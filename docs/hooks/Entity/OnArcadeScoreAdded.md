@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnArcadeScoreAdded()
+private void OnArcadeScoreAdded(BaseArcadeMachine baseArcadeMachine, BasePlayer player, int score)
 {
 	Puts("OnArcadeScoreAdded has been fired!");
 }

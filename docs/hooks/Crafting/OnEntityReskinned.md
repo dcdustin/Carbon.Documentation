@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntityReskinned()
+private void OnEntityReskinned(BaseEntity local3, ItemSkinDirectory.Skin local7, BasePlayer player)
 {
 	Puts("OnEntityReskinned has been fired!");
 }

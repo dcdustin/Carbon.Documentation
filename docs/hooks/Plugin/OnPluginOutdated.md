@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPluginOutdated()
+private void OnPluginOutdated(string pluginName, Oxide.Core.VersionNumber currentVersion, Oxide.Core.VersionNumber newVersion, Oxide.Core.Plugins.Plugin plugin, string vendorName)
 {
 	Puts("OnPluginOutdated has been fired!");
 }

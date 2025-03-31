@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFireworkDesignChanged()
+private void OnFireworkDesignChanged(PatternFirework patternFirework, ProtoBuf.PatternFirework.Design local0, BasePlayer player)
 {
 	Puts("OnFireworkDesignChanged has been fired!");
 }

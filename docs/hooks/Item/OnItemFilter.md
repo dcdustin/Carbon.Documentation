@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool OnItemFilter()
+private bool OnItemFilter(Item item, StorageContainer storageContainer, int targetSlot)
 {
 	Puts("OnItemFilter has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ StorageContainer]

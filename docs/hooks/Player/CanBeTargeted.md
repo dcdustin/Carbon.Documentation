@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanBeTargeted()
+private bool CanBeTargeted(BasePlayer local5, GunTrap gunTrap)
 {
 	Puts("CanBeTargeted has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ GunTrap]

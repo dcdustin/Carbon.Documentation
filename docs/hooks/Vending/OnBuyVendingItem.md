@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBuyVendingItem()
+private object OnBuyVendingItem(VendingMachine vendingMachine, BasePlayer player, int local0, int local1)
 {
 	Puts("OnBuyVendingItem has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VendingMachine]

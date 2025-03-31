@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnVendingShopOpened()
+private void OnVendingShopOpened(TravellingVendor travellingVendor, BasePlayer player)
 {
 	Puts("OnVendingShopOpened has been fired!");
 }

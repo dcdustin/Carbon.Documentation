@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnWeaponFired()
+private void OnWeaponFired(BaseProjectile baseProjectile, BasePlayer player, ItemModProjectile local3, ProtoBuf.ProjectileShoot local2)
 {
 	Puts("OnWeaponFired has been fired!");
 }

@@ -8,10 +8,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnItemCraft()
+private object OnItemCraft(IndustrialCrafter industrialCrafter, ItemBlueprint local2)
 {
 	Puts("OnItemCraft has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ IndustrialCrafter]

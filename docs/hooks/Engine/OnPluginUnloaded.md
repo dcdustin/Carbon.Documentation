@@ -8,7 +8,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPluginUnloaded()
+private void OnPluginUnloaded(Oxide.Plugins.RustPlugin plugin)
 {
 	Puts("OnPluginUnloaded has been fired!");
 }
