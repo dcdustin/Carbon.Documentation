@@ -54,10 +54,6 @@
     {
       "title": "development",
       "path": "[[workspace]]/docs/development"
-    },
-    {
-      "title": "archive",
-      "path": "[[workspace]]/docs/archive"
     }
   ],
   "frontMatter.preview.host": "http://localhost:5173",

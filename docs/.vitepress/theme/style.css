@@ -44,8 +44,9 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --c-carbon-1: #974337;
-  --c-carbon-2: #af6052;
+  /* --c-carbon-1: #974337; */
+  --c-carbon-1: #fc583b;
+  --c-carbon-2: #fc3b3b;
 
   /*--vp-c-default-1: var(--vp-c-gray-1);*/
   --vp-c-default-1: var(--vp-c-gray-1);
@@ -163,4 +164,11 @@
 :root {
 /* override for code line text color */
   --vp-code-color: var(--c-carbon-1); 
+}
+
+.details.custom-color {
+  background-color: #668657; /* Your preferred background color */
+  color: white; /* Ensure text is readable on the dark background */
+  border-radius: 5px; /* Optional, adds rounded corners */
+  padding: 10px; /* Optional, adjust padding */
 }

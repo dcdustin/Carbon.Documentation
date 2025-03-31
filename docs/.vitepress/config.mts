@@ -4,12 +4,16 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Carbon Mod Documentation",
+  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  cleanUrls: true,
+  lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/introduction' },
-      { text: 'Hooks', link: '/hooks', activeMatch: '/hooks/' },
+      { text: 'Hooks', link: '/hooks' },
+      { text: 'References', link: '/references' },
     ],
 
     sidebar: {
@@ -19,22 +23,14 @@ export default defineConfig({
           text: 'Development',
           items: [
             { text: 'Creating Your Project', link: '/development/creating-your-project' },
-            { text: 'Local Server Hosting', link: '/development/local-server-hosting' }
+            { text: 'Local Server Hosting', link: '/development/local-server-hosting' },
+            { text: 'Creating Your First Plugin', link: '/development/creating-your-first-plugin' },
           ]
         },
         {
           text: 'Core',
           items: [
-            { text: 'Commands', link: '/core/commands' },
-            { text: 'ConVars', link: '/core/convars' },
             { text: 'Extensions', link: '/core/extensions' }
-          ]
-        },
-        {
-          text: 'Archived',
-          items: [
-            { text: 'Markdown Examples', link: '/archive/markdown-examples' },
-            { text: 'Runtime API Examples', link: '/archive/api-examples' }
           ]
         },
       ],
@@ -46,6 +42,21 @@ export default defineConfig({
           items: [
             { text: 'Using Hooks', link: '/hooks/' },
             { text: 'OnPlayerConnected', link: '/hooks/onplayerconnected' },
+          ]
+        }
+      ],
+      
+      '/references/': [
+        {
+          text: 'References',
+          link: '/references',
+          items: [
+            { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' },
+            { text: 'Entities', link: '/references/entities' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
         }
       ]
@@ -65,6 +76,12 @@ export default defineConfig({
 
     search: {
       provider: 'local'
-    }
-  }
+    },
+
+    editLink: {
+      pattern: 'https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path',
+      text: 'Suggest a change'
+    },
+    
+  },
 })
