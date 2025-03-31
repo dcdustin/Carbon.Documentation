@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAmmoSwitch
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnAmmoSwitch()
+private object OnAmmoSwitch(BaseProjectile baseProjectile, BasePlayer local0, ItemDefinition local2)
 {
 	Puts("OnAmmoSwitch has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseProjectile]

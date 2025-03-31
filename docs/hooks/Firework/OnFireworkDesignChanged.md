@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkDesignChanged
+<Badge type="info" text="Firework"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a firework's design has been updated.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFireworkDesignChanged()
+private void OnFireworkDesignChanged(PatternFirework patternFirework, ProtoBuf.PatternFirework.Design local0, BasePlayer player)
 {
 	Puts("OnFireworkDesignChanged has been fired!");
 }

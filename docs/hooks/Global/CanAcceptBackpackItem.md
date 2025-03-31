@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanAcceptBackpackItem
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if an item can be added to a player's backpack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanAcceptBackpackItem()
+private bool CanAcceptBackpackItem(Item backpack, Item item)
 {
 	Puts("CanAcceptBackpackItem has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemModBackpack]

@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityReskin
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to reskin an entity (for example, using a spray can to apply a skin) before the skin change is applied.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEntityReskin()
+private object OnEntityReskin(BaseEntity local3, ItemSkinDirectory.Skin local7, BasePlayer player)
 {
 	Puts("OnEntityReskin has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SprayCan]

@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFreeableContainerRelease
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a freeable loot container is triggered to release (e.g., a locked crate that will drop from its holder).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnFreeableContainerRelease()
+private object OnFreeableContainerRelease(FreeableLootContainer freeableLootContainer)
 {
 	Puts("OnFreeableContainerRelease has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ FreeableLootContainer]

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSignUpdated
+<Badge type="info" text="Structure"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player finishes editing a sign or painting, and it’s updated in the world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSignUpdated()
+private void OnSignUpdated(CarvablePumpkin carvablePumpkin, BasePlayer player)
 {
 	Puts("OnSignUpdated has been fired!");
 }

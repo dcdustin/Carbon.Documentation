@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupParentSet
+<Badge type="info" text="Permissions"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a permission group's parent group is changed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGroupParentSet()
+private void OnGroupParentSet(string group, string parentGroup)
 {
 	Puts("OnGroupParentSet has been fired!");
 }

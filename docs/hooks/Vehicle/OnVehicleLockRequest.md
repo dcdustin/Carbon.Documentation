@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleLockRequest
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnVehicleLockRequest()
+private object OnVehicleLockRequest(ModularCarGarage modularCarGarage, BasePlayer local0, string local1)
 {
 	Puts("OnVehicleLockRequest has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ModularCarGarage]

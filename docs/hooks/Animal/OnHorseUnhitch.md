@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHorseUnhitch
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a horse is unhitched from a hitching post (released from being tied).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnHorseUnhitch()
+private object OnHorseUnhitch(HitchTrough.IHitchable hitchable, HitchTrough.HitchSpot local2)
 {
 	Puts("OnHorseUnhitch has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ HitchTrough]

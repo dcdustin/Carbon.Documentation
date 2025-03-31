@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanDestroyLock
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanDestroyLock()
+private bool CanDestroyLock(BasePlayer player, ModularCar modularCar, BaseVehicleModule viaModule)
 {
 	Puts("CanDestroyLock has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ModularCar]

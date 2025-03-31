@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanFastTrackCraftTask
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a crafting task can be fast-tracked (completed immediately).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanFastTrackCraftTask()
+private bool CanFastTrackCraftTask(ItemCrafter itemCrafter, ItemCraftTask local2, int taskID)
 {
 	Puts("CanFastTrackCraftTask has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ItemCrafter]

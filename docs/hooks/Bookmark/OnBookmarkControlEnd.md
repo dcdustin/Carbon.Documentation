@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlEnd
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player stops controlling a remote entity via the Computer Station (before control is fully terminated).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnBookmarkControlEnd()
+private object OnBookmarkControlEnd(ComputerStation computerStation, BasePlayer ply, BaseEntity local0)
 {
 	Puts("OnBookmarkControlEnd has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ComputerStation]

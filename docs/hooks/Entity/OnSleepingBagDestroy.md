@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSleepingBagDestroy
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a sleeping bag or bed is about to be destroyed (player or game logic initiates its removal).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
@@ -10,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnSleepingBagDestroy()
 {
 	Puts("OnSleepingBagDestroy has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ SleepingBag]

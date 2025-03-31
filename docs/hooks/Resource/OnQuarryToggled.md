@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQuarryToggled
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a mining quarry's on/off state has been toggled.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
@@ -10,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnQuarryToggled()
 {
 	Puts("OnQuarryToggled has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EngineSwitch]

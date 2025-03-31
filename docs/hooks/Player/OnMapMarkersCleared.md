@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMapMarkersCleared
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after all map markers have been cleared.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMapMarkersCleared()
+private void OnMapMarkersCleared(BasePlayer basePlayer)
 {
 	Puts("OnMapMarkersCleared has been fired!");
 }

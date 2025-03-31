@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLiquidVesselFill
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a liquid container (bottle, jug, etc.) is filled with water or another liquid.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnLiquidVesselFill()
+private object OnLiquidVesselFill(BaseLiquidVessel baseLiquidVessel, BasePlayer local0, LiquidContainer local3)
 {
 	Puts("OnLiquidVesselFill has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseLiquidVessel]

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnConstructorFail
+<Badge type="info" text="Engine"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a plugin fails to initialize (plugin constructor or initialization threw an exception).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnConstructorFail()
+private void OnConstructorFail(Oxide.Plugins.RustPlugin plugin, System.Exception exception)
 {
 	Puts("OnConstructorFail has been fired!");
 }

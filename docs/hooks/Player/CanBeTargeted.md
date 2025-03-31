@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBeTargeted
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to determine if an entity can be targeted by automated turrets or AI (e.g., auto turrets, helicopter).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanBeTargeted()
+private bool CanBeTargeted(BasePlayer local5, GunTrap gunTrap)
 {
 	Puts("CanBeTargeted has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ GunTrap]

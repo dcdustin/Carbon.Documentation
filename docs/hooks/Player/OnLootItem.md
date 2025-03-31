@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootItem
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an item is looted from a container.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnLootItem()
+private void OnLootItem(PlayerLoot playerLoot, Item item)
 {
 	Puts("OnLootItem has been fired!");
 }

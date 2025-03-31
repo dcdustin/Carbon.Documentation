@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCoalingTowerGather
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered during the coaling tower's unloading process (transferring resources from a train to storage).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
@@ -10,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private object OnCoalingTowerGather()
 {
 	Puts("OnCoalingTowerGather has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CoalingTower]

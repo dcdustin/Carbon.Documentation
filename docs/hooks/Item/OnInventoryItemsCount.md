@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryItemsCount
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when counting the total amount of a specific item in an inventory.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private int OnInventoryItemsCount()
+private int OnInventoryItemsCount(PlayerInventory playerInventory)
 {
 	Puts("OnInventoryItemsCount has been fired!");
-	return (System.Int32)default;
+	return (int)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PlayerInventory]

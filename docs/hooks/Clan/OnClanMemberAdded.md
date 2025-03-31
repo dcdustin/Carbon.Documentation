@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClanMemberAdded
+<Badge type="info" text="Clan"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player is added to a clan (e.g., after accepting a clan invite).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

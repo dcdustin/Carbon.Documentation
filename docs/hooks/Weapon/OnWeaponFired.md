@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWeaponFired
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a weapon is fired (a shot is taken).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnWeaponFired()
+private void OnWeaponFired(BaseProjectile baseProjectile, BasePlayer player, ItemModProjectile local3, ProtoBuf.ProjectileShoot local2)
 {
 	Puts("OnWeaponFired has been fired!");
 }

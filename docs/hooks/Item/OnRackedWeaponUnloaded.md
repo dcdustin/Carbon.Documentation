@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponUnloaded
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a racked weapon has been unloaded.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRackedWeaponUnloaded()
+private void OnRackedWeaponUnloaded(Item local1, BasePlayer player, WeaponRack weaponRack)
 {
 	Puts("OnRackedWeaponUnloaded has been fired!");
 }

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFeedbackReported
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player submits in-game feedback or a report (e.g., via the F7 report system).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFeedbackReported()
+private void OnFeedbackReported(BasePlayer basePlayer, string local0, string local1, Facepunch.Models.ReportType local2)
 {
 	Puts("OnFeedbackReported has been fired!");
 }

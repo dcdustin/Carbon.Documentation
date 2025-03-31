@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntitySpawned
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a new entity is spawned in the world. Useful for initialization or tracking newly created entities.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntitySpawned()
+private void OnEntitySpawned(BaseNetworkable baseNetworkable)
 {
 	Puts("OnEntitySpawned has been fired!");
 }

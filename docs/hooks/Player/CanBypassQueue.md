@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBypassQueue
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to determine if a connecting player can bypass the connection queue (e.g., a priority slot).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
@@ -10,7 +11,7 @@ Returning a non-null value cancels default behavior.
 private bool CanBypassQueue()
 {
 	Puts("CanBypassQueue has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ConnectionQueue]

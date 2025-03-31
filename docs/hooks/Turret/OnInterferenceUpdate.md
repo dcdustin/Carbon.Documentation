@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInterferenceUpdate
+<Badge type="info" text="Turret"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,10 +7,10 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnInterferenceUpdate()
+private object OnInterferenceUpdate(AutoTurret autoTurret)
 {
 	Puts("OnInterferenceUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ AutoTurret]

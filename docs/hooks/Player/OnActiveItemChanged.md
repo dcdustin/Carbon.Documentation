@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnActiveItemChanged
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has switched their active item.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnActiveItemChanged()
+private void OnActiveItemChanged(BasePlayer basePlayer, Item local1, Item local2)
 {
 	Puts("OnActiveItemChanged has been fired!");
 }

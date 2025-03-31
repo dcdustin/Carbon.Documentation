@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTechTreeNodeUnlocked
+<Badge type="info" text="TechTree"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnTechTreeNodeUnlocked()
+private void OnTechTreeNodeUnlocked(Workbench workbench, TechTreeData.NodeInstance local4, BasePlayer local0)
 {
 	Puts("OnTechTreeNodeUnlocked has been fired!");
 }

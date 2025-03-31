@@ -1,14 +1,16 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorMiningToggled
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when the excavator's mining engine is started.
+
 - Called when the excavator's mining engine is stopped.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExcavatorMiningToggled()
+private void OnExcavatorMiningToggled(ExcavatorArm excavatorArm)
 {
 	Puts("OnExcavatorMiningToggled has been fired!");
 }

@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClientProjectileEffectCreate
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a projectile impact effect is being created for clients (like bullet impact visuals).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnClientProjectileEffectCreate()
+private object OnClientProjectileEffectCreate(Network.Connection sourceConnection, BaseProjectile baseProjectile, string prefabName)
 {
 	Puts("OnClientProjectileEffectCreate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseProjectile]

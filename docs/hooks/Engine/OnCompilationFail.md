@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnCompilationFail
+<Badge type="info" text="Engine"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a plugin or script fails to compile (compilation error occurred).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCompilationFail()
+private void OnCompilationFail(string file, Carbon.Core.ModLoader.CompilationResult result)
 {
 	Puts("OnCompilationFail has been fired!");
 }

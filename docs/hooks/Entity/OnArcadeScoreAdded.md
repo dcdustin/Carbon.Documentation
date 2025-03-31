@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnArcadeScoreAdded
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a score entry is added to an arcade machine (when a player achieves a score in a minigame).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnArcadeScoreAdded()
+private void OnArcadeScoreAdded(BaseArcadeMachine baseArcadeMachine, BasePlayer player, int score)
 {
 	Puts("OnArcadeScoreAdded has been fired!");
 }

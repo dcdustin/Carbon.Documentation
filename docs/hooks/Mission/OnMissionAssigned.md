@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMissionAssigned
+<Badge type="info" text="Mission"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a mission is assigned to a player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMissionAssigned()
+private void OnMissionAssigned(BaseMission mission, IMissionProvider provider, BasePlayer assignee)
 {
 	Puts("OnMissionAssigned has been fired!");
 }

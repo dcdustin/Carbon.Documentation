@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHotAirBalloonToggled
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a Hot Air Balloon’s burner has been turned on or off.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnHotAirBalloonToggled()
+private void OnHotAirBalloonToggled(HotAirBalloon hotAirBalloon, BasePlayer player)
 {
 	Puts("OnHotAirBalloonToggled has been fired!");
 }

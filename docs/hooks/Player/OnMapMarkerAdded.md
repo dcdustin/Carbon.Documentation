@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMapMarkerAdded
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a map marker has been added.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMapMarkerAdded()
+private void OnMapMarkerAdded(BasePlayer basePlayer, ProtoBuf.MapNote local0)
 {
 	Puts("OnMapMarkerAdded has been fired!");
 }

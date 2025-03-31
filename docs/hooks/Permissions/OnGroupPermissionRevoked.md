@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupPermissionRevoked
+<Badge type="info" text="Permissions"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a permission is revoked from a group.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGroupPermissionRevoked()
+private void OnGroupPermissionRevoked(string group, string permission)
 {
 	Puts("OnGroupPermissionRevoked has been fired!");
 }

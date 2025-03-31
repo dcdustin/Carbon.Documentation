@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSiegeWeaponFire
+<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a siege weapon (catapult, battering ram, or ballista) is fired.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnSiegeWeaponFire()
+private object OnSiegeWeaponFire(BallistaGun ballistaGun, BasePlayer local0)
 {
 	Puts("OnSiegeWeaponFire has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BallistaGun]

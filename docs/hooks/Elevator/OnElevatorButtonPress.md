@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnElevatorButtonPress
+<Badge type="info" text="Elevator"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player presses an elevator’s up/down button to raise or lower the elevator.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnElevatorButtonPress()
+private object OnElevatorButtonPress(ElevatorLift elevatorLift, BasePlayer player, Elevator.Direction local0, bool local1)
 {
 	Puts("OnElevatorButtonPress has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ ElevatorLift]

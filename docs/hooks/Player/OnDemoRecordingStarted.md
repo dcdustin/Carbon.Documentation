@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDemoRecordingStarted
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after the server has started recording a demo.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDemoRecordingStarted()
+private void OnDemoRecordingStarted(string local0, BasePlayer basePlayer)
 {
 	Puts("OnDemoRecordingStarted has been fired!");
 }

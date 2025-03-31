@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoPlaneSignaled
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a supply signal triggers a cargo plane to be called in (supply drop event starts).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCargoPlaneSignaled()
+private void OnCargoPlaneSignaled(BaseEntity local0, SupplySignal supplySignal)
 {
 	Puts("OnCargoPlaneSignaled has been fired!");
 }

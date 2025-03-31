@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCollectiblePickedup
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a collectible item has been picked up by a player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCollectiblePickedup()
+private void OnCollectiblePickedup(CollectibleEntity collectibleEntity, BasePlayer reciever, Item local6)
 {
 	Puts("OnCollectiblePickedup has been fired!");
 }

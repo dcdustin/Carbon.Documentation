@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCheckFuel
+<Badge type="info" text="Fuel"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a player or entity can check a fuel container (is in range to check fuel).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanCheckFuel()
+private bool CanCheckFuel(EntityFuelSystem entityFuelSystem, StorageContainer local0, BasePlayer player)
 {
 	Puts("CanCheckFuel has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ EntityFuelSystem]

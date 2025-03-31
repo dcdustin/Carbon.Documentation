@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQuarryConsumeFuel
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a mining quarry checks for fuel and consumes it to continue running.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnQuarryConsumeFuel()
+private void OnQuarryConsumeFuel(MiningQuarry miningQuarry, Item local0)
 {
 	Puts("OnQuarryConsumeFuel has been fired!");
 }

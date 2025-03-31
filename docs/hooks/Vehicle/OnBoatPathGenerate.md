@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBoatPathGenerate
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -10,7 +10,7 @@ Returning a non-null value cancels default behavior.
 private System.Collections.Generic.List`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] OnBoatPathGenerate()
 {
 	Puts("OnBoatPathGenerate has been fired!");
-	return (System.Collections.Generic.List<UnityEngine.Vector3>)default;
+	return (System.Collections.Generic.List`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]])default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseBoat]

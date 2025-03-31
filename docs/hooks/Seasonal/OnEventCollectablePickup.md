@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEventCollectablePickup
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player picks up a seasonal event collectible (like an Easter egg).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEventCollectablePickup()
+private object OnEventCollectablePickup(BasePlayer player, CollectableEasterEgg collectableEasterEgg)
 {
 	Puts("OnEventCollectablePickup has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CollectableEasterEgg]

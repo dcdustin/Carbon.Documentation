@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityDeath
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity dies or is destroyed (e.g., NPC death or entity destruction).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnEntityDeath()
+private void OnEntityDeath(ResourceEntity resourceEntity)
 {
 	Puts("OnEntityDeath has been fired!");
 }

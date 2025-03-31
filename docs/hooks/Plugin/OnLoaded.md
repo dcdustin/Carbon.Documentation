@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLoaded
+<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered after a plugin is loaded (post-initialization).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

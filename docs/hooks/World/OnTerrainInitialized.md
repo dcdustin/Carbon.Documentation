@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTerrainInitialized
+<Badge type="info" text="World"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after the terrain is fully initialized and loaded.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSupplyDropDropped
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a cargo plane releases a supply drop crate.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSupplyDropDropped()
+private void OnSupplyDropDropped(BaseEntity local1, CargoPlane cargoPlane)
 {
 	Puts("OnSupplyDropDropped has been fired!");
 }

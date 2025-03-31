@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlStarted
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has successfully started controlling a remote entity via a Computer Station.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBookmarkControlStarted()
+private void OnBookmarkControlStarted(ComputerStation computerStation, BasePlayer local0, string local1, IRemoteControllable local2)
 {
 	Puts("OnBookmarkControlStarted has been fired!");
 }

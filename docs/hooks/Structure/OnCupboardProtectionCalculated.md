@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCupboardProtectionCalculated
+<Badge type="info" text="Structure"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCupboardProtectionCalculated()
+private void OnCupboardProtectionCalculated(BuildingPrivlidge buildingPrivlidge, BuildingPrivlidge self1)
 {
 	Puts("OnCupboardProtectionCalculated has been fired!");
 }

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAdventGiftAwarded
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has been given their advent calendar gift.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnAdventGiftAwarded()
+private void OnAdventGiftAwarded(AdventCalendar adventCalendar)
 {
 	Puts("OnAdventGiftAwarded has been fired!");
 }

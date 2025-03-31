@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponLoaded
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a racked weapon has been loaded with ammo.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRackedWeaponLoaded()
+private void OnRackedWeaponLoaded(Item local4, ItemDefinition local7, BasePlayer local0, WeaponRack weaponRack)
 {
 	Puts("OnRackedWeaponLoaded has been fired!");
 }

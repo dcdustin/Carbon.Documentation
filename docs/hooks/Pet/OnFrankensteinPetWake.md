@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFrankensteinPetWake
+<Badge type="info" text="Pet"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Frankenstein pet is being awakened at the Frankenstein table.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnFrankensteinPetWake()
+private object OnFrankensteinPetWake(FrankensteinTable frankensteinTable, BasePlayer owner)
 {
 	Puts("OnFrankensteinPetWake has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ FrankensteinTable]

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFishCaught
+<Badge type="info" text="Fishing"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a fish is successfully caught and given to the player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFishCaught()
+private void OnFishCaught(BaseFishingRod baseFishingRod, BaseFishingRod self1, BasePlayer local1)
 {
 	Puts("OnFishCaught has been fired!");
 }

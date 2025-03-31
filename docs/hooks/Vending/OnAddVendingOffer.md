@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAddVendingOffer
+<Badge type="info" text="Vending"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnAddVendingOffer()
+private void OnAddVendingOffer(VendingMachine vendingMachine, ProtoBuf.VendingMachine.SellOrder local2)
 {
 	Puts("OnAddVendingOffer has been fired!");
 }

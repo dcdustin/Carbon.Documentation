@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNpcConversationRespond
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player selects a response in an NPC conversation.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnNpcConversationRespond()
+private object OnNpcConversationRespond(NPCTalking nPCTalking, BasePlayer local0, ConversationData local3, ConversationData.ResponseNode local4)
 {
 	Puts("OnNpcConversationRespond has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ NPCTalking]

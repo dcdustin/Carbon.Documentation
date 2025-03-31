@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFlameThrowerBurn
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a flamethrower deals burn damage to an object or player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFlameThrowerBurn()
+private void OnFlameThrowerBurn(FlameThrower flameThrower, BaseEntity local13)
 {
 	Puts("OnFlameThrowerBurn has been fired!");
 }

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnScientistRecalled
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a scientist NPC is recalled or removed (for example, after an event).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnScientistRecalled()
+private void OnScientistRecalled(BradleyAPC bradleyAPC)
 {
 	Puts("OnScientistRecalled has been fired!");
 }

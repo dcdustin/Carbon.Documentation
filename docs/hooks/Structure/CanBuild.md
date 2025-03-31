@@ -1,17 +1,19 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBuild
+<Badge type="info" text="Structure"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when a player tries to place a building block or deployable, to determine if building is allowed at that location.
+
 - Return false to block the placement.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object CanBuild()
+private object CanBuild(Planner planner, Construction local1, Construction.Target local3)
 {
 	Puts("CanBuild has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ Planner]

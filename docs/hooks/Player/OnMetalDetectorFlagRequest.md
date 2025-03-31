@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMetalDetectorFlagRequest
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a metal detector checks for metal (to decide if it should flag an item).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnMetalDetectorFlagRequest()
+private void OnMetalDetectorFlagRequest(BaseMetalDetector baseMetalDetector, UnityEngine.Vector3 local1, BasePlayer local0)
 {
 	Puts("OnMetalDetectorFlagRequest has been fired!");
 }

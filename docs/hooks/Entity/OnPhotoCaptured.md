@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhotoCaptured
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a photo has been taken with the instant camera (the image item is created).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPhotoCaptured()
+private void OnPhotoCaptured(PhotoEntity local5, Item local1, BasePlayer local0, System.Byte[] local2)
 {
 	Puts("OnPhotoCaptured has been fired!");
 }

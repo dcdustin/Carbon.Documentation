@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfFrequencyChange
+<Badge type="info" text="Radio"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when an RF device's frequency is about to change (e.g., adjusting broadcaster/receiver).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRfFrequencyChange()
+private object OnRfFrequencyChange(PagerEntity pagerEntity, int local0, BasePlayer player)
 {
 	Puts("OnRfFrequencyChange has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PagerEntity]

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # LoadDefaultMessages
+<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to load a plugin's default message translations (for localization).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

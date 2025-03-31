@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFreeableContainerReleased
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a freeable loot container has been released (e.g., dropped or freed).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFreeableContainerReleased()
+private void OnFreeableContainerReleased(FreeableLootContainer freeableLootContainer)
 {
 	Puts("OnFreeableContainerReleased has been fired!");
 }

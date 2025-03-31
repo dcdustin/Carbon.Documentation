@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleModulesAssigned
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.
@@ -7,7 +7,7 @@ Returning a non-null value cancels default behavior.
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnVehicleModulesAssigned()
+private void OnVehicleModulesAssigned(ModularCar modularCar, Rust.Modular.ItemModVehicleModule[] socketItemDefs)
 {
 	Puts("OnVehicleModulesAssigned has been fired!");
 }

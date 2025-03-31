@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnJackieChan
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a player entity is fully initialized on the server.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnJackieChan()
+private void OnJackieChan(BasePlayer player)
 {
 	Puts("OnJackieChan has been fired!");
 }

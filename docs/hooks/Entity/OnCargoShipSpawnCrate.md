@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipSpawnCrate
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a locked crate spawns on the Cargo Ship (e.g., timed crate spawn during the event).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnCargoShipSpawnCrate()
+private object OnCargoShipSpawnCrate(CargoShip cargoShip)
 {
 	Puts("OnCargoShipSpawnCrate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CargoShip]

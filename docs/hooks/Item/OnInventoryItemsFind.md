@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryItemsFind
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when searching an inventory for all items of a certain type.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private System.Collections.Generic.List`1[[Item, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] OnInventoryItemsFind()
+private System.Collections.Generic.List`1[[Item, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] OnInventoryItemsFind(PlayerInventory playerInventory)
 {
 	Puts("OnInventoryItemsFind has been fired!");
-	return (System.Collections.Generic.List<Item>)default;
+	return (System.Collections.Generic.List`1[[Item, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]])default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PlayerInventory]

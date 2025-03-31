@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanUpdateSign
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player tries to update a sign or similar object (signage, photo frame, carvable pumpkin).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanUpdateSign()
+private bool CanUpdateSign(BasePlayer player, CarvablePumpkin carvablePumpkin)
 {
 	Puts("CanUpdateSign has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ CarvablePumpkin]

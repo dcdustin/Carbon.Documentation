@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootEntityEnd
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player finishes looting an entity or container (loot UI closed).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnLootEntityEnd()
+private void OnLootEntityEnd(BasePlayer player, ItemBasedFlowRestrictor itemBasedFlowRestrictor)
 {
 	Puts("OnLootEntityEnd has been fired!");
 }

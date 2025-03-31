@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnGrowableUpdate
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called each time a growable plant updates its growth (growth tick).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnGrowableUpdate()
+private void OnGrowableUpdate(GrowableEntity growable)
 {
 	Puts("OnGrowableUpdate has been fired!");
 }

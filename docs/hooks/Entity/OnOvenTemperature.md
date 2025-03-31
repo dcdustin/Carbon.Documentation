@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOvenTemperature
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an oven or furnace updates its internal temperature.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private float OnOvenTemperature()
+private float OnOvenTemperature(BaseOven baseOven)
 {
 	Puts("OnOvenTemperature has been fired!");
-	return (System.Single)default;
+	return (float)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseOven]

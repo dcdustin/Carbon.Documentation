@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanWaterBallSplash
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a water-filled projectile (like a water ball) is about to create a splash. Plugins can allow or prevent the splash effect.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanWaterBallSplash()
+private bool CanWaterBallSplash(ItemDefinition liquidDef, UnityEngine.Vector3 position, float radius, int amount)
 {
 	Puts("CanWaterBallSplash has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WaterBall]

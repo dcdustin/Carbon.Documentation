@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFishingRodCast
+<Badge type="info" text="Fishing"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player casts a fishing rod.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnFishingRodCast()
+private void OnFishingRodCast(BaseFishingRod baseFishingRod, BasePlayer local1, Item local2)
 {
 	Puts("OnFishingRodCast has been fired!");
 }

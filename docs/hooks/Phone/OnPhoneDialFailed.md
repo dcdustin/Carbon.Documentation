@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneDialFailed
+<Badge type="info" text="Phone"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a phone call attempt has failed, providing the failure reason.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPhoneDialFailed()
+private void OnPhoneDialFailed(PhoneController phoneController, Telephone.DialFailReason reason, PhoneController self1)
 {
 	Puts("OnPhoneDialFailed has been fired!");
 }

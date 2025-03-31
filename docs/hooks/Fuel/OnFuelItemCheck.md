@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFuelItemCheck
+<Badge type="info" text="Fuel"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when retrieving the fuel item from an entity.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private Item OnFuelItemCheck()
+private Item OnFuelItemCheck(EntityFuelSystem entityFuelSystem, StorageContainer local0)
 {
 	Puts("OnFuelItemCheck has been fired!");
 	return (Item)default;

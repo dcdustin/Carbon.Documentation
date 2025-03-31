@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDispenserBonusReceived
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after the bonus resources for finishing a resource node have been awarded.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDispenserBonusReceived()
+private void OnDispenserBonusReceived(ResourceDispenser resourceDispenser, BasePlayer player, Item local4)
 {
 	Puts("OnDispenserBonusReceived has been fired!");
 }

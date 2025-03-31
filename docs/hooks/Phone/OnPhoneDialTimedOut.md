@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneDialTimedOut
+<Badge type="info" text="Phone"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a phone call has timed out without an answer.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPhoneDialTimedOut()
+private void OnPhoneDialTimedOut(PhoneController phoneController, PhoneController self1, PhoneController self2)
 {
 	Puts("OnPhoneDialTimedOut has been fired!");
 }

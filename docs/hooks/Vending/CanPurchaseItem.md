@@ -1,17 +1,19 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanPurchaseItem
+<Badge type="info" text="Vending"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when a player attempts to purchase an item (e.g., from a vending machine), to decide if the purchase is allowed.
+
 - Return false to block the purchase.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanPurchaseItem()
+private bool CanPurchaseItem(BasePlayer buyer, Item local15, System.Action`2[[BasePlayer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null],[Item, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] onItemPurchased, VendingMachine vendingMachine, ItemContainer targetContainer)
 {
 	Puts("CanPurchaseItem has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ VendingMachine]

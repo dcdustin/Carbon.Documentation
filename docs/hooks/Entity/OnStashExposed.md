@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnStashExposed
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a hidden stash is revealed (becomes visible to a player).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnStashExposed()
+private void OnStashExposed(StashContainer entity, BasePlayer basePlayer)
 {
 	Puts("OnStashExposed has been fired!");
 }

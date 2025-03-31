@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlEnded
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has stopped controlling a remote entity (camera/turret) via the Computer Station.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnBookmarkControlEnded()
+private void OnBookmarkControlEnded(ComputerStation computerStation, BasePlayer local0, IRemoteControllable local6)
 {
 	Puts("OnBookmarkControlEnded has been fired!");
 }

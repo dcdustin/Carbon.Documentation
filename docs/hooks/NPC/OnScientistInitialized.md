@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnScientistInitialized
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a scientist NPC is initialized/spawned.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnScientistInitialized()
+private void OnScientistInitialized(BradleyAPC bradleyAPC, ScientistNPC scientist, UnityEngine.Vector3 spawnPos)
 {
 	Puts("OnScientistInitialized has been fired!");
 }

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAcceptItem
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a container can accept a given item.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private ItemContainer.CanAcceptResult CanAcceptItem()
+private ItemContainer.CanAcceptResult CanAcceptItem(ItemContainer itemContainer)
 {
 	Puts("CanAcceptItem has been fired!");
 	return (ItemContainer.CanAcceptResult)default;

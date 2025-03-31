@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSprinklerSplashed
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a sprinkler sprays water (each time it splashes water on crops).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSprinklerSplashed()
+private void OnSprinklerSplashed(Sprinkler sprinkler)
 {
 	Puts("OnSprinklerSplashed has been fired!");
 }

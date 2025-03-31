@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponMounted
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a weapon has been mounted on a rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRackedWeaponMounted()
+private void OnRackedWeaponMounted(Item item, BasePlayer player, WeaponRack weaponRack)
 {
 	Puts("OnRackedWeaponMounted has been fired!");
 }

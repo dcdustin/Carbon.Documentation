@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSleepingBagDestroyed
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a sleeping bag or bed has been destroyed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnSleepingBagDestroyed()
+private void OnSleepingBagDestroyed(SleepingBag local1, ulong userID)
 {
 	Puts("OnSleepingBagDestroyed has been fired!");
 }

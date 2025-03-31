@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryNetworkUpdate
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player's inventory state is being sent to the client (network update).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnInventoryNetworkUpdate()
+private object OnInventoryNetworkUpdate(PlayerInventory playerInventory, ItemContainer container, ProtoBuf.UpdateItemContainer local0, PlayerInventory.Type type, PlayerInventory.NetworkInventoryMode mode)
 {
 	Puts("OnInventoryNetworkUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ PlayerInventory]

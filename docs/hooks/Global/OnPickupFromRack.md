@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnPickupFromRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a player picks up an item from a weapon rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPickupFromRack()
+private void OnPickupFromRack(WeaponRack rack, BasePlayer player, Item item, int mountSlotIndex, int playerBeltIndex, bool tryHold)
 {
 	Puts("OnPickupFromRack has been fired!");
 }

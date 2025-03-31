@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPermissionsUnregistered
+<Badge type="info" text="Permissions"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a plugin's permissions are unregistered (e.g., on plugin unload).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPermissionsUnregistered()
+private void OnPermissionsUnregistered(Oxide.Core.Plugins.Plugin plugin)
 {
 	Puts("OnPermissionsUnregistered has been fired!");
 }

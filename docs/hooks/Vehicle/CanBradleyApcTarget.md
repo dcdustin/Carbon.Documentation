@@ -1,17 +1,19 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBradleyApcTarget
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called to decide if the Bradley APC can target a specific entity or player.
+
 - Return false to prevent the APC from targeting that entity.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanBradleyApcTarget()
+private bool CanBradleyApcTarget(BradleyAPC bradleyAPC)
 {
 	Puts("CanBradleyApcTarget has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BradleyAPC]

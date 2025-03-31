@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDigitalClockAlarmsSet
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the alarm times are set or updated on a digital alarm clock.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnDigitalClockAlarmsSet()
+private object OnDigitalClockAlarmsSet(DigitalClock digitalClock, ProtoBuf.DigitalClockMessage local0)
 {
 	Puts("OnDigitalClockAlarmsSet has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ DigitalClock]

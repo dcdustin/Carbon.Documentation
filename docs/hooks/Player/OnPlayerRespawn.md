@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerRespawn
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player respawns (e.g., after death or at a sleeping bag).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerRespawn()
+private void OnPlayerRespawn(BasePlayer player, SleepingBag local2)
 {
 	Puts("OnPlayerRespawn has been fired!");
 }

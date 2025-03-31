@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # InitLogging
+<Badge type="info" text="Server"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called during the server startup to initialize logging (and perform initial item setup).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

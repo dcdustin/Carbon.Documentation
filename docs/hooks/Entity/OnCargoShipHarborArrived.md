@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipHarborArrived
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the Cargo Ship has arrived at a harbor and is docked.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnCargoShipHarborArrived()
+private void OnCargoShipHarborArrived(CargoShip cargoShip)
 {
 	Puts("OnCargoShipHarborArrived has been fired!");
 }

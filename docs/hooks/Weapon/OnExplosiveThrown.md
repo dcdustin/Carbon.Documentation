@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExplosiveThrown
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player throws an explosive (e.g., a grenade).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnExplosiveThrown()
+private void OnExplosiveThrown(BasePlayer player, BaseEntity local3, ThrownWeapon thrownWeapon)
 {
 	Puts("OnExplosiveThrown has been fired!");
 }

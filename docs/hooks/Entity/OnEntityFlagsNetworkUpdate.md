@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityFlagsNetworkUpdate
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity’s networked flags are updated (for example, door opened/closed, light toggled, etc., sending state to clients).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnEntityFlagsNetworkUpdate()
+private object OnEntityFlagsNetworkUpdate(BaseEntity baseEntity)
 {
 	Puts("OnEntityFlagsNetworkUpdate has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ BaseEntity]

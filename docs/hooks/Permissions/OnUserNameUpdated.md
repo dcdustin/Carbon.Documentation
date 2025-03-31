@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnUserNameUpdated
+<Badge type="info" text="Permissions"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a user's stored nickname is updated.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserNameUpdated()
+private void OnUserNameUpdated(string id, string oldName, string newName)
 {
 	Puts("OnUserNameUpdated has been fired!");
 }

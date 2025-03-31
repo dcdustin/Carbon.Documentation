@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnUserChat
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a user (player) sends a chat message (generic user-level event).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnUserChat()
+private void OnUserChat(Oxide.Core.Libraries.Covalence.IPlayer player, string message)
 {
 	Puts("OnUserChat has been fired!");
 }

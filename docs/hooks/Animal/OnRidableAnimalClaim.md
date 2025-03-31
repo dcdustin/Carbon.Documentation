@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRidableAnimalClaim
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to claim a ridable animal (such as purchasing a horse at a stable, before the claim is finalized).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private object OnRidableAnimalClaim()
+private object OnRidableAnimalClaim(RidableHorse2 ridableHorse2, BasePlayer local0, Item local2)
 {
 	Puts("OnRidableAnimalClaim has been fired!");
-	return (System.Object)default;
+	return (object)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ RidableHorse2]

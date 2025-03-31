@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerCorpseSpawned
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player's corpse has spawned.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnPlayerCorpseSpawned()
+private void OnPlayerCorpseSpawned(BasePlayer basePlayer, PlayerCorpse local3)
 {
 	Puts("OnPlayerCorpseSpawned has been fired!");
 }

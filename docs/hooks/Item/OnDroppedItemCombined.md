@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDroppedItemCombined
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when two dropped item stacks merge into one.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnDroppedItemCombined()
+private void OnDroppedItemCombined(DroppedItem droppedItem)
 {
 	Puts("OnDroppedItemCombined has been fired!");
 }

@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClothingItemChanged
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player changes a clothing item (equips or unequips apparel).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnClothingItemChanged()
+private void OnClothingItemChanged(PlayerInventory playerInventory, Item item, bool bAdded)
 {
 	Puts("OnClothingItemChanged has been fired!");
 }

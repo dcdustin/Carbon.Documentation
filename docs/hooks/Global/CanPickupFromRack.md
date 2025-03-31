@@ -1,16 +1,17 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPickupFromRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if a player can pick up an item from a weapon rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private bool CanPickupFromRack()
+private bool CanPickupFromRack(WeaponRack rack, BasePlayer player, Item item, int mountSlotIndex, int playerBeltIndex, bool tryHold)
 {
 	Puts("CanPickupFromRack has been fired!");
-	return (System.Boolean)default;
+	return (bool)default;
 }
 ```
 ```csharp [Source — Assembly-CSharp @ WeaponRack]

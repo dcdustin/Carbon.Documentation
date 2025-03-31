@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemDeployed
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a deployable item is placed into the world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnItemDeployed()
+private void OnItemDeployed(Deployer deployer, BaseEntity local1, BaseEntity local4)
 {
 	Puts("OnItemDeployed has been fired!");
 }

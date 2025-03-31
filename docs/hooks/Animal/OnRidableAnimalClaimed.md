@@ -1,13 +1,14 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRidableAnimalClaimed
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has successfully claimed a ridable animal (ownership change complete).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
 ### Usage
 ::: code-group
 ```csharp [Example]
-private void OnRidableAnimalClaimed()
+private void OnRidableAnimalClaimed(RidableHorse2 ridableHorse2, BasePlayer local0)
 {
 	Puts("OnRidableAnimalClaimed has been fired!");
 }
