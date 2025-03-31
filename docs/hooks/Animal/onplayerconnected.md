@@ -1,3 +1,0 @@
-# OnPlayerConnected
-
-stuff goes here

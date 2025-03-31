@@ -1,0 +1,28 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnMissionStarted
+```csharp
+public virtual void MissionStart(BaseMission.MissionInstance instance, BasePlayer assignee)
+{
+	for (int i = 0; i < objectives.Length; i++)
+	{
+		objectives[i].Get().MissionStarted(i, instance, assignee);
+	}
+	if (acceptEffect.isValid)
+	{
+		DoMissionEffect(acceptEffect.resourcePath, assignee);
+	}
+	BaseMission.MissionEntityEntry[] array = missionEntities;
+	foreach (BaseMission.MissionEntityEntry missionEntityEntry in array)
+	{
+		if (missionEntityEntry.spawnOnMissionStart)
+		{
+			instance.GetMissionEntity(missionEntityEntry.identifier, assignee);
+		}
+	}
+	if (AllowedTutorialItems != 0)
+	{
+		assignee.SetTutorialAllowance(AllowedTutorialItems);
+	}
+}
+
+```
