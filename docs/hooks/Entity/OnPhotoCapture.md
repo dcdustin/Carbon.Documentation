@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhotoCapture
-```csharp
+Called when a player takes a photo with the instant camera (at the moment of capture, before it’s finalized).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPhotoCapture()
+{
+	Puts("OnPhotoCapture has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ InstantCameraTool]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.CallsPerSecond(3uL)]
@@ -70,3 +83,4 @@ public void TakePhoto(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

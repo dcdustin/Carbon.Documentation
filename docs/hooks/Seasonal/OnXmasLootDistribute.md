@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnXmasLootDistribute
-```csharp
+Triggered when the Xmas event begins distributing presents and stocking items.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnXmasLootDistribute()
+{
+	Puts("OnXmasLootDistribute has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ XMasRefill]
 public override void ServerInit()
 {
 	base.ServerInit();
@@ -17,3 +30,4 @@ public override void ServerInit()
 }
 
 ```
+:::

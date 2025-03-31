@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEventCollectablePickup
-```csharp
+Triggered when a player picks up a seasonal event collectible (like an Easter egg).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEventCollectablePickup()
+{
+	Puts("OnEventCollectablePickup has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CollectableEasterEgg]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_PickUp(BaseEntity.RPCMessage msg)
@@ -29,3 +42,4 @@ public void RPC_PickUp(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

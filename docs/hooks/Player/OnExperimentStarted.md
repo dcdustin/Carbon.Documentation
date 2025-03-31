@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExperimentStarted
-```csharp
+Called after a blueprint experiment has started.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnExperimentStarted()
+{
+	Puts("OnExperimentStarted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Workbench]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_BeginExperiment(BaseEntity.RPCMessage msg)
@@ -52,3 +64,4 @@ public void RPC_BeginExperiment(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

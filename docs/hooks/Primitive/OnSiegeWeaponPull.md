@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSiegeWeaponPull
-```csharp
+Called when a siege weapon is pulled back into ready position (e.g., resetting a catapult or ram).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSiegeWeaponPull()
+{
+	Puts("OnSiegeWeaponPull has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseSiegeWeapon]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void SERVER_StartPulling(BaseEntity.RPCMessage msg)
@@ -19,3 +32,4 @@ public void SERVER_StartPulling(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,20 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBuild
-```csharp
+- Called when a player tries to place a building block or deployable, to determine if building is allowed at that location.
+- Return false to block the placement.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanBuild()
+{
+	Puts("CanBuild has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Planner]
 public virtual void DoBuild(ProtoBuf.CreateBuilding msg)
 {
 	BasePlayer ownerPlayer = GetOwnerPlayer();
@@ -111,3 +125,4 @@ public virtual void DoBuild(ProtoBuf.CreateBuilding msg)
 }
 
 ```
+:::

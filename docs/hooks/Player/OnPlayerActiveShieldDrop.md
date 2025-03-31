@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerActiveShieldDrop
-```csharp
+Called when a player drops their active shield item.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerActiveShieldDrop()
+{
+	Puts("OnPlayerActiveShieldDrop has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerBelt]
 public void DropActive(UnityEngine.Vector3 position, UnityEngine.Vector3 velocity)
 {
 	if (player.GetActiveShield(out var foundShield))
@@ -35,3 +48,4 @@ public void DropActive(UnityEngine.Vector3 position, UnityEngine.Vector3 velocit
 }
 
 ```
+:::

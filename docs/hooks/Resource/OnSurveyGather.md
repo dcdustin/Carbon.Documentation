@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSurveyGather
-```csharp
+Triggered when a survey charge explodes to gather resource samples from the ground.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSurveyGather()
+{
+	Puts("OnSurveyGather has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SurveyCharge]
 public override void Explode()
 {
 	base.Explode();
@@ -61,3 +73,4 @@ public override void Explode()
 }
 
 ```
+:::

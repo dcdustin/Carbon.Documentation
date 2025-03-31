@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTrainCarUncouple
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTrainCarUncouple()
+{
+	Puts("OnTrainCarUncouple has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ TrainCar]
 [BaseEntity.RPC_Server]
 public void RPC_WantsUncouple(BaseEntity.RPCMessage msg)
 {
@@ -13,3 +26,4 @@ public void RPC_WantsUncouple(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

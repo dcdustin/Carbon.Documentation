@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerRespawned
-```csharp
+Called after a player has respawned in the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerRespawned()
+{
+	Puts("OnPlayerRespawned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void RespawnAt(UnityEngine.Vector3 position, UnityEngine.Quaternion rotation, BaseEntity spawnPointEntity = null)
 {
 	BaseGameMode activeGameMode = BaseGameMode.GetActiveGameMode(serverside: true);
@@ -67,3 +79,4 @@ public void RespawnAt(UnityEngine.Vector3 position, UnityEngine.Quaternion rotat
 }
 
 ```
+:::

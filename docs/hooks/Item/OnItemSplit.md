@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemSplit
-```csharp
+Called when an item stack is split into two stacks.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private Item OnItemSplit()
+{
+	Puts("OnItemSplit has been fired!");
+	return (Item)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Item]
 #define UNITY_ASSERTIONS
 public Item SplitItem(int split_Amount)
 {
@@ -46,3 +59,4 @@ public Item SplitItem(int split_Amount)
 }
 
 ```
+:::

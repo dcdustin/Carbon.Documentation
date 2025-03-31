@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IMixingSpeedMultiplier
-```csharp
+Allows modifying how fast the mixing table processes recipes.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IMixingSpeedMultiplier()
+{
+	Puts("IMixingSpeedMultiplier has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ MixingTable]
 public void StartMixing(BasePlayer player)
 {
 	if (IsOn() || !CanStartMixing(player))
@@ -33,3 +45,4 @@ public void StartMixing(BasePlayer player)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityReskin
-```csharp
+Called when a player attempts to reskin an entity (for example, using a spray can to apply a skin) before the skin change is applied.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntityReskin()
+{
+	Puts("OnEntityReskin has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SprayCan]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 [BaseEntity.RPC_Server.CallsPerSecond(2uL)]
@@ -313,3 +326,4 @@ public void ChangeItemSkin(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

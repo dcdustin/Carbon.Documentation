@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRefreshVendingStock
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRefreshVendingStock()
+{
+	Puts("OnRefreshVendingStock has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 public void RefreshSellOrderStockLevel(ItemDefinition itemDef = null)
 {
 	int num = 0;
@@ -78,3 +90,4 @@ public void RefreshSellOrderStockLevel(ItemDefinition itemDef = null)
 }
 
 ```
+:::

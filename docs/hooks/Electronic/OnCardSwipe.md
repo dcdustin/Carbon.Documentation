@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCardSwipe
-```csharp
+Called when a keycard is swiped on a card reader (e.g., attempting to unlock a door with an access card).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCardSwipe()
+{
+	Puts("OnCardSwipe has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CardReader]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void ServerCardSwiped(BaseEntity.RPCMessage msg)
@@ -33,3 +46,4 @@ public void ServerCardSwiped(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

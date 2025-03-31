@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemSkinChange
-```csharp
+Called when an item's skin is changed (e.g., via a repair bench).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemSkinChange()
+{
+	Puts("OnItemSkinChange has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RepairBench]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void ChangeSkin(BaseEntity.RPCMessage msg)
@@ -144,3 +157,4 @@ public void ChangeSkin(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemAction
-```csharp
+Called when a player performs an inventory item action (uses or interacts with an item).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemAction()
+{
+	Puts("OnItemAction has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 public void ItemCmd(BaseEntity.RPCMessage msg)
@@ -74,3 +87,4 @@ public void ItemCmd(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

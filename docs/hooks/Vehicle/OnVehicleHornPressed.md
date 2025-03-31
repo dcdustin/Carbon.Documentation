@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleHornPressed
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnVehicleHornPressed()
+{
+	Puts("OnVehicleHornPressed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ VehicleModuleSeating]
 public override void PlayerServerInput(InputState inputState, BasePlayer player)
 {
 	base.PlayerServerInput(inputState, player);
@@ -19,3 +31,4 @@ public override void PlayerServerInput(InputState inputState, BasePlayer player)
 }
 
 ```
+:::

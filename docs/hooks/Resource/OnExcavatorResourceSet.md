@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorResourceSet
-```csharp
+Triggered when the resource type for the excavator is set or changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnExcavatorResourceSet()
+{
+	Puts("OnExcavatorResourceSet has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorArm]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void RPC_SetResourceTarget(BaseEntity.RPCMessage msg)
@@ -27,3 +40,4 @@ public void RPC_SetResourceTarget(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

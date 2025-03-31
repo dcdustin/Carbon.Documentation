@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnConstructionPlace
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnConstructionPlace()
+{
+	Puts("OnConstructionPlace has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Planner]
 public UnityEngine.GameObject DoPlacement(Construction.Target placement, Construction component)
 {
 	BasePlayer ownerPlayer = GetOwnerPlayer();
@@ -59,3 +72,4 @@ public UnityEngine.GameObject DoPlacement(Construction.Target placement, Constru
 }
 
 ```
+:::

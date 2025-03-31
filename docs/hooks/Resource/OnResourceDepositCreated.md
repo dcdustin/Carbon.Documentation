@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnResourceDepositCreated
-```csharp
+Called when a new resource deposit entry is created for a world position (usually due to surveying).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnResourceDepositCreated()
+{
+	Puts("OnResourceDepositCreated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ResourceDepositManager]
 public ResourceDepositManager.ResourceDeposit CreateFromPosition(UnityEngine.Vector3 pos)
 {
 	Vector2i indexFrom = GetIndexFrom(pos);
@@ -73,3 +85,4 @@ public ResourceDepositManager.ResourceDeposit CreateFromPosition(UnityEngine.Vec
 }
 
 ```
+:::

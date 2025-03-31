@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQuarryGather
-```csharp
+Triggered when a mining quarry produces resources (each processing cycle).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnQuarryGather()
+{
+	Puts("OnQuarryGather has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ MiningQuarry]
 public void ProcessResources()
 {
 	if (_linkedDeposit == null || hopperPrefab.instance == null)
@@ -42,3 +55,4 @@ public void ProcessResources()
 }
 
 ```
+:::

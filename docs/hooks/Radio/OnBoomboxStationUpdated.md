@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBoomboxStationUpdated
-```csharp
+Called after a boombox's radio station has been changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnBoomboxStationUpdated()
+{
+	Puts("OnBoomboxStationUpdated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BoomBox]
 public void Server_UpdateRadioIP(BaseEntity.RPCMessage msg)
 {
 	string text = msg.read.String();
@@ -21,3 +33,4 @@ public void Server_UpdateRadioIP(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

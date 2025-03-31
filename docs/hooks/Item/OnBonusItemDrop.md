@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBonusItemDrop
-```csharp
+Called when bonus items (from hitting a resource node) are about to drop.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBonusItemDrop()
+{
+	Puts("OnBonusItemDrop has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ LootContainer]
 public override void DropBonusItems(BaseEntity initiator, ItemContainer container)
 {
 	base.DropBonusItems(initiator, container);
@@ -39,3 +52,4 @@ public override void DropBonusItems(BaseEntity initiator, ItemContainer containe
 }
 
 ```
+:::

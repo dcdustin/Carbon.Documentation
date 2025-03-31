@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTurretToggle
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTurretToggle()
+{
+	Puts("OnTurretToggle has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AutoTurret]
 public void SetIsOnline(bool online)
 {
 	if (online != IsOn())
@@ -32,3 +45,4 @@ public void SetIsOnline(bool online)
 }
 
 ```
+:::

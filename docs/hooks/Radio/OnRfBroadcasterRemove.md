@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfBroadcasterRemove
-```csharp
+Called when an RF broadcaster is removed from a frequency (stops broadcasting).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnRfBroadcasterRemove()
+{
+	Puts("OnRfBroadcasterRemove has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RFManager]
 public static void RemoveBroadcaster(int frequency, IRFObject obj)
 {
 	frequency = ClampFrequency(frequency);
@@ -17,3 +30,4 @@ public static void RemoveBroadcaster(int frequency, IRFObject obj)
 }
 
 ```
+:::

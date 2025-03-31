@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPayForUpgrade
-```csharp
+Called when resources are about to be consumed for upgrading a building piece.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPayForUpgrade()
+{
+	Puts("OnPayForUpgrade has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingBlock]
 public void PayForUpgrade(ConstructionGrade g, BasePlayer player)
 {
 	if (player.IsInCreativeMode && ConVar.Creative.freeBuild)
@@ -22,3 +35,4 @@ public void PayForUpgrade(ConstructionGrade g, BasePlayer player)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanUseFuel
-```csharp
+Determines if an entity is allowed to consume fuel at that time.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanUseFuel()
+{
+	Puts("CanUseFuel has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ EntityFuelSystem]
 public int TryUseFuel(float seconds, float fuelUsedPerSecond)
 {
 	StorageContainer fuelContainer = GetFuelContainer();
@@ -26,3 +39,4 @@ public int TryUseFuel(float seconds, float fuelUsedPerSecond)
 }
 
 ```
+:::

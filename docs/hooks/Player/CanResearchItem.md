@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanResearchItem
-```csharp
+Called when a player attempts to research an item blueprint, to decide if they can proceed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanResearchItem()
+{
+	Puts("CanResearchItem has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ResearchTable]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void DoResearch(BaseEntity.RPCMessage msg)
@@ -31,3 +44,4 @@ public void DoResearch(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

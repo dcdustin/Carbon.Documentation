@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityKill
-```csharp
+Called when an entity is killed/destroyed (cleanup is initiated). Useful for handling removal logic.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntityKill()
+{
+	Puts("OnEntityKill has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNetworkable]
 public void Kill(BaseNetworkable.DestroyMode mode = BaseNetworkable.DestroyMode.None)
 {
 	if (IsDestroyed)
@@ -22,3 +35,4 @@ public void Kill(BaseNetworkable.DestroyMode mode = BaseNetworkable.DestroyMode.
 }
 
 ```
+:::

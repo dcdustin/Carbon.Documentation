@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerVanish
-```csharp
+Called when a player becomes invisible/vanishes (usually an admin command).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerVanish()
+{
+	Puts("OnPlayerVanish has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ConVar.Debugging]
 [ServerVar(Help = "Make admin invisibile")]
 public static void invis(ConsoleSystem.Arg arg)
 {
@@ -42,3 +54,4 @@ public static void invis(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

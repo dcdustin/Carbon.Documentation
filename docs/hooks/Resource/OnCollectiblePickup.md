@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCollectiblePickup
-```csharp
+Triggered when a player picks up a collectible item (like a pickup resource from the ground).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCollectiblePickup()
+{
+	Puts("OnCollectiblePickup has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CollectibleEntity]
 public void DoPickup(BasePlayer reciever, bool eat = false)
 {
 	if (itemList == null)
@@ -55,3 +68,4 @@ public void DoPickup(BasePlayer reciever, bool eat = false)
 }
 
 ```
+:::

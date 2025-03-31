@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnFrankensteinPetSleep [FrankensteinTable]
-```csharp
+# OnFrankensteinPetSleep
+Called when a Frankenstein pet is put to sleep at the Frankenstein table (returned to owner).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnFrankensteinPetSleep()
+{
+	Puts("OnFrankensteinPetSleep has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ FrankensteinTable]
 public void SleepFrankenstein(BasePlayer owner)
 {
 	if (IsInventoryEmpty() && !(owner == null) && !(owner.PetEntity == null))
@@ -17,3 +30,4 @@ public void SleepFrankenstein(BasePlayer owner)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnPlayerAttack [Projectile]
-```csharp
+# OnPlayerAttack
+Triggered when a player makes an attack (melee swings and projectile shots).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerAttack()
+{
+	Puts("OnPlayerAttack has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 public void OnProjectileAttack(BaseEntity.RPCMessage msg)
@@ -533,3 +546,4 @@ public void OnProjectileAttack(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

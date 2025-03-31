@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnEntitySnapshot [BasePlayer]
-```csharp
+# OnEntitySnapshot
+Called when an entity snapshot is sent to a player (when a player first receives data about an entity on entering the network range).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntitySnapshot()
+{
+	Puts("OnEntitySnapshot has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void SendEntitySnapshot(BaseNetworkable ent)
 {
 	using (TimeWarning.New("SendEntitySnapshot"))
@@ -22,3 +35,4 @@ public void SendEntitySnapshot(BaseNetworkable ent)
 }
 
 ```
+:::

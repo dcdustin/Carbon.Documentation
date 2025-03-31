@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntitySpawned
-```csharp
+Called after a new entity is spawned in the world. Useful for initialization or tracking newly created entities.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntitySpawned()
+{
+	Puts("OnEntitySpawned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNetworkable]
 public virtual void Spawn()
 {
 	Facepunch.Rust.Profiling.EntityProfiler.spawned++;
@@ -30,3 +42,4 @@ public virtual void Spawn()
 }
 
 ```
+:::

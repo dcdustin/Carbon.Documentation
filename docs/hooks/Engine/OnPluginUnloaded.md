@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPluginUnloaded
-```csharp
+Called when a plugin is being unloaded from the server.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPluginUnloaded()
+{
+	Puts("OnPluginUnloaded has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Carbon.Core.ModLoader]
 public static bool UninitializePlugin(Oxide.Plugins.RustPlugin plugin, bool premature = false, bool unloadDependantPlugins = true)
 {
 	if (!premature && !plugin.IsLoaded)
@@ -36,3 +48,4 @@ public static bool UninitializePlugin(Oxide.Plugins.RustPlugin plugin, bool prem
 }
 
 ```
+:::

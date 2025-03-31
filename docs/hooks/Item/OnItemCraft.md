@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemCraft
-```csharp
+Called when an item is crafted by a player or an industrial crafter.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnItemCraft()
+{
+	Puts("OnItemCraft has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemCrafter]
 public bool CraftItem(ItemBlueprint bp, BasePlayer owner, ProtoBuf.Item.InstanceData instanceData = null, int amount = 1, int skinID = 0, Item fromTempBlueprint = null, bool free = false)
 {
 	if (owner != null && owner.IsTransferring())
@@ -42,3 +55,4 @@ public bool CraftItem(ItemBlueprint bp, BasePlayer owner, ProtoBuf.Item.Instance
 }
 
 ```
+:::

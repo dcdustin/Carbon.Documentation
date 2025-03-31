@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupDeleted
-```csharp
+Called when a permission group is deleted.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupDeleted()
+{
+	Puts("OnGroupDeleted has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool RemoveGroup(string group)
 {
 	if (!GroupExists(group))
@@ -31,3 +43,4 @@ public virtual bool RemoveGroup(string group)
 }
 
 ```
+:::

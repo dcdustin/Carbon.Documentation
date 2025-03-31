@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSignContentCopied
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSignContentCopied()
+{
+	Puts("OnSignContentCopied has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SignContent]
 public void CopyInfoToSign(ISignage s, IUGCBrowserEntity b)
 {
 	FileStorage.server.ReassignEntityId(net.ID, s.NetworkID);
@@ -13,3 +25,4 @@ public void CopyInfoToSign(ISignage s, IUGCBrowserEntity b)
 }
 
 ```
+:::

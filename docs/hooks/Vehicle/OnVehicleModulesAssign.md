@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleModulesAssign
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnVehicleModulesAssign()
+{
+	Puts("OnVehicleModulesAssign has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ModularCar]
 public void SpawnPreassignedModules()
 {
 	if (!spawnSettings.useSpawnSettings || spawnSettings.configurationOptions.IsNullOrEmpty())
@@ -26,3 +39,4 @@ public void SpawnPreassignedModules()
 }
 
 ```
+:::

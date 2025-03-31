@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNpcTargetSense
-```csharp
+Called when an NPC senses or detects a target (adds it to memory).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcTargetSense()
+{
+	Puts("OnNpcTargetSense has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Rust.Ai.SimpleAIMemory]
 public void SetKnown(BaseEntity ent, BaseEntity owner, AIBrainSenses brainSenses)
 {
 	IAISenses iAISenses = owner as IAISenses;
@@ -61,3 +74,4 @@ public void SetKnown(BaseEntity ent, BaseEntity owner, AIBrainSenses brainSenses
 }
 
 ```
+:::

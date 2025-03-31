@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnGrowableUpdate
-```csharp
+Called each time a growable plant updates its growth (growth tick).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGrowableUpdate()
+{
+	Puts("OnGrowableUpdate has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ GrowableEntity]
 public void RunUpdate()
 {
 	if (!IsDead())
@@ -24,3 +36,4 @@ public void RunUpdate()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfBroadcasterAdd
-```csharp
+Called when an RF broadcaster (transmitter) is added on a frequency (started broadcasting).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnRfBroadcasterAdd()
+{
+	Puts("OnRfBroadcasterAdd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RFManager]
 public static void AddBroadcaster(int frequency, IRFObject obj)
 {
 	frequency = ClampFrequency(frequency);
@@ -17,3 +30,4 @@ public static void AddBroadcaster(int frequency, IRFObject obj)
 }
 
 ```
+:::

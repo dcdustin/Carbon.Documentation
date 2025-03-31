@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTreeMarkerHit
-```csharp
+Called when a tree’s marked spot is hit during chopping (player hit the “X” mark on a tree for bonus).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnTreeMarkerHit()
+{
+	Puts("OnTreeMarkerHit has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ TreeEntity]
 public bool DidHitMarker(HitInfo info)
 {
 	if (xMarker == null)
@@ -29,3 +42,4 @@ public bool DidHitMarker(HitInfo info)
 }
 
 ```
+:::

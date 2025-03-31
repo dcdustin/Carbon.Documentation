@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnPlayerKicked [EAC]
-```csharp
+# OnPlayerKicked
+- Called when a player is kicked from the server.
+- Called when Easy Anti-Cheat (EAC) kicks a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerKicked()
+{
+	Puts("OnPlayerKicked has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ EACServer]
 public static void OnClientActionRequired(ref Epic.OnlineServices.AntiCheatCommon.OnClientActionRequiredCallbackInfo data)
 {
 	using (TimeWarning.New("OnClientActionRequired", 10))
@@ -47,3 +60,4 @@ public static void OnClientActionRequired(ref Epic.OnlineServices.AntiCheatCommo
 }
 
 ```
+:::

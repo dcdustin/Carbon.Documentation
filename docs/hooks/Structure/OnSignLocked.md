@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnSignLocked [PhotoFrame]
-```csharp
+# OnSignLocked
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSignLocked()
+{
+	Puts("OnSignLocked has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PhotoFrame]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void LockSign(BaseEntity.RPCMessage msg)
@@ -14,3 +26,4 @@ public void LockSign(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

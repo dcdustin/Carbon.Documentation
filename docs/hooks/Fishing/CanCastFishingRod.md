@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCastFishingRod
-```csharp
+Determines if a player can cast their fishing rod.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanCastFishingRod()
+{
+	Puts("CanCastFishingRod has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseFishingRod]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void Server_RequestCast(BaseEntity.RPCMessage msg)
@@ -51,3 +64,4 @@ public void Server_RequestCast(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

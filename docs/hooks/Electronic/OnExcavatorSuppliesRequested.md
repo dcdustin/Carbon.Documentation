@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorSuppliesRequested
-```csharp
+Called after the excavator’s supply drop request has been processed (the request has been handled and drop is on the way).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnExcavatorSuppliesRequested()
+{
+	Puts("OnExcavatorSuppliesRequested has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorSignalComputer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -23,3 +35,4 @@ public void RequestSupplies(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

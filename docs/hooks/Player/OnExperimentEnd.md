@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExperimentEnd
-```csharp
+Called when a blueprint experiment is ending (a result is about to be given).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnExperimentEnd()
+{
+	Puts("OnExperimentEnd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Workbench]
 public void ExperimentComplete()
 {
 	Item experimentResourceItem = GetExperimentResourceItem();
@@ -32,3 +45,4 @@ public void ExperimentComplete()
 }
 
 ```
+:::

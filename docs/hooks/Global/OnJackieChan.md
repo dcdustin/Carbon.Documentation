@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnJackieChan
-```csharp
+Called when a player entity is fully initialized on the server.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnJackieChan()
+{
+	Puts("OnJackieChan has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void PlayerInit(Network.Connection c)
 {
 	using (TimeWarning.New("PlayerInit", 10))
@@ -80,3 +92,4 @@ public void PlayerInit(Network.Connection c)
 }
 
 ```
+:::

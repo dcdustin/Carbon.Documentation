@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerInformationUpdated
-```csharp
+Called when the server's information (name, player count, map) is updated (for server listings).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnServerInformationUpdated()
+{
+	Puts("OnServerInformationUpdated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void UpdateServerInformation()
 {
 	if (!Steamworks.SteamServer.IsValid)
@@ -86,3 +98,4 @@ public void UpdateServerInformation()
 }
 
 ```
+:::

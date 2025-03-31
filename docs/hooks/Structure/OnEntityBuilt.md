@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityBuilt
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntityBuilt()
+{
+	Puts("OnEntityBuilt has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Planner]
 public virtual void DoBuild(ProtoBuf.CreateBuilding msg)
 {
 	BasePlayer ownerPlayer = GetOwnerPlayer();
@@ -111,3 +123,4 @@ public virtual void DoBuild(ProtoBuf.CreateBuilding msg)
 }
 
 ```
+:::

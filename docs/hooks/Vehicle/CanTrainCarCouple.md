@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanTrainCarCouple
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanTrainCarCouple()
+{
+	Puts("CanTrainCarCouple has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ TrainCoupling]
 public bool TryCouple(TrainCoupling theirCoupling, bool reflect)
 {
 	if (!isValid)
@@ -26,3 +39,4 @@ public bool TryCouple(TrainCoupling theirCoupling, bool reflect)
 }
 
 ```
+:::

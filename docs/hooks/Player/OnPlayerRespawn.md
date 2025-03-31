@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnPlayerRespawn [SleepingBag]
-```csharp
+# OnPlayerRespawn
+Triggered when a player respawns (e.g., after death or at a sleeping bag).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerRespawn()
+{
+	Puts("OnPlayerRespawn has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SleepingBag]
 public static bool SpawnPlayer(BasePlayer player, NetworkableId sleepingBag)
 {
 	SleepingBag[] array = FindForPlayer(player.userID, ignoreTimers: true);
@@ -25,3 +37,4 @@ public static bool SpawnPlayer(BasePlayer player, NetworkableId sleepingBag)
 }
 
 ```
+:::

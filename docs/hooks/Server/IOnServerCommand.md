@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnServerCommand
-```csharp
+Called when a console command is run on the server or via RCON (before default handling).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool IOnServerCommand()
+{
+	Puts("IOnServerCommand has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Facepunch.Console @ ConsoleSystem]
 public static bool Internal(ConsoleSystem.Arg arg)
 {
 	if (arg.Invalid)
@@ -49,3 +62,4 @@ public static bool Internal(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMaxStackable
-```csharp
+Called when determining the maximum stack size of an item.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private int OnMaxStackable()
+{
+	Puts("OnMaxStackable has been fired!");
+	return (System.Int32)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Item]
 public int MaxStackable()
 {
 	int num = info.stackable;
@@ -12,3 +25,4 @@ public int MaxStackable()
 }
 
 ```
+:::

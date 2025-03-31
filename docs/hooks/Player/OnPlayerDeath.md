@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerDeath
-```csharp
+Triggered when a player dies.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerDeath()
+{
+	Puts("OnPlayerDeath has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public override void Die(HitInfo info = null)
 {
 	using (TimeWarning.New("Player.Die"))
@@ -32,3 +45,4 @@ public override void Die(HitInfo info = null)
 }
 
 ```
+:::

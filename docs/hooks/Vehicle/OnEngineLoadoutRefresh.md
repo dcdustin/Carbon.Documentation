@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEngineLoadoutRefresh
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEngineLoadoutRefresh()
+{
+	Puts("OnEngineLoadoutRefresh has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Rust.Modular.EngineStorage]
 public void RefreshLoadoutData()
 {
 	isUsable = base.inventory.IsFull() && System.Linq.Enumerable.All(base.inventory.itemList, (Item item) => !item.isBroken);
@@ -12,3 +25,4 @@ public void RefreshLoadoutData()
 }
 
 ```
+:::

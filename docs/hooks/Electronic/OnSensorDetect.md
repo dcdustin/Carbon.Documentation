@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSensorDetect
-```csharp
+Called when a HBHF sensor (Heartbeat sensor) detects a player or when it clears detection.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSensorDetect()
+{
+	Puts("OnSensorDetect has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ HBHFSensor]
 public void UpdatePassthroughAmount()
 {
 	if (base.isClient)
@@ -39,3 +52,4 @@ public void UpdatePassthroughAmount()
 }
 
 ```
+:::

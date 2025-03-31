@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnPlayerPveDamage [BuildingBlock]
-```csharp
+# OnPlayerPveDamage
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerPveDamage()
+{
+	Puts("OnPlayerPveDamage has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingBlock]
 public override void Hurt(HitInfo info)
 {
 	if (ConVar.Server.pve && (bool)info.Initiator && info.Initiator is BasePlayer)
@@ -47,3 +60,4 @@ public override void Hurt(HitInfo info)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanDismountEntity
-```csharp
+Called to check if a player can dismount from an entity at that moment.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanDismountEntity()
+{
+	Puts("CanDismountEntity has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMountable]
 public void DismountPlayer(BasePlayer player, bool lite = false)
 {
 	if (_mounted == null || _mounted != player)
@@ -80,3 +93,4 @@ public void DismountPlayer(BasePlayer player, bool lite = false)
 }
 
 ```
+:::

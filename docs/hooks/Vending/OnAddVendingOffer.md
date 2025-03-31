@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAddVendingOffer
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnAddVendingOffer()
+{
+	Puts("OnAddVendingOffer has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 public void AddSellOrder(int itemToSellID, int itemToSellAmount, int currencyToUseID, int currencyAmount, byte bpState)
 {
 	ItemDefinition itemDefinition = ItemManager.FindItemDefinition(itemToSellID);
@@ -25,3 +37,4 @@ public void AddSellOrder(int itemToSellID, int itemToSellAmount, int currencyToU
 }
 
 ```
+:::

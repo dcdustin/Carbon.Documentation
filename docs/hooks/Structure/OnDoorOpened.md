@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDoorOpened
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnDoorOpened()
+{
+	Puts("OnDoorOpened has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Door]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void RPC_OpenDoor(BaseEntity.RPCMessage rpc)
@@ -64,3 +76,4 @@ public void RPC_OpenDoor(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTeamInvite
-```csharp
+Called when a team invite is sent to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTeamInvite()
+{
+	Puts("OnTeamInvite has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 [ServerUserVar]
 public static void sendinvite(ConsoleSystem.Arg arg)
 {
@@ -27,3 +40,4 @@ public static void sendinvite(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

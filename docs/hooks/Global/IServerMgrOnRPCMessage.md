@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IServerMgrOnRPCMessage
-```csharp
+Called when the server manager processes an RPC message.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IServerMgrOnRPCMessage()
+{
+	Puts("IServerMgrOnRPCMessage has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void OnRPCMessage(Network.Message packet)
 {
 	timer.Restart();
@@ -23,3 +35,4 @@ public void OnRPCMessage(Network.Message packet)
 }
 
 ```
+:::

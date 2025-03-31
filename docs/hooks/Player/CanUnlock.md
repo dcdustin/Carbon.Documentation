@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanUnlock [ModularCarCodeLock]
-```csharp
+# CanUnlock
+Called when a player attempts to unlock an entity secured by a code or key lock.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanUnlock()
+{
+	Puts("CanUnlock has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ModularCarCodeLock]
 public bool TryOpenWithCode(BasePlayer player, string codeEntered)
 {
 	if (CodeEntryBlocked(player))
@@ -36,3 +49,4 @@ public bool TryOpenWithCode(BasePlayer player, string codeEntered)
 }
 
 ```
+:::

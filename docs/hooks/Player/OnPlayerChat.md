@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerChat
-```csharp
+Triggered when a player sends a chat message.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerChat()
+{
+	Puts("OnPlayerChat has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Carbon.Core.CorePlugin]
 public static object IOnPlayerChat(ulong playerId, string playerName, string message, ChatChannel channel, BasePlayer basePlayer)
 {
 	//IL_0065: Unknown result type (might be due to invalid IL or missing references)
@@ -19,3 +31,4 @@ public static object IOnPlayerChat(ulong playerId, string playerName, string mes
 }
 
 ```
+:::

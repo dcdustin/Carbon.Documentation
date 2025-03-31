@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnUserGroupRemoved
-```csharp
+Called when a user is removed from a permission group.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnUserGroupRemoved()
+{
+	Puts("OnUserGroupRemoved has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual void RemoveUserGroup(string id, string name)
 {
 	if (!GroupExists(name))
@@ -27,3 +39,4 @@ public virtual void RemoveUserGroup(string id, string name)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPatrolHelicopterTakeDamage
-```csharp
+Called when the patrol helicopter takes damage.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPatrolHelicopterTakeDamage()
+{
+	Puts("OnPatrolHelicopterTakeDamage has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopter]
 public override void Hurt(HitInfo info)
 {
 	bool flag = false;
@@ -32,3 +45,4 @@ public override void Hurt(HitInfo info)
 }
 
 ```
+:::

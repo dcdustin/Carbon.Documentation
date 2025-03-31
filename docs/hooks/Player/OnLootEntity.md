@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootEntity
-```csharp
+Triggered when a player begins looting an entity or container.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnLootEntity()
+{
+	Puts("OnLootEntity has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerLoot]
 #define UNITY_ASSERTIONS
 public bool StartLootingEntity(BaseEntity targetEntity, bool doPositionChecks = true)
 {
@@ -27,3 +39,4 @@ public bool StartLootingEntity(BaseEntity targetEntity, bool doPositionChecks = 
 }
 
 ```
+:::

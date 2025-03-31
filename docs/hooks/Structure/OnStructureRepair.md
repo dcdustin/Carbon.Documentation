@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnStructureRepair
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnStructureRepair()
+{
+	Puts("OnStructureRepair has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseCombatEntity]
 public virtual void DoRepair(BasePlayer player)
 {
 	if (!repair.enabled)
@@ -81,3 +94,4 @@ public virtual void DoRepair(BasePlayer player)
 }
 
 ```
+:::

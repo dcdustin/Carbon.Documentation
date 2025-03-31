@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCrateLaptopAttack
-```csharp
+Called when a hackable crate triggers an armed response upon being hacked (e.g., NPCs or defenses activate due to hacking).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCrateLaptopAttack()
+{
+	Puts("OnCrateLaptopAttack has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ HackableLockedCrate]
 public override void OnAttacked(HitInfo info)
 {
 	if (base.isServer)
@@ -20,3 +33,4 @@ public override void OnAttacked(HitInfo info)
 }
 
 ```
+:::

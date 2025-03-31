@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCatapultFireForce
-```csharp
+Called when a catapult is fired, providing the force applied to the launch.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCatapultFireForce()
+{
+	Puts("OnCatapultFireForce has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Catapult]
 public bool Fire(BasePlayer shooter, float force)
 {
 	FireRecoil();
@@ -67,3 +79,4 @@ public bool Fire(BasePlayer shooter, float force)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnRconInitialize
-```csharp
+Called when the RCON server is initializing during server startup.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object IOnRconInitialize()
+{
+	Puts("IOnRconInitialize has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Facepunch.RCon]
 public static void Initialize()
 {
 	if (Port == 0)
@@ -59,3 +72,4 @@ public static void Initialize()
 }
 
 ```
+:::

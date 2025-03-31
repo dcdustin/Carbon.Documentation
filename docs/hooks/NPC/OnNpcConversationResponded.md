@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNpcConversationResponded
-```csharp
+Called after a player's response in an NPC conversation is processed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnNpcConversationResponded()
+{
+	Puts("OnNpcConversationResponded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ NPCTalking]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -44,3 +56,4 @@ public void Server_ResponsePressed(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

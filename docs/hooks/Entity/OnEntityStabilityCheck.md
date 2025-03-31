@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityStabilityCheck
-```csharp
+Called during a stability check for a building entity (to determine if it should collapse). Plugins can adjust or override stability outcome.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntityStabilityCheck()
+{
+	Puts("OnEntityStabilityCheck has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ StabilityEntity]
 public virtual void StabilityCheck()
 {
 	if (base.IsDestroyed)
@@ -54,3 +67,4 @@ public virtual void StabilityCheck()
 }
 
 ```
+:::

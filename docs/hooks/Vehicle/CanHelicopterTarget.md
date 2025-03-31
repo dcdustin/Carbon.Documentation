@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanHelicopterTarget
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanHelicopterTarget()
+{
+	Puts("CanHelicopterTarget has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]
 public bool PlayerVisible(BasePlayer ply)
 {
 	using (TimeWarning.New("PatrolHelicoperAI.PlayerVisible"))
@@ -26,3 +39,4 @@ public bool PlayerVisible(BasePlayer ply)
 }
 
 ```
+:::

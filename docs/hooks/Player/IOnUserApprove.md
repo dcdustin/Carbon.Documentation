@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnUserApprove
-```csharp
+Called during a user's connection attempt to approve or reject the user (internal connection approval).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object IOnUserApprove()
+{
+	Puts("IOnUserApprove has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ConnectionAuth]
 public void OnNewConnection(Network.Connection connection)
 {
 	connection.connected = false;
@@ -51,3 +64,4 @@ public void OnNewConnection(Network.Connection connection)
 }
 
 ```
+:::

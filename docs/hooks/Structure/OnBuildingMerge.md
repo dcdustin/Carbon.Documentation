@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBuildingMerge
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnBuildingMerge()
+{
+	Puts("OnBuildingMerge has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerBuildingManager]
 public void Merge(BuildingManager.Building building1, BuildingManager.Building building2)
 {
 	while (building2.HasDecayEntities())
@@ -18,3 +30,4 @@ public void Merge(BuildingManager.Building building1, BuildingManager.Building b
 }
 
 ```
+:::

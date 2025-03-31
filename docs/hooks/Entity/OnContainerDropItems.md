@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnContainerDropItems
-```csharp
+Called when a container’s items are dropped, for example when a storage container is destroyed and its contents spill out.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnContainerDropItems()
+{
+	Puts("OnContainerDropItems has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ DropUtil]
 public static void DropItems(ItemContainer container, UnityEngine.Vector3 position)
 {
 	if (!ConVar.Server.dropitems || container == null || container.itemList == null)
@@ -32,3 +45,4 @@ public static void DropItems(ItemContainer container, UnityEngine.Vector3 positi
 }
 
 ```
+:::

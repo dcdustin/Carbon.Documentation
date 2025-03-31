@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQuarryConsumeFuel
-```csharp
+Called when a mining quarry checks for fuel and consumes it to continue running.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnQuarryConsumeFuel()
+{
+	Puts("OnQuarryConsumeFuel has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ MiningQuarry]
 public bool FuelCheck()
 {
 	if (pendingWork > 0f)
@@ -19,3 +31,4 @@ public bool FuelCheck()
 }
 
 ```
+:::

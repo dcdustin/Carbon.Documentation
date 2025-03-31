@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneDial
-```csharp
+Triggered when a player dials a number on a telephone to start a call.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPhoneDial()
+{
+	Puts("OnPhoneDial has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PhoneController]
 public void CallPhone(int number)
 {
 	if (number == PhoneNumber)
@@ -36,3 +49,4 @@ public void CallPhone(int number)
 }
 
 ```
+:::

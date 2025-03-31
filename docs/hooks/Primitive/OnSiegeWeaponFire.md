@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnSiegeWeaponFire [Ballista]
-```csharp
+# OnSiegeWeaponFire
+Triggered when a siege weapon (catapult, battering ram, or ballista) is fired.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSiegeWeaponFire()
+{
+	Puts("OnSiegeWeaponFire has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BallistaGun]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 [BaseEntity.RPC_Server.IsVisible(3f)]
@@ -81,3 +94,4 @@ public void SERVER_FireClientProjectile(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,20 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanPurchaseItem
-```csharp
+- Called when a player attempts to purchase an item (e.g., from a vending machine), to decide if the purchase is allowed.
+- Return false to block the purchase.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanPurchaseItem()
+{
+	Puts("CanPurchaseItem has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 public bool DoTransaction(BasePlayer buyer, int sellOrderId, int numberOfTransactions = 1, ItemContainer targetContainer = null, System.Action<BasePlayer, Item> onCurrencyRemoved = null, System.Action<BasePlayer, Item> onItemPurchased = null, MarketTerminal droneMarketTerminal = null)
 {
 	if (sellOrderId < 0 || sellOrderId >= sellOrders.sellOrders.Count)
@@ -113,3 +127,4 @@ public bool DoTransaction(BasePlayer buyer, int sellOrderId, int numberOfTransac
 }
 
 ```
+:::

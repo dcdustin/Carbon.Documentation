@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireBallSpread
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFireBallSpread()
+{
+	Puts("OnFireBallSpread has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ FireBall]
 public void TryToSpread()
 {
 	float num = 0.9f - generation * 0.1f;
@@ -20,3 +32,4 @@ public void TryToSpread()
 }
 
 ```
+:::

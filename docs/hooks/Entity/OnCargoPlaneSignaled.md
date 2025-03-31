@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoPlaneSignaled
-```csharp
+Called when a supply signal triggers a cargo plane to be called in (supply drop event starts).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCargoPlaneSignaled()
+{
+	Puts("OnCargoPlaneSignaled has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SupplySignal]
 public override void Explode()
 {
 	BaseEntity baseEntity = GameManager.server.CreateEntity(EntityToCreate.resourcePath);
@@ -16,3 +28,4 @@ public override void Explode()
 }
 
 ```
+:::

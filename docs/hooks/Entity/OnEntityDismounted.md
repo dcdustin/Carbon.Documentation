@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnEntityDismounted [lite]
-```csharp
+# OnEntityDismounted
+Called when a player dismounts from a mountable entity (vehicle, turret, etc.).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntityDismounted()
+{
+	Puts("OnEntityDismounted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMountable]
 public void DismountPlayer(BasePlayer player, bool lite = false)
 {
 	if (_mounted == null || _mounted != player)
@@ -80,3 +92,4 @@ public void DismountPlayer(BasePlayer player, bool lite = false)
 }
 
 ```
+:::

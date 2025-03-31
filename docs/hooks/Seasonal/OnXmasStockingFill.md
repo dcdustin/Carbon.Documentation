@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnXmasStockingFill
-```csharp
+Called when a Christmas stocking is being filled with loot items.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnXmasStockingFill()
+{
+	Puts("OnXmasStockingFill has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Stocking]
 public override void SpawnLoot()
 {
 	if (base.inventory == null)
@@ -16,3 +29,4 @@ public override void SpawnLoot()
 }
 
 ```
+:::

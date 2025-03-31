@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryNetworkUpdate
-```csharp
+Called when a player's inventory state is being sent to the client (network update).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnInventoryNetworkUpdate()
+{
+	Puts("OnInventoryNetworkUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public void SendUpdatedInventoryInternal(PlayerInventory.Type type, ItemContainer container, PlayerInventory.NetworkInventoryMode mode)
 {
 	using ProtoBuf.UpdateItemContainer updateItemContainer = Facepunch.Pool.Get<ProtoBuf.UpdateItemContainer>();
@@ -39,3 +52,4 @@ public void SendUpdatedInventoryInternal(PlayerInventory.Type type, ItemContaine
 }
 
 ```
+:::

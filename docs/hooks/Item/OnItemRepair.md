@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRepair
-```csharp
+Called when an item is being repaired at a repair bench.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemRepair()
+{
+	Puts("OnItemRepair has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RepairBench]
 public static void RepairAnItem(Item itemToRepair, BasePlayer player, BaseEntity repairBenchEntity, float maxConditionLostOnRepair, bool mustKnowBlueprint)
 {
 	if (itemToRepair == null)
@@ -74,3 +87,4 @@ public static void RepairAnItem(Item itemToRepair, BasePlayer player, BaseEntity
 }
 
 ```
+:::

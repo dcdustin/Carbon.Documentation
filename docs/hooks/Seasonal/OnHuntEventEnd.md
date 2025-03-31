@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHuntEventEnd
-```csharp
+Called when an Egg Hunt event ends (time is up and winners are determined).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnHuntEventEnd()
+{
+	Puts("OnHuntEventEnd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ EggHuntEvent]
 public void Update()
 {
 	timeAlive += UnityEngine.Time.deltaTime;
@@ -21,3 +34,4 @@ public void Update()
 }
 
 ```
+:::

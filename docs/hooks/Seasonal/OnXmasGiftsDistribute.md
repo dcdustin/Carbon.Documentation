@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnXmasGiftsDistribute
-```csharp
+Called when Christmas gifts are being spawned for a player during the Xmas event.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnXmasGiftsDistribute()
+{
+	Puts("OnXmasGiftsDistribute has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ XMasRefill]
 public bool DistributeGiftsForPlayer(BasePlayer player)
 {
 	int num = GiftsPerPlayer();
@@ -29,3 +42,4 @@ public bool DistributeGiftsForPlayer(BasePlayer player)
 }
 
 ```
+:::

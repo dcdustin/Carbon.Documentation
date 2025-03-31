@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnNetworkSubscriptionsUpdate [2]
-```csharp
+# OnNetworkSubscriptionsUpdate
+Called when the network subscription list for an entity is updated (including high-priority updates).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnNetworkSubscriptionsUpdate()
+{
+	Puts("OnNetworkSubscriptionsUpdate has been fired!");
+}
+```
+```csharp [Source — Facepunch.Network @ Network.Networkable]
 public bool UpdateHighPrioritySubscriptions()
 {
 	if (subscriber == null)
@@ -30,3 +42,4 @@ public bool UpdateHighPrioritySubscriptions()
 }
 
 ```
+:::

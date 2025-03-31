@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnShopCompleteTrade
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnShopCompleteTrade()
+{
+	Puts("OnShopCompleteTrade has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ShopFront]
 public void CompleteTrade()
 {
 	if (vendorPlayer != null && customerPlayer != null && HasFlag(BaseEntity.Flags.Reserved1) && HasFlag(BaseEntity.Flags.Reserved2))
@@ -33,3 +46,4 @@ public void CompleteTrade()
 }
 
 ```
+:::

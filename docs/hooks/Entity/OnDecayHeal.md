@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDecayHeal
-```csharp
+Called when a structure heals from decay (e.g., upkeep prevents decay damage and restores health).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnDecayHeal()
+{
+	Puts("OnDecayHeal has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ DecayEntity]
 public virtual void OnDecay(Decay decay, float decayDeltaTime)
 {
 	lastDecayTick = UnityEngine.Time.time;
@@ -66,3 +79,4 @@ public virtual void OnDecay(Decay decay, float decayDeltaTime)
 }
 
 ```
+:::

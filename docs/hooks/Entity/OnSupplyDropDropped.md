@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSupplyDropDropped
-```csharp
+Called when a cargo plane releases a supply drop crate.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSupplyDropDropped()
+{
+	Puts("OnSupplyDropDropped has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CargoPlane]
 public void Update()
 {
 	if (!base.isServer)
@@ -28,3 +40,4 @@ public void Update()
 }
 
 ```
+:::

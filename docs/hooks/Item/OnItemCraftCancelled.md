@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemCraftCancelled
-```csharp
+Called when an item crafting job is canceled.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemCraftCancelled()
+{
+	Puts("OnItemCraftCancelled has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemCrafter]
 public bool CancelTask(int iID)
 {
 	if (queue.Count == 0)
@@ -45,3 +57,4 @@ public bool CancelTask(int iID)
 }
 
 ```
+:::

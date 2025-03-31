@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEyePosValidate
-```csharp
+Called to validate a player's eye position for line-of-sight (useful for anti-cheat checks).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnEyePosValidate()
+{
+	Puts("OnEyePosValidate has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AttackEntity]
 public bool ValidateEyePos(BasePlayer player, UnityEngine.Vector3 eyePos, bool checkLineOfSight = true)
 {
 	bool flag = true;
@@ -122,3 +135,4 @@ public bool ValidateEyePos(BasePlayer player, UnityEngine.Vector3 eyePos, bool c
 }
 
 ```
+:::

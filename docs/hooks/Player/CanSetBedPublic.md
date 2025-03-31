@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanSetBedPublic
-```csharp
+Called to determine if a player can set a bed or sleeping bag to public use.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanSetBedPublic()
+{
+	Puts("CanSetBedPublic has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SleepingBag]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public virtual void RPC_MakePublic(BaseEntity.RPCMessage msg)
@@ -51,3 +64,4 @@ public virtual void RPC_MakePublic(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

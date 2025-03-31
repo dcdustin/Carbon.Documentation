@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBradleyApcPatrol
-```csharp
+Called when the Bradley APC starts or continues its patrol route.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBradleyApcPatrol()
+{
+	Puts("OnBradleyApcPatrol has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public void UpdateMovement_Patrol()
 {
 	if (patrolPath == null || UnityEngine.Time.time < nextPatrolTime)
@@ -63,3 +76,4 @@ public void UpdateMovement_Patrol()
 }
 
 ```
+:::

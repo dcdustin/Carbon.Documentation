@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhotoCaptured
-```csharp
+Called after a photo has been taken with the instant camera (the image item is created).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPhotoCaptured()
+{
+	Puts("OnPhotoCaptured has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ InstantCameraTool]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.CallsPerSecond(3uL)]
@@ -70,3 +82,4 @@ public void TakePhoto(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

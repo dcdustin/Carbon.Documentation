@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerReported
-```csharp
+Triggered when a player is reported (e.g., via the in-game report system).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerReported()
+{
+	Puts("OnPlayerReported has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.CallsPerSecond(1uL)]
@@ -25,3 +37,4 @@ public void OnPlayerReported(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

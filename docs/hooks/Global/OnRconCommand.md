@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRconCommand
-```csharp
+Called when an RCON (remote console) command is received.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRconCommand()
+{
+	Puts("OnRconCommand has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Facepunch.RCon]
 public static void OnCommand(Facepunch.RCon.Command cmd)
 {
 	try
@@ -38,3 +50,4 @@ public static void OnCommand(Facepunch.RCon.Command cmd)
 }
 
 ```
+:::

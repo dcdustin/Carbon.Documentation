@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnElevatorMove
-```csharp
+Called when an elevator lift begins moving to a target floor as requested.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnElevatorMove()
+{
+	Puts("OnElevatorMove has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Elevator]
 public bool RequestMoveLiftTo(int targetFloor, out float timeToTravel, Elevator fromElevator)
 {
 	timeToTravel = 0f;
@@ -61,3 +74,4 @@ public bool RequestMoveLiftTo(int targetFloor, out float timeToTravel, Elevator 
 }
 
 ```
+:::

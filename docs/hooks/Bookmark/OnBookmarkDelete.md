@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkDelete
-```csharp
+Called when a bookmark (saved camera/turret reference) is deleted at a Computer Station by an admin.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBookmarkDelete()
+{
+	Puts("OnBookmarkDelete has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
 [BaseEntity.RPC_Server]
 public void DeleteBookmark(BaseEntity.RPCMessage msg)
 {
@@ -23,3 +36,4 @@ public void DeleteBookmark(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

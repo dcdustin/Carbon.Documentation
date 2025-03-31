@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponLoaded
-```csharp
+Called after a racked weapon has been loaded with ammo.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRackedWeaponLoaded()
+{
+	Puts("OnRackedWeaponLoaded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 [BaseEntity.RPC_Server]
 public void LoadWeaponAmmo(BaseEntity.RPCMessage msg)
 {
@@ -66,3 +78,4 @@ public void LoadWeaponAmmo(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

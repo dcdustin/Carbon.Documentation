@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWindmillUpdated
-```csharp
+Called after a Windmill’s power output has been updated.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnWindmillUpdated()
+{
+	Puts("OnWindmillUpdated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ElectricWindmill]
 public void WindUpdate()
 {
 	serverWindSpeed = GetWindSpeedScale();
@@ -19,3 +31,4 @@ public void WindUpdate()
 }
 
 ```
+:::

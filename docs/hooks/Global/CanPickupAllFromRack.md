@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # CanPickupAllFromRack
-```csharp
+Determines if a player can remove all items from a weapon rack at once.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanPickupAllFromRack()
+{
+	Puts("CanPickupAllFromRack has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void GivePlayerAllWeapons(BasePlayer player, int mountSlotIndex)
 {
 	if (player == null)
@@ -25,3 +38,4 @@ public void GivePlayerAllWeapons(BasePlayer player, int mountSlotIndex)
 }
 
 ```
+:::

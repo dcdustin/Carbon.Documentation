@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IServerAsyncShutdown
-```csharp
+Called when the server is shutting down (via the quit command).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IServerAsyncShutdown()
+{
+	Puts("IServerAsyncShutdown has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ConVar.Global]
 [ClientVar]
 [ServerVar]
 public static void quit(ConsoleSystem.Arg args)
@@ -27,3 +39,4 @@ public static void quit(ConsoleSystem.Arg args)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRemove
-```csharp
+Called when an item is removed/destroyed (from inventory or world).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemRemove()
+{
+	Puts("OnItemRemove has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Item]
 public void Remove(float fTime = 0f)
 {
 	if (removeTime > 0f)
@@ -23,3 +36,4 @@ public void Remove(float fTime = 0f)
 }
 
 ```
+:::

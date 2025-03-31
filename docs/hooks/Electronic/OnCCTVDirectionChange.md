@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCCTVDirectionChange
-```csharp
+Called when a CCTV camera or remotely controlled turret changes its viewing direction (rotates orientation).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCCTVDirectionChange()
+{
+	Puts("OnCCTVDirectionChange has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CCTV_RC]
 [BaseEntity.RPC_Server]
 public void Server_SetDir(BaseEntity.RPCMessage msg)
 {
@@ -20,3 +33,4 @@ public void Server_SetDir(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponTaken
-```csharp
+Called after a weapon has been taken from a rack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRackedWeaponTaken()
+{
+	Puts("OnRackedWeaponTaken has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void GivePlayerWeapon(BasePlayer player, int mountSlotIndex, int playerBeltIndex = -1, bool tryHold = true, bool sendUpdate = true)
 {
 	if (player == null)
@@ -52,3 +64,4 @@ public void GivePlayerWeapon(BasePlayer player, int mountSlotIndex, int playerBe
 }
 
 ```
+:::

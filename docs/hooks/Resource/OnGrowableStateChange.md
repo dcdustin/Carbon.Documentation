@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGrowableStateChange
-```csharp
+Called whenever a growable plant changes its growth state (e.g., growing, fruiting, dying).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnGrowableStateChange()
+{
+	Puts("OnGrowableStateChange has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GrowableEntity]
 public void ChangeState(PlantProperties.State state, bool resetAge, bool loading = false)
 {
 	if (base.isServer && State == state)
@@ -35,3 +48,4 @@ public void ChangeState(PlantProperties.State state, bool resetAge, bool loading
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBuyVendingItem
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBuyVendingItem()
+{
+	Puts("OnBuyVendingItem has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -37,3 +50,4 @@ public void BuyItem(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

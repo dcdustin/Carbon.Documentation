@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDispenserBonusReceived
-```csharp
+Called after the bonus resources for finishing a resource node have been awarded.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnDispenserBonusReceived()
+{
+	Puts("OnDispenserBonusReceived has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ResourceDispenser]
 public void AssignFinishBonus(BasePlayer player, float fraction, AttackEntity weapon)
 {
 	if (forceFullFinishBonus)
@@ -27,3 +39,4 @@ public void AssignFinishBonus(BasePlayer player, float fraction, AttackEntity we
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRunPlayerMetabolism
-```csharp
+Called when running a player's metabolism update (applies hunger/thirst status changes).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnRunPlayerMetabolism()
+{
+	Puts("OnRunPlayerMetabolism has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerMetabolism]
 public override void RunMetabolism(BaseCombatEntity ownerEntity, float delta)
 {
 	BaseGameMode activeGameMode = BaseGameMode.GetActiveGameMode(serverside: true);
@@ -132,3 +145,4 @@ public override void RunMetabolism(BaseCombatEntity ownerEntity, float delta)
 }
 
 ```
+:::

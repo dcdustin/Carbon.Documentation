@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # ICraftDurationMultiplier
-```csharp
+Allows modifying the duration of item crafting.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void ICraftDurationMultiplier()
+{
+	Puts("ICraftDurationMultiplier has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemCrafter]
 public static float GetScaledDuration(ItemBlueprint bp, float workbenchLevel, bool isInTutorial)
 {
 	float num = workbenchLevel - (float)bp.GetWorkbenchLevel();
@@ -20,3 +32,4 @@ public static float GetScaledDuration(ItemBlueprint bp, float workbenchLevel, bo
 }
 
 ```
+:::

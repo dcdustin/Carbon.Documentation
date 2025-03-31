@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponSwap
-```csharp
+Called when a player swaps their held weapon with one on a rack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnRackedWeaponSwap()
+{
+	Puts("OnRackedWeaponSwap has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void SwapPlayerWeapon(BasePlayer player, int gridCellIndex, int takeFromBeltIndex, int rotation)
 {
 	Item item = player.GetHeldEntity()?.GetItem();
@@ -34,3 +47,4 @@ public void SwapPlayerWeapon(BasePlayer player, int gridCellIndex, int takeFromB
 }
 
 ```
+:::

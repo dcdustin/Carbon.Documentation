@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnSignUpdated [CarvablePumpkin]
-```csharp
+# OnSignUpdated
+Called when a player finishes editing a sign or painting, and it’s updated in the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSignUpdated()
+{
+	Puts("OnSignUpdated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CarvablePumpkin]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
 [BaseEntity.RPC_Server.MaxDistance(5f)]
@@ -47,3 +59,4 @@ public void UpdateSign(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

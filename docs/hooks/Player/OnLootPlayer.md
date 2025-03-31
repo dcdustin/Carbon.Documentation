@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootPlayer
-```csharp
+Triggered when a player starts looting another player's inventory (e.g., a corpse or sleeper).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnLootPlayer()
+{
+	Puts("OnLootPlayer has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_LootPlayer(BaseEntity.RPCMessage msg)
@@ -18,3 +30,4 @@ public void RPC_LootPlayer(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

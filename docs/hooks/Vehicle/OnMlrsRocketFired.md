@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMlrsRocketFired
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMlrsRocketFired()
+{
+	Puts("OnMlrsRocketFired has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ MLRS]
 public void FireNextRocket()
 {
 	RocketAmmoCount = GetRocketContainer().inventory.GetAmmoAmount(Rust.AmmoTypes.MLRS_ROCKET);
@@ -33,3 +45,4 @@ public void FireNextRocket()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHelicopterRetire
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnHelicopterRetire()
+{
+	Puts("OnHelicopterRetire has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]
 public void Retire()
 {
 	if (!isRetiring)
@@ -20,3 +33,4 @@ public void Retire()
 }
 
 ```
+:::

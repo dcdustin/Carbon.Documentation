@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFeedbackReported
-```csharp
+Called when a player submits in-game feedback or a report (e.g., via the F7 report system).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFeedbackReported()
+{
+	Puts("OnFeedbackReported has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.CallsPerSecond(1uL)]
@@ -38,3 +50,4 @@ public void OnFeedbackReport(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

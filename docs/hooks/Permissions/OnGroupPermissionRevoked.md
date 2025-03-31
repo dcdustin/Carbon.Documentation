@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupPermissionRevoked
-```csharp
+Called when a permission is revoked from a group.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupPermissionRevoked()
+{
+	Puts("OnGroupPermissionRevoked has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool RevokeGroupPermission(string name, string perm)
 {
 	if (!GroupExists(name) || string.IsNullOrEmpty(perm))
@@ -54,3 +66,4 @@ public virtual bool RevokeGroupPermission(string name, string perm)
 }
 
 ```
+:::

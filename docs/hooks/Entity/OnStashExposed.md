@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnStashExposed
-```csharp
+Called when a hidden stash is revealed (becomes visible to a player).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnStashExposed()
+{
+	Puts("OnStashExposed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void CheckStashRevealInvoke()
 {
 	for (int i = 0; i < nearbyStashes.Count; i++)
@@ -27,3 +39,4 @@ public void CheckStashRevealInvoke()
 }
 
 ```
+:::

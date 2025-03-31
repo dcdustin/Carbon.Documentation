@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAssignMission
-```csharp
+Determines if a mission can be assigned to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanAssignMission()
+{
+	Puts("CanAssignMission has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMission]
 public static bool AssignMission(BasePlayer assignee, IMissionProvider provider, BaseMission mission)
 {
 	if (!missionsenabled)
@@ -42,3 +55,4 @@ public static bool AssignMission(BasePlayer assignee, IMissionProvider provider,
 }
 
 ```
+:::

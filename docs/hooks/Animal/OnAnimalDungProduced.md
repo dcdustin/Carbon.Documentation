@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnAnimalDungProduced [RidableHorse2]
-```csharp
+# OnAnimalDungProduced
+Called after a ridable animal has produced dung and dropped it in the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnAnimalDungProduced()
+{
+	Puts("OnAnimalDungProduced has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ RidableHorse2]
 public void DoDung()
 {
 	dungProduction -= 1f;
@@ -12,3 +24,4 @@ public void DoDung()
 }
 
 ```
+:::

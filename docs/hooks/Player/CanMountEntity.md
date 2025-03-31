@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanMountEntity
-```csharp
+Called when a player attempts to mount an entity (sit in a chair, climb in a vehicle, etc.), to decide if it's allowed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanMountEntity()
+{
+	Puts("CanMountEntity has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMountable]
 public void MountPlayer(BasePlayer player)
 {
 	if (!(_mounted != null) && !(mountAnchor == null))
@@ -25,3 +38,4 @@ public void MountPlayer(BasePlayer player)
 }
 
 ```
+:::

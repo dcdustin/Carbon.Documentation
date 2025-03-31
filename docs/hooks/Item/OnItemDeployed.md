@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnItemDeployed [Slot]
-```csharp
+# OnItemDeployed
+Called when a deployable item is placed into the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemDeployed()
+{
+	Puts("OnItemDeployed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Deployer]
 public void DoDeploy_Slot(Deployable deployable, UnityEngine.Ray ray, NetworkableId entityID)
 {
 	if (!HasItemAmount())
@@ -82,3 +94,4 @@ public void DoDeploy_Slot(Deployable deployable, UnityEngine.Ray ray, Networkabl
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMapImageUpdated
-```csharp
+Called when a map item's image is updated (e.g., after exploration).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMapImageUpdated()
+{
+	Puts("OnMapImageUpdated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ MapEntity]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.CallsPerSecond(1uL)]
 [BaseEntity.RPC_Server.FromOwner(false)]
@@ -36,3 +48,4 @@ public void ImageUpdate(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

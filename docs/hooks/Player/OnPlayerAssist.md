@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerAssist
-```csharp
+Triggered when a wounded player is assisted by another player (revived from the wounded state).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerAssist()
+{
+	Puts("OnPlayerAssist has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_Assist(BaseEntity.RPCMessage msg)
@@ -14,3 +27,4 @@ public void RPC_Assist(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

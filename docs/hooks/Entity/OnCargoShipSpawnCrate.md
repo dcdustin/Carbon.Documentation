@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipSpawnCrate
-```csharp
+Called when a locked crate spawns on the Cargo Ship (e.g., timed crate spawn during the event).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCargoShipSpawnCrate()
+{
+	Puts("OnCargoShipSpawnCrate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CargoShip]
 public void RespawnLoot()
 {
 	InvokeRepeating(PlayHorn, 0f, 8f);
@@ -22,3 +35,4 @@ public void RespawnLoot()
 }
 
 ```
+:::

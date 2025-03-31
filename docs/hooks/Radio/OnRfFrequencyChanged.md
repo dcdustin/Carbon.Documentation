@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnRfFrequencyChanged [PagerEntity]
-```csharp
+# OnRfFrequencyChanged
+Triggered after an RF device's frequency has been changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRfFrequencyChanged()
+{
+	Puts("OnRfFrequencyChanged has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PagerEntity]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void ServerSetFrequency(BaseEntity.RPCMessage msg)
@@ -16,3 +28,4 @@ public void ServerSetFrequency(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

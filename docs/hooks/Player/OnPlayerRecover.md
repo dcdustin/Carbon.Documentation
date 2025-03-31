@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerRecover
-```csharp
+Called when a wounded player is about to recover (stand up from wounded state).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerRecover()
+{
+	Puts("OnPlayerRecover has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void RecoverFromWounded()
 {
 	if (IsCrawling())
@@ -17,3 +30,4 @@ public void RecoverFromWounded()
 }
 
 ```
+:::

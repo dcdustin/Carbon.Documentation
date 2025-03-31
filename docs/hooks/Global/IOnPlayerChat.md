@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnPlayerChat
-```csharp
+Called when a player sends a chat message (allows intercepting or modifying it).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IOnPlayerChat()
+{
+	Puts("IOnPlayerChat has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ConVar.Chat]
 public static async System.Threading.Tasks.ValueTask<bool> sayAs(ConVar.Chat.ChatChannel targetChannel, ulong userId, string username, string message, BasePlayer player = null)
 {
 	if (!player)
@@ -180,3 +192,4 @@ public static async System.Threading.Tasks.ValueTask<bool> sayAs(ConVar.Chat.Cha
 }
 
 ```
+:::

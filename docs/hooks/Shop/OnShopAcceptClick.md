@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnShopAcceptClick
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnShopAcceptClick()
+{
+	Puts("OnShopAcceptClick has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ShopFront]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void AcceptClicked(BaseEntity.RPCMessage msg)
@@ -26,3 +39,4 @@ public void AcceptClicked(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControl
-```csharp
+Called when a player initiates control of a remote entity via the Computer Station (before control is established).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBookmarkControl()
+{
+	Puts("OnBookmarkControl has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
 [BaseEntity.RPC_Server]
 public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 {
@@ -48,3 +61,4 @@ public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

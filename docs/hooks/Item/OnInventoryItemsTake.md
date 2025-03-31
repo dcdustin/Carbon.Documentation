@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryItemsTake
-```csharp
+Called when items are taken out of an inventory (to another container or context).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private int OnInventoryItemsTake()
+{
+	Puts("OnInventoryItemsTake has been fired!");
+	return (System.Int32)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public int Take(System.Collections.Generic.List<Item> collect, int itemid, int amount)
 {
 	int num = 0;
@@ -34,3 +47,4 @@ public int Take(System.Collections.Generic.List<Item> collect, int itemid, int a
 }
 
 ```
+:::

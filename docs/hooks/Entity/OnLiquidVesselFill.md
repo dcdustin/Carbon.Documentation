@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLiquidVesselFill
-```csharp
+Called when a liquid container (bottle, jug, etc.) is filled with water or another liquid.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnLiquidVesselFill()
+{
+	Puts("OnLiquidVesselFill has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseLiquidVessel]
 public void FillCheck()
 {
 	if (base.isClient)
@@ -48,3 +61,4 @@ public void FillCheck()
 }
 
 ```
+:::

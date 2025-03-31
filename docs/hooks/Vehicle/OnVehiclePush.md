@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehiclePush
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnVehiclePush()
+{
+	Puts("OnVehiclePush has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseVehicle]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(5f)]
 public void RPC_WantsPush(BaseEntity.RPCMessage msg)
@@ -20,3 +33,4 @@ public void RPC_WantsPush(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

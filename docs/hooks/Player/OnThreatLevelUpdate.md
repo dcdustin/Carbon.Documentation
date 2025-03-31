@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnThreatLevelUpdate
-```csharp
+Called when a player's threat level is updated (for AI targeting or aggression mechanics).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnThreatLevelUpdate()
+{
+	Puts("OnThreatLevelUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void EnsureUpdated()
 {
 	if (UnityEngine.Time.realtimeSinceStartup - lastUpdateTime < 30f)
@@ -29,3 +42,4 @@ public void EnsureUpdated()
 }
 
 ```
+:::

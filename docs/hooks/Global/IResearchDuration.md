@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IResearchDuration
-```csharp
+Allows modifying how long research at a research table takes.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IResearchDuration()
+{
+	Puts("IResearchDuration has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ResearchTable]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void DoResearch(BaseEntity.RPCMessage msg)
@@ -31,3 +43,4 @@ public void DoResearch(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnNpcTarget [AIBrainSenses]
-```csharp
+# OnNpcTarget
+Called when an NPC selects a target to attack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcTarget()
+{
+	Puts("OnNpcTarget has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AIBrainSenses]
 public BaseEntity GetNearest(System.Collections.Generic.List<BaseEntity> entities, float rangeFraction)
 {
 	if (entities == null || entities.Count == 0)
@@ -24,3 +37,4 @@ public BaseEntity GetNearest(System.Collections.Generic.List<BaseEntity> entitie
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTurretIdentifierSet
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTurretIdentifierSet()
+{
+	Puts("OnTurretIdentifierSet has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AutoTurret]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void Server_SetID(BaseEntity.RPCMessage msg)
@@ -22,3 +35,4 @@ public void Server_SetID(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

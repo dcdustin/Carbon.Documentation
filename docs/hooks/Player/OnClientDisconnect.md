@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClientDisconnect
-```csharp
+Called when a client disconnect event is initiated.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnClientDisconnect()
+{
+	Puts("OnClientDisconnect has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void ReadDisconnectReason(Network.Message packet)
 {
 	string text = packet.read.String(4096);
@@ -12,3 +24,4 @@ public void ReadDisconnectReason(Network.Message packet)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemCraftFinished
-```csharp
+Called when an item crafting job finishes (item has been crafted).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemCraftFinished()
+{
+	Puts("OnItemCraftFinished has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemCrafter]
 public void FinishCrafting(ItemCraftTask task)
 {
 	task.amount--;
@@ -65,3 +77,4 @@ public void FinishCrafting(ItemCraftTask task)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNewSave
-```csharp
+Called when a new save file is created (e.g., on wipe or first server start).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnNewSave()
+{
+	Puts("OnNewSave has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SaveRestore]
 #define UNITY_ASSERTIONS
 public static bool Load(string strFilename = "", bool allowOutOfDateSaves = false)
 {
@@ -190,3 +202,4 @@ public static bool Load(string strFilename = "", bool allowOutOfDateSaves = fals
 }
 
 ```
+:::

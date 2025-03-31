@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IOnExcavatorInit
-```csharp
+Called when the excavator monument is initializing (server startup).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IOnExcavatorInit()
+{
+	Puts("IOnExcavatorInit has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorArm]
 public void Init()
 {
 	pendingResources = new ItemAmount[resourcesToMine.Length];
@@ -22,3 +34,4 @@ public void Init()
 }
 
 ```
+:::

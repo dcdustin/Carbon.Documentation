@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNoGoZoneAdded
-```csharp
+Called when a no-fly (no-go) zone is added for the patrol helicopter (restricting where the heli can go).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNoGoZoneAdded()
+{
+	Puts("OnNoGoZoneAdded has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]
 public void NoGoZoneAdded(PatrolHelicopterAI.DangerZone zone)
 {
 	if (use_danger_zones && zone.IsPointInside(base.transform.position))
@@ -14,3 +27,4 @@ public void NoGoZoneAdded(PatrolHelicopterAI.DangerZone zone)
 }
 
 ```
+:::

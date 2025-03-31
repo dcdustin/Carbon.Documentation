@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# IOnNpcTarget [SenseComponent]
-```csharp
+# IOnNpcTarget
+Allows control over whether an NPC wants to target or attack a particular entity.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool IOnNpcTarget()
+{
+	Puts("IOnNpcTarget has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Rust.Ai.Gen2.SenseComponent]
 public bool CanTarget(BaseEntity entity)
 {
 	if (!entity.IsValid())
@@ -46,3 +59,4 @@ public bool CanTarget(BaseEntity entity)
 }
 
 ```
+:::

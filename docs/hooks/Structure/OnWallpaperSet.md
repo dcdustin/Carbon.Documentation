@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWallpaperSet
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWallpaperSet()
+{
+	Puts("OnWallpaperSet has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingBlock]
 public void SetWallpaper(ulong id, int side = 0)
 {
 	if (side == 0)
@@ -30,3 +43,4 @@ public void SetWallpaper(ulong id, int side = 0)
 }
 
 ```
+:::

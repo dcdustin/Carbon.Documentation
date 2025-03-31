@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnLootSpawn [LootContainer]
-```csharp
+# OnLootSpawn
+Called when a loot container spawns its loot items (populate loot).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnLootSpawn()
+{
+	Puts("OnLootSpawn has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ LootContainer]
 public virtual void SpawnLoot()
 {
 	if (base.inventory == null)
@@ -18,3 +31,4 @@ public virtual void SpawnLoot()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanDeployItem
-```csharp
+Determines if a deployable item can be placed in the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanDeployItem()
+{
+	Puts("CanDeployItem has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Deployer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void DoDeploy(BaseEntity.RPCMessage msg)
@@ -26,3 +39,4 @@ public void DoDeploy(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

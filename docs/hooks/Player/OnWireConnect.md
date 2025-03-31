@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWireConnect
-```csharp
+Called when an electrical wire connection is made between two devices.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWireConnect()
+{
+	Puts("OnWireConnect has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WireTool]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 [BaseEntity.RPC_Server.FromOwner(false)]
@@ -45,3 +58,4 @@ public void RPC_MakeConnection(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

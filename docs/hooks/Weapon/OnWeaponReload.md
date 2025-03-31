@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWeaponReload
-```csharp
+Called when a weapon starts reloading.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWeaponReload()
+{
+	Puts("OnWeaponReload has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseProjectile]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void StartReload(BaseEntity.RPCMessage msg)
@@ -25,3 +38,4 @@ public void StartReload(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

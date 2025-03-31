@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerLanded
-```csharp
+Called after a player has landed on the ground from a fall or jump.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerLanded()
+{
+	Puts("OnPlayerLanded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void ApplyFallDamageFromVelocity(float velocity)
 {
 	if (IsGod())
@@ -23,3 +35,4 @@ public void ApplyFallDamageFromVelocity(float velocity)
 }
 
 ```
+:::

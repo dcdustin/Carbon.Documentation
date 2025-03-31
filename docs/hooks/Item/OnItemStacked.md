@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnItemStacked [2]
-```csharp
+# OnItemStacked
+Called when two item stacks are combined into one stack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemStacked()
+{
+	Puts("OnItemStacked has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Item]
 public bool MoveToContainer(ItemContainer newcontainer, int iTargetPos = -1, bool allowStack = true, bool ignoreStackLimit = false, BasePlayer sourcePlayer = null, bool allowSwap = true)
 {
 	using (TimeWarning.New("MoveToContainer"))
@@ -197,3 +209,4 @@ public bool MoveToContainer(ItemContainer newcontainer, int iTargetPos = -1, boo
 }
 
 ```
+:::

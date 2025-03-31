@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCatchFish
-```csharp
+Determines if a caught fish should be allowed (whether the catch succeeds).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanCatchFish()
+{
+	Puts("CanCatchFish has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseFishingRod]
 public void CatchProcessBudgeted()
 {
 	inQueue = false;
@@ -190,3 +203,4 @@ public void CatchProcessBudgeted()
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerInitialize
-```csharp
+Called when the server begins initialization (loading save, spawning initial entities).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnServerInitialize()
+{
+	Puts("OnServerInitialize has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public bool Initialize(bool loadSave = true, string saveFile = "", bool allowOutOfDateSaves = false, bool skipInitialSpawn = false)
 {
 	persistance = new UserPersistance(ConVar.Server.rootFolder);
@@ -49,3 +61,4 @@ public bool Initialize(bool loadSave = true, string saveFile = "", bool allowOut
 }
 
 ```
+:::

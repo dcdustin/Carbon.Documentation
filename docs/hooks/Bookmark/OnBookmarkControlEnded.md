@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnBookmarkControlEnded [2]
-```csharp
+# OnBookmarkControlEnded
+Called after a player has stopped controlling a remote entity (camera/turret) via the Computer Station.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnBookmarkControlEnded()
+{
+	Puts("OnBookmarkControlEnded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
 [BaseEntity.RPC_Server]
 public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 {
@@ -48,3 +60,4 @@ public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

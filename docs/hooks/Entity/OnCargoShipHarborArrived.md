@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipHarborArrived
-```csharp
+Called when the Cargo Ship has arrived at a harbor and is docked.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCargoShipHarborArrived()
+{
+	Puts("OnCargoShipHarborArrived has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CargoShip]
 public void OnArrivedAtHarbor()
 {
 	SetFlag(BaseEntity.Flags.Reserved1, b: true);
@@ -45,3 +57,4 @@ public void OnArrivedAtHarbor()
 }
 
 ```
+:::

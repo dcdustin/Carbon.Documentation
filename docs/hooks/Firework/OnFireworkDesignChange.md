@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkDesignChange
-```csharp
+Called when a player attempts to set a firework’s design (before it is applied).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnFireworkDesignChange()
+{
+	Puts("OnFireworkDesignChange has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatternFirework]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -32,3 +45,4 @@ public void ServerSetFireworkDesign(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWireClear
-```csharp
+Called when an electrical wire is cleared (disconnected).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWireClear()
+{
+	Puts("OnWireClear has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WireTool]
 public static bool AttemptClearSlot(BaseNetworkable clearEnt, BasePlayer ply, int clearIndex, bool isInput)
 {
 	IOEntity iOEntity = ((clearEnt != null) ? clearEnt.GetComponent<IOEntity>() : null);
@@ -16,3 +29,4 @@ public static bool AttemptClearSlot(BaseNetworkable clearEnt, BasePlayer ply, in
 }
 
 ```
+:::

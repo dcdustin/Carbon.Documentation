@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# LoadDefaultMessages [Instance]
-```csharp
+# LoadDefaultMessages
+Called to load a plugin's default message translations (for localization).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void LoadDefaultMessages()
+{
+	Puts("LoadDefaultMessages has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Carbon.Core.ModLoader]
 public static Oxide.Plugins.RustPlugin InitializePlugin(System.Reflection.Assembly assembly, Carbon.Core.ModLoader.Package package = default(Carbon.Core.ModLoader.Package), System.Action<Oxide.Plugins.RustPlugin> preInit = null, bool precompiled = false)
 {
 	System.Type[] types = assembly.GetTypes();
@@ -15,3 +27,4 @@ public static Oxide.Plugins.RustPlugin InitializePlugin(System.Reflection.Assemb
 }
 
 ```
+:::

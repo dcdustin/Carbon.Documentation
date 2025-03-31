@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemUnwrap
-```csharp
+Called when an item (like a gift present) is unwrapped.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemUnwrap()
+{
+	Puts("OnItemUnwrap has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemModUnwrap]
 public override void ServerCommand(Item item, string command, BasePlayer player)
 {
 	if (command == "unwrap" && item.amount > 0)
@@ -27,3 +40,4 @@ public override void ServerCommand(Item item, string command, BasePlayer player)
 }
 
 ```
+:::

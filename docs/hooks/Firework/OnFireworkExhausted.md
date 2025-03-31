@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkExhausted
-```csharp
+Called when a firework has burned out (finished its effect).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFireworkExhausted()
+{
+	Puts("OnFireworkExhausted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseFirework]
 public virtual void OnExhausted()
 {
 	SetFlag(BaseEntity.Flags.Reserved8, b: true, recursive: false, networkupdate: false);
@@ -13,3 +25,4 @@ public virtual void OnExhausted()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAmmoUnload
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnAmmoUnload()
+{
+	Puts("OnAmmoUnload has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseProjectile]
 public void UnloadAmmo(Item item, BasePlayer player)
 {
 	BaseProjectile component = item.GetHeldEntity().GetComponent<BaseProjectile>();
@@ -35,3 +48,4 @@ public void UnloadAmmo(Item item, BasePlayer player)
 }
 
 ```
+:::

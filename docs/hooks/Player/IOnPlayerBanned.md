@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# IOnPlayerBanned [Publisher/VAC]
-```csharp
+# IOnPlayerBanned
+Called when a connecting player's Steam auth returns a ban (VAC or publisher ban) during authentication.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IOnPlayerBanned()
+{
+	Puts("IOnPlayerBanned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void OnValidateAuthTicketResponse(ulong SteamId, ulong OwnerId, AuthResponse Status)
 {
 	if (Auth_Steam.ValidateConnecting(SteamId, OwnerId, Status))
@@ -35,3 +47,4 @@ public void OnValidateAuthTicketResponse(ulong SteamId, ulong OwnerId, AuthRespo
 }
 
 ```
+:::

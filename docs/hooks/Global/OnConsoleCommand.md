@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnConsoleCommand
-```csharp
+Called when a console command is executed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnConsoleCommand()
+{
+	Puts("OnConsoleCommand has been fired!");
+}
+```
+```csharp [Source — Facepunch.Console @ ConsoleSystem]
 public static string Run(ConsoleSystem.Option options, string strCommand, params object[] args)
 {
 	LastError = null;
@@ -45,3 +57,4 @@ public static string Run(ConsoleSystem.Option options, string strCommand, params
 }
 
 ```
+:::

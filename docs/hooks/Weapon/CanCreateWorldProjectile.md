@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCreateWorldProjectile
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanCreateWorldProjectile()
+{
+	Puts("CanCreateWorldProjectile has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public virtual void CreateWorldProjectile(HitInfo info, ItemDefinition itemDef, ItemModProjectile itemMod, Projectile projectilePrefab, Item recycleItem)
 {
 	UnityEngine.Vector3 projectileVelocity = info.ProjectileVelocity;
@@ -51,3 +64,4 @@ public virtual void CreateWorldProjectile(HitInfo info, ItemDefinition itemDef, 
 }
 
 ```
+:::

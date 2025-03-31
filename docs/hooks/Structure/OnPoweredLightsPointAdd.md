@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPoweredLightsPointAdd
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPoweredLightsPointAdd()
+{
+	Puts("OnPoweredLightsPointAdd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PoweredLightsDeployer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void AddPoint(BaseEntity.RPCMessage msg)
@@ -65,3 +78,4 @@ public void AddPoint(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

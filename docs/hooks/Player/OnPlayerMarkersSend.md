@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerMarkersSend
-```csharp
+Called when the server is sending map/team markers to a player (marker update).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerMarkersSend()
+{
+	Puts("OnPlayerMarkersSend has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void SendMarkersToClient()
 {
 	using ProtoBuf.MapNoteList mapNoteList = Facepunch.Pool.Get<ProtoBuf.MapNoteList>();
@@ -18,3 +30,4 @@ public void SendMarkersToClient()
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemPainted
-```csharp
+Called when a paintable item (sign or painting) has been painted or updated.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemPainted()
+{
+	Puts("OnItemPainted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PaintedItemStorageEntity]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.CallsPerSecond(3uL)]
 public void Server_UpdateImage(BaseEntity.RPCMessage msg)
@@ -52,3 +64,4 @@ public void Server_UpdateImage(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

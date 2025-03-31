@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerViolation
-```csharp
+Triggered when a player triggers an anti-cheat violation.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerViolation()
+{
+	Puts("OnPlayerViolation has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AntiHack]
 public static void AddViolation(BasePlayer ply, AntiHackType type, float amount)
 {
 	using (TimeWarning.New("AntiHack.AddViolation"))
@@ -21,3 +34,4 @@ public static void AddViolation(BasePlayer ply, AntiHackType type, float amount)
 }
 
 ```
+:::

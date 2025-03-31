@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSprinklerSplashed
-```csharp
+Called when a sprinkler sprays water (each time it splashes water on crops).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSprinklerSplashed()
+{
+	Puts("OnSprinklerSplashed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Sprinkler]
 public void DoSplash()
 {
 	using (TimeWarning.New("SprinklerSplash"))
@@ -59,3 +71,4 @@ public void DoSplash()
 }
 
 ```
+:::

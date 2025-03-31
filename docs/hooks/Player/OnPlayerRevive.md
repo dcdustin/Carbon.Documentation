@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerRevive
-```csharp
+Called when a player is revived from a wounded state by another player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerRevive()
+{
+	Puts("OnPlayerRevive has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ MedicalTool]
 public void GiveEffectsTo(BasePlayer player)
 {
 	if (!player)
@@ -39,3 +52,4 @@ public void GiveEffectsTo(BasePlayer player)
 }
 
 ```
+:::

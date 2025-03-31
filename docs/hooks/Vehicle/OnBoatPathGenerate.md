@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBoatPathGenerate
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private System.Collections.Generic.List`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]] OnBoatPathGenerate()
+{
+	Puts("OnBoatPathGenerate has been fired!");
+	return (System.Collections.Generic.List<UnityEngine.Vector3>)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseBoat]
 public static System.Collections.Generic.List<UnityEngine.Vector3> GenerateOceanPatrolPath(float minDistanceFromShore = 50f, float minWaterDepth = 8f)
 {
 	float x = TerrainMeta.Size.x;
@@ -78,3 +91,4 @@ public static System.Collections.Generic.List<UnityEngine.Vector3> GenerateOcean
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnItemSubmit [patch]
-```csharp
+# OnItemSubmit
+Called when a player submits items into a mailbox (e.g., for a mission objective).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemSubmit()
+{
+	Puts("OnItemSubmit has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Mailbox]
 public void SubmitInputItems(BasePlayer fromPlayer)
 {
 	for (int i = 0; i < InputContainer.capacity; i++)
@@ -18,3 +31,4 @@ public void SubmitInputItems(BasePlayer fromPlayer)
 }
 
 ```
+:::

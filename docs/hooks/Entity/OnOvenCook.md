@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOvenCook
-```csharp
+Called when an oven/furnace cooks an item (each cooking cycle starting).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnOvenCook()
+{
+	Puts("OnOvenCook has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
 public void Cook()
 {
 	if (HasFlag(BaseEntity.Flags.Reserved8))
@@ -45,3 +58,4 @@ public void Cook()
 }
 
 ```
+:::

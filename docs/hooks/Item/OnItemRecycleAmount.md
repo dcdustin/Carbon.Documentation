@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRecycleAmount
-```csharp
+Called when calculating the output from recycling an item.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemRecycleAmount()
+{
+	Puts("OnItemRecycleAmount has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Recycler]
 public void RecycleThink()
 {
 	bool flag = false;
@@ -116,3 +128,4 @@ public void RecycleThink()
 }
 
 ```
+:::

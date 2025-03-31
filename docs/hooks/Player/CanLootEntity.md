@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanLootEntity [IndustrialCrafter]
-```csharp
+# CanLootEntity
+Called when a player attempts to loot an entity or container. Plugins can use this to allow or block the looting action.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanLootEntity()
+{
+	Puts("CanLootEntity has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ IndustrialCrafter]
 public virtual bool PlayerOpenLoot(BasePlayer player, string panelToOpen = "", bool doPositionChecks = true)
 {
 	if (NeedsBuildingPrivilegeToUse && !player.CanBuild())
@@ -25,3 +38,4 @@ public virtual bool PlayerOpenLoot(BasePlayer player, string panelToOpen = "", b
 }
 
 ```
+:::

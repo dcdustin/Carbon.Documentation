@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnStructureUpgrade
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnStructureUpgrade()
+{
+	Puts("OnStructureUpgrade has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingBlock]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void DoUpgradeToGrade(BaseEntity.RPCMessage msg)
@@ -70,3 +83,4 @@ public void DoUpgradeToGrade(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

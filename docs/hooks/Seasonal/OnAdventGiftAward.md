@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAdventGiftAward
-```csharp
+Triggered when an advent calendar gift is about to be awarded to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnAdventGiftAward()
+{
+	Puts("OnAdventGiftAward has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AdventCalendar]
 public void AwardGift(BasePlayer player)
 {
 	System.DateTime now = System.DateTime.Now;
@@ -43,3 +56,4 @@ public void AwardGift(BasePlayer player)
 }
 
 ```
+:::

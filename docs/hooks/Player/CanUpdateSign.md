@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanUpdateSign [CarvablePumpkin]
-```csharp
+# CanUpdateSign
+Called when a player tries to update a sign or similar object (signage, photo frame, carvable pumpkin).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanUpdateSign()
+{
+	Puts("CanUpdateSign has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CarvablePumpkin]
 public virtual bool CanUpdateSign(BasePlayer player)
 {
 	if (player.IsAdmin || player.IsDeveloper)
@@ -19,3 +32,4 @@ public virtual bool CanUpdateSign(BasePlayer player)
 }
 
 ```
+:::

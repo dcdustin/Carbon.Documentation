@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkAdd
-```csharp
+Called when a new camera bookmark is added at a Computer Station (admin adds a new remote camera identifier).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBookmarkAdd()
+{
+	Puts("OnBookmarkAdd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
 [BaseEntity.RPC_Server]
 public void AddBookmark(BaseEntity.RPCMessage msg)
 {
@@ -25,3 +38,4 @@ public void AddBookmark(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

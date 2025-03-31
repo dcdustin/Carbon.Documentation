@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOutputUpdate
-```csharp
+Called when an IOEntity updates its outputs (e.g., an electrical device sends power out to connected devices).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnOutputUpdate()
+{
+	Puts("OnOutputUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ IOEntity]
 public virtual void UpdateOutputs()
 {
 	if (!ShouldUpdateOutputs() || !ensureOutputsUpdated)
@@ -36,3 +49,4 @@ public virtual void UpdateOutputs()
 }
 
 ```
+:::

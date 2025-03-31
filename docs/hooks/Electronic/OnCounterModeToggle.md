@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCounterModeToggle
-```csharp
+Called when a Power Counter (electrical counter) toggles its mode (e.g., switching between counting up or down).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCounterModeToggle()
+{
+	Puts("OnCounterModeToggle has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PowerCounter]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void ToggleDisplayMode(BaseEntity.RPCMessage msg)
@@ -14,3 +27,4 @@ public void ToggleDisplayMode(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

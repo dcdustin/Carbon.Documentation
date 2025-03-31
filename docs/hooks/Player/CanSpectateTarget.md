@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanSpectateTarget
-```csharp
+Called to check if a player (usually admin) can spectate a particular target player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanSpectateTarget()
+{
+	Puts("CanSpectateTarget has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void UpdateSpectateTarget(string strName)
 {
 	spectateFilter = strName;
@@ -34,3 +47,4 @@ public void UpdateSpectateTarget(string strName)
 }
 
 ```
+:::

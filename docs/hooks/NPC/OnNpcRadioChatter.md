@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnNpcRadioChatter [ScientistNPC]
-```csharp
+# OnNpcRadioChatter
+Called when an NPC (e.g., a scientist) plays a radio chatter voice line.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcRadioChatter()
+{
+	Puts("OnNpcRadioChatter has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ScientistNPC]
 public void PlayRadioChatter()
 {
 	if (RadioChatterEffects.Length != 0)
@@ -16,3 +29,4 @@ public void PlayRadioChatter()
 }
 
 ```
+:::

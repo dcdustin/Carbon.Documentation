@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanEquipItem
-```csharp
+Determines if a player can equip a given item (hold it in their hands).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanEquipItem()
+{
+	Puts("CanEquipItem has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public bool CanEquipItem(Item item, int targetSlot)
 {
 	if ((item.info.flags & ItemDefinition.Flag.NotAllowedInBelt) != 0)
@@ -36,3 +49,4 @@ public bool CanEquipItem(Item item, int targetSlot)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerSave
-```csharp
+Called when the server performs a save of the world (automatic or manual save).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnServerSave()
+{
+	Puts("OnServerSave has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SaveRestore]
 public System.Collections.IEnumerator DoAutomatedSave(bool AndWait = false)
 {
 	IsSaving = true;
@@ -29,3 +41,4 @@ public System.Collections.IEnumerator DoAutomatedSave(bool AndWait = false)
 }
 
 ```
+:::

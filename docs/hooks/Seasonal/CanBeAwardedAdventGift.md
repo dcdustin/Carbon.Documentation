@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBeAwardedAdventGift
-```csharp
+Called to check if a player has already received today’s advent gift (whether they can be awarded again).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanBeAwardedAdventGift()
+{
+	Puts("CanBeAwardedAdventGift has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AdventCalendar]
 public bool WasAwardedTodaysGift(BasePlayer player)
 {
 	if (!playerRewardHistory.ContainsKey(player.userID))
@@ -25,3 +38,4 @@ public bool WasAwardedTodaysGift(BasePlayer player)
 }
 
 ```
+:::

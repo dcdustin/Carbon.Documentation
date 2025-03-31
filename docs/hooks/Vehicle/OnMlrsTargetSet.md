@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMlrsTargetSet
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMlrsTargetSet()
+{
+	Puts("OnMlrsTargetSet has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ MLRS]
 public void SetUserTargetHitPos(UnityEngine.Vector3 worldPos)
 {
 	if (UserTargetHitPos == worldPos)
@@ -38,3 +50,4 @@ public void SetUserTargetHitPos(UnityEngine.Vector3 worldPos)
 }
 
 ```
+:::

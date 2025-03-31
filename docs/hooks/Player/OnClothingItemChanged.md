@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClothingItemChanged
-```csharp
+Called when a player changes a clothing item (equips or unequips apparel).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnClothingItemChanged()
+{
+	Puts("OnClothingItemChanged has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public void OnClothingChanged(Item item, bool bAdded)
 {
 	base.baseEntity.SV_ClothingChanged();
@@ -30,3 +42,4 @@ public void OnClothingChanged(Item item, bool bAdded)
 }
 
 ```
+:::

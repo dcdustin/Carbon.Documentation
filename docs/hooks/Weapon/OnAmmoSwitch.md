@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAmmoSwitch
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnAmmoSwitch()
+{
+	Puts("OnAmmoSwitch has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseProjectile]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void SwitchAmmoTo(BaseEntity.RPCMessage msg)
@@ -36,3 +49,4 @@ public void SwitchAmmoTo(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

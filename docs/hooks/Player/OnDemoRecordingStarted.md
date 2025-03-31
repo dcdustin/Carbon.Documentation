@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDemoRecordingStarted
-```csharp
+Called after the server has started recording a demo.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnDemoRecordingStarted()
+{
+	Puts("OnDemoRecordingStarted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void StartDemoRecording()
 {
 	if (net != null && net.connection != null && !net.connection.IsRecording)
@@ -31,3 +43,4 @@ public void StartDemoRecording()
 }
 
 ```
+:::

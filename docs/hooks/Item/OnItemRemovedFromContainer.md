@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRemovedFromContainer
-```csharp
+Called when an item is removed from a container (inventory).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemRemovedFromContainer()
+{
+	Puts("OnItemRemovedFromContainer has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemContainer]
 public bool Remove(Item item)
 {
 	if (!itemList.Contains(item))
@@ -22,3 +34,4 @@ public bool Remove(Item item)
 }
 
 ```
+:::

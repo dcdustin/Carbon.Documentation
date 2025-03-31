@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOvenCooked
-```csharp
+Called after an item has been cooked in an oven/furnace (item finished cooking).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnOvenCooked()
+{
+	Puts("OnOvenCooked has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
 public void Cook()
 {
 	if (HasFlag(BaseEntity.Flags.Reserved8))
@@ -45,3 +57,4 @@ public void Cook()
 }
 
 ```
+:::

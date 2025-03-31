@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnEntitySpawn
-```csharp
+Called when an entity is spawned in the world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntitySpawn()
+{
+	Puts("OnEntitySpawn has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNetworkable]
 public virtual void Spawn()
 {
 	Facepunch.Rust.Profiling.EntityProfiler.spawned++;
@@ -30,3 +42,4 @@ public virtual void Spawn()
 }
 
 ```
+:::

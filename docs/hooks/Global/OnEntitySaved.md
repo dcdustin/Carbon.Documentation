@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntitySaved
-```csharp
+Called when an entity's data is saved to the server.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntitySaved()
+{
+	Puts("OnEntitySaved has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNetworkable]
 public void ToStream(System.IO.Stream stream, BaseNetworkable.SaveInfo saveInfo)
 {
 	using (saveInfo.msg = Facepunch.Pool.Get<ProtoBuf.Entity>())
@@ -20,3 +32,4 @@ public void ToStream(System.IO.Stream stream, BaseNetworkable.SaveInfo saveInfo)
 }
 
 ```
+:::

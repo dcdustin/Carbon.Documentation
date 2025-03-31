@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBradleyApcHunt
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBradleyApcHunt()
+{
+	Puts("OnBradleyApcHunt has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public void UpdateMovement_Hunt()
 {
 	if (patrolPath == null)
@@ -88,3 +101,4 @@ public void UpdateMovement_Hunt()
 }
 
 ```
+:::

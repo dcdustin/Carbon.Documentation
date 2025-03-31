@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCollectiblePickedup
-```csharp
+Called after a collectible item has been picked up by a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCollectiblePickedup()
+{
+	Puts("OnCollectiblePickedup has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CollectibleEntity]
 public void DoPickup(BasePlayer reciever, bool eat = false)
 {
 	if (itemList == null)
@@ -55,3 +67,4 @@ public void DoPickup(BasePlayer reciever, bool eat = false)
 }
 
 ```
+:::

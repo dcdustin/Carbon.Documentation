@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClientCommand
-```csharp
+Triggered when a client sends a console command to the server.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnClientCommand()
+{
+	Puts("OnClientCommand has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ConsoleNetwork]
 public static void OnClientCommand(Network.Message packet)
 {
 	if (packet.read.Unread > ConVar.Server.maxpacketsize_command)
@@ -27,3 +40,4 @@ public static void OnClientCommand(Network.Message packet)
 }
 
 ```
+:::

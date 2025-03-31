@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFishCatch
-```csharp
+Called at the moment a fish is caught (when the catch event occurs).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnFishCatch()
+{
+	Puts("OnFishCatch has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseFishingRod]
 public void CatchProcessBudgeted()
 {
 	inQueue = false;
@@ -190,3 +203,4 @@ public void CatchProcessBudgeted()
 }
 
 ```
+:::

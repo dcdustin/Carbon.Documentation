@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanSetRelationship
-```csharp
+Called when a player attempts to set a relationship status (friendly or enemy) toward another player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanSetRelationship()
+{
+	Puts("CanSetRelationship has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 public void SetRelationship(BasePlayer player, BasePlayer otherPlayer, RelationshipManager.RelationshipType type, int weight = 1, bool sendImmediate = false)
 {
 	if (!contacts)
@@ -56,3 +69,4 @@ public void SetRelationship(BasePlayer player, BasePlayer otherPlayer, Relations
 }
 
 ```
+:::

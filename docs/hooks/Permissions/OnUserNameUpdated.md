@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnUserNameUpdated
-```csharp
+Called when a user's stored nickname is updated.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnUserNameUpdated()
+{
+	Puts("OnUserNameUpdated has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual void UpdateNickname(string id, string nickname)
 {
 	if (UserExists(id))
@@ -13,3 +25,4 @@ public virtual void UpdateNickname(string id, string nickname)
 }
 
 ```
+:::

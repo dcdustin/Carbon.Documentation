@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCheckFuel
-```csharp
+Determines if a player or entity can check a fuel container (is in range to check fuel).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanCheckFuel()
+{
+	Puts("CanCheckFuel has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ EntityFuelSystem]
 public bool IsInFuelInteractionRange(BasePlayer player)
 {
 	StorageContainer fuelContainer = GetFuelContainer();
@@ -17,3 +30,4 @@ public bool IsInFuelInteractionRange(BasePlayer player)
 }
 
 ```
+:::

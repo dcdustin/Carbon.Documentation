@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHelicopterStrafeEnter
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnHelicopterStrafeEnter()
+{
+	Puts("OnHelicopterStrafeEnter has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]
 public void StartStrafe(BasePlayer strafeTarget, bool shouldUseNapalm = false)
 {
 	strafe_target = strafeTarget;
@@ -24,3 +37,4 @@ public void StartStrafe(BasePlayer strafeTarget, bool shouldUseNapalm = false)
 }
 
 ```
+:::

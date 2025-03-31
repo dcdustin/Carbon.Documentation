@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanBeTargeted [GunTrap] [cleanup]
-```csharp
+# CanBeTargeted [patch]
+Called during turret target cleanup to check if an entity remains a valid target (flame turrets, gun traps).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanBeTargeted [patch]()
+{
+	Puts("CanBeTargeted [patch] has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GunTrap]
 public bool CheckTrigger()
 {
 	System.Collections.Generic.HashSet<BaseEntity> entityContents = trigger.entityContents;
@@ -47,3 +60,4 @@ public bool CheckTrigger()
 }
 
 ```
+:::

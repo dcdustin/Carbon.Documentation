@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnItemCraft [IndustrialCrafter]
-```csharp
+# OnItemCraft
+Called when an item is crafted by a player or an industrial crafter.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemCraft()
+{
+	Puts("OnItemCraft has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ IndustrialCrafter]
 public override void RunJob()
 {
 	base.RunJob();
@@ -61,3 +74,4 @@ public override void RunJob()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHorseHitch
-```csharp
+Called when a horse is being hitched to a hitching post (attempting to tie a horse to a trough).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnHorseHitch()
+{
+	Puts("OnHorseHitch has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ HitchTrough]
 public bool AttemptToHitch(HitchTrough.IHitchable hitchable, HitchTrough.HitchSpot spot = null)
 {
 	if (hitchable == null)
@@ -25,3 +38,4 @@ public bool AttemptToHitch(HitchTrough.IHitchable hitchable, HitchTrough.HitchSp
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSamSiteTarget
-```csharp
+Called when a SAM site locks on to a new target (acquires a target to shoot).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSamSiteTarget()
+{
+	Puts("OnSamSiteTarget has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SamSite]
 public void TargetScan()
 {
 	if (!IsPowered())
@@ -63,3 +76,4 @@ public void TargetScan()
 }
 
 ```
+:::

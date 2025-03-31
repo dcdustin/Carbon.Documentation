@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMlrsFire
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnMlrsFire()
+{
+	Puts("OnMlrsFire has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ MLRS]
 public void Fire(BasePlayer owner)
 {
 	UpdateStorageState();
@@ -15,3 +28,4 @@ public void Fire(BasePlayer owner)
 }
 
 ```
+:::

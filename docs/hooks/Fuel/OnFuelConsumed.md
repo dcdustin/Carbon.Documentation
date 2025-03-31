@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFuelConsumed
-```csharp
+Called after a fuel-burning entity has consumed fuel.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFuelConsumed()
+{
+	Puts("OnFuelConsumed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
 public void ConsumeFuel(Item fuel, ItemModBurnable burnable)
 {
 	if (allowByproductCreation && burnable.byproductItem != null && UnityEngine.Random.Range(0f, 1f) > burnable.byproductChance)
@@ -25,3 +37,4 @@ public void ConsumeFuel(Item fuel, ItemModBurnable burnable)
 }
 
 ```
+:::

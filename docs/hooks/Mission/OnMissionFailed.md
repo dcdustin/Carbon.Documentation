@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMissionFailed
-```csharp
+Called when a player fails a mission.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMissionFailed()
+{
+	Puts("OnMissionFailed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMission]
 public virtual void MissionFailed(BaseMission.MissionInstance instance, BasePlayer assignee, BaseMission.MissionFailReason failReason)
 {
 	if (!instance.GetMission().completeSilently)
@@ -15,3 +27,4 @@ public virtual void MissionFailed(BaseMission.MissionInstance instance, BasePlay
 }
 
 ```
+:::

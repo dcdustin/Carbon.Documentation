@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerAddModifiers
-```csharp
+Called when status modifiers (like modifiers from items or equipment) are applied to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerAddModifiers()
+{
+	Puts("OnPlayerAddModifiers has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemModConsume]
 public override void DoAction(Item item, BasePlayer player)
 {
 	if (item.amount < 1)
@@ -84,3 +97,4 @@ public override void DoAction(Item item, BasePlayer player)
 }
 
 ```
+:::

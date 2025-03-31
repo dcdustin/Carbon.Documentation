@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IFixCarsFix
-```csharp
+Called when the 'fixcars' console command is executed to repair nearby vehicles.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IFixCarsFix()
+{
+	Puts("IFixCarsFix has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ConVar.vehicle]
 [ServerVar]
 public static void fixcars(ConsoleSystem.Arg arg)
 {
@@ -47,3 +59,4 @@ public static void fixcars(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

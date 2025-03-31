@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerHandcuff
-```csharp
+Called when a player is being handcuffed (restrained).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerHandcuff()
+{
+	Puts("OnPlayerHandcuff has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Handcuffs]
 public void SV_HandcuffVictim(BasePlayer victim, BasePlayer handcuffer)
 {
 	if (victim == null || handcuffer == null || victim.IsRestrained || (!victim.CurrentGestureIsSurrendering && !victim.IsWounded()) || UnityEngine.Vector3.Distance(victim.transform.position, handcuffer.transform.position) > UseDistance)
@@ -51,3 +64,4 @@ public void SV_HandcuffVictim(BasePlayer victim, BasePlayer handcuffer)
 }
 
 ```
+:::

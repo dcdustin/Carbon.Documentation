@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemUpgrade
-```csharp
+Called when an item upgrade module is used or applied.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemUpgrade()
+{
+	Puts("OnItemUpgrade has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemModUpgrade]
 public override void ServerCommand(Item item, string command, BasePlayer player)
 {
 	if (!(command == "upgrade_item") || item.amount < numForUpgrade)
@@ -32,3 +44,4 @@ public override void ServerCommand(Item item, string command, BasePlayer player)
 }
 
 ```
+:::

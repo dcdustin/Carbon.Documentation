@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMixingTableToggle
-```csharp
+Called when a Mixing Table is toggled (started or stopped mixing potions/teas).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnMixingTableToggle()
+{
+	Puts("OnMixingTableToggle has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ MixingTable]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void SVSwitch(BaseEntity.RPCMessage msg)
@@ -20,3 +33,4 @@ public void SVSwitch(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

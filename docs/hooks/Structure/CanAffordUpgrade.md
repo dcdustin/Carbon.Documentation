@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAffordUpgrade
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanAffordUpgrade()
+{
+	Puts("CanAffordUpgrade has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingBlock]
 public bool CanAffordUpgrade(BuildingGrade.Enum iGrade, ulong iSkin, BasePlayer player)
 {
 	if (player != null && player.IsInCreativeMode && ConVar.Creative.freeBuild)
@@ -22,3 +35,4 @@ public bool CanAffordUpgrade(BuildingGrade.Enum iGrade, ulong iSkin, BasePlayer 
 }
 
 ```
+:::

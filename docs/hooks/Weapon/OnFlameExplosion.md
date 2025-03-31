@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFlameExplosion
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFlameExplosion()
+{
+	Puts("OnFlameExplosion has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ FlameExplosive]
 public void FlameExplode(UnityEngine.Vector3 surfaceNormal)
 {
 	if (!base.isServer)
@@ -46,3 +58,4 @@ public void FlameExplode(UnityEngine.Vector3 surfaceNormal)
 }
 
 ```
+:::

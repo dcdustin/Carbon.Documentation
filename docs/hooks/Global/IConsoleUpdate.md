@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IConsoleUpdate
-```csharp
+Called when the server console input is updated (each frame).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IConsoleUpdate()
+{
+	Puts("IConsoleUpdate has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ Windows.ConsoleInput]
 public void Update()
 {
 	if (!valid)
@@ -44,3 +56,4 @@ public void Update()
 }
 
 ```
+:::

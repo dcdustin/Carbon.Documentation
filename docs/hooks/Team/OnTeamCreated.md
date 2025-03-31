@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTeamCreated
-```csharp
+Called after a new team has been created.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnTeamCreated()
+{
+	Puts("OnTeamCreated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 [ServerUserVar]
 public static void trycreateteam(ConsoleSystem.Arg arg)
 {
@@ -20,3 +32,4 @@ public static void trycreateteam(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

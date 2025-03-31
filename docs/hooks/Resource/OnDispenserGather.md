@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDispenserGather
-```csharp
+Triggered when a resource node gives resources to a player (during harvesting before final calculations).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnDispenserGather()
+{
+	Puts("OnDispenserGather has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ResourceDispenser]
 public void GiveResourceFromItem(BasePlayer entity, ItemAmount itemAmt, float gatherDamage, float destroyFraction, AttackEntity attackWeapon)
 {
 	if (itemAmt.amount == 0f)
@@ -45,3 +58,4 @@ public void GiveResourceFromItem(BasePlayer entity, ItemAmount itemAmt, float ga
 }
 
 ```
+:::

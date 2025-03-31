@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnWildlifeTrap [SurvivalFishTrap]
-```csharp
+# OnWildlifeTrap
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWildlifeTrap()
+{
+	Puts("OnWildlifeTrap has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SurvivalFishTrap]
 public override void TrapThink()
 {
 	ItemDefinition itemDefinition = null;
@@ -44,3 +57,4 @@ public override void TrapThink()
 }
 
 ```
+:::

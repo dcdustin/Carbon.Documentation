@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponUnloaded
-```csharp
+Called after a racked weapon has been unloaded.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRackedWeaponUnloaded()
+{
+	Puts("OnRackedWeaponUnloaded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void UnloadWeapon(BasePlayer player, int mountSlotIndex)
 {
 	if (player == null)
@@ -33,3 +45,4 @@ public void UnloadWeapon(BasePlayer player, int mountSlotIndex)
 }
 
 ```
+:::

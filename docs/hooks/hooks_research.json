@@ -1,0 +1,5719 @@
+[
+  {
+    "hook": "AllowNpcNonAdminHeliUse [patch]",
+    "descriptions": [
+      "Allows NPC (non-admin) players to mount and use the CH47 helicopter (removes admin-only restriction)."
+    ]
+  },
+  {
+    "hook": "CanBeRecycled",
+    "descriptions": [
+      "Called when checking if an item is eligible to be recycled. Plugins can override to allow or block recycling of the item."
+    ]
+  },
+  {
+    "hook": "CanCraft",
+    "descriptions": [
+      "Called when a player attempts to craft an item. Plugins can use this to allow or prevent the crafting."
+    ]
+  },
+  {
+    "hook": "CanElevatorLiftMove",
+    "descriptions": [
+      "Triggered when an elevator lift is about to move. Plugins can allow or block the movement (e.g., based on what's on the lift)."
+    ]
+  },
+  {
+    "hook": "CanEntityBeHostile",
+    "descriptions": [
+      "Called when determining if an entity (e.g. a player or NPC) should be considered hostile. Plugins can override the hostility status."
+    ]
+  },
+  {
+    "hook": "CanExplosiveStick",
+    "descriptions": [
+      "Called when an explosive (e.g., C4) is about to stick to a surface on throw. Plugins can allow or prevent it from sticking."
+    ]
+  },
+  {
+    "hook": "CanLootEntity",
+    "descriptions": [
+      "Called when a player attempts to loot an entity or container. Plugins can use this to allow or block the looting action."
+    ]
+  },
+  {
+    "hook": "CanRecycle",
+    "descriptions": [
+      "Called when checking if a recycler can start recycling items. Plugins can allow or prevent the recycler from running."
+    ]
+  },
+  {
+    "hook": "CanSamSiteShoot",
+    "descriptions": [
+      "Called right before a SAM site fires a missile. Plugins can use this to decide whether the SAM site is allowed to shoot."
+    ]
+  },
+  {
+    "hook": "CanSeeStash",
+    "descriptions": [
+      "Called during the check for revealing a hidden stash to a player. Plugins can override this to prevent or allow stash discovery."
+    ]
+  },
+  {
+    "hook": "CanUseUI",
+    "descriptions": [
+      "Called when a custom UI is about to be shown to a player. Plugins can return false to block showing the UI element."
+    ]
+  },
+  {
+    "hook": "CanWaterBallSplash",
+    "descriptions": [
+      "Called when a water-filled projectile (like a water ball) is about to create a splash. Plugins can allow or prevent the splash effect."
+    ]
+  },
+  {
+    "hook": "ContinueTargetScan [patch]",
+    "descriptions": [
+      "Ensures auto turrets continue scanning for targets (e.g., in peacekeeper mode). Prevents the turret from prematurely stopping its target search."
+    ]
+  },
+  {
+    "hook": "FixAIBrainThinkNRE [patch]",
+    "descriptions": [
+      "Fixes a null reference exception in AI brain thinking logic (prevents server errors during AI decision-making)."
+    ]
+  },
+  {
+    "hook": "FixAIBrainTryThinkNRE [patch]",
+    "descriptions": [
+      "Fixes a potential null reference exception in AI brain 'TryThink' routine (improves AI stability)."
+    ]
+  },
+  {
+    "hook": "FixItemKeyId [patch]",
+    "descriptions": [
+      "Fixes an issue with item key identifiers during item crafting (ensures crafted items get proper unique IDs)."
+    ]
+  },
+  {
+    "hook": "IOnBaseCombatEntityHurt",
+    "descriptions": [
+      "Called when a BaseCombatEntity (any entity with health, like a player or NPC) takes damage. Allows plugins to react to damage events."
+    ]
+  },
+  {
+    "hook": "IOnEntitySaved",
+    "descriptions": [
+      "Called when an entity’s state is being saved (written to storage). Allows plugins to perform actions during entity save."
+    ]
+  },
+  {
+    "hook": "IncapacitatedFalseRespawn [patch]",
+    "descriptions": [
+      "Fixes an issue where a wounded (incapacitated) player could incorrectly respawn. Ensures proper death handling for incapacitated players."
+    ]
+  },
+  {
+    "hook": "LimitNetworkingAcquaintances [patch]",
+    "descriptions": [
+      "Optimizes the networking of player acquaintance updates (contact/relations system), reducing unnecessary network traffic for far-away or irrelevant players."
+    ]
+  },
+  {
+    "hook": "LimitNetworkingNoEffect [patch 1]",
+    "descriptions": [
+      "Prevents sending redundant network updates for effects that have no visible outcome, reducing network overhead."
+    ]
+  },
+  {
+    "hook": "LimitNetworkingNoEffect [patch 2]",
+    "descriptions": [
+      "Prevents sending redundant network updates for effects that have no visible outcome, reducing network overhead."
+    ]
+  },
+  {
+    "hook": "LimitNetworkingNoEffect [patch 3]",
+    "descriptions": [
+      "Prevents sending redundant network updates for effects that have no visible outcome, reducing network overhead."
+    ]
+  },
+  {
+    "hook": "NoLimboGroupForPlayers [patch]",
+    "descriptions": [
+      "Prevents players from being placed into the 'limbo' network group. Ensures player entities remain networked normally (improves network visibility)."
+    ]
+  },
+  {
+    "hook": "NoPragmaColumnExists",
+    "descriptions": [
+      "Fixes the database column existence check by using a proper query instead of PRAGMA. Ensures reliable detection of columns in SQLite."
+    ]
+  },
+  {
+    "hook": "OnAirdrop",
+    "descriptions": [
+      "Called when a cargo plane is spawned for an airdrop event (when an airdrop starts)."
+    ]
+  },
+  {
+    "hook": "OnAnalysisComplete",
+    "descriptions": [
+      "Called when a survey charge completes its ground analysis, revealing resource information (survey crater results)."
+    ]
+  },
+  {
+    "hook": "OnAnimalDungProduce",
+    "descriptions": [
+      "Called when a ridable animal (e.g., horse) is about to produce dung (manure). Allows plugins to modify or cancel dung creation."
+    ]
+  },
+  {
+    "hook": "OnAnimalDungProduced",
+    "descriptions": [
+      "Called after a ridable animal has produced dung and dropped it in the world."
+    ]
+  },
+  {
+    "hook": "OnArcadeScoreAdded",
+    "descriptions": [
+      "Called when a score entry is added to an arcade machine (when a player achieves a score in a minigame)."
+    ]
+  },
+  {
+    "hook": "OnBedMade",
+    "descriptions": [
+      "Called when a sleeping bag or bed is placed/created (made available as a respawn point)."
+    ]
+  },
+  {
+    "hook": "OnBigWheelLoss",
+    "descriptions": [
+      "Called when a player loses in the spinning big wheel gambling game (Bandit Camp wheel)."
+    ]
+  },
+  {
+    "hook": "OnBigWheelWin",
+    "descriptions": [
+      "Called when a player wins in the spinning big wheel gambling game."
+    ]
+  },
+  {
+    "hook": "OnBookmarkAdd",
+    "descriptions": [
+      "Called when a new camera bookmark is added at a Computer Station (admin adds a new remote camera identifier)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControl",
+    "descriptions": [
+      "Called when a player initiates control of a remote entity via the Computer Station (before control is established)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControlEnd",
+    "descriptions": [
+      "Called when a player stops controlling a remote entity via the Computer Station (before control is fully terminated)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControlEnded",
+    "descriptions": [
+      "Called after a player has stopped controlling a remote entity (camera/turret) via the Computer Station."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControlEnded [2] [patch]",
+    "descriptions": [
+      "Called after a player has stopped controlling a remote entity (patch hook variant)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControlStarted",
+    "descriptions": [
+      "Called after a player has successfully started controlling a remote entity via a Computer Station."
+    ]
+  },
+  {
+    "hook": "OnBookmarkDelete",
+    "descriptions": [
+      "Called when a bookmark (saved camera/turret reference) is deleted at a Computer Station by an admin."
+    ]
+  },
+  {
+    "hook": "OnBookmarkInput",
+    "descriptions": [
+      "Called on each input tick while a player is remotely controlling an entity (camera or turret). Allows plugins to process or override player input during remote control."
+    ]
+  },
+  {
+    "hook": "OnBookmarksSendControl",
+    "descriptions": [
+      "Called when the server sends the list of available control bookmarks to a player (for example, when a player opens the Computer Station interface)."
+    ]
+  },
+  {
+    "hook": "OnBuildingPrivilege",
+    "descriptions": [
+      "Called when a player’s building privilege status changes (e.g., when a player gains or loses Tool Cupboard authorization or enters/leaves a TC range)."
+    ]
+  },
+  {
+    "hook": "OnButtonPress",
+    "descriptions": [
+      "Called when a player presses a deployable button (electrical press button)."
+    ]
+  },
+  {
+    "hook": "OnCCTVDirectionChange",
+    "descriptions": [
+      "Called when a CCTV camera or remotely controlled turret changes its viewing direction (rotates orientation)."
+    ]
+  },
+  {
+    "hook": "OnCardSwipe",
+    "descriptions": [
+      "Called when a keycard is swiped on a card reader (e.g., attempting to unlock a door with an access card)."
+    ]
+  },
+  {
+    "hook": "OnCargoPlaneSignaled",
+    "descriptions": [
+      "Called when a supply signal triggers a cargo plane to be called in (supply drop event starts)."
+    ]
+  },
+  {
+    "hook": "OnCargoPlaneSignaled [Patch]",
+    "descriptions": [
+      "Called when a supply signal explodes and calls in a cargo plane (patched hook for supply drop signal)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipEgress",
+    "descriptions": [
+      "Called when the Cargo Ship event ends and the ship departs the area (leaves the map)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipHarborApproach",
+    "descriptions": [
+      "Called when the Cargo Ship is approaching a harbor (coming in to dock)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipHarborArrived",
+    "descriptions": [
+      "Called when the Cargo Ship has arrived at a harbor and is docked."
+    ]
+  },
+  {
+    "hook": "OnCargoShipHarborLeave",
+    "descriptions": [
+      "Called when the Cargo Ship leaves a harbor (after docking, resuming its journey)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipSpawnCrate",
+    "descriptions": [
+      "Called when a locked crate spawns on the Cargo Ship (e.g., timed crate spawn during the event)."
+    ]
+  },
+  {
+    "hook": "OnClanMemberAdded",
+    "descriptions": [
+      "Called when a player is added to a clan (e.g., after accepting a clan invite)."
+    ]
+  },
+  {
+    "hook": "OnCompilationFail",
+    "descriptions": [
+      "Called when a plugin or script fails to compile (compilation error occurred)."
+    ]
+  },
+  {
+    "hook": "OnComposterUpdate",
+    "descriptions": [
+      "Called when a composter processes materials (each cycle of converting compostable items into fertilizer)."
+    ]
+  },
+  {
+    "hook": "OnConstructorFail",
+    "descriptions": [
+      "Called when a plugin fails to initialize (plugin constructor or initialization threw an exception)."
+    ]
+  },
+  {
+    "hook": "OnContainerDropItems",
+    "descriptions": [
+      "Called when a container’s items are dropped, for example when a storage container is destroyed and its contents spill out."
+    ]
+  },
+  {
+    "hook": "OnCounterModeToggle",
+    "descriptions": [
+      "Called when a Power Counter (electrical counter) toggles its mode (e.g., switching between counting up or down)."
+    ]
+  },
+  {
+    "hook": "OnCounterModeToggle [patch]",
+    "descriptions": [
+      "Called when a Power Counter toggles its mode (patched hook variant)."
+    ]
+  },
+  {
+    "hook": "OnCounterTargetChange",
+    "descriptions": [
+      "Called when a Power Counter’s target value is changed (the threshold it compares against is updated)."
+    ]
+  },
+  {
+    "hook": "OnCounterTargetChange [patch]",
+    "descriptions": [
+      "Called when a Power Counter’s target value is changed (patched hook variant)."
+    ]
+  },
+  {
+    "hook": "OnCrateDropped",
+    "descriptions": [
+      "Called when a hackable locked crate is dropped into the world (for example, dropped from a helicopter or event)."
+    ]
+  },
+  {
+    "hook": "OnCrateHack",
+    "descriptions": [
+      "Called when a hackable locked crate’s hacking process begins (player starts hacking the crate)."
+    ]
+  },
+  {
+    "hook": "OnCrateHackEnd",
+    "descriptions": [
+      "Called when a hackable locked crate’s hacking process ends (the crate is unlocked)."
+    ]
+  },
+  {
+    "hook": "OnCrateLanded",
+    "descriptions": [
+      "Called when a dropped supply crate or locked crate lands on the ground."
+    ]
+  },
+  {
+    "hook": "OnCrateLaptopAttack",
+    "descriptions": [
+      "Called when a hackable crate triggers an armed response upon being hacked (e.g., NPCs or defenses activate due to hacking)."
+    ]
+  },
+  {
+    "hook": "OnDebrisSpawn",
+    "descriptions": [
+      "Called when a building part decays and spawns debris (collapsed structure debris entity created)."
+    ]
+  },
+  {
+    "hook": "OnDecayDamage",
+    "descriptions": [
+      "Called when a structure or deployable takes decay damage over time."
+    ]
+  },
+  {
+    "hook": "OnDecayHeal",
+    "descriptions": [
+      "Called when a structure heals from decay (e.g., upkeep prevents decay damage and restores health)."
+    ]
+  },
+  {
+    "hook": "OnDestroyUI",
+    "descriptions": [
+      "Called when a custom UI element is being destroyed/removed from a player’s screen."
+    ]
+  },
+  {
+    "hook": "OnDieselEngineToggle",
+    "descriptions": [
+      "Called when a Diesel Engine (power generator) is toggled on or off (player or logic attempts to change its state)."
+    ]
+  },
+  {
+    "hook": "OnDieselEngineToggled",
+    "descriptions": [
+      "Called after a Diesel Engine has been turned on or off."
+    ]
+  },
+  {
+    "hook": "OnDigitalClockAlarmsSet",
+    "descriptions": [
+      "Called when the alarm times are set or updated on a digital alarm clock."
+    ]
+  },
+  {
+    "hook": "OnDigitalClockRing",
+    "descriptions": [
+      "Called when a digital alarm clock starts ringing."
+    ]
+  },
+  {
+    "hook": "OnDigitalClockRingStop",
+    "descriptions": [
+      "Called when a digital alarm clock’s ringing is stopped."
+    ]
+  },
+  {
+    "hook": "OnElevatorButtonPress",
+    "descriptions": [
+      "Called when a player presses an elevator’s up/down button to raise or lower the elevator."
+    ]
+  },
+  {
+    "hook": "OnElevatorCall",
+    "descriptions": [
+      "Called when an elevator is called to a floor (e.g., player presses a call button at an elevator stop)."
+    ]
+  },
+  {
+    "hook": "OnElevatorMove",
+    "descriptions": [
+      "Called when an elevator lift begins moving to a target floor as requested."
+    ]
+  },
+  {
+    "hook": "OnEntityActiveCheck",
+    "descriptions": [
+      "Called when checking if an entity (usually an item) is the active item for a player’s RPC call. Plugins can override the active-item validation."
+    ]
+  },
+  {
+    "hook": "OnEntityControl",
+    "descriptions": [
+      "Called when a player attempts to take remote control of an entity (e.g., AutoTurret or RC drone). Allows plugins to approve or deny the control attempt."
+    ]
+  },
+  {
+    "hook": "OnEntityDeath",
+    "descriptions": [
+      "Called when an entity dies or is destroyed (e.g., NPC death or entity destruction)."
+    ]
+  },
+  {
+    "hook": "OnEntityDestroy",
+    "descriptions": [
+      "Called when a major AI-controlled entity is destroyed (e.g., CH47 helicopter or Bradley APC is killed)."
+    ]
+  },
+  {
+    "hook": "OnEntityDismounted",
+    "descriptions": [
+      "Called when a player dismounts from a mountable entity (vehicle, turret, etc.)."
+    ]
+  },
+  {
+    "hook": "OnEntityDistanceCheck",
+    "descriptions": [
+      "Called when validating the maximum distance for an RPC call (ensures the caller is within allowed range). Plugins can override the distance check."
+    ]
+  },
+  {
+    "hook": "OnEntityEnter",
+    "descriptions": [
+      "Called when an entity enters a trigger volume (such as an area trigger like comfort or building zone)."
+    ]
+  },
+  {
+    "hook": "OnEntityFlagsNetworkUpdate",
+    "descriptions": [
+      "Called when an entity’s networked flags are updated (for example, door opened/closed, light toggled, etc., sending state to clients)."
+    ]
+  },
+  {
+    "hook": "OnEntityFromOwnerCheck",
+    "descriptions": [
+      "Called when checking if an RPC request originates from the entity’s owner. Plugins can override this owner validation check."
+    ]
+  },
+  {
+    "hook": "OnEntityGroundMissing",
+    "descriptions": [
+      "Called when an entity’s ground support is missing, causing it to be destroyed (e.g., a structure piece has no foundation support)."
+    ]
+  },
+  {
+    "hook": "OnEntityKill",
+    "descriptions": [
+      "Called when an entity is killed/destroyed (cleanup is initiated). Useful for handling removal logic."
+    ]
+  },
+  {
+    "hook": "OnEntityLeave",
+    "descriptions": [
+      "Called when an entity leaves a trigger volume (no longer inside a zone or trigger area)."
+    ]
+  },
+  {
+    "hook": "OnEntityLoaded",
+    "descriptions": [
+      "Called when an entity’s data has been loaded from storage (e.g., during server startup or entity spawning from a save)."
+    ]
+  },
+  {
+    "hook": "OnEntityMarkHostile",
+    "descriptions": [
+      "Called when an entity (such as a player or NPC) is marked as hostile (for example, after attacking in a safe zone)."
+    ]
+  },
+  {
+    "hook": "OnEntityPickedUp",
+    "descriptions": [
+      "Called when an entity (like a deployable item or structure piece) is picked up by a player."
+    ]
+  },
+  {
+    "hook": "OnEntityReskin",
+    "descriptions": [
+      "Called when a player attempts to reskin an entity (for example, using a spray can to apply a skin) before the skin change is applied."
+    ]
+  },
+  {
+    "hook": "OnEntityReskinned",
+    "descriptions": [
+      "Called after an entity’s skin has been changed (reskin action completed)."
+    ]
+  },
+  {
+    "hook": "OnEntitySnapshot",
+    "descriptions": [
+      "Called when an entity snapshot is sent to a player (when a player first receives data about an entity on entering the network range)."
+    ]
+  },
+  {
+    "hook": "OnEntitySpawned",
+    "descriptions": [
+      "Called after a new entity is spawned in the world. Useful for initialization or tracking newly created entities."
+    ]
+  },
+  {
+    "hook": "OnEntityStabilityCheck",
+    "descriptions": [
+      "Called during a stability check for a building entity (to determine if it should collapse). Plugins can adjust or override stability outcome."
+    ]
+  },
+  {
+    "hook": "OnEntityTakeDamage",
+    "descriptions": [
+      "Called when an entity takes damage. Allows plugins to react to or modify damage taken by any entity."
+    ]
+  },
+  {
+    "hook": "OnEntityVisibilityCheck",
+    "descriptions": [
+      "Called when verifying line-of-sight for an RPC call or attack (checks if target is visible). Plugins can override the visibility check."
+    ]
+  },
+  {
+    "hook": "OnEventTrigger",
+    "descriptions": [
+      "Called when a server event trigger is activated (for example, an in-game trigger volume or custom event triggers)."
+    ]
+  },
+  {
+    "hook": "OnExcavatorSuppliesRequest",
+    "descriptions": [
+      "Called when a player initiates a supply drop request at the excavator (presses the excavator’s supply drop button, before it's processed)."
+    ]
+  },
+  {
+    "hook": "OnExcavatorSuppliesRequested",
+    "descriptions": [
+      "Called after the excavator’s supply drop request has been processed (the request has been handled and drop is on the way)."
+    ]
+  },
+  {
+    "hook": "OnFeedbackReported",
+    "descriptions": [
+      "Called when a player submits in-game feedback or a report (e.g., via the F7 report system)."
+    ]
+  },
+  {
+    "hook": "OnFreeableContainerRelease",
+    "descriptions": [
+      "Called when a freeable loot container is triggered to release (e.g., a locked crate that will drop from its holder)."
+    ]
+  },
+  {
+    "hook": "OnFreeableContainerReleaseStarted",
+    "descriptions": [
+      "Called when the release process of a freeable loot container begins."
+    ]
+  },
+  {
+    "hook": "OnFreeableContainerReleased",
+    "descriptions": [
+      "Called after a freeable loot container has been released (e.g., dropped or freed)."
+    ]
+  },
+  {
+    "hook": "OnHorseHitch",
+    "descriptions": [
+      "Called when a horse is being hitched to a hitching post (attempting to tie a horse to a trough)."
+    ]
+  },
+  {
+    "hook": "OnHorseLead",
+    "descriptions": [
+      "Called when a player leads a ridable animal (e.g., starts or stops leading a horse with a lead rope)."
+    ]
+  },
+  {
+    "hook": "OnHorseUnhitch",
+    "descriptions": [
+      "Called when a horse is unhitched from a hitching post (released from being tied)."
+    ]
+  },
+  {
+    "hook": "OnHotAirBalloonToggle",
+    "descriptions": [
+      "Called when a Hot Air Balloon’s burner (engine) is toggled (player or logic attempts to turn it on/off)."
+    ]
+  },
+  {
+    "hook": "OnHotAirBalloonToggled",
+    "descriptions": [
+      "Called after a Hot Air Balloon’s burner has been turned on or off."
+    ]
+  },
+  {
+    "hook": "OnIORefCleared",
+    "descriptions": [
+      "Called when an IO connection reference is cleared (for example, a wire is disconnected from an electrical IO slot)."
+    ]
+  },
+  {
+    "hook": "OnIORefCleared [patch]",
+    "descriptions": [
+      "Called when an IO connection reference is cleared (patched hook variant for wire disconnection)."
+    ]
+  },
+  {
+    "hook": "OnIngredientsCollect",
+    "descriptions": [
+      "Called when ingredients for a crafting task are collected (the server gathers required items to craft an item)."
+    ]
+  },
+  {
+    "hook": "OnInputUpdate",
+    "descriptions": [
+      "Called when an IOEntity updates based on an input change (e.g., an electrical device receives power input)."
+    ]
+  },
+  {
+    "hook": "OnLiftUse",
+    "descriptions": [
+      "Called when a player uses an elevator lift (activates the lift to move)."
+    ]
+  },
+  {
+    "hook": "OnLiquidVesselFill",
+    "descriptions": [
+      "Called when a liquid container (bottle, jug, etc.) is filled with water or another liquid."
+    ]
+  },
+  {
+    "hook": "OnLootEntity [patch]",
+    "descriptions": [
+      "Called when a player starts looting an entity (patched hook for initiating loot on an entity)."
+    ]
+  },
+  {
+    "hook": "OnLootItem [patch]",
+    "descriptions": [
+      "Called when a player starts looting an item (patched hook for opening an item’s contents)."
+    ]
+  },
+  {
+    "hook": "OnMixingTableToggle",
+    "descriptions": [
+      "Called when a Mixing Table is toggled (started or stopped mixing potions/teas)."
+    ]
+  },
+  {
+    "hook": "OnNoGoZoneAdded",
+    "descriptions": [
+      "Called when a no-fly (no-go) zone is added for the patrol helicopter (restricting where the heli can go)."
+    ]
+  },
+  {
+    "hook": "OnOutputUpdate",
+    "descriptions": [
+      "Called when an IOEntity updates its outputs (e.g., an electrical device sends power out to connected devices)."
+    ]
+  },
+  {
+    "hook": "OnOvenCook",
+    "descriptions": [
+      "Called when an oven/furnace cooks an item (each cooking cycle starting)."
+    ]
+  },
+  {
+    "hook": "OnOvenCooked",
+    "descriptions": [
+      "Called after an item has been cooked in an oven/furnace (item finished cooking)."
+    ]
+  },
+  {
+    "hook": "OnOvenStart",
+    "descriptions": [
+      "Called when an oven or furnace is about to be ignited (turned on to start cooking)."
+    ]
+  },
+  {
+    "hook": "OnOvenStarted",
+    "descriptions": [
+      "Called after an oven or furnace has been turned on (cooking has started)."
+    ]
+  },
+  {
+    "hook": "OnOvenTemperature",
+    "descriptions": [
+      "Called when an oven or furnace updates its internal temperature."
+    ]
+  },
+  {
+    "hook": "OnOvenToggle",
+    "descriptions": [
+      "Called when an oven or furnace is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnPatrolHelicopterKill",
+    "descriptions": [
+      "Called when the patrol helicopter is killed/destroyed."
+    ]
+  },
+  {
+    "hook": "OnPatrolHelicopterTakeDamage",
+    "descriptions": [
+      "Called when the patrol helicopter takes damage."
+    ]
+  },
+  {
+    "hook": "OnPhoneNameUpdate",
+    "descriptions": [
+      "Called when a player attempts to change the name of a Telephone. Plugins can use this to allow or modify the phone name change."
+    ]
+  },
+  {
+    "hook": "OnPhoneNameUpdated",
+    "descriptions": [
+      "Called after a Telephone’s name has been changed."
+    ]
+  },
+  {
+    "hook": "OnPhotoCapture",
+    "descriptions": [
+      "Called when a player takes a photo with the instant camera (at the moment of capture, before it’s finalized)."
+    ]
+  },
+  {
+    "hook": "OnPhotoCaptured",
+    "descriptions": [
+      "Called after a photo has been taken with the instant camera (the image item is created)."
+    ]
+  },
+  {
+    "hook": "OnPlanterBoxFertilize",
+    "descriptions": [
+      "Called when a planter box is fertilized by a player (fertilizer added to the planter)."
+    ]
+  },
+  {
+    "hook": "OnPlayerAttack [melee, patch]",
+    "descriptions": [
+      "Called when a player makes a melee attack (patched hook for melee attack event)."
+    ]
+  },
+  {
+    "hook": "OnPluginLoaded",
+    "descriptions": [
+      "Called when a plugin has been successfully loaded."
+    ]
+  },
+  {
+    "hook": "OnPluginUnloaded",
+    "descriptions": [
+      "Called when a plugin is being unloaded from the server."
+    ]
+  },
+  {
+    "hook": "OnRconConnection [exp, patch]",
+    "descriptions": [
+      "Called when an RCON (remote console) client attempts to connect to the server."
+    ]
+  },
+  {
+    "hook": "OnReactiveTargetReset",
+    "descriptions": [
+      "Called when a reactive target (shooting range target) resets to its upright position."
+    ]
+  },
+  {
+    "hook": "OnRecyclerToggle",
+    "descriptions": [
+      "Called when a recycler machine is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnRemoteIdentifierUpdate",
+    "descriptions": [
+      "Called when a remote control entity’s identifier is changed (e.g., updating the ID/channel of an RC device)."
+    ]
+  },
+  {
+    "hook": "OnRidableAnimalClaim",
+    "descriptions": [
+      "Called when a player attempts to claim a ridable animal (such as purchasing a horse at a stable, before the claim is finalized)."
+    ]
+  },
+  {
+    "hook": "OnRidableAnimalClaimed",
+    "descriptions": [
+      "Called after a player has successfully claimed a ridable animal (ownership change complete)."
+    ]
+  },
+  {
+    "hook": "OnSamSiteModeToggle",
+    "descriptions": [
+      "Called when a SAM site toggles its mode (Peacekeeper mode on/off for the SAM site)."
+    ]
+  },
+  {
+    "hook": "OnSamSiteTarget",
+    "descriptions": [
+      "Called when a SAM site locks on to a new target (acquires a target to shoot)."
+    ]
+  },
+  {
+    "hook": "OnSamSiteTargetScan",
+    "descriptions": [
+      "Called when a SAM site performs a target scan (scanning the area for valid targets)."
+    ]
+  },
+  {
+    "hook": "OnSensorDetect",
+    "descriptions": [
+      "Called when a HBHF sensor (Heartbeat sensor) detects a player or when it clears detection."
+    ]
+  },
+  {
+    "hook": "OnSleepingBagDestroy",
+    "descriptions": [
+      "Called when a sleeping bag or bed is about to be destroyed (player or game logic initiates its removal)."
+    ]
+  },
+  {
+    "hook": "OnSleepingBagDestroyed",
+    "descriptions": [
+      "Called after a sleeping bag or bed has been destroyed."
+    ]
+  },
+  {
+    "hook": "OnSleepingBagValidCheck",
+    "descriptions": [
+      "Called when checking if a sleeping bag is valid for respawn (e.g., not on cooldown). Plugins can override the validity check."
+    ]
+  },
+  {
+    "hook": "OnSolarPanelSunUpdate",
+    "descriptions": [
+      "Called when a Solar Panel updates its power output based on the sun (sunlight intensity update)."
+    ]
+  },
+  {
+    "hook": "OnSprayCreate",
+    "descriptions": [
+      "Called when a player creates a spray decal (graffiti) using the Spray Can."
+    ]
+  },
+  {
+    "hook": "OnSprayRemove",
+    "descriptions": [
+      "Called when a spray decal (graffiti) is removed/cleaned."
+    ]
+  },
+  {
+    "hook": "OnSprinklerSplashed",
+    "descriptions": [
+      "Called when a sprinkler sprays water (each time it splashes water on crops)."
+    ]
+  },
+  {
+    "hook": "OnStashExposed",
+    "descriptions": [
+      "Called when a hidden stash is revealed (becomes visible to a player)."
+    ]
+  },
+  {
+    "hook": "OnStashHidden",
+    "descriptions": [
+      "Called when a stash is hidden (buried in the ground and made invisible)."
+    ]
+  },
+  {
+    "hook": "OnStashOcclude",
+    "descriptions": [
+      "Called when a stash that was visible becomes hidden again (occluded), for example after a player stops looking at it."
+    ]
+  },
+  {
+    "hook": "OnStructureDemolish [false, patch]",
+    "descriptions": [
+      "Called when a player attempts to demolish a building structure (patch hook when demolish is disallowed or fails)."
+    ]
+  },
+  {
+    "hook": "OnStructureDemolish [true, patch]",
+    "descriptions": [
+      "Called when a building structure is demolished by a player (patch hook for successful demolish)."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropDropped",
+    "descriptions": [
+      "Called when a cargo plane releases a supply drop crate."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropDropped [patch 1]",
+    "descriptions": [
+      "Called when a cargo plane releases a supply drop crate (patched hook variant)."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropDropped [patch 2]",
+    "descriptions": [
+      "Called when a cargo plane releases a supply drop crate (patched hook variant)."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropDropped [patch 3]",
+    "descriptions": [
+      "Called when a cargo plane releases a supply drop crate (patched hook variant)."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropLanded",
+    "descriptions": [
+      "Called when a supply drop crate has landed on the ground (after descending by parachute)."
+    ]
+  },
+  {
+    "hook": "OnSwitchToggle",
+    "descriptions": [
+      "Called when a player attempts to flip a switch or togglable device (e.g., electrical switch, generator)."
+    ]
+  },
+  {
+    "hook": "OnSwitchToggled",
+    "descriptions": [
+      "Called after a switch or togglable device has changed its state (turned on or off)."
+    ]
+  },
+  {
+    "hook": "OnTreeMarkerHit",
+    "descriptions": [
+      "Called when a tree’s marked spot is hit during chopping (player hit the “X” mark on a tree for bonus)."
+    ]
+  },
+  {
+    "hook": "OnWaterCollect",
+    "descriptions": [
+      "Called when a water catcher or water pump collects water."
+    ]
+  },
+  {
+    "hook": "OnWaterPurified",
+    "descriptions": [
+      "Called after water has been purified in a Water Purifier (clean water produced)."
+    ]
+  },
+  {
+    "hook": "OnWaterPurify",
+    "descriptions": [
+      "Called when a Water Purifier begins purifying water (dirty water starting to boil)."
+    ]
+  },
+  {
+    "hook": "OnWindmillUpdate",
+    "descriptions": [
+      "Called when a Windmill updates its power generation based on wind (calculating output)."
+    ]
+  },
+  {
+    "hook": "OnWindmillUpdated",
+    "descriptions": [
+      "Called after a Windmill’s power output has been updated."
+    ]
+  },
+  {
+    "hook": "OwnerID ConstructableEntity [patch]",
+    "descriptions": [
+      "Ensures that when a constructible entity is repaired and replaced, the ownership is handled properly (maintains ownerID on rebuilt entity)."
+    ]
+  },
+  {
+    "hook": "OwnerID SiegeTowerDoor [patch]",
+    "descriptions": [
+      "Ensures the siege tower’s attached door is properly initialized with correct ownership and health when constructing the siege tower."
+    ]
+  },
+  {
+    "hook": "SetMaxHealthBasePlayer [patch]",
+    "descriptions": [
+      "Fixes an issue with BasePlayer max health initialization (ensures players have correct max health on spawn)."
+    ]
+  },
+  {
+    "hook": "SingleCharCmdPrefix [patch]",
+    "descriptions": [
+      "Allows console commands to use single-character prefixes. (Patch enabling recognition of one-character command prefixes.)"
+    ]
+  },
+  {
+    "hook": "SingleCharCmdSuffix [patch]",
+    "descriptions": [
+      "Allows console commands or chat commands to use single-character suffixes. (Patch enabling recognition of one-character command suffixes.)"
+    ]
+  },
+  {
+    "hook": "OnGroupCreated",
+    "descriptions": [
+      "Called when a new permission group is created."
+    ]
+  },
+  {
+    "hook": "OnGroupDeleted",
+    "descriptions": [
+      "Called when a permission group is deleted."
+    ]
+  },
+  {
+    "hook": "OnGroupParentSet",
+    "descriptions": [
+      "Called when a permission group's parent group is changed."
+    ]
+  },
+  {
+    "hook": "OnGroupPermissionGranted",
+    "descriptions": [
+      "Called when a permission is granted to a group."
+    ]
+  },
+  {
+    "hook": "OnGroupPermissionRevoked",
+    "descriptions": [
+      "Called when a permission is revoked from a group."
+    ]
+  },
+  {
+    "hook": "OnGroupRankSet",
+    "descriptions": [
+      "Called when a group's rank is changed."
+    ]
+  },
+  {
+    "hook": "OnGroupTitleSet",
+    "descriptions": [
+      "Called when a group's title is changed."
+    ]
+  },
+  {
+    "hook": "OnPermissionRegistered",
+    "descriptions": [
+      "Called when a plugin registers a new permission."
+    ]
+  },
+  {
+    "hook": "OnPermissionsUnregistered",
+    "descriptions": [
+      "Called when a plugin's permissions are unregistered (e.g., on plugin unload)."
+    ]
+  },
+  {
+    "hook": "OnUserGroupAdded",
+    "descriptions": [
+      "Called when a user is added to a permission group."
+    ]
+  },
+  {
+    "hook": "OnUserGroupRemoved",
+    "descriptions": [
+      "Called when a user is removed from a permission group."
+    ]
+  },
+  {
+    "hook": "OnUserNameUpdated",
+    "descriptions": [
+      "Called when a user's stored nickname is updated."
+    ]
+  },
+  {
+    "hook": "CanDesignFirework",
+    "descriptions": [
+      "Determines if a player is allowed to design a firework pattern."
+    ]
+  },
+  {
+    "hook": "OnFireworkDesignChange",
+    "descriptions": [
+      "Called when a player attempts to set a firework’s design (before it is applied)."
+    ]
+  },
+  {
+    "hook": "OnFireworkDesignChanged",
+    "descriptions": [
+      "Called after a firework's design has been updated."
+    ]
+  },
+  {
+    "hook": "OnFireworkStarted",
+    "descriptions": [
+      "Called when a firework is lit/started."
+    ]
+  },
+  {
+    "hook": "OnFireworkExhausted",
+    "descriptions": [
+      "Called when a firework has burned out (finished its effect)."
+    ]
+  },
+  {
+    "hook": "OnFireworkDamage",
+    "descriptions": [
+      "Called when a firework is damaged by an attack."
+    ]
+  },
+  {
+    "hook": "OnFishingStopped",
+    "descriptions": [
+      "Called when a fishing attempt is stopped or canceled."
+    ]
+  },
+  {
+    "hook": "OnFishingRodCast",
+    "descriptions": [
+      "Called when a player casts a fishing rod."
+    ]
+  },
+  {
+    "hook": "OnFishCaught",
+    "descriptions": [
+      "Called after a fish is successfully caught and given to the player."
+    ]
+  },
+  {
+    "hook": "CanCastFishingRod",
+    "descriptions": [
+      "Determines if a player can cast their fishing rod."
+    ]
+  },
+  {
+    "hook": "CanCatchFish",
+    "descriptions": [
+      "Determines if a caught fish should be allowed (whether the catch succeeds)."
+    ]
+  },
+  {
+    "hook": "OnFishCatch",
+    "descriptions": [
+      "Called at the moment a fish is caught (when the catch event occurs)."
+    ]
+  },
+  {
+    "hook": "OnFuelConsume",
+    "descriptions": [
+      "Called when a fuel-burning entity (e.g., furnace) is about to consume fuel."
+    ]
+  },
+  {
+    "hook": "OnFuelConsumed",
+    "descriptions": [
+      "Called after a fuel-burning entity has consumed fuel."
+    ]
+  },
+  {
+    "hook": "OnFuelAmountCheck",
+    "descriptions": [
+      "Called when checking the current amount of fuel in an entity."
+    ]
+  },
+  {
+    "hook": "OnFuelItemCheck",
+    "descriptions": [
+      "Called when retrieving the fuel item from an entity."
+    ]
+  },
+  {
+    "hook": "OnFuelCheck",
+    "descriptions": [
+      "Called when verifying if an entity has any fuel."
+    ]
+  },
+  {
+    "hook": "CanCheckFuel",
+    "descriptions": [
+      "Determines if a player or entity can check a fuel container (is in range to check fuel)."
+    ]
+  },
+  {
+    "hook": "CanUseFuel",
+    "descriptions": [
+      "Determines if an entity is allowed to consume fuel at that time."
+    ]
+  },
+  {
+    "hook": "CanPatrolHeliSeePlayer",
+    "descriptions": [
+      "Determines if the patrol helicopter can see (and target) a specific player."
+    ]
+  },
+  {
+    "hook": "CanPickupAllFromRack",
+    "descriptions": [
+      "Determines if a player can remove all items from a weapon rack at once."
+    ]
+  },
+  {
+    "hook": "CanPickupFromRack",
+    "descriptions": [
+      "Determines if a player can pick up an item from a weapon rack."
+    ]
+  },
+  {
+    "hook": "CanPlaceOnRack",
+    "descriptions": [
+      "Determines if a player can place an item onto a weapon rack."
+    ]
+  },
+  {
+    "hook": "OnPickupFromRack",
+    "descriptions": [
+      "Called when a player picks up an item from a weapon rack."
+    ]
+  },
+  {
+    "hook": "OnChairComfort",
+    "descriptions": [
+      "Called when calculating the comfort bonus provided by a chair."
+    ]
+  },
+  {
+    "hook": "OnEntitySpawn",
+    "descriptions": [
+      "Called when an entity is spawned in the world."
+    ]
+  },
+  {
+    "hook": "OnChickenScared",
+    "descriptions": [
+      "Called when a chicken (or similar animal) becomes scared and flees."
+    ]
+  },
+  {
+    "hook": "CanAcceptBackpackItem",
+    "descriptions": [
+      "Determines if an item can be added to a player's backpack."
+    ]
+  },
+  {
+    "hook": "OnJackieChan",
+    "descriptions": [
+      "Called when a player entity is fully initialized on the server."
+    ]
+  },
+  {
+    "hook": "CanPlayerInheritNetworkGroup",
+    "descriptions": [
+      "Determines if a player should inherit the network group of an entity (remain in that entity's network zone)."
+    ]
+  },
+  {
+    "hook": "OnGrowableUpdate",
+    "descriptions": [
+      "Called each time a growable plant updates its growth (growth tick)."
+    ]
+  },
+  {
+    "hook": "OnEntitySaved",
+    "descriptions": [
+      "Called when an entity's data is saved to the server."
+    ]
+  },
+  {
+    "hook": "IDelFix",
+    "descriptions": [
+      "Called when the 'del' console command is executed to delete objects."
+    ]
+  },
+  {
+    "hook": "IFixCarsFix",
+    "descriptions": [
+      "Called when the 'fixcars' console command is executed to repair nearby vehicles."
+    ]
+  },
+  {
+    "hook": "ICraftDurationMultiplier",
+    "descriptions": [
+      "Allows modifying the duration of item crafting."
+    ]
+  },
+  {
+    "hook": "IOvenSmeltSpeedMultiplier",
+    "descriptions": [
+      "Allows modifying how fast ovens and furnaces smelt items."
+    ]
+  },
+  {
+    "hook": "IMixingSpeedMultiplier",
+    "descriptions": [
+      "Allows modifying how fast the mixing table processes recipes."
+    ]
+  },
+  {
+    "hook": "IOnExcavatorInit",
+    "descriptions": [
+      "Called when the excavator monument is initializing (server startup)."
+    ]
+  },
+  {
+    "hook": "IRecyclerThinkSpeed",
+    "descriptions": [
+      "Allows modifying the processing speed of recyclers."
+    ]
+  },
+  {
+    "hook": "IResearchDuration",
+    "descriptions": [
+      "Allows modifying how long research at a research table takes."
+    ]
+  },
+  {
+    "hook": "IVendingBuyDuration",
+    "descriptions": [
+      "Allows modifying the duration of a vending machine purchase transaction."
+    ]
+  },
+  {
+    "hook": "OnLoseCondition",
+    "descriptions": [
+      "Called when an item loses durability (condition)."
+    ]
+  },
+  {
+    "hook": "IOnPlayerChat",
+    "descriptions": [
+      "Called when a player sends a chat message (allows intercepting or modifying it)."
+    ]
+  },
+  {
+    "hook": "IBroadcastOverride",
+    "descriptions": [
+      "Called when a chat message is broadcast to all players (allows filtering or overriding)."
+    ]
+  },
+  {
+    "hook": "IConsoleEnter",
+    "descriptions": [
+      "Called when a line is entered into the server console input."
+    ]
+  },
+  {
+    "hook": "IConsoleUpdate",
+    "descriptions": [
+      "Called when the server console input is updated (each frame)."
+    ]
+  },
+  {
+    "hook": "OnConsoleCommand",
+    "descriptions": [
+      "Called when a console command is executed."
+    ]
+  },
+  {
+    "hook": "OnRconCommand",
+    "descriptions": [
+      "Called when an RCON (remote console) command is received."
+    ]
+  },
+  {
+    "hook": "OnServerInitialized",
+    "descriptions": [
+      "Called when the server has finished initializing (startup complete)."
+    ]
+  },
+  {
+    "hook": "IServerAsyncShutdown",
+    "descriptions": [
+      "Called when the server is shutting down (via the quit command)."
+    ]
+  },
+  {
+    "hook": "IServerInfoUpdate",
+    "descriptions": [
+      "Called when the server's information is updated (for server listings)."
+    ]
+  },
+  {
+    "hook": "IServerMgrOnRPCMessage",
+    "descriptions": [
+      "Called when the server manager processes an RPC message."
+    ]
+  },
+  {
+    "hook": "OnNativeCommandHasPermission",
+    "descriptions": [
+      "Called when checking if a player has permission to run a native console command."
+    ]
+  },
+  {
+    "hook": "OnConveyorFiltersChange",
+    "descriptions": [
+      "Called when the filter settings of an industrial conveyor are changed."
+    ]
+  },
+  {
+    "hook": "OnItemCraft",
+    "descriptions": [
+      "Called when an item is crafted by a player or an industrial crafter."
+    ]
+  },
+  {
+    "hook": "OnItemRemovedFromContainer",
+    "descriptions": [
+      "Called when an item is removed from a container (inventory)."
+    ]
+  },
+  {
+    "hook": "OnItemAddedToContainer",
+    "descriptions": [
+      "Called when an item is added to a container (inventory)."
+    ]
+  },
+  {
+    "hook": "CanAcceptItem",
+    "descriptions": [
+      "Determines if a container can accept a given item."
+    ]
+  },
+  {
+    "hook": "OnItemCraftFinished",
+    "descriptions": [
+      "Called when an item crafting job finishes (item has been crafted)."
+    ]
+  },
+  {
+    "hook": "OnItemCraftCancelled",
+    "descriptions": [
+      "Called when an item crafting job is canceled."
+    ]
+  },
+  {
+    "hook": "CanFastTrackCraftTask",
+    "descriptions": [
+      "Determines if a crafting task can be fast-tracked (completed immediately)."
+    ]
+  },
+  {
+    "hook": "OnItemDeployed",
+    "descriptions": [
+      "Called when a deployable item is placed into the world."
+    ]
+  },
+  {
+    "hook": "CanDeployItem",
+    "descriptions": [
+      "Determines if a deployable item can be placed in the world."
+    ]
+  },
+  {
+    "hook": "IOnLoseCondition",
+    "descriptions": [
+      "Called when an item's durability is about to decrease (allows modifying the loss)."
+    ]
+  },
+  {
+    "hook": "OnItemUse",
+    "descriptions": [
+      "Called when an item is used (e.g., eaten, drunk, or activated)."
+    ]
+  },
+  {
+    "hook": "OnItemSplit",
+    "descriptions": [
+      "Called when an item stack is split into two stacks."
+    ]
+  },
+  {
+    "hook": "CanStackItem",
+    "descriptions": [
+      "Determines if two item stacks can be combined (stacked)."
+    ]
+  },
+  {
+    "hook": "OnItemDropped",
+    "descriptions": [
+      "Called when an item is dropped on the ground from an inventory."
+    ]
+  },
+  {
+    "hook": "OnMaxStackable",
+    "descriptions": [
+      "Called when determining the maximum stack size of an item."
+    ]
+  },
+  {
+    "hook": "OnItemRemove",
+    "descriptions": [
+      "Called when an item is removed/destroyed (from inventory or world)."
+    ]
+  },
+  {
+    "hook": "OnItemStacked",
+    "descriptions": [
+      "Called when two item stacks are combined into one stack."
+    ]
+  },
+  {
+    "hook": "OnItemLock",
+    "descriptions": [
+      "Called when an item is locked (for example, sealing a note)."
+    ]
+  },
+  {
+    "hook": "OnItemUnlock",
+    "descriptions": [
+      "Called when an item is unlocked (unsealed)."
+    ]
+  },
+  {
+    "hook": "OnHealingItemUse",
+    "descriptions": [
+      "Called when a healing item (medical tool) is used on a player."
+    ]
+  },
+  {
+    "hook": "OnItemResearch",
+    "descriptions": [
+      "Called when a player starts researching an item at a research table."
+    ]
+  },
+  {
+    "hook": "OnItemResearched",
+    "descriptions": [
+      "Called when an item has been successfully researched."
+    ]
+  },
+  {
+    "hook": "OnResearchCostDetermine",
+    "descriptions": [
+      "Called when determining the scrap cost to research an item."
+    ]
+  },
+  {
+    "hook": "OnItemRepair",
+    "descriptions": [
+      "Called when an item is being repaired at a repair bench."
+    ]
+  },
+  {
+    "hook": "OnItemSkinChange",
+    "descriptions": [
+      "Called when an item's skin is changed (e.g., via a repair bench)."
+    ]
+  },
+  {
+    "hook": "OnMapImageUpdated",
+    "descriptions": [
+      "Called when a map item's image is updated (e.g., after exploration)."
+    ]
+  },
+  {
+    "hook": "OnItemUpgrade",
+    "descriptions": [
+      "Called when an item upgrade module is used or applied."
+    ]
+  },
+  {
+    "hook": "CanEquipItem",
+    "descriptions": [
+      "Determines if a player can equip a given item (hold it in their hands)."
+    ]
+  },
+  {
+    "hook": "CanWearItem",
+    "descriptions": [
+      "Determines if a player can wear a given clothing or armor item."
+    ]
+  },
+  {
+    "hook": "OnItemAction",
+    "descriptions": [
+      "Called when a player performs an inventory item action (uses or interacts with an item)."
+    ]
+  },
+  {
+    "hook": "CanMoveItem",
+    "descriptions": [
+      "Determines if an item can be moved to another container."
+    ]
+  },
+  {
+    "hook": "OnInventoryItemsCount",
+    "descriptions": [
+      "Called when counting the total amount of a specific item in an inventory."
+    ]
+  },
+  {
+    "hook": "OnInventoryItemsTake",
+    "descriptions": [
+      "Called when items are taken out of an inventory (to another container or context)."
+    ]
+  },
+  {
+    "hook": "OnInventoryItemsFind",
+    "descriptions": [
+      "Called when searching an inventory for all items of a certain type."
+    ]
+  },
+  {
+    "hook": "OnInventoryAmmoFind",
+    "descriptions": [
+      "Called when searching a player's inventory for ammo of a specific type."
+    ]
+  },
+  {
+    "hook": "OnBackpackDrop",
+    "descriptions": [
+      "Called when a player's backpack is dropped (e.g., on death)."
+    ]
+  },
+  {
+    "hook": "OnInventoryItemFind",
+    "descriptions": [
+      "Called when searching a player's inventory for an item by name or ID."
+    ]
+  },
+  {
+    "hook": "OnInventoryAmmoItemFind",
+    "descriptions": [
+      "Called when an entity (e.g., a tool) searches for an ammo or fuel item in a player's inventory."
+    ]
+  },
+  {
+    "hook": "OnItemPickup",
+    "descriptions": [
+      "Called when a player picks up an item from the ground."
+    ]
+  },
+  {
+    "hook": "OnFindBurnable",
+    "descriptions": [
+      "Called when an oven or furnace checks its inventory for burnable fuel."
+    ]
+  },
+  {
+    "hook": "OnItemRecycle",
+    "descriptions": [
+      "Called during the recycling process (each tick the recycler processes items)."
+    ]
+  },
+  {
+    "hook": "OnItemRecycleAmount",
+    "descriptions": [
+      "Called when calculating the output from recycling an item."
+    ]
+  },
+  {
+    "hook": "CanCombineDroppedItem",
+    "descriptions": [
+      "Determines if a dropped item stack can merge with another on the ground."
+    ]
+  },
+  {
+    "hook": "OnDroppedItemCombined",
+    "descriptions": [
+      "Called when two dropped item stacks merge into one."
+    ]
+  },
+  {
+    "hook": "OnItemDespawn",
+    "descriptions": [
+      "Called when a dropped item despawns after its lifetime expires."
+    ]
+  },
+  {
+    "hook": "OnBonusItemDrop",
+    "descriptions": [
+      "Called when bonus items (from hitting a resource node) are about to drop."
+    ]
+  },
+  {
+    "hook": "OnBonusItemDropped",
+    "descriptions": [
+      "Called after bonus items have been dropped from a resource node."
+    ]
+  },
+  {
+    "hook": "OnItemRefill",
+    "descriptions": [
+      "Called when an item's 'refill' command is used to restore its condition (partial repair)."
+    ]
+  },
+  {
+    "hook": "OnItemSubmit",
+    "descriptions": [
+      "Called when a player submits items into a mailbox (e.g., for a mission objective)."
+    ]
+  },
+  {
+    "hook": "OnItemUnwrap",
+    "descriptions": [
+      "Called when an item (like a gift present) is unwrapped."
+    ]
+  },
+  {
+    "hook": "OnItemPainted",
+    "descriptions": [
+      "Called when a paintable item (sign or painting) has been painted or updated."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponMount",
+    "descriptions": [
+      "Called when a weapon is being placed onto a weapon rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponMounted",
+    "descriptions": [
+      "Called after a weapon has been mounted on a rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponSwap",
+    "descriptions": [
+      "Called when a player swaps their held weapon with one on a rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponSwapped",
+    "descriptions": [
+      "Called after a weapon has been swapped on a rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponTake",
+    "descriptions": [
+      "Called when a weapon is being taken off a weapon rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponTaken",
+    "descriptions": [
+      "Called after a weapon has been taken from a rack."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponUnload",
+    "descriptions": [
+      "Called when a weapon on a rack is being unloaded (ammo removed)."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponUnloaded",
+    "descriptions": [
+      "Called after a racked weapon has been unloaded."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponLoad",
+    "descriptions": [
+      "Called when a weapon on a rack is being loaded with ammo."
+    ]
+  },
+  {
+    "hook": "OnRackedWeaponLoaded",
+    "descriptions": [
+      "Called after a racked weapon has been loaded with ammo."
+    ]
+  },
+  {
+    "hook": "CanLockerAcceptItem",
+    "descriptions": [
+      "Determines if a given item can be stored in a locker."
+    ]
+  },
+  {
+    "hook": "OnItemFilter",
+    "descriptions": [
+      "Called when checking an item against a storage container's filter."
+    ]
+  },
+  {
+    "hook": "OnMissionFailed",
+    "descriptions": [
+      "Called when a player fails a mission."
+    ]
+  },
+  {
+    "hook": "OnMissionSucceeded",
+    "descriptions": [
+      "Called when a player completes a mission successfully."
+    ]
+  },
+  {
+    "hook": "OnMissionStart",
+    "descriptions": [
+      "Called when a mission is about to start for a player."
+    ]
+  },
+  {
+    "hook": "CanAssignMission",
+    "descriptions": [
+      "Determines if a mission can be assigned to a player."
+    ]
+  },
+  {
+    "hook": "OnMissionAssigned",
+    "descriptions": [
+      "Called when a mission is assigned to a player."
+    ]
+  },
+  {
+    "hook": "OnMissionStarted",
+    "descriptions": [
+      "Called after a mission has started for a player."
+    ]
+  },
+  {
+    "hook": "CanNetworkTo",
+    "descriptions": [
+      "Determines if an entity's network data should be sent to a specific player."
+    ]
+  },
+  {
+    "hook": "OnNetworkGroupEntered",
+    "descriptions": [
+      "Called when an entity or player enters a network group (area of visibility)."
+    ]
+  },
+  {
+    "hook": "OnNetworkGroupLeft",
+    "descriptions": [
+      "Called when an entity or player leaves a network group."
+    ]
+  },
+  {
+    "hook": "OnNetworkSubscriptionsGather",
+    "descriptions": [
+      "Called when gathering the list of entities a player should subscribe to for network updates."
+    ]
+  },
+  {
+    "hook": "OnSignalBroadcast",
+    "descriptions": [
+      "Called when an entity broadcasts a signal (e.g., sound or animation) to nearby players."
+    ]
+  },
+  {
+    "hook": "OnNetworkSubscriptionsUpdate",
+    "descriptions": [
+      "Called when the network subscription list for an entity is updated (including high-priority updates)."
+    ]
+  },
+  {
+    "hook": "CanNpcEat",
+    "descriptions": [
+      "Determines if an NPC can eat a target (like a corpse or food item)."
+    ]
+  },
+  {
+    "hook": "OnNpcAttack",
+    "descriptions": [
+      "Called when an NPC initiates an attack."
+    ]
+  },
+  {
+    "hook": "IOnNpcTarget",
+    "descriptions": [
+      "Allows control over whether an NPC wants to target or attack a particular entity."
+    ]
+  },
+  {
+    "hook": "OnNpcGiveSoldItem",
+    "descriptions": [
+      "Called when an NPC vendor gives a sold item to a player."
+    ]
+  },
+  {
+    "hook": "OnNpcRadioChatter",
+    "descriptions": [
+      "Called when an NPC (e.g., a scientist) plays a radio chatter voice line."
+    ]
+  },
+  {
+    "hook": "OnNpcAlert",
+    "descriptions": [
+      "Called when an NPC becomes alerted (notices a threat)."
+    ]
+  },
+  {
+    "hook": "OnNpcEquipWeapon",
+    "descriptions": [
+      "Called when an NPC equips a weapon."
+    ]
+  },
+  {
+    "hook": "OnCorpsePopulate",
+    "descriptions": [
+      "Called when an NPC's corpse inventory is being populated with loot items."
+    ]
+  },
+  {
+    "hook": "OnNpcDuck",
+    "descriptions": [
+      "Called when an NPC ducks (takes cover)."
+    ]
+  },
+  {
+    "hook": "OnNpcTarget",
+    "descriptions": [
+      "Called when an NPC selects a target to attack."
+    ]
+  },
+  {
+    "hook": "OnNpcConversationRespond",
+    "descriptions": [
+      "Called when a player selects a response in an NPC conversation."
+    ]
+  },
+  {
+    "hook": "OnNpcConversationResponded",
+    "descriptions": [
+      "Called after a player's response in an NPC conversation is processed."
+    ]
+  },
+  {
+    "hook": "OnNpcConversationEnded",
+    "descriptions": [
+      "Called when a conversation with an NPC ends."
+    ]
+  },
+  {
+    "hook": "OnNpcConversationStart",
+    "descriptions": [
+      "Called when a conversation with an NPC begins."
+    ]
+  },
+  {
+    "hook": "OnNpcTargetSense",
+    "descriptions": [
+      "Called when an NPC senses or detects a target (adds it to memory)."
+    ]
+  },
+  {
+    "hook": "OnAIBrainStateSwitch",
+    "descriptions": [
+      "Called when an AI brain is about to switch to a new state/behavior."
+    ]
+  },
+  {
+    "hook": "OnAIBrainStateSwitched",
+    "descriptions": [
+      "Called after an AI brain has switched to a new state/behavior."
+    ]
+  },
+  {
+    "hook": "CanDeployScientists",
+    "descriptions": [
+      "Determines if NPC scientists can be deployed (spawned) in an event."
+    ]
+  },
+  {
+    "hook": "OnScientistInitialized",
+    "descriptions": [
+      "Called when a scientist NPC is initialized/spawned."
+    ]
+  },
+  {
+    "hook": "OnScientistRecalled",
+    "descriptions": [
+      "Called when a scientist NPC is recalled or removed (for example, after an event)."
+    ]
+  },
+  {
+    "hook": "CanAssignBed",
+    "descriptions": [
+      "Called to check if a bed or sleeping bag can be assigned to a player."
+    ]
+  },
+  {
+    "hook": "CanBeAwardedAdventGift",
+    "descriptions": [
+      "Called to check if a player has already received today\u2019s advent gift (whether they can be awarded again)."
+    ]
+  },
+  {
+    "hook": "CanBeTargeted",
+    "descriptions": [
+      "Called to determine if an entity can be targeted by automated turrets or AI (e.g., auto turrets, helicopter)."
+    ]
+  },
+  {
+    "hook": "CanBeTargeted [patch]",
+    "descriptions": [
+      "Called during turret target cleanup to check if an entity remains a valid target (flame turrets, gun traps)."
+    ]
+  },
+  {
+    "hook": "CanBeWounded",
+    "descriptions": [
+      "Called to check if a player can enter the wounded state (versus dying immediately)."
+    ]
+  },
+  {
+    "hook": "CanBypassQueue",
+    "descriptions": [
+      "Called to determine if a connecting player can bypass the connection queue (e.g., a priority slot)."
+    ]
+  },
+  {
+    "hook": "CanChangeCode",
+    "descriptions": [
+      "Called when a player attempts to change the code on a code lock (to allow or block code change)."
+    ]
+  },
+  {
+    "hook": "CanClientLogin",
+    "descriptions": [
+      "Called when a client is logging in to the server, to determine if they are allowed to proceed."
+    ]
+  },
+  {
+    "hook": "CanDismountEntity",
+    "descriptions": [
+      "Called to check if a player can dismount from an entity at that moment."
+    ]
+  },
+  {
+    "hook": "CanDropActiveItem",
+    "descriptions": [
+      "Called to determine if a player can drop their currently active (held) item."
+    ]
+  },
+  {
+    "hook": "CanHackCrate",
+    "descriptions": [
+      "Called when a player tries to hack a locked crate (timed crate) to see if they can start the hack."
+    ]
+  },
+  {
+    "hook": "CanHideStash",
+    "descriptions": [
+      "Called to check if a player is allowed to hide (bury) a stash."
+    ]
+  },
+  {
+    "hook": "CanLock",
+    "descriptions": [
+      "Called when a player attempts to lock an entity (using a code or key lock)."
+    ]
+  },
+  {
+    "hook": "CanLootEntity",
+    "descriptions": [
+      "Called to determine if a player can loot a particular entity or container (corpse, box, etc.)."
+    ]
+  },
+  {
+    "hook": "CanLootPlayer",
+    "descriptions": [
+      "Called to determine if a player can loot another player or their corpse."
+    ]
+  },
+  {
+    "hook": "CanMountEntity",
+    "descriptions": [
+      "Called when a player attempts to mount an entity (sit in a chair, climb in a vehicle, etc.), to decide if it's allowed."
+    ]
+  },
+  {
+    "hook": "CanNetworkTo",
+    "descriptions": [
+      "Called to check if an entity's network updates can be sent to a given player (used to control visibility of entities)."
+    ]
+  },
+  {
+    "hook": "CanPickupEntity",
+    "descriptions": [
+      "Called to determine if a deployable or entity can be picked up by a player."
+    ]
+  },
+  {
+    "hook": "CanPickupLock",
+    "descriptions": [
+      "Called when a player attempts to remove a lock (e.g., code lock or key lock) from an object."
+    ]
+  },
+  {
+    "hook": "CanRagdollDismount",
+    "descriptions": [
+      "Called to determine if a player should be thrown off (ragdoll) when dismounting (e.g., from a vehicle)."
+    ]
+  },
+  {
+    "hook": "CanReceiveCall",
+    "descriptions": [
+      "Called to check if a telephone can receive an incoming call (e.g., has power and conditions met)."
+    ]
+  },
+  {
+    "hook": "CanRenameBed",
+    "descriptions": [
+      "Called when a player tries to rename a bed or sleeping bag, to decide if it's allowed."
+    ]
+  },
+  {
+    "hook": "CanResearchItem",
+    "descriptions": [
+      "Called when a player attempts to research an item blueprint, to decide if they can proceed."
+    ]
+  },
+  {
+    "hook": "CanSetBedPublic",
+    "descriptions": [
+      "Called to determine if a player can set a bed or sleeping bag to public use."
+    ]
+  },
+  {
+    "hook": "CanSetRelationship",
+    "descriptions": [
+      "Called when a player attempts to set a relationship status (friendly or enemy) toward another player."
+    ]
+  },
+  {
+    "hook": "CanSpectateTarget",
+    "descriptions": [
+      "Called to check if a player (usually admin) can spectate a particular target player."
+    ]
+  },
+  {
+    "hook": "CanSwapToSeat",
+    "descriptions": [
+      "Called when a player tries to swap to another seat (for example, in a vehicle)."
+    ]
+  },
+  {
+    "hook": "CanTakeCutting",
+    "descriptions": [
+      "Called when a player attempts to take a plant cutting, to decide if they are allowed."
+    ]
+  },
+  {
+    "hook": "CanUnlock",
+    "descriptions": [
+      "Called when a player attempts to unlock an entity secured by a code or key lock."
+    ]
+  },
+  {
+    "hook": "CanUpdateSign",
+    "descriptions": [
+      "Called when a player tries to update a sign or similar object (signage, photo frame, carvable pumpkin)."
+    ]
+  },
+  {
+    "hook": "CanUseGesture",
+    "descriptions": [
+      "Called to determine if a player can perform a gesture/emote at the current time."
+    ]
+  },
+  {
+    "hook": "CanUseHBHFSensor",
+    "descriptions": [
+      "Called when an HBHF sensor detects a player, to check if that player should trigger it."
+    ]
+  },
+  {
+    "hook": "CanUseLockedEntity",
+    "descriptions": [
+      "Called when a player attempts to open or close a locked entity (doors with code or key locks)."
+    ]
+  },
+  {
+    "hook": "CanUseMailbox",
+    "descriptions": [
+      "Called when a player attempts to use a mailbox (e.g., leave or retrieve mail), to decide if it's allowed."
+    ]
+  },
+  {
+    "hook": "CanUseWires",
+    "descriptions": [
+      "Called to check if a player can modify or connect wires in the electrical system."
+    ]
+  },
+  {
+    "hook": "CanUserLogin",
+    "descriptions": [
+      "Called to determine if a user (player) can log in/connect to the server (e.g., whitelist check)."
+    ]
+  },
+  {
+    "hook": "ICanPickupEntity",
+    "descriptions": [
+      "Called to check if an entity can be picked up (internal hook, similar to CanPickupEntity)."
+    ]
+  },
+  {
+    "hook": "IOnBasePlayerAttacked",
+    "descriptions": [
+      "Called when a player is attacked (internal event before damage is applied)."
+    ]
+  },
+  {
+    "hook": "IOnBasePlayerHurt",
+    "descriptions": [
+      "Called when a player is hurt and takes damage (internal event)."
+    ]
+  },
+  {
+    "hook": "IOnPlayerBanned",
+    "descriptions": [
+      "Called when a connecting player's Steam auth returns a ban (VAC or publisher ban) during authentication."
+    ]
+  },
+  {
+    "hook": "IOnPlayerConnected",
+    "descriptions": [
+      "Called when a player has connected to the server (internal connection event)."
+    ]
+  },
+  {
+    "hook": "IOnRconInitialize",
+    "descriptions": [
+      "Called when the RCON server is initializing during server startup."
+    ]
+  },
+  {
+    "hook": "IOnRunCommandLine",
+    "descriptions": [
+      "Called when a server command-line command is executed (during startup or via console input)."
+    ]
+  },
+  {
+    "hook": "IOnServerCommand",
+    "descriptions": [
+      "Called when a console command is run on the server or via RCON (before default handling)."
+    ]
+  },
+  {
+    "hook": "IOnServerInitialized",
+    "descriptions": [
+      "Called after the server has finished initializing and opened connections (server fully started)."
+    ]
+  },
+  {
+    "hook": "IOnServerShutdown",
+    "descriptions": [
+      "Called when the server shutdown sequence starts (players are kicked and world is saved)."
+    ]
+  },
+  {
+    "hook": "IOnUserApprove",
+    "descriptions": [
+      "Called during a user's connection attempt to approve or reject the user (internal connection approval)."
+    ]
+  },
+  {
+    "hook": "Init",
+    "descriptions": [
+      "Called when a plugin initializes (setting up on plugin load)."
+    ]
+  },
+  {
+    "hook": "InitLogging",
+    "descriptions": [
+      "Called during the server startup to initialize logging (and perform initial item setup)."
+    ]
+  },
+  {
+    "hook": "LoadDefaultMessages",
+    "descriptions": [
+      "Called to load a plugin's default message translations (for localization)."
+    ]
+  },
+  {
+    "hook": "Loaded",
+    "descriptions": [
+      "Called after a plugin has finished loading."
+    ]
+  },
+  {
+    "hook": "OnActiveItemChange",
+    "descriptions": [
+      "Called when a player is about to switch their active (held) item."
+    ]
+  },
+  {
+    "hook": "OnActiveItemChanged",
+    "descriptions": [
+      "Called after a player has switched their active item."
+    ]
+  },
+  {
+    "hook": "OnActiveTelephoneUpdated",
+    "descriptions": [
+      "Called when an active telephone call's details are updated (e.g., the active call target or state changes)."
+    ]
+  },
+  {
+    "hook": "OnAdventGiftAward",
+    "descriptions": [
+      "Triggered when an advent calendar gift is about to be awarded to a player."
+    ]
+  },
+  {
+    "hook": "OnAdventGiftAwarded",
+    "descriptions": [
+      "Called after a player has been given their advent calendar gift."
+    ]
+  },
+  {
+    "hook": "OnBoomboxStationUpdate",
+    "descriptions": [
+      "Called when a boombox radio's station is being updated (tuned)."
+    ]
+  },
+  {
+    "hook": "OnBoomboxStationUpdated",
+    "descriptions": [
+      "Called after a boombox's radio station has been changed."
+    ]
+  },
+  {
+    "hook": "OnBoomboxStationValidate",
+    "descriptions": [
+      "Called to validate a boombox radio station change (ensuring the selected station is allowed)."
+    ]
+  },
+  {
+    "hook": "OnBoomboxToggle",
+    "descriptions": [
+      "Triggered when a boombox is toggled on or off (play or stop)."
+    ]
+  },
+  {
+    "hook": "OnBroadcastCommand",
+    "descriptions": [
+      "Called when the server broadcasts a console command to all connected clients."
+    ]
+  },
+  {
+    "hook": "OnCatapultFireForce",
+    "descriptions": [
+      "Called when a catapult is fired, providing the force applied to the launch."
+    ]
+  },
+  {
+    "hook": "OnClientAuth",
+    "descriptions": [
+      "Called when a client is in the process of authenticating (during connection handshake)."
+    ]
+  },
+  {
+    "hook": "OnClientCommand",
+    "descriptions": [
+      "Triggered when a client sends a console command to the server."
+    ]
+  },
+  {
+    "hook": "OnClientDisconnect",
+    "descriptions": [
+      "Called when a client disconnect event is initiated."
+    ]
+  },
+  {
+    "hook": "OnClientDisconnected",
+    "descriptions": [
+      "Called after a client has fully disconnected from the server."
+    ]
+  },
+  {
+    "hook": "OnClientProjectileEffectCreate",
+    "descriptions": [
+      "Called when a projectile impact effect is being created for clients (like bullet impact visuals)."
+    ]
+  },
+  {
+    "hook": "OnClothingItemChanged",
+    "descriptions": [
+      "Called when a player changes a clothing item (equips or unequips apparel)."
+    ]
+  },
+  {
+    "hook": "OnCoalingTowerGather",
+    "descriptions": [
+      "Triggered during the coaling tower's unloading process (transferring resources from a train to storage)."
+    ]
+  },
+  {
+    "hook": "OnCoalingTowerStart",
+    "descriptions": [
+      "Called when a coaling tower unloading process is initiated (player tries to unload a train wagon)."
+    ]
+  },
+  {
+    "hook": "OnCollectiblePickedup",
+    "descriptions": [
+      "Called after a collectible item has been picked up by a player."
+    ]
+  },
+  {
+    "hook": "OnCollectiblePickup",
+    "descriptions": [
+      "Triggered when a player picks up a collectible item (like a pickup resource from the ground)."
+    ]
+  },
+  {
+    "hook": "OnConnectionDequeue",
+    "descriptions": [
+      "Triggered when a connection is removed from the queue (e.g., a player leaves the queue or begins joining)."
+    ]
+  },
+  {
+    "hook": "OnConnectionQueue",
+    "descriptions": [
+      "Called when a player is added to the connection queue (joining the queue to connect)."
+    ]
+  },
+  {
+    "hook": "OnDefaultItemsReceive",
+    "descriptions": [
+      "Called when a player is about to receive their default starter items."
+    ]
+  },
+  {
+    "hook": "OnDefaultItemsReceived",
+    "descriptions": [
+      "Called after a player has been given their default starter items."
+    ]
+  },
+  {
+    "hook": "OnDemoRecordingStart",
+    "descriptions": [
+      "Called when server demo recording is about to start."
+    ]
+  },
+  {
+    "hook": "OnDemoRecordingStarted",
+    "descriptions": [
+      "Called after the server has started recording a demo."
+    ]
+  },
+  {
+    "hook": "OnDemoRecordingStop",
+    "descriptions": [
+      "Called when server demo recording is about to stop."
+    ]
+  },
+  {
+    "hook": "OnDemoRecordingStopped",
+    "descriptions": [
+      "Called after the server has stopped recording a demo."
+    ]
+  },
+  {
+    "hook": "OnDispenserBonus",
+    "descriptions": [
+      "Triggered when calculating the bonus yield for finishing off a resource node."
+    ]
+  },
+  {
+    "hook": "OnDispenserBonusReceived",
+    "descriptions": [
+      "Called after the bonus resources for finishing a resource node have been awarded."
+    ]
+  },
+  {
+    "hook": "OnDispenserGather",
+    "descriptions": [
+      "Triggered when a resource node gives resources to a player (during harvesting before final calculations)."
+    ]
+  },
+  {
+    "hook": "OnDispenserGathered",
+    "descriptions": [
+      "Called after resources have been given to a player from a resource node (post-harvest)."
+    ]
+  },
+  {
+    "hook": "OnEntityMounted",
+    "descriptions": [
+      "Triggered when a player mounts an entity (such as getting on a vehicle or turret)."
+    ]
+  },
+  {
+    "hook": "OnEventCollectablePickup",
+    "descriptions": [
+      "Triggered when a player picks up a seasonal event collectible (like an Easter egg)."
+    ]
+  },
+  {
+    "hook": "OnExcavatorGather",
+    "descriptions": [
+      "Called when the excavator produces resources and deposits them (each processing cycle)."
+    ]
+  },
+  {
+    "hook": "OnExcavatorMiningToggled",
+    "descriptions": [
+      "Called when the excavator's mining engine is started.",
+      "Called when the excavator's mining engine is stopped."
+    ]
+  },
+  {
+    "hook": "OnExcavatorResourceSet",
+    "descriptions": [
+      "Triggered when the resource type for the excavator is set or changed."
+    ]
+  },
+  {
+    "hook": "OnExperimentEnd",
+    "descriptions": [
+      "Called when a blueprint experiment is ending (a result is about to be given)."
+    ]
+  },
+  {
+    "hook": "OnExperimentEnded",
+    "descriptions": [
+      "Called after a blueprint experiment has finished (result determined)."
+    ]
+  },
+  {
+    "hook": "OnExperimentStart",
+    "descriptions": [
+      "Called when a tech tree experiment (blueprint experiment) is started (just beginning)."
+    ]
+  },
+  {
+    "hook": "OnExperimentStarted",
+    "descriptions": [
+      "Called after a blueprint experiment has started."
+    ]
+  },
+  {
+    "hook": "OnEyePosValidate",
+    "descriptions": [
+      "Called to validate a player's eye position for line-of-sight (useful for anti-cheat checks)."
+    ]
+  },
+  {
+    "hook": "OnFeedbackReported",
+    "descriptions": [
+      "Triggered when a player submits an in-game feedback or report."
+    ]
+  },
+  {
+    "hook": "OnFindSpawnPoint",
+    "descriptions": [
+      "Called when determining a spawn point for a player (allows customizing spawn location)."
+    ]
+  },
+  {
+    "hook": "OnFrankensteinPetSleep",
+    "descriptions": [
+      "Called when a Frankenstein pet is put to sleep at the Frankenstein table (returned to owner)."
+    ]
+  },
+  {
+    "hook": "OnFrankensteinPetWake",
+    "descriptions": [
+      "Called when a Frankenstein pet is being awakened at the Frankenstein table."
+    ]
+  },
+  {
+    "hook": "OnGrowableGather",
+    "descriptions": [
+      "Called when a player harvests a plant (picks fruit from a growable entity)."
+    ]
+  },
+  {
+    "hook": "OnGrowableGathered",
+    "descriptions": [
+      "Called after a plant has been harvested and its fruit given to the player."
+    ]
+  },
+  {
+    "hook": "OnGrowableStateChange",
+    "descriptions": [
+      "Called whenever a growable plant changes its growth state (e.g., growing, fruiting, dying)."
+    ]
+  },
+  {
+    "hook": "OnHuntEventEnd",
+    "descriptions": [
+      "Called when an Egg Hunt event ends (time is up and winners are determined)."
+    ]
+  },
+  {
+    "hook": "OnHuntEventStart",
+    "descriptions": [
+      "Called when an Egg Hunt event starts (eggs begin spawning)."
+    ]
+  },
+  {
+    "hook": "OnInventoryNetworkUpdate",
+    "descriptions": [
+      "Called when a player's inventory state is being sent to the client (network update)."
+    ]
+  },
+  {
+    "hook": "OnLoaded",
+    "descriptions": [
+      "Triggered after a plugin is loaded (post-initialization)."
+    ]
+  },
+  {
+    "hook": "OnLootEntity",
+    "descriptions": [
+      "Triggered when a player begins looting an entity or container."
+    ]
+  },
+  {
+    "hook": "OnLootEntityEnd",
+    "descriptions": [
+      "Triggered when a player finishes looting an entity or container (loot UI closed)."
+    ]
+  },
+  {
+    "hook": "OnLootItem",
+    "descriptions": [
+      "Called when an item is looted from a container."
+    ]
+  },
+  {
+    "hook": "OnLootNetworkUpdate",
+    "descriptions": [
+      "Called when the server updates the loot interface (e.g., after items move while looting)."
+    ]
+  },
+  {
+    "hook": "OnLootPlayer",
+    "descriptions": [
+      "Triggered when a player starts looting another player's inventory (e.g., a corpse or sleeper)."
+    ]
+  },
+  {
+    "hook": "OnLootSpawn",
+    "descriptions": [
+      "Called when a loot container spawns its loot items (populate loot)."
+    ]
+  },
+  {
+    "hook": "OnMapMarkerAdd",
+    "descriptions": [
+      "Called when a map marker is about to be added."
+    ]
+  },
+  {
+    "hook": "OnMapMarkerAdded",
+    "descriptions": [
+      "Called after a map marker has been added."
+    ]
+  },
+  {
+    "hook": "OnMapMarkerRemove",
+    "descriptions": [
+      "Called when a map marker is being removed."
+    ]
+  },
+  {
+    "hook": "OnMapMarkersClear",
+    "descriptions": [
+      "Called when all map markers are about to be cleared."
+    ]
+  },
+  {
+    "hook": "OnMapMarkersCleared",
+    "descriptions": [
+      "Called after all map markers have been cleared."
+    ]
+  },
+  {
+    "hook": "OnMeleeAttack",
+    "descriptions": [
+      "Triggered when a melee attack is executed by a player."
+    ]
+  },
+  {
+    "hook": "OnMessagePlayer",
+    "descriptions": [
+      "Triggered when the server sends a chat message to a specific player."
+    ]
+  },
+  {
+    "hook": "OnMetalDetectorFlagRequest",
+    "descriptions": [
+      "Called when a metal detector checks for metal (to decide if it should flag an item)."
+    ]
+  },
+  {
+    "hook": "OnNewSave",
+    "descriptions": [
+      "Called when a new save file is created (e.g., on wipe or first server start)."
+    ]
+  },
+  {
+    "hook": "OnPayForPlacement",
+    "descriptions": [
+      "Called when resources are about to be consumed for placing a deployable or structure."
+    ]
+  },
+  {
+    "hook": "OnPayForUpgrade",
+    "descriptions": [
+      "Called when resources are about to be consumed for upgrading a building piece."
+    ]
+  },
+  {
+    "hook": "OnPhoneAnswer",
+    "descriptions": [
+      "Triggered when a player answers a ringing telephone in-game."
+    ]
+  },
+  {
+    "hook": "OnPhoneAnswered",
+    "descriptions": [
+      "Triggered after a player has answered a phone call (connection established)."
+    ]
+  },
+  {
+    "hook": "OnPhoneCallStart",
+    "descriptions": [
+      "Called when a telephone call is initiated (just starting to connect)."
+    ]
+  },
+  {
+    "hook": "OnPhoneCallStarted",
+    "descriptions": [
+      "Triggered once a telephone call has successfully started."
+    ]
+  },
+  {
+    "hook": "OnPhoneDial",
+    "descriptions": [
+      "Triggered when a player dials a number on a telephone to start a call."
+    ]
+  },
+  {
+    "hook": "OnPhoneDialFail",
+    "descriptions": [
+      "Called when a phone call attempt fails (e.g., target busy or invalid number)."
+    ]
+  },
+  {
+    "hook": "OnPhoneDialFailed",
+    "descriptions": [
+      "Called after a phone call attempt has failed, providing the failure reason."
+    ]
+  },
+  {
+    "hook": "OnPhoneDialTimedOut",
+    "descriptions": [
+      "Called after a phone call has timed out without an answer."
+    ]
+  },
+  {
+    "hook": "OnPhoneDialTimeout",
+    "descriptions": [
+      "Triggered when a phone call attempt times out from no answer."
+    ]
+  },
+  {
+    "hook": "OnPlayerActiveShieldDrop",
+    "descriptions": [
+      "Called when a player drops their active shield item."
+    ]
+  },
+  {
+    "hook": "OnPlayerAddModifiers",
+    "descriptions": [
+      "Called when status modifiers (like modifiers from items or equipment) are applied to a player."
+    ]
+  },
+  {
+    "hook": "OnPlayerAssist",
+    "descriptions": [
+      "Triggered when a wounded player is assisted by another player (revived from the wounded state)."
+    ]
+  },
+  {
+    "hook": "OnPlayerAttack",
+    "descriptions": [
+      "Triggered when a player makes an attack (melee swings and projectile shots)."
+    ]
+  },
+  {
+    "hook": "OnPlayerBanned",
+    "descriptions": [
+      "Called when a player is banned from the server.",
+      "Called when Easy Anti-Cheat (EAC) bans a player."
+    ]
+  },
+  {
+    "hook": "OnPlayerChat",
+    "descriptions": [
+      "Triggered when a player sends a chat message."
+    ]
+  },
+  {
+    "hook": "OnPlayerColliderEnable",
+    "descriptions": [
+      "Called when a player's physics collider is toggled (enabled or disabled)."
+    ]
+  },
+  {
+    "hook": "OnPlayerConnected",
+    "descriptions": [
+      "Called when a player successfully connects and joins the server."
+    ]
+  },
+  {
+    "hook": "OnPlayerCorpseSpawn",
+    "descriptions": [
+      "Called when a player's corpse is about to spawn (upon player death)."
+    ]
+  },
+  {
+    "hook": "OnPlayerCorpseSpawned",
+    "descriptions": [
+      "Called after a player's corpse has spawned."
+    ]
+  },
+  {
+    "hook": "OnPlayerDeath",
+    "descriptions": [
+      "Triggered when a player dies."
+    ]
+  },
+  {
+    "hook": "OnPlayerDig",
+    "descriptions": [
+      "Triggered when a player digs for an item (such as using an Easter basket during an event)."
+    ]
+  },
+  {
+    "hook": "OnPlayerDisconnected",
+    "descriptions": [
+      "Called when a player disconnects from the server."
+    ]
+  },
+  {
+    "hook": "OnPlayerDismountFailed",
+    "descriptions": [
+      "Triggered when a player's attempt to dismount an entity fails."
+    ]
+  },
+  {
+    "hook": "OnPlayerDrink",
+    "descriptions": [
+      "Called when a player drinks water or another consumable liquid."
+    ]
+  },
+  {
+    "hook": "OnPlayerDropActiveItem",
+    "descriptions": [
+      "Triggered when a player drops their currently held item."
+    ]
+  },
+  {
+    "hook": "OnPlayerHandcuff",
+    "descriptions": [
+      "Called when a player is being handcuffed (restrained)."
+    ]
+  },
+  {
+    "hook": "OnPlayerHandcuffed",
+    "descriptions": [
+      "Called after a player has been handcuffed."
+    ]
+  },
+  {
+    "hook": "OnPlayerHealthChange",
+    "descriptions": [
+      "Triggered when a player's health changes (damage or healing occurs)."
+    ]
+  },
+  {
+    "hook": "OnPlayerInput",
+    "descriptions": [
+      "Called when a player's input is processed each frame (movement, view, etc.)."
+    ]
+  },
+  {
+    "hook": "OnPlayerKeepAlive",
+    "descriptions": [
+      "Called when a player sends a keep-alive ping to the server."
+    ]
+  },
+  {
+    "hook": "OnPlayerKicked",
+    "descriptions": [
+      "Called when a player is kicked from the server.",
+      "Called when Easy Anti-Cheat (EAC) kicks a player."
+    ]
+  },
+  {
+    "hook": "OnPlayerLand",
+    "descriptions": [
+      "Called when a player is about to land on the ground after falling."
+    ]
+  },
+  {
+    "hook": "OnPlayerLanded",
+    "descriptions": [
+      "Called after a player has landed on the ground from a fall or jump."
+    ]
+  },
+  {
+    "hook": "OnPlayerLootEnd",
+    "descriptions": [
+      "Triggered when a player finishes looting an entity or container."
+    ]
+  },
+  {
+    "hook": "OnPlayerMarkersSend",
+    "descriptions": [
+      "Called when the server is sending map/team markers to a player (marker update)."
+    ]
+  },
+  {
+    "hook": "OnPlayerMetabolize",
+    "descriptions": [
+      "Triggered on each tick when the player's metabolism (food, water, etc.) is updated."
+    ]
+  },
+  {
+    "hook": "OnPlayerOfflineChat",
+    "descriptions": [
+      "Triggered when an offline chat message is processed (e.g., in offline or clan chat systems)."
+    ]
+  },
+  {
+    "hook": "OnPlayerPingsSend",
+    "descriptions": [
+      "Called when quick ping markers or notifications are being sent to a player (e.g., map pings)."
+    ]
+  },
+  {
+    "hook": "OnPlayerRecover",
+    "descriptions": [
+      "Called when a wounded player is about to recover (stand up from wounded state)."
+    ]
+  },
+  {
+    "hook": "OnPlayerRecovered",
+    "descriptions": [
+      "Called after a player has recovered from a wounded state."
+    ]
+  },
+  {
+    "hook": "OnPlayerReported",
+    "descriptions": [
+      "Triggered when a player is reported (e.g., via the in-game report system)."
+    ]
+  },
+  {
+    "hook": "OnPlayerRespawn",
+    "descriptions": [
+      "Triggered when a player respawns (e.g., after death or at a sleeping bag)."
+    ]
+  },
+  {
+    "hook": "OnPlayerRespawned",
+    "descriptions": [
+      "Called after a player has respawned in the world."
+    ]
+  },
+  {
+    "hook": "OnPlayerRevive",
+    "descriptions": [
+      "Called when a player is revived from a wounded state by another player."
+    ]
+  },
+  {
+    "hook": "OnPlayerSetInfo",
+    "descriptions": [
+      "Triggered when the server sets a player's connection info or data (usually during initial connection)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSleep",
+    "descriptions": [
+      "Triggered when a player goes to sleep (becomes a sleeper in the world)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSleepEnd",
+    "descriptions": [
+      "Called when a sleeping player is about to wake up."
+    ]
+  },
+  {
+    "hook": "OnPlayerSleepEnded",
+    "descriptions": [
+      "Called after a player has woken up from sleeping."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpawn",
+    "descriptions": [
+      "Called when a player spawns into the world (initial spawn or respawn)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpectate",
+    "descriptions": [
+      "Called when a player begins spectating another player."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpectateEnd",
+    "descriptions": [
+      "Called when a player stops spectating."
+    ]
+  },
+  {
+    "hook": "OnPlayerStudyBlueprint",
+    "descriptions": [
+      "Triggered when a player studies a blueprint at a research table."
+    ]
+  },
+  {
+    "hook": "OnPlayerTick",
+    "descriptions": [
+      "Called each server tick for an active player (for per-tick player updates)."
+    ]
+  },
+  {
+    "hook": "OnPlayerUnvanish",
+    "descriptions": [
+      "Called when a player comes out of vanish and becomes visible again."
+    ]
+  },
+  {
+    "hook": "OnPlayerVanish",
+    "descriptions": [
+      "Called when a player becomes invisible/vanishes (usually an admin command)."
+    ]
+  },
+  {
+    "hook": "OnPlayerViolation",
+    "descriptions": [
+      "Triggered when a player triggers an anti-cheat violation."
+    ]
+  },
+  {
+    "hook": "OnPlayerVoice",
+    "descriptions": [
+      "Called when a player's voice chat status is updated (i.e., they transmit voice data)."
+    ]
+  },
+  {
+    "hook": "OnPlayerWantsDismount",
+    "descriptions": [
+      "Called when a player attempts to dismount a mountable entity (before actually dismounting)."
+    ]
+  },
+  {
+    "hook": "OnPlayerWantsMount",
+    "descriptions": [
+      "Called when a player attempts to mount an entity (before mounting occurs)."
+    ]
+  },
+  {
+    "hook": "OnPlayerWound",
+    "descriptions": [
+      "Triggered when a player goes into the wounded state (downed but not dead)."
+    ]
+  },
+  {
+    "hook": "OnPluginOutdated",
+    "descriptions": [
+      "Triggered if a plugin is detected to be outdated (version mismatch)."
+    ]
+  },
+  {
+    "hook": "OnPortalUse",
+    "descriptions": [
+      "Triggered when a player uses a portal (teleporter) to teleport."
+    ]
+  },
+  {
+    "hook": "OnPortalUsed",
+    "descriptions": [
+      "Called after a player has teleported using a portal."
+    ]
+  },
+  {
+    "hook": "OnQuarryConsumeFuel",
+    "descriptions": [
+      "Called when a mining quarry checks for fuel and consumes it to continue running."
+    ]
+  },
+  {
+    "hook": "OnQuarryGather",
+    "descriptions": [
+      "Triggered when a mining quarry produces resources (each processing cycle)."
+    ]
+  },
+  {
+    "hook": "OnQuarryToggle",
+    "descriptions": [
+      "Called when a mining quarry is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnQuarryToggled",
+    "descriptions": [
+      "Called after a mining quarry's on/off state has been toggled."
+    ]
+  },
+  {
+    "hook": "OnQueueCycle",
+    "descriptions": [
+      "Called on each cycle of the connection queue processing (checking slots and moving players into the server)."
+    ]
+  },
+  {
+    "hook": "OnQueueUpdate",
+    "descriptions": [
+      "Called when a queued player's position update is sent (queue position message)."
+    ]
+  },
+  {
+    "hook": "OnRandomItemAward",
+    "descriptions": [
+      "Called when a player is about to receive a random item reward (from an event or server reward)."
+    ]
+  },
+  {
+    "hook": "OnRconConnection",
+    "descriptions": [
+      "Called when an RCON client connects to the server (remote console connection opened)."
+    ]
+  },
+  {
+    "hook": "OnRemoveDying",
+    "descriptions": [
+      "Triggered when a dying plant is removed, yielding a final item (like when picking up a withered plant)."
+    ]
+  },
+  {
+    "hook": "OnResourceDepositCreated",
+    "descriptions": [
+      "Called when a new resource deposit entry is created for a world position (usually due to surveying)."
+    ]
+  },
+  {
+    "hook": "OnRespawnInformationGiven",
+    "descriptions": [
+      "Called when respawn information (spawn options) is given to a player (after they die or join)."
+    ]
+  },
+  {
+    "hook": "OnRfBroadcasterAdd",
+    "descriptions": [
+      "Called when an RF broadcaster (transmitter) is added on a frequency (started broadcasting)."
+    ]
+  },
+  {
+    "hook": "OnRfBroadcasterAdded",
+    "descriptions": [
+      "Called after an RF broadcaster has been added to a frequency."
+    ]
+  },
+  {
+    "hook": "OnRfBroadcasterRemove",
+    "descriptions": [
+      "Called when an RF broadcaster is removed from a frequency (stops broadcasting)."
+    ]
+  },
+  {
+    "hook": "OnRfBroadcasterRemoved",
+    "descriptions": [
+      "Called after an RF broadcaster has been removed from a frequency."
+    ]
+  },
+  {
+    "hook": "OnRfFrequencyChange",
+    "descriptions": [
+      "Triggered when an RF device's frequency is about to change (e.g., adjusting broadcaster/receiver)."
+    ]
+  },
+  {
+    "hook": "OnRfFrequencyChanged",
+    "descriptions": [
+      "Triggered after an RF device's frequency has been changed."
+    ]
+  },
+  {
+    "hook": "OnRfListenerAdd",
+    "descriptions": [
+      "Called when an RF listener (receiver device) is added on a frequency (turned on)."
+    ]
+  },
+  {
+    "hook": "OnRfListenerAdded",
+    "descriptions": [
+      "Called after an RF listener has been added to a frequency."
+    ]
+  },
+  {
+    "hook": "OnRfListenerRemove",
+    "descriptions": [
+      "Called when an RF listener is removed from a frequency (turned off)."
+    ]
+  },
+  {
+    "hook": "OnRfListenerRemoved",
+    "descriptions": [
+      "Called after an RF listener has been removed from a frequency."
+    ]
+  },
+  {
+    "hook": "OnRfListenerRemoved [patch]",
+    "descriptions": [
+      "Alternate hook called after an RF listener removal (patch hook for additional processing)."
+    ]
+  },
+  {
+    "hook": "OnRunPlayerMetabolism",
+    "descriptions": [
+      "Called when running a player's metabolism update (applies hunger/thirst status changes)."
+    ]
+  },
+  {
+    "hook": "OnSaveLoad",
+    "descriptions": [
+      "Triggered when the server loads the save file at startup."
+    ]
+  },
+  {
+    "hook": "OnSendCommand",
+    "descriptions": [
+      "Called when the server sends a console command to a specific client."
+    ]
+  },
+  {
+    "hook": "OnSendModelState",
+    "descriptions": [
+      "Called when an entity's model state (like posture or holding items) is being sent to clients."
+    ]
+  },
+  {
+    "hook": "OnServerCommand",
+    "descriptions": [
+      "Triggered when a server console command is executed."
+    ]
+  },
+  {
+    "hook": "OnServerInformationUpdated",
+    "descriptions": [
+      "Called when the server's information (name, player count, map) is updated (for server listings)."
+    ]
+  },
+  {
+    "hook": "OnServerInitialize",
+    "descriptions": [
+      "Called when the server begins initialization (loading save, spawning initial entities)."
+    ]
+  },
+  {
+    "hook": "OnServerMessage",
+    "descriptions": [
+      "Triggered when the server broadcasts a chat message to all players (e.g., \"SERVER\" chat)."
+    ]
+  },
+  {
+    "hook": "OnServerRestart",
+    "descriptions": [
+      "Called when a server restart is initiated (scheduling a restart countdown)."
+    ]
+  },
+  {
+    "hook": "OnServerRestartInterrupt",
+    "descriptions": [
+      "Called when a scheduled server restart is interrupted or canceled."
+    ]
+  },
+  {
+    "hook": "OnServerSave",
+    "descriptions": [
+      "Called when the server performs a save of the world (automatic or manual save)."
+    ]
+  },
+  {
+    "hook": "OnServerUserRemove",
+    "descriptions": [
+      "Called when an entry is removed from the server's user list (e.g., a user is unbanned or removed from moderators)."
+    ]
+  },
+  {
+    "hook": "OnServerUserSet",
+    "descriptions": [
+      "Called when an entry is added to the server's user list (ban, moderator, owner, etc.)."
+    ]
+  },
+  {
+    "hook": "OnSiegeWeaponDoorClose",
+    "descriptions": [
+      "Triggered when a battering ram's door or cover is closed."
+    ]
+  },
+  {
+    "hook": "OnSiegeWeaponDoorOpen",
+    "descriptions": [
+      "Triggered when a battering ram's door or cover is opened."
+    ]
+  },
+  {
+    "hook": "OnSiegeWeaponFire",
+    "descriptions": [
+      "Triggered when a siege weapon (catapult, battering ram, or ballista) is fired."
+    ]
+  },
+  {
+    "hook": "OnSiegeWeaponPull",
+    "descriptions": [
+      "Called when a siege weapon is pulled back into ready position (e.g., resetting a catapult or ram)."
+    ]
+  },
+  {
+    "hook": "OnSignalBroadcast",
+    "descriptions": [
+      "Triggered when a game or electrical signal is broadcast (e.g., an electrical signal sent to listeners)."
+    ]
+  },
+  {
+    "hook": "OnSpinWheel",
+    "descriptions": [
+      "Called when a spinning wheel or roulette wheel is spun."
+    ]
+  },
+  {
+    "hook": "OnSurveyGather",
+    "descriptions": [
+      "Triggered when a survey charge explodes to gather resource samples from the ground."
+    ]
+  },
+  {
+    "hook": "OnThreatLevelUpdate",
+    "descriptions": [
+      "Called when a player's threat level is updated (for AI targeting or aggression mechanics)."
+    ]
+  },
+  {
+    "hook": "OnTick",
+    "descriptions": [
+      "Triggered on each server tick (regular server update interval)."
+    ]
+  },
+  {
+    "hook": "OnUserApprove",
+    "descriptions": [
+      "Called when a user is connecting, to decide if they are allowed (e.g., whitelist/ban check)."
+    ]
+  },
+  {
+    "hook": "OnUserApproved",
+    "descriptions": [
+      "Called after a user has been approved to join the server."
+    ]
+  },
+  {
+    "hook": "OnUserChat",
+    "descriptions": [
+      "Triggered when a user (player) sends a chat message (generic user-level event)."
+    ]
+  },
+  {
+    "hook": "OnUserConnected",
+    "descriptions": [
+      "Called when a user (player) connects to the server (generic user-level connect event)."
+    ]
+  },
+  {
+    "hook": "OnUserKicked",
+    "descriptions": [
+      "Triggered when a user (player) is kicked from the server (generic user-level event)."
+    ]
+  },
+  {
+    "hook": "OnUserRespawn",
+    "descriptions": [
+      "Called when a user (player) respawns."
+    ]
+  },
+  {
+    "hook": "OnUserRespawned",
+    "descriptions": [
+      "Called after a user (player) has respawned."
+    ]
+  },
+  {
+    "hook": "OnWireClear",
+    "descriptions": [
+      "Called when an electrical wire is cleared (disconnected)."
+    ]
+  },
+  {
+    "hook": "OnWireConnect",
+    "descriptions": [
+      "Called when an electrical wire connection is made between two devices."
+    ]
+  },
+  {
+    "hook": "OnXmasGiftsDistribute",
+    "descriptions": [
+      "Called when Christmas gifts are being spawned for a player during the Xmas event."
+    ]
+  },
+  {
+    "hook": "OnXmasLootDistribute",
+    "descriptions": [
+      "Triggered when the Xmas event begins distributing presents and stocking items."
+    ]
+  },
+  {
+    "hook": "OnXmasStockingFill",
+    "descriptions": [
+      "Called when a Christmas stocking is being filled with loot items."
+    ]
+  },
+  {
+    "hook": "Unload",
+    "descriptions": [
+      "Called when a plugin is being unloaded (for cleanup)."
+    ]
+  },
+  {
+    "hook": "CanAcceptBackpackItem",
+    "descriptions": [
+      "Called when determining if an item can be placed into a backpack (inventory).",
+      "Return false to reject the item from being added to the backpack."
+    ]
+  },
+  {
+    "hook": "CanAcceptItem",
+    "descriptions": [
+      "Called before an item is added to an inventory or container to determine if it is allowed.",
+      "Return false to prevent the item from being added."
+    ]
+  },
+  {
+    "hook": "CanAccessVendingMachine",
+    "descriptions": [
+      "Called when a player attempts to access a vending machine to check if they are allowed.",
+      "Return false to prevent the player from accessing the vending machine."
+    ]
+  },
+  {
+    "hook": "CanBeTargeted",
+    "descriptions": [
+      "Called to determine if an entity (like a turret or NPC) can target a given object or player.",
+      "Return false to prevent that entity from being targeted."
+    ]
+  },
+  {
+    "hook": "CanBeWounded",
+    "descriptions": [
+      "Called when determining if a player should enter the wounded state (instead of dying).",
+      "Return false to prevent the player from going wounded (they will die instead)."
+    ]
+  },
+  {
+    "hook": "CanBradleyApcTarget",
+    "descriptions": [
+      "Called to decide if the Bradley APC can target a specific entity or player.",
+      "Return false to prevent the APC from targeting that entity."
+    ]
+  },
+  {
+    "hook": "CanBuild",
+    "descriptions": [
+      "Called when a player tries to place a building block or deployable, to determine if building is allowed at that location.",
+      "Return false to block the placement."
+    ]
+  },
+  {
+    "hook": "CanBypassQueue",
+    "descriptions": [
+      "Called when a player attempts to join a server queue, to determine if they can bypass it.",
+      "Return true to allow the player to skip the queue."
+    ]
+  },
+  {
+    "hook": "CanChangeCode",
+    "descriptions": [
+      "Called when a lock's code is about to be changed, to decide if the code change is allowed.",
+      "Return false to prevent the code change."
+    ]
+  },
+  {
+    "hook": "CanCraft",
+    "descriptions": [
+      "Called when a player attempts to start crafting an item, to determine if they are allowed to craft it.",
+      "Return false to block the crafting attempt."
+    ]
+  },
+  {
+    "hook": "CanDeployItem",
+    "descriptions": [
+      "Called before a deployable item (e.g., trap or tool) is placed to determine if placement is allowed at that moment.",
+      "Return false to prevent the item from being deployed."
+    ]
+  },
+  {
+    "hook": "CanDropActiveItem",
+    "descriptions": [
+      "Called before a player drops their active (equipped) item to decide if the drop is allowed.",
+      "Return false to prevent the player from dropping the item."
+    ]
+  },
+  {
+    "hook": "CanDropItems",
+    "descriptions": [
+      "Called when an item is about to be dropped, to determine if dropping items is permitted.",
+      "Return false to prevent the item(s) from dropping."
+    ]
+  },
+  {
+    "hook": "CanDuctTapeItem",
+    "descriptions": [
+      "Called when a player attempts to duct tape (repair) an item, to check if the action is allowed.",
+      "Return false to disallow using duct tape on that item."
+    ]
+  },
+  {
+    "hook": "CanEquipItem",
+    "descriptions": [
+      "Called before a player equips (wears or holds) an item, allowing you to decide if they can.",
+      "Return false to prevent the item from being equipped."
+    ]
+  },
+  {
+    "hook": "CanExportBlueprint",
+    "descriptions": [
+      "Called when a player tries to export a blueprint (e.g., to a file or workshop), to decide if it's allowed.",
+      "Return false to block the blueprint export."
+    ]
+  },
+  {
+    "hook": "CanFlashlightToggle",
+    "descriptions": [
+      "Called when a player attempts to toggle a flashlight or weapon light, to decide if they can.",
+      "Return false to prevent the light from toggling."
+    ]
+  },
+  {
+    "hook": "CanHorseDung",
+    "descriptions": [
+      "Called to determine if a horse can produce dung at a given time.",
+      "Return false to prevent dung from being produced at that moment."
+    ]
+  },
+  {
+    "hook": "CanInviteToTeam",
+    "descriptions": [
+      "Called when a player tries to invite someone to their team, to decide if the invite can be sent.",
+      "Return false to block the team invite."
+    ]
+  },
+  {
+    "hook": "CanItemOverflowPickup",
+    "descriptions": [
+      "Called when an item overflow (e.g., items on the ground) is about to be picked up automatically, to determine if it should.",
+      "Return false to prevent automatic pickup of overflow items."
+    ]
+  },
+  {
+    "hook": "CanLock",
+    "descriptions": [
+      "Called before a lock is locked to determine if locking is allowed.",
+      "Return false to prevent the lock from being locked."
+    ]
+  },
+  {
+    "hook": "CanLootEntity",
+    "descriptions": [
+      "Called when a player attempts to loot an entity (box, corpse, etc) to decide if they are allowed.",
+      "Return false to prevent looting that entity."
+    ]
+  },
+  {
+    "hook": "CanLootPlayer",
+    "descriptions": [
+      "Called when one player attempts to loot another, allowing you to permit or block the action.",
+      "Return false to prevent looting that player."
+    ]
+  },
+  {
+    "hook": "CanMailItem",
+    "descriptions": [
+      "Called when a player attempts to mail an item (e.g., via a mailbox), to decide if it's allowed.",
+      "Return false to block sending the item."
+    ]
+  },
+  {
+    "hook": "CanNetworkTo",
+    "descriptions": [
+      "Called to decide if an entity's network data should be sent to a specific player (visibility/Networking).",
+      "Return false to prevent networking that entity to the player."
+    ]
+  },
+  {
+    "hook": "CanNpcAttack",
+    "descriptions": [
+      "Called before an NPC attacks a target, to determine if the attack should proceed.",
+      "Return false to prevent the NPC from attacking that target."
+    ]
+  },
+  {
+    "hook": "CanNpcFear",
+    "descriptions": [
+      "Called to determine if an NPC should flee or exhibit fear in a given situation.",
+      "Return false to prevent the NPC from fearing (so it might stay instead of running)."
+    ]
+  },
+  {
+    "hook": "CanOpenAirdrop",
+    "descriptions": [
+      "Called when a player tries to open an airdrop crate, to decide if they can open it.",
+      "Return false to prevent the airdrop from being opened."
+    ]
+  },
+  {
+    "hook": "CanOrderTeam",
+    "descriptions": [
+      "Called when a player attempts to issue an order to their team (e.g., via commands), to decide if it's allowed.",
+      "Return false to block the team order."
+    ]
+  },
+  {
+    "hook": "CanPatrolHeliSeePlayer",
+    "descriptions": [
+      "Called to determine if the attack helicopter can see a given player.",
+      "Return false to make the helicopter lose sight of that player."
+    ]
+  },
+  {
+    "hook": "CanPickupAllFromRack",
+    "descriptions": [
+      "Called before a player retrieves all weapons from a rack at once, to decide if it's allowed."
+    ]
+  },
+  {
+    "hook": "CanPickupBackpack",
+    "descriptions": [
+      "Called when a player attempts to pick up a deployed backpack, to decide if they can.",
+      "Return false to prevent the backpack from being picked up."
+    ]
+  },
+  {
+    "hook": "CanPickupFromRack",
+    "descriptions": [
+      "Called before a weapon is picked up from a weapon rack to determine if it is allowed."
+    ]
+  },
+  {
+    "hook": "CanPickupItem",
+    "descriptions": [
+      "Called when a player attempts to pick up an item (from the ground or world) to decide if they can.",
+      "Return false to prevent the item from being picked up."
+    ]
+  },
+  {
+    "hook": "CanPlaceOnRack",
+    "descriptions": [
+      "Called before a weapon is placed onto a weapon rack to determine if it is allowed."
+    ]
+  },
+  {
+    "hook": "CanPromote",
+    "descriptions": [
+      "Called when a team leader tries to promote another member to leader, to determine if it’s allowed.",
+      "Return false to prevent the promotion."
+    ]
+  },
+  {
+    "hook": "CanPurchaseItem",
+    "descriptions": [
+      "Called when a player attempts to purchase an item (e.g., from a vending machine), to decide if the purchase is allowed.",
+      "Return false to block the purchase."
+    ]
+  },
+  {
+    "hook": "CanRaiseBuildingPrivilege",
+    "descriptions": [
+      "Called when a player attempts to authorize themselves on a tool cupboard (building privilege), to decide if they can.",
+      "Return false to prevent the player from gaining building privilege."
+    ]
+  },
+  {
+    "hook": "CanReload",
+    "descriptions": [
+      "Called when a player attempts to reload a weapon, to check if the reload action is allowed.",
+      "Return false to prevent the weapon from reloading."
+    ]
+  },
+  {
+    "hook": "CanRemoveFromCar",
+    "descriptions": [
+      "Called when a player tries to remove a module or item from a car, to decide if it's allowed.",
+      "Return false to block the removal."
+    ]
+  },
+  {
+    "hook": "CanResearchItem",
+    "descriptions": [
+      "Called when a player attempts to research an item at a research table, to determine if they can.",
+      "Return false to prevent the research from starting."
+    ]
+  },
+  {
+    "hook": "CanRespawn",
+    "descriptions": [
+      "Called when a player is about to respawn (after death), to decide if they can at that time/location.",
+      "Return false to block or delay the respawn."
+    ]
+  },
+  {
+    "hook": "CanSeePlayer",
+    "descriptions": [
+      "Called to determine if one entity (NPC or turret) can see a particular player (line-of-sight check override).",
+      "Return false to make the entity treat the player as unseen."
+    ]
+  },
+  {
+    "hook": "CanSpectateTarget",
+    "descriptions": [
+      "Called when a player attempts to spectate a target to check if they are allowed to.",
+      "Return false to prevent the player from spectating that target."
+    ]
+  },
+  {
+    "hook": "CanStartBrain",
+    "descriptions": [
+      "Called when an NPC or AI brain is about to start (become active), to decide if it should initialize.",
+      "Return false to keep the AI brain from starting."
+    ]
+  },
+  {
+    "hook": "CanStayWounded",
+    "descriptions": [
+      "Called while a player is wounded to decide if they should remain in the wounded state or die.",
+      "Return false to force the player to die instead of staying wounded."
+    ]
+  },
+  {
+    "hook": "CanSwapToSeat",
+    "descriptions": [
+      "Called when a player tries to swap seats in a vehicle, to determine if the seat swap is allowed.",
+      "Return false to prevent changing seats."
+    ]
+  },
+  {
+    "hook": "CanTeleport",
+    "descriptions": [
+      "Called when a player or entity attempts to teleport (via command or plugin), to decide if it's allowed.",
+      "Return false to block the teleport action."
+    ]
+  },
+  {
+    "hook": "CanThrowItem",
+    "descriptions": [
+      "Called when a player tries to throw an item (like toss from inventory), to determine if throwing is allowed.",
+      "Return false to prevent the item from being thrown."
+    ]
+  },
+  {
+    "hook": "CanUnlock",
+    "descriptions": [
+      "Called before a lock is unlocked to determine if the action should be allowed.",
+      "Return false to prevent the lock from being unlocked."
+    ]
+  },
+  {
+    "hook": "CanUseCompound",
+    "descriptions": [
+      "Called when a player attempts to use a compound (safe zone) feature, to decide if they can.",
+      "Return false to disallow the action in the compound."
+    ]
+  },
+  {
+    "hook": "CanUseComputer",
+    "descriptions": [
+      "Called when a player attempts to use a computer station, to determine if access is allowed.",
+      "Return false to prevent the player from using the computer."
+    ]
+  },
+  {
+    "hook": "CanUseLockedEntity",
+    "descriptions": [
+      "Called before a player interacts with a locked entity (door, box, etc) to check if they can use it.",
+      "Return false to prevent the player from using that locked entity."
+    ]
+  },
+  {
+    "hook": "CanUseMailbox",
+    "descriptions": [
+      "Called when a player tries to use a mailbox (send/receive mail), to decide if they are allowed.",
+      "Return false to block mailbox access."
+    ]
+  },
+  {
+    "hook": "CanUseMounts",
+    "descriptions": [
+      "Called when a player attempts to mount any mountable (chair, vehicle, etc) to decide if they can.",
+      "Return false to prevent the player from mounting."
+    ]
+  },
+  {
+    "hook": "CanUseNet",
+    "descriptions": [
+      "Called when a player tries to catch something with a net (e.g., a fish trap), to determine if it's allowed.",
+      "Return false to prevent usage of the net."
+    ]
+  },
+  {
+    "hook": "CanUseRemoteControl",
+    "descriptions": [
+      "Called when a player attempts to use a remote control (drone, camera) to see if they're permitted.",
+      "Return false to deny remote control access."
+    ]
+  },
+  {
+    "hook": "CanUseResponse",
+    "descriptions": [
+      "Called when an NPC is about to use a response (dialogue/AI response), to decide if it should happen.",
+      "Return false to prevent that NPC response."
+    ]
+  },
+  {
+    "hook": "CanUseSmartSwitch",
+    "descriptions": [
+      "Called when a player tries to toggle a smart switch remotely (via app), to decide if it's allowed.",
+      "Return false to block the remote switch toggle."
+    ]
+  },
+  {
+    "hook": "CanUseSprayCan",
+    "descriptions": [
+      "Called when a player tries to use a spray can (e.g., to spray a sign or skin), to determine if it's allowed.",
+      "Return false to prevent using the spray can."
+    ]
+  },
+  {
+    "hook": "CanUseToolCupboard",
+    "descriptions": [
+      "Called when a player attempts to access or open a tool cupboard, to decide if they can.",
+      "Return false to block access to the tool cupboard."
+    ]
+  },
+  {
+    "hook": "CanWaterPlant",
+    "descriptions": [
+      "Called when a player or object attempts to water a plant, to determine if the watering action is allowed.",
+      "Return false to prevent the plant from being watered."
+    ]
+  },
+  {
+    "hook": "CanWearItem",
+    "descriptions": [
+      "Called when a player tries to wear an item (clothing/armor) to check if it’s allowed.",
+      "Return false to prevent the item from being worn."
+    ]
+  },
+  {
+    "hook": "CanUseVendor",
+    "descriptions": [
+      "Called when a player attempts to use an NPC vendor, to decide if they can trade.",
+      "Return false to disallow the trade interaction."
+    ]
+  },
+  {
+    "hook": "CanUseVendingMachine",
+    "descriptions": [
+      "Called when a player interacts with a vending machine to determine if they can use it (shop).",
+      "Return false to prevent the player from opening or using the vending machine."
+    ]
+  },
+  {
+    "hook": "CanWakeUp",
+    "descriptions": [
+      "Called when a sleeping player might wake up (e.g., called via stimuli), to decide if they should.",
+      "Return false to keep the player sleeping."
+    ]
+  },
+  {
+    "hook": "CanWaterPlantItem",
+    "descriptions": [
+      "Called when a player uses an item (e.g., water bucket) to water a plant, to decide if it’s allowed.",
+      "Return false to stop the watering action."
+    ]
+  },
+  {
+    "hook": "CanWireConnect",
+    "descriptions": [
+      "Called when a player attempts to connect two electrical wires, to decide if the connection can be made.",
+      "Return false to prevent connecting those wires."
+    ]
+  },
+  {
+    "hook": "CanWoundPlayer",
+    "descriptions": [
+      "Called when the game is about to put a player into a wounded state, to decide if wounding is allowed or if they should die instead.",
+      "Return false to override and kill the player instead of wounding."
+    ]
+  },
+  {
+    "hook": "ICraftDurationMultiplier",
+    "descriptions": [
+      "Allows modifying the craft duration multiplier.",
+      "Use this to speed up or slow down crafting times."
+    ]
+  },
+  {
+    "hook": "IDelFix",
+    "descriptions": [
+      "Hook used for internal deletion fixes (technical hook for mod stability)."
+    ]
+  },
+  {
+    "hook": "IFixCarsFix",
+    "descriptions": [
+      "Hook used for internal car-related fixes (technical hook for mod stability)."
+    ]
+  },
+  {
+    "hook": "IFurnaceMultiplier",
+    "descriptions": [
+      "Allows modifying furnace output or speed multipliers (custom hook to adjust furnace behavior)."
+    ]
+  },
+  {
+    "hook": "IGiveDefaultSuit",
+    "descriptions": [
+      "Called when determining if a default suit (clothing) should be given to a player (e.g., on spawn).",
+      "Can be used to override default clothing on spawn."
+    ]
+  },
+  {
+    "hook": "IOnBasePlayerAttacked",
+    "descriptions": [
+      "Called when a player is attacked (e.g., by another player or NPC)."
+    ]
+  },
+  {
+    "hook": "IOnBasePlayerHurt",
+    "descriptions": [
+      "Called when a player is hurt and takes damage."
+    ]
+  },
+  {
+    "hook": "IOnBotReceiveDamage",
+    "descriptions": [
+      "Called when a bot (NPC) receives damage, allowing modification or logging of the damage."
+    ]
+  },
+  {
+    "hook": "IOnButtonClick",
+    "descriptions": [
+      "Called when a CUI (Custom UI) button is clicked by a player.",
+      "Use this to handle custom UI button events."
+    ]
+  },
+  {
+    "hook": "IOnCameraCreate",
+    "descriptions": [
+      "Called when a security camera (CCTV) is created or initialized."
+    ]
+  },
+  {
+    "hook": "IOnCameraDestroy",
+    "descriptions": [
+      "Called when a security camera is destroyed or removed."
+    ]
+  },
+  {
+    "hook": "IOnCameraInit",
+    "descriptions": [
+      "Called when a security camera is first initialized."
+    ]
+  },
+  {
+    "hook": "IOnCameraSetup",
+    "descriptions": [
+      "Called during the setup process of a camera (e.g., for configuring view or controls)."
+    ]
+  },
+  {
+    "hook": "IOnCarEnter",
+    "descriptions": [
+      "Called when a player or NPC enters a car.",
+      "Use this to trigger effects or checks on vehicle entry."
+    ]
+  },
+  {
+    "hook": "IOnCarExit",
+    "descriptions": [
+      "Called when a player or NPC exits a car.",
+      "Use this to handle events when leaving a vehicle."
+    ]
+  },
+  {
+    "hook": "IOnCargoPlaneSignalled",
+    "descriptions": [
+      "Called when a cargo plane is signaled (e.g., for airdrop), allowing intervention or tracking."
+    ]
+  },
+  {
+    "hook": "IOnClientLibrary",
+    "descriptions": [
+      "Called related to client library events (internal hook for client-side mod interactions)."
+    ]
+  },
+  {
+    "hook": "IOnClientReady",
+    "descriptions": [
+      "Called when the client is fully ready (post-connection handshake), often used in mod setups."
+    ]
+  },
+  {
+    "hook": "IOnClientStart",
+    "descriptions": [
+      "Called when a client starts up or connects (initial event)."
+    ]
+  },
+  {
+    "hook": "IOnClientTravel",
+    "descriptions": [
+      "Called when a client travels to a new server or level (used for multi-server setups)."
+    ]
+  },
+  {
+    "hook": "IOnConsoleCommand",
+    "descriptions": [
+      "Called when a console command is executed on the server, allowing logging or override."
+    ]
+  },
+  {
+    "hook": "IOnEntityBuilt",
+    "descriptions": [
+      "Called after a building entity is constructed (placed in the world).",
+      "Use this to apply custom logic to newly built structures."
+    ]
+  },
+  {
+    "hook": "IOnEntitySpawned",
+    "descriptions": [
+      "Called after an entity has spawned into the world (interface version of OnEntitySpawned)."
+    ]
+  },
+  {
+    "hook": "IOnExcavatorInit",
+    "descriptions": [
+      "Called when the excavator machine is initialized (started up)."
+    ]
+  },
+  {
+    "hook": "IOnItemInformationPanel",
+    "descriptions": [
+      "Called when an item's information panel is about to show (e.g., in inventory UI), allowing modification."
+    ]
+  },
+  {
+    "hook": "IOnLadderPrevention",
+    "descriptions": [
+      "Called when checking for ladder placement prevention (building privilege), allowing override."
+    ]
+  },
+  {
+    "hook": "IOnPlayerBanned",
+    "descriptions": [
+      "Called when a player is banned (e.g., by VAC or manual ban).",
+      "Use this to log or act on player bans."
+    ]
+  },
+  {
+    "hook": "IOnPlayerChat",
+    "descriptions": [
+      "Called when a player sends a chat message.",
+      "Use this to monitor or modify in-game chat."
+    ]
+  },
+  {
+    "hook": "IOnResearchDestroy",
+    "descriptions": [
+      "Called when a research table or related object is destroyed, allowing custom behavior on destruction."
+    ]
+  },
+  {
+    "hook": "IOnResearchInit",
+    "descriptions": [
+      "Called when a research process is initiated (interface version, allowing modifications to research start)."
+    ]
+  },
+  {
+    "hook": "IOnResearchable",
+    "descriptions": [
+      "Called when determining if an item is researchable, allowing override of research availability."
+    ]
+  },
+  {
+    "hook": "IOnServerMessage",
+    "descriptions": [
+      "Called when the server sends a message (e.g., chat or console broadcast), allowing plugin processing."
+    ]
+  },
+  {
+    "hook": "IOnTCAuthorized",
+    "descriptions": [
+      "Called when a player is authorized on a tool cupboard (TC)."
+    ]
+  },
+  {
+    "hook": "IOnTCCreate",
+    "descriptions": [
+      "Called when a tool cupboard (TC) is placed/created."
+    ]
+  },
+  {
+    "hook": "IOnTCLeaving",
+    "descriptions": [
+      "Called when a player is removed from (or leaves) a tool cupboard's authorized list."
+    ]
+  },
+  {
+    "hook": "IOnTCMaxAuth",
+    "descriptions": [
+      "Called when a tool cupboard reaches its maximum number of authorized players, allowing override."
+    ]
+  },
+  {
+    "hook": "IOnTeamChat",
+    "descriptions": [
+      "Called when a player sends a team chat message (only visible to their team)."
+    ]
+  },
+  {
+    "hook": "IOnTeamCreated",
+    "descriptions": [
+      "Called when a team is created (interface hook variant)."
+    ]
+  },
+  {
+    "hook": "IOnTeamDisbanded",
+    "descriptions": [
+      "Called when a team is disbanded (interface hook variant)."
+    ]
+  },
+  {
+    "hook": "IOnTip",
+    "descriptions": [
+      "Called when a game tip or hint is displayed to a player, allowing capture or suppression of tips."
+    ]
+  },
+  {
+    "hook": "IOnUserApprove",
+    "descriptions": [
+      "Called when a user (player) is approving connection (joining the server), allowing custom approval logic (like whitelisting).",
+      "Return false to reject the player's connection."
+    ]
+  },
+  {
+    "hook": "IOnXmasOpen",
+    "descriptions": [
+      "Called when a player opens a Christmas present (seasonal event), allowing custom effects or logging."
+    ]
+  },
+  {
+    "hook": "IOnXpEarn",
+    "descriptions": [
+      "Called when a player earns XP, allowing modification of XP gain."
+    ]
+  },
+  {
+    "hook": "IOvenSmeltSpeedMultiplier",
+    "descriptions": [
+      "Allows modifying the oven smelt speed multiplier.",
+      "Use this to speed up or slow down smelting in furnaces/ovens."
+    ]
+  },
+  {
+    "hook": "IPostNetworkUpdate",
+    "descriptions": [
+      "Called after a network update is sent for an entity, allowing post-update logic (e.g., sync validation)."
+    ]
+  },
+  {
+    "hook": "IRecyclerThinkSpeed",
+    "descriptions": [
+      "Allows modifying the recycler think speed.",
+      "Use this to adjust how quickly recyclers process items."
+    ]
+  },
+  {
+    "hook": "IResearchDuration",
+    "descriptions": [
+      "Allows modifying the research duration.",
+      "Use this to change how long research takes to complete."
+    ]
+  },
+  {
+    "hook": "IServerAsyncShutdown",
+    "descriptions": [
+      "Called during the server's shutdown process (asynchronously).",
+      "Use this to perform custom cleanup tasks on shutdown."
+    ]
+  },
+  {
+    "hook": "IServerInfoUpdate",
+    "descriptions": [
+      "Called when the server's information is updated (e.g., server browser info)."
+    ]
+  },
+  {
+    "hook": "IServerMgrOnRPCMessage",
+    "descriptions": [
+      "Called when the server receives an RPC message (network packet) for an entity.",
+      "Can be used to monitor or modify incoming RPC calls."
+    ]
+  },
+  {
+    "hook": "ITurretAimSpeed",
+    "descriptions": [
+      "Allows modifying the aiming speed of an autoturret, letting you slow down or speed up turret rotation."
+    ]
+  },
+  {
+    "hook": "ITurretTarget",
+    "descriptions": [
+      "Called when an autoturret is deciding on a target, allowing override of turret targeting logic."
+    ]
+  },
+  {
+    "hook": "IVendingBuyDuration",
+    "descriptions": [
+      "Allows modifying the vending buy duration.",
+      "Use this to alter the duration of vending machine buy transactions."
+    ]
+  },
+  {
+    "hook": "IWaterCatchment",
+    "descriptions": [
+      "Called when a water catcher collects water (rain), allowing modifications to water collection."
+    ]
+  },
+  {
+    "hook": "IWaterRefresh",
+    "descriptions": [
+      "Called when water in a container is refreshed or updated, allowing custom behavior (e.g., purifying water)."
+    ]
+  },
+  {
+    "hook": "IWorkbenchAct",
+    "descriptions": [
+      "Called when a player interacts with a workbench (e.g., to start research or experiments), allowing custom logic."
+    ]
+  },
+  {
+    "hook": "IWorkbenchExperiment",
+    "descriptions": [
+      "Called when a player begins an experiment at a workbench, allowing you to modify or replace the experiment outcome."
+    ]
+  },
+  {
+    "hook": "IWorkbenchExperimentEnd",
+    "descriptions": [
+      "Called when a workbench experiment ends, allowing you to handle results or alter outcomes."
+    ]
+  },
+  {
+    "hook": "IWorkbenchLevelOverride",
+    "descriptions": [
+      "Called when checking a player's workbench level (for crafting), allowing you to override the required level."
+    ]
+  },
+  {
+    "hook": "IWorkbenchUnlock",
+    "descriptions": [
+      "Called when an item is unlocked via a workbench experiment, allowing interception or additional effects."
+    ]
+  },
+  {
+    "hook": "IXmasEvent",
+    "descriptions": [
+      "Called during the Christmas event (e.g., when presents spawn or are opened), allowing customization of the event."
+    ]
+  },
+  {
+    "hook": "OnActiveItemChange",
+    "descriptions": [
+      "Called when a player is about to switch their active held item."
+    ]
+  },
+  {
+    "hook": "OnActiveItemChanged",
+    "descriptions": [
+      "Called after a player has switched their active held item."
+    ]
+  },
+  {
+    "hook": "OnBalloonDropped",
+    "descriptions": [
+      "Called when a hot air balloon is dropped or detached."
+    ]
+  },
+  {
+    "hook": "OnBalloonInflated",
+    "descriptions": [
+      "Called when a hot air balloon is fully inflated."
+    ]
+  },
+  {
+    "hook": "OnBalloonLift",
+    "descriptions": [
+      "Called when a hot air balloon begins to lift off."
+    ]
+  },
+  {
+    "hook": "OnBanditWheelStart",
+    "descriptions": [
+      "Called when the bandit camp spinning wheel starts spinning."
+    ]
+  },
+  {
+    "hook": "OnBanditWheelStop",
+    "descriptions": [
+      "Called when the bandit camp spinning wheel stops (lands on a result)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkControl",
+    "descriptions": [
+      "Called when a player begins controlling a bookmarked entity (e.g., a CCTV camera)."
+    ]
+  },
+  {
+    "hook": "OnBookmarkDelete",
+    "descriptions": [
+      "Called when a bookmark is deleted by a player."
+    ]
+  },
+  {
+    "hook": "OnBradleyApcInitialize",
+    "descriptions": [
+      "Called when the Bradley APC is initialized (spawns or resets)."
+    ]
+  },
+  {
+    "hook": "OnBradleyApcPatrol",
+    "descriptions": [
+      "Called when the Bradley APC starts or continues its patrol route."
+    ]
+  },
+  {
+    "hook": "OnBuildingBlockUpgrade",
+    "descriptions": [
+      "Called when a building block (wall, foundation, etc.) is upgraded to a higher tier.",
+      "Use this to track or modify building upgrades."
+    ]
+  },
+  {
+    "hook": "OnBuildingDemolish",
+    "descriptions": [
+      "Called when a building block is demolished (by C4 or admin, etc)."
+    ]
+  },
+  {
+    "hook": "OnBuildingRepair",
+    "descriptions": [
+      "Called when a building block is repaired by a player."
+    ]
+  },
+  {
+    "hook": "OnButtonFire",
+    "descriptions": [
+      "Called when a player presses a button (electrical button in game)."
+    ]
+  },
+  {
+    "hook": "OnButtonRelease",
+    "descriptions": [
+      "Called when a player releases a pressed button (electrical)."
+    ]
+  },
+  {
+    "hook": "OnBuyButtonClicked",
+    "descriptions": [
+      "Called when a player clicks the buy button in a vending machine UI.",
+      "Use this to intercept or log vending purchases."
+    ]
+  },
+  {
+    "hook": "OnCableInput",
+    "descriptions": [
+      "Called when an electrical cable receives input power.",
+      "Use to modify how power is input to a cable."
+    ]
+  },
+  {
+    "hook": "OnCableOutput",
+    "descriptions": [
+      "Called when an electrical cable provides output power.",
+      "Use to alter the cable's power output behavior."
+    ]
+  },
+  {
+    "hook": "OnCameraStorageItemAdd",
+    "descriptions": [
+      "Called when an item is added to the computer station's camera storage (the list of cameras)."
+    ]
+  },
+  {
+    "hook": "OnCameraTarget",
+    "descriptions": [
+      "Called when a camera (CCTV) switches or targets a new view or entity."
+    ]
+  },
+  {
+    "hook": "OnCardGameRoundEnd",
+    "descriptions": [
+      "Called when a round of a card game (Texas Hold 'Em in bandit camp) ends."
+    ]
+  },
+  {
+    "hook": "OnCardGameRoundStart",
+    "descriptions": [
+      "Called when a new round of the card game starts."
+    ]
+  },
+  {
+    "hook": "OnCargoPlaneSignaled",
+    "descriptions": [
+      "Called when the cargo plane has been signaled for a drop (airdrop incoming)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipAfloat",
+    "descriptions": [
+      "Called when the cargo ship is fully spawned and afloat (active in the world)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipDepart",
+    "descriptions": [
+      "Called when the cargo ship event ends and the ship departs the area."
+    ]
+  },
+  {
+    "hook": "OnCargoShipPlayerDamage",
+    "descriptions": [
+      "Called when a player is damaged on the cargo ship (could be used to modify or log damage)."
+    ]
+  },
+  {
+    "hook": "OnCargoShipPlayerSpawn",
+    "descriptions": [
+      "Called when a player spawns on the cargo ship (e.g., when respawning on an event)."
+    ]
+  },
+  {
+    "hook": "OnCeilingLightToggle",
+    "descriptions": [
+      "Called when a ceiling light is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnChairComfort",
+    "descriptions": [
+      "Called when a player gains comfort from sitting in a chair (near a fire)."
+    ]
+  },
+  {
+    "hook": "OnChinookDropCrate",
+    "descriptions": [
+      "Called when the CH47 Chinook drops its locked crate."
+    ]
+  },
+  {
+    "hook": "OnChinookExited",
+    "descriptions": [
+      "Called when the Chinook helicopter event ends and the helicopter leaves."
+    ]
+  },
+  {
+    "hook": "OnChinookStarted",
+    "descriptions": [
+      "Called when the Chinook helicopter event begins (heli enters the map)."
+    ]
+  },
+  {
+    "hook": "OnChopperTarget",
+    "descriptions": [
+      "Called when the attack helicopter acquires a target (player or entity)."
+    ]
+  },
+  {
+    "hook": "OnChristmasRefill",
+    "descriptions": [
+      "Called when Christmas event stockings are refilled with items."
+    ]
+  },
+  {
+    "hook": "OnClanMemberAdded",
+    "descriptions": [
+      "Called when a new member joins a clan."
+    ]
+  },
+  {
+    "hook": "OnCollectiblePickup",
+    "descriptions": [
+      "Called when a player picks up a collectible item (like stone, mushrooms) from the ground.",
+      "Use this to modify or log resource pickups."
+    ]
+  },
+  {
+    "hook": "OnCompanionshipStarted",
+    "descriptions": [
+      "Called when a pet or companion AI starts following or partnering with a player."
+    ]
+  },
+  {
+    "hook": "OnComputerStationClientReady",
+    "descriptions": [
+      "Called when a computer station's camera feed is ready for the client.",
+      "Use this to manage remote camera feeds."
+    ]
+  },
+  {
+    "hook": "OnConsoleCommand",
+    "descriptions": [
+      "Called when a console command is executed on the server (from RCON or in-game console)."
+    ]
+  },
+  {
+    "hook": "OnCrateDropped",
+    "descriptions": [
+      "Called when a hackable locked crate is dropped (e.g., from a helicopter or plane)."
+    ]
+  },
+  {
+    "hook": "OnCrateHack",
+    "descriptions": [
+      "Called when a hackable locked crate is started (hacking begins)."
+    ]
+  },
+  {
+    "hook": "OnCrateHackEnd",
+    "descriptions": [
+      "Called when a hackable locked crate finishes being hacked (hack complete)."
+    ]
+  },
+  {
+    "hook": "OnCrateLaptopAttack",
+    "descriptions": [
+      "Called when the laptop on a locked crate is attacked (damaged)."
+    ]
+  },
+  {
+    "hook": "OnCrateLanded",
+    "descriptions": [
+      "Called when an airdrop or hackable crate lands on the ground."
+    ]
+  },
+  {
+    "hook": "OnCreateWorldProjectile",
+    "descriptions": [
+      "Called when a projectile (arrow, bullet, etc.) is created/spawned in the world."
+    ]
+  },
+  {
+    "hook": "OnCupboardAuthorize",
+    "descriptions": [
+      "Called when a player is authorized on a tool cupboard.",
+      "Use this to track or restrict cupboard authorizations."
+    ]
+  },
+  {
+    "hook": "OnCupboardClearList",
+    "descriptions": [
+      "Called when a tool cupboard's authorized list is cleared."
+    ]
+  },
+  {
+    "hook": "OnCupboardDeauthorize",
+    "descriptions": [
+      "Called when a player is deauthorized from a tool cupboard (removed from auth list)."
+    ]
+  },
+  {
+    "hook": "OnDoorKnocked",
+    "descriptions": [
+      "Called when a player knocks on a door."
+    ]
+  },
+  {
+    "hook": "OnDrown",
+    "descriptions": [
+      "Called when a player or NPC starts drowning (submerged without oxygen)."
+    ]
+  },
+  {
+    "hook": "OnDrowned",
+    "descriptions": [
+      "Called when a player or NPC has drowned (ran out of oxygen and died)."
+    ]
+  },
+  {
+    "hook": "OnEngineStart",
+    "descriptions": [
+      "Called when an engine (vehicle engine) starts running."
+    ]
+  },
+  {
+    "hook": "OnEngineStarted",
+    "descriptions": [
+      "Called after an engine has started."
+    ]
+  },
+  {
+    "hook": "OnEngineStop",
+    "descriptions": [
+      "Called when an engine stops running (shuts off)."
+    ]
+  },
+  {
+    "hook": "OnEngineStopped",
+    "descriptions": [
+      "Called after an engine has stopped."
+    ]
+  },
+  {
+    "hook": "OnEntityDeath",
+    "descriptions": [
+      "Called when an entity dies.",
+      "Useful for handling NPC or object death events (e.g., drop loot or effects)."
+    ]
+  },
+  {
+    "hook": "OnEntityDestroy",
+    "descriptions": [
+      "Called when an entity is destroyed (removed from the world)."
+    ]
+  },
+  {
+    "hook": "OnEntityGroundMissing",
+    "descriptions": [
+      "Called when an entity has no ground support (e.g., building piece loses foundation)."
+    ]
+  },
+  {
+    "hook": "OnEntityKill",
+    "descriptions": [
+      "Called when an entity is removed or killed.",
+      "Use this to intercept entity destruction and clean up or prevent it."
+    ]
+  },
+  {
+    "hook": "OnEntityLeaveVisibility",
+    "descriptions": [
+      "Called when an entity leaves the visibility range of a player (no longer networked to them)."
+    ]
+  },
+  {
+    "hook": "OnEntityPickup",
+    "descriptions": [
+      "Called when an entity (deployable) is picked up by a player."
+    ]
+  },
+  {
+    "hook": "OnEntityPickedUp",
+    "descriptions": [
+      "Called when an entity (e.g., deployable) is picked up by a player."
+    ]
+  },
+  {
+    "hook": "OnEntitySpawn",
+    "descriptions": [
+      "Called when an entity is about to spawn in the world."
+    ]
+  },
+  {
+    "hook": "OnEntitySpawned",
+    "descriptions": [
+      "Called after an entity has spawned in the world."
+    ]
+  },
+  {
+    "hook": "OnEntityStartBeingLooted",
+    "descriptions": [
+      "Called when a player starts looting an entity (container or corpse)."
+    ]
+  },
+  {
+    "hook": "OnEntityTakeDamage",
+    "descriptions": [
+      "Called when an entity takes damage, allowing modification or cancellation of damage."
+    ]
+  },
+  {
+    "hook": "OnExplosiveDropped",
+    "descriptions": [
+      "Called when a player drops an explosive (instead of throwing it)."
+    ]
+  },
+  {
+    "hook": "OnExplosiveThrown",
+    "descriptions": [
+      "Called when a player throws an explosive (e.g., a grenade)."
+    ]
+  },
+  {
+    "hook": "OnFishingStrike",
+    "descriptions": [
+      "Called when a fish strikes (bites) the hook in the fishing mini-game."
+    ]
+  },
+  {
+    "hook": "OnFishingStop",
+    "descriptions": [
+      "Called when a player stops fishing."
+    ]
+  },
+  {
+    "hook": "OnFishingStart",
+    "descriptions": [
+      "Called when a player starts fishing."
+    ]
+  },
+  {
+    "hook": "OnFlameThrowerBurn",
+    "descriptions": [
+      "Called when a flamethrower deals burn damage to an object or player."
+    ]
+  },
+  {
+    "hook": "OnFlameThrowerExtinguish",
+    "descriptions": [
+      "Called when a flamethrower fire is extinguished."
+    ]
+  },
+  {
+    "hook": "OnFluidSwitchOpen",
+    "descriptions": [
+      "Called when a fluid switch (valve) is opened."
+    ]
+  },
+  {
+    "hook": "OnFluidSwitchClose",
+    "descriptions": [
+      "Called when a fluid switch (valve) is closed."
+    ]
+  },
+  {
+    "hook": "OnGrowableGathered",
+    "descriptions": [
+      "Called when a player gathers (harvests) a growable plant.",
+      "Use to modify yields or track farming."
+    ]
+  },
+  {
+    "hook": "OnGrowableUpdate",
+    "descriptions": [
+      "Called when a growable plant updates its growth status (tick)."
+    ]
+  },
+  {
+    "hook": "OnHorseLead",
+    "descriptions": [
+      "Called when a player starts leading a horse with a rope."
+    ]
+  },
+  {
+    "hook": "OnHorseHitch",
+    "descriptions": [
+      "Called when a horse is hitched to a station or hitching post."
+    ]
+  },
+  {
+    "hook": "OnHorseUnhitch",
+    "descriptions": [
+      "Called when a horse is unhitched (released from a hitching post)."
+    ]
+  },
+  {
+    "hook": "OnIndustrialEntityRun",
+    "descriptions": [
+      "Called when an industrial entity (like an industrial conveyor) runs a processing tick."
+    ]
+  },
+  {
+    "hook": "OnIndustrialItemDeliver",
+    "descriptions": [
+      "Called when an industrial conveyor delivers items to a container."
+    ]
+  },
+  {
+    "hook": "OnIndustrialItemTransfer",
+    "descriptions": [
+      "Called when an industrial conveyor transfers items from one container to another.",
+      "Use this to monitor or modify automated item transfers."
+    ]
+  },
+  {
+    "hook": "OnIndustrialToggle",
+    "descriptions": [
+      "Called when an industrial entity (like a conveyor) is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnItemAddedToContainer",
+    "descriptions": [
+      "Called when an item is added to a container."
+    ]
+  },
+  {
+    "hook": "OnItemCraft",
+    "descriptions": [
+      "Called when an item crafting is started."
+    ]
+  },
+  {
+    "hook": "OnItemCraftCancelled",
+    "descriptions": [
+      "Called when an item crafting is cancelled."
+    ]
+  },
+  {
+    "hook": "OnItemCraftFinished",
+    "descriptions": [
+      "Called when an item crafting is finished."
+    ]
+  },
+  {
+    "hook": "OnItemDeployed",
+    "descriptions": [
+      "Called when an item is deployed (placed in the world)."
+    ]
+  },
+  {
+    "hook": "OnItemDropped",
+    "descriptions": [
+      "Called when an item is dropped."
+    ]
+  },
+  {
+    "hook": "OnItemRemove",
+    "descriptions": [
+      "Called when an item is removed (e.g., consumed or deleted)."
+    ]
+  },
+  {
+    "hook": "OnItemRemovedFromContainer",
+    "descriptions": [
+      "Called when an item is removed from a container."
+    ]
+  },
+  {
+    "hook": "OnItemResearch",
+    "descriptions": [
+      "Called when an item research starts."
+    ]
+  },
+  {
+    "hook": "OnItemResearched",
+    "descriptions": [
+      "Called when an item research is completed."
+    ]
+  },
+  {
+    "hook": "OnItemSplit",
+    "descriptions": [
+      "Called when an item stack is split."
+    ]
+  },
+  {
+    "hook": "OnItemUse",
+    "descriptions": [
+      "Called when an item is used (consumed or activated)."
+    ]
+  },
+  {
+    "hook": "OnJackieChan",
+    "descriptions": [
+      "Called when a player connects to the server.",
+      "Use this to initialize data or announce player connections."
+    ]
+  },
+  {
+    "hook": "OnLootEntity",
+    "descriptions": [
+      "Called when a player opens another entity's inventory (box, corpse, etc) to loot it."
+    ]
+  },
+  {
+    "hook": "OnLootItem",
+    "descriptions": [
+      "Called when a player loots an item (takes an item out of a container)."
+    ]
+  },
+  {
+    "hook": "OnLootNetworkUpdate",
+    "descriptions": [
+      "Called when a looting player's inventory UI updates (network update for loot)."
+    ]
+  },
+  {
+    "hook": "OnMagnetCranePower",
+    "descriptions": [
+      "Called when a magnet crane is powered on or off."
+    ]
+  },
+  {
+    "hook": "OnMailSend",
+    "descriptions": [
+      "Called when a player sends mail via a mailbox."
+    ]
+  },
+  {
+    "hook": "OnMapMarkersClear",
+    "descriptions": [
+      "Called when all map markers on a player's map are cleared."
+    ]
+  },
+  {
+    "hook": "OnMeleeAttack",
+    "descriptions": [
+      "Called when a player performs a melee attack."
+    ]
+  },
+  {
+    "hook": "OnMeleeThrown",
+    "descriptions": [
+      "Called when a player throws a melee weapon (e.g., tosses a spear)."
+    ]
+  },
+  {
+    "hook": "OnMissionComplete",
+    "descriptions": [
+      "Called when a player completes a mission."
+    ]
+  },
+  {
+    "hook": "OnMissionStart",
+    "descriptions": [
+      "Called when a player starts a mission."
+    ]
+  },
+  {
+    "hook": "OnModularCarMount",
+    "descriptions": [
+      "Called when a player mounts a modular car (gets in a seat)."
+    ]
+  },
+  {
+    "hook": "OnModularCarDismount",
+    "descriptions": [
+      "Called when a player dismounts from a modular car."
+    ]
+  },
+  {
+    "hook": "OnModularCarLock",
+    "descriptions": [
+      "Called when a modular car's lock is engaged or disengaged."
+    ]
+  },
+  {
+    "hook": "OnMotionSensorDetect",
+    "descriptions": [
+      "Called when a motion sensor detects motion (like a player entering its range)."
+    ]
+  },
+  {
+    "hook": "OnMotionSensorReset",
+    "descriptions": [
+      "Called when a motion sensor resets (after being triggered)."
+    ]
+  },
+  {
+    "hook": "OnNPCRespawn",
+    "descriptions": [
+      "Called when an NPC respawns (comes back after death)."
+    ]
+  },
+  {
+    "hook": "OnNPCSpawn",
+    "descriptions": [
+      "Called when an NPC is spawned into the world."
+    ]
+  },
+  {
+    "hook": "OnNPCResume",
+    "descriptions": [
+      "Called when an NPC's AI resumes (e.g., after being paused)."
+    ]
+  },
+  {
+    "hook": "OnNPCTick",
+    "descriptions": [
+      "Called on each AI tick for NPCs (regular update cycle), allowing custom NPC behavior."
+    ]
+  },
+  {
+    "hook": "OnNPCWounded",
+    "descriptions": [
+      "Called when an NPC enters a wounded state."
+    ]
+  },
+  {
+    "hook": "OnNativeCommand",
+    "descriptions": [
+      "Called when a native engine command is executed."
+    ]
+  },
+  {
+    "hook": "OnNativeCommandHasPermission",
+    "descriptions": [
+      "Called when checking if a native console command has permission to run (for user or context)."
+    ]
+  },
+  {
+    "hook": "OnOvenStart",
+    "descriptions": [
+      "Called when an oven/furnace is about to start cooking."
+    ]
+  },
+  {
+    "hook": "OnOvenStarted",
+    "descriptions": [
+      "Called after an oven/furnace has started cooking."
+    ]
+  },
+  {
+    "hook": "OnOvenStop",
+    "descriptions": [
+      "Called when an oven/furnace stops cooking (turned off or ran out of fuel)."
+    ]
+  },
+  {
+    "hook": "OnOvenToggle",
+    "descriptions": [
+      "Called when an oven or furnace is toggled on or off."
+    ]
+  },
+  {
+    "hook": "OnPhoneDialed",
+    "descriptions": [
+      "Called when a player dials a number on the in-game telephone."
+    ]
+  },
+  {
+    "hook": "OnPhoneHungUp",
+    "descriptions": [
+      "Called when a phone call is hung up (ended) in-game."
+    ]
+  },
+  {
+    "hook": "OnPhoneOpen",
+    "descriptions": [
+      "Called when a player opens or accesses a telephone."
+    ]
+  },
+  {
+    "hook": "OnPhonePickup",
+    "descriptions": [
+      "Called when an incoming phone call is picked up (answered)."
+    ]
+  },
+  {
+    "hook": "OnPhoneServerMessage",
+    "descriptions": [
+      "Called when the phone system sends a server message (like voicemail or error)."
+    ]
+  },
+  {
+    "hook": "OnPhoneTransfer",
+    "descriptions": [
+      "Called when a phone call is transferred to another number."
+    ]
+  },
+  {
+    "hook": "OnPlayerAssist",
+    "descriptions": [
+      "Called when a player gets an assist (e.g., helping to kill an enemy)."
+    ]
+  },
+  {
+    "hook": "OnPlayerAttack",
+    "descriptions": [
+      "Called when a player makes an attack (melee or ranged)."
+    ]
+  },
+  {
+    "hook": "OnPlayerConnected",
+    "descriptions": [
+      "Called when a player connects to the server.",
+      "Use this to initialize data or announce player connections."
+    ]
+  },
+  {
+    "hook": "OnPlayerDeath",
+    "descriptions": [
+      "Called when a player dies.",
+      "Use this to handle player death events (e.g., death messages or stats)."
+    ]
+  },
+  {
+    "hook": "OnPlayerDisconnected",
+    "descriptions": [
+      "Called when a player disconnects from the server.",
+      "Use this to clean up or save data when players leave."
+    ]
+  },
+  {
+    "hook": "OnPlayerDismounted",
+    "descriptions": [
+      "Called when a player dismounts from an entity they were mounted on."
+    ]
+  },
+  {
+    "hook": "OnPlayerHealthChange",
+    "descriptions": [
+      "Called when a player's health changes."
+    ]
+  },
+  {
+    "hook": "OnPlayerInit",
+    "descriptions": [
+      "Called when a player's object is initialized (shortly after they connect)."
+    ]
+  },
+  {
+    "hook": "OnPlayerInput",
+    "descriptions": [
+      "Called each server tick to process a player's input.",
+      "Can be used to monitor or modify player control inputs."
+    ]
+  },
+  {
+    "hook": "OnPlayerKeepAlive",
+    "descriptions": [
+      "Called periodically to keep a player connection alive (heartbeat)."
+    ]
+  },
+  {
+    "hook": "OnPlayerKick",
+    "descriptions": [
+      "Called when a player is about to be kicked from the server (manually or by anti-cheat)."
+    ]
+  },
+  {
+    "hook": "OnPlayerKicked",
+    "descriptions": [
+      "Called when a player is kicked from the server."
+    ]
+  },
+  {
+    "hook": "OnPlayerLand",
+    "descriptions": [
+      "Called when a player lands on the ground (after falling or jumping)."
+    ]
+  },
+  {
+    "hook": "OnPlayerLanded",
+    "descriptions": [
+      "Called when a player lands on the ground (after falling or jumping)."
+    ]
+  },
+  {
+    "hook": "OnPlayerLootEnd",
+    "descriptions": [
+      "Called when a player finishes looting an entity or player (closes the loot interface)."
+    ]
+  },
+  {
+    "hook": "OnPlayerMounted",
+    "descriptions": [
+      "Called when a player mounts an entity (such as sitting in a chair or riding a horse)."
+    ]
+  },
+  {
+    "hook": "OnPlayerAssistHeal",
+    "descriptions": [
+      "Called when a player assists another player by healing them (e.g., using a medical item)."
+    ]
+  },
+  {
+    "hook": "OnPlayerRespawn",
+    "descriptions": [
+      "Called when a player respawns.",
+      "Use this to customize or log player respawn events."
+    ]
+  },
+  {
+    "hook": "OnPlayerRespawned",
+    "descriptions": [
+      "Called when a player respawns (after death)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSetInfo",
+    "descriptions": [
+      "Called when a player's information (name, etc.) is set or updated on connection."
+    ]
+  },
+  {
+    "hook": "OnPlayerSleep",
+    "descriptions": [
+      "Called when a player falls asleep (goes unconscious/offline)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSleepEnd",
+    "descriptions": [
+      "Called when a sleeping player wakes up (ends sleeping state)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpawn",
+    "descriptions": [
+      "Called when a player spawns (initial spawn or respawn)."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpectate",
+    "descriptions": [
+      "Called when a player starts spectating another entity or player."
+    ]
+  },
+  {
+    "hook": "OnPlayerSpectateEnd",
+    "descriptions": [
+      "Called when a player stops spectating."
+    ]
+  },
+  {
+    "hook": "OnPlayerTick",
+    "descriptions": [
+      "Called on each player tick (regular interval updates for a player)."
+    ]
+  },
+  {
+    "hook": "OnPlayerVoice",
+    "descriptions": [
+      "Called when a player uses in-game voice chat (microphone)."
+    ]
+  },
+  {
+    "hook": "OnPressurePadTriggered",
+    "descriptions": [
+      "Called when a pressure pad is stepped on (triggered)."
+    ]
+  },
+  {
+    "hook": "OnPumpJackOil",
+    "descriptions": [
+      "Called when a pump jack extracts oil."
+    ]
+  },
+  {
+    "hook": "OnQuarryEnabled",
+    "descriptions": [
+      "Called when a mining quarry is turned on."
+    ]
+  },
+  {
+    "hook": "OnQuarryGather",
+    "descriptions": [
+      "Called when a mining quarry gathers resources."
+    ]
+  },
+  {
+    "hook": "OnQuarryStopped",
+    "descriptions": [
+      "Called when a mining quarry is turned off."
+    ]
+  },
+  {
+    "hook": "OnRFBroadcast",
+    "descriptions": [
+      "Called when an RF broadcaster (transmitter) sends a signal."
+    ]
+  },
+  {
+    "hook": "OnRFReceiverFilterAdd",
+    "descriptions": [
+      "Called when a frequency is added to an RF receiver's filter list."
+    ]
+  },
+  {
+    "hook": "OnRFReceiverFilterRemove",
+    "descriptions": [
+      "Called when a frequency is removed from an RF receiver's filter."
+    ]
+  },
+  {
+    "hook": "OnRidableAnimalClaim",
+    "descriptions": [
+      "Called when a player attempts to claim a ridable animal (like a horse)."
+    ]
+  },
+  {
+    "hook": "OnRidableAnimalClaimed",
+    "descriptions": [
+      "Called after a ridable animal has been claimed by a player."
+    ]
+  },
+  {
+    "hook": "OnRocketExplosion",
+    "descriptions": [
+      "Called when a rocket explodes."
+    ]
+  },
+  {
+    "hook": "OnRconCommand",
+    "descriptions": [
+      "Called when a command is executed via RCON (remote console)."
+    ]
+  },
+  {
+    "hook": "OnResearchItem",
+    "descriptions": [
+      "Called when an item is researched by a player."
+    ]
+  },
+  {
+    "hook": "OnResearchItemComplete",
+    "descriptions": [
+      "Called when an item research is completed."
+    ]
+  },
+  {
+    "hook": "OnResearchItemStart",
+    "descriptions": [
+      "Called when an item research is started."
+    ]
+  },
+  {
+    "hook": "OnResearchKitUsed",
+    "descriptions": [
+      "Called when a research kit is used on an item."
+    ]
+  },
+  {
+    "hook": "OnRespawnKit",
+    "descriptions": [
+      "Called when a player uses a respawn kit (from a plugin or mod)."
+    ]
+  },
+  {
+    "hook": "OnSAMSiteTarget",
+    "descriptions": [
+      "Called when a SAM site locks onto a target (like a helicopter)."
+    ]
+  },
+  {
+    "hook": "OnServerInitialized",
+    "descriptions": [
+      "Called when the server is fully initialized and ready (after startup)."
+    ]
+  },
+  {
+    "hook": "OnShredderStart",
+    "descriptions": [
+      "Called when the Arctic base document shredder starts shredding."
+    ]
+  },
+  {
+    "hook": "OnShredderStop",
+    "descriptions": [
+      "Called when the document shredder stops."
+    ]
+  },
+  {
+    "hook": "OnSignUpdated",
+    "descriptions": [
+      "Called when a player finishes editing a sign or painting, and it’s updated in the world."
+    ]
+  },
+  {
+    "hook": "OnSnowballFightStart",
+    "descriptions": [
+      "Called when a snowball fight event starts on the server."
+    ]
+  },
+  {
+    "hook": "OnSnowballFightEnd",
+    "descriptions": [
+      "Called when the snowball fight event ends."
+    ]
+  },
+  {
+    "hook": "OnStorageMonitorUpdate",
+    "descriptions": [
+      "Called when a storage monitor (IO entity) updates its data (e.g., contents changed)."
+    ]
+  },
+  {
+    "hook": "OnSupplyDropLanded",
+    "descriptions": [
+      "Called when a supply drop lands on the ground."
+    ]
+  },
+  {
+    "hook": "OnSupplySignalThrown",
+    "descriptions": [
+      "Called when a supply signal is thrown (to call in an airdrop)."
+    ]
+  },
+  {
+    "hook": "OnSurveyGather",
+    "descriptions": [
+      "Called when a survey charge explodes and resources are gathered from the ground."
+    ]
+  },
+  {
+    "hook": "OnTargetScan",
+    "descriptions": [
+      "Called when an entity (like a turret or NPC) performs a target scan (looking for targets)."
+    ]
+  },
+  {
+    "hook": "OnTeamAcceptInvite",
+    "descriptions": [
+      "Called when a player accepts a team invitation."
+    ]
+  },
+  {
+    "hook": "OnTeamCreate",
+    "descriptions": [
+      "Called when a team is about to be created (team creation initiated)."
+    ]
+  },
+  {
+    "hook": "OnTeamCreated",
+    "descriptions": [
+      "Called after a new team has been created."
+    ]
+  },
+  {
+    "hook": "OnTeamDisband",
+    "descriptions": [
+      "Called when a team is about to be disbanded."
+    ]
+  },
+  {
+    "hook": "OnTeamDisbanded",
+    "descriptions": [
+      "Called after a team has been disbanded."
+    ]
+  },
+  {
+    "hook": "OnTeamInvite",
+    "descriptions": [
+      "Called when a team invite is sent to a player."
+    ]
+  },
+  {
+    "hook": "OnTeamKick",
+    "descriptions": [
+      "Called when a team member is kicked from the team."
+    ]
+  },
+  {
+    "hook": "OnTeamLeave",
+    "descriptions": [
+      "Called when a team member leaves the team."
+    ]
+  },
+  {
+    "hook": "OnTeamPromote",
+    "descriptions": [
+      "Called when a team member is promoted to team leader."
+    ]
+  },
+  {
+    "hook": "OnTeamRejectInvite",
+    "descriptions": [
+      "Called when a player rejects a team invitation."
+    ]
+  },
+  {
+    "hook": "OnTeamUpdate",
+    "descriptions": [
+      "Called when team data is about to be updated."
+    ]
+  },
+  {
+    "hook": "OnTeamUpdated",
+    "descriptions": [
+      "Called after team data has been updated."
+    ]
+  },
+  {
+    "hook": "OnTerrainCreate",
+    "descriptions": [
+      "Called when the game world terrain is created (during server startup)."
+    ]
+  },
+  {
+    "hook": "OnTerrainInitialized",
+    "descriptions": [
+      "Called after the terrain is fully initialized and loaded."
+    ]
+  },
+  {
+    "hook": "OnTimerFinished",
+    "descriptions": [
+      "Called when a timer (from a TimedExplosive or similar) finishes counting down."
+    ]
+  },
+  {
+    "hook": "OnTradeAccept",
+    "descriptions": [
+      "Called when both players accept a trade, just before the trade completes."
+    ]
+  },
+  {
+    "hook": "OnTradeInitiate",
+    "descriptions": [
+      "Called when two players initiate a trade session."
+    ]
+  },
+  {
+    "hook": "OnTradeCancel",
+    "descriptions": [
+      "Called when a trade is canceled by one of the players."
+    ]
+  },
+  {
+    "hook": "OnTurretAuthorize",
+    "descriptions": [
+      "Called when a player is authorized on a turret."
+    ]
+  },
+  {
+    "hook": "OnTurretDeauthorize",
+    "descriptions": [
+      "Called when a player is removed from a turret's authorization."
+    ]
+  },
+  {
+    "hook": "OnTurretTarget",
+    "descriptions": [
+      "Called when an auto turret acquires or changes a target."
+    ]
+  },
+  {
+    "hook": "OnVehicleClaim",
+    "descriptions": [
+      "Called when a player claims ownership of a vehicle (such as modular car)."
+    ]
+  },
+  {
+    "hook": "OnVehicleMount",
+    "descriptions": [
+      "Called when a player mounts a vehicle seat."
+    ]
+  },
+  {
+    "hook": "OnVehicleDismount",
+    "descriptions": [
+      "Called when a player dismounts from a vehicle seat."
+    ]
+  },
+  {
+    "hook": "OnVehicleFuelConsume",
+    "descriptions": [
+      "Called when a vehicle consumes fuel (e.g., low-grade fuel in a car)."
+    ]
+  },
+  {
+    "hook": "OnVehicleRefuel",
+    "descriptions": [
+      "Called when a vehicle is refueled."
+    ]
+  },
+  {
+    "hook": "OnVendingTransaction",
+    "descriptions": [
+      "Called when a vending machine completes a buy/sell transaction."
+    ]
+  },
+  {
+    "hook": "OnWaterCatcherFill",
+    "descriptions": [
+      "Called when a water catcher collects water (e.g., from rain)."
+    ]
+  },
+  {
+    "hook": "OnWaterCatcherGather",
+    "descriptions": [
+      "Called when a player gathers water from a water catcher."
+    ]
+  },
+  {
+    "hook": "OnWaterPurify",
+    "descriptions": [
+      "Called when a water purifier converts dirty water to clean water."
+    ]
+  },
+  {
+    "hook": "OnWeaponThrown",
+    "descriptions": [
+      "Called when a player throws a thrown weapon (like a spear or bone knife)."
+    ]
+  },
+  {
+    "hook": "OnWeaponFired",
+    "descriptions": [
+      "Called when a weapon is fired (a shot is taken)."
+    ]
+  },
+  {
+    "hook": "OnWeaponReload",
+    "descriptions": [
+      "Called when a weapon starts reloading."
+    ]
+  },
+  {
+    "hook": "OnWeaponReloadCancel",
+    "descriptions": [
+      "Called when a weapon reload is canceled midway."
+    ]
+  },
+  {
+    "hook": "OnWeaponReloadFinished",
+    "descriptions": [
+      "Called when a weapon has finished reloading."
+    ]
+  },
+  {
+    "hook": "OnWindTurbineUpdate",
+    "descriptions": [
+      "Called when a wind turbine updates its power output (e.g., wind speed change)."
+    ]
+  },
+  {
+    "hook": "OnWorldPrefabSpawned",
+    "descriptions": [
+      "Called when a world prefab (map object) is spawned into the game world."
+    ]
+  }
+]

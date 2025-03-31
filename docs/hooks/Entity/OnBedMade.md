@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBedMade
-```csharp
+Called when a sleeping bag or bed is placed/created (made available as a respawn point).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnBedMade()
+{
+	Puts("OnBedMade has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SleepingBag]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_MakeBed(BaseEntity.RPCMessage msg)
@@ -37,3 +49,4 @@ public void RPC_MakeBed(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

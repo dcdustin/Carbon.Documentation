@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMissionStarted
-```csharp
+Called after a mission has started for a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMissionStarted()
+{
+	Puts("OnMissionStarted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMission]
 public virtual void MissionStart(BaseMission.MissionInstance instance, BasePlayer assignee)
 {
 	for (int i = 0; i < objectives.Length; i++)
@@ -26,3 +38,4 @@ public virtual void MissionStart(BaseMission.MissionInstance instance, BasePlaye
 }
 
 ```
+:::

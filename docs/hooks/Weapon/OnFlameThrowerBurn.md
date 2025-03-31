@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFlameThrowerBurn
-```csharp
+Called when a flamethrower deals burn damage to an object or player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFlameThrowerBurn()
+{
+	Puts("OnFlameThrowerBurn has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ FlameThrower]
 public void FlameTick()
 {
 	float num = UnityEngine.Time.realtimeSinceStartup - lastFlameTick;
@@ -72,3 +84,4 @@ public void FlameTick()
 }
 
 ```
+:::

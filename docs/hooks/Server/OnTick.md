@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTick
-```csharp
+Triggered on each server tick (regular server update interval).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnTick()
+{
+	Puts("OnTick has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void DoTick()
 {
 	Facepunch.RCon.Update();
@@ -23,3 +35,4 @@ public void DoTick()
 }
 
 ```
+:::

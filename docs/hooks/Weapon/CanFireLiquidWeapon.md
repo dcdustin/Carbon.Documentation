@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanFireLiquidWeapon
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanFireLiquidWeapon()
+{
+	Puts("CanFireLiquidWeapon has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ LiquidWeapon]
 public bool CanFire(BasePlayer player)
 {
 	if (RequiresPumping && pressure < PressureLossPerTick)
@@ -36,3 +49,4 @@ public bool CanFire(BasePlayer player)
 }
 
 ```
+:::

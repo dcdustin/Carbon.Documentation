@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExplosiveDropped
-```csharp
+Called when a player drops an explosive (instead of throwing it).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnExplosiveDropped()
+{
+	Puts("OnExplosiveDropped has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ThrownWeapon]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void DoDrop(BaseEntity.RPCMessage msg)
@@ -56,3 +68,4 @@ public void DoDrop(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

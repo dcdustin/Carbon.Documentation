@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTeamPromote
-```csharp
+Called when a team member is promoted to team leader.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTeamPromote()
+{
+	Puts("OnTeamPromote has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 [ServerUserVar]
 public static void promote(ConsoleSystem.Arg arg)
 {
@@ -21,3 +34,4 @@ public static void promote(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

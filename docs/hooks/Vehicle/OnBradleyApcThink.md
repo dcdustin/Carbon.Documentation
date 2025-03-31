@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBradleyApcThink
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBradleyApcThink()
+{
+	Puts("OnBradleyApcThink has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public void DoSimpleAI()
 {
 	if (base.isClient)
@@ -83,3 +96,4 @@ public void DoSimpleAI()
 }
 
 ```
+:::

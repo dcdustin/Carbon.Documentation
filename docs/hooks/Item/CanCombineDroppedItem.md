@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCombineDroppedItem
-```csharp
+Determines if a dropped item stack can merge with another on the ground.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanCombineDroppedItem()
+{
+	Puts("CanCombineDroppedItem has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ DroppedItem]
 public void OnDroppedOn(DroppedItem di)
 {
 	if (item == null || di.item == null || di.item.info != item.info || (di.item.IsBlueprint() && di.item.blueprintTarget != item.blueprintTarget) || NeverCombine || di.NeverCombine || (di.item.hasCondition && di.item.condition != di.item.maxCondition) || (item.hasCondition && item.condition != item.maxCondition))
@@ -50,3 +63,4 @@ public void OnDroppedOn(DroppedItem di)
 }
 
 ```
+:::

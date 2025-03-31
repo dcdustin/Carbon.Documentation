@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerRestartInterrupt
-```csharp
+Called when a scheduled server restart is interrupted or canceled.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnServerRestartInterrupt()
+{
+	Puts("OnServerRestartInterrupt has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public static void RestartServer(string strNotice, int iSeconds)
 {
 	if (!(SingletonComponent<ServerMgr>.Instance == null))
@@ -18,3 +31,4 @@ public static void RestartServer(string strNotice, int iSeconds)
 }
 
 ```
+:::

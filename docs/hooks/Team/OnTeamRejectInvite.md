@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTeamRejectInvite
-```csharp
+Called when a player rejects a team invitation.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTeamRejectInvite()
+{
+	Puts("OnTeamRejectInvite has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 [ServerUserVar]
 public static void rejectinvite(ConsoleSystem.Arg arg)
 {
@@ -21,3 +34,4 @@ public static void rejectinvite(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNpcConversationResponded [patch]
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcConversationResponded [patch]()
+{
+	Puts("OnNpcConversationResponded [patch] has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ NPCTalking]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -44,3 +57,4 @@ public void Server_ResponsePressed(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

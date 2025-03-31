@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHelicopterDropCrate
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnHelicopterDropCrate()
+{
+	Puts("OnHelicopterDropCrate has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CH47HelicopterAIController]
 public void DropCrate()
 {
 	if (numCrates > 0)
@@ -18,3 +30,4 @@ public void DropCrate()
 }
 
 ```
+:::

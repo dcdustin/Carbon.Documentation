@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerTick
-```csharp
+Called each server tick for an active player (for per-tick player updates).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerTick()
+{
+	Puts("OnPlayerTick has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void OnReceiveTick(PlayerTick msg, bool wasPlayerStalled)
 {
 	if (msg.inputState != null)
@@ -139,3 +152,4 @@ public void OnReceiveTick(PlayerTick msg, bool wasPlayerStalled)
 }
 
 ```
+:::

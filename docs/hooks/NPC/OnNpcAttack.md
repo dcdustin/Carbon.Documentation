@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnNpcAttack [BaseNpc]
-```csharp
+# OnNpcAttack
+Called when an NPC initiates an attack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcAttack()
+{
+	Puts("OnNpcAttack has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNpc]
 public virtual void StartAttack()
 {
 	if ((bool)AttackTarget && AttackReady() && !((AttackTarget.ServerPosition - ServerPosition).magnitude > AttackRange))
@@ -19,3 +32,4 @@ public virtual void StartAttack()
 }
 
 ```
+:::

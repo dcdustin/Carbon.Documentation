@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFindSpawnPoint
-```csharp
+Called when determining a spawn point for a player (allows customizing spawn location).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private BasePlayer.SpawnPoint OnFindSpawnPoint()
+{
+	Puts("OnFindSpawnPoint has been fired!");
+	return (BasePlayer.SpawnPoint)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public static BasePlayer.SpawnPoint FindSpawnPoint(BasePlayer forPlayer = null)
 {
 	bool flag = false;
@@ -75,3 +88,4 @@ public static BasePlayer.SpawnPoint FindSpawnPoint(BasePlayer forPlayer = null)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRocketLaunched
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRocketLaunched()
+{
+	Puts("OnRocketLaunched has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseLauncher]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void SV_Launch(BaseEntity.RPCMessage msg)
@@ -103,3 +115,4 @@ public void SV_Launch(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAssignBed
-```csharp
+Called to check if a bed or sleeping bag can be assigned to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanAssignBed()
+{
+	Puts("CanAssignBed has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SleepingBag]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void AssignToFriend(BaseEntity.RPCMessage msg)
@@ -61,3 +74,4 @@ public void AssignToFriend(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

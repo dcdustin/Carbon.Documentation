@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanNpcEat [BaseNpc]
-```csharp
+# CanNpcEat
+Determines if an NPC can eat a target (like a corpse or food item).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanNpcEat()
+{
+	Puts("CanNpcEat has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseNpc]
 public virtual bool WantsToEat(BaseEntity best)
 {
 	if (!best.HasTrait(BaseEntity.TraitFlag.Food))
@@ -15,3 +28,4 @@ public virtual bool WantsToEat(BaseEntity best)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEngineStatsRefreshed
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEngineStatsRefreshed()
+{
+	Puts("OnEngineStatsRefreshed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ VehicleModuleEngine]
 public void RefreshPerformanceStats(Rust.Modular.EngineStorage engineStorage)
 {
 	if (engineStorage == null)
@@ -21,3 +33,4 @@ public void RefreshPerformanceStats(Rust.Modular.EngineStorage engineStorage)
 }
 
 ```
+:::

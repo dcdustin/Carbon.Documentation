@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # CanPlaceOnRack
-```csharp
+Determines if a player can place an item onto a weapon rack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanPlaceOnRack()
+{
+	Puts("CanPlaceOnRack has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void MountWeapon(BasePlayer player, int gridCellIndex, int rotation)
 {
 	if (player == null)
@@ -19,3 +32,4 @@ public void MountWeapon(BasePlayer player, int gridCellIndex, int rotation)
 }
 
 ```
+:::

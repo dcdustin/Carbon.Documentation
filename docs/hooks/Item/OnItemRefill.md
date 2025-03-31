@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRefill
-```csharp
+Called when an item's 'refill' command is used to restore its condition (partial repair).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemRefill()
+{
+	Puts("OnItemRefill has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemModRepair]
 public override void ServerCommand(Item item, string command, BasePlayer player)
 {
 	if (command == "refill" && !player.IsSwimming() && HasCraftLevel(player) && !(item.conditionNormalized >= 1f))
@@ -17,3 +30,4 @@ public override void ServerCommand(Item item, string command, BasePlayer player)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IOvenSmeltSpeedMultiplier
-```csharp
+Allows modifying how fast ovens and furnaces smelt items.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IOvenSmeltSpeedMultiplier()
+{
+	Puts("IOvenSmeltSpeedMultiplier has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
 public virtual void StartCooking()
 {
 	if (FindBurnable() != null || CanRunWithNoFuel)
@@ -21,3 +33,4 @@ public virtual void StartCooking()
 }
 
 ```
+:::

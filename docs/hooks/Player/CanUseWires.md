@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanUseWires
-```csharp
+Called to check if a player can modify or connect wires in the electrical system.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanUseWires()
+{
+	Puts("CanUseWires has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WireTool]
 public static bool CanPlayerUseWires(BasePlayer player, bool cached = false, float cacheDuration = 1f)
 {
 	if (player != null && player.IsInCreativeMode && ConVar.Creative.unlimitedIo)
@@ -27,3 +40,4 @@ public static bool CanPlayerUseWires(BasePlayer player, bool cached = false, flo
 }
 
 ```
+:::

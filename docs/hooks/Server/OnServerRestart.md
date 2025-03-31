@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerRestart
-```csharp
+Called when a server restart is initiated (scheduling a restart countdown).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnServerRestart()
+{
+	Puts("OnServerRestart has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public static void RestartServer(string strNotice, int iSeconds)
 {
 	if (!(SingletonComponent<ServerMgr>.Instance == null))
@@ -18,3 +31,4 @@ public static void RestartServer(string strNotice, int iSeconds)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMissionAssigned
-```csharp
+Called when a mission is assigned to a player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMissionAssigned()
+{
+	Puts("OnMissionAssigned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMission]
 public static bool AssignMission(BasePlayer assignee, IMissionProvider provider, BaseMission mission)
 {
 	if (!missionsenabled)
@@ -42,3 +54,4 @@ public static bool AssignMission(BasePlayer assignee, IMissionProvider provider,
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAcceptItem
-```csharp
+Determines if a container can accept a given item.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private ItemContainer.CanAcceptResult CanAcceptItem()
+{
+	Puts("CanAcceptItem has been fired!");
+	return (ItemContainer.CanAcceptResult)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemContainer]
 public ItemContainer.CanAcceptResult CanAcceptItem(Item item, int targetPos)
 {
 	if (canAcceptItem != null && !canAcceptItem(item, targetPos))
@@ -59,3 +72,4 @@ public ItemContainer.CanAcceptResult CanAcceptItem(Item item, int targetPos)
 }
 
 ```
+:::

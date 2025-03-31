@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPayForPlacement
-```csharp
+Called when resources are about to be consumed for placing a deployable or structure.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPayForPlacement()
+{
+	Puts("OnPayForPlacement has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Planner]
 public void PayForPlacement(BasePlayer player, Construction component)
 {
 	if (player.IsInCreativeMode && ConVar.Creative.freeBuild)
@@ -34,3 +47,4 @@ public void PayForPlacement(BasePlayer player, Construction component)
 }
 
 ```
+:::

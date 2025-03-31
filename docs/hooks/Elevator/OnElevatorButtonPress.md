@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnElevatorButtonPress
-```csharp
+Called when a player presses an elevator’s up/down button to raise or lower the elevator.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnElevatorButtonPress()
+{
+	Puts("OnElevatorButtonPress has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ElevatorLift]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void Server_RaiseLowerFloor(BaseEntity.RPCMessage msg)
@@ -18,3 +31,4 @@ public void Server_RaiseLowerFloor(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

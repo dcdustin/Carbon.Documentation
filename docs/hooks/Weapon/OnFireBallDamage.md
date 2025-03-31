@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireBallDamage
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFireBallDamage()
+{
+	Puts("OnFireBallDamage has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ FireBall]
 public void DoRadialDamage()
 {
 	System.Collections.Generic.List<BaseCombatEntity> obj = Facepunch.Pool.Get<System.Collections.Generic.List<BaseCombatEntity>>();
@@ -30,3 +42,4 @@ public void DoRadialDamage()
 }
 
 ```
+:::

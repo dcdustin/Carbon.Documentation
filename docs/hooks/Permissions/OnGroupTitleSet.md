@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupTitleSet
-```csharp
+Called when a group's title is changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupTitleSet()
+{
+	Puts("OnGroupTitleSet has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool SetGroupTitle(string group, string title)
 {
 	if (!GroupExists(group))
@@ -25,3 +37,4 @@ public virtual bool SetGroupTitle(string group, string title)
 }
 
 ```
+:::

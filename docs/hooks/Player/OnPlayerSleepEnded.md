@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerSleepEnded
-```csharp
+Called after a player has woken up from sleeping.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerSleepEnded()
+{
+	Puts("OnPlayerSleepEnded has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public virtual void EndSleeping()
 {
 	if (IsSleeping())
@@ -52,3 +64,4 @@ public virtual void EndSleeping()
 }
 
 ```
+:::

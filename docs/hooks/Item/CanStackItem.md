@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanStackItem
-```csharp
+Determines if two item stacks can be combined (stacked).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanStackItem()
+{
+	Puts("CanStackItem has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Item]
 public bool CanStack(Item item)
 {
 	if (item == this)
@@ -85,3 +98,4 @@ public bool CanStack(Item item)
 }
 
 ```
+:::

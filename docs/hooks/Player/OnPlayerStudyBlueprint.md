@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerStudyBlueprint
-```csharp
+Triggered when a player studies a blueprint at a research table.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerStudyBlueprint()
+{
+	Puts("OnPlayerStudyBlueprint has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemModStudyBlueprint]
 public override void ServerCommand(Item item, string command, BasePlayer player)
 {
 	if (command != "study" || !item.IsBlueprint())
@@ -50,3 +63,4 @@ public override void ServerCommand(Item item, string command, BasePlayer player)
 }
 
 ```
+:::

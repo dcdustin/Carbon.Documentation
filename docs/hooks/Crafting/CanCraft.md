@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanCraft [PlayerBlueprints]
-```csharp
+# CanCraft
+Called when a player attempts to craft an item. Plugins can use this to allow or prevent the crafting.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanCraft()
+{
+	Puts("CanCraft has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerBlueprints]
 public bool CanCraft(int itemid, int skinItemId, ulong playerId)
 {
 	ItemDefinition itemDefinition = ItemManager.FindItemDefinition(itemid);
@@ -24,3 +37,4 @@ public bool CanCraft(int itemid, int skinItemId, ulong playerId)
 }
 
 ```
+:::

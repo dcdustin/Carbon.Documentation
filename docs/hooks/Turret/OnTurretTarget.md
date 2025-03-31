@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTurretTarget
-```csharp
+Called when an auto turret acquires or changes a target.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTurretTarget()
+{
+	Puts("OnTurretTarget has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AutoTurret]
 public void SetTarget(BaseCombatEntity targ)
 {
 	if (targ != target || targ.IsRealNull() != target.IsRealNull())
@@ -17,3 +30,4 @@ public void SetTarget(BaseCombatEntity targ)
 }
 
 ```
+:::

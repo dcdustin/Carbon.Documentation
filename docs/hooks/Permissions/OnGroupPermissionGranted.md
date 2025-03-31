@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupPermissionGranted
-```csharp
+Called when a permission is granted to a group.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupPermissionGranted()
+{
+	Puts("OnGroupPermissionGranted has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool GrantGroupPermission(string name, string perm, Carbon.Base.BaseHookable owner)
 {
 	if (!PermissionExists(perm, owner) || !GroupExists(name))
@@ -62,3 +74,4 @@ public virtual bool GrantGroupPermission(string name, string perm, Carbon.Base.B
 }
 
 ```
+:::

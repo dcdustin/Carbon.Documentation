@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnPickupFromRack
-```csharp
+Called when a player picks up an item from a weapon rack.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPickupFromRack()
+{
+	Puts("OnPickupFromRack has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ WeaponRack]
 public void GivePlayerWeapon(BasePlayer player, int mountSlotIndex, int playerBeltIndex = -1, bool tryHold = true, bool sendUpdate = true)
 {
 	if (player == null)
@@ -52,3 +64,4 @@ public void GivePlayerWeapon(BasePlayer player, int mountSlotIndex, int playerBe
 }
 
 ```
+:::

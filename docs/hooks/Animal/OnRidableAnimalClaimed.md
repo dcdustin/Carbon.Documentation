@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnRidableAnimalClaimed [RidableHorse2]
-```csharp
+# OnRidableAnimalClaimed
+Called after a player has successfully claimed a ridable animal (ownership change complete).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRidableAnimalClaimed()
+{
+	Puts("OnRidableAnimalClaimed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ RidableHorse2]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void SERVER_Claim(BaseEntity.RPCMessage msg)
@@ -23,3 +35,4 @@ public void SERVER_Claim(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

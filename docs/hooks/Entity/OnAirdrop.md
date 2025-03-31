@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAirdrop
-```csharp
+Called when a cargo plane is spawned for an airdrop event (when an airdrop starts).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnAirdrop()
+{
+	Puts("OnAirdrop has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ CargoPlane]
 public void UpdateDropPosition(UnityEngine.Vector3 newDropPosition)
 {
 	float x = TerrainMeta.Size.x;
@@ -22,3 +34,4 @@ public void UpdateDropPosition(UnityEngine.Vector3 newDropPosition)
 }
 
 ```
+:::

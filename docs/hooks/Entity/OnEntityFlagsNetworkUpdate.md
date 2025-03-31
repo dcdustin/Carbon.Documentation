@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityFlagsNetworkUpdate
-```csharp
+Called when an entity’s networked flags are updated (for example, door opened/closed, light toggled, etc., sending state to clients).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntityFlagsNetworkUpdate()
+{
+	Puts("OnEntityFlagsNetworkUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseEntity]
 public void SendNetworkUpdate_Flags()
 {
 	if (Rust.Application.isLoading || Rust.Application.isLoadingSave || base.IsDestroyed || net == null || !isSpawned)
@@ -26,3 +39,4 @@ public void SendNetworkUpdate_Flags()
 }
 
 ```
+:::

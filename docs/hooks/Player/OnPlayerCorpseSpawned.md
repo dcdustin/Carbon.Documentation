@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerCorpseSpawned
-```csharp
+Called after a player's corpse has spawned.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerCorpseSpawned()
+{
+	Puts("OnPlayerCorpseSpawned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public virtual BaseCorpse CreateCorpse(BasePlayer.PlayerFlags flagsOnDeath, UnityEngine.Vector3 posOnDeath, UnityEngine.Quaternion rotOnDeath, System.Collections.Generic.List<TriggerBase> triggersOnDeath, bool forceServerSide = false)
 {
 	using (TimeWarning.New("Create corpse"))
@@ -65,3 +77,4 @@ public virtual BaseCorpse CreateCorpse(BasePlayer.PlayerFlags flagsOnDeath, Unit
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnExcavatorMiningToggled [stop]
-```csharp
+# OnExcavatorMiningToggled
+- Called when the excavator's mining engine is started.
+- Called when the excavator's mining engine is stopped.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnExcavatorMiningToggled()
+{
+	Puts("OnExcavatorMiningToggled has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorArm]
 public void StopMining()
 {
 	ExcavatorServerEffects.SetMining(isMining: false);
@@ -13,3 +26,4 @@ public void StopMining()
 }
 
 ```
+:::

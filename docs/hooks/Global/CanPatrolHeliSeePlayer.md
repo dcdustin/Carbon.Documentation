@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # CanPatrolHeliSeePlayer
-```csharp
+Determines if the patrol helicopter can see (and target) a specific player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanPatrolHeliSeePlayer()
+{
+	Puts("CanPatrolHeliSeePlayer has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PatrolHelicopterAI]
 public bool PlayerVisible(BasePlayer ply)
 {
 	using (TimeWarning.New("PatrolHelicoperAI.PlayerVisible"))
@@ -26,3 +39,4 @@ public bool PlayerVisible(BasePlayer ply)
 }
 
 ```
+:::

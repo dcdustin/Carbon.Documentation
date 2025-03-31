@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemAddedToContainer
-```csharp
+Called when an item is added to a container (inventory).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemAddedToContainer()
+{
+	Puts("OnItemAddedToContainer has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemContainer]
 public bool Insert(Item item)
 {
 	if (itemList.Contains(item))
@@ -31,3 +43,4 @@ public bool Insert(Item item)
 }
 
 ```
+:::

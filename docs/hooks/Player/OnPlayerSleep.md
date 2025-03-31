@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerSleep
-```csharp
+Triggered when a player goes to sleep (becomes a sleeper in the world).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerSleep()
+{
+	Puts("OnPlayerSleep has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public virtual void StartSleeping()
 {
 	if (!IsSleeping())
@@ -40,3 +52,4 @@ public virtual void StartSleeping()
 }
 
 ```
+:::

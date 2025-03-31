@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVendingTransaction
-```csharp
+Called when a vending machine completes a buy/sell transaction.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnVendingTransaction()
+{
+	Puts("OnVendingTransaction has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 public bool DoTransaction(BasePlayer buyer, int sellOrderId, int numberOfTransactions = 1, ItemContainer targetContainer = null, System.Action<BasePlayer, Item> onCurrencyRemoved = null, System.Action<BasePlayer, Item> onItemPurchased = null, MarketTerminal droneMarketTerminal = null)
 {
 	if (sellOrderId < 0 || sellOrderId >= sellOrders.sellOrders.Count)
@@ -113,3 +126,4 @@ public bool DoTransaction(BasePlayer buyer, int sellOrderId, int numberOfTransac
 }
 
 ```
+:::

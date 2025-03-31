@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSendModelState
-```csharp
+Called when an entity's model state (like posture or holding items) is being sent to clients.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSendModelState()
+{
+	Puts("OnSendModelState has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void SendModelState(bool force = false)
 {
 	if (force || (wantsSendModelState && !(nextModelStateUpdate > UnityEngine.Time.time)))
@@ -22,3 +35,4 @@ public void SendModelState(bool force = false)
 }
 
 ```
+:::

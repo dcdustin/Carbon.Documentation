@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnItemRecycle [2]
-```csharp
+# OnItemRecycle
+Called during the recycling process (each tick the recycler processes items).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnItemRecycle()
+{
+	Puts("OnItemRecycle has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Recycler]
 public void RecycleThink()
 {
 	bool flag = false;
@@ -116,3 +129,4 @@ public void RecycleThink()
 }
 
 ```
+:::

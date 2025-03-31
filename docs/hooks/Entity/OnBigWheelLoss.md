@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBigWheelLoss
-```csharp
+Called when a player loses in the spinning big wheel gambling game (Bandit Camp wheel).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBigWheelLoss()
+{
+	Puts("OnBigWheelLoss has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BigWheelGame]
 public void Payout()
 {
 	HitNumber currentHitType = GetCurrentHitType();
@@ -44,3 +57,4 @@ public void Payout()
 }
 
 ```
+:::

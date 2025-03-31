@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSprayCreate
-```csharp
+Called when a player creates a spray decal (graffiti) using the Spray Can.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSprayCreate()
+{
+	Puts("OnSprayCreate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SprayCan]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void CreateSpray(BaseEntity.RPCMessage msg)
@@ -41,3 +54,4 @@ public void CreateSpray(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

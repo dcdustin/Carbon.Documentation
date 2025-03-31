@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGrowableGathered
-```csharp
+Called after a plant has been harvested and its fruit given to the player.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGrowableGathered()
+{
+	Puts("OnGrowableGathered has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ GrowableEntity]
 public void GiveFruit(BasePlayer player, int amount, bool eat)
 {
 	if (amount <= 0)
@@ -22,3 +34,4 @@ public void GiveFruit(BasePlayer player, int amount, bool eat)
 }
 
 ```
+:::

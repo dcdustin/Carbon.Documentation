@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorSuppliesRequest
-```csharp
+Called when a player initiates a supply drop request at the excavator (presses the excavator’s supply drop button, before it's processed).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnExcavatorSuppliesRequest()
+{
+	Puts("OnExcavatorSuppliesRequest has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorSignalComputer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -23,3 +36,4 @@ public void RequestSupplies(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

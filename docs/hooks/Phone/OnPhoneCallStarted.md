@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneCallStarted
-```csharp
+Triggered once a telephone call has successfully started.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPhoneCallStarted()
+{
+	Puts("OnPhoneCallStarted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PhoneController]
 public void BeginCall()
 {
 	if (IsMobile && activeCallTo != null && !activeCallTo.RequirePower)
@@ -12,3 +24,4 @@ public void BeginCall()
 }
 
 ```
+:::

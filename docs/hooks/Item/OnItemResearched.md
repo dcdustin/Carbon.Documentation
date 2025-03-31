@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemResearched
-```csharp
+Called when an item has been successfully researched.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnItemResearched()
+{
+	Puts("OnItemResearched has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ResearchTable]
 public void ResearchAttemptFinished()
 {
 	Item targetItem = GetTargetItem();
@@ -47,3 +59,4 @@ public void ResearchAttemptFinished()
 }
 
 ```
+:::

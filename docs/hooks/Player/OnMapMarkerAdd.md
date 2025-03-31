@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMapMarkerAdd
-```csharp
+Called when a map marker is about to be added.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnMapMarkerAdd()
+{
+	Puts("OnMapMarkerAdd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.CallsPerSecond(8uL)]
@@ -36,3 +49,4 @@ public void Server_AddMarker(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnEntityDestroy [BradleyAPC]
-```csharp
+# OnEntityDestroy
+Called when a major AI-controlled entity is destroyed (e.g., CH47 helicopter or Bradley APC is killed).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnEntityDestroy()
+{
+	Puts("OnEntityDestroy has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public override void OnDied(HitInfo info)
 {
 	if (base.isClient)
@@ -77,3 +90,4 @@ public override void OnDied(HitInfo info)
 }
 
 ```
+:::

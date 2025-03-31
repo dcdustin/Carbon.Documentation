@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTeamKick
-```csharp
+Called when a team member is kicked from the team.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTeamKick()
+{
+	Puts("OnTeamKick has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RelationshipManager]
 [ServerUserVar]
 public static void kickmember(ConsoleSystem.Arg arg)
 {
@@ -21,3 +34,4 @@ public static void kickmember(ConsoleSystem.Arg arg)
 }
 
 ```
+:::

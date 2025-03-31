@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOvenStart
-```csharp
+Called when an oven or furnace is about to be ignited (turned on to start cooking).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnOvenStart()
+{
+	Puts("OnOvenStart has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
 public virtual void StartCooking()
 {
 	if (FindBurnable() != null || CanRunWithNoFuel)
@@ -21,3 +34,4 @@ public virtual void StartCooking()
 }
 
 ```
+:::

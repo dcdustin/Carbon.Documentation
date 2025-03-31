@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWeaponFired
-```csharp
+Called when a weapon is fired (a shot is taken).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnWeaponFired()
+{
+	Puts("OnWeaponFired has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseProjectile]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.IsActiveItem]
@@ -102,3 +114,4 @@ public void CLProject(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

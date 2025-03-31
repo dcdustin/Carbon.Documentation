@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityMounted
-```csharp
+Triggered when a player mounts an entity (such as getting on a vehicle or turret).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntityMounted()
+{
+	Puts("OnEntityMounted has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMountable]
 public void MountPlayer(BasePlayer player)
 {
 	if (!(_mounted != null) && !(mountAnchor == null))
@@ -25,3 +37,4 @@ public void MountPlayer(BasePlayer player)
 }
 
 ```
+:::

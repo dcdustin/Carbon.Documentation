@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleModuleDeselected
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnVehicleModuleDeselected()
+{
+	Puts("OnVehicleModuleDeselected has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ModularCarGarage]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void RPC_DeselectedLootItem(BaseEntity.RPCMessage msg)
@@ -13,3 +25,4 @@ public void RPC_DeselectedLootItem(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

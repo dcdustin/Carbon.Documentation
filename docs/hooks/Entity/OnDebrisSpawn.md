@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDebrisSpawn
-```csharp
+Called when a building part decays and spawns debris (collapsed structure debris entity created).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnDebrisSpawn()
+{
+	Puts("OnDebrisSpawn has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ DecayEntity]
 public void SpawnDebris(UnityEngine.Vector3 localPos, UnityEngine.Quaternion rot, bool dropToTerrain)
 {
 	UnityEngine.Vector3 vector = base.transform.TransformPoint(localPos);
@@ -27,3 +40,4 @@ public void SpawnDebris(UnityEngine.Vector3 localPos, UnityEngine.Quaternion rot
 }
 
 ```
+:::

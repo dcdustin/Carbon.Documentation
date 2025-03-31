@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnCupboardDeauthorize [VehiclePrivilege]
-```csharp
+# OnCupboardDeauthorize
+Called when a player is deauthorized from a tool cupboard (removed from auth list).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCupboardDeauthorize()
+{
+	Puts("OnCupboardDeauthorize has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ VehiclePrivilege]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void RemoveSelfAuthorize(BaseEntity.RPCMessage rpc)
@@ -15,3 +28,4 @@ public void RemoveSelfAuthorize(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnClientAuth
-```csharp
+Called when a client is in the process of authenticating (during connection handshake).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnClientAuth()
+{
+	Puts("OnClientAuth has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void OnGiveUserInformation(Network.Message packet)
 {
 	if (packet.connection.state != 0)
@@ -72,3 +84,4 @@ public void OnGiveUserInformation(Network.Message packet)
 }
 
 ```
+:::

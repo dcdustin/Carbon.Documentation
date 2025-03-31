@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBuildingSplit
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnBuildingSplit()
+{
+	Puts("OnBuildingSplit has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerBuildingManager]
 public void Split(BuildingManager.Building building)
 {
 	while (building.HasBuildingBlocks())
@@ -33,3 +45,4 @@ public void Split(BuildingManager.Building building)
 }
 
 ```
+:::

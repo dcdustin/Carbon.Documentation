@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCodeEntered
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCodeEntered()
+{
+	Puts("OnCodeEntered has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CodeLock]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f, CheckParent = true)]
 public void UnlockWithCode(BaseEntity.RPCMessage rpc)
@@ -54,3 +67,4 @@ public void UnlockWithCode(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

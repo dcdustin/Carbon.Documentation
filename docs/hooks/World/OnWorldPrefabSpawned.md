@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWorldPrefabSpawned
-```csharp
+Called when a world prefab (map object) is spawned into the game world.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnWorldPrefabSpawned()
+{
+	Puts("OnWorldPrefabSpawned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ World]
 public static void SpawnPrefab(string category, Prefab prefab, UnityEngine.Vector3 position, UnityEngine.Quaternion rotation, UnityEngine.Vector3 scale)
 {
 	if (prefab != null && (bool)prefab.Object)
@@ -30,3 +42,4 @@ public static void SpawnPrefab(string category, Prefab prefab, UnityEngine.Vecto
 }
 
 ```
+:::

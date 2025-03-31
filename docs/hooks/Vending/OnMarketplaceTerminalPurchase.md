@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # OnMarketplaceTerminalPurchase
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool OnMarketplaceTerminalPurchase()
+{
+	Puts("OnMarketplaceTerminalPurchase has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ MarketTerminal]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(10uL)]
@@ -64,3 +77,4 @@ public void Server_Purchase(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

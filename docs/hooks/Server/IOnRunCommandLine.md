@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnRunCommandLine
-```csharp
+Called when a server command-line command is executed (during startup or via console input).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object IOnRunCommandLine()
+{
+	Puts("IOnRunCommandLine has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Facepunch.Console @ ConsoleSystem]
 public static void UpdateValuesFromCommandLine()
 {
 	foreach (System.Collections.Generic.KeyValuePair<string, string> @switch in Facepunch.CommandLine.GetSwitches())
@@ -16,3 +29,4 @@ public static void UpdateValuesFromCommandLine()
 }
 
 ```
+:::

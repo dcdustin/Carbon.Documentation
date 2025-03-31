@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRespawnInformationGiven
-```csharp
+Called when respawn information (spawn options) is given to a player (after they die or join).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnRespawnInformationGiven()
+{
+	Puts("OnRespawnInformationGiven has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void SendRespawnOptions()
 {
 	if (NexusServer.Started && ZoneController.Instance.CanRespawnAcrossZones(this))
@@ -80,3 +92,4 @@ public void SendRespawnOptions()
 }
 
 ```
+:::

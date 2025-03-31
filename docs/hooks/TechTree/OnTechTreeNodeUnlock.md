@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTechTreeNodeUnlock
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnTechTreeNodeUnlock()
+{
+	Puts("OnTechTreeNodeUnlock has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Workbench]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_TechTreeUnlock(BaseEntity.RPCMessage msg)
@@ -53,3 +66,4 @@ public void RPC_TechTreeUnlock(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

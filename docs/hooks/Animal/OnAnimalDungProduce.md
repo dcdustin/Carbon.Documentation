@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnAnimalDungProduce [RidableHorse2]
-```csharp
+# OnAnimalDungProduce
+Called when a ridable animal (e.g., horse) is about to produce dung (manure). Allows plugins to modify or cancel dung creation.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnAnimalDungProduce()
+{
+	Puts("OnAnimalDungProduce has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RidableHorse2]
 public void DoDung()
 {
 	dungProduction -= 1f;
@@ -12,3 +25,4 @@ public void DoDung()
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanMoveItem
-```csharp
+Determines if an item can be moved to another container.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanMoveItem()
+{
+	Puts("CanMoveItem has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 public void MoveItem(BaseEntity.RPCMessage msg)
@@ -149,3 +162,4 @@ public void MoveItem(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

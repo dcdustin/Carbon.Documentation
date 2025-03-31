@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlEnded [2] [patch]
-```csharp
+Called after a player has stopped controlling a remote entity (patch hook variant).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBookmarkControlEnded [2] [patch]()
+{
+	Puts("OnBookmarkControlEnded [2] [patch] has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
 [BaseEntity.RPC_Server]
 public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 {
@@ -48,3 +61,4 @@ public void BeginControllingBookmark(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

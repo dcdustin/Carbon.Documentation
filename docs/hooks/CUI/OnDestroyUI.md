@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDestroyUI
-```csharp
+Called when a custom UI element is being destroyed/removed from a player’s screen.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnDestroyUI()
+{
+	Puts("OnDestroyUI has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Game.Rust.Cui.CuiHelper]
 public static bool DestroyUi(BasePlayer player, string name)
 {
 	//IL_0047: Unknown result type (might be due to invalid IL or missing references)
@@ -19,3 +31,4 @@ public static bool DestroyUi(BasePlayer player, string name)
 }
 
 ```
+:::

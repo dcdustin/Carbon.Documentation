@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnStructureDemolish [immediate = false]
-```csharp
+# OnStructureDemolish
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnStructureDemolish()
+{
+	Puts("OnStructureDemolish has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ StabilityEntity]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void DoDemolish(BaseEntity.RPCMessage msg)
@@ -13,3 +26,4 @@ public void DoDemolish(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

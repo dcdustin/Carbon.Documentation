@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipHarborApproach
-```csharp
+Called when the Cargo Ship is approaching a harbor (coming in to dock).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCargoShipHarborApproach()
+{
+	Puts("OnCargoShipHarborApproach has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ CargoShip]
 public void StartHarborApproach(CargoNotifier cn)
 {
 	PlayHorn();
@@ -22,3 +35,4 @@ public void StartHarborApproach(CargoNotifier cn)
 }
 
 ```
+:::

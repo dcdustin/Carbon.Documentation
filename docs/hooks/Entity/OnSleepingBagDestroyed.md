@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSleepingBagDestroyed
-```csharp
+Called after a sleeping bag or bed has been destroyed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnSleepingBagDestroyed()
+{
+	Puts("OnSleepingBagDestroyed has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SleepingBag]
 public static bool DestroyBag(ulong userID, NetworkableId sleepingBag)
 {
 	SleepingBag sleepingBag2 = System.Linq.Enumerable.FirstOrDefault(FindForPlayer(userID, ignoreTimers: true), (SleepingBag x) => x.net.ID == sleepingBag);
@@ -21,3 +33,4 @@ public static bool DestroyBag(ulong userID, NetworkableId sleepingBag)
 }
 
 ```
+:::

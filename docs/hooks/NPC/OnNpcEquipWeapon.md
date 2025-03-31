@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnNpcEquipWeapon [NPCPlayer]
-```csharp
+# OnNpcEquipWeapon
+Called when an NPC equips a weapon.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNpcEquipWeapon()
+{
+	Puts("OnNpcEquipWeapon has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ NPCPlayer]
 public virtual void EquipWeapon(bool skipDeployDelay = false)
 {
 	if (base.inventory == null || base.inventory.containerBelt == null)
@@ -30,3 +43,4 @@ public virtual void EquipWeapon(bool skipDeployDelay = false)
 }
 
 ```
+:::

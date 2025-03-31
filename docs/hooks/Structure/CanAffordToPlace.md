@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAffordToPlace
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanAffordToPlace()
+{
+	Puts("CanAffordToPlace has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Planner]
 public bool CanAffordToPlace(Construction component)
 {
 	if (isTypeDeployable)
@@ -27,3 +40,4 @@ public bool CanAffordToPlace(Construction component)
 }
 
 ```
+:::

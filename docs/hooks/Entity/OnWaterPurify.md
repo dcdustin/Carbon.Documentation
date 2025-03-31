@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWaterPurify
-```csharp
+Called when a Water Purifier begins purifying water (dirty water starting to boil).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnWaterPurify()
+{
+	Puts("OnWaterPurify has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WaterPurifier]
 public void ConvertWater(float timeCooked)
 {
 	if (stopWhenOutputFull)
@@ -53,3 +66,4 @@ public void ConvertWater(float timeCooked)
 }
 
 ```
+:::

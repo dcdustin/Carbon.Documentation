@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkDesignChanged
-```csharp
+Called after a firework's design has been updated.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFireworkDesignChanged()
+{
+	Puts("OnFireworkDesignChanged has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PatternFirework]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 [BaseEntity.RPC_Server.CallsPerSecond(5uL)]
@@ -32,3 +44,4 @@ public void ServerSetFireworkDesign(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

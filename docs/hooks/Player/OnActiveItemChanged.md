@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnActiveItemChanged
-```csharp
+Called after a player has switched their active item.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnActiveItemChanged()
+{
+	Puts("OnActiveItemChanged has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 #define UNITY_ASSERTIONS
 public void UpdateActiveItem(ItemId itemID)
 {
@@ -44,3 +56,4 @@ public void UpdateActiveItem(ItemId itemID)
 }
 
 ```
+:::

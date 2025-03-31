@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnPlayerConnected
-```csharp
+Called when a player has connected to the server (internal connection event).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IOnPlayerConnected()
+{
+	Puts("IOnPlayerConnected has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void PlayerInit(Network.Connection c)
 {
 	using (TimeWarning.New("PlayerInit", 10))
@@ -80,3 +92,4 @@ public void PlayerInit(Network.Connection c)
 }
 
 ```
+:::

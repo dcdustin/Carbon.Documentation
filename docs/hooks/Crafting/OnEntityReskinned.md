@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityReskinned
-```csharp
+Called after an entity’s skin has been changed (reskin action completed).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnEntityReskinned()
+{
+	Puts("OnEntityReskinned has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ SprayCan]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 [BaseEntity.RPC_Server.CallsPerSecond(2uL)]
@@ -313,3 +325,4 @@ public void ChangeItemSkin(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerInput
-```csharp
+Called when a player's input is processed each frame (movement, view, etc.).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerInput()
+{
+	Puts("OnPlayerInput has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void OnReceiveTick(PlayerTick msg, bool wasPlayerStalled)
 {
 	if (msg.inputState != null)
@@ -139,3 +152,4 @@ public void OnReceiveTick(PlayerTick msg, bool wasPlayerStalled)
 }
 
 ```
+:::

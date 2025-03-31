@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBeWounded
-```csharp
+Called to check if a player can enter the wounded state (versus dying immediately).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanBeWounded()
+{
+	Puts("CanBeWounded has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public virtual bool EligibleForWounding(HitInfo info)
 {
 	if (!ConVar.Server.woundingenabled)
@@ -64,3 +77,4 @@ public virtual bool EligibleForWounding(HitInfo info)
 }
 
 ```
+:::

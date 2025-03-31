@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanUseGesture
-```csharp
+Called to determine if a player can perform a gesture/emote at the current time.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanUseGesture()
+{
+	Puts("CanUseGesture has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GestureConfig]
 public bool IsOwnedBy(BasePlayer player, bool allowCinematic = false)
 {
 	if (forceUnlock)
@@ -35,3 +48,4 @@ public bool IsOwnedBy(BasePlayer player, bool allowCinematic = false)
 }
 
 ```
+:::

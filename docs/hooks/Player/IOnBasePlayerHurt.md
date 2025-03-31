@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnBasePlayerHurt
-```csharp
+Called when a player is hurt and takes damage (internal event).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object IOnBasePlayerHurt()
+{
+	Puts("IOnBasePlayerHurt has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public override void Hurt(HitInfo info)
 {
 	if (IsDead() || IsTransferProtected() || (IsImmortalTo(info) && info.damageTypes.Total() >= 0f))
@@ -106,3 +119,4 @@ public override void Hurt(HitInfo info)
 }
 
 ```
+:::

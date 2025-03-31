@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnIngredientsCollect
-```csharp
+Called when ingredients for a crafting task are collected (the server gathers required items to craft an item).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnIngredientsCollect()
+{
+	Puts("OnIngredientsCollect has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ItemCrafter]
 public void CollectIngredients(ItemBlueprint bp, ItemCraftTask task, int amount = 1, BasePlayer player = null)
 {
 	System.Collections.Generic.List<Item> list = new System.Collections.Generic.List<Item>();
@@ -16,3 +29,4 @@ public void CollectIngredients(ItemBlueprint bp, ItemCraftTask task, int amount 
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBackpackDrop
-```csharp
+Called when a player's backpack is dropped (e.g., on death).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBackpackDrop()
+{
+	Puts("OnBackpackDrop has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public void TryDropBackpack()
 {
 	Item anyBackpack = GetAnyBackpack();
@@ -11,3 +24,4 @@ public void TryDropBackpack()
 }
 
 ```
+:::

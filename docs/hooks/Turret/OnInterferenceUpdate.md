@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInterferenceUpdate
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnInterferenceUpdate()
+{
+	Puts("OnInterferenceUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AutoTurret]
 public void UpdateInterference()
 {
 	if (!IsOn())
@@ -19,3 +32,4 @@ public void UpdateInterference()
 }
 
 ```
+:::

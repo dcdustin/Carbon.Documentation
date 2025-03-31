@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLiquidWeaponFired
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnLiquidWeaponFired()
+{
+	Puts("OnLiquidWeaponFired has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ LiquidWeapon]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsActiveItem]
 public void StartFiring(BaseEntity.RPCMessage msg)
@@ -28,3 +40,4 @@ public void StartFiring(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

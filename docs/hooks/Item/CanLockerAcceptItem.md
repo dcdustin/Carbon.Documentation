@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanLockerAcceptItem
-```csharp
+Determines if a given item can be stored in a locker.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanLockerAcceptItem()
+{
+	Puts("CanLockerAcceptItem has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ Locker]
 public override bool ItemFilter(Item item, int targetSlot)
 {
 	if (!base.ItemFilter(item, targetSlot))
@@ -25,3 +38,4 @@ public override bool ItemFilter(Item item, int targetSlot)
 }
 
 ```
+:::

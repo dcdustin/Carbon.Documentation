@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnScientistInitialized [BradleyAPC]
-```csharp
+# OnScientistInitialized
+Called when a scientist NPC is initialized/spawned.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnScientistInitialized()
+{
+	Puts("OnScientistInitialized has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public void InitScientist(ScientistNPC scientist, UnityEngine.Vector3 spawnPos, BasePlayer triggerPlayer, bool roadSpawned, bool startChasing)
 {
 	if (scientist == null)
@@ -40,3 +52,4 @@ public void InitScientist(ScientistNPC scientist, UnityEngine.Vector3 spawnPos, 
 }
 
 ```
+:::

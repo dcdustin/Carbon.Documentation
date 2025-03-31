@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# OnRidableAnimalClaim [RidableHorse2]
-```csharp
+# OnRidableAnimalClaim
+Called when a player attempts to claim a ridable animal (such as purchasing a horse at a stable, before the claim is finalized).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnRidableAnimalClaim()
+{
+	Puts("OnRidableAnimalClaim has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ RidableHorse2]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void SERVER_Claim(BaseEntity.RPCMessage msg)
@@ -23,3 +36,4 @@ public void SERVER_Claim(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

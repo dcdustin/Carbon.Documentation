@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDefaultItemsReceived
-```csharp
+Called after a player has been given their default starter items.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnDefaultItemsReceived()
+{
+	Puts("OnDefaultItemsReceived has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerInventory]
 public void GiveDefaultItems()
 {
 	Strip();
@@ -64,3 +76,4 @@ public void GiveDefaultItems()
 }
 
 ```
+:::

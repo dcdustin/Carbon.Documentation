@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanLootEntity
-```csharp
+Called when a player attempts to loot an entity or container. Plugins can use this to allow or block the looting action.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanLootEntity()
+{
+	Puts("CanLootEntity has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WorldItem]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void RPC_OpenLoot(BaseEntity.RPCMessage rpc)
@@ -25,3 +38,4 @@ public void RPC_OpenLoot(BaseEntity.RPCMessage rpc)
 }
 
 ```
+:::

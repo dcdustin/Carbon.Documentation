@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanWaterBallSplash
-```csharp
+Called when a water-filled projectile (like a water ball) is about to create a splash. Plugins can allow or prevent the splash effect.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanWaterBallSplash()
+{
+	Puts("CanWaterBallSplash has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ WaterBall]
 public static bool DoSplash(UnityEngine.Vector3 position, float radius, ItemDefinition liquidDef, int amount)
 {
 	System.Collections.Generic.List<BaseEntity> obj = Facepunch.Pool.Get<System.Collections.Generic.List<BaseEntity>>();
@@ -59,3 +72,4 @@ public static bool DoSplash(UnityEngine.Vector3 position, float radius, ItemDefi
 }
 
 ```
+:::

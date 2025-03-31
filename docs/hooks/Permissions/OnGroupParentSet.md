@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupParentSet
-```csharp
+Called when a permission group's parent group is changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupParentSet()
+{
+	Puts("OnGroupParentSet has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool SetGroupParent(string group, string parent)
 {
 	if (!GroupExists(group))
@@ -42,3 +54,4 @@ public virtual bool SetGroupParent(string group, string parent)
 }
 
 ```
+:::

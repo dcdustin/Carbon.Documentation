@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanVendingAcceptItem
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanVendingAcceptItem()
+{
+	Puts("CanVendingAcceptItem has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ VendingMachine]
 public bool CanAcceptItem(Item item, int targetSlot)
 {
 	BasePlayer basePlayer = item.GetRootContainer()?.GetOwnerPlayer();
@@ -24,3 +37,4 @@ public bool CanAcceptItem(Item item, int targetSlot)
 }
 
 ```
+:::

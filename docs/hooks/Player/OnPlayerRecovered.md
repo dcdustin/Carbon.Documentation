@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerRecovered
-```csharp
+Called after a player has recovered from a wounded state.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerRecovered()
+{
+	Puts("OnPlayerRecovered has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public void RecoverFromWounded()
 {
 	if (IsCrawling())
@@ -17,3 +29,4 @@ public void RecoverFromWounded()
 }
 
 ```
+:::

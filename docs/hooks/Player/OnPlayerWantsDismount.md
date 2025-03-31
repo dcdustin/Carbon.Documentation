@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerWantsDismount
-```csharp
+Called when a player attempts to dismount a mountable entity (before actually dismounting).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerWantsDismount()
+{
+	Puts("OnPlayerWantsDismount has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMountable]
 [BaseEntity.RPC_Server]
 public void RPC_WantsDismount(BaseEntity.RPCMessage msg)
 {
@@ -12,3 +25,4 @@ public void RPC_WantsDismount(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHotAirBalloonToggle
-```csharp
+Called when a Hot Air Balloon’s burner (engine) is toggled (player or logic attempts to turn it on/off).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnHotAirBalloonToggle()
+{
+	Puts("OnHotAirBalloonToggle has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ HotAirBalloon]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.IsVisible(3f)]
 public void EngineSwitch(BaseEntity.RPCMessage msg)
@@ -22,3 +35,4 @@ public void EngineSwitch(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

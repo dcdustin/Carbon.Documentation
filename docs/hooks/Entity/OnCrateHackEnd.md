@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCrateHackEnd
-```csharp
+Called when a hackable locked crate’s hacking process ends (the crate is unlocked).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCrateHackEnd()
+{
+	Puts("OnCrateHackEnd has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ HackableLockedCrate]
 public void HackProgress()
 {
 	hackSeconds += 1f;
@@ -20,3 +32,4 @@ public void HackProgress()
 }
 
 ```
+:::

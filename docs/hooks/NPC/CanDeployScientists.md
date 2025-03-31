@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanDeployScientists [BradleyAPC]
-```csharp
+# CanDeployScientists
+Determines if NPC scientists can be deployed (spawned) in an event.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanDeployScientists()
+{
+	Puts("CanDeployScientists has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BradleyAPC]
 public bool CanDeployScientists(BaseEntity attacker, System.Collections.Generic.List<GameObjectRef> scientistPrefabs, System.Collections.Generic.List<UnityEngine.Vector3> spawnPositions)
 {
 	int count = scientistPrefabs.Count;
@@ -37,3 +50,4 @@ public bool CanDeployScientists(BaseEntity attacker, System.Collections.Generic.
 }
 
 ```
+:::

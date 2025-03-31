@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerInitialized
-```csharp
+Called when the server has finished initializing (startup complete).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnServerInitialized()
+{
+	Puts("OnServerInitialized has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void OpenConnection(bool useSteamServer = true)
 {
 	if (ConVar.Server.queryport <= 0 || ConVar.Server.queryport == ConVar.Server.port)
@@ -36,3 +48,4 @@ public void OpenConnection(bool useSteamServer = true)
 }
 
 ```
+:::

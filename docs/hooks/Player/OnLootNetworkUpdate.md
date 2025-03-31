@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootNetworkUpdate
-```csharp
+Called when the server updates the loot interface (e.g., after items move while looting).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnLootNetworkUpdate()
+{
+	Puts("OnLootNetworkUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ PlayerLoot]
 public void SendUpdate()
 {
 	isInvokingSendUpdate = false;
@@ -29,3 +42,4 @@ public void SendUpdate()
 }
 
 ```
+:::

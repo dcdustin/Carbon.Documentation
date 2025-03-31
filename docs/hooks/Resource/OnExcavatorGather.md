@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorGather
-```csharp
+Called when the excavator produces resources and deposits them (each processing cycle).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnExcavatorGather()
+{
+	Puts("OnExcavatorGather has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ExcavatorArm]
 public void ProduceResources()
 {
 	float num = resourceProductionTickRate / timeForFullResources;
@@ -28,3 +41,4 @@ public void ProduceResources()
 }
 
 ```
+:::

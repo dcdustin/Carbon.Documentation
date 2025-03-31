@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerSpawn
-```csharp
+Called when a player spawns into the world (initial spawn or respawn).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPlayerSpawn()
+{
+	Puts("OnPlayerSpawn has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public BasePlayer SpawnNewPlayer(Network.Connection connection)
 {
 	BasePlayer.SpawnPoint spawnPoint = FindSpawnPoint();
@@ -37,3 +50,4 @@ public BasePlayer SpawnNewPlayer(Network.Connection connection)
 }
 
 ```
+:::

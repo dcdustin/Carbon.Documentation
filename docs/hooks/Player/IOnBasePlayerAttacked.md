@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # IOnBasePlayerAttacked
-```csharp
+Called when a player is attacked (internal event before damage is applied).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object IOnBasePlayerAttacked()
+{
+	Puts("IOnBasePlayerAttacked has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
 public override void OnAttacked(HitInfo info)
 {
 	float oldHealth = base.health;
@@ -116,3 +129,4 @@ public override void OnAttacked(HitInfo info)
 }
 
 ```
+:::

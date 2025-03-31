@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGrowableGather
-```csharp
+Called when a player harvests a plant (picks fruit from a growable entity).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnGrowableGather()
+{
+	Puts("OnGrowableGather has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GrowableEntity]
 public void PickFruit(BasePlayer player, bool eat = false)
 {
 	if (!CanPick())
@@ -38,3 +51,4 @@ public void PickFruit(BasePlayer player, bool eat = false)
 }
 
 ```
+:::

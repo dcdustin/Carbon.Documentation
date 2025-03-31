@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerDisconnected
-```csharp
+Called when a player disconnects from the server.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerDisconnected()
+{
+	Puts("OnPlayerDisconnected has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ServerMgr]
 public void OnDisconnected(string strReason, Network.Connection connection)
 {
 	Facepunch.Rust.Analytics.Azure.OnPlayerDisconnected(connection, strReason);
@@ -25,3 +37,4 @@ public void OnDisconnected(string strReason, Network.Connection connection)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnGroupRankSet
-```csharp
+Called when a group's rank is changed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnGroupRankSet()
+{
+	Puts("OnGroupRankSet has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual bool SetGroupRank(string group, int rank)
 {
 	if (!GroupExists(group))
@@ -25,3 +37,4 @@ public virtual bool SetGroupRank(string group, int rank)
 }
 
 ```
+:::

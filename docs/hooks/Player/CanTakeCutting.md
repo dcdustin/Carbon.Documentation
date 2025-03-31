@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanTakeCutting
-```csharp
+Called when a player attempts to take a plant cutting, to decide if they are allowed.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object CanTakeCutting()
+{
+	Puts("CanTakeCutting has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GrowableEntity]
 public void TakeClones(BasePlayer player)
 {
 	if (player == null || !CanClone())
@@ -25,3 +38,4 @@ public void TakeClones(BasePlayer player)
 }
 
 ```
+:::

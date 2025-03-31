@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPortalUse
-```csharp
+Triggered when a player uses a portal (teleporter) to teleport.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnPortalUse()
+{
+	Puts("OnPortalUse has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePortal]
 public virtual void UsePortal(BasePlayer player)
 {
 	LinkPortal();
@@ -51,3 +64,4 @@ public virtual void UsePortal(BasePlayer player)
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPermissionRegistered
-```csharp
+Called when a plugin registers a new permission.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPermissionRegistered()
+{
+	Puts("OnPermissionRegistered has been fired!");
+}
+```
+```csharp [Source — Carbon.Common @ Oxide.Core.Libraries.Permission]
 public virtual void RegisterPermission(string name, Carbon.Base.BaseHookable owner)
 {
 	if (string.IsNullOrEmpty(name))
@@ -32,3 +44,4 @@ public virtual void RegisterPermission(string name, Carbon.Base.BaseHookable own
 }
 
 ```
+:::

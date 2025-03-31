@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNetworkSubscriptionsGather
-```csharp
+Called when gathering the list of entities a player should subscribe to for network updates.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNetworkSubscriptionsGather()
+{
+	Puts("OnNetworkSubscriptionsGather has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ NetworkVisibilityGrid]
 public void GetVisibleFrom(Network.Visibility.Group group, System.Collections.Generic.List<Network.Visibility.Group> groups, int radius)
 {
 	groups.Add(Network.Net.sv.visibility.Get(0u));
@@ -62,3 +75,4 @@ public void GetVisibleFrom(Network.Visibility.Group group, System.Collections.Ge
 }
 
 ```
+:::

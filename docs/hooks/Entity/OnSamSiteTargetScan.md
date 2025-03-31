@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSamSiteTargetScan
-```csharp
+Called when a SAM site performs a target scan (scanning the area for valid targets).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnSamSiteTargetScan()
+{
+	Puts("OnSamSiteTargetScan has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ SamSite]
 public void TargetScan()
 {
 	if (!IsPowered())
@@ -63,3 +76,4 @@ public void TargetScan()
 }
 
 ```
+:::

@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/>
 # IDelFix
-```csharp
+Called when the 'del' console command is executed to delete objects.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void IDelFix()
+{
+	Puts("IDelFix has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ ConVar.Hierarchy]
 [ServerVar]
 public static void del(ConsoleSystem.Arg args)
 {
@@ -37,3 +49,4 @@ public static void del(ConsoleSystem.Arg args)
 }
 
 ```
+:::

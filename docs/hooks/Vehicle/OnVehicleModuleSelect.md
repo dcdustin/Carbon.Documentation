@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnVehicleModuleSelect
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnVehicleModuleSelect()
+{
+	Puts("OnVehicleModuleSelect has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ModularCarGarage]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.MaxDistance(3f)]
 public void RPC_SelectedLootItem(BaseEntity.RPCMessage msg)
@@ -45,3 +58,4 @@ public void RPC_SelectedLootItem(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

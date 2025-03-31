@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMeleeThrown
-```csharp
+Called when a player throws a melee weapon (e.g., tosses a spear).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnMeleeThrown()
+{
+	Puts("OnMeleeThrown has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseMelee]
 [BaseEntity.RPC_Server]
 [BaseEntity.RPC_Server.FromOwner(false)]
 [BaseEntity.RPC_Server.IsActiveItem]
@@ -96,3 +108,4 @@ public void CLProject(BaseEntity.RPCMessage msg)
 }
 
 ```
+:::

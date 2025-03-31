@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCupboardProtectionCalculated
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnCupboardProtectionCalculated()
+{
+	Puts("OnCupboardProtectionCalculated has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingPrivlidge]
 public float GetProtectedMinutes(bool force = false)
 {
 	if (base.isServer)
@@ -45,3 +57,4 @@ public float GetProtectedMinutes(bool force = false)
 }
 
 ```
+:::

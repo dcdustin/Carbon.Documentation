@@ -1,6 +1,18 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFreeableContainerReleased
-```csharp
+Called after a freeable loot container has been released (e.g., dropped or freed).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnFreeableContainerReleased()
+{
+	Puts("OnFreeableContainerReleased has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ FreeableLootContainer]
 public void Release(BasePlayer ply)
 {
 	GetRB().isKinematic = false;
@@ -20,3 +32,4 @@ public void Release(BasePlayer ply)
 }
 
 ```
+:::

@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
-# CanBeTargeted [GunTrap]
-```csharp
+# CanBeTargeted
+Called to determine if an entity can be targeted by automated turrets or AI (e.g., auto turrets, helicopter).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private bool CanBeTargeted()
+{
+	Puts("CanBeTargeted has been fired!");
+	return (System.Boolean)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ GunTrap]
 public bool CheckTrigger()
 {
 	System.Collections.Generic.HashSet<BaseEntity> entityContents = trigger.entityContents;
@@ -47,3 +60,4 @@ public bool CheckTrigger()
 }
 
 ```
+:::

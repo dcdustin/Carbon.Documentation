@@ -1,6 +1,19 @@
 <Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNearbyTurretsScan
-```csharp
+No description.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnNearbyTurretsScan()
+{
+	Puts("OnNearbyTurretsScan has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ AutoTurret]
 public void UpdateNearbyTurrets(bool created)
 {
 	System.Collections.Generic.List<AutoTurret> obj = Facepunch.Pool.Get<System.Collections.Generic.List<AutoTurret>>();
@@ -28,3 +41,4 @@ public void UpdateNearbyTurrets(bool created)
 }
 
 ```
+:::
