@@ -1,3 +1,6 @@
 [submodule "tools/Carbon"]
 	path = tools/Carbon
 	url = https://github.com/CarbonCommunity/Carbon.git
+[submodule "Tools/Server"]
+	path = Tools/Server
+	url = https://github.com/CarbonCommunity/Carbon.QuickStart.git
