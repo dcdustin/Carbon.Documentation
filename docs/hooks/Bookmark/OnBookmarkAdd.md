@@ -1,0 +1,41 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnBookmarkAdd
+Called when a new camera bookmark is added at a Computer Station (admin adds a new remote camera identifier).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBookmarkAdd()
+{
+	Puts("OnBookmarkAdd has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ ComputerStation]
+[BaseEntity.RPC_Server]
+public void AddBookmark(BaseEntity.RPCMessage msg)
+{
+	BasePlayer player = msg.player;
+	if (IsPlayerAdmin(player) && !isStatic)
+	{
+		if (UnityEngine.Time.realtimeSinceStartup < nextAddTime)
+		{
+			player.ChatMessage("Slow down...");
+			return;
+		}
+		if (controlBookmarks.Count >= 128)
+		{
+			player.ChatMessage("Too many bookmarks, delete some");
+			return;
+		}
+		nextAddTime = UnityEngine.Time.realtimeSinceStartup + 1f;
+		string identifier = msg.read.String();
+		ForceAddBookmark(identifier);
+		SendControlBookmarks(player);
+	}
+}
+
+```
+:::

@@ -1,0 +1,15 @@
+<Badge type="danger" text="Carbon Compatible"/>
+# OnPluginOutdated
+Triggered if a plugin is detected to be outdated (version mismatch).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPluginOutdated()
+{
+	Puts("OnPluginOutdated has been fired!");
+}
+```
+:::

@@ -1,0 +1,34 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnFindBurnable
+Called when an oven or furnace checks its inventory for burnable fuel.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private Item OnFindBurnable()
+{
+	Puts("OnFindBurnable has been fired!");
+	return (Item)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BaseOven]
+public Item FindBurnable()
+{
+	if (base.inventory == null)
+	{
+		return null;
+	}
+	foreach (Item item in base.inventory.itemList)
+	{
+		if (IsBurnableItem(item))
+		{
+			return item;
+		}
+	}
+	return null;
+}
+
+```
+:::

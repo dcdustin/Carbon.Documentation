@@ -1,0 +1,30 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnCupboardClearList
+Called when a tool cupboard's authorized list is cleared.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnCupboardClearList()
+{
+	Puts("OnCupboardClearList has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BuildingPrivlidge]
+[BaseEntity.RPC_Server]
+[BaseEntity.RPC_Server.IsVisible(3f)]
+public void ClearList(BaseEntity.RPCMessage rpc)
+{
+	if (rpc.player.CanInteract() && CanAdministrate(rpc.player))
+	{
+		authorizedPlayers.Clear();
+		UpdateMaxAuthCapacity();
+		SendNetworkUpdate();
+	}
+}
+
+```
+:::

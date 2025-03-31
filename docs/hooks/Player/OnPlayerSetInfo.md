@@ -1,0 +1,25 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnPlayerSetInfo
+Triggered when the server sets a player's connection info or data (usually during initial connection).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private void OnPlayerSetInfo()
+{
+	Puts("OnPlayerSetInfo has been fired!");
+}
+```
+```csharp [Source — Assembly-CSharp @ BasePlayer]
+public virtual void SetInfo(string key, string val)
+{
+	if (IsConnected)
+	{
+		net.connection.info.Set(key, val);
+	}
+}
+
+```
+:::

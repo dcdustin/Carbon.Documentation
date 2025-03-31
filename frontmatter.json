@@ -54,13 +54,11 @@
     {
       "title": "development",
       "path": "[[workspace]]/docs/development"
-    },
-    {
-      "title": "archive",
-      "path": "[[workspace]]/docs/archive"
     }
   ],
   "frontMatter.preview.host": "http://localhost:5173",
   "frontMatter.framework.startCommand": "npx vitepress dev docs",
-  "frontMatter.website.host": "http://localhost:5173"
+  "frontMatter.website.host": "http://localhost:5173",
+  "frontMatter.content.publicFolder": "",
+  "frontMatter.framework.id": "other"
 }

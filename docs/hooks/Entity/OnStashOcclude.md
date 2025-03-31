@@ -1,0 +1,27 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnStashOcclude
+Called when a stash that was visible becomes hidden again (occluded), for example after a player stops looking at it.
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnStashOcclude()
+{
+	Puts("OnStashOcclude has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ StashContainer]
+public void DoOccludedCheck()
+{
+	if (UnityEngine.Physics.SphereCast(new UnityEngine.Ray(base.transform.position + UnityEngine.Vector3.up * 5f, UnityEngine.Vector3.down), 0.25f, 5f, 2097152))
+	{
+		DropItems();
+		Kill();
+	}
+}
+
+```
+:::

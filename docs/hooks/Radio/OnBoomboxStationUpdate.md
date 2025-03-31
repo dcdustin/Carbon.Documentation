@@ -1,0 +1,37 @@
+<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+# OnBoomboxStationUpdate
+Called when a boombox radio's station is being updated (tuned).
+### Return
+Returning a non-null value cancels default behavior.
+
+### Usage
+::: code-group
+```csharp [Example]
+private object OnBoomboxStationUpdate()
+{
+	Puts("OnBoomboxStationUpdate has been fired!");
+	return (System.Object)default;
+}
+```
+```csharp [Source — Assembly-CSharp @ BoomBox]
+public void Server_UpdateRadioIP(BaseEntity.RPCMessage msg)
+{
+	string text = msg.read.String();
+	if (IsStationValid(text))
+	{
+		if (msg.player != null)
+		{
+			ulong assignedRadioBy = msg.player.userID.Get();
+			AssignedRadioBy = assignedRadioBy;
+		}
+		CurrentRadioIp = text;
+		base.baseEntity.ClientRPC(RpcTarget.NetworkGroup("OnRadioIPChanged"), CurrentRadioIp);
+		if (IsOn())
+		{
+			ServerTogglePlay(play: false);
+		}
+	}
+}
+
+```
+:::
