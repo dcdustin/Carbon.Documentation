@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFlameThrowerBurn
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a flamethrower deals burn damage to an object or player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSurveyGather
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a survey charge explodes to gather resource samples from the ground.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

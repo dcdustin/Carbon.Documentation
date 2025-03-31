@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfFrequencyChanged
+<Badge type="info" text="Radio"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered after an RF device's frequency has been changed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanSeeStash
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called during the check for revealing a hidden stash to a player. Plugins can override this to prevent or allow stash discovery.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

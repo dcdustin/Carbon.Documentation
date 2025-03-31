@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneDialTimedOut
+<Badge type="info" text="Phone"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a phone call has timed out without an answer.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

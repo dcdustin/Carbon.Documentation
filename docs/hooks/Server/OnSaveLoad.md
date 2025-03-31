@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSaveLoad
+<Badge type="info" text="Server"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when the server loads the save file at startup.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

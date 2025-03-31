@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOvenStart
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an oven or furnace is about to be ignited (turned on to start cooking).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

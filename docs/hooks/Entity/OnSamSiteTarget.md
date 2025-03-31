@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSamSiteTarget
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a SAM site locks on to a new target (acquires a target to shoot).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSprayRemove
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a spray decal (graffiti) is removed/cleaned.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

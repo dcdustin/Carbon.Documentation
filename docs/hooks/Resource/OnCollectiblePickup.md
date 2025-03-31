@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCollectiblePickup
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player picks up a collectible item (like a pickup resource from the ground).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

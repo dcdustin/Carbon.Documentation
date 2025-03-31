@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEventCollectablePickup
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player picks up a seasonal event collectible (like an Easter egg).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

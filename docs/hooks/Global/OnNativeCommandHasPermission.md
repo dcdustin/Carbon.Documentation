@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnNativeCommandHasPermission
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when checking if a player has permission to run a native console command.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

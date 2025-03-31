@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponLoaded
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a racked weapon has been loaded with ammo.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

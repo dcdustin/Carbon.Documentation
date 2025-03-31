@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAssignMission
+<Badge type="info" text="Mission"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a mission can be assigned to a player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

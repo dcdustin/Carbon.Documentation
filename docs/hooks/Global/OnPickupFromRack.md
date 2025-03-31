@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnPickupFromRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a player picks up an item from a weapon rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

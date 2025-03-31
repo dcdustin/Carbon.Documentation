@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMeleeThrown
+<Badge type="info" text="Weapon"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player throws a melee weapon (e.g., tosses a spear).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

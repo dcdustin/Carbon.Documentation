@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanDeployScientists
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if NPC scientists can be deployed (spawned) in an event.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

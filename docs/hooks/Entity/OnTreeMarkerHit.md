@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnTreeMarkerHit
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a tree’s marked spot is hit during chopping (player hit the “X” mark on a tree for bonus).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

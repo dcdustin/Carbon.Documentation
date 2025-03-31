@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanNetworkTo
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if an entity's network data should be sent to a specific player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

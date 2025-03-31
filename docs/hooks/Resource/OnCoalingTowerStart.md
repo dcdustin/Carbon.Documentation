@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCoalingTowerStart
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a coaling tower unloading process is initiated (player tries to unload a train wagon).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

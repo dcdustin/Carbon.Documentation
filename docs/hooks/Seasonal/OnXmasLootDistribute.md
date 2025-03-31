@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnXmasLootDistribute
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when the Xmas event begins distributing presents and stocking items.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

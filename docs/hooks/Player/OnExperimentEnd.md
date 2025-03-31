@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExperimentEnd
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a blueprint experiment is ending (a result is about to be given).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

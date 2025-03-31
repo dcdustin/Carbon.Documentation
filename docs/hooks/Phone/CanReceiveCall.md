@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanReceiveCall
+<Badge type="info" text="Phone"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to check if a telephone can receive an incoming call (e.g., has power and conditions met).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFindSpawnPoint
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when determining a spawn point for a player (allows customizing spawn location).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

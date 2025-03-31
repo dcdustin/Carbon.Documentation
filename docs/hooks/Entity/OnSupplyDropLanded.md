@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSupplyDropLanded
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a supply drop crate has landed on the ground (after descending by parachute).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

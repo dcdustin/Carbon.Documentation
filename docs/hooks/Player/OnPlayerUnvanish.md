@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerUnvanish
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player comes out of vanish and becomes visible again.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

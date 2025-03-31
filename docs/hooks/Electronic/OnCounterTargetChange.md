@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCounterTargetChange
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Power Counter’s target value is changed (the threshold it compares against is updated).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

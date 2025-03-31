@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDispenserGathered
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after resources have been given to a player from a resource node (post-harvest).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

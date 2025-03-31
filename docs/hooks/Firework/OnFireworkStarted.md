@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkStarted
+<Badge type="info" text="Firework"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a firework is lit/started.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

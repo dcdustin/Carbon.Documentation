@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCounterModeToggle
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Power Counter (electrical counter) toggles its mode (e.g., switching between counting up or down).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

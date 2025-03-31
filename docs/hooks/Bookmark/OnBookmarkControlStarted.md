@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlStarted
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has successfully started controlling a remote entity via a Computer Station.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

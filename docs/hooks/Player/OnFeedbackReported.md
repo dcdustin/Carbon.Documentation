@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFeedbackReported
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player submits in-game feedback or a report (e.g., via the F7 report system).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFireworkDesignChange
+<Badge type="info" text="Firework"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to set a firework’s design (before it is applied).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

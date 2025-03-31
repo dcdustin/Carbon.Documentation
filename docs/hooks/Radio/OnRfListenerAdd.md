@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfListenerAdd
+<Badge type="info" text="Radio"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an RF listener (receiver device) is added on a frequency (turned on).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

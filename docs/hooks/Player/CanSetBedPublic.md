@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanSetBedPublic
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to determine if a player can set a bed or sleeping bag to public use.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

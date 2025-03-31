@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnResourceDepositCreated
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a new resource deposit entry is created for a world position (usually due to surveying).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

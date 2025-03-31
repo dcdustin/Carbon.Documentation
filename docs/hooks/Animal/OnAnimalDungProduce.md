@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAnimalDungProduce
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a ridable animal (e.g., horse) is about to produce dung (manure). Allows plugins to modify or cancel dung creation.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

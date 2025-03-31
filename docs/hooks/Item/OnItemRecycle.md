@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemRecycle
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called during the recycling process (each tick the recycler processes items).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

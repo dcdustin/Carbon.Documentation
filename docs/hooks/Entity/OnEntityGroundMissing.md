@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityGroundMissing
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity’s ground support is missing, causing it to be destroyed (e.g., a structure piece has no foundation support).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

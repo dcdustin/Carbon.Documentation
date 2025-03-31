@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnItemSkinChange
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an item's skin is changed (e.g., via a repair bench).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHuntEventEnd
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an Egg Hunt event ends (time is up and winners are determined).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

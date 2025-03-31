@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlEnded
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has stopped controlling a remote entity (camera/turret) via the Computer Station.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

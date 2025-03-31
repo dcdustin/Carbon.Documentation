@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSprayCreate
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player creates a spray decal (graffiti) using the Spray Can.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCCTVDirectionChange
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a CCTV camera or remotely controlled turret changes its viewing direction (rotates orientation).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

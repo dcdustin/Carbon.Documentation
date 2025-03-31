@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInputUpdate
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an IOEntity updates based on an input change (e.g., an electrical device receives power input).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnEntitySpawn
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when an entity is spawned in the world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

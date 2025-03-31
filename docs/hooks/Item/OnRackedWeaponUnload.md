@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRackedWeaponUnload
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a weapon on a rack is being unloaded (ammo removed).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

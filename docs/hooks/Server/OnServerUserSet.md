@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerUserSet
+<Badge type="info" text="Server"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entry is added to the server's user list (ban, moderator, owner, etc.).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

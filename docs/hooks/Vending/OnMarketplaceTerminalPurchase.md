@@ -1,5 +1,5 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnMarketplaceTerminalPurchase
+<Badge type="info" text="Vending"/><Badge type="danger" text="Carbon Compatible"/>
 No description.
 ### Return
 Returning a non-null value cancels default behavior.

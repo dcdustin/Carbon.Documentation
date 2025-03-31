@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnGrowableUpdate
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called each time a growable plant updates its growth (growth tick).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

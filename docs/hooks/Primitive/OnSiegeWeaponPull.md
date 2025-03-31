@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSiegeWeaponPull
+<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a siege weapon is pulled back into ready position (e.g., resetting a catapult or ram).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

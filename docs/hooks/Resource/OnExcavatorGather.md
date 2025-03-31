@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorGather
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the excavator produces resources and deposits them (each processing cycle).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

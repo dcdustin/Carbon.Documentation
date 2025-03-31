@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSiegeWeaponFire
+<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a siege weapon (catapult, battering ram, or ballista) is fired.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

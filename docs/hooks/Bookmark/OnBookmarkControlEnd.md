@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkControlEnd
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player stops controlling a remote entity via the Computer Station (before control is fully terminated).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

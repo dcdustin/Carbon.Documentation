@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnOutputUpdate
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an IOEntity updates its outputs (e.g., an electrical device sends power out to connected devices).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

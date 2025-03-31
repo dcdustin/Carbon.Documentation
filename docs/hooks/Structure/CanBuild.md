@@ -1,7 +1,9 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBuild
+<Badge type="info" text="Structure"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when a player tries to place a building block or deployable, to determine if building is allowed at that location.
+
 - Return false to block the placement.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

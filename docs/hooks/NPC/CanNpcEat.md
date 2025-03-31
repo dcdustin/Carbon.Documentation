@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanNpcEat
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if an NPC can eat a target (like a corpse or food item).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

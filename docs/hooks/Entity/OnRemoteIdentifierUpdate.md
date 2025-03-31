@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRemoteIdentifierUpdate
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a remote control entity’s identifier is changed (e.g., updating the ID/channel of an RC device).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

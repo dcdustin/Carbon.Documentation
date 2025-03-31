@@ -1,7 +1,9 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAccessVendingMachine
+<Badge type="info" text="Vending"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when a player attempts to access a vending machine to check if they are allowed.
+
 - Return false to prevent the player from accessing the vending machine.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

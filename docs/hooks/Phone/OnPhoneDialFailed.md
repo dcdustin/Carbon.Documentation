@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneDialFailed
+<Badge type="info" text="Phone"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a phone call attempt has failed, providing the failure reason.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanDesignFirework
+<Badge type="info" text="Firework"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a player is allowed to design a firework pattern.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

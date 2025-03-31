@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHorseUnhitch
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a horse is unhitched from a hitching post (released from being tied).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

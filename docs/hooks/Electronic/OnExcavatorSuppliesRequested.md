@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExcavatorSuppliesRequested
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after the excavator’s supply drop request has been processed (the request has been handled and drop is on the way).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityLeave
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity leaves a trigger volume (no longer inside a zone or trigger area).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

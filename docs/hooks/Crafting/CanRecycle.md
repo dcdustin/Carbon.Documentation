@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanRecycle
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when checking if a recycler can start recycling items. Plugins can allow or prevent the recycler from running.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # Unload
+<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a plugin is being unloaded (for cleanup).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

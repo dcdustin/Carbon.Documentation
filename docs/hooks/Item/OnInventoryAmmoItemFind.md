@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryAmmoItemFind
+<Badge type="info" text="Item"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity (e.g., a tool) searches for an ammo or fuel item in a player's inventory.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

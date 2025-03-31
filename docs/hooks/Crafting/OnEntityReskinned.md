@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityReskinned
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after an entity’s skin has been changed (reskin action completed).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

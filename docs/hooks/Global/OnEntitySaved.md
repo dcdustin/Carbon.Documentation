@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntitySaved
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity's data is saved to the server.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

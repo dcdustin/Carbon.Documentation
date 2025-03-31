@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSignUpdated
+<Badge type="info" text="Structure"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player finishes editing a sign or painting, and it’s updated in the world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

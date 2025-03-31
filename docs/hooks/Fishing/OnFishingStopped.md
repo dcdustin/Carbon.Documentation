@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFishingStopped
+<Badge type="info" text="Fishing"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a fishing attempt is stopped or canceled.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

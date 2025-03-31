@@ -1,7 +1,9 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanPurchaseItem
+<Badge type="info" text="Vending"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 - Called when a player attempts to purchase an item (e.g., from a vending machine), to decide if the purchase is allowed.
+
 - Return false to block the purchase.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

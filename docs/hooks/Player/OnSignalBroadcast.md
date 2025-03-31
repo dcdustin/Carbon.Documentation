@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSignalBroadcast
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity broadcasts a signal (e.g., sound or animation) to nearby players.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

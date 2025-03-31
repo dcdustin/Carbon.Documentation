@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnElevatorButtonPress
+<Badge type="info" text="Elevator"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player presses an elevator’s up/down button to raise or lower the elevator.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

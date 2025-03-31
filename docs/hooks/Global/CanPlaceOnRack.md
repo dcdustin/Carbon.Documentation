@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPlaceOnRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if a player can place an item onto a weapon rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

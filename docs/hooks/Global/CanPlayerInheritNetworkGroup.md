@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPlayerInheritNetworkGroup
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if a player should inherit the network group of an entity (remain in that entity's network zone).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSolarPanelSunUpdate
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Solar Panel updates its power output based on the sun (sunlight intensity update).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

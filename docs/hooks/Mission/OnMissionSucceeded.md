@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMissionSucceeded
+<Badge type="info" text="Mission"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player completes a mission successfully.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

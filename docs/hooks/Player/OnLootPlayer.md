@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootPlayer
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a player starts looting another player's inventory (e.g., a corpse or sleeper).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

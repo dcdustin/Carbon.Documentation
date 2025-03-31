@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnExperimentStart
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a tech tree experiment (blueprint experiment) is started (just beginning).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

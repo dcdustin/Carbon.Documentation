@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDieselEngineToggle
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Diesel Engine (power generator) is toggled on or off (player or logic attempts to change its state).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAnimalDungProduced
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a ridable animal has produced dung and dropped it in the world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

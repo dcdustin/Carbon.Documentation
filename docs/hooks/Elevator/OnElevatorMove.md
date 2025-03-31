@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnElevatorMove
+<Badge type="info" text="Elevator"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an elevator lift begins moving to a target floor as requested.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

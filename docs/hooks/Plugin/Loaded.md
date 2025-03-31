@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # Loaded
+<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a plugin has finished loading.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

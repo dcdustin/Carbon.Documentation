@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRespawnInformationGiven
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when respawn information (spawn options) is given to a player (after they die or join).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

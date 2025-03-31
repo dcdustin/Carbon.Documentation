@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnConveyorFiltersChange
+<Badge type="info" text="Industrial"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the filter settings of an industrial conveyor are changed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

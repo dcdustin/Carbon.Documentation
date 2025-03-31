@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCrateLaptopAttack
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a hackable crate triggers an armed response upon being hacked (e.g., NPCs or defenses activate due to hacking).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

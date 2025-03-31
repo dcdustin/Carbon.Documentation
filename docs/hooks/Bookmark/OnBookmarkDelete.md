@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkDelete
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a bookmark (saved camera/turret reference) is deleted at a Computer Station by an admin.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCargoShipHarborArrived
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the Cargo Ship has arrived at a harbor and is docked.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

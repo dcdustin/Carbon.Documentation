@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHorseLead
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player leads a ridable animal (e.g., starts or stops leading a horse with a lead rope).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

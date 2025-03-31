@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCrateHack
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a hackable locked crate’s hacking process begins (player starts hacking the crate).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

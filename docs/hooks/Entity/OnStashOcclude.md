@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnStashOcclude
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a stash that was visible becomes hidden again (occluded), for example after a player stops looking at it.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

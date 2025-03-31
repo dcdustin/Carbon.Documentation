@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBookmarkInput
+<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called on each input tick while a player is remotely controlling an entity (camera or turret). Allows plugins to process or override player input during remote control.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

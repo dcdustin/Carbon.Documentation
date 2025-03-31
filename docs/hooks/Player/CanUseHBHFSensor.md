@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanUseHBHFSensor
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an HBHF sensor detects a player, to check if that player should trigger it.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

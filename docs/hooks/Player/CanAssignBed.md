@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanAssignBed
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to check if a bed or sleeping bag can be assigned to a player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

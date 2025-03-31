@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnWorldPrefabSpawned
+<Badge type="info" text="World"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a world prefab (map object) is spawned into the game world.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

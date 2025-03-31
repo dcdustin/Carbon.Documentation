@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnConsoleCommand
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a console command is executed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

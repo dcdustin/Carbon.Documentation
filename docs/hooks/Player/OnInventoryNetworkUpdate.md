@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnInventoryNetworkUpdate
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player's inventory state is being sent to the client (network update).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

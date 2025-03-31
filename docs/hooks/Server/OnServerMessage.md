@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnServerMessage
+<Badge type="info" text="Server"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when the server broadcasts a chat message to all players (e.g., "SERVER" chat).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

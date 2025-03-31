@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAirdrop
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a cargo plane is spawned for an airdrop event (when an airdrop starts).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

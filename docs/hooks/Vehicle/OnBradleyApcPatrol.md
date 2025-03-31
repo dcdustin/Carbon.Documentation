@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBradleyApcPatrol
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the Bradley APC starts or continues its patrol route.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDebrisSpawn
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a building part decays and spawns debris (collapsed structure debris entity created).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

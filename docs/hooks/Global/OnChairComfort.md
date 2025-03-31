@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnChairComfort
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when calculating the comfort bonus provided by a chair.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

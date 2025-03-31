@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityStabilityCheck
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called during a stability check for a building entity (to determine if it should collapse). Plugins can adjust or override stability outcome.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

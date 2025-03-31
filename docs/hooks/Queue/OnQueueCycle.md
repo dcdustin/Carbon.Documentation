@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQueueCycle
+<Badge type="info" text="Queue"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called on each cycle of the connection queue processing (checking slots and moving players into the server).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

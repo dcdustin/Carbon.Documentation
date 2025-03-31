@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCrateHackEnd
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a hackable locked crate’s hacking process ends (the crate is unlocked).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

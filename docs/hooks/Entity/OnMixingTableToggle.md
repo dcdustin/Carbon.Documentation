@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnMixingTableToggle
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Mixing Table is toggled (started or stopped mixing potions/teas).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

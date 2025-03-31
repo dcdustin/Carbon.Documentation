@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhotoCapture
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player takes a photo with the instant camera (at the moment of capture, before it’s finalized).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanBeWounded
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to check if a player can enter the wounded state (versus dying immediately).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

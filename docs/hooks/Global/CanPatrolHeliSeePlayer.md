@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPatrolHeliSeePlayer
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if the patrol helicopter can see (and target) a specific player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

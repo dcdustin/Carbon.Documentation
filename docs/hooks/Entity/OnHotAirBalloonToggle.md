@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnHotAirBalloonToggle
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Hot Air Balloon’s burner (engine) is toggled (player or logic attempts to turn it on/off).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

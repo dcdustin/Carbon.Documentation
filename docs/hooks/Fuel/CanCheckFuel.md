@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanCheckFuel
+<Badge type="info" text="Fuel"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Determines if a player or entity can check a fuel container (is in range to check fuel).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

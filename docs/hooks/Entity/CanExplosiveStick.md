@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanExplosiveStick
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an explosive (e.g., C4) is about to stick to a surface on throw. Plugins can allow or prevent it from sticking.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

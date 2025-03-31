@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDecayHeal
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a structure heals from decay (e.g., upkeep prevents decay damage and restores health).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

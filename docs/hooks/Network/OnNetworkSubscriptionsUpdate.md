@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNetworkSubscriptionsUpdate
+<Badge type="info" text="Network"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the network subscription list for an entity is updated (including high-priority updates).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

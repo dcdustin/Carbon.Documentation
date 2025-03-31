@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSiegeWeaponDoorClose
+<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when a battering ram's door or cover is closed.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

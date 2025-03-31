@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnDestroyUI
+<Badge type="info" text="CUI"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a custom UI element is being destroyed/removed from a player’s screen.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

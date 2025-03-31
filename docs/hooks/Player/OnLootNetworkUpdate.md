@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLootNetworkUpdate
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the server updates the loot interface (e.g., after items move while looting).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

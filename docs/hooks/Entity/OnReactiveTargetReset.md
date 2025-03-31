@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnReactiveTargetReset
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a reactive target (shooting range target) resets to its upright position.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

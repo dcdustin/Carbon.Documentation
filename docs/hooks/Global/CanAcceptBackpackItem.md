@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanAcceptBackpackItem
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if an item can be added to a player's backpack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

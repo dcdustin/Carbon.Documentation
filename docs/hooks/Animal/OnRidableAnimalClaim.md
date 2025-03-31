@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRidableAnimalClaim
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to claim a ridable animal (such as purchasing a horse at a stable, before the claim is finalized).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBigWheelLoss
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player loses in the spinning big wheel gambling game (Bandit Camp wheel).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

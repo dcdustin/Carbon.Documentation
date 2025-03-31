@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityFlagsNetworkUpdate
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity’s networked flags are updated (for example, door opened/closed, light toggled, etc., sending state to clients).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

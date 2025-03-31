@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPickupFromRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if a player can pick up an item from a weapon rack.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

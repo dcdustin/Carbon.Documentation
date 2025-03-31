@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnNetworkGroupEntered
+<Badge type="info" text="Network"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity or player enters a network group (area of visibility).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

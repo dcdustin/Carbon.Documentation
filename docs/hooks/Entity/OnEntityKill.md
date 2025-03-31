@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityKill
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity is killed/destroyed (cleanup is initiated). Useful for handling removal logic.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

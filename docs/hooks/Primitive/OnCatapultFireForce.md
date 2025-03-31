@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCatapultFireForce
+<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a catapult is fired, providing the force applied to the launch.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPlayerPingsSend
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when quick ping markers or notifications are being sent to a player (e.g., map pings).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

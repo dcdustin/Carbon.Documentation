@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLiftUse
+<Badge type="info" text="Elevator"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player uses an elevator lift (activates the lift to move).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

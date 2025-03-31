@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFuelConsume
+<Badge type="info" text="Fuel"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a fuel-burning entity (e.g., furnace) is about to consume fuel.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # CanPickupAllFromRack
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Determines if a player can remove all items from a weapon rack at once.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

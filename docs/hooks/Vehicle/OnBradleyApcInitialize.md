@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnBradleyApcInitialize
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when the Bradley APC is initialized (spawns or resets).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

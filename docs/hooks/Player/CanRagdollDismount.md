@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # CanRagdollDismount
+<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called to determine if a player should be thrown off (ragdoll) when dismounting (e.g., from a vehicle).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

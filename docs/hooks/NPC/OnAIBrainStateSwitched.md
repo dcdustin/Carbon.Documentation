@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAIBrainStateSwitched
+<Badge type="info" text="NPC"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after an AI brain has switched to a new state/behavior.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

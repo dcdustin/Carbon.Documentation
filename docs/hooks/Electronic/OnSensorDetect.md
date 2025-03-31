@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSensorDetect
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a HBHF sensor (Heartbeat sensor) detects a player or when it clears detection.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

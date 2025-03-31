@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityReskin
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to reskin an entity (for example, using a spray can to apply a skin) before the skin change is applied.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

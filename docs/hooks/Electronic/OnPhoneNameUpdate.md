@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnPhoneNameUpdate
+<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player attempts to change the name of a Telephone. Plugins can use this to allow or modify the phone name change.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnLiquidVesselFill
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a liquid container (bottle, jug, etc.) is filled with water or another liquid.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # Init
+<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a plugin initializes (setting up on plugin load).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

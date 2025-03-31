@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRconCommand
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an RCON (remote console) command is received.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCoalingTowerGather
+<Badge type="info" text="Resource"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered during the coaling tower's unloading process (transferring resources from a train to storage).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

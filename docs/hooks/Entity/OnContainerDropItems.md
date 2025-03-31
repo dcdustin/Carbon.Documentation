@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnContainerDropItems
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a container’s items are dropped, for example when a storage container is destroyed and its contents spill out.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRidableAnimalClaimed
+<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a player has successfully claimed a ridable animal (ownership change complete).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

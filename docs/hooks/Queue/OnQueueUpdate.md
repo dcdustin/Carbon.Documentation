@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnQueueUpdate
+<Badge type="info" text="Queue"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a queued player's position update is sent (queue position message).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

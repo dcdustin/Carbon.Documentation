@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/>
 # OnJackieChan
+<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
 Called when a player entity is fully initialized on the server.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

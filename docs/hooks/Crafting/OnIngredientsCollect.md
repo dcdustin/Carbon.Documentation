@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnIngredientsCollect
+<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when ingredients for a crafting task are collected (the server gathers required items to craft an item).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

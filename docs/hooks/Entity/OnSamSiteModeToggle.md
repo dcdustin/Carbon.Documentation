@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSamSiteModeToggle
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a SAM site toggles its mode (Peacekeeper mode on/off for the SAM site).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

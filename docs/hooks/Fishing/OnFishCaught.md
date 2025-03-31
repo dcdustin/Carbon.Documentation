@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFishCaught
+<Badge type="info" text="Fishing"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called after a fish is successfully caught and given to the player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

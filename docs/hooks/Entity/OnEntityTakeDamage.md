@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnEntityTakeDamage
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an entity takes damage. Allows plugins to react to or modify damage taken by any entity.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

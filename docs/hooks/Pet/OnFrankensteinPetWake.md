@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnFrankensteinPetWake
+<Badge type="info" text="Pet"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a Frankenstein pet is being awakened at the Frankenstein table.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

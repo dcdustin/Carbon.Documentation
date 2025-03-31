@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnSamSiteTargetScan
+<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a SAM site performs a target scan (scanning the area for valid targets).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

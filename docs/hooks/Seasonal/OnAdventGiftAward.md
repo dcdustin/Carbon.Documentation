@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnAdventGiftAward
+<Badge type="info" text="Seasonal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Triggered when an advent calendar gift is about to be awarded to a player.
+
 ### Return
 Returning a non-null value cancels default behavior.
 

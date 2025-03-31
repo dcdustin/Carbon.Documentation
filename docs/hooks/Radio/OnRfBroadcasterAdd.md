@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnRfBroadcasterAdd
+<Badge type="info" text="Radio"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when an RF broadcaster (transmitter) is added on a frequency (started broadcasting).
+
 ### Return
 Returning a non-null value cancels default behavior.
 

@@ -1,6 +1,7 @@
-<Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 # OnCupboardDeauthorize
+<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
 Called when a player is deauthorized from a tool cupboard (removed from auth list).
+
 ### Return
 Returning a non-null value cancels default behavior.
 
