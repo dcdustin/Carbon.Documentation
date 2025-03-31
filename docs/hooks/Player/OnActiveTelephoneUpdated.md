@@ -1,5 +1,5 @@
 # OnActiveTelephoneUpdated
-<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Player"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when an active telephone call's details are updated (e.g., the active call target or state changes).
 
 ### Return

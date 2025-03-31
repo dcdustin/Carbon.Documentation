@@ -1,5 +1,5 @@
 # OnSiegeWeaponDoorClose
-<Badge type="info" text="Primitive"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Primitive"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Triggered when a battering ram's door or cover is closed.
 
 ### Return

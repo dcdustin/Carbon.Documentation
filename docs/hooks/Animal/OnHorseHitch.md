@@ -1,5 +1,5 @@
 # OnHorseHitch
-<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Animal"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when a horse is being hitched to a hitching post (attempting to tie a horse to a trough).
 
 ### Return

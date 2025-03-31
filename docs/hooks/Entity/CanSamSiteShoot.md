@@ -1,5 +1,5 @@
 # CanSamSiteShoot
-<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Entity"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called right before a SAM site fires a missile. Plugins can use this to decide whether the SAM site is allowed to shoot.
 
 ### Return

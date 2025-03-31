@@ -1,5 +1,5 @@
 # CanAcceptBackpackItem
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Determines if an item can be added to a player's backpack.
 
 ### Return

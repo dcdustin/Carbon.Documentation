@@ -1,5 +1,5 @@
 # OnEntitySnapshot
-<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Entity"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when an entity snapshot is sent to a player (when a player first receives data about an entity on entering the network range).
 
 ### Return

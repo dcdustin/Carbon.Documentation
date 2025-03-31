@@ -1,5 +1,5 @@
 # CanBeRecycled
-<Badge type="info" text="Crafting"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Crafting"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when checking if an item is eligible to be recycled. Plugins can override to allow or block recycling of the item.
 
 ### Return

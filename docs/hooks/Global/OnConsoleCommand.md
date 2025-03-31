@@ -1,5 +1,5 @@
 # OnConsoleCommand
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)<Badge type="info" text="Static"/><Badge type="info" text=" IgnoreChecksum"/>
 Called when a console command is executed.
 
 ### Return

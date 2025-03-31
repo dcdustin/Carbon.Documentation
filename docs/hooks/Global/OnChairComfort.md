@@ -1,5 +1,5 @@
 # OnChairComfort
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Called when calculating the comfort bonus provided by a chair.
 
 ### Return

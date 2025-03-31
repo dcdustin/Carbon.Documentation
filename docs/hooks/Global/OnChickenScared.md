@@ -1,5 +1,5 @@
 # OnChickenScared
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Called when a chicken (or similar animal) becomes scared and flees.
 
 ### Return

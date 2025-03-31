@@ -1,5 +1,5 @@
 # OnBookmarkAdd
-<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Bookmark"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when a new camera bookmark is added at a Computer Station (admin adds a new remote camera identifier).
 
 ### Return

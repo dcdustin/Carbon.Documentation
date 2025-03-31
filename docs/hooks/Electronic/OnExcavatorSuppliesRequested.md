@@ -1,5 +1,5 @@
 # OnExcavatorSuppliesRequested
-<Badge type="info" text="Electronic"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Electronic"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called after the excavator’s supply drop request has been processed (the request has been handled and drop is on the way).
 
 ### Return

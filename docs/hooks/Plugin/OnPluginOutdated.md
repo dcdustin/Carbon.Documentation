@@ -1,5 +1,5 @@
 # OnPluginOutdated
-<Badge type="info" text="Plugin"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Plugin"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)<Badge type="info" text="MetadataOnly"/>
 Triggered if a plugin is detected to be outdated (version mismatch).
 
 ### Return

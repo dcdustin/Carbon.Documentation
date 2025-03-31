@@ -1,5 +1,5 @@
 # OnBookmarkDelete
-<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Bookmark"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when a bookmark (saved camera/turret reference) is deleted at a Computer Station by an admin.
 
 ### Return

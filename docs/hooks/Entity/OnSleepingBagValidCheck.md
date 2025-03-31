@@ -1,5 +1,5 @@
 # OnSleepingBagValidCheck
-<Badge type="info" text="Entity"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Entity"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when checking if a sleeping bag is valid for respawn (e.g., not on cooldown). Plugins can override the validity check.
 
 ### Return

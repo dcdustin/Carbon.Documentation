@@ -1,5 +1,5 @@
 # OnCompilationFail
-<Badge type="info" text="Engine"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Engine"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)<Badge type="info" text="MetadataOnly"/>
 Called when a plugin or script fails to compile (compilation error occurred).
 
 ### Return

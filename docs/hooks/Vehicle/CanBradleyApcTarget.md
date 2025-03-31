@@ -1,5 +1,5 @@
 # CanBradleyApcTarget
-<Badge type="info" text="Vehicle"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Vehicle"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 - Called to decide if the Bradley APC can target a specific entity or player.
 
 - Return false to prevent the APC from targeting that entity.

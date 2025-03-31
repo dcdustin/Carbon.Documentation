@@ -1,5 +1,5 @@
 # OnGrowableUpdate
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Called each time a growable plant updates its growth (growth tick).
 
 ### Return

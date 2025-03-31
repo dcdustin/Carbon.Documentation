@@ -1,5 +1,5 @@
 # CanMountEntity
-<Badge type="info" text="Player"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Player"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when a player attempts to mount an entity (sit in a chair, climb in a vehicle, etc.), to decide if it's allowed.
 
 ### Return

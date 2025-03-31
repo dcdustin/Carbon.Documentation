@@ -1,5 +1,5 @@
 # InitLogging
-<Badge type="info" text="Server"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Server"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)<Badge type="info" text="Static"/><Badge type="info" text=" Hidden"/>
 Called during the server startup to initialize logging (and perform initial item setup).
 
 ### Return

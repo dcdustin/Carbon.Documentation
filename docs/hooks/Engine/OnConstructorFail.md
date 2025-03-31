@@ -1,5 +1,5 @@
 # OnConstructorFail
-<Badge type="info" text="Engine"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Engine"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)<Badge type="info" text="MetadataOnly"/>
 Called when a plugin fails to initialize (plugin constructor or initialization threw an exception).
 
 ### Return

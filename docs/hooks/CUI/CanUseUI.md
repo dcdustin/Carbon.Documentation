@@ -1,5 +1,5 @@
 # CanUseUI
-<Badge type="info" text="CUI"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="CUI"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)<Badge type="info" text="MetadataOnly"/>
 Called when a custom UI is about to be shown to a player. Plugins can return false to block showing the UI element.
 
 ### Return

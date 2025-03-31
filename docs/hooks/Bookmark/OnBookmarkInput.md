@@ -1,5 +1,5 @@
 # OnBookmarkInput
-<Badge type="info" text="Bookmark"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Bookmark"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called on each input tick while a player is remotely controlling an entity (camera or turret). Allows plugins to process or override player input during remote control.
 
 ### Return

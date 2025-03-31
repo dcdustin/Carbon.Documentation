@@ -1,5 +1,5 @@
 # OnRidableAnimalClaim
-<Badge type="info" text="Animal"/><Badge type="danger" text="Carbon Compatible"/><Badge type="warning" text="Oxide Compatible"/>
+<Badge type="info" text="Animal"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)[<Badge type="warning" text="Oxide Compatible"/>](https://github.com/OxideMod/Oxide.Rust)
 Called when a player attempts to claim a ridable animal (such as purchasing a horse at a stable, before the claim is finalized).
 
 ### Return

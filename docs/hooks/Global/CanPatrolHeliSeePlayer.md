@@ -1,5 +1,5 @@
 # CanPatrolHeliSeePlayer
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Determines if the patrol helicopter can see (and target) a specific player.
 
 ### Return

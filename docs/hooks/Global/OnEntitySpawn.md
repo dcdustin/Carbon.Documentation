@@ -1,5 +1,5 @@
 # OnEntitySpawn
-<Badge type="info" text="Global"/><Badge type="danger" text="Carbon Compatible"/>
+<Badge type="info" text="Global"/>[<Badge type="danger" text="Carbon Compatible"/>](https://github.com/CarbonCommunity/Carbon)
 Called when an entity is spawned in the world.
 
 ### Return
