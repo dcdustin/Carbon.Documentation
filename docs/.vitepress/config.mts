@@ -14,11 +14,14 @@ export default defineConfig({
       { text: 'Docs', link: '/introduction' },
       { text: 'Hooks', link: '/hooks' },
       { text: 'References', link: '/references' },
+      { text: 'Release Notes', link: '/release-notes'},
     ],
 
     sidebar: {
       '/': [
         {text: 'Introduction', link: '/introduction'},
+        {text: 'Installing Carbon', link: '/installing-carbon'},
+        {text: 'Configuring Carbon', link: '/configuring-carbon'},
         {
           text: 'Development',
           items: [

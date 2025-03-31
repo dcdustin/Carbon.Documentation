@@ -58,4 +58,6 @@ The general public is advised to use one of the [stable](https://github.com/Carb
 1. Download the archive from the attachments below.
 2. Unzip the archive to the root of your Rust Dedicated Server.
 3. Restart the server and enjoy.
+
+More detailed instructions can be found in the [Installing Carbon](./installing-carbon.md) section.
 :::
