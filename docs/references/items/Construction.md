@@ -4,628 +4,628 @@ Full list of all <Badge type="danger" text="62"/> items in the **Construction** 
 ---
 <table>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.metal.png">
 			</td>
 		<td>
-		<strong>Sheet Metal Double Door</strong><br>
-	<code>1390353317</code> <code>door.double.hinged.metal</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="door.double.hinged.metal"><a href="Construction#door.double.hinged.metal"><Badge type="tip" text="#"/></a> Sheet Metal Double Door </h5> 
+	<Badge type="info" text="1390353317"/> <Badge type="info" text="door.double.hinged.metal"/> <Badge type="warning" text="x1"/> <br>
 	Medium strength door, vulnerable to explosives.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.toptier.png">
 			</td>
 		<td>
-		<strong>Armored Double Door</strong><br>
-	<code>1221063409</code> <code>door.double.hinged.toptier</code> <code>Stack: 1</code> <br> <code>Rarity: VeryRare</code><br>
+	<h5 id="door.double.hinged.toptier"><a href="Construction#door.double.hinged.toptier"><Badge type="tip" text="#"/></a> Armored Double Door </h5> 
+	<Badge type="info" text="1221063409"/> <Badge type="info" text="door.double.hinged.toptier"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="VeryRare"/><br>
 	Extremely strong door with a hatch to see and shoot out of.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.wood.png">
 			</td>
 		<td>
-		<strong>Wood Double Door</strong><br>
-	<code>-1336109173</code> <code>door.double.hinged.wood</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="door.double.hinged.wood"><a href="Construction#door.double.hinged.wood"><Badge type="tip" text="#"/></a> Wood Double Door </h5> 
+	<Badge type="info" text="-1336109173"/> <Badge type="info" text="door.double.hinged.wood"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A Cheap door to secure your base. Its vulnerability to fire and weak explosive resistance makes the door a temporary solution to securing your base. Due to its flaws you should look at upgrading to a higher tier door such as Sheet Metal.
 
 The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock. To pick up the door, remove any locks and open, hold down the E (USE) key and select 'Pickup'.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.hinged.metal.png">
 			</td>
 		<td>
-		<strong>Sheet Metal Door</strong><br>
-	<code>-2067472972</code> <code>door.hinged.metal</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="door.hinged.metal"><a href="Construction#door.hinged.metal"><Badge type="tip" text="#"/></a> Sheet Metal Door </h5> 
+	<Badge type="info" text="-2067472972"/> <Badge type="info" text="door.hinged.metal"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	Medium strength door, vulnerable to explosives.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.hinged.toptier.png">
 			</td>
 		<td>
-		<strong>Armored Door</strong><br>
-	<code>1353298668</code> <code>door.hinged.toptier</code> <code>Stack: 1</code> <br> <code>Rarity: VeryRare</code><br>
+	<h5 id="door.hinged.toptier"><a href="Construction#door.hinged.toptier"><Badge type="tip" text="#"/></a> Armored Door </h5> 
+	<Badge type="info" text="1353298668"/> <Badge type="info" text="door.hinged.toptier"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="VeryRare"/><br>
 	Extremely strong door with a hatch to see and shoot out of.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.hinged.wood.png">
 			</td>
 		<td>
-		<strong>Wooden Door</strong><br>
-	<code>1729120840</code> <code>door.hinged.wood</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="door.hinged.wood"><a href="Construction#door.hinged.wood"><Badge type="tip" text="#"/></a> Wooden Door </h5> 
+	<Badge type="info" text="1729120840"/> <Badge type="info" text="door.hinged.wood"/> <Badge type="warning" text="x1"/> <br>
 	A Cheap door to secure your base. Its vulnerability to fire and weak explosive resistance makes the door a temporary solution to securing your base. Due to its flaws you should look at upgrading to a higher tier door such as Sheet Metal.
 
 The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock. To pick up the door, remove any locks and open, hold down the E (USE) key and select 'Pickup'.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/floor.grill.png">
 			</td>
 		<td>
-		<strong>Floor grill</strong><br>
-	<code>936496778</code> <code>floor.grill</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="floor.grill"><a href="Construction#floor.grill"><Badge type="tip" text="#"/></a> Floor grill </h5> 
+	<Badge type="info" text="936496778"/> <Badge type="info" text="floor.grill"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	A floor grill must be placed in floor frames. Perfect for placing above a large furnace.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/floor.ladder.hatch.png">
 			</td>
 		<td>
-		<strong>Ladder Hatch</strong><br>
-	<code>1948067030</code> <code>floor.ladder.hatch</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="floor.ladder.hatch"><a href="Construction#floor.ladder.hatch"><Badge type="tip" text="#"/></a> Ladder Hatch </h5> 
+	<Badge type="info" text="1948067030"/> <Badge type="info" text="floor.ladder.hatch"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A hatch that opens and changes into a ladder.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.grill.png">
 			</td>
 		<td>
-		<strong>Floor triangle grill</strong><br>
-	<code>1983621560</code> <code>floor.triangle.grill</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="floor.triangle.grill"><a href="Construction#floor.triangle.grill"><Badge type="tip" text="#"/></a> Floor triangle grill </h5> 
+	<Badge type="info" text="1983621560"/> <Badge type="info" text="floor.triangle.grill"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	A floor grill must be placed in floor frames. Perfect for placing above a large furnace.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.ladder.hatch.png">
 			</td>
 		<td>
-		<strong>Triangle Ladder Hatch</strong><br>
-	<code>2041899972</code> <code>floor.triangle.ladder.hatch</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="floor.triangle.ladder.hatch"><a href="Construction#floor.triangle.ladder.hatch"><Badge type="tip" text="#"/></a> Triangle Ladder Hatch </h5> 
+	<Badge type="info" text="2041899972"/> <Badge type="info" text="floor.triangle.ladder.hatch"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A hatch that opens and changes into a ladder.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.stone.png">
 			</td>
 		<td>
-		<strong>High External Stone Gate</strong><br>
-	<code>-691113464</code> <code>gates.external.high.stone</code> <code>Stack: 1</code> <br> <code>Rarity: VeryRare</code><br>
+	<h5 id="gates.external.high.stone"><a href="Construction#gates.external.high.stone"><Badge type="tip" text="#"/></a> High External Stone Gate </h5> 
+	<Badge type="info" text="-691113464"/> <Badge type="info" text="gates.external.high.stone"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="VeryRare"/><br>
 	A high stone gate, allowing access in and out of your compound.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.wood.png">
 			</td>
 		<td>
-		<strong>High External Wooden Gate</strong><br>
-	<code>-335089230</code> <code>gates.external.high.wood</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="gates.external.high.wood"><a href="Construction#gates.external.high.wood"><Badge type="tip" text="#"/></a> High External Wooden Gate </h5> 
+	<Badge type="info" text="-335089230"/> <Badge type="info" text="gates.external.high.wood"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A high wooden gate, allowing access in and out of your compound.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/ladder.wooden.wall.png">
 			</td>
 		<td>
-		<strong>Wooden Ladder</strong><br>
-	<code>-316250604</code> <code>ladder.wooden.wall</code> <code>Stack: 5</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="ladder.wooden.wall"><a href="Construction#ladder.wooden.wall"><Badge type="tip" text="#"/></a> Wooden Ladder </h5> 
+	<Badge type="info" text="-316250604"/> <Badge type="info" text="ladder.wooden.wall"/> <Badge type="warning" text="x5"/> <Badge type="warning" text="Rare"/><br>
 	A ladder will help you climb walls in any base.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/legacy.shelter.wood.png">
 			</td>
 		<td>
-		<strong>Legacy Wood Shelter</strong><br>
-	<code>607400343</code> <code>legacy.shelter.wood</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="legacy.shelter.wood"><a href="Construction#legacy.shelter.wood"><Badge type="tip" text="#"/></a> Legacy Wood Shelter </h5> 
+	<Badge type="info" text="607400343"/> <Badge type="info" text="legacy.shelter.wood"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	The classic s*** shack. A great starter base for any fresh spawn. You can only have one shelter deployed at anytime.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.stone.png">
 			</td>
 		<td>
-		<strong>High External Stone Wall</strong><br>
-	<code>-967648160</code> <code>wall.external.high.stone</code> <code>Stack: 10</code> <br> <code>Rarity: VeryRare</code><br>
+	<h5 id="wall.external.high.stone"><a href="Construction#wall.external.high.stone"><Badge type="tip" text="#"/></a> High External Stone Wall </h5> 
+	<Badge type="info" text="-967648160"/> <Badge type="info" text="wall.external.high.stone"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="VeryRare"/><br>
 	A high stone wall used to keep people off your property.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.png">
 			</td>
 		<td>
-		<strong>High External Wooden Wall</strong><br>
-	<code>99588025</code> <code>wall.external.high</code> <code>Stack: 10</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="wall.external.high"><a href="Construction#wall.external.high"><Badge type="tip" text="#"/></a> High External Wooden Wall </h5> 
+	<Badge type="info" text="99588025"/> <Badge type="info" text="wall.external.high"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Rare"/><br>
 	A high wooden wall used to keep people off your property.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.gate.png">
 			</td>
 		<td>
-		<strong>Prison Cell Gate</strong><br>
-	<code>-956706906</code> <code>wall.frame.cell.gate</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="wall.frame.cell.gate"><a href="Construction#wall.frame.cell.gate"><Badge type="tip" text="#"/></a> Prison Cell Gate </h5> 
+	<Badge type="info" text="-956706906"/> <Badge type="info" text="wall.frame.cell.gate"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	A prison cell gate to lock things behind bars
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.png">
 			</td>
 		<td>
-		<strong>Prison Cell Wall</strong><br>
-	<code>-1429456799</code> <code>wall.frame.cell</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="wall.frame.cell"><a href="Construction#wall.frame.cell"><Badge type="tip" text="#"/></a> Prison Cell Wall </h5> 
+	<Badge type="info" text="-1429456799"/> <Badge type="info" text="wall.frame.cell"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	A prison cell wall.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.gate.png">
 			</td>
 		<td>
-		<strong>Chainlink Fence Gate</strong><br>
-	<code>1451568081</code> <code>wall.frame.fence.gate</code> <code>Stack: 1</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="wall.frame.fence.gate"><a href="Construction#wall.frame.fence.gate"><Badge type="tip" text="#"/></a> Chainlink Fence Gate </h5> 
+	<Badge type="info" text="1451568081"/> <Badge type="info" text="wall.frame.fence.gate"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Common"/><br>
 	A Chainlink Fence Gate.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.png">
 			</td>
 		<td>
-		<strong>Chainlink Fence</strong><br>
-	<code>-1117626326</code> <code>wall.frame.fence</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="wall.frame.fence"><a href="Construction#wall.frame.fence"><Badge type="tip" text="#"/></a> Chainlink Fence </h5> 
+	<Badge type="info" text="-1117626326"/> <Badge type="info" text="wall.frame.fence"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A Chainlink Fence.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.garagedoor.png">
 			</td>
 		<td>
-		<strong>Garage Door</strong><br>
-	<code>-148794216</code> <code>wall.frame.garagedoor</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="wall.frame.garagedoor"><a href="Construction#wall.frame.garagedoor"><Badge type="tip" text="#"/></a> Garage Door </h5> 
+	<Badge type="info" text="-148794216"/> <Badge type="info" text="wall.frame.garagedoor"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	A garage door that rolls up and down.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.netting.png">
 			</td>
 		<td>
-		<strong>Netting</strong><br>
-	<code>1516985844</code> <code>wall.frame.netting</code> <code>Stack: 5</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="wall.frame.netting"><a href="Construction#wall.frame.netting"><Badge type="tip" text="#"/></a> Netting </h5> 
+	<Badge type="info" text="1516985844"/> <Badge type="info" text="wall.frame.netting"/> <Badge type="warning" text="x5"/> <Badge type="warning" text="Common"/><br>
 	Netting you can climb.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.png">
 			</td>
 		<td>
-		<strong>Shop Front</strong><br>
-	<code>-796583652</code> <code>wall.frame.shopfront</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.frame.shopfront"><a href="Construction#wall.frame.shopfront"><Badge type="tip" text="#"/></a> Shop Front </h5> 
+	<Badge type="info" text="-796583652"/> <Badge type="info" text="wall.frame.shopfront"/> <Badge type="warning" text="x1"/> <br>
 	A shop front to do commerce.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.metal.png">
 			</td>
 		<td>
-		<strong>Metal Shop Front</strong><br>
-	<code>-148229307</code> <code>wall.frame.shopfront.metal</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="wall.frame.shopfront.metal"><a href="Construction#wall.frame.shopfront.metal"><Badge type="tip" text="#"/></a> Metal Shop Front </h5> 
+	<Badge type="info" text="-148229307"/> <Badge type="info" text="wall.frame.shopfront.metal"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A bulletproof shop front for secure trades.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.metal.png">
 			</td>
 		<td>
-		<strong>Metal Window Bars</strong><br>
-	<code>-819720157</code> <code>wall.window.bars.metal</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="wall.window.bars.metal"><a href="Construction#wall.window.bars.metal"><Badge type="tip" text="#"/></a> Metal Window Bars </h5> 
+	<Badge type="info" text="-819720157"/> <Badge type="info" text="wall.window.bars.metal"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	Metal window bars made to fit a normal sized window.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.toptier.png">
 			</td>
 		<td>
-		<strong>Reinforced Glass Window</strong><br>
-	<code>671706427</code> <code>wall.window.bars.toptier</code> <code>Stack: 10</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="wall.window.bars.toptier"><a href="Construction#wall.window.bars.toptier"><Badge type="tip" text="#"/></a> Reinforced Glass Window </h5> 
+	<Badge type="info" text="671706427"/> <Badge type="info" text="wall.window.bars.toptier"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Rare"/><br>
 	Window bars to fit a standard window. These bars are made out of reinforced metal and contain a thick surround to protect from incoming projectiles.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.wood.png">
 			</td>
 		<td>
-		<strong>Wooden Window Bars</strong><br>
-	<code>-1183726687</code> <code>wall.window.bars.wood</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="wall.window.bars.wood"><a href="Construction#wall.window.bars.wood"><Badge type="tip" text="#"/></a> Wooden Window Bars </h5> 
+	<Badge type="info" text="-1183726687"/> <Badge type="info" text="wall.window.bars.wood"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	Window bars made out of wood. They'll stop people climbing through your window, but probably not for very long.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.a.png">
 			</td>
 		<td>
-		<strong>Metal horizontal embrasure</strong><br>
-	<code>-1199897169</code> <code>shutter.metal.embrasure.a</code> <code>Stack: 20</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="shutter.metal.embrasure.a"><a href="Construction#shutter.metal.embrasure.a"><Badge type="tip" text="#"/></a> Metal horizontal embrasure </h5> 
+	<Badge type="info" text="-1199897169"/> <Badge type="info" text="shutter.metal.embrasure.a"/> <Badge type="warning" text="x20"/> <Badge type="warning" text="Common"/><br>
 	Static shutter that forms a metal horizontal embrasure over your window frame.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.b.png">
 			</td>
 		<td>
-		<strong>Metal Vertical embrasure</strong><br>
-	<code>-1199897172</code> <code>shutter.metal.embrasure.b</code> <code>Stack: 20</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="shutter.metal.embrasure.b"><a href="Construction#shutter.metal.embrasure.b"><Badge type="tip" text="#"/></a> Metal Vertical embrasure </h5> 
+	<Badge type="info" text="-1199897172"/> <Badge type="info" text="shutter.metal.embrasure.b"/> <Badge type="warning" text="x20"/> <Badge type="warning" text="Common"/><br>
 	Static shutter that forms a metal vertical embrasure over your window frame.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.window.glass.reinforced.png">
 			</td>
 		<td>
-		<strong>Strengthened Glass Window</strong><br>
-	<code>-1614955425</code> <code>wall.window.glass.reinforced</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="wall.window.glass.reinforced"><a href="Construction#wall.window.glass.reinforced"><Badge type="tip" text="#"/></a> Strengthened Glass Window </h5> 
+	<Badge type="info" text="-1614955425"/> <Badge type="info" text="wall.window.glass.reinforced"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	Bulletproof glass insert
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/shutter.wood.a.png">
 			</td>
 		<td>
-		<strong>Wood Shutters</strong><br>
-	<code>-1023374709</code> <code>shutter.wood.a</code> <code>Stack: 20</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="shutter.wood.a"><a href="Construction#shutter.wood.a"><Badge type="tip" text="#"/></a> Wood Shutters </h5> 
+	<Badge type="info" text="-1023374709"/> <Badge type="info" text="shutter.wood.a"/> <Badge type="warning" text="x20"/> <Badge type="warning" text="Common"/><br>
 	Wood shutters that you can open and close.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/watchtower.wood.png">
 			</td>
 		<td>
-		<strong>Watch Tower</strong><br>
-	<code>-463122489</code> <code>watchtower.wood</code> <code>Stack: 5</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="watchtower.wood"><a href="Construction#watchtower.wood"><Badge type="tip" text="#"/></a> Watch Tower </h5> 
+	<Badge type="info" text="-463122489"/> <Badge type="info" text="watchtower.wood"/> <Badge type="warning" text="x5"/> <Badge type="warning" text="Uncommon"/><br>
 	A high wooden watchtower with a ladder
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.concrete.png">
 			</td>
 		<td>
-		<strong>Concrete Barricade</strong><br>
-	<code>-1950721390</code> <code>barricade.concrete</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="barricade.concrete"><a href="Construction#barricade.concrete"><Badge type="tip" text="#"/></a> Concrete Barricade </h5> 
+	<Badge type="info" text="-1950721390"/> <Badge type="info" text="barricade.concrete"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A barricade made out of Stones.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.cover.png">
 			</td>
 		<td>
-		<strong>Wooden Barricade Cover</strong><br>
-	<code>1373240771</code> <code>barricade.wood.cover</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="barricade.wood.cover"><a href="Construction#barricade.wood.cover"><Badge type="tip" text="#"/></a> Wooden Barricade Cover </h5> 
+	<Badge type="info" text="1373240771"/> <Badge type="info" text="barricade.wood.cover"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	Perfect for cover when engaging in gun fights. Decays rapidly when placed outside of building privilege.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.medieval.png">
 			</td>
 		<td>
-		<strong>Medieval Barricade</strong><br>
-	<code>-424687710</code> <code>barricade.medieval</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="barricade.medieval"><a href="Construction#barricade.medieval"><Badge type="tip" text="#"/></a> Medieval Barricade </h5> 
+	<Badge type="info" text="-424687710"/> <Badge type="info" text="barricade.medieval"/> <Badge type="warning" text="x10"/> <br>
 	A medieval barricade. Designed to block paths and provide defensive cover as well as being an effective tool to fortify your base.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.metal.png">
 			</td>
 		<td>
-		<strong>Metal Barricade</strong><br>
-	<code>1655650836</code> <code>barricade.metal</code> <code>Stack: 10</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="barricade.metal"><a href="Construction#barricade.metal"><Badge type="tip" text="#"/></a> Metal Barricade </h5> 
+	<Badge type="info" text="1655650836"/> <Badge type="info" text="barricade.metal"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Rare"/><br>
 	A tough metal barricade with barbed wire, made from Metal Fragments. The barbed wire causes damage and will also slow player movement.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.sandbags.png">
 			</td>
 		<td>
-		<strong>Sandbag Barricade</strong><br>
-	<code>-559599960</code> <code>barricade.sandbags</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="barricade.sandbags"><a href="Construction#barricade.sandbags"><Badge type="tip" text="#"/></a> Sandbag Barricade </h5> 
+	<Badge type="info" text="-559599960"/> <Badge type="info" text="barricade.sandbags"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A protective barricade made out of Sand Bags.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.stone.png">
 			</td>
 		<td>
-		<strong>Stone Barricade</strong><br>
-	<code>15388698</code> <code>barricade.stone</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="barricade.stone"><a href="Construction#barricade.stone"><Badge type="tip" text="#"/></a> Stone Barricade </h5> 
+	<Badge type="info" text="15388698"/> <Badge type="info" text="barricade.stone"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A protective barricade made out of Stones.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.png">
 			</td>
 		<td>
-		<strong>Wooden Barricade</strong><br>
-	<code>866889860</code> <code>barricade.wood</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="barricade.wood"><a href="Construction#barricade.wood"><Badge type="tip" text="#"/></a> Wooden Barricade </h5> 
+	<Badge type="info" text="866889860"/> <Badge type="info" text="barricade.wood"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A wooden barricade. Will hurt players and animals that run into it.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/barricade.woodwire.png">
 			</td>
 		<td>
-		<strong>Barbed Wooden Barricade</strong><br>
-	<code>1382263453</code> <code>barricade.woodwire</code> <code>Stack: 10</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="barricade.woodwire"><a href="Construction#barricade.woodwire"><Badge type="tip" text="#"/></a> Barbed Wooden Barricade </h5> 
+	<Badge type="info" text="1382263453"/> <Badge type="info" text="barricade.woodwire"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Uncommon"/><br>
 	A wooden barricade with barbed wire, made of Wood and Metal Fragments. The barbed wire causes damage and will also slow player movement.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/beehive.png">
 			</td>
 		<td>
-		<strong>Beehive</strong><br>
-	<code>184516676</code> <code>beehive</code> <code>Stack: 1</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="beehive"><a href="Construction#beehive"><Badge type="tip" text="#"/></a> Beehive </h5> 
+	<Badge type="info" text="184516676"/> <Badge type="info" text="beehive"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Common"/><br>
 	Artificial beehive, place a nucleus inside to raise your own bees and produce honeycomb. Happy bees will make honeycomb more quickly.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_a.png">
 			</td>
 		<td>
-		<strong>Lunar Wall Frame Inlay</strong><br>
-	<code>1115193056</code> <code>wall.frame.lunar2025_a</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.frame.lunar2025_a"><a href="Construction#wall.frame.lunar2025_a"><Badge type="tip" text="#"/></a> Lunar Wall Frame Inlay </h5> 
+	<Badge type="info" text="1115193056"/> <Badge type="info" text="wall.frame.lunar2025_a"/> <Badge type="warning" text="x10"/> <br>
 	A Lunar New Year themed decorative wall divider with geometric inlay
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_b.png">
 			</td>
 		<td>
-		<strong>Lunar Wall Frame Swirling</strong><br>
-	<code>-450890885</code> <code>wall.frame.lunar2025_b</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.frame.lunar2025_b"><a href="Construction#wall.frame.lunar2025_b"><Badge type="tip" text="#"/></a> Lunar Wall Frame Swirling </h5> 
+	<Badge type="info" text="-450890885"/> <Badge type="info" text="wall.frame.lunar2025_b"/> <Badge type="warning" text="x10"/> <br>
 	A Lunar New Year themed decorative wall divider with swirling inlay
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_c.png">
 			</td>
 		<td>
-		<strong>Lunar Wall Frame Floral</strong><br>
-	<code>-2016974826</code> <code>wall.frame.lunar2025_c</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.frame.lunar2025_c"><a href="Construction#wall.frame.lunar2025_c"><Badge type="tip" text="#"/></a> Lunar Wall Frame Floral </h5> 
+	<Badge type="info" text="-2016974826"/> <Badge type="info" text="wall.frame.lunar2025_c"/> <Badge type="warning" text="x10"/> <br>
 	A Lunar New Year themed decorative wall divider with floral inlay
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/mining.pumpjack.png">
 			</td>
 		<td>
-		<strong>Pump Jack</strong><br>
-	<code>-1130709577</code> <code>mining.pumpjack</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="mining.pumpjack"><a href="Construction#mining.pumpjack"><Badge type="tip" text="#"/></a> Pump Jack </h5> 
+	<Badge type="info" text="-1130709577"/> <Badge type="info" text="mining.pumpjack"/> <Badge type="warning" text="x1"/> <br>
 	Extracts oil from the ground. Use a Survey Charge to determine the amount of oil available for extraction in any given area.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/mining.quarry.png">
 			</td>
 		<td>
-		<strong>Mining Quarry</strong><br>
-	<code>1052926200</code> <code>mining.quarry</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="mining.quarry"><a href="Construction#mining.quarry"><Badge type="tip" text="#"/></a> Mining Quarry </h5> 
+	<Badge type="info" text="1052926200"/> <Badge type="info" text="mining.quarry"/> <Badge type="warning" text="x1"/> <br>
 	Extracts minerals from the ground. Use a Survey Charge to determine the amount of minerals available for extraction in any given area.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.png">
 			</td>
 		<td>
-		<strong>Tool Cupboard</strong><br>
-	<code>-97956382</code> <code>cupboard.tool</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="cupboard.tool"><a href="Construction#cupboard.tool"><Badge type="tip" text="#"/></a> Tool Cupboard </h5> 
+	<Badge type="info" text="-97956382"/> <Badge type="info" text="cupboard.tool"/> <Badge type="warning" text="x1"/> <br>
 	Placing and authorising with the cupboard will make it so only you can build in a 50 meter radius of it. If you want your friends to build, they'll need to auth too. You should protect this.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.retro.png">
 			</td>
 		<td>
-		<strong>Retro Tool Cupboard</strong><br>
-	<code>1488606552</code> <code>cupboard.tool.retro</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="cupboard.tool.retro"><a href="Construction#cupboard.tool.retro"><Badge type="tip" text="#"/></a> Retro Tool Cupboard </h5> 
+	<Badge type="info" text="1488606552"/> <Badge type="info" text="cupboard.tool.retro"/> <Badge type="warning" text="x1"/> <br>
 	Transform your tool cupboard experience with this modified Hi-Fi cabinet. Complete with retro displays indicating vital base data as well as frosted glass doors allowing you to view its contents of tools and resources!
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.shockbyte.png">
 			</td>
 		<td>
-		<strong>Shockbyte Tool Cupboard</strong><br>
-	<code>1174957864</code> <code>cupboard.tool.shockbyte</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="cupboard.tool.shockbyte"><a href="Construction#cupboard.tool.shockbyte"><Badge type="tip" text="#"/></a> Shockbyte Tool Cupboard </h5> 
+	<Badge type="info" text="1174957864"/> <Badge type="info" text="cupboard.tool.shockbyte"/> <Badge type="warning" text="x1"/> <br>
 	Ensure 100% Tool Cupboard uptime with this Tool Cupboard skin.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/water.catcher.large.png">
 			</td>
 		<td>
-		<strong>Large Water Catcher</strong><br>
-	<code>-1100168350</code> <code>water.catcher.large</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="water.catcher.large"><a href="Construction#water.catcher.large"><Badge type="tip" text="#"/></a> Large Water Catcher </h5> 
+	<Badge type="info" text="-1100168350"/> <Badge type="info" text="water.catcher.large"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	Collects drinkable water from the air via rain and dew. Can be connected to other entities to provide water, 20ml a second.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/water.catcher.small.png">
 			</td>
 		<td>
-		<strong>Small Water Catcher</strong><br>
-	<code>-132247350</code> <code>water.catcher.small</code> <code>Stack: 1</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="water.catcher.small"><a href="Construction#water.catcher.small"><Badge type="tip" text="#"/></a> Small Water Catcher </h5> 
+	<Badge type="info" text="-132247350"/> <Badge type="info" text="water.catcher.small"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Common"/><br>
 	Collects drinkable water from the air via rain and dew. Can be connected to other entities to provide water, 20ml a second.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/lock.key.png">
 			</td>
 		<td>
-		<strong>Key Lock</strong><br>
-	<code>-850982208</code> <code>lock.key</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="lock.key"><a href="Construction#lock.key"><Badge type="tip" text="#"/></a> Key Lock </h5> 
+	<Badge type="info" text="-850982208"/> <Badge type="info" text="lock.key"/> <Badge type="warning" text="x10"/> <br>
 	Place on a door to avoid any unwelcome guests. To craft your key first place the lock on a door and hold E while looking at the Key lock and select 'Create Key', a key will now be added to your crafting queue.
 
 If the key is lost, you cannot make another, so don't forget to make extras and put them in a safe place!
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/lock.code.png">
 			</td>
 		<td>
-		<strong>Code Lock</strong><br>
-	<code>1159991980</code> <code>lock.code</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="lock.code"><a href="Construction#lock.code"><Badge type="tip" text="#"/></a> Code Lock </h5> 
+	<Badge type="info" text="1159991980"/> <Badge type="info" text="lock.code"/> <Badge type="warning" text="x10"/> <br>
 	An electronic lock. Locked and unlocked with four-digit code.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.bardoors.png">
 			</td>
 		<td>
-		<strong>Wooden Frontier Bar Doors</strong><br>
-	<code>-1151332840</code> <code>door.double.hinged.bardoors</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="door.double.hinged.bardoors"><a href="Construction#door.double.hinged.bardoors"><Badge type="tip" text="#"/></a> Wooden Frontier Bar Doors </h5> 
+	<Badge type="info" text="-1151332840"/> <Badge type="info" text="door.double.hinged.bardoors"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	Hand-carved, rugged bar doors embody the spirit of the frontier. A must-have for any survivor.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.closer.png">
 			</td>
 		<td>
-		<strong>Door Closer</strong><br>
-	<code>1409529282</code> <code>door.closer</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="door.closer"><a href="Construction#door.closer"><Badge type="tip" text="#"/></a> Door Closer </h5> 
+	<Badge type="info" text="1409529282"/> <Badge type="info" text="door.closer"/> <Badge type="warning" text="x1"/> <br>
 	Automatically closes your doors when left open.
 </td>
 </tr>
 	<tr style="background-color:#300000;">
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/medieval.door.double.hinged.metal.png">
 			</td>
 		<td>
-		<strong>Medieval Sheet Metal Double Door</strong><br>
-	<code>-380502678</code> <code>medieval.door.double.hinged.metal</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="medieval.door.double.hinged.metal"><a href="Construction#medieval.door.double.hinged.metal"><Badge type="tip" text="#"/></a> Medieval Sheet Metal Double Door </h5> 
+	<Badge type="info" text="-380502678"/> <Badge type="info" text="medieval.door.double.hinged.metal"/> <Badge type="warning" text="x1"/>  <Badge type="danger" text="Hidden"/><br>
 	Medium strength door, vulnerable to explosives.
 </td>
 </tr>
 	<tr style="background-color:#300000;">
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/medieval.door.hinged.metal.png">
 			</td>
 		<td>
-		<strong>Medieval Sheet Metal Door</strong><br>
-	<code>-1654401345</code> <code>medieval.door.hinged.metal</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="medieval.door.hinged.metal"><a href="Construction#medieval.door.hinged.metal"><Badge type="tip" text="#"/></a> Medieval Sheet Metal Door </h5> 
+	<Badge type="info" text="-1654401345"/> <Badge type="info" text="medieval.door.hinged.metal"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/> <Badge type="danger" text="Hidden"/><br>
 	Medium strength door, vulnerable to explosives.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/factorydoor.png">
 			</td>
 		<td>
-		<strong>Factory Door</strong><br>
-	<code>2054391128</code> <code>factorydoor</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="factorydoor"><a href="Construction#factorydoor"><Badge type="tip" text="#"/></a> Factory Door </h5> 
+	<Badge type="info" text="2054391128"/> <Badge type="info" text="factorydoor"/> <Badge type="warning" text="x1"/> <br>
 	Medium strength door, vulnerable to explosives. Contains a bulletproof viewing portal
 </td>
 </tr>
 	<tr style="background-color:#300000;">
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/door.hinged.industrial.a.png">
 			</td>
 		<td>
-		<strong>Industrial Door</strong><br>
-	<code>818733919</code> <code>door.hinged.industrial.a</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="door.hinged.industrial.a"><a href="Construction#door.hinged.industrial.a"><Badge type="tip" text="#"/></a> Industrial Door </h5> 
+	<Badge type="info" text="818733919"/> <Badge type="info" text="door.hinged.industrial.a"/> <Badge type="warning" text="x1"/>  <Badge type="danger" text="Hidden"/><br>
 	Medium strength door, vulnerable to explosives.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.ice.wall.png">
 			</td>
 		<td>
-		<strong>Short Ice Wall</strong><br>
-	<code>1327005675</code> <code>wall.ice.wall</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.ice.wall"><a href="Construction#wall.ice.wall"><Badge type="tip" text="#"/></a> Short Ice Wall </h5> 
+	<Badge type="info" text="1327005675"/> <Badge type="info" text="wall.ice.wall"/> <Badge type="warning" text="x10"/> <br>
 	A short wall made of solid ice.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.ice.png">
 			</td>
 		<td>
-		<strong>High Ice Wall</strong><br>
-	<code>-985781766</code> <code>wall.external.high.ice</code> <code>Stack: 10</code> <br> <code>Rarity: None</code><br>
+	<h5 id="wall.external.high.ice"><a href="Construction#wall.external.high.ice"><Badge type="tip" text="#"/></a> High Ice Wall </h5> 
+	<Badge type="info" text="-985781766"/> <Badge type="info" text="wall.external.high.ice"/> <Badge type="warning" text="x10"/> <br>
 	A very high ice wall to protect your property.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/building.planner.png">
 			</td>
 		<td>
-		<strong>Building Plan</strong><br>
-	<code>1525520776</code> <code>building.planner</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="building.planner"><a href="Construction#building.planner"><Badge type="tip" text="#"/></a> Building Plan </h5> 
+	<Badge type="info" text="1525520776"/> <Badge type="info" text="building.planner"/> <Badge type="warning" text="x1"/> <br>
 	A building plan. You can use this to craft buildings - right click when equipped for more options.
 </td>
 </tr>

@@ -4,72 +4,72 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 ---
 <table>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/trap.bear.png">
 			</td>
 		<td>
-		<strong>Snap Trap</strong><br>
-	<code>-582782051</code> <code>trap.bear</code> <code>Stack: 3</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="trap.bear"><a href="Traps#trap.bear"><Badge type="tip" text="#"/></a> Snap Trap </h5> 
+	<Badge type="info" text="-582782051"/> <Badge type="info" text="trap.bear"/> <Badge type="warning" text="x3"/> <Badge type="warning" text="Uncommon"/><br>
 	A metal trap that can injure or even kill people when stepped on. Can be picked up after been triggered.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/spikes.floor.png">
 			</td>
 		<td>
-		<strong>Wooden Floor Spikes</strong><br>
-	<code>-92759291</code> <code>spikes.floor</code> <code>Stack: 10</code> <br> <code>Rarity: Common</code><br>
+	<h5 id="spikes.floor"><a href="Traps#spikes.floor"><Badge type="tip" text="#"/></a> Wooden Floor Spikes </h5> 
+	<Badge type="info" text="-92759291"/> <Badge type="info" text="spikes.floor"/> <Badge type="warning" text="x10"/> <Badge type="warning" text="Common"/><br>
 	A set of spikes that will slow down and hurt anyone that walks over them.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/trap.landmine.png">
 			</td>
 		<td>
-		<strong>Homemade Landmine</strong><br>
-	<code>-1663759755</code> <code>trap.landmine</code> <code>Stack: 5</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="trap.landmine"><a href="Traps#trap.landmine"><Badge type="tip" text="#"/></a> Homemade Landmine </h5> 
+	<Badge type="info" text="-1663759755"/> <Badge type="info" text="trap.landmine"/> <Badge type="warning" text="x5"/> <Badge type="warning" text="Rare"/><br>
 	Homemade Landmine. If you stand on one, you can ask a friend to disarm it before it explodes.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/tincan.alarm.png">
 			</td>
 		<td>
-		<strong>Tin Can Alarm</strong><br>
-	<code>962186730</code> <code>tincan.alarm</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="tincan.alarm"><a href="Traps#tincan.alarm"><Badge type="tip" text="#"/></a> Tin Can Alarm </h5> 
+	<Badge type="info" text="962186730"/> <Badge type="info" text="tincan.alarm"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	A primitive perimeter alarm made from hanging tin cans. Clatters loudly when disturbed, alerting you to any trespassers. Simple but effective.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/guntrap.png">
 			</td>
 		<td>
-		<strong>Shotgun Trap</strong><br>
-	<code>352499047</code> <code>guntrap</code> <code>Stack: 1</code> <br> <code>Rarity: Rare</code><br>
+	<h5 id="guntrap"><a href="Traps#guntrap"><Badge type="tip" text="#"/></a> Shotgun Trap </h5> 
+	<Badge type="info" text="352499047"/> <Badge type="info" text="guntrap"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Rare"/><br>
 	A shotgun trap triggered by movement, place near doorways and load with handmade shells.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/flameturret.png">
 			</td>
 		<td>
-		<strong>Flame Turret</strong><br>
-	<code>528668503</code> <code>flameturret</code> <code>Stack: 1</code> <br> <code>Rarity: Uncommon</code><br>
+	<h5 id="flameturret"><a href="Traps#flameturret"><Badge type="tip" text="#"/></a> Flame Turret </h5> 
+	<Badge type="info" text="528668503"/> <Badge type="info" text="flameturret"/> <Badge type="warning" text="x1"/> <Badge type="warning" text="Uncommon"/><br>
 	Automated Flame turret. Requires Low Grade Fuel. Sprays flames when triggered.
 </td>
 </tr>
 	<tr >
-		<td style="width:20%;">
+		<td style="width:15%;">
 			<img src="https://carbonmod.gg/assets/media/items/samsite.png">
 			</td>
 		<td>
-		<strong>SAM Site</strong><br>
-	<code>-1009359066</code> <code>samsite</code> <code>Stack: 1</code> <br> <code>Rarity: None</code><br>
+	<h5 id="samsite"><a href="Traps#samsite"><Badge type="tip" text="#"/></a> SAM Site </h5> 
+	<Badge type="info" text="-1009359066"/> <Badge type="info" text="samsite"/> <Badge type="warning" text="x1"/> <br>
 	A surface to air rocket site. Requires 25 electricity to function.
 </td>
 </tr>
