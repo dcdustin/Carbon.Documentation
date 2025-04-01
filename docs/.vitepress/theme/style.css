@@ -152,27 +152,23 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
-.carbon-download-button {
-  display: inline-block;
-  padding: 0.5em 1em;
-  background-color: var(--c-carbon-1);
-  color: var(--vp-c-white) !important;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.carbon-download-button:hover {
-  background-color: var(--c-carbon-2);
-  color: var(--vp-c-white) !important;
-}
-
 :root {
 /* override for code line text color */
   --vp-code-color: var(--c-carbon-1); 
 }
 
 .VPBadge{
+  border-radius: 0%;
+}
+
+.VPButton.medium.alt{
+  border-radius: 0%;
+}
+
+.VPButton.medium.brand{
+  border-radius: 0%;
+}
+
+.VPButton.medium.sponsor{
   border-radius: 0%;
 }

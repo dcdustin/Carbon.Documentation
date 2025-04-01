@@ -1,56 +1,6 @@
 import { defineConfig } from 'vitepress'
-import fs from 'fs'
-import path from 'path'
-
-function getCategorized(dir: string): { text: string; items: { text: string; link: string }[] }[] {
-  const fullDir = path.resolve(__dirname, dir)
-  const categories = fs.readdirSync(fullDir, { withFileTypes: true })
-
-  return categories
-    .filter(entry => entry.isDirectory())
-    .map(category => { 
-      const categoryPath = path.join(fullDir, category.name)
-      const files = fs.readdirSync(categoryPath)
-      const items = files
-        .filter(file => file.endsWith('.md') && file.toLowerCase() !== 'index.md')
-        .map(file => {
-          const name = file.replace(/\.md$/, '')
-          return {
-            text: name, 
-            link: `/${dir}/${category.name}/${name}`
-          }
-        }) 
-      return {
-        text: category.name + " (" + getFileCount(categoryPath) + ")",
-        collapsed: true,
-        items
-      }  
-    }) 
-} 
-
-function getFiles(dir: string): { text: string; link: string }[] {
-  const fullDir = path.resolve(__dirname, dir)
-  const files = fs.readdirSync(fullDir)
-  return files
-    .filter(file => file.endsWith('.md') && file.toLowerCase() !== 'index.md')
-    .map(file => {
-      const name = file.replace(/\.md$/, '')
-      return {
-        text: name.replace(/-/g, ' '),
-        link: `/${dir}/${name}` // ✅ Backticks added here
-      }
-    })  
-}
-
-function getFileCount(dir: string): number {
-  const fullDir = path.resolve(__dirname, dir);
-  const files = fs.readdirSync(fullDir);
-  return files
-    .filter(file => file.endsWith('.md'))
-    .length;
-}
+import { getCategorized, getFiles } from './carbonUtils.mts';
  
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Carbon Mod Documentation",
@@ -59,7 +9,6 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/introduction' },
