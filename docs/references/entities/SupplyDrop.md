@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Supp
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="3632568684"/> <br> assets/prefabs/misc/supply drop/supply_drop.prefab |
-| <Badge type="tip" text="1473303316"/> <br> assets/prefabs/misc/xmas/sleigh/presentdrop.prefab |
+| <a href="#3632568684"><Badge id="3632568684" type="tip" text="#"/></a> <Badge type="tip" text="3632568684"/> <br> assets/prefabs/misc/supply drop/supply_drop.prefab |
+| <a href="#1473303316"><Badge id="1473303316" type="tip" text="#"/></a> <Badge type="tip" text="1473303316"/> <br> assets/prefabs/misc/xmas/sleigh/presentdrop.prefab |

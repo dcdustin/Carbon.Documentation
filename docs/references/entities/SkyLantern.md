@@ -4,8 +4,8 @@ Full list of all <Badge type="warning" text="5"/> entity prefabs with the **SkyL
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="2869067981"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.deployed.prefab |
-| <Badge type="tip" text="4232309112"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.green.prefab |
-| <Badge type="tip" text="2908920493"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.orange.prefab |
-| <Badge type="tip" text="1049099687"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.purple.prefab |
-| <Badge type="tip" text="700699236"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.red.prefab |
+| <a href="#2869067981"><Badge id="2869067981" type="tip" text="#"/></a> <Badge type="tip" text="2869067981"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.deployed.prefab |
+| <a href="#4232309112"><Badge id="4232309112" type="tip" text="#"/></a> <Badge type="tip" text="4232309112"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.green.prefab |
+| <a href="#2908920493"><Badge id="2908920493" type="tip" text="#"/></a> <Badge type="tip" text="2908920493"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.orange.prefab |
+| <a href="#1049099687"><Badge id="1049099687" type="tip" text="#"/></a> <Badge type="tip" text="1049099687"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.purple.prefab |
+| <a href="#700699236"><Badge id="700699236" type="tip" text="#"/></a> <Badge type="tip" text="700699236"/> <br> assets/prefabs/misc/chinesenewyear/sky_lantern/skylantern.skylantern.red.prefab |

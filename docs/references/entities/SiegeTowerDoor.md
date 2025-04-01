@@ -4,7 +4,7 @@ Full list of all <Badge type="warning" text="4"/> entity prefabs with the **Sieg
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="4185447710"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.door.prefab |
-| <Badge type="tip" text="4186773937"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_01.prefab |
-| <Badge type="tip" text="300969350"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_02.prefab |
-| <Badge type="tip" text="3841836703"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_03.prefab |
+| <a href="#4185447710"><Badge id="4185447710" type="tip" text="#"/></a> <Badge type="tip" text="4185447710"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.door.prefab |
+| <a href="#4186773937"><Badge id="4186773937" type="tip" text="#"/></a> <Badge type="tip" text="4186773937"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_01.prefab |
+| <a href="#300969350"><Badge id="300969350" type="tip" text="#"/></a> <Badge type="tip" text="300969350"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_02.prefab |
+| <a href="#3841836703"><Badge id="3841836703" type="tip" text="#"/></a> <Badge type="tip" text="3841836703"/> <br> assets/content/vehicles/siegeweapons/siegetower/subents/siegetower.drawbridge_03.prefab |

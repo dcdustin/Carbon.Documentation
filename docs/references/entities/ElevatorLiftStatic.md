@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Elev
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="1545272882"/> <br> assets/content/structures/elevator/elevator_office_lift.static.prefab |
-| <Badge type="tip" text="3845190333"/> <br> assets/prefabs/deployable/elevator/static/elevator_lift.static.prefab |
+| <a href="#1545272882"><Badge id="1545272882" type="tip" text="#"/></a> <Badge type="tip" text="1545272882"/> <br> assets/content/structures/elevator/elevator_office_lift.static.prefab |
+| <a href="#3845190333"><Badge id="3845190333" type="tip" text="#"/></a> <Badge type="tip" text="3845190333"/> <br> assets/prefabs/deployable/elevator/static/elevator_lift.static.prefab |

@@ -4,12 +4,12 @@ Full list of all <Badge type="warning" text="9"/> prefabs.
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="2601424560"/> <br> assets/content/structures/portacabins/portacabin_300_600_b.prefab |
-| <Badge type="tip" text="92269587"/> <br> assets/content/structures/portacabins/portacabin_300_600_b_wood.prefab |
-| <Badge type="tip" text="1090461989"/> <br> assets/content/structures/portacabins/portacabin_300_600_red.prefab |
-| <Badge type="tip" text="67375550"/> <br> assets/content/structures/portacabins/portacabin_300_900_a.prefab |
-| <Badge type="tip" text="1996705036"/> <br> assets/content/structures/portacabins/portacabin_300_900_a_wood.prefab |
-| <Badge type="tip" text="332622047"/> <br> assets/content/structures/portacabins/portacabin_300_900_b.prefab |
-| <Badge type="tip" text="3843227104"/> <br> assets/content/structures/portacabins/portacabin_300_900_b_wood.prefab |
-| <Badge type="tip" text="506788286"/> <br> assets/content/structures/portacabins/portacabin_600_900_a.prefab |
-| <Badge type="tip" text="940944840"/> <br> assets/content/structures/portacabins/portacabin_600_900_a_wood.prefab |
+| <a href="#2601424560"><Badge id="2601424560" type="tip" text="#"/></a> <Badge type="tip" text="2601424560"/> <br> assets/content/structures/portacabins/portacabin_300_600_b.prefab |
+| <a href="#92269587"><Badge id="92269587" type="tip" text="#"/></a> <Badge type="tip" text="92269587"/> <br> assets/content/structures/portacabins/portacabin_300_600_b_wood.prefab |
+| <a href="#1090461989"><Badge id="1090461989" type="tip" text="#"/></a> <Badge type="tip" text="1090461989"/> <br> assets/content/structures/portacabins/portacabin_300_600_red.prefab |
+| <a href="#67375550"><Badge id="67375550" type="tip" text="#"/></a> <Badge type="tip" text="67375550"/> <br> assets/content/structures/portacabins/portacabin_300_900_a.prefab |
+| <a href="#1996705036"><Badge id="1996705036" type="tip" text="#"/></a> <Badge type="tip" text="1996705036"/> <br> assets/content/structures/portacabins/portacabin_300_900_a_wood.prefab |
+| <a href="#332622047"><Badge id="332622047" type="tip" text="#"/></a> <Badge type="tip" text="332622047"/> <br> assets/content/structures/portacabins/portacabin_300_900_b.prefab |
+| <a href="#3843227104"><Badge id="3843227104" type="tip" text="#"/></a> <Badge type="tip" text="3843227104"/> <br> assets/content/structures/portacabins/portacabin_300_900_b_wood.prefab |
+| <a href="#506788286"><Badge id="506788286" type="tip" text="#"/></a> <Badge type="tip" text="506788286"/> <br> assets/content/structures/portacabins/portacabin_600_900_a.prefab |
+| <a href="#940944840"><Badge id="940944840" type="tip" text="#"/></a> <Badge type="tip" text="940944840"/> <br> assets/content/structures/portacabins/portacabin_600_900_a_wood.prefab |

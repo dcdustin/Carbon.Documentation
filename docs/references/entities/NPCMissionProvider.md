@@ -4,12 +4,12 @@ Full list of all <Badge type="warning" text="9"/> entity prefabs with the **NPCM
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="372889267"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_bandit_a.prefab |
-| <Badge type="tip" text="322083179"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_bandit_b.prefab |
-| <Badge type="tip" text="350957926"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_fishing_a.prefab |
-| <Badge type="tip" text="3694999410"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_fishing_b.prefab |
-| <Badge type="tip" text="3928572443"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_outpost_a.prefab |
-| <Badge type="tip" text="1091655158"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_outpost_b.prefab |
-| <Badge type="tip" text="930153435"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_stables_a.prefab |
-| <Badge type="tip" text="3892089538"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_stables_b.prefab |
-| <Badge type="tip" text="4115840942"/> <br> assets/prefabs/npc/bandit/shopkeepers/missionprovider_test.prefab |
+| <a href="#372889267"><Badge id="372889267" type="tip" text="#"/></a> <Badge type="tip" text="372889267"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_bandit_a.prefab |
+| <a href="#322083179"><Badge id="322083179" type="tip" text="#"/></a> <Badge type="tip" text="322083179"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_bandit_b.prefab |
+| <a href="#350957926"><Badge id="350957926" type="tip" text="#"/></a> <Badge type="tip" text="350957926"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_fishing_a.prefab |
+| <a href="#3694999410"><Badge id="3694999410" type="tip" text="#"/></a> <Badge type="tip" text="3694999410"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_fishing_b.prefab |
+| <a href="#3928572443"><Badge id="3928572443" type="tip" text="#"/></a> <Badge type="tip" text="3928572443"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_outpost_a.prefab |
+| <a href="#1091655158"><Badge id="1091655158" type="tip" text="#"/></a> <Badge type="tip" text="1091655158"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_outpost_b.prefab |
+| <a href="#930153435"><Badge id="930153435" type="tip" text="#"/></a> <Badge type="tip" text="930153435"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_stables_a.prefab |
+| <a href="#3892089538"><Badge id="3892089538" type="tip" text="#"/></a> <Badge type="tip" text="3892089538"/> <br> assets/prefabs/npc/bandit/missionproviders/missionprovider_stables_b.prefab |
+| <a href="#4115840942"><Badge id="4115840942" type="tip" text="#"/></a> <Badge type="tip" text="4115840942"/> <br> assets/prefabs/npc/bandit/shopkeepers/missionprovider_test.prefab |

@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Harb
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="623539697"/> <br> assets/content/structures/harbor/cranes/harbor_container_block.prefab |
-| <Badge type="tip" text="4289804847"/> <br> assets/content/structures/harbor/cranes/harbor_swing_bridge.prefab |
+| <a href="#623539697"><Badge id="623539697" type="tip" text="#"/></a> <Badge type="tip" text="623539697"/> <br> assets/content/structures/harbor/cranes/harbor_container_block.prefab |
+| <a href="#4289804847"><Badge id="4289804847" type="tip" text="#"/></a> <Badge type="tip" text="4289804847"/> <br> assets/content/structures/harbor/cranes/harbor_swing_bridge.prefab |

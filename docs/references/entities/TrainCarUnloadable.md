@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Trai
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="3925609063"/> <br> assets/content/vehicles/trains/wagons/trainwagonunloadable.entity.prefab |
-| <Badge type="tip" text="1383224408"/> <br> assets/content/vehicles/trains/wagons/trainwagonunloadablefuel.entity.prefab |
+| <a href="#3925609063"><Badge id="3925609063" type="tip" text="#"/></a> <Badge type="tip" text="3925609063"/> <br> assets/content/vehicles/trains/wagons/trainwagonunloadable.entity.prefab |
+| <a href="#1383224408"><Badge id="1383224408" type="tip" text="#"/></a> <Badge type="tip" text="1383224408"/> <br> assets/content/vehicles/trains/wagons/trainwagonunloadablefuel.entity.prefab |

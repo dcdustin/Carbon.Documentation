@@ -4,10 +4,10 @@ Full list of all <Badge type="warning" text="7"/> entity prefabs with the **Weap
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="1712643514"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_horizontal.deployed.prefab |
-| <Badge type="tip" text="1566147802"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single1.deployed.prefab |
-| <Badge type="tip" text="1265527567"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single2.deployed.prefab |
-| <Badge type="tip" text="2110811006"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single3.deployed.prefab |
-| <Badge type="tip" text="3672909226"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_stand.deployed.prefab |
-| <Badge type="tip" text="602299960"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_tall.deployed.prefab |
-| <Badge type="tip" text="1633182403"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_wide.deployed.prefab |
+| <a href="#1712643514"><Badge id="1712643514" type="tip" text="#"/></a> <Badge type="tip" text="1712643514"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_horizontal.deployed.prefab |
+| <a href="#1566147802"><Badge id="1566147802" type="tip" text="#"/></a> <Badge type="tip" text="1566147802"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single1.deployed.prefab |
+| <a href="#1265527567"><Badge id="1265527567" type="tip" text="#"/></a> <Badge type="tip" text="1265527567"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single2.deployed.prefab |
+| <a href="#2110811006"><Badge id="2110811006" type="tip" text="#"/></a> <Badge type="tip" text="2110811006"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_single3.deployed.prefab |
+| <a href="#3672909226"><Badge id="3672909226" type="tip" text="#"/></a> <Badge type="tip" text="3672909226"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_stand.deployed.prefab |
+| <a href="#602299960"><Badge id="602299960" type="tip" text="#"/></a> <Badge type="tip" text="602299960"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_tall.deployed.prefab |
+| <a href="#1633182403"><Badge id="1633182403" type="tip" text="#"/></a> <Badge type="tip" text="1633182403"/> <br> assets/prefabs/deployable/weaponracks/weaponrack_wide.deployed.prefab |

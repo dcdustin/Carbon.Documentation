@@ -4,15 +4,15 @@ Full list of all <Badge type="warning" text="12"/> entity prefabs with the **Fir
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="3369311876"/> <br> assets/bundled/prefabs/fireball.prefab |
-| <Badge type="tip" text="1071667043"/> <br> assets/bundled/prefabs/fireball_ballista.prefab |
-| <Badge type="tip" text="1409563449"/> <br> assets/bundled/prefabs/fireball_catapult.prefab |
-| <Badge type="tip" text="2086405370"/> <br> assets/bundled/prefabs/fireball_small.prefab |
-| <Badge type="tip" text="1081379866"/> <br> assets/bundled/prefabs/fireball_small_arrow.prefab |
-| <Badge type="tip" text="2673585394"/> <br> assets/bundled/prefabs/fireball_small_molotov.prefab |
-| <Badge type="tip" text="1837652231"/> <br> assets/bundled/prefabs/fireball_small_shotgun.prefab |
-| <Badge type="tip" text="184893264"/> <br> assets/bundled/prefabs/napalm.prefab |
-| <Badge type="tip" text="3550347674"/> <br> assets/bundled/prefabs/oilfireballsmall.prefab |
-| <Badge type="tip" text="2781905939"/> <br> assets/prefabs/npc/flame turret/flameturret_fireball.prefab |
-| <Badge type="tip" text="3761185980"/> <br> assets/prefabs/npc/m2bradley/oilfireball2.prefab |
-| <Badge type="tip" text="844008300"/> <br> assets/prefabs/weapons/flamethrower/flamethrower_fireball.prefab |
+| <a href="#3369311876"><Badge id="3369311876" type="tip" text="#"/></a> <Badge type="tip" text="3369311876"/> <br> assets/bundled/prefabs/fireball.prefab |
+| <a href="#1071667043"><Badge id="1071667043" type="tip" text="#"/></a> <Badge type="tip" text="1071667043"/> <br> assets/bundled/prefabs/fireball_ballista.prefab |
+| <a href="#1409563449"><Badge id="1409563449" type="tip" text="#"/></a> <Badge type="tip" text="1409563449"/> <br> assets/bundled/prefabs/fireball_catapult.prefab |
+| <a href="#2086405370"><Badge id="2086405370" type="tip" text="#"/></a> <Badge type="tip" text="2086405370"/> <br> assets/bundled/prefabs/fireball_small.prefab |
+| <a href="#1081379866"><Badge id="1081379866" type="tip" text="#"/></a> <Badge type="tip" text="1081379866"/> <br> assets/bundled/prefabs/fireball_small_arrow.prefab |
+| <a href="#2673585394"><Badge id="2673585394" type="tip" text="#"/></a> <Badge type="tip" text="2673585394"/> <br> assets/bundled/prefabs/fireball_small_molotov.prefab |
+| <a href="#1837652231"><Badge id="1837652231" type="tip" text="#"/></a> <Badge type="tip" text="1837652231"/> <br> assets/bundled/prefabs/fireball_small_shotgun.prefab |
+| <a href="#184893264"><Badge id="184893264" type="tip" text="#"/></a> <Badge type="tip" text="184893264"/> <br> assets/bundled/prefabs/napalm.prefab |
+| <a href="#3550347674"><Badge id="3550347674" type="tip" text="#"/></a> <Badge type="tip" text="3550347674"/> <br> assets/bundled/prefabs/oilfireballsmall.prefab |
+| <a href="#2781905939"><Badge id="2781905939" type="tip" text="#"/></a> <Badge type="tip" text="2781905939"/> <br> assets/prefabs/npc/flame turret/flameturret_fireball.prefab |
+| <a href="#3761185980"><Badge id="3761185980" type="tip" text="#"/></a> <Badge type="tip" text="3761185980"/> <br> assets/prefabs/npc/m2bradley/oilfireball2.prefab |
+| <a href="#844008300"><Badge id="844008300" type="tip" text="#"/></a> <Badge type="tip" text="844008300"/> <br> assets/prefabs/weapons/flamethrower/flamethrower_fireball.prefab |

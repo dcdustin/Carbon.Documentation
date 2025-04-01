@@ -4,11 +4,11 @@ Full list of all <Badge type="warning" text="8"/> entity prefabs with the **BoxS
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="2206646561"/> <br> assets/prefabs/deployable/large wood storage/box.wooden.large.prefab |
-| <Badge type="tip" text="2142950612"/> <br> assets/prefabs/deployable/large wood storage/skins/medieval_large_wood_box/medieval.box.wooden.large.prefab |
-| <Badge type="tip" text="1560881570"/> <br> assets/prefabs/deployable/woodenbox/woodbox_deployed.prefab |
-| <Badge type="tip" text="1982227630"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_a.prefab |
-| <Badge type="tip" text="1502013593"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_b.prefab |
-| <Badge type="tip" text="2261122309"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_c.prefab |
-| <Badge type="tip" text="4080262419"/> <br> assets/prefabs/misc/halloween/coffin/coffinstorage.prefab |
-| <Badge type="tip" text="2187258018"/> <br> assets/prefabs/misc/simplelootbox.prefab |
+| <a href="#2206646561"><Badge id="2206646561" type="tip" text="#"/></a> <Badge type="tip" text="2206646561"/> <br> assets/prefabs/deployable/large wood storage/box.wooden.large.prefab |
+| <a href="#2142950612"><Badge id="2142950612" type="tip" text="#"/></a> <Badge type="tip" text="2142950612"/> <br> assets/prefabs/deployable/large wood storage/skins/medieval_large_wood_box/medieval.box.wooden.large.prefab |
+| <a href="#1560881570"><Badge id="1560881570" type="tip" text="#"/></a> <Badge type="tip" text="1560881570"/> <br> assets/prefabs/deployable/woodenbox/woodbox_deployed.prefab |
+| <a href="#1982227630"><Badge id="1982227630" type="tip" text="#"/></a> <Badge type="tip" text="1982227630"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_a.prefab |
+| <a href="#1502013593"><Badge id="1502013593" type="tip" text="#"/></a> <Badge type="tip" text="1502013593"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_b.prefab |
+| <a href="#2261122309"><Badge id="2261122309" type="tip" text="#"/></a> <Badge type="tip" text="2261122309"/> <br> assets/prefabs/misc/decor_dlc/storagebarrel/storage_barrel_c.prefab |
+| <a href="#4080262419"><Badge id="4080262419" type="tip" text="#"/></a> <Badge type="tip" text="4080262419"/> <br> assets/prefabs/misc/halloween/coffin/coffinstorage.prefab |
+| <a href="#2187258018"><Badge id="2187258018" type="tip" text="#"/></a> <Badge type="tip" text="2187258018"/> <br> assets/prefabs/misc/simplelootbox.prefab |

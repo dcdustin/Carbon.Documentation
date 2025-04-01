@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Cand
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="3049520350"/> <br> assets/prefabs/misc/halloween/candles/largecandleset.prefab |
-| <Badge type="tip" text="3435611199"/> <br> assets/prefabs/misc/halloween/candles/smallcandleset.prefab |
+| <a href="#3049520350"><Badge id="3049520350" type="tip" text="#"/></a> <Badge type="tip" text="3049520350"/> <br> assets/prefabs/misc/halloween/candles/largecandleset.prefab |
+| <a href="#3435611199"><Badge id="3435611199" type="tip" text="#"/></a> <Badge type="tip" text="3435611199"/> <br> assets/prefabs/misc/halloween/candles/smallcandleset.prefab |

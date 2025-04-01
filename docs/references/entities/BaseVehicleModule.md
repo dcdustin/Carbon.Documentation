@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Base
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="489918843"/> <br> assets/content/vehicles/modularcar/module_entities/1module_flatbed.prefab |
-| <Badge type="tip" text="2028363846"/> <br> assets/content/vehicles/modularcar/module_entities/2module_flatbed.prefab |
+| <a href="#489918843"><Badge id="489918843" type="tip" text="#"/></a> <Badge type="tip" text="489918843"/> <br> assets/content/vehicles/modularcar/module_entities/1module_flatbed.prefab |
+| <a href="#2028363846"><Badge id="2028363846" type="tip" text="#"/></a> <Badge type="tip" text="2028363846"/> <br> assets/content/vehicles/modularcar/module_entities/2module_flatbed.prefab |

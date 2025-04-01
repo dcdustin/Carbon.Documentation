@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **Micr
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="1240315717"/> <br> assets/prefabs/voiceaudio/microphonestand/microphonestandio.entity.prefab |
-| <Badge type="tip" text="1226049576"/> <br> assets/prefabs/voiceaudio/microphonestand/microphonestandio.entity.static.prefab |
+| <a href="#1240315717"><Badge id="1240315717" type="tip" text="#"/></a> <Badge type="tip" text="1240315717"/> <br> assets/prefabs/voiceaudio/microphonestand/microphonestandio.entity.prefab |
+| <a href="#1226049576"><Badge id="1226049576" type="tip" text="#"/></a> <Badge type="tip" text="1226049576"/> <br> assets/prefabs/voiceaudio/microphonestand/microphonestandio.entity.static.prefab |

@@ -4,24 +4,24 @@ Full list of all <Badge type="warning" text="21"/> prefabs.
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="3855189929"/> <br> assets/bundled/prefabs/world/ai.prefab |
-| <Badge type="tip" text="3036094912"/> <br> assets/bundled/prefabs/world/ambience.prefab |
-| <Badge type="tip" text="780573982"/> <br> assets/bundled/prefabs/world/auroras.prefab |
-| <Badge type="tip" text="2749259013"/> <br> assets/bundled/prefabs/world/batching.prefab |
-| <Badge type="tip" text="1799711011"/> <br> assets/bundled/prefabs/world/climate.prefab |
-| <Badge type="tip" text="3969061245"/> <br> assets/bundled/prefabs/world/environment.prefab |
-| <Badge type="tip" text="4274951952"/> <br> assets/bundled/prefabs/world/event_airdrop.prefab |
-| <Badge type="tip" text="1084165207"/> <br> assets/bundled/prefabs/world/event_cargoheli.prefab |
-| <Badge type="tip" text="2741054453"/> <br> assets/bundled/prefabs/world/event_cargoship.prefab |
-| <Badge type="tip" text="1186542917"/> <br> assets/bundled/prefabs/world/event_f15e.prefab |
-| <Badge type="tip" text="3609094641"/> <br> assets/bundled/prefabs/world/event_helicopter.prefab |
-| <Badge type="tip" text="3080911900"/> <br> assets/bundled/prefabs/world/event_roadbradley.prefab |
-| <Badge type="tip" text="3519671377"/> <br> assets/bundled/prefabs/world/event_travellingvendor.prefab |
-| <Badge type="tip" text="4041668016"/> <br> assets/bundled/prefabs/world/lightning.prefab |
-| <Badge type="tip" text="1570754831"/> <br> assets/bundled/prefabs/world/lod.prefab |
-| <Badge type="tip" text="2725306710"/> <br> assets/bundled/prefabs/world/particles.prefab |
-| <Badge type="tip" text="4041927147"/> <br> assets/bundled/prefabs/world/rainbow.prefab |
-| <Badge type="tip" text="545674847"/> <br> assets/bundled/prefabs/world/renderer_entity.prefab |
-| <Badge type="tip" text="3820896674"/> <br> assets/bundled/prefabs/world/smoke.prefab |
-| <Badge type="tip" text="3322225118"/> <br> assets/bundled/prefabs/world/underwater.prefab |
-| <Badge type="tip" text="3584785369"/> <br> assets/bundled/prefabs/world/wind.prefab |
+| <a href="#3855189929"><Badge id="3855189929" type="tip" text="#"/></a> <Badge type="tip" text="3855189929"/> <br> assets/bundled/prefabs/world/ai.prefab |
+| <a href="#3036094912"><Badge id="3036094912" type="tip" text="#"/></a> <Badge type="tip" text="3036094912"/> <br> assets/bundled/prefabs/world/ambience.prefab |
+| <a href="#780573982"><Badge id="780573982" type="tip" text="#"/></a> <Badge type="tip" text="780573982"/> <br> assets/bundled/prefabs/world/auroras.prefab |
+| <a href="#2749259013"><Badge id="2749259013" type="tip" text="#"/></a> <Badge type="tip" text="2749259013"/> <br> assets/bundled/prefabs/world/batching.prefab |
+| <a href="#1799711011"><Badge id="1799711011" type="tip" text="#"/></a> <Badge type="tip" text="1799711011"/> <br> assets/bundled/prefabs/world/climate.prefab |
+| <a href="#3969061245"><Badge id="3969061245" type="tip" text="#"/></a> <Badge type="tip" text="3969061245"/> <br> assets/bundled/prefabs/world/environment.prefab |
+| <a href="#4274951952"><Badge id="4274951952" type="tip" text="#"/></a> <Badge type="tip" text="4274951952"/> <br> assets/bundled/prefabs/world/event_airdrop.prefab |
+| <a href="#1084165207"><Badge id="1084165207" type="tip" text="#"/></a> <Badge type="tip" text="1084165207"/> <br> assets/bundled/prefabs/world/event_cargoheli.prefab |
+| <a href="#2741054453"><Badge id="2741054453" type="tip" text="#"/></a> <Badge type="tip" text="2741054453"/> <br> assets/bundled/prefabs/world/event_cargoship.prefab |
+| <a href="#1186542917"><Badge id="1186542917" type="tip" text="#"/></a> <Badge type="tip" text="1186542917"/> <br> assets/bundled/prefabs/world/event_f15e.prefab |
+| <a href="#3609094641"><Badge id="3609094641" type="tip" text="#"/></a> <Badge type="tip" text="3609094641"/> <br> assets/bundled/prefabs/world/event_helicopter.prefab |
+| <a href="#3080911900"><Badge id="3080911900" type="tip" text="#"/></a> <Badge type="tip" text="3080911900"/> <br> assets/bundled/prefabs/world/event_roadbradley.prefab |
+| <a href="#3519671377"><Badge id="3519671377" type="tip" text="#"/></a> <Badge type="tip" text="3519671377"/> <br> assets/bundled/prefabs/world/event_travellingvendor.prefab |
+| <a href="#4041668016"><Badge id="4041668016" type="tip" text="#"/></a> <Badge type="tip" text="4041668016"/> <br> assets/bundled/prefabs/world/lightning.prefab |
+| <a href="#1570754831"><Badge id="1570754831" type="tip" text="#"/></a> <Badge type="tip" text="1570754831"/> <br> assets/bundled/prefabs/world/lod.prefab |
+| <a href="#2725306710"><Badge id="2725306710" type="tip" text="#"/></a> <Badge type="tip" text="2725306710"/> <br> assets/bundled/prefabs/world/particles.prefab |
+| <a href="#4041927147"><Badge id="4041927147" type="tip" text="#"/></a> <Badge type="tip" text="4041927147"/> <br> assets/bundled/prefabs/world/rainbow.prefab |
+| <a href="#545674847"><Badge id="545674847" type="tip" text="#"/></a> <Badge type="tip" text="545674847"/> <br> assets/bundled/prefabs/world/renderer_entity.prefab |
+| <a href="#3820896674"><Badge id="3820896674" type="tip" text="#"/></a> <Badge type="tip" text="3820896674"/> <br> assets/bundled/prefabs/world/smoke.prefab |
+| <a href="#3322225118"><Badge id="3322225118" type="tip" text="#"/></a> <Badge type="tip" text="3322225118"/> <br> assets/bundled/prefabs/world/underwater.prefab |
+| <a href="#3584785369"><Badge id="3584785369" type="tip" text="#"/></a> <Badge type="tip" text="3584785369"/> <br> assets/bundled/prefabs/world/wind.prefab |

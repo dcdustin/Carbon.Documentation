@@ -4,9 +4,9 @@ Full list of all <Badge type="warning" text="6"/> entity prefabs with the **NPCA
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="1386184467"/> <br> assets/content/props/sentry_scientists/sentry.bandit.static.prefab |
-| <Badge type="tip" text="1666912025"/> <br> assets/content/props/sentry_scientists/sentry.scientist.barge.prefab |
-| <Badge type="tip" text="1202757502"/> <br> assets/content/props/sentry_scientists/sentry.scientist.barge.static.prefab |
-| <Badge type="tip" text="324270742"/> <br> assets/content/props/sentry_scientists/sentry.scientist.static.prefab |
-| <Badge type="tip" text="2857401739"/> <br> assets/prefabs/npc/travelling vendor/npcvendorturretmodified variant.prefab |
-| <Badge type="tip" text="4291749291"/> <br> assets/prefabs/npc/travelling vendor/npcvendorturretside.prefab |
+| <a href="#1386184467"><Badge id="1386184467" type="tip" text="#"/></a> <Badge type="tip" text="1386184467"/> <br> assets/content/props/sentry_scientists/sentry.bandit.static.prefab |
+| <a href="#1666912025"><Badge id="1666912025" type="tip" text="#"/></a> <Badge type="tip" text="1666912025"/> <br> assets/content/props/sentry_scientists/sentry.scientist.barge.prefab |
+| <a href="#1202757502"><Badge id="1202757502" type="tip" text="#"/></a> <Badge type="tip" text="1202757502"/> <br> assets/content/props/sentry_scientists/sentry.scientist.barge.static.prefab |
+| <a href="#324270742"><Badge id="324270742" type="tip" text="#"/></a> <Badge type="tip" text="324270742"/> <br> assets/content/props/sentry_scientists/sentry.scientist.static.prefab |
+| <a href="#2857401739"><Badge id="2857401739" type="tip" text="#"/></a> <Badge type="tip" text="2857401739"/> <br> assets/prefabs/npc/travelling vendor/npcvendorturretmodified variant.prefab |
+| <a href="#4291749291"><Badge id="4291749291" type="tip" text="#"/></a> <Badge type="tip" text="4291749291"/> <br> assets/prefabs/npc/travelling vendor/npcvendorturretside.prefab |

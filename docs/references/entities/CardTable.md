@@ -4,12 +4,12 @@ Full list of all <Badge type="warning" text="9"/> entity prefabs with the **Card
 ---
 | ID & Path |
 | --- |
-| <Badge type="tip" text="1209592591"/> <br> assets/content/vehicles/trains/caboose/cardtable.caboose.prefab |
-| <Badge type="tip" text="858712032"/> <br> assets/content/vehicles/trains/caboose/cardtable.caboose_static.prefab |
-| <Badge type="tip" text="1708930778"/> <br> assets/prefabs/deployable/card table/_cardtable_base.prefab |
-| <Badge type="tip" text="1845856065"/> <br> assets/prefabs/deployable/card table/cardtable.deployed.prefab |
-| <Badge type="tip" text="4262635170"/> <br> assets/prefabs/deployable/card table/cardtable.static_configa.prefab |
-| <Badge type="tip" text="2597581320"/> <br> assets/prefabs/deployable/card table/cardtable.static_configa_hidden.prefab |
-| <Badge type="tip" text="2447998865"/> <br> assets/prefabs/deployable/card table/cardtable.static_configb.prefab |
-| <Badge type="tip" text="1390750221"/> <br> assets/prefabs/deployable/card table/cardtable.static_configc.prefab |
-| <Badge type="tip" text="690460714"/> <br> assets/prefabs/deployable/card table/cardtable.static_configd.prefab |
+| <a href="#1209592591"><Badge id="1209592591" type="tip" text="#"/></a> <Badge type="tip" text="1209592591"/> <br> assets/content/vehicles/trains/caboose/cardtable.caboose.prefab |
+| <a href="#858712032"><Badge id="858712032" type="tip" text="#"/></a> <Badge type="tip" text="858712032"/> <br> assets/content/vehicles/trains/caboose/cardtable.caboose_static.prefab |
+| <a href="#1708930778"><Badge id="1708930778" type="tip" text="#"/></a> <Badge type="tip" text="1708930778"/> <br> assets/prefabs/deployable/card table/_cardtable_base.prefab |
+| <a href="#1845856065"><Badge id="1845856065" type="tip" text="#"/></a> <Badge type="tip" text="1845856065"/> <br> assets/prefabs/deployable/card table/cardtable.deployed.prefab |
+| <a href="#4262635170"><Badge id="4262635170" type="tip" text="#"/></a> <Badge type="tip" text="4262635170"/> <br> assets/prefabs/deployable/card table/cardtable.static_configa.prefab |
+| <a href="#2597581320"><Badge id="2597581320" type="tip" text="#"/></a> <Badge type="tip" text="2597581320"/> <br> assets/prefabs/deployable/card table/cardtable.static_configa_hidden.prefab |
+| <a href="#2447998865"><Badge id="2447998865" type="tip" text="#"/></a> <Badge type="tip" text="2447998865"/> <br> assets/prefabs/deployable/card table/cardtable.static_configb.prefab |
+| <a href="#1390750221"><Badge id="1390750221" type="tip" text="#"/></a> <Badge type="tip" text="1390750221"/> <br> assets/prefabs/deployable/card table/cardtable.static_configc.prefab |
+| <a href="#690460714"><Badge id="690460714" type="tip" text="#"/></a> <Badge type="tip" text="690460714"/> <br> assets/prefabs/deployable/card table/cardtable.static_configd.prefab |
