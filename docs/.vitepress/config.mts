@@ -105,8 +105,8 @@ export default defineConfig({
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
-            { text: 'Entities', collapsed: true, link: '/references/entities', items: getFiles("../references/entities") },
-            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', collapsed: true, items: getFiles("../references/entities") },
+            { text: 'Items', collapsed: true, items: getFiles("../references/items") },
             { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
         }
@@ -136,4 +136,4 @@ export default defineConfig({
     
   },
 })
- 
+    
