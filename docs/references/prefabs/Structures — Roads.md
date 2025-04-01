@@ -1,0 +1,74 @@
+# Structures — Roads
+Full list of all <Badge type="warning" text="68"/> prefabs.
+
+---
+| ID & Path |
+| --- |
+| <Badge type="tip" text="4028826801"/> <br> assets/content/structures/roads/carpark_a.prefab |
+| <Badge type="tip" text="89556334"/> <br> assets/content/structures/roads/carpark_b.prefab |
+| <Badge type="tip" text="1515640508"/> <br> assets/content/structures/roads/launch_site_ground_a.prefab |
+| <Badge type="tip" text="1838956961"/> <br> assets/content/structures/roads/launch_site_ground_b.prefab |
+| <Badge type="tip" text="3066384483"/> <br> assets/content/structures/roads/launch_site_ground_c.prefab |
+| <Badge type="tip" text="2246404336"/> <br> assets/content/structures/roads/launch_site_ground_d.prefab |
+| <Badge type="tip" text="1869177310"/> <br> assets/content/structures/roads/launch_site_ground_e.prefab |
+| <Badge type="tip" text="571612781"/> <br> assets/content/structures/roads/launch_site_ground_f.prefab |
+| <Badge type="tip" text="2839244899"/> <br> assets/content/structures/roads/launch_site_ground_g.prefab |
+| <Badge type="tip" text="2965736300"/> <br> assets/content/structures/roads/loading_bay_lane_a.prefab |
+| <Badge type="tip" text="3676516630"/> <br> assets/content/structures/roads/pavement_3x3_isle_end.prefab |
+| <Badge type="tip" text="3739115402"/> <br> assets/content/structures/roads/pavement_3x6_isle.prefab |
+| <Badge type="tip" text="1990735247"/> <br> assets/content/structures/roads/pavement_6x3.prefab |
+| <Badge type="tip" text="1833495361"/> <br> assets/content/structures/roads/pavement_6x6.prefab |
+| <Badge type="tip" text="574690485"/> <br> assets/content/structures/roads/pavement_6x6_garage_bay.prefab |
+| <Badge type="tip" text="1771757602"/> <br> assets/content/structures/roads/pavement_6x6_nocurb.prefab |
+| <Badge type="tip" text="2069201853"/> <br> assets/content/structures/roads/pavement_6x6_sshape_left.prefab |
+| <Badge type="tip" text="3307071351"/> <br> assets/content/structures/roads/pavement_6x6_sshape_right.prefab |
+| <Badge type="tip" text="3481069799"/> <br> assets/content/structures/roads/pavement_corner_in.prefab |
+| <Badge type="tip" text="1062541772"/> <br> assets/content/structures/roads/pavement_corner_out.prefab |
+| <Badge type="tip" text="311154459"/> <br> assets/content/structures/roads/pavement_corner_out_sharp.prefab |
+| <Badge type="tip" text="2865291348"/> <br> assets/content/structures/roads/pavement_launchsite_a.prefab |
+| <Badge type="tip" text="2742746353"/> <br> assets/content/structures/roads/pavement_launchsite_b.prefab |
+| <Badge type="tip" text="1498128843"/> <br> assets/content/structures/roads/pavement_launchsite_c.prefab |
+| <Badge type="tip" text="3888334721"/> <br> assets/content/structures/roads/pavement_launchsite_d.prefab |
+| <Badge type="tip" text="3619665165"/> <br> assets/content/structures/roads/pavement_launchsite_e.prefab |
+| <Badge type="tip" text="1468563646"/> <br> assets/content/structures/roads/pavement_launchsite_f.prefab |
+| <Badge type="tip" text="3687457178"/> <br> assets/content/structures/roads/pavement_launchsite_g.prefab |
+| <Badge type="tip" text="3087023529"/> <br> assets/content/structures/roads/pavement_launchsite_h.prefab |
+| <Badge type="tip" text="4197673619"/> <br> assets/content/structures/roads/pavement_launchsite_i.prefab |
+| <Badge type="tip" text="3688276875"/> <br> assets/content/structures/roads/pavemnent_trainyard_a.prefab |
+| <Badge type="tip" text="3479680964"/> <br> assets/content/structures/roads/pavemnent_trainyard_b.prefab |
+| <Badge type="tip" text="2348463142"/> <br> assets/content/structures/roads/pavemnent_trainyard_c.prefab |
+| <Badge type="tip" text="1648071901"/> <br> assets/content/structures/roads/pavemnent_trainyard_d.prefab |
+| <Badge type="tip" text="1212388847"/> <br> assets/content/structures/roads/pavemnent_trainyard_e.prefab |
+| <Badge type="tip" text="1492258757"/> <br> assets/content/structures/roads/range_ground_chute_a.prefab |
+| <Badge type="tip" text="1395982487"/> <br> assets/content/structures/roads/range_ground_chute_b.prefab |
+| <Badge type="tip" text="3184681089"/> <br> assets/content/structures/roads/range_ground_drain_a.prefab |
+| <Badge type="tip" text="915667197"/> <br> assets/content/structures/roads/range_ground_drain_b.prefab |
+| <Badge type="tip" text="1706938934"/> <br> assets/content/structures/roads/range_ground_drain_c.prefab |
+| <Badge type="tip" text="3145912975"/> <br> assets/content/structures/roads/range_ground_drain_d.prefab |
+| <Badge type="tip" text="3283894536"/> <br> assets/content/structures/roads/range_ground_drain_e.prefab |
+| <Badge type="tip" text="3314345491"/> <br> assets/content/structures/roads/range_ground_zero.prefab |
+| <Badge type="tip" text="3284299016"/> <br> assets/content/structures/roads/road_18x15.prefab |
+| <Badge type="tip" text="3758998201"/> <br> assets/content/structures/roads/road_27x15.prefab |
+| <Badge type="tip" text="2260965157"/> <br> assets/content/structures/roads/road_36x15.prefab |
+| <Badge type="tip" text="2991472934"/> <br> assets/content/structures/roads/road_9x15.prefab |
+| <Badge type="tip" text="198584086"/> <br> assets/content/structures/roads/road_9x15_end.prefab |
+| <Badge type="tip" text="2281422950"/> <br> assets/content/structures/roads/road_9x15_railway.prefab |
+| <Badge type="tip" text="2079411807"/> <br> assets/content/structures/roads/road_9x18_broken.prefab |
+| <Badge type="tip" text="1216888300"/> <br> assets/content/structures/roads/road_bend_15x15.prefab |
+| <Badge type="tip" text="1902420518"/> <br> assets/content/structures/roads/road_junction_15x15.prefab |
+| <Badge type="tip" text="2173459486"/> <br> assets/content/structures/roads/road_junctiont_15x15.prefab |
+| <Badge type="tip" text="2601816951"/> <br> assets/content/structures/roads/road_nopavement_18x15.prefab |
+| <Badge type="tip" text="4051659190"/> <br> assets/content/structures/roads/road_nopavement_27x15.prefab |
+| <Badge type="tip" text="3383531400"/> <br> assets/content/structures/roads/road_nopavement_36x15.prefab |
+| <Badge type="tip" text="1805369575"/> <br> assets/content/structures/roads/road_nopavement_9x15.prefab |
+| <Badge type="tip" text="2881117711"/> <br> assets/content/structures/roads/road_nopavement_9x15_end.prefab |
+| <Badge type="tip" text="1391003866"/> <br> assets/content/structures/roads/road_nopavement_9x15_railway.prefab |
+| <Badge type="tip" text="2290330257"/> <br> assets/content/structures/roads/road_nopavement_9x36_slope_600.prefab |
+| <Badge type="tip" text="2563321726"/> <br> assets/content/structures/roads/road_nopavement_bend_15x15.prefab |
+| <Badge type="tip" text="3062325300"/> <br> assets/content/structures/roads/road_nopavement_bend_27x27.prefab |
+| <Badge type="tip" text="4076151276"/> <br> assets/content/structures/roads/road_nopavement_bend22_15x15.prefab |
+| <Badge type="tip" text="3215154415"/> <br> assets/content/structures/roads/road_nopavement_bend45_15x15.prefab |
+| <Badge type="tip" text="2352939375"/> <br> assets/content/structures/roads/road_nopavement_junction_15x15.prefab |
+| <Badge type="tip" text="2928929377"/> <br> assets/content/structures/roads/road_nopavement_junctiont_15x15.prefab |
+| <Badge type="tip" text="2970901142"/> <br> assets/content/structures/roads/road_nopavement_junctiont_large.prefab |
+| <Badge type="tip" text="1582053183"/> <br> assets/content/structures/roads/road_ramp_lift_3x15.prefab |

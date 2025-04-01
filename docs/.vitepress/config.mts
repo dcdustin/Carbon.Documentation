@@ -101,15 +101,16 @@ export default defineConfig({
         {
           text: 'References',
           link: '/references',
-          items: [
+          items: [ 
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
             { text: 'Entities', collapsed: true, items: getFiles("../references/entities") },
             { text: 'Items', collapsed: true, items: getFiles("../references/items") },
+            { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
             { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
-        }
+        } 
       ]
     },
 
@@ -136,4 +137,4 @@ export default defineConfig({
     
   },
 })
-    
+  
