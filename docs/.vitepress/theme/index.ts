@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import CarbonButton from '../components/CarbonButton.vue'
 import CarbonBadge from '../components/CarbonBadge.vue'
+import CarbonChange from '../components/CarbonChange.vue'
 
 export default {
   extends: DefaultTheme,
@@ -17,5 +18,6 @@ export default {
     // https://vitepress.dev/guide/extending-default-theme#app-level-enhancements
     app.component('CarbonButton', CarbonButton)
     app.component('CarbonBadge', CarbonBadge)
+    app.component('CarbonChange', CarbonChange)
   }
 } satisfies Theme
