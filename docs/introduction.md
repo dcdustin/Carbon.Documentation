@@ -3,7 +3,7 @@
 :::info 
 **Carbon** is a modding framework that is dedicated to take care of all background processing and execution of customized plugins and extensions in the most optimal way possible.
 
-This project is designed to work as close as the way Oxide does, with slight interface adjustments but with the sole purpose of allowing most Oxide-dedicated plugins, work in Carbon's environment.
+This project is designed to work as close as the way Oxide does, with slight interface adjustments but with the sole purpose of allowing most Oxide-dedicated plugins to work in Carbon's environment.
 :::
 
 An anticipated system designed to execute **existent** Oxide plugins, all within Harmony **without** any patches, for optimized performance purposes.

@@ -47,9 +47,9 @@
   color: white;
 }
   
-  .carbon-button-icon {
+.carbon-button-icon {
     filter: invert(1);
     width: 16px;
     height: 16px;
-  }
+}
   </style>

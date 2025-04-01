@@ -176,36 +176,3 @@
 .VPBadge{
   border-radius: 0%;
 }
-
-.VPBadge.tip.release {
-  color: white;
-  border-radius: 0%;
-  margin-top: 0.4em;
-}
-
-.VPBadge.tip.release.new    { --vp-badge-bg: var(--c-carbon-release-new); }
-.VPBadge.tip.release.fixed  { --vp-badge-bg: var(--c-carbon-release-fixed); }
-.VPBadge.tip.release.updated{ --vp-badge-bg: var(--c-carbon-release-updated); }
-.VPBadge.tip.release.misc   { --vp-badge-bg: var(--c-carbon-release-misc); }
-.VPBadge.tip.release.removed{ --vp-badge-bg: var(--c-carbon-release-removed); }
-
-.VPBadge.tip.release.new,
-.VPBadge.tip.release.fixed,
-.VPBadge.tip.release.updated,
-.VPBadge.tip.release.misc,
-.VPBadge.tip.release.removed {
-  border-color: var(--vp-badge-bg);
-  background-color: var(--vp-badge-bg);
-}
-
-.VPBadge.tip.release.date{
-  float: right;
-  border-color: var(--vp-badge-info-border);
-  background-color: var(--vp-badge-info-bg);
-  color: var(--vp-badge-info-text);
-}
-
-.VPButton.square {
-  border-radius: 0!important;
-  text-decoration: none;
-}
