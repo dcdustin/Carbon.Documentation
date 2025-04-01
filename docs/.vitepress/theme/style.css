@@ -44,9 +44,16 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  /* --c-carbon-1: #974337; */
   --c-carbon-1: #fc583b;
   --c-carbon-2: #fc3b3b;
+  --c-carbon-3: #e04c4c;
+  --c-carbon-soft: rgba(252, 88, 59, 0.1);
+
+  --c-carbon-release-new: #286e2e9a;
+  --c-carbon-release-fixed: #a8a73daf;
+  --c-carbon-release-updated: #e08e4ca9;
+  --c-carbon-release-removed: #c2292991;
+  --c-carbon-release-misc: #4c62e09d;
 
   /*--vp-c-default-1: var(--vp-c-gray-1);*/
   --vp-c-default-1: var(--vp-c-gray-1);
@@ -59,8 +66,8 @@
   /* --vp-c-brand-3: var(--vp-c-indigo-3); */
   --vp-c-brand-1: var(--c-carbon-1);
   --vp-c-brand-2: var(--c-carbon-2);
-  --vp-c-brand-3: var(--c-carbon-1);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  --vp-c-brand-3: var(--c-carbon-3);
+  --vp-c-brand-soft: var(--c-carbon-soft);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
   --vp-c-tip-2: var(--vp-c-brand-2);
@@ -166,9 +173,39 @@
   --vp-code-color: var(--c-carbon-1); 
 }
 
-.details.custom-color {
-  background-color: #668657; /* Your preferred background color */
-  color: white; /* Ensure text is readable on the dark background */
-  border-radius: 5px; /* Optional, adds rounded corners */
-  padding: 10px; /* Optional, adjust padding */
+.VPBadge{
+  border-radius: 0%;
+}
+
+.VPBadge.tip.release {
+  color: white;
+  border-radius: 0%;
+  margin-top: 0.4em;
+}
+
+.VPBadge.tip.release.new    { --vp-badge-bg: var(--c-carbon-release-new); }
+.VPBadge.tip.release.fixed  { --vp-badge-bg: var(--c-carbon-release-fixed); }
+.VPBadge.tip.release.updated{ --vp-badge-bg: var(--c-carbon-release-updated); }
+.VPBadge.tip.release.misc   { --vp-badge-bg: var(--c-carbon-release-misc); }
+.VPBadge.tip.release.removed{ --vp-badge-bg: var(--c-carbon-release-removed); }
+
+.VPBadge.tip.release.new,
+.VPBadge.tip.release.fixed,
+.VPBadge.tip.release.updated,
+.VPBadge.tip.release.misc,
+.VPBadge.tip.release.removed {
+  border-color: var(--vp-badge-bg);
+  background-color: var(--vp-badge-bg);
+}
+
+.VPBadge.tip.release.date{
+  float: right;
+  border-color: var(--vp-badge-info-border);
+  background-color: var(--vp-badge-info-bg);
+  color: var(--vp-badge-info-text);
+}
+
+.VPButton.square {
+  border-radius: 0!important;
+  text-decoration: none;
 }

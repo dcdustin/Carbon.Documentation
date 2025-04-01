@@ -25,8 +25,8 @@ export default defineConfig({
         {
           text: 'Development',
           items: [
-            { text: 'Creating Your Project', link: '/development/creating-your-project' },
             { text: 'Local Server Hosting', link: '/development/local-server-hosting' },
+            { text: 'Creating Your Project', link: '/development/creating-your-project' },
             { text: 'Creating Your First Plugin', link: '/development/creating-your-first-plugin' },
           ]
         },

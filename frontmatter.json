@@ -54,6 +54,22 @@
     {
       "title": "development",
       "path": "[[workspace]]/docs/development"
+    },
+    {
+      "title": "hooks",
+      "path": "[[workspace]]/docs/hooks"
+    },
+    {
+      "title": "references",
+      "path": "[[workspace]]/docs/references"
+    },
+    {
+      "title": "core",
+      "path": "[[workspace]]/docs/core"
+    },
+    {
+      "title": "development",
+      "path": "[[workspace]]/docs/development"
     }
   ],
   "frontMatter.preview.host": "http://localhost:5173",
