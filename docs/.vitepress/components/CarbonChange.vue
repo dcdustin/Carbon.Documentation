@@ -10,7 +10,7 @@
   import CarbonBadge from './CarbonBadge.vue';
   
   interface Props {
-    type: 'new' | 'fixed' | 'updated' | 'misc' | 'removed' | 'date';
+    type: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
     text: string;
   }
   

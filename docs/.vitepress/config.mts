@@ -8,6 +8,11 @@ export default defineConfig({
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   cleanUrls: true,
   lastUpdated: true,
+  markdown: {
+    image: {
+      lazyLoading: true
+    }
+  },
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -15,7 +20,7 @@ export default defineConfig({
       { text: 'Hooks', link: '/hooks' },
       { text: 'References', link: '/references' },
       { text: 'Release Notes', link: '/release-notes'},
-    ],
+    ], 
 
     sidebar: {
       '/': [

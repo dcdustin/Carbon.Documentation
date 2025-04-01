@@ -7,7 +7,7 @@
   <script setup lang="ts">
   interface Props {
     text?: string
-    type: 'new' | 'fixed' | 'updated' | 'misc' | 'removed' | 'date'
+    type: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
   }
   defineProps<Props>()
   </script>
@@ -21,22 +21,22 @@
 
 .carbon-badge {
   display: inline-flex;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  padding: 0 10px;
+  padding: 0 5px;
   line-height: 22px;
   margin-left: 0.4em;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 0%;
   color: white;
 }
 
 /* Badge types */
-.carbon-badge.new     { background-color: var(--c-carbon-release-new);     border-color: var(--c-carbon-release-new); }
-.carbon-badge.fixed   { background-color: var(--c-carbon-release-fixed);   border-color: var(--c-carbon-release-fixed); }
-.carbon-badge.updated { background-color: var(--c-carbon-release-updated); border-color: var(--c-carbon-release-updated); }
+.carbon-badge.add   { background-color: var(--c-carbon-release-add);   border-color: var(--c-carbon-release-add); }
+.carbon-badge.fix   { background-color: var(--c-carbon-release-fix);   border-color: var(--c-carbon-release-fix); }
+.carbon-badge.update { background-color: var(--c-carbon-release-update); border-color: var(--c-carbon-release-update); }
 .carbon-badge.misc    { background-color: var(--c-carbon-release-misc);    border-color: var(--c-carbon-release-misc); }
-.carbon-badge.removed { background-color: var(--c-carbon-release-removed); border-color: var(--c-carbon-release-removed); }
+.carbon-badge.remove { background-color: var(--c-carbon-release-remove); border-color: var(--c-carbon-release-remove); }
 
 .carbon-badge.date {
   float: right;

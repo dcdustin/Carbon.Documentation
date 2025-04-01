@@ -1,0 +1,4131 @@
+[
+  {
+	"Date": "21.03.2025 1:58PM GMT+1",
+    "Version": "2.0.181",
+    "Changes": [
+	  {
+        "Message": "Added `-harmonydir` which allows you to modify the directory path of HarmonyMods.",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added HookUpdates in the carbon/config.json file (replaces +carbon.skiphookupdates logic)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `harmony.mods` admin command which prints a list of all currently loaded HarmonyMods (mods processed by Rust)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed rare NRE in Carbon.Bootstrap occasionally created by specific plugins",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed float value precision (Pitereq's fix for LUI builder) - fixes Carbon panel range options malfunctioning",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `Checksum validation failure` warnings prohibiting hooks becoming patched",
+        "Type": 3
+	  },
+	  {
+        "Message": "Updated CarbonAuto chat options to be taken into account when printing `Unknown command` messages to game chat (eg. avatar)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Don't attempt to unpatch methods if we didn't patch any",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Fixed spectating UI not updating accordingly when spectating players that go to sleep/disconnect",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed occasional Entities tab NRE (ending the spectate of a player that became forsaken)",
+        "Type": 3
+	  },
+	  {
+        "Message": "No longer assign ownership on F1 console spawned items if `c.nogivenotices` is enabled",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed CorePlugin autopatch override",
+        "Type": 2
+	  },
+	  {
+        "Message": "Moved `[AutoPatch]` processing logic to BaseHookable (from RustPlugin) so modules also get processed",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added patch priority/order to [AutoPatch]. [More info here](https://docs.carbonmod.gg/docs/collaborate/adding-hooks/plugin-patches-hooks#automatic-way)",
+        "Type": 0
+	  }
+	]
+  },  
+  {
+	"Date": "12.03.2025 3:40AM GMT+1",
+    "Version": "2.0.178",
+    "Changes": [
+	  {
+        "Message": "Added Carbon.Profiler (and included it into Roslyn)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added brand new LUI system, an ultra-fast CUI building system (thanks ThePitereq!)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Significantly optimized CUI building speed",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.createplugin` which creates a new blank plugin with the `OnServerInitialized` hook",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed an issue where `timer.Reset` wouldn't properly reset the timer's delay",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed default values for ScrollView",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed unused mask softness property from CUI",
+        "Type": 2
+	  },
+	  {
+        "Message": "[Admin Module] Pinned config editor options",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Pinned Configuration tab options at the top",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Pinned Plugins tab search bar",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Optimized local methods in a few places by changing them from local to static",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added failsafe deprecated extension to redirect plugins using Effect.Clear with a boolean parameter, to compile and properly execute on staging/next update",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed hook generator code from HookCaller and moved it to Carbon.Generator.Shared",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added Carbon.Generator.Shared reference",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Vanish Module] Fixed vanish icon and text remaining on-screen after waking up from dying",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Vanish Module] Moved the vanish UI in the `Under` UI layer",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed LogSpamCleanup patch (Facepunch removed the log)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added `-harmonydir` which allows you to modify the directory path of HarmonyMods",
+        "Type": 0
+	  },
+	  {
+        "Message": "Inject UnityEngine.AssetBundleModule into the Roslyn compiler",
+        "Type": 4
+	  },
+	  {
+        "Message": "Enforce publicisation for Rust.FileSystem.dll",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed missing Carbon.Native build from Release builds",
+        "Type": 3
+	  }
+	]
+  },  
+  {
+	"Date": "21.02.2025 6:02PM GMT+1",
+    "Version": "2.0.171",
+    "Changes": [
+	  {
+        "Message": "Added `c.changeversion` (It changes the current Carbon version you're running. Next reboot will swap to the overriden version. Run `c.changeversion` for syntax.)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated various places where documenting syntax and help descriptions with updated information",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed situations where `[Permission]` attribute response would not be replied to in the same context",
+        "Type": 3
+	  },
+	  {
+        "Message": "Made no permission, no group and no auth level client chat/console command returns phrased and translatable",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed moderator group being granted to auth level 2 users",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed Library from Timer",
+        "Type": 2
+	  },
+	  {
+        "Message": "Fixed casting a plugin to bool returning false even if the instance is alive without considering if the plugin has initialized",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Reduced unecessary data processing and unused code in the Plugins tab",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Fixed plugin uninstalling process",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed instances where vendor plugins would not properly pair up with loaded plugins",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `c.delete` and `c.deleteext` admin commands",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed issue where favorited plugins would not save upon reboot",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] **Completely revamped the Plugins tab**",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Improved config editing error handling",
+        "Type": 1
+	  },
+	  {
+        "Message": "[GatherManager Module] Fixed inaccurate values when gathering resource dispensers",
+        "Type": 3
+	  },
+	  {
+        "Message": "[AutoWipe Module] Added `WipeChatCommand` which defaults to nothing, can be set with `autowipe.wipechat` so anyone can run `/wipe` to see when the next wipe happens",
+        "Type": 0
+	  },
+	  {
+        "Message": "[AutoWipe Module] Added string replacements for [WIPE_DAY], [WIPE_MONTH] etc of the server name",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Vanish Module] Fixed situations where players loading into the server vanished, don't have vanished perks",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Vanish Module] Added offset values for vanishing icon and reset previous anchor values",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added informational message under Configurations->ConVars tab (regarding values not being saved deliberately)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Vanish Module] Implemented various optimizations and reusable effect instances",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "07.02.2025 8:41PM GMT+1",
+    "Version": "2.0.170",
+    "Changes": [
+	  {
+        "Message": "Handle reloaded plugins on server shutdown",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed returning types of OxideMod.LoadPlugin/ReloadPlugin",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added ReloadAllPlugins (compat)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Enforce publicized default assemblies in the config",
+        "Type": 4
+	  },
+	  {
+        "Message": "Updated [AutoWipe module](https://docs.carbonmod.gg/docs/core/modules/autowipe-module)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Stripped irrelevant configuration from Preloader",
+        "Type": 2
+	  },
+	  {
+        "Message": "Updated Harmony to v2.3.5",
+        "Type": 1
+	  },
+	  {
+        "Message": "Execute self updating process relative to Carbon root path (`-carbon.rootdir`)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Include `Carbon.Hooks.Oxide.dll` and `Carbon.Hooks.Community.dll` in the patch (applies to all Carbon builds)",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "30.01.2025 10:00PM GMT+1",
+    "Version": "2.0.167",
+    "Changes": [
+	  {
+        "Message": "Removed Carbon Harmony processors (switched to using Rust vanilla)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Inject `Cronos` into Roslyn compiler",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added hook exception tracking (plugin total and per-hook instance)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added publicized assemblies config",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added publicizer blacklist config options",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated Carbon-called commands to use a cached argument buffer",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added Codefling login analytic",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed HarmonyWatchers config + command",
+        "Type": 2
+	  },
+	  {
+        "Message": "Show internal/hidden hooks in `c.hooks`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Made `IOnServerInitialized` a callable hook",
+        "Type": 4
+	  },
+	  {
+        "Message": "Automatically remove predefined aliases for `harmony.load` -> `c.harmonyload` and unload",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added alias warning whenever trying to assign an alias on an already existent Rust command",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added silly goose proof handling for people assigning a command with the same assigning key as value (creating stackoverflows)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added developer mode",
+        "Type": 0
+	  },
+	  {
+        "Message": "Export all in-memory patched assemblies to `carbon/developer/patched_assemblies` directory",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added GC events flag in Shift+REC profiles in the Profiler tab (enabled by default)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.editconfig` which when called by an admin client, will open up a json config at a relative path (eg. carbon/config.json) and allow you edit it in Carbon's panel",
+        "Type": 0
+	  },
+	  {
+        "Message": "Optimized hook calling slightly by reducing allocs when checking hook conflicts",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Fixed file path when downloading files through the Plugins tab",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed Rust console occasional NRE (when disabling Rust console, aka `-noconsole`)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added default conditional compilation symbol `OXIDE_PUBLICIZED`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `GetMessageByLanguage`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added missing RustExtensionMethods (compatibility with Oxide)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added missing RustExtensionMethods (compatibility with Oxide)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added [AutoWipe module](https://docs.carbonmod.gg/docs/core/modules/autowipe-module)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `OnCarbonVanished(BasePlayer)` and `OnCarbonUnvanished(BasePlayer)` hook calls whenever players use Vanish",
+        "Type": 0
+	  },
+	  {
+        "Message": "No longer write patched/publicized assemblies to disk (keeping Rust entirely vanilla)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Load all in-memory patched assemblies before Unity does (so ours have priority)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Stripped away all self-updating code and moved to Carbon.Startup",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added Carbon.Startup, which handles Oxide migration and publicization/patching whereas Carbon.Preloader solely only handles self-updating",
+        "Type": 0
+	  }
+	]
+  },
+  {
+	"Date": "02.01.2025 7:30PM GMT+2",
+    "Version": "2.0.164",
+    "Changes": [
+	  {
+        "Message": "Fire 'LoadDefaultConfig' as a hook on the plugin if plugins don't override the method",
+        "Type": 4
+	  },  
+	  {
+        "Message": "Added StackWalk allocations option to the Shift+REC modal, as well as timeline recording",
+        "Type": 0
+	  },
+      {
+        "Message": "Reload harmony mods when running `harmony.load` and the mod is already loaded",
+        "Type": 4
+	  },  
+      {
+        "Message": "Added `c.devdump` - Creates a zip package in the temporary directory of the Carbon folder with useful information (output log & profile snapshot)",
+        "Type": 0
+	  },  
+      {
+        "Message": "Added Facepunch Steam references into Roslyn compiler",
+        "Type": 0
+	  },  
+      {
+        "Message": "Stripped away Harmony v1 support",
+        "Type": 4
+	  },  
+      {
+        "Message": "Removed HAB bump debug log spam fix",
+        "Type": 2
+	  }
+	]
+  },
+  {
+	"Date": "14.11.2024 0:45AM GMT+2",
+    "Version": "2.0.155",
+    "Changes": [
+	  {
+        "Message": "Pooled various instances of CarbonEventArgs and ModuleEventArgs",
+        "Type": 4
+	  },
+      {
+        "Message": "Improved analytics performance",
+        "Type": 4
+      },
+      {
+        "Message": "Added pooling across all instances where CarbonEventArgs is passed through our processors",
+        "Type": 0
+      },
+      {
+        "Message": "Fixed certain same-named hooks getting fired when they shouldn't in plugins/modules",
+        "Type": 3
+      },
+      {
+        "Message": "Added default `moderator` group which gets auto-granted/revoked when players are in/out the auth-level 1 group",
+        "Type": 0
+      },
+      {
+        "Message": "Added `ConfigVersionChecks` override to BaseModule, enabled by default",
+        "Type": 0
+      },
+      {
+        "Message": "Fullscreen tabs for config editing when doing setup wizard",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed Lang NRE (thanks Kulltero!)",
+        "Type": 3
+      },
+      {
+        "Message": "Added CuiRawImageComponent.SteamId property which is used for placing the steam avatar on the image",
+        "Type": 0
+      },
+      {
+        "Message": "Shifted preinit callback to fire before the constructor",
+        "Type": 4
+      },
+      {
+        "Message": "Record constructor failure as a compilation failure once thrown (Thank's BugMan!)",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed `c.reload` not attempting to load up unloaded plugins",
+        "Type": 3
+      },
+      {
+        "Message": "Notify user when a compilation started upon running `c.load` or `c.reload` on an unloaded file",
+        "Type": 4
+      },
+      {
+        "Message": "Removed obsolete `PoolEx` methods",
+        "Type": 2
+      },
+      {
+        "Message": "Added SelectiveEAC module - disabled by default, permission and group based system selectively allowing admin users to enter a `server.secure 1` server bypassing EAC authentication",
+        "Type": 0
+      },
+      {
+        "Message": "Added early injection of a new player in the permissions database on `CanUserLogin`",
+        "Type": 0
+      },
+      {
+        "Message": "[Vanish Module] Made vanishing and unvanishing effects configurable",
+        "Type": 4
+      },
+      {
+        "Message": "[Vanish Module] Fixed players vanishing on Cargo Ship or other parent triggers being detached",
+        "Type": 3
+      },
+      {
+        "Message": "[Vanish Module] Always perform Enter/Leave triggers properly when vanished",
+        "Type": 3
+      },
+      {
+        "Message": "[ModeratorTools Module] Removed obsolete patch",
+        "Type": 2
+      }
+	]
+  },
+  {
+	"Date": "03.10.2024 6:59PM GMT+2",
+    "Version": "2.0.143",
+    "Changes": [
+	  {
+        "Message": "[Admin Module] Fixed setup wizard with latest changes",
+        "Type": 3
+	  },
+      {
+        "Message": "Renamed Optimisations to Circular Networking since that's what it is",
+        "Type": 1
+      },
+      {
+        "Message": "Improved ImageDatabase performance and reliability",
+        "Type": 1
+      },
+      {
+        "Message": "Added Plugins.GetAllNonAlloc",
+        "Type": 0
+      },
+      {
+        "Message": "Added `c.grant group xx *` and `c.revoke user xx *` (wildcard) options",
+        "Type": 0
+      },
+      {
+        "Message": "Added obsolete attribute on custom dictionary/stringbuilder Carbon pool methods (will be removed on Nov. 7th 2024)",
+        "Type": 0
+      },
+      {
+        "Message": "Improved Carbon.Entities",
+        "Type": 1
+      },
+      {
+        "Message": "Added SelectiveEAC module - disabled by default, permission and group based system selectively allowing admin users to enter a `server.secure 1` server bypassing EAC authentication",
+        "Type": 0
+      },
+      {
+        "Message": "Fixed situations when hooks accessing the permissions system in the CanUserLogin user access and refreshing is too late",
+        "Type": 3
+      }
+	]
+  },
+  {
+	"Date": "05.09.2024 7:22PM GMT+2",
+    "Version": "2.0.132",
+    "Changes": [
+	  {
+        "Message": "Updated various repositories with respect to the new `Facepunch.Pool` updates",
+        "Type": 1
+	  },
+      {
+        "Message": "Updates to Carbon's `Assemblies` and dynamic library monitoring",
+        "Type": 1
+      },
+      {
+        "Message": "Removed Carbon.Assemblies `Unload` calls",
+        "Type": 2
+      },
+      {
+        "Message": "Fixed situations where default plugin messages/lang phrases would be loaded multiple times",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed whenever having `skipassetwarmup_crashes` enabled, Carbon would be executing OnServerInitialized too early",
+        "Type": 3
+      },
+      {
+        "Message": "Updated Carbon's logging system to print logs executed in different threads to Rust's native output log",
+        "Type": 1
+      },
+      {
+        "Message": "Added more timer formats to Countdown (according to https://github.com/Facepunch/Rust.Community/pull/63)",
+        "Type": 0
+      },
+      {
+        "Message": "Removed extra clears for Carbon's PoolEx extensions (since Rust's Facepunch.Pool handles it all now)",
+        "Type": 2
+      },
+      {
+        "Message": "[Admin Module] Updated the 'Local' subtab to 'Installed' under the Plugins tab",
+        "Type": 1
+      },
+      {
+        "Message": "[Admin Module] Fixed Codefling thumbnails and larger scale thumbnail (as well as first frame of gifs are being now used)",
+        "Type": 3
+      },
+      {
+        "Message": "Added ImageDatabase.Queue for singular images (key/url or just url)",
+        "Type": 0
+      },
+      {
+        "Message": "[Admin Module] Added player wetness properties to the Entities and Players tab",
+        "Type": 0
+      },
+      {
+        "Message": "Added NotoSansArabicBold to Carbon's CUI",
+        "Type": 0
+      },
+      {
+        "Message": "Added multiple plugin name support for `c.reload`, `c.unload` and `c.load` commands (eg. `c.reload PluginA PluginB PluginC`)",
+        "Type": 0
+      },
+      {
+        "Message": "Updated `c.reload`: No longer recompile manually reloaded plugins if there are no changes, and reuse runtime assemblies of said plugins to create the plugin type instance",
+        "Type": 1
+      },
+      {
+        "Message": "Updated `c.reload`: Recompile the plugin if profiler tracking status changed for the scripts",
+        "Type": 1
+      },
+      {
+        "Message": "Updated `c.reload`: Recompile if script watchers is disabled",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed CUI server induced client NRE (this also fixes CUI updating): Forcefully serialize all properties instead of skipping defaults",
+        "Type": 3
+      },
+      {
+        "Message": "Corrected multithreaded notice/informative logging color (grey)",
+        "Type": 3
+      },
+      {
+        "Message": "Added `PoolEx.FreeRaycastHitList` used by the codegen system (possibly a bandaid fix)",
+        "Type": 0
+      },
+      {
+        "Message": "Added pooling to ImageDatabase and sped processing up from 500ms to frame time",
+        "Type": 0
+      },
+      {
+        "Message": "Fixed plugin class and namespace identification: fixes cases where plugins would have nested namespaces or other types above the main plugin type",
+        "Type": 3
+      },
+      {
+        "Message": "[Admin Module] Removed server event toast config",
+        "Type": 2
+      },
+      {
+        "Message": "[Gather Manager Module] Include caught fish and scale collected amount based on module settings",
+        "Type": 0
+      },
+      {
+        "Message": "No longer print suggestion log in console if the command string is null or empty",
+        "Type": 4
+      },
+      {
+        "Message": "Updated DepotDownloader to use the latest commit",
+        "Type": 1
+      }
+	]
+  },
+  {
+	"Date": "15.08.2024 4:56AM GMT+2",
+    "Version": "2.0.126",
+    "Changes": [
+	  {
+        "Message": "Removed unnecessary copyright notice from the top of each file since it falls back to the project license",
+        "Type": 2
+	  },
+      {
+        "Message": "Changed loading of plugins to finalize before Asset Warmup and only load Asset Warmup when all Carbon systems are online",
+        "Type": 1
+      },
+      {
+        "Message": "Initial iteration at adding summary comments across the entire project",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed issue where admin module not storing quick actions to file when changed",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed `lang` NRE",
+        "Type": 3
+      },
+      {
+        "Message": "Added `Carbon.Defines.GetHooksFolder`",
+        "Type": 0
+      },
+      {
+        "Message": "Renamed TimerFormats -> TimerFormat",
+        "Type": 1
+      },
+      {
+        "Message": "Close the file panel before executing the OnConfirm/OnClose callbacks (so users don't click on buttons multiple times if the action takes a while)",
+        "Type": 1
+      },
+      {
+        "Message": "Optimized `Carbon.Community.Protect` to cache its values using the input as key",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed issue in CallHook with the object array of arguments, using index 13 instead of 12",
+        "Type": 3
+      },
+      {
+        "Message": "No longer add post batch failed requirees multiple times",
+        "Type": 4
+      },
+      {
+        "Message": "Removed various unused references from unrelated repository projects",
+        "Type": 2
+      },
+      {
+        "Message": "Upgraded Roslyn from 4.9.0 -> 4.12.4",
+        "Type": 1
+      },
+      {
+        "Message": "Upgraded Microsoft.CodeAnalysis.CSharp from 4.9.0-3.final [prerelease] -> 4.10.0",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed Carbon NuGet to use the latest API key (yearly renewed) and removed old versions",
+        "Type": 3
+      },
+      {
+        "Message": "Removed Carbon.Common.Client",
+        "Type": 2
+      }
+	]
+  },
+  {
+	"Date": "23.07.2024 12:23PM GMT+2",
+    "Version": "2.0.122",
+    "Changes": [
+	  {
+        "Message": "Removed Carbon.Common.Client from compiler whitelist",
+        "Type": 2
+	  },
+	  {
+        "Message": "No longer post process converted by default harmony mods as all the logic happens in the converter",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added Profiler serialization and comparison mode (protocolized)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added File browser module",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixes, improvements and optimizations to `Community.Protect`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Profiles store non-incremented values of incrementative assemblies which get used for comparison purpose",
+        "Type": 4
+	  },
+	  {
+        "Message": "Updated `c.harmonymods` to use Carbon's `Assemblies`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `UnsubscribeAll` and `GetHookSubscribers(string identifier)` to patch manager",
+        "Type": 0
+	  },
+	  {
+        "Message": "Filtered out command execution for `no_input` (default value of key binds without a command defined)",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "04.07.2024 06:52PM GMT+2",
+    "Version": "2.0.114",
+    "Changes": [
+	  {
+        "Message": "Various ImageDatabase improvements & callback fixes",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed Profiler incrementals",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed scaling in ImageDatabase (fixing GDI+ issues)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Fixed certain errors occurring in LoadPlugin when plugin was invalid/non-existent",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added Carbon.Assemblies which tracks ALL Carbon processed assemblies",
+        "Type": 0
+	  },
+	  {
+        "Message": "No longer save data + groups when SetLanguage happens",
+        "Type": 4
+	  },
+	  {
+        "Message": "No longer run OnDisabled / OnEnabled on modules when using `c.loadmodule`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Updated cleanup process upon data + group saving and cleared leftover memory whenever it happens",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed multi-word Carbon Auto convar values not properly applying upon restart",
+        "Type": 3
+	  },
+	  {
+        "Message": "Show more accurate warning in the Carbon profiler tab when things went wrong upon boot",
+        "Type": 4
+	  },
+	  {
+        "Message": "Optimized C4C model networking to use Rust's snapshot system",
+        "Type": 4
+	  },
+	  {
+        "Message": "No longer default to ClientPanels.OverlayNonScaled, which affects existent CUI panels",
+        "Type": 4
+	  },
+	  {
+        "Message": "Various fixes in the ImageDatabase module",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `del` command patch not properly error handling",
+        "Type": 3
+	  },
+	  {
+        "Message": "Improvements to the newly implemented Carbon Integration Test system",
+        "Type": 1
+	  },
+	  {
+        "Message": "No longer attempt to convert Harmony mods if they're processable",
+        "Type": 4
+	  },
+	  {
+        "Message": "Show more accurate warning in the Carbon profiler tab when things went wrong with its loading",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "06.06.2024 08:21AM GMT+2",
+    "Version": "2.0.105",
+    "Changes": [
+	  {
+        "Message": "Flipped source viewer horizontal scrolling",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `BaseHookable.ManualSubscriptions`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Plugin.ManualCommands` and `BaseModule.ManualCommands`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `OnPlayerCommand` not firing at the right time",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed hook argument resizing causing inconsistency and data loss to argument values",
+        "Type": 3
+	  },
+	  {
+        "Message": "**Added Carbon self-updating** and according configuration",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added admin and player default group error handling for if it becomes null upon config loading",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed logging issue where exception logs are being printed only on RustPlayer hookables when there are commands or timer failures",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed `c.unitystacktrace` config and enabled it by default",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed `Column` from Failed plugins section under `c.plugins` and merged it with Line (`line:column` format)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added Unity Component cache Carbon component",
+        "Type": 0
+	  },
+	  {
+        "Message": "Preload covalence on sleeping players when the server initializes",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed malformed material in the Carbon Profiler CUI",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added Plugins tab vendor reliant and informative error handling for endpoints in case they go down",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added confirmation dialog whenever changing hostname (Carbon tab)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added max players option with confirmation (Carbon tab)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `c.fetchhooks` until more thorough testing is done whenever using it",
+        "Type": 2
+	  },
+	  {
+        "Message": "[Admin Module] Remember session information upon closing and reopening the Admin module instead removing temporary information",
+        "Type": 4
+	  },
+	  {
+        "Message": "Changed all CarbonAuto float/integer variables to be multipliers relative to vanilla value.",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added Overall, OverlayNonScaled and UnderNonScaled client panels to Carbon's CUI",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed CanAccessAdminModule hook",
+        "Type": 3
+	  },
+	  {
+        "Message": "Allow custom parent string in CreateContainer (CUI) (thanks SegFault!)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Carbon module and extension hotloading (and respective file watching configurations)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Made suggestive chat command messages lang configurable",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.lang` which sets the server language",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Carbon analytics config option (enabled by default - it's entirely anonymous and helps us improve)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Renamed ICarbonModule to `IModulePackage`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Renamed ModLoader.LoadedPackages -> ModLoader.Packages",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.custommapname` which changes the map displayed in the server browser (CarbonAuto)",
+        "Type": 0
+	  }
+	]
+  },
+  {
+	"Date": "17.05.2024 12:30AM GMT+2",
+    "Version": "1.2024.2137.2420",
+    "Changes": [
+	  {
+        "Message": "No longer refresh the whole panel when toggling chart layers (only individual elements)",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added Teleport2OwnedItem button on players (Entities and Players tab)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed unused Carbon updater",
+        "Type": 2
+	  },
+	  {
+        "Message": "**Added command aliases** - `c.assignalias myalias realcommand`, `c.unassignalias myalias`, `c.aliases`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added 'Unknown command' message when executing invalid commands with valid prefixes",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `o.` and `oxide.` filtering and config",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed `o.` command analytics",
+        "Type": 2
+	  },
+	  {
+        "Message": "[Admin Module] Added display name to Carbon Auto variables (present in Admin module configurations tab)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added default aliases: harmony.load -> `c.harmonyload`, harmony.unload -> `c.harmonyunload`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.harmonywatchers` (enabled by default)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Harmony patching and unpatching support for assemblies",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.harmonymods` printing a full list of mods and patches created by the mods",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Suggestions algorithm (Levenshtein) component - grants 3 suggestions for chat and console inaccurate commands",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added craft duration multipler - Carbon Auto (`c.craftingspeedmultiplier_nowb`, `c.craftingspeedmultiplier_wb1`, `c.craftingspeedmultiplier_wb2`, `c.craftingspeedmultiplier_wb3`)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.whymodded` and `c.gocommunity`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added background blur and opacity settings to Admin module",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed edge case issue with case insensitive hook and method names",
+        "Type": 3
+	  },
+	  {
+        "Message": "Renamed `BaseModule.GetEnabled()` to `BaseModule.IsEnabled()`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Create debug internal files if plugins are marked partial regardless of the debugger attached status",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed conflicting issue with `BaseHookable.Type` by renaming it to `BaseHookable.HookableType`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed NREs in IPlayer's RustPlayer",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed Harmony mods not properly patching when hotloaded",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed Carbon not initializing properly when `server.autouploadmap` is disabled",
+        "Type": 3
+	  },
+	  {
+        "Message": "Include aliases in console command suggestions",
+        "Type": 4
+	  },
+	  {
+        "Message": "Automated hook building process for Community and Oxide remotely updated hooks",
+        "Type": 4
+	  },
+	  {
+        "Message": "No longer reload the entire module when saving an Admin module edited config",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "05.05.2024 00:02AM GMT+2",
+    "Version": "1.2024.2126.5629",
+    "Changes": [
+	  {
+        "Message": "Observe Task exceptions (prints exceptions on GC collections)",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added fade gradient effect across the entire Admin module CUI",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added DisableConsole option to Carbon's config",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Revamped range UI options in Admin module",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Lock cursor only when spectating asleep players",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Clamp Admin module minimum auth level (0 - 3)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added ScrollView/Scrollbar support for Rust's UI",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added ScrollView support for Carbon's CUI",
+        "Type": 0
+	  },
+	  {
+        "Message": "**Added native Mono Profiler**",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] **Added Profiler tab with exporting support**",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added conversion for return types",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed GenericPosition NRE in IPlayer",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added stopwatch pooling to our PoolEx extensions",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added SourceCode bank (cached and fast c# source code decompilation component)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added source viewer",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added notifications",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.show perm (value)` which lists all players and groups that have that permission granted",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `carbon/logs/profiler` for profiler exports",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `adminmodule.profiler.use`, `adminmodule.profiler.startstop` and `adminmodule.profiler.sourceviewer` permissions",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added CarbonNative",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Init`, `LoadDefaultMessages`, `Loaded`, `OnLoaded` and `Unload` hook metadata",
+        "Type": 0
+	  },
+	  {
+        "Message": "Compressed `carbon` and `modded` Steam tags",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed OnCompilationmFail and OnConstructorFail description",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `OnServerCommand` metadata",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Oxide AutoPatch attribute and implementation (compatibility)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Chart graphic component",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed TimeAverageGeneric (obsolete)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed `c.plugintrackingtime` (obsolete)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added Source Viewer component",
+        "Type": 0
+	  },
+	  	  {
+        "Message": "Fixed compatibility with ScrollViews (Oxide)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Updated CarbonAuto to no longer force the server with the modded tag",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.safezonerecycletick` CarbonAuto ConVar",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed CarbonAuto initializing too late",
+        "Type": 3
+	  },
+	  {
+        "Message": "Improved and fixed various issues with the Profiler (timeline)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed inaccurate data in the Timeline graph (the side values for call times)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added Profiler analytics",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.usergroup addall|removeall [group]` which adds/removes all players from/to a group",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated hook updater to use `carbonmod.gg` hosting for protocol-based hook downloading on server boot",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added instantiated sampling for basic and timeline profiling (separated)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Made tweaking `c.defaultserverchatname`, `c.defaultserverchatcolor` and `c.defaultserverchatid` to no longer mark the server modded",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `OnUserGroupAdded` and `OnUserGroupRemoved` metadata",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed HarmonyInstance-related replacers from all parsers",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added platform info on the startup log regarding Rust and Carbon build information",
+        "Type": 0
+	  },
+	  	  {
+        "Message": "Fixed CarbonAuto not saving properly",
+        "Type": 3
+	  },
+	  {
+        "Message": "Renamed `Community.Runtime.CorePlugin` to `Community.Runtime.Core`",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added maximize button for Admin module",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added Carbon Auto variables in the Admin module configuration tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "Disabled chart shadows by default (shadows 0)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added CarbonModule.AutoPatch",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added support for method type (getter/setter..) for our HookAttribute",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed WebRequests throwing invalid callback errors",
+        "Type": 3
+	  }
+	]
+  },
+  {
+	"Date": "04.05.2024 12:47PM GMT+2",
+    "Version": "1.2024.2098.3237",
+    "Changes": [
+	  {
+        "Message": "[Admin Module] Fixed Codefling verification and spam",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] **Added Quick Actions to the main Carbon tab**",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added player and entity position map coordinates to Admin module",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed IPlayer.Object not being properly assigned (Covalence)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed permission registration when reloading Admin Module (and its config)",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added Configuration tab permission (adminmodule.config.use)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Include item ID and shortname in the Items tab, and make them copyable",
+        "Type": 1
+	  },
+	  {
+        "Message": "Updated various instances where we're using ClientRPC to use RpcTarget (Rust update)",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] **Added language editor (plugin phrases)**",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated `c.hooks` to include various more information regarding its hooks and overall performance",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed CallHook NRE when using `CallHook<T>` with the return of a null value",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added partial searching to `c.plugininfo`, `c.moduleinfo` & other instance specific commands",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated `c.savemodulecfg` and `c.loadmodulecfg` (previously 'config')",
+        "Type": 1
+	  },
+	  {
+        "Message": "Don't unload plugins when re-compilation fails (by default, configurable)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Various Covalence compatibility improvements",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.unloadonfailure` Compiler configuration",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added 'Empower Stats' button in the Players tab (sets all stats to highest)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed base module shutdown debug message",
+        "Type": 2
+	  },
+	  {
+        "Message": "Slightly revamped WebRequest async method functionality",
+        "Type": 4
+	  },
+	  {
+        "Message": "Updated `c.version` (include Rust build date), `c.build`, `c.commit` and `c.protocol` (and exposed them for auth level 0)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Disabled `c.reloadextensions` and `c.reloadmodules`",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed `c.filenamecheck` and implementation",
+        "Type": 2
+	  },
+	  {
+        "Message": "Updated and cleaned up `c.plugins` and `c.modules`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed Compat `GetMessage` (thanks Patrette!)",
+        "Type": 3
+	  },
+	  {
+        "Message": "**Added built-in Oxide migration process**",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated `OnCompilationFail(ModLoader.FailedCompilation` parameters",
+        "Type": 1
+	  },
+	  {
+        "Message": "**Updated to Harmony 2.3.3.0**",
+        "Type": 1
+	  }
+	]
+  },
+  {
+	"Date": "03.28.2024 12:09AM GMT+2",
+    "Version": "1.2024.1087.0520",
+    "Changes": [
+	  {
+        "Message": "Added `c.commit` (prints information about the Git commit of the runtime Carbon build)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `Build.IsDebug` not being accessible due to it being static",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added appropriate response when executing `c.grant` or `c.revoke` and the parameter is inexistent",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added LineType support to InputField Carbon CUI component",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added Items tab to Carbon's configuration page (can create custom items)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Cache Configuration tab, than regenerate it each time it's showing initially",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Fixed 'Hide plugin icons' config option",
+        "Type": 3
+	  },
+	  {
+        "Message": "Updated Permission's UserHasPermission to use a runtime dictionary which fills up the cache as plugins need the users",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed covalence FindPlayerById only looking for player bodies active on the server (now uses user data file)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `Permissions` instance in CarbonModule",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.debughook (hookid|name) [duration]` (helps identifying what plugins fire a specific hook and logs each time it fires) [debug build only]",
+        "Type": 0
+	  },
+	  {
+        "Message": "Don't print compile time for precompiled hookables",
+        "Type": 1
+	  },
+	  {
+        "Message": "Cleaned up Plugins tab to use IEnumerables instead of arrays",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Run `module.Reload` instead of `module.Load` when saving module config in config editor (properly restarts the module)",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added Reload button on installed Plugins",
+        "Type": 0
+	  },
+	  {
+        "Message": "Revamped overall code quality in `ModLoader` (expected to reduce heap allocations even further)",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added Rust backpack looting hooks and logic (follow on-screen instructions)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added cached hook lag spike processing",
+        "Type": 0
+	  },
+	  {
+        "Message": "Hook lag spike threshold command + config",
+        "Type": 4
+	  },
+	  {
+        "Message": "Include plugin and hook lag spike information in `c.plugins`, `c.plugininfo`, `c.modules` and `c.moduleinfo`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.resethooks` which clears all progerss on all of the current hooks (hook time, fires, memory usage and lag spikes)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed CarbonPlugin built in harmony patch errors not showing the exception stacktrace",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed `c.report`, `carbon/reports` folder and overall implementation (obsolete)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Automatically cleanup the `carbon/reports` folder on preload",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added OS commands for opening various Carbon folders (eg. c.openconfigs, c.opendata, c.openroot..)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.openplugin PluginName` which opens the `.cs` file of the plugin",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added unloaded and compilation failure plugins at the bottom of the `c.plugins` command",
+        "Type": 0
+	  },
+	  {
+        "Message": "No longer include version in the name of the DLL binaries (breaks referencing)",
+        "Type": 2
+	  },
+	  {
+		"Message": "Added bool `CanAcceptBackpackItem[2803314817]`(Item backpack, Item item) (Item hook)",
+        "Type": 0
+	  },
+	  {
+		"Message": "Added `OnCompilationFail[150731668]`(string filePath, Trace[] errors, Trace[] warnings) [Engine hook]",
+        "Type": 0
+	  },
+	  {
+		"Message": "Added `OnConstructorFail[937285752]`(RustPlugin plugin, Exception exception) [Engine hook]",
+        "Type": 0
+	  },
+	  {
+		"Message": "Added Carbon patch which fixes `c.defaultserverchatid` to override the user id Rust uses when sending server chat messages",
+        "Type": 0
+	  },
+	  {
+		"Message": "Fixed IDelFix failing by adding error handling (thanks Tryhard!)",
+        "Type": 3
+	  },
+	  {
+		"Message": "Added Carbon patch which patches out the Rust 'Bump' log in HotAirBalloon",
+        "Type": 0
+	  }
+	]
+  },
+  {
+	"Date": "03.14.2024 06:17PM GMT+2",
+    "Version": "1.2024.1074.1303",
+    "Changes": [
+	  {
+        "Message": "Fixed `CuiHelper.AddUi` occasionally breaking things when plugins provide null players to it",
+        "Type": 3
+	  },
+	  {
+        "Message": "Revoke Codefling auth token on non-200 error codes",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed `OnServerInitialized` hook from modules",
+        "Type": 2
+	  },
+	  {
+        "Message": "Updated shutdown process to run `Shutdown()` on modules on server shutdown",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed various timing issues within modules",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `ConVarSnapshots` (takes a snapshot of all default Rust ConVar values)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fire blank InternalCallHook initially",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Refreshed Admin module buttons and CUI",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added configurations tab to Admin module (gear button next to X)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Removed obsolete DynamicTab",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added gear and new close icon",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `imagedb.loaddefaults` command",
+        "Type": 0
+	  },
+	  {
+        "Message": "No longer use reflection for precompiled module hooks (code-generated internal hook calls)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Swapped all instances of internal hook call returnables to use already boxed values (reducing heap allocations)",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Fixed dead players appearing twice in the Players tab",
+        "Type": 3
+	  },
+	  {
+        "Message": "Reduced overall CuiHelper creation overhead by removing some legacy code",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "03.07.2024 06:49PM GMT+2",
+    "Version": "1.2024.1067.4507",
+    "Changes": [
+	  {
+        "Message": "Upgraded to Harmony 2.3.1.1 (Thicc)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added MonoMod required dependencies by Harmony",
+        "Type": 0
+	  },
+	  {
+        "Message": "Display internally fired hooks in `c.plugininfo` and other various places",
+        "Type": 4
+	  },
+	  {
+        "Message": "**Optimized internal hooks to being called directly by the hook code generator**",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed `global.skipassetwarmup_crashes` OSI; this literally just showed up out of nowhere when adding the optimizations",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `ImageDatabase.HasImage`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Invalidate ImageDatabase if core images aren't in the FileStorage database of Rust (ensures images show up in Admin Module)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Replace CUI null images with white panels so there's no leaking when using Carbon's CUI system",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added `adminmodule.players.see_ips` which when granted, they can see player IP address when inspecting",
+        "Type": 0
+	  },
+	  {
+        "Message": "Implemented `IOnRconInitialize` and `IOnRunCommandLine`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Rcon` config option, disabling it will turn off server RCon",
+        "Type": 0
+	  },
+	  {
+        "Message": "Revamped entire Carbon config",
+        "Type": 4
+	  },
+	  {
+        "Message": "Renamed `config_client.json` to `config.client.json` (it gets auto-renamed)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Renamed `carbonauto.cfg` to `config.auto.cfg` (it gets auto-renamed)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed modules firing OnServerInitialized more than they should (once) & call OSI on module reload",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `IModule.HasOSI`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Prettified Analytics code",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added Admin module wizard analytic for walkthrough or skipping",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed owned plugins glow effect in Admin module",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added Grant/Revoke All permissions button on the Permissions tab (plugins, modules, groups)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `BaseHookable.ToString` formatting",
+        "Type": 3
+	  },
+	  {
+        "Message": "Replaced `powershell` to `pwsh` in the Windows deployment process",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed ZipScript and ZipDevScript processors not using the correct config for watching",
+        "Type": 3
+	  },
+	  {
+        "Message": "Filter out the three checksum validation failures on boot as that's a hook gen timing 'issue' and absolutely inoffensive",
+        "Type": 4
+	  }
+	]
+  },
+  {
+	"Date": "02.24.2024 12:41AM GMT+2",
+    "Version": "1.2024.1055.5525",
+    "Changes": [
+	  {
+        "Message": "Updated, improved and optimized the hook calling process - you should see further significant performance boosts",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `GetConfigPath()` and `GetDataPath()` to BaseModule",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Refresh the panel when adding, editing or duplicating groups",
+        "Type": 4
+	  },
+	  {
+        "Message": "Print correct information if an user/group couldn't be found when using `c.grant` and `c.revoke`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed certain instances where webrequests wouldn't trigger the primary callback when errors were delivered",
+        "Type": 3
+	  },
+	  {
+        "Message": "Redirect and execute callbacks if there are internal WebRequest exception throws",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added Admin module Plugins tab HidePluginIcons config",
+        "Type": 0
+	  },
+	  {
+        "Message": "Replaced all `param string[]`s for each Queue[Batch] override (thancc Kulltero!)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed code generator not properly handling stuff like `[HookMethod(nameof(Namespace.Type.Member))]`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed `keepArgs` from HookCaller",
+        "Type": 2
+	  },
+	  {
+        "Message": "Cleaned up and updated all analytic metrics",
+        "Type": 4
+	  },
+	  {
+        "Message": "Expanded on `c.plugins` to accept sorting switches (eg. `c.plugins [-j|--j|-json|-abc|--json|-t|-m|-f] [-asc])`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added CurrentHookFires to BaseHookable",
+        "Type": 0
+	  }
+	]
+  },
+  {
+	"Date": "02.15.2024 1:46AM GMT+2",
+    "Version": "1.2024.1046.4234",
+    "Changes": [
+	  {
+        "Message": "Fixed `c.grant` and `c.revoke` logic when detecting if a group has a permission",
+        "Type": 3
+	  },
+	  {
+        "Message": "Updated the wizard when Admin module config structure has changed",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added Skip button on the wizard",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `GroupExists` to BaseModule",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added module permissions in the Permissions tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "Update module permissions to register onto the module instance, not Core plugin",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Centered initial button on the Admin wizard",
+        "Type": 4
+	  },
+	  {
+        "Message": "Call OnServerInit and OnPostServerInit when using `c.setmodule` (thanks Kulltero!)",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Fixed Admin module checkmarks disappearing from time to time by removing potentially unnecessary validation Rust file storage checks",
+        "Type": 3
+	  },
+	  {
+        "Message": "Expanded on `c.plugininfo` and `c.moduleinfo` - `c.plugininfo PluginName [-t|m|f] [-asc]`, sorts hooks based on time (-t), memory use (-m) and fired times (-f)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Call `OnServerShutdown` when server shuts down",
+        "Type": 4
+	  },
+	  {
+        "Message": "No longer inject `System.Memory` into plugins as it uses mscorlib redirected types",
+        "Type": 2
+	  },
+	  {
+        "Message": "Bypass file name checking in ZipScript processors",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed return metadata value for `CanClientLogin` and `CanUserLogin`",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed Admin module showing the wizard each server restart",
+        "Type": 3
+	  }
+	]
+  },
+  {
+	"Date": "02.01.2024 7:46PM GMT+2",
+    "Version": "1.2024.1033.4309",
+    "Changes": [
+	  {
+        "Message": "Upgraded Roslyn compiler to C# 12",
+        "Type": 1
+	  },
+	  {
+        "Message": "Improved and optimized hook calling internal times",
+        "Type": 1
+	  },
+	  {
+        "Message": "Updated copyright year across all Carbon components",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.harmonyload` and `c.harmonyunload`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed file watching from extensions and Harmony plugins",
+        "Type": 2
+	  },
+	  {
+        "Message": "Execute IHarmonyHooks.OnLoaded and OnUnloaded methods",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added tick tracking for each cached hook (shows the exact amount of times hooks got fired)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated C4C protocol to 103",
+        "Type": 1
+	  },
+	  {
+        "Message": "Refactored the way hook total time and memory usages is being stored",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.fetchhooks` which will update hooks at runtime",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added hook ticks to `c.moduleinfo` and `c.plugininfo`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Show if a group or user already has a permission, instead of saying there was a problem",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Revamped Admin module accessibility - removed access levels and added permissions instead",
+        "Type": 1
+	  },
+	  {
+        "Message": "Use virtual calls instead of direct for Harmony plugin entrypoint initialization (Thanks, Patrette!)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed Oxide compatibility with Covalence - adding IServer.SaveInfo",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `BaseHookable.ToString()` overrides",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed GroupHasPermission Debug log",
+        "Type": 2
+	  },
+	  {
+        "Message": "[Vanish Module] Fixed vanishing on Cargo Ship or parent triggers, not detaching players (force trigger update)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added command aliases (support for multiple Command attributes)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `CommandVar` being able to be assigned multiple times",
+        "Type": 3
+	  }
+	 ]
+  },
+  {
+	"Date": "14.01.2024 4:34PM GMT+2",
+    "Version": "1.2024.1014.3039",
+    "Changes": [
+	  {
+        "Message": "Fixed module internal call hook overriden",
+        "Type": 3
+	  },
+	  {
+        "Message": "Disable `server.secure` convar if Carbon client mode is enabled",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added Environment tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Order groups based on rank (Permissions tab)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Made `global.skipassetwarmup_crashes 1` possible, now works in C4C and normal modes",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `c.mixingspeedmultiplier` not working properly",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed other occasional CUI related client-side NREs",
+        "Type": 3
+	  },
+	  {
+        "Message": "Corrected C4C log information showing C4C enabled when it wasn't",
+        "Type": 3
+	  }
+	 ]
+  },
+  {
+	"Date": "04.01.2024 7:14PM GMT+2",
+    "Version": "1.2024.1004.1024",
+    "Changes": [
+	  {
+        "Message": "Made `c.plugininfo` be case insensitive as well as `c.reloadconfig`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added Client (C4C) config (includes env settings, gameplay and addon entries)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `+carbon.client` and `+carbon.nomap` since it got moved to the config",
+        "Type": 2
+	  },
+	  {
+        "Message": "Fixed case where server wouldn't boot if there'd be multiple instances of the same server running due to log locking (appending `_temporary` to the busy server log)",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added sleep option in the Players tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.plugincmds` displaying all chat and console commands of a plugin (auth 2)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed certain CUI-related issues when plugins would set offsets as null",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed edge case where CUI material is assigned null when it shouldn't",
+        "Type": 3
+	  },
+	  {
+        "Message": "Ensure not caching hook method duplicates",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added support for hidden processed commands (hid `carbon.` commands from `c.find` due to duplicates)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added `SpectatingInfoOverlay` disabling center-screen text when spectating",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added conditionals to Carbon tab, show console info, and permission config options",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added ability to send players to sleep through entities/players tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Removed rotation from players tab as it was redundant",
+        "Type": 2
+	  },
+	  {
+        "Message": "[Admin Module] Fixed changing tab to Permissions not selecting the correct active option",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added Language option to 'Add User' modal",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added ability to change the owner id of an entity through the Entities tab (and select the owner's entity when available)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed Entities tab displaying rotations as quaternion instead of euler angles",
+        "Type": 3
+	  },
+	  {
+        "Message": "Return bool in `OxideMod.UnloadPlugin(string)`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added client gravity and old recoil properties to C4C",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added user editing to Permissions tab",
+        "Type": 0
+	  },
+	  
+	 ]
+  },
+  {
+	"Date": "12.07.2023 10:14PM GMT+2",
+    "Version": "1.2023.4341.1112",
+    "Changes": [
+	  {
+        "Message": "Rewrote the entire Timer system to be more lightweight.",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Don't display update options in the Local tab, under Plugins.",
+        "Type": 1
+	  },
+	  {
+        "Message": "Implemented version conditional symbol processing (RUST/CARBON checking against ABV/BLW and IS current protocol)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added permissions in `c.plugininfo`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added module Reload and Unload overridable methods",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.reloadmodule`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed modules not executing `OnServerInitialized`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `global.skipassetwarmup_crashes 1` behavior",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed slight fullscreen fade when spectating",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added Webrequest automatic decompression (GZIP)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Made `c.grant` to be case insensitive when looking for players (as well as other perm commands)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Call `OnUserPermissionGranted` for every permission granted (when using wildcards)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Call `OnUserPermissionRevoked` for every permission granted (when using wildcards)",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added ability to change entity skin to the Entities tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `+nomap` and replaced it with `+carbon.nomap` which will modify event-related convars and spawn density (disable essentially)",
+        "Type": 2
+	  },
+	  {
+        "Message": "C4C: Added `+carbon.client` which will apply Client-specific patches and modify event-related convars",
+        "Type": 0
+	  },
+	  {
+        "Message": "C4C: Added C4C protocol, changing it will invalidate older CCA exports and render them broken & invalid",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `c.moduleinfo` to include async and override method counts",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added uMod plugin endpoint user friendly error handling for when it goes down",
+        "Type": 0
+	  },
+	  {
+        "Message": "C4C: Added `c.oldrecoil` admin command",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `HookMethod` not being processed by the codegen",
+        "Type": 3
+	  }
+	 ]
+  },
+  {
+	"Date": "11.10.2023 12:56AM GMT+2",
+    "Version": "1.2023.4313.5300",
+    "Changes": [
+	  {
+        "Message": "Various fixes to plugin processing and disposal",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added in-use script checking and waiting for writing availability",
+        "Type": 0
+	  },
+	  {
+        "Message": "Allow `unsafe` keyword in plugins",
+        "Type": 4
+	  },
+	  {
+        "Message": "Unload dependant plugins before the required parent plugin that initially was requested for unloading",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed `c.load` not doing its job properly",
+        "Type": 3
+	  },
+	  {
+        "Message": "Made `c.load`, `c.reload` and `c.unload` be case insensitive",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed NRE in Modal module",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `LastAccess` flag in windows builds in our base processor's watcher",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `HigherPriorityHookWarns` config",
+        "Type": 2
+	  },
+	  {
+        "Message": "Conflict and result priority fixes",
+        "Type": 4
+	  },
+	  {
+        "Message": "Only display IP address without port in `IPlayer.Address`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Use last result value of conflicted hooks",
+        "Type": 1
+	  },
+	  {
+        "Message": "User permissions processing fix",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Image Database Module] Added multithread error handling",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed spectate CUI not showing up",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed plugins not refreshing correctly when loaded/unloaded (in Plugins tab)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `TemporaryArray`",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "11.02.2023 5:08PM GMT+2",
+    "Version": "1.2023.4306.0506",
+    "Changes": [
+	  {
+        "Message": "Removed Carbon.Ext.Discord extension",
+        "Type": 2
+	  },	  
+	  {
+        "Message": "Added 'carbon/harmony' shipped with our build patches",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Added full integration for 'Carbon Compatibility Loader' by Patrette into Carbon natively",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Added `STAGING`, `AUX01` and `AUX02` conditional symbols to the Roslyn compiler based on the Carbon build type",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Carbon CUI implementation revamp all across the project",
+        "Type": 1
+	  },	  
+	  {
+        "Message": "Added `Carbon.Cache` - contains boxed values and defaults, meant to be used to reduce GC by plugins",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Added optional CUI rect update and fixed button text update (ThePitereq PR)",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Added `LibraryFunction` attribute - compatibility",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Fixed OxideMod log formatting errors",
+        "Type": 3
+	  },	  
+	  {
+        "Message": "[Admin Module] Made Admin module option elements more opaque/visible",
+        "Type": 4
+	  },	  
+	  {
+        "Message": "Removed unnecessary duplicate permission check on the same plugin",
+        "Type": 2
+	  },	  
+	  {
+        "Message": "Warn if plugins attempt to register same-named permissions under different plugin names",
+        "Type": 1
+	  },	  
+	  {
+        "Message": "Added `CovalencePlugin.game` - compatibility",
+        "Type": 0
+	  },	  
+	  {
+        "Message": "Fixed issue where hooks with null parameters would not be picked up by the codegen",
+        "Type": 3
+	  }
+	 ]
+  },
+  {
+	"Date": "10.23.2023 11:25PM GMT+2",
+    "Version": "1.2023.4296.2150",
+    "Changes": [
+	  {
+        "Message": "Include class index in the namespace scope when doing plugin info lookup (fixes edge-case plugin errors)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed Carbon processor OnFrame queue pretty error handling",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added wildcard support for plugin exclusion in `c.load`, `c.unload` and `c.reload` (eg. `c.reload * Plugin1 Plugin2..` to unload everything except named plugins)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.plugininfo` and `c.moduleinfo` displaying extensive information about runtime plugins",
+        "Type": 0
+	  },
+	  {
+        "Message": "Include memory usage in hook warn analytics",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Build.Git.Tag`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated `c.version` to include build tag",
+        "Type": 1
+	  },
+	  {
+        "Message": "Properly manage Carbon patches w/out identifiers",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed all uses of `Environment.TickCount` and instead using pooled Stopwatches",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `async ValueTask OnAsyncServerShutdown` in CarbonPlugin which gets called before the server shuts down (or restart), making the server wait for all plugins to complete said task without stalling the server",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `AutoPatch` CarbonPlugin feature error handling - if patches fail, bail",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed cases where no stacktraces were shown by certain errors in specific situations",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed `EntityMapBufferSize` option (config, admin module)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Fixed NRE thrown by `c.wipeui` admin command",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed InternalCallHook code generator not properly calling hooks in specific situations",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `StringBuilder` pooling in `PoolEx`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added ability to toggle the UI with the same chat command (or bind), locking keyboard movement/hotkeys when typing in input fields",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "10.13.2023 12:49AM GMT+2",
+    "Version": "1.2023.4285.4633",
+    "Changes": [
+	  {
+        "Message": "Updated script processor to use multiple source files per batch",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed certain types of commands throwing errors in specific situations",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed Covalence non-player IPlayer assigned in server commands not having the right ID",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `PluginReference` minimum version & requirement toggle",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed 'Auto-Update Ext Hooks' option from the config",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added modules loaded/total and extension count to console info (Windows-only)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.plugins -abc` which prints plugins alphabetically, otherwise list them chronologically",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `OnPluginOutdated` hook",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Build.IsDebug`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `Build.Git.Url` containing `.git` making the url invalid",
+        "Type": 3
+	  },
+	  {
+	    "Message": "[Debug-Only] Added `c.scriptdebugorigin` which overrides the script directory Roslyn uses for the compilation debuggers so remote debugging is possible",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added ability to view players within groups in Permissions tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "Made `ThreadEx.MainThread` public",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Plugin.QueueWorkerThread`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `QueueWorkerThread`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added WebRequest IP validation check",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Debug-Only] Export internal call hook generated by Carbon to file (so it can be debugged with an IDE - only when class is partial)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Non-parameter hooks now use a cached empty array for processed arguments - occasional internal hook NRE fix",
+        "Type": 3
+	  },
+	  {
+        "Message": "Pretty-format internal call hook Carbon generated methods",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `ZipScriptProcessor` and ZipPlugins mod package - `cszip` zips with bundled plugin partial file loading",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Debug-Only] Added `ZipDevScriptProcessor` - acts like `cszip` but make it folders (`plugins/cszip_dev`)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Revamped the whole project and got rid of `ToList`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed permissions not showing parent recursive group permissions",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed unmanaged temporary lists in `Permissions`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `c.show user <nick>` not working correctly due to `ToLower()` and trimming",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `c.wipeui` throwing errors when called on the server",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed `c.autoupdate` command",
+        "Type": 2
+	  },
+	  {
+        "Message": "Removed `c.reboot` command",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added `+carbon.skiphookupdates` switch",
+        "Type": 0
+	  },
+	  {
+	    "Message": "[Debug-Only] Added script [debugging](https://docs.carbonmod.gg/docs/development/debugging-plugins) - only works when debugger is attached on server boot",
+        "Type": 0
+	  },
+	  {
+	    "Message": "Added `HookFlags.MetadataOnly` skipping processing said hooks and only used for display & documentation (Carbon.Hooks.Community)",
+        "Type": 0
+	  },
+	  {
+	    "Message": "Renamed main thread name to `Main`",
+        "Type": 4
+	  },
+	  {
+	    "Message": "Various NRE fixes across `ScriptLoader`",
+        "Type": 4
+	  },
+	  {
+	    "Message": "Fixed occasional hooks failing to unpatch when `c.unload *` or `c.reload *` is called",
+        "Type": 2
+	  },
+	  {
+	    "Message": "Refactored `HookEx`",
+        "Type": 4
+	  },
+	  {
+	    "Message": "Don't mark Harmony patches (for dynamic hooks) `failed` if they failed unpatching - which means they're still patched",
+        "Type": 3
+	  },
+	  {
+	    "Message": "Fixed hooks unpatching order; prioritize dependant reference hooks first, then the latter",
+        "Type": 3
+	  },
+	  {
+	    "Message": "Added `OnInterferenceUpdate` and `OnInterferenceOtherUpdate`",
+        "Type": 0
+	  },
+	  {
+	    "Message": "[Vanish Module] Removed auth-level based checking",
+        "Type": 2
+	  },
+	  {
+	    "Message": "[Vanish Module] Added Vanish permissions: `vanish.allow` to vanish and `vanish.unlock` to open locked entities while vanished",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "10.05.2023 7:19PM GMT+2",
+    "Version": "1.2023.4278.1603",
+    "Changes": [
+	  {
+        "Message": "Display accurate line number of errors caused by plugin commands &/or hooks",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `+nomap` server mode which disables the Rust map from being present (used by Carbon4Client) as well as server convars (like events, etc)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated Roslyn to latest (v4.5.0)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed `ImageDatabase` not processing data file properly",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed plugins still loading when plugin constructor errors out",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added Carbon-only plugins from Codefling (including Carbon extensions)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Implemented latest improved Codefling API changes (https://codefling.com/db)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Carbon.Common.Client` which implements Carbon4Client systems",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed empty fields not remaining empty in Admin module",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed plugins not ordering corrently when sorted by price",
+        "Type": 3
+	  },
+	  {
+        "Message": "Stripped `CarbonAuto` from minimal builds",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed plugin metadata processing; carbon compat, file name",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `ScriptLoader` throwing random rare errors",
+        "Type": 3
+	  },
+	  {
+        "Message": "Implemented JetBrains Rider `.idea`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `UnityEngine.GameObject.FindObjectsOfType` discretion warning",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed certain hooks not getting called properly (precompiled hookables)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed the use of delegates (for precompiled hookables)",
+        "Type": 2
+	  },
+	  {
+        "Message": "Always return null on asynchronously-marked hook calls",
+        "Type": 4
+	  },
+	  {
+        "Message": "Rewrote server logs to make it more clear what plugin downloading actually means/what's happening",
+        "Type": 4
+	  }
+	 ]
+  },
+  {
+	"Date": "09.06.2023 4:04AM GMT+2",
+    "Version": "0.2023.3249.0039",
+    "Changes": [
+	  {
+        "Message": "Fixed internal hook call gen not considering optional types",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed `OnPlayerUnbanned` / `OnUserUnbanned`",
+        "Type": 3
+	  },
+	  {
+        "Message": "Exposed `IHook.HookFlags`, `IHook.TargetType`, `IHook.TargetMethod`, `IHook.TargetMethods`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed player disconnect log duplicate in console",
+        "Type": 3
+	  },
+	  {
+        "Message": "Feed the correct boolean value for OnServerInitialized(value) on inital boot, and hotloading",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `fixcars` patch that fixes terrible performance and server lag (has 2 FindObjectsOfType calls)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Fixed 'View Permissions' button in the Players tab not showing the permissions of the correct player",
+        "Type": 3
+	  },
+	  {
+        "Message": "Documented all internal hooks (with the readable hook name)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed Oxide `Rust.opj` file requests and processing",
+        "Type": 2
+	  },
+	  {
+        "Message": "Embedded git commit info in build assembly metadata",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `-carbon.langdir` switch",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `ScriptLoader.Clear()` occasionally malfunctioning",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `Facepunch.Nexus` in references",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed `HookValidatorRefreshed` Carbon event not triggering at the right time",
+        "Type": 3
+	  },
+	  {
+        "Message": "Fixed No Give Notices giving notices",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Added player inventory locking",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added player renaming",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed module langs",
+        "Type": 3
+	  },
+	  {
+        "Message": "Removed CorePlugin internal call hook",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added `#if DEBUG` commands conditional attributes (to internal hook code generator)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.bypassadmincooldowns` (disabled by default) - when true, admins can spam chat|console commands",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `del` patch (stops stalling the server + be able to destroy entities based on entity type)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Entities.GetAll<>`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed up command line (+carbon.onboot)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Revamped core Permissions library methods and optimized a bunch",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added material support and simple image (UnityEngine.UI.Image) [ThePitereq  PR]",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added plugin uptime to the `c.plugins` command",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Use Druid font for console",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `OxideMod.LoadPlugin`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Complete revamp of the development infrastructure of Carbon",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Carbon.Hooks.Community` hooks, curated by the community through PRs",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added hook time and memory usage to `c.modules`",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "08.10.2023 5:30PM GMT+2",
+    "Version": "0.2023.3222.2550",
+    "Changes": [
+	  {
+        "Message": "Added `AsyncEx` extensions",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added conditional compilation symbols for build scripts",
+        "Type": 0
+	  },
+	  {
+        "Message": "Ignore checksum validation on Rust staging, aux01 and aux02 branches",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed config/data path validation for inconsistency reasons with custom switch directories",
+        "Type": 2
+	  },
+	  {
+        "Message": "Use plugin type name instead of info name for config/data files",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.extensions`, `c.modulesmanaged`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed Discord extension (and overall extensions)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `application/x-www-form-urlencoded` by default in `POST|PUT|PATCH|DELETE` requests",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.defaultserverchatname`, `c.defaultserverchatcolor`, `c.defaultserverchatid` to CarbonAuto",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.installplugin` and `c.uninstallplugin`",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "08.07.2023 07:09PM GMT+2",
+    "Version": "0.2023.3219.0627",
+    "Changes": [
+	  {
+        "Message": "Inject `#if WIN`, `#if UNIX` or `#if MINIMAL` (in respective builds) - in the roslyn compiler",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed hook/plugin priorities",
+        "Type": 2
+	  },
+	  {
+        "Message": "Publicized `ConsoleSystem.Arg` constructor",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added extension and module hotloading",
+        "Type": 0
+	  },
+	  {
+        "Message": "Don't consider static methods hookable by the code gen",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added more Covalence compatibility",
+        "Type": 0
+	  }
+	 ]
+  },
+  {
+	"Date": "08.03.2023 7:47PM GMT+2",
+    "Version": "0.2023.3215.4402",
+    "Changes": [
+	  {
+        "Message": "Removed `RustEdit.Ext` module",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added JetBrains.Annotations.MeansImplicitUse across public attributes",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added Carbon minimal builds (excludes significant, usually visual-oriented features)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `PoolEx.GetDictionary<TKey, TValue>`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `PoolEx.FreeDictionary<TKey, TValue>(ref Dictionary<TKey, TValue> val)`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Significant cleanup and optimisations across Carbon's extensions",
+        "Type": 4
+	  },
+	  {
+        "Message": "Directly assign Steamworks server tags instead of using reflection",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added MemoryMeasure struct",
+        "Type": 0
+	  },
+	  {
+        "Message": "Removed `HarmonyReference` property, config and command & enabled it by default",
+        "Type": 2
+	  },
+	  {
+        "Message": "Added turner's 'Console Command History' built into windows builds (https://codefling.com/harmony/console-command-history)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Upgraded Roslyn to 4.3.0",
+        "Type": 1
+	  },
+	  {
+        "Message": "Upgraded protobuf to 3.2.26",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `Command.Args.IsServer`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added Plugins tab badges on previewed plugins",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Rust.Clans` and `Rust.Clans.Local` to Carbon's global references (including Roslyn compiler)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Publicize `Rust.Clans.Local` pre/post production",
+        "Type": 4
+	  },
+	  {
+        "Message": "Publicized `Facepunch.Nexus.dll`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.shutdown` which terminates Carbon carefully, then renders the server completely vanilla",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added [Codefling auth](https://docs.carbonmod.gg/docs/core/modules/admin-module/codefling-auth)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Overall module and Carbon extensions improvements",
+        "Type": 4
+	  },
+	  {
+        "Message": "Analytics improvements",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `carbonauto.cfg` options (extends Rust ConVar properties)",
+        "Type": 0
+	  }
+	 ]
+  },   
+  {
+	"Date": "07.12.2023 10:22PM GMT+2",
+    "Version": "0.2023.3193.1938",
+    "Changes": [
+	  {
+        "Message": "Added plugin hook call memory allocation tracking",
+        "Type": 0
+	  },
+	  {
+        "Message": "Display plugin memory usage in `c.plugins`",
+        "Type": 1
+	  },
+	  {
+        "Message": "Internal hook call fixup",
+        "Type": 4
+	  },
+	  {
+        "Message": "Exposed IModuleProcessor.Build and IModuleProcessor.Uninstall",
+        "Type": 1
+	  },
+	  {
+        "Message": "Print and store stack and inner information of unhandled exceptions (Unity, Rust, plugin monos)",
+        "Type": 4
+	  }
+	 ]
+  }, 
+  {
+	"Date": "07.09.2023 05:03PM GMT+2",
+    "Version": "0.2023.3190.0119",
+    "Changes": [
+	  {
+        "Message": "Added OnErrorCallback, OnWarningCallback, OnNoticeCallback and OnDebugCallback callbacks",
+        "Type": 0
+	  },
+	  {
+        "Message": "Reimplemented Ben.Demystifier (log cleaner and beautifier)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed certain plugins with the OnCollectiblePickup hook failing",
+        "Type": 3
+	  },
+	  {
+        "Message": "Oxide compatibility updates & overall cleanup",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added Global Usings and enabled Implicit Usings for Carbon.Common",
+        "Type": 0
+	  },
+	  {
+        "Message": "Publicized `ConsoleSystem.Index.All`",
+        "Type": 4
+	  },
+	  {
+        "Message": "Inject `arg.cmd` property with the command installed Rust command (`ConsoleSystem.Command`)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added Command disposal",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed Admin module console hooking into logging twice if disabling-enabling the module",
+        "Type": 3
+	  },
+	 ]
+  }, 
+  {
+	"Date": "07.07.2023 03:11AM GMT+2",
+    "Version": "0.2023.3188.0903",
+    "Changes": [
+	  {
+        "Message": "[ModerationTools Module] Warn server if `cadmin` is being executed through RCon/server since it's a client-only command.",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `c.grant` invalidation replies.",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `c.revoke` invalidation replies.",
+        "Type": 0
+	  },
+	  {
+        "Message": "Cache OxideMod libraries for multi-purpose reusability",
+        "Type": 1
+	  },
+	  {
+        "Message": "Initial implementation for experimental threads.",
+        "Type": 4
+	  },
+	  {
+        "Message": "Use `lock` and lists instead of `Queue` for NextFrame/NextTick processing.",
+        "Type": 1
+	  },
+	  {
+        "Message": "Set `c.unitystacktrace` to true by default for production builds",
+        "Type": 1
+	  },
+	  {
+        "Message": "Pick inner exception for OnFrame failures",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixes random crashes on Linux (LGSM primarely)",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Use player connection auth level for Admin module access validation",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added error message when users with auth 0 try to use Carbon Admin Panel commands",
+        "Type": 0
+	  },
+	  {
+        "Message": "Updated all loggers to always expose stacktraces",
+        "Type": 1
+	  },
+	  {
+        "Message": "Regenerated Core plugin internal hooks (with our latest generator changes)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Insert generated internal hook at the end of the plugin class",
+        "Type": 1
+	  },
+	  {
+        "Message": "`c.load *` will load all plugins on disk than just the ones that have been unloaded (&/or ignored)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `OnNativeCommandHasPermission(ConsoleSystem.Arg)` hook",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Don't allow lower-than-3 access level users to execute things on the plugins tab (favourite, auto-update, etc)",
+        "Type": 3
+	  },
+	  {
+        "Message": "Remastered hook generator to use uint identifiers for hooks instead of mapping",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Fixed \"Add User\" modal in Permissions tab disallowing from adding new users",
+        "Type": 3
+	  },
+	  {
+        "Message": "IPlayer fix returning false-positives for the IsServer property.",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Only show approved files in the Plugins tab",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added back flipping direction when selecting the same filter in Plugins tab",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added Deleted flag property to Plugin.Status",
+        "Type": 4
+	  },
+	  {
+        "Message": "Multiply command cooldown every time a player tries to call it (to avoid spam) (defaults to *0.5)",
+        "Type": 4
+	  }
+    ]
+  }, 
+  {
+	"Date": "06.27.2023 06:59AM GMT+2",
+    "Version": "0.2023.2178.5536",
+    "Changes": [
+	  {
+        "Message": "Reimplemented hook time warns (core plugins are excluded)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed asynchronous hooks not being picked up by the code generator",
+        "Type": 3
+	  },
+	  {
+        "Message": "Reimplemented NextTick/NextFrame processing (fixes frequently called hooks creating timers/nextticks slowing down the spawning of entities on boot)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added `c.frametickbuffersize` (defaults to 1000)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Reimplemented frame queue buffer changes",
+        "Type": 1
+	  }
+    ]
+  }, 
+  {
+	"Date": "06.26.2023 2:34AM GMT+2",
+    "Version": "0.2023.2177.3145",
+    "Changes": [
+	  {
+        "Message": "Added safe-error handling for `Plugin.Subscribe/Unsubscribe`",
+        "Type": 0
+	  },
+	  {
+        "Message": "Code generator improvements for calling hooks with nullified arguments",
+        "Type": 4
+	  },
+	  {
+        "Message": "Print exception stacktrace for Logger.Error in production builds",
+        "Type": 1
+	  },
+	  {
+        "Message": "Consider CarbonPlugin for PluginReference processing",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Added alpha property in color picker (CUI and implementation)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Various fixes to the color picker Rust/hex color processing",
+        "Type": 4
+	  }
+    ]
+  }, 
+  {
+	"Date": "06.20.2023 8:07AM GMT+2",
+    "Version": "0.2023.2171.0519",
+    "Changes": [
+	  {
+        "Message": "Code generator for internal hooks improvements",
+        "Type": 3
+	  },
+	  {
+        "Message": "Added `precompiled` property to ModLoader.InitializePlugin which will process hooks, HookMethod attributes and plugin references found within the plugin type",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Plugin.IsPrecompiled` indicating if a plugin's managed programmatically",
+        "Type": 0
+	  },
+	  {
+        "Message": "Don't allow unloading/reloading precompiled plugins with `c.` commands",
+        "Type": 4
+	  },
+	  {
+        "Message": "Disallow precompiled plugins from being unloaded/reloaded through commands",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added `update` property & implementation (Oxide CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added widespread Carbon CUI implementation and individual property update support (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Execute plugin constructors after(!) initial plugin setup (which includes timers, persistence, etc)",
+        "Type": 1
+	  },
+	  {
+        "Message": "Call In/Once timers if server's not yet fully initialized",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added skinID attribute (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added CUI.Handler.UpdatePool (list of updated CUI elements that need updating) (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added container error handling (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Don't insert elements into pooled containers if they're updateable (Carbon CUI)",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added support for CUI sub-elementa (eg. buttons have a text component attached to it, which you can now directly edit) (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `Pair<string, CuiElement, CuiElement>` support (Carbon CUI)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Disallow and warn servers trying to run Carbon builds that are for a different operating system",
+        "Type": 1
+	  },
+	  {
+        "Message": "Updated Discord invite link",
+        "Type": 1
+	  },
+	  {
+        "Message": "[Admin Module] Various UI fixes, scaling issues",
+        "Type": 1
+	  },
+	  {
+        "Message": "[RustEdit.Ext Module] Enable-on-custom-map fix",
+        "Type": 1
+	  },
+	  {
+        "Message": "Process ConsoleSystem.Args for chat commands as well",
+        "Type": 1
+	  },
+	  {
+        "Message": "Added Storeless mode to Permission system - works the same as usual, just doesn't store or load anything to/from file",
+        "Type": 0
+	  },
+	  {
+        "Message": "Fixed Carbon running with AutoUpdate disabled",
+        "Type": 3
+	  },
+	  {
+        "Message": "Renamed AutoUpdate config option to AutoUpdateExtHooks",
+        "Type": 1
+	  },
+	  {
+        "Message": "Fixed Plugin.Title always returning the default value 'Rust' (which was happening due to the constructor call shift)",
+        "Type": 3
+	  },	  
+    ]
+  },   
+  {
+	"Date": "06.08.2023 8:15PM GMT",
+    "Version": "0.2023.2159.1312",
+    "Changes": [
+      {
+        "Message": "Properly clear `harmony.log` from `carbon/logs` (from both debug & release builds)",
+        "Type": 4
+      },
+	  {
+        "Message": "Disable Harmony debugging on the production builds",
+        "Type": 4
+      },
+	  {
+        "Message": "[Vanish Module] Play vanish sounds just for the vanished person by default",
+        "Type": 1
+      },
+	  {
+        "Message": "[Vanish Module] Added `BroadcastVanishSounds` config to Vanish (disabled by default)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Implemented code gen for plugins that are structured with partial classes",
+        "Type": 4
+	  },
+	  {
+        "Message": "Get methods of partial subclasses that are considered for hook calling",
+        "Type": 4
+	  },
+	  {
+        "Message": "Fixed occasional misbehavior with plugins replying messages using IPlayer when commands are sent from the server",
+        "Type": 3
+	  },
+	  {
+        "Message": "Render IPlayer as 'connected' when IsServer is true",
+        "Type": 4
+	  },
+	  {
+        "Message": "Call protected LoadDefaultConfig directly instead of calling it as a hook",
+        "Type": 4
+	  },
+	  {
+        "Message": "Removed legacy `HookValidation` convar (from Admin module as well) as it's now entirely obsolete",
+        "Type": 2
+	  },
+	  {
+        "Message": "Enforce hook calls if parameter types are nullable",
+        "Type": 4
+	  },
+	  {
+        "Message": "Allow modules to override `InternalCallHook`, otherwise use delegate system for hook calls (legacy)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Added `(bool)newConfig` and `(bool)newData` to `BaseModule.PreLoadShouldSave()`",
+        "Type": 0
+	  },
+	  {
+        "Message": "[StackManager Module] Added `ProhibitItemContainerStacking` (eg. weapons)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[StackManager Module] Added `ProhibitItemConsumableContainerStacking` (eg. wo'a jugs)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[StackManager Module] Added `ProhibitItemFishableStacking` (eg. bottles)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[StackManager Module] Fixed overriding dictionaries enforcing values in the config",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Fixed unnecessary refreshing",
+        "Type": 3
+	  },
+	  {
+        "Message": "[Admin Module] Optimized RPC calls for cursor locker",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Display placeholder (translated) text in empty column panels",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Don't reset admin player context storage on panel close",
+        "Type": 4
+	  },
+	  {
+        "Message": "[Admin Module] Added Date picker (accessible by plugins as well)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added player Kick button in Players/Entities [BasePlayer type] (access level 2)",
+        "Type": 0
+	  },
+	  {
+        "Message": "[Admin Module] Added player Ban button in Players/Entities - with date picker for duration [defaults to 100y] [BasePlayer type] (access level 2)",
+        "Type": 0
+	  },
+	  {
+        "Message": "Swapped `BaseHookable.Name` from a field to a property",
+        "Type": 4
+	  },
+	  {
+        "Message": "Made Timer.Destroy to return bool",
+        "Type": 4
+	  },
+	  {
+        "Message": "Added more Oxide compatibility (Event, PluginManagerEvent)",
+        "Type": 0
+	  }
+    ]
+  },  
+  {
+	"Date": "2023-06-02 09:31PM GMT",
+    "Version": "0.2023.2153.2845",
+    "Changes": [
+      {
+        "Message": "Fixed issue where some players do not get added to the user database",
+        "Type": 0
+      },
+	  {
+        "Message": "Fixed script loader and watcher occasional issue",
+        "Type": 0
+      }
+    ]
+  },
+  {
+	"Date": "2023-06-01 4:06PM GMT",
+    "Version": "0.2023.2152.0418",
+    "Changes": [
+	  {
+	  	"Message": "Added `DataFileSystem.DeleteDataFile` and `DynamicConfigFile.Delete`",
+	  	"Type": 1
+	  },	
+	  {
+	  	"Message": "Automatically add game developers to the admin group",
+	  	"Type": 4
+	  },
+	  {
+		"Message": "Fixed CUI `destroyUi` taking every panel subproperty into consideration",
+		"Type": 1
+	  },
+	  {
+		"Message": "Cleanse hook argument buffers properly",
+		"Type": 4
+	  },
+	  {
+		"Message": "Fixed plugin blacklisting when analyzing subdirectories",
+		"Type": 1
+	  },
+	  {
+		"Message": "Fixed RustPlayer.HasPermission returning a false positive value",
+		"Type": 1
+	  },
+	  {
+		"Message": "Added OnUserDisconnected internal hook call",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added a lot more caching when processing hooks",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added code generator for directly executed hooks",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added abstract type checking for processed modules - allowing custom base modules to exist",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added support for 'ref' and 'out' keyword support in plugin hooks",
+		"Type": 0
+	  },
+	  {
+		"Message": "[Admin Module] Added toggle to switch between seeing players stored in the data file or bodies on the server",
+		"Type": 0
+	  },
+	  {
+		"Message": "[Admin Module] Added modal for adding Steam IDs in the data file - for assigning permissions/groups on Steam ID before they connect",
+		"Type": 0
+	  },
+	  {
+		"Message": "[Admin Module] Added ability to add a temporary nickname on the added Steam IDs to ease identification",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added option (disabled by default) to load plugins from subdirectories ('backups' is ignored) - 'c.scriptwatchersoption 1' to enable",
+		"Type": 0
+	  },
+	  {
+		"Message": "[Admin Module] Added option to switch script watchers option mode",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added 'Autofocus' and 'HudMenuInput' properties in InputField CUI component",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added VerticalOverflow in Text CUI component",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added Countdown support to Carbon's CUI",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added outline support to Carbon's CUI (panel, text, image/sprite, button)",
+		"Type": 0
+	  },
+	  {
+		"Message": "Added GetLibFolder and GetManagedModulesFolder",
+		"Type": 0
+	  },
+	  {
+		"Message": "[Admin Module] Display online/offline player count on the Players tab",
+		"Type": 4
+	  },
+	  {
+		"Message": "Optimisation and legacy code cleanup in the hook calling systems",
+		"Type": 4
+	  },
+	  {
+		"Message": "Improved hook call speed by appx. 40%",
+		"Type": 1
+	  },
+	  {
+		"Message": "Improved error handling for internally called and failed to execute hooks",
+		"Type": 4
+	  },
+	  {
+		"Message": "[Vanish Module] Toggle god mode on vanish/unvanish (disabled by default)",
+		"Type": 4
+	  },
+	  {
+		"Message": "[Vanish Module] Play 'whoosh' sound when vanishing (enabled by default)",
+		"Type": 4
+	  },
+	  {
+		"Message": "Place admin players that are noclipping high on the ground to avoid fall damage",
+		"Type": 4
+	  },
+	  {
+		"Message": "[Admin Module] Revamped spectating; toggle views (F3), can type in chat, orbit spectated objects",
+		"Type": 1
+	  },
+	  {
+		"Message": "[Admin Module] Revamped spectating; teleports you 3 meters under the spectated object (and enables noclipping)",
+		"Type": 1
+	  },
+	  {
+		"Message": "Implemented string+uint StringPool for hook identification",
+		"Type": 4
+	  },
+	  {
+		"Message": "Implemented InputField + Text changes into Carbon's CUI",
+		"Type": 4
+	  },
+	  {
+		"Message": "Improved plugin hotloading (even more seamless)",
+		"Type": 4
+	  }
+    ]
+  },
+  {
+	"Date": "2023-05-23 13:07:15",
+    "Version": "0.2023.2143.0715",
+    "Changes": [
+      {
+        "Message": "Rust optional update patch for pooling changes.",
+        "Type": 4
+      }
+    ]
+  },
+  {
+    "Version": "0.2023.2138.1804",
+    "Changes": [
+      {
+        "Message": "ICarbonModule can now patch static hooks.",
+        "Type": 4
+      },
+	  {
+        "Message": "[Admin Module] Updated UI to scale properly relative to UI scale/aspect ratio.",
+        "Type": 1
+      },
+	  {
+        "Message": "Added new Carbon events: `FileSystemWarmup`, `FileSystemWarmupComplete` & `PluginPreload`",
+        "Type": 0
+      },
+	  {
+        "Message": "Whitelisted `Ionic.Zip.Reduced`.",
+        "Type": 4
+      },
+	  {
+        "Message": "Optimized hook calling performance by 35%.",
+        "Type": 1
+      },
+	  {
+        "Message": "Fixed OnLoseCondition hook.",
+        "Type": 1
+      },
+	  {
+        "Message": "Added back `c.version`, `c.protocol` and `c.build`.",
+        "Type": 0
+      },
+	  {
+        "Message": "Hooks now can contain ref parameters.",
+        "Type": 4
+      },
+	  {
+        "Message": "[Admin Module] Fixed memory leak in the Entities tab under.",
+        "Type": 1
+      },
+	  {
+        "Message": "Fixed error formatting under `c.pluginsfailed`.",
+        "Type": 1
+      }
+    ]
+  },
+  {
+    "Version": "0.2023.2131.5323",
+    "Changes": [
+      {
+        "Message": "Enforce Harmony logs to be redirected.",
+        "Type": 4
+      },
+      {
+        "Message": "[RustEdit.Ext Module] Don't enforce the server to be modded when enabled.",
+        "Type": 1
+      },
+      {
+        "Message": "Added module pooling for correct pre-initialization.",
+        "Type": 0
+      },
+      {
+        "Message": "[Gather Manager Module] Added OvenSpeedOverride - changes the smelting speed in all ovens.",
+        "Type": 0
+      },
+      {
+        "Message": "[Gather Manager Module] Added smelt speed override blacklisting (based on prefab shortname and entity type).",
+        "Type": 0
+      },
+      {
+        "Message": "Implemented \"DELETE\" in WebRequest.",
+        "Type": 4
+      },
+      {
+        "Message": "Renamed Loader to ModLoader.",
+        "Type": 1
+      },
+      {
+        "Message": "Renamed Loader.CarbonMod to ModLoader.ModPackage.",
+        "Type": 1
+      },
+      {
+        "Message": "Added OnUserCommand (Covalence hook).",
+        "Type": 0
+      },
+      {
+        "Message": "Added NuGet deployment -> https://www.nuget.org/packages/Carbon.Community",
+        "Type": 0
+      }
+    ]
+  },
+  {
+    "Version": "0.1013.1018.3044",
+    "Changes": [
+      {
+        "Message": "[Vanish Module] Made Bradley ignore vanished players",
+        "Type": 1
+      },
+      {
+        "Message": "[Admin Module] Added multi-selection support in the Entities tab",
+        "Type": 0
+      },
+      {
+        "Message": "Legacy code cleanup",
+        "Type": 1
+      }
+    ]
+  },
+  {
+    "Version": "0.1013.1107",
+    "Changes": [
+      {
+        "Message": "Added user group editing to the Permissions tab",
+        "Type": 0
+      },
+      {
+        "Message": "Added CanExplosiveStick, OnInvalidPositionCheck, and DestroyToPool",
+        "Type": 0
+      },
+      {
+        "Message": "Integrated staging branch protocol hooks and numerous internal hooks",
+        "Type": 4
+      },
+      {
+        "Message": "Added CanUnlockTechTreeNode(Workbench, BasePlayer, TechTreeData.NodeInstance)",
+        "Type": 0
+      },
+      {
+        "Message": "Included \"No TechTree unlock\" option in ModerationTools config to disable global TechTree node unlocking",
+        "Type": 1
+      },
+      {
+        "Message": "Auto-confirm confirmation panels when holding (SPRINT) and added BaseModule.NextTick",
+        "Type": 0
+      },
+      {
+        "Message": "Added WebRequest PATCH support",
+        "Type": 0
+      },
+      {
+        "Message": "Added OnChairComfort, CanPlayerInheritNetworkGroup, and CanAccessAdminModule",
+        "Type": 0
+      },
+      {
+        "Message": "Implemented asm loader whitelist specialization",
+        "Type": 1
+      },
+      {
+        "Message": "Added Arial and Permanent Marker to the CUI",
+        "Type": 0
+      },
+      {
+        "Message": "Expanded Admin module open command array (cp, cpanel) and added Vanish module customization options",
+        "Type": 1
+      },
+      {
+        "Message": "Added Button field to Modal panel",
+        "Type": 0
+      },
+      {
+        "Message": "Added ArrayPool implementation and c.pluginsunloaded",
+        "Type": 0
+      },
+      {
+        "Message": "Added protected buttons for the Modal panel (Button field)",
+        "Type": 0
+      },
+      {
+        "Message": "Toggle noclip on vanish/unvanish (configurable)",
+        "Type": 1
+      },
+      {
+        "Message": "Added +carbon.onboot (called after modules initialize) and +carbon.onserverinit (called after server is marked as completely initialized)",
+        "Type": 0
+      },
+      {
+        "Message": "Added CommandLine context, read from cfg/server.cfg",
+        "Type": 0
+      },
+      {
+        "Message": "Expanded features on Modals",
+        "Type": 1
+      },
+      {
+        "Message": "Added o.* command check flag",
+        "Type": 0
+      },
+      {
+        "Message": "Added GetActivePanelList/DestroyActivePanelList for clearing all CUI drawn on clients at once without reconnecting",
+        "Type": 0
+      },
+      {
+        "Message": "Added c.wipeui to clear the entire drawn CUI (authlevel 1)",
+        "Type": 0
+      },
+      {
+        "Message": "Added IModuleProcessor.Setup",
+        "Type": 0
+      },
+      {
+        "Message": "Added Moderation Tools description to Admin module setup wizard",
+        "Type": 0
+      },
+      {
+        "Message": "Added Whitelist and DRM info to Setup Wizard",
+        "Type": 0
+      },
+      {
+        "Message": "Show Core plugin permissions in the Permissions tab",
+        "Type": 1
+      },
+      {
+        "Message": "Added permission.GetPermissions(BaseHookable)",
+        "Type": 0
+      },
+      {
+        "Message": "Added Local subtab in the Plugins tab for displaying all loaded plugins (including those not on vending sites)",
+        "Type": 0
+      },
+      {
+        "Message": "Added c.protocol, c.help, and help commands for startup information",
+        "Type": 0
+      },
+      {
+        "Message": "Added c.wipemarkers (player) to clear all markers of a player or caller",
+        "Type": 0
+      },
+      {
+        "Message": "Added c.wipemarkers (player) to clear all markers of a player or caller",
+        "Type": 0
+      },
+      {
+        "Message": "Initial work on the new Command Processor",
+        "Type": 4
+      },
+      {
+        "Message": "Added OnDispenserGather in GatherManager",
+        "Type": 0
+      },
+      {
+        "Message": "Register hookable attribute permissions",
+        "Type": 1
+      },
+      {
+        "Message": "Added c.wipeharmonylogonboot (defaults to true)",
+        "Type": 0
+      },
+      {
+        "Message": "Added c.defaultplayergroup (defaults to \"default\") and c.defaultadmingroup (defaults to \"admin\")",
+        "Type": 0
+      },
+      {
+        "Message": "Renamed UiCommand to ProtectedCommand (for more versatile usage)",
+        "Type": 4
+      },
+      {
+        "Message": "Register Admin module levels (0 through 3)",
+        "Type": 1
+      },
+      {
+        "Message": "Initial HasLevel checks and Carbon tab permissions",
+        "Type": 1
+      },
+      {
+        "Message": "Fully implemented permission-based tabs system and added permissive features to all built-in tabs",
+        "Type": 1
+      },
+      {
+        "Message": "New CarbonBehaviour abstract class and localized the Carbon tab",
+        "Type": 1
+      },
+      {
+        "Message": "Optimized plugin processing (pre-warming source code, improved async stream reading)",
+        "Type": 1
+      },
+      {
+        "Message": "Improved speed of mass plugin reloading",
+        "Type": 1
+      },
+      {
+        "Message": "Increased script reader buffer size from 4KB to 8KB",
+        "Type": 1
+      },
+      {
+        "Message": "ImageDatabase initialization fix",
+        "Type": 1
+      },
+      {
+        "Message": "ScriptProcessor cleanup",
+        "Type": 1
+      },
+      {
+        "Message": "Load all plugins on server initialized when global.skipassetwarmup_crashes is enabled",
+        "Type": 1
+      },
+      {
+        "Message": "Process only Carbon.Common (internal modules) and carbon/modules DLLs modules",
+        "Type": 1
+      },
+      {
+        "Message": "Add new functionality to FileWatcherManager",
+        "Type": 0
+      },
+      {
+        "Message": "Don't force servers to modded when Vanish or ModerationTools is enabled",
+        "Type": 1
+      },
+      {
+        "Message": "Moved Local subtab to the left in Plugins panel",
+        "Type": 1
+      },
+      {
+        "Message": "Normalize commands (ToLower, Trim) on registration",
+        "Type": 4
+      },
+      {
+        "Message": "Enable Unity stacktrace on debug builds by default",
+        "Type": 4
+      },
+      {
+        "Message": "Moved CUI.UniquifyCommand to Community.Protect",
+        "Type": 1
+      },
+      {
+        "Message": "Fix for case-sensitive command calls",
+        "Type": 3
+      },
+      {
+        "Message": "Disabled main thread compilation if global.skipassetwarmup_crashes is enabled",
+        "Type": 2
+      },
+      {
+        "Message": "Fixed existing key errors in compilation reference cache (Fastboot sometimes too fast)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed compiler errors occurring when reloading specific plugins frequently",
+        "Type": 3
+      },
+      {
+        "Message": "Resolved OnEntityTakeDamage issue",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed StopSpectating NRE",
+        "Type": 3
+      },
+      {
+        "Message": "Resolved module config editing issue and updated MySql.cs",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed viewing angles when spectating and updated various references",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed info file naming",
+        "Type": 3
+      },
+      {
+        "Message": "Adjusted Server library inheritance and fixed staging branch issue (Pool.Free<T>)",
+        "Type": 4
+      },
+      {
+        "Message": "Resolved slow timers on boot issue and NRE in HandleEnableNeedsKeyboard",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed Modules tab config editing button issue (previously appeared unresponsive)",
+        "Type": 3
+      },
+      {
+        "Message": "Removed duplicate initialization of Carbon Extensions",
+        "Type": 2
+      },
+      {
+        "Message": "Addressed multiple issues related to hook calls in certain plugins",
+        "Type": 4
+      },
+      {
+        "Message": "Simplified Make 'constructor' overrides",
+        "Type": 4
+      },
+      {
+        "Message": "Removed redundant CanExplosiveStick (already in Extra) and updated RustEdit.Ext",
+        "Type": 2
+      },
+      {
+        "Message": "Fixed language phrases overriding on plugin reload after changes",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed Stack manager item-specific filters using the global multiplier (now has separate global multiplier, defaulting to 1)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed c.unloading plugins not loaded on boot marking them as ignored and printing the correct warning (fallback to old log if not found)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed command line execution not being printed when there are no commands on the CN calls",
+        "Type": 3
+      },
+      {
+        "Message": "Update and rename develop-build.yml to preview-edge-build.yml",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed repeating timers and removed Command.SkipOriginal",
+        "Type": 1
+      },
+      {
+        "Message": "Error handling in RustPlugin",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed plugins generating configs with null fields",
+        "Type": 1
+      },
+      {
+        "Message": "Quickstart fixes and invalidated setup wizard (it'll show up on up-to-date servers)",
+        "Type": 3
+      },
+      {
+        "Message": "Disabled main thread compilation if global.skipassetwarmup_crashes is enabled",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed existing key errors in compilation reference cache (Fastboot sometimes too fast)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed compiler errors occurring when reloading specific plugins frequently",
+        "Type": 3
+      },
+      {
+        "Message": "Resolved OnEntityTakeDamage issue",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed StopSpectating NRE",
+        "Type": 3
+      },
+      {
+        "Message": "Resolved module config editing issue and updated MySql.cs",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed viewing angles when spectating and updated various references",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed info file naming",
+        "Type": 3
+      },
+      {
+        "Message": "Adjusted Server library inheritance and fixed staging branch issue (Pool.Free<T>)",
+        "Type": 4
+      },
+      {
+        "Message": "Resolved slow timers on boot issue and NRE in HandleEnableNeedsKeyboard",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed Modules tab config editing button issue (previously appeared unresponsive)",
+        "Type": 3
+      },
+      {
+        "Message": "Removed duplicate initialization of Carbon Extensions",
+        "Type": 2
+      },
+      {
+        "Message": "Addressed multiple issues related to hook calls in certain plugins",
+        "Type": 4
+      },
+      {
+        "Message": "Simplified Make 'constructor' overrides",
+        "Type": 4
+      },
+      {
+        "Message": "Removed redundant CanExplosiveStick (already in Extra) and updated RustEdit.Ext",
+        "Type": 2
+      },
+      {
+        "Message": "Fixed language phrases overriding on plugin reload after changes",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed Stack manager item-specific filters using the global multiplier (now has separate global multiplier, defaulting to 1)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed c.unloading plugins not loaded on boot marking them as ignored and printing the correct warning (fallback to old log if not found)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed command line execution not being printed when there are no commands on the CN calls",
+        "Type": 3
+      },
+      {
+        "Message": "Update and rename develop-build.yml to preview-edge-build.yml",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed repeating timers and removed Command.SkipOriginal",
+        "Type": 2
+      },
+      {
+        "Message": "Error handling in RustPlugin",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed plugins generating configs with null fields",
+        "Type": 3
+      },
+      {
+        "Message": "Quickstart fixes and invalidated setup wizard (it'll show up on up-to-date servers)",
+        "Type": 4
+      },
+      {
+        "Message": "BaseModule fix, virtualized BaseModule version, and DRM cleanup",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed c.report (potentially)",
+        "Type": 3
+      },
+      {
+        "Message": "Removed misleading 'Is Core' and 'Is Disabled' read-only toggle options from Module inspector",
+        "Type": 2
+      },
+      {
+        "Message": "Removed unnecessary self-implemented arg.ReplyWith behavior and switched to using Rust's methods",
+        "Type": 2
+      },
+      {
+        "Message": "Removed OnInvalidPositionCheck as it was called about 8K times a second when used",
+        "Type": 2
+      },
+      {
+        "Message": "Added missing return attributes on some Extra hooks",
+        "Type": 0
+      },
+      {
+        "Message": "Updated CanPatrolHeliSeePlayer, CanUnlockTechTreeNode, OnChairComfort, OnEntitySpawn, OnChickenScared, OnHorseDung, OnJackieChan",
+        "Type": 1
+      },
+      {
+        "Message": "Marked c.version and c.build as auth-level 1 requirement",
+        "Type": 1
+      },
+      {
+        "Message": "Fixed Carbon not starting on Linux",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed HarmonyModInfo spam on Linux",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed exception with FileWatcher and updated Library.cs",
+        "Type": 3
+      },
+      {
+        "Message": "Added validators to preloader",
+        "Type": 0
+      },
+      {
+        "Message": "Fixed null/empty permissions being considered (resolves various plugin command authentication issues)",
+        "Type": 3
+      },
+      {
+        "Message": "Assigned token reference of CommandVar commands",
+        "Type": 4
+      },
+      {
+        "Message": "Don't attempt to grant default/admin permissions if they're set to null in the config (disables auto-granting players to groups when empty, useful in some cases)",
+        "Type": 4
+      },
+      {
+        "Message": "Fixed Create Group default values",
+        "Type": 3
+      },
+      {
+        "Message": "Map Protection module fixes",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed number fields throwing errors when SteamIDs are used (use longs instead of ints)",
+        "Type": 3
+      },
+      {
+        "Message": "Fixed RustPlayer being a struct and not functioning properly",
+        "Type": 3
+      }
+    ]
+  }
+]
