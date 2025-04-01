@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.wolf.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.wolf.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.wolf"><a href="#hat.wolf"><Badge type="tip" text="#"/></a> Wolf Headdress </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.armor.roadsign.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.armor.roadsign.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.armor.roadsign"><a href="#horse.armor.roadsign"><Badge type="tip" text="#"/></a> Roadsign Horse Armor </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.armor.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.armor.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.armor.wood"><a href="#horse.armor.wood"><Badge type="tip" text="#"/></a> Wooden Horse Armor </h5> 
@@ -35,7 +35,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.double.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.double.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.saddle.double"><a href="#horse.saddle.double"><Badge type="tip" text="#"/></a> Double Horse Saddle </h5> 
@@ -45,7 +45,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.saddle"><a href="#horse.saddle"><Badge type="tip" text="#"/></a> Horse Saddle </h5> 
@@ -55,7 +55,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.single.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.saddle.single.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.saddle.single"><a href="#horse.saddle.single"><Badge type="tip" text="#"/></a> Single Horse Saddle </h5> 
@@ -65,7 +65,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.saddlebag.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.saddlebag.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.saddlebag"><a href="#horse.saddlebag"><Badge type="tip" text="#"/></a> Saddle bag </h5> 
@@ -75,7 +75,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.shoes.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.shoes.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.shoes.advanced"><a href="#horse.shoes.advanced"><Badge type="tip" text="#"/></a> High Quality Horse Shoes </h5> 
@@ -85,7 +85,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horse.shoes.basic.png">
+			<img src="https://carbonmod.gg/assets/media/items/horse.shoes.basic.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horse.shoes.basic"><a href="#horse.shoes.basic"><Badge type="tip" text="#"/></a> Basic Horse Shoes </h5> 
@@ -95,7 +95,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/diving.fins.png">
+			<img src="https://carbonmod.gg/assets/media/items/diving.fins.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="diving.fins"><a href="#diving.fins"><Badge type="tip" text="#"/></a> Diving Fins </h5> 
@@ -105,7 +105,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/diving.mask.png">
+			<img src="https://carbonmod.gg/assets/media/items/diving.mask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="diving.mask"><a href="#diving.mask"><Badge type="tip" text="#"/></a> Diving Mask </h5> 
@@ -115,7 +115,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/diving.tank.png">
+			<img src="https://carbonmod.gg/assets/media/items/diving.tank.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="diving.tank"><a href="#diving.tank"><Badge type="tip" text="#"/></a> Diving Tank <Badge type="tip" text="Backpack"/></h5> 
@@ -125,7 +125,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/diving.wetsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/diving.wetsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="diving.wetsuit"><a href="#diving.wetsuit"><Badge type="tip" text="#"/></a> Wetsuit </h5> 
@@ -135,7 +135,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/boots.frog.png">
+			<img src="https://carbonmod.gg/assets/media/items/boots.frog.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="boots.frog"><a href="#boots.frog"><Badge type="tip" text="#"/></a> Frog Boots </h5> 
@@ -145,7 +145,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barrelcostume.png">
+			<img src="https://carbonmod.gg/assets/media/items/barrelcostume.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barrelcostume"><a href="#barrelcostume"><Badge type="tip" text="#"/></a> A Barrel Costume </h5> 
@@ -155,7 +155,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/cratecostume.png">
+			<img src="https://carbonmod.gg/assets/media/items/cratecostume.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="cratecostume"><a href="#cratecostume"><Badge type="tip" text="#"/></a> Crate Costume </h5> 
@@ -165,7 +165,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.gas.mask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.gas.mask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.gas.mask"><a href="#hat.gas.mask"><Badge type="tip" text="#"/></a> Gas Mask </h5> 
@@ -175,7 +175,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.gloves.new.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.gloves.new.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.gloves.new"><a href="#burlap.gloves.new"><Badge type="tip" text="#"/></a> Burlap Gloves </h5> 
@@ -185,7 +185,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.gloves.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.gloves.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.gloves"><a href="#burlap.gloves"><Badge type="tip" text="#"/></a> Leather Gloves </h5> 
@@ -195,7 +195,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/roadsign.gloves.png">
+			<img src="https://carbonmod.gg/assets/media/items/roadsign.gloves.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="roadsign.gloves"><a href="#roadsign.gloves"><Badge type="tip" text="#"/></a> Roadsign Gloves </h5> 
@@ -205,7 +205,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/tactical.gloves.png">
+			<img src="https://carbonmod.gg/assets/media/items/tactical.gloves.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="tactical.gloves"><a href="#tactical.gloves"><Badge type="tip" text="#"/></a> Tactical Gloves </h5> 
@@ -215,7 +215,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/draculacape.png">
+			<img src="https://carbonmod.gg/assets/media/items/draculacape.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="draculacape"><a href="#draculacape"><Badge type="tip" text="#"/></a> Dracula Cape </h5> 
@@ -225,7 +225,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/draculamask.png">
+			<img src="https://carbonmod.gg/assets/media/items/draculamask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="draculamask"><a href="#draculamask"><Badge type="tip" text="#"/></a> Dracula Mask </h5> 
@@ -235,7 +235,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteinmask.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteinmask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteinmask"><a href="#frankensteinmask"><Badge type="tip" text="#"/></a> Frankenstein Mask </h5> 
@@ -245,7 +245,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ghostsheet.png">
+			<img src="https://carbonmod.gg/assets/media/items/ghostsheet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ghostsheet"><a href="#ghostsheet"><Badge type="tip" text="#"/></a> Ghost Costume </h5> 
@@ -255,7 +255,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/halloween.mummysuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/halloween.mummysuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="halloween.mummysuit"><a href="#halloween.mummysuit"><Badge type="tip" text="#"/></a> Mummy Suit </h5> 
@@ -265,7 +265,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mummymask.png">
+			<img src="https://carbonmod.gg/assets/media/items/mummymask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mummymask"><a href="#mummymask"><Badge type="tip" text="#"/></a> Mummy Mask </h5> 
@@ -275,7 +275,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scarecrow.suit.png">
+			<img src="https://carbonmod.gg/assets/media/items/scarecrow.suit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scarecrow.suit"><a href="#scarecrow.suit"><Badge type="tip" text="#"/></a> Scarecrow Suit </h5> 
@@ -285,7 +285,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scarecrowhead.png">
+			<img src="https://carbonmod.gg/assets/media/items/scarecrowhead.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scarecrowhead"><a href="#scarecrowhead"><Badge type="tip" text="#"/></a> Scarecrow Wrap </h5> 
@@ -295,7 +295,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.hockey.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.hockey.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.facemask.hockey"><a href="#metal.facemask.hockey"><Badge type="tip" text="#"/></a> Hockey Mask </h5> 
@@ -305,7 +305,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.helterneck.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.helterneck.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.helterneck"><a href="#attire.hide.helterneck"><Badge type="tip" text="#"/></a> Hide Halterneck </h5> 
@@ -315,7 +315,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.beenie.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.beenie.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.beenie"><a href="#hat.beenie"><Badge type="tip" text="#"/></a> Beenie Hat </h5> 
@@ -325,7 +325,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.boonie.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.boonie.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.boonie"><a href="#hat.boonie"><Badge type="tip" text="#"/></a> Boonie Hat </h5> 
@@ -335,7 +335,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bucket.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/bucket.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bucket.helmet"><a href="#bucket.helmet"><Badge type="tip" text="#"/></a> Bucket Helmet </h5> 
@@ -345,7 +345,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.headwrap.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.headwrap.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.headwrap"><a href="#burlap.headwrap"><Badge type="tip" text="#"/></a> Burlap Headwrap </h5> 
@@ -355,7 +355,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.candle.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.candle.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.candle"><a href="#hat.candle"><Badge type="tip" text="#"/></a> Candle Hat </h5> 
@@ -365,7 +365,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.cap.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.cap.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.cap"><a href="#hat.cap"><Badge type="tip" text="#"/></a> Baseball Cap </h5> 
@@ -375,7 +375,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clatter.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/clatter.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clatter.helmet"><a href="#clatter.helmet"><Badge type="tip" text="#"/></a> Clatter Helmet </h5> 
@@ -385,7 +385,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/coffeecan.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/coffeecan.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="coffeecan.helmet"><a href="#coffeecan.helmet"><Badge type="tip" text="#"/></a> Coffee Can Helmet </h5> 
@@ -395,7 +395,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/deer.skull.mask.png">
+			<img src="https://carbonmod.gg/assets/media/items/deer.skull.mask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="deer.skull.mask"><a href="#deer.skull.mask"><Badge type="tip" text="#"/></a> Bone Helmet </h5> 
@@ -405,7 +405,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="heavy.plate.helmet"><a href="#heavy.plate.helmet"><Badge type="tip" text="#"/></a> Heavy Plate Helmet </h5> 
@@ -415,7 +415,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/knightsarmour.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/knightsarmour.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="knightsarmour.helmet"><a href="#knightsarmour.helmet"><Badge type="tip" text="#"/></a> Knights armour helmet </h5> 
@@ -425,7 +425,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.miner.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.miner.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.miner"><a href="#hat.miner"><Badge type="tip" text="#"/></a> Miners Hat </h5> 
@@ -435,7 +435,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/partyhat.png">
+			<img src="https://carbonmod.gg/assets/media/items/partyhat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="partyhat"><a href="#partyhat"><Badge type="tip" text="#"/></a> Party Hat </h5> 
@@ -445,7 +445,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/prisonerhood.png">
+			<img src="https://carbonmod.gg/assets/media/items/prisonerhood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="prisonerhood"><a href="#prisonerhood"><Badge type="tip" text="#"/></a> Prisoner Hood </h5> 
@@ -455,7 +455,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/riot.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/riot.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="riot.helmet"><a href="#riot.helmet"><Badge type="tip" text="#"/></a> Riot Helmet </h5> 
@@ -465,7 +465,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.wellipets.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.wellipets.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.wellipets"><a href="#hat.wellipets"><Badge type="tip" text="#"/></a> Wellipets Hat </h5> 
@@ -475,7 +475,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wood.armor.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/wood.armor.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wood.armor.helmet"><a href="#wood.armor.helmet"><Badge type="tip" text="#"/></a> Wood Armor Helmet </h5> 
@@ -485,7 +485,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hoodie.png">
+			<img src="https://carbonmod.gg/assets/media/items/hoodie.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hoodie"><a href="#hoodie"><Badge type="tip" text="#"/></a> Hoodie </h5> 
@@ -495,7 +495,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bone.armor.suit.png">
+			<img src="https://carbonmod.gg/assets/media/items/bone.armor.suit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bone.armor.suit"><a href="#bone.armor.suit"><Badge type="tip" text="#"/></a> Bone Armor </h5> 
@@ -505,7 +505,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.jacket.png">
+			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.jacket.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="heavy.plate.jacket"><a href="#heavy.plate.jacket"><Badge type="tip" text="#"/></a> Heavy Plate Jacket </h5> 
@@ -515,7 +515,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jacket.snow.png">
+			<img src="https://carbonmod.gg/assets/media/items/jacket.snow.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jacket.snow"><a href="#jacket.snow"><Badge type="tip" text="#"/></a> Snow Jacket </h5> 
@@ -525,7 +525,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jacket.png">
+			<img src="https://carbonmod.gg/assets/media/items/jacket.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jacket"><a href="#jacket"><Badge type="tip" text="#"/></a> Jacket </h5> 
@@ -535,7 +535,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wood.armor.jacket.png">
+			<img src="https://carbonmod.gg/assets/media/items/wood.armor.jacket.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wood.armor.jacket"><a href="#wood.armor.jacket"><Badge type="tip" text="#"/></a> Wood Chestplate </h5> 
@@ -545,7 +545,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/lumberjack hoodie.png">
+			<img src="https://carbonmod.gg/assets/media/items/lumberjack hoodie.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="lumberjack hoodie"><a href="#lumberjack hoodie"><Badge type="tip" text="#"/></a> Lumberjack Hoodie </h5> 
@@ -555,7 +555,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mask.balaclava.png">
+			<img src="https://carbonmod.gg/assets/media/items/mask.balaclava.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mask.balaclava"><a href="#mask.balaclava"><Badge type="tip" text="#"/></a> Improvised Balaclava </h5> 
@@ -565,7 +565,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mask.bandana.png">
+			<img src="https://carbonmod.gg/assets/media/items/mask.bandana.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mask.bandana"><a href="#mask.bandana"><Badge type="tip" text="#"/></a> Bandana Mask </h5> 
@@ -575,7 +575,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.facemask"><a href="#metal.facemask"><Badge type="tip" text="#"/></a> Metal Facemask </h5> 
@@ -585,7 +585,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.icemask.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.facemask.icemask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.facemask.icemask"><a href="#metal.facemask.icemask"><Badge type="tip" text="#"/></a> Ice Metal Facemask </h5> 
@@ -595,7 +595,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/minigunammopack.png">
+			<img src="https://carbonmod.gg/assets/media/items/minigunammopack.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="minigunammopack"><a href="#minigunammopack"><Badge type="tip" text="#"/></a> Minigun Ammo Pack <Badge type="tip" text="Backpack"/></h5> 
@@ -605,7 +605,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/nightvisiongoggles.png">
+			<img src="https://carbonmod.gg/assets/media/items/nightvisiongoggles.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="nightvisiongoggles"><a href="#nightvisiongoggles"><Badge type="tip" text="#"/></a> Night Vision Goggles </h5> 
@@ -615,7 +615,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.ninja.suit.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.ninja.suit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.ninja.suit"><a href="#attire.ninja.suit"><Badge type="tip" text="#"/></a> Ninja Suit </h5> 
@@ -625,7 +625,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.trousers.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.trousers.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.trousers"><a href="#burlap.trousers"><Badge type="tip" text="#"/></a> Burlap Trousers </h5> 
@@ -635,7 +635,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.pants.png">
+			<img src="https://carbonmod.gg/assets/media/items/heavy.plate.pants.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="heavy.plate.pants"><a href="#heavy.plate.pants"><Badge type="tip" text="#"/></a> Heavy Plate Pants </h5> 
@@ -645,7 +645,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.pants.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.pants.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.pants"><a href="#attire.hide.pants"><Badge type="tip" text="#"/></a> Hide Pants </h5> 
@@ -655,7 +655,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/knightsarmour.skirt.png">
+			<img src="https://carbonmod.gg/assets/media/items/knightsarmour.skirt.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="knightsarmour.skirt"><a href="#knightsarmour.skirt"><Badge type="tip" text="#"/></a> Knights armour skirt plates </h5> 
@@ -665,7 +665,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/roadsign.kilt.png">
+			<img src="https://carbonmod.gg/assets/media/items/roadsign.kilt.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="roadsign.kilt"><a href="#roadsign.kilt"><Badge type="tip" text="#"/></a> Road Sign Kilt </h5> 
@@ -675,7 +675,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pants.shorts.png">
+			<img src="https://carbonmod.gg/assets/media/items/pants.shorts.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pants.shorts"><a href="#pants.shorts"><Badge type="tip" text="#"/></a> Shorts </h5> 
@@ -685,7 +685,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wood.armor.pants.png">
+			<img src="https://carbonmod.gg/assets/media/items/wood.armor.pants.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wood.armor.pants"><a href="#wood.armor.pants"><Badge type="tip" text="#"/></a> Wood Armor Pants </h5> 
@@ -695,7 +695,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pants.png">
+			<img src="https://carbonmod.gg/assets/media/items/pants.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pants"><a href="#pants"><Badge type="tip" text="#"/></a> Pants </h5> 
@@ -705,7 +705,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.poncho.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.poncho.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.poncho"><a href="#attire.hide.poncho"><Badge type="tip" text="#"/></a> Hide Poncho </h5> 
@@ -715,7 +715,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.shirt.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.shirt.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.shirt"><a href="#burlap.shirt"><Badge type="tip" text="#"/></a> Burlap Shirt </h5> 
@@ -725,7 +725,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shirt.collared.png">
+			<img src="https://carbonmod.gg/assets/media/items/shirt.collared.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shirt.collared"><a href="#shirt.collared"><Badge type="tip" text="#"/></a> Shirt </h5> 
@@ -735,7 +735,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.vest.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.vest.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.vest"><a href="#attire.hide.vest"><Badge type="tip" text="#"/></a> Hide Vest </h5> 
@@ -745,7 +745,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shirt.tanktop.png">
+			<img src="https://carbonmod.gg/assets/media/items/shirt.tanktop.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shirt.tanktop"><a href="#shirt.tanktop"><Badge type="tip" text="#"/></a> Tank Top </h5> 
@@ -755,7 +755,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shoes.boots.png">
+			<img src="https://carbonmod.gg/assets/media/items/shoes.boots.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shoes.boots"><a href="#shoes.boots"><Badge type="tip" text="#"/></a> Boots </h5> 
@@ -765,7 +765,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/burlap.shoes.png">
+			<img src="https://carbonmod.gg/assets/media/items/burlap.shoes.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="burlap.shoes"><a href="#burlap.shoes"><Badge type="tip" text="#"/></a> Burlap Shoes </h5> 
@@ -775,7 +775,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.boots.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.boots.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.boots"><a href="#attire.hide.boots"><Badge type="tip" text="#"/></a> Hide Boots </h5> 
@@ -785,7 +785,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.hide.skirt.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.hide.skirt.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.hide.skirt"><a href="#attire.hide.skirt"><Badge type="tip" text="#"/></a> Hide Skirt </h5> 
@@ -795,7 +795,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.banditguard.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.banditguard.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.banditguard"><a href="#attire.banditguard"><Badge type="tip" text="#"/></a> Bandit Guard Gear </h5> 
@@ -805,7 +805,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.arcticsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.arcticsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.arcticsuit"><a href="#hazmatsuit.arcticsuit"><Badge type="tip" text="#"/></a> Arctic Suit </h5> 
@@ -815,7 +815,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.diver.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.diver.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.diver"><a href="#hazmatsuit.diver"><Badge type="tip" text="#"/></a> Abyss Divers Suit </h5> 
@@ -825,7 +825,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.frontier.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.frontier.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.frontier"><a href="#hazmatsuit.frontier"><Badge type="tip" text="#"/></a> Frontier Suit </h5> 
@@ -835,7 +835,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit"><a href="#hazmatsuit"><Badge type="tip" text="#"/></a> Hazmat Suit </h5> 
@@ -845,7 +845,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.lumberjack.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.lumberjack.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.lumberjack"><a href="#hazmatsuit.lumberjack"><Badge type="tip" text="#"/></a> Lumberjack Suit </h5> 
@@ -855,7 +855,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.nomadsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.nomadsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.nomadsuit"><a href="#hazmatsuit.nomadsuit"><Badge type="tip" text="#"/></a> Nomad Suit </h5> 
@@ -865,7 +865,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit_scientist"><a href="#hazmatsuit_scientist"><Badge type="tip" text="#"/></a> Scientist Suit </h5> 
@@ -875,7 +875,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_arctic.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_arctic.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit_scientist_arctic"><a href="#hazmatsuit_scientist_arctic"><Badge type="tip" text="#"/></a> Arctic Scientist Suit </h5> 
@@ -885,7 +885,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_nvgm.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_nvgm.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit_scientist_nvgm"><a href="#hazmatsuit_scientist_nvgm"><Badge type="tip" text="#"/></a> NVGM Scientist Suit </h5> 
@@ -895,7 +895,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_peacekeeper.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit_scientist_peacekeeper.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit_scientist_peacekeeper"><a href="#hazmatsuit_scientist_peacekeeper"><Badge type="tip" text="#"/></a> Scientist Suit </h5> 
@@ -905,7 +905,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.spacesuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuit.spacesuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuit.spacesuit"><a href="#hazmatsuit.spacesuit"><Badge type="tip" text="#"/></a> Space Suit </h5> 
@@ -915,7 +915,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hazmatsuittwitch.png">
+			<img src="https://carbonmod.gg/assets/media/items/hazmatsuittwitch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hazmatsuittwitch"><a href="#hazmatsuittwitch"><Badge type="tip" text="#"/></a> Twitch Rivals Hazmat Suit </h5> 
@@ -925,7 +925,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scientistsuit_heavy.png">
+			<img src="https://carbonmod.gg/assets/media/items/scientistsuit_heavy.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scientistsuit_heavy"><a href="#scientistsuit_heavy"><Badge type="tip" text="#"/></a> Heavy Scientist Suit </h5> 
@@ -935,7 +935,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.suit.blue.png">
+			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.suit.blue.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jumpsuit.suit.blue"><a href="#jumpsuit.suit.blue"><Badge type="tip" text="#"/></a> Blue Jumpsuit </h5> 
@@ -945,7 +945,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.suit.png">
+			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.suit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jumpsuit.suit"><a href="#jumpsuit.suit"><Badge type="tip" text="#"/></a> Jumpsuit </h5> 
@@ -955,7 +955,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.waterwellnpc.png">
+			<img src="https://carbonmod.gg/assets/media/items/jumpsuit.waterwellnpc.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jumpsuit.waterwellnpc"><a href="#jumpsuit.waterwellnpc"><Badge type="tip" text="#"/></a> Waterwell NPC Jumpsuit </h5> 
@@ -965,7 +965,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/tshirt.long.png">
+			<img src="https://carbonmod.gg/assets/media/items/tshirt.long.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="tshirt.long"><a href="#tshirt.long"><Badge type="tip" text="#"/></a> Longsleeve T-Shirt </h5> 
@@ -975,7 +975,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/tshirt.png">
+			<img src="https://carbonmod.gg/assets/media/items/tshirt.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="tshirt"><a href="#tshirt"><Badge type="tip" text="#"/></a> T-Shirt </h5> 
@@ -985,7 +985,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/knighttorso.armour.png">
+			<img src="https://carbonmod.gg/assets/media/items/knighttorso.armour.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="knighttorso.armour"><a href="#knighttorso.armour"><Badge type="tip" text="#"/></a> Knights armour cuirass </h5> 
@@ -995,7 +995,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.plate.torso.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.plate.torso.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.plate.torso"><a href="#metal.plate.torso"><Badge type="tip" text="#"/></a> Metal Chest Plate </h5> 
@@ -1005,7 +1005,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.plate.torso.icevest.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.plate.torso.icevest.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.plate.torso.icevest"><a href="#metal.plate.torso.icevest"><Badge type="tip" text="#"/></a> Ice Metal Chest Plate </h5> 
@@ -1015,7 +1015,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/roadsign.jacket.png">
+			<img src="https://carbonmod.gg/assets/media/items/roadsign.jacket.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="roadsign.jacket"><a href="#roadsign.jacket"><Badge type="tip" text="#"/></a> Road Sign Jacket </h5> 
@@ -1025,7 +1025,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hab.armor.png">
+			<img src="https://carbonmod.gg/assets/media/items/hab.armor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hab.armor"><a href="#hab.armor"><Badge type="tip" text="#"/></a> Hot Air Balloon Armor </h5> 
@@ -1035,7 +1035,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.dragonmask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.dragonmask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.dragonmask"><a href="#hat.dragonmask"><Badge type="tip" text="#"/></a> Dragon Mask </h5> 
@@ -1045,7 +1045,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.oxmask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.oxmask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.oxmask"><a href="#hat.oxmask"><Badge type="tip" text="#"/></a> Ox Mask </h5> 
@@ -1055,7 +1055,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.rabbitmask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.rabbitmask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.rabbitmask"><a href="#hat.rabbitmask"><Badge type="tip" text="#"/></a> Rabbit Mask </h5> 
@@ -1065,7 +1065,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.ratmask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.ratmask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.ratmask"><a href="#hat.ratmask"><Badge type="tip" text="#"/></a> Rat Mask </h5> 
@@ -1075,7 +1075,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.snakemask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.snakemask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.snakemask"><a href="#hat.snakemask"><Badge type="tip" text="#"/></a> Snake mask </h5> 
@@ -1085,7 +1085,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.tigermask.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.tigermask.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.tigermask"><a href="#hat.tigermask"><Badge type="tip" text="#"/></a> Tiger Mask </h5> 
@@ -1095,7 +1095,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.bunnyears.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.bunnyears.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.bunnyears"><a href="#attire.bunnyears"><Badge type="tip" text="#"/></a> Bunny Ears </h5> 
@@ -1105,7 +1105,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.bunny.onesie.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.bunny.onesie.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.bunny.onesie"><a href="#attire.bunny.onesie"><Badge type="tip" text="#"/></a> Bunny Onesie </h5> 
@@ -1115,7 +1115,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hat.bunnyhat.png">
+			<img src="https://carbonmod.gg/assets/media/items/hat.bunnyhat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hat.bunnyhat"><a href="#hat.bunnyhat"><Badge type="tip" text="#"/></a> Bunny Hat </h5> 
@@ -1125,7 +1125,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chicken.costume.png">
+			<img src="https://carbonmod.gg/assets/media/items/chicken.costume.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chicken.costume"><a href="#chicken.costume"><Badge type="tip" text="#"/></a> Chicken Costume </h5> 
@@ -1135,7 +1135,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.egg.suit.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.egg.suit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.egg.suit"><a href="#attire.egg.suit"><Badge type="tip" text="#"/></a> Egg Suit </h5> 
@@ -1145,7 +1145,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.nesthat.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.nesthat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.nesthat"><a href="#attire.nesthat"><Badge type="tip" text="#"/></a> Nest Hat </h5> 
@@ -1155,7 +1155,7 @@ Full list of all <Badge type="danger" text="151"/> items in the **Attire** categ
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.head.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.head.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.01.head"><a href="#frankensteins.monster.01.head"><Badge type="tip" text="#"/></a> Light Frankenstein Head </h5> 
@@ -1167,7 +1167,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.legs.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.legs.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.01.legs"><a href="#frankensteins.monster.01.legs"><Badge type="tip" text="#"/></a> Light Frankenstein Legs </h5> 
@@ -1179,7 +1179,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.torso.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.01.torso.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.01.torso"><a href="#frankensteins.monster.01.torso"><Badge type="tip" text="#"/></a> Light Frankenstein Torso </h5> 
@@ -1191,7 +1191,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.head.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.head.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.02.head"><a href="#frankensteins.monster.02.head"><Badge type="tip" text="#"/></a> Medium Frankenstein Head </h5> 
@@ -1203,7 +1203,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.legs.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.legs.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.02.legs"><a href="#frankensteins.monster.02.legs"><Badge type="tip" text="#"/></a> Medium Frankenstein Legs </h5> 
@@ -1215,7 +1215,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.torso.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.02.torso.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.02.torso"><a href="#frankensteins.monster.02.torso"><Badge type="tip" text="#"/></a> Medium Frankenstein Torso </h5> 
@@ -1227,7 +1227,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.head.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.head.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.03.head"><a href="#frankensteins.monster.03.head"><Badge type="tip" text="#"/></a> Heavy Frankenstein Head </h5> 
@@ -1239,7 +1239,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.legs.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.legs.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.03.legs"><a href="#frankensteins.monster.03.legs"><Badge type="tip" text="#"/></a> Heavy Frankenstein Legs </h5> 
@@ -1251,7 +1251,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.torso.png">
+			<img src="https://carbonmod.gg/assets/media/items/frankensteins.monster.03.torso.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="frankensteins.monster.03.torso"><a href="#frankensteins.monster.03.torso"><Badge type="tip" text="#"/></a> Heavy Frankenstein Torso </h5> 
@@ -1263,7 +1263,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/halloween.surgeonsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/halloween.surgeonsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="halloween.surgeonsuit"><a href="#halloween.surgeonsuit"><Badge type="tip" text="#"/></a> Surgeon Scrubs </h5> 
@@ -1273,7 +1273,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/largebackpack.png">
+			<img src="https://carbonmod.gg/assets/media/items/largebackpack.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="largebackpack"><a href="#largebackpack"><Badge type="tip" text="#"/></a> Large Backpack <Badge type="tip" text="Backpack"/></h5> 
@@ -1283,7 +1283,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/movembermoustachecard.png">
+			<img src="https://carbonmod.gg/assets/media/items/movembermoustachecard.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="movembermoustachecard"><a href="#movembermoustachecard"><Badge type="tip" text="#"/></a> Card Movember Moustache </h5> 
@@ -1293,7 +1293,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/movembermoustache.png">
+			<img src="https://carbonmod.gg/assets/media/items/movembermoustache.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="movembermoustache"><a href="#movembermoustache"><Badge type="tip" text="#"/></a> Movember Moustache </h5> 
@@ -1303,7 +1303,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/parachute.deployed.png">
+			<img src="https://carbonmod.gg/assets/media/items/parachute.deployed.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="parachute.deployed"><a href="#parachute.deployed"><Badge type="tip" text="#"/></a> Parachute (Deployed) </h5> 
@@ -1313,7 +1313,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/parachute.png">
+			<img src="https://carbonmod.gg/assets/media/items/parachute.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="parachute"><a href="#parachute"><Badge type="tip" text="#"/></a> Parachute <Badge type="tip" text="12"/></h5> 
@@ -1323,7 +1323,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/smallbackpack.png">
+			<img src="https://carbonmod.gg/assets/media/items/smallbackpack.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="smallbackpack"><a href="#smallbackpack"><Badge type="tip" text="#"/></a> Small Backpack <Badge type="tip" text="Backpack"/></h5> 
@@ -1333,7 +1333,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses02black.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses02black.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses02black"><a href="#sunglasses02black"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1343,7 +1343,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses02camo.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses02camo.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses02camo"><a href="#sunglasses02camo"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1353,7 +1353,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses02red.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses02red.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses02red"><a href="#sunglasses02red"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1363,7 +1363,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses03black.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses03black.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses03black"><a href="#sunglasses03black"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1373,7 +1373,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses03chrome.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses03chrome.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses03chrome"><a href="#sunglasses03chrome"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1383,7 +1383,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses03gold.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses03gold.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses03gold"><a href="#sunglasses03gold"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1393,7 +1393,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunglasses.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunglasses.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunglasses"><a href="#sunglasses"><Badge type="tip" text="#"/></a> Sunglasses </h5> 
@@ -1403,7 +1403,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/twitchsunglasses.png">
+			<img src="https://carbonmod.gg/assets/media/items/twitchsunglasses.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="twitchsunglasses"><a href="#twitchsunglasses"><Badge type="tip" text="#"/></a> Purple Sunglasses </h5> 
@@ -1413,7 +1413,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/twitch.headset.png">
+			<img src="https://carbonmod.gg/assets/media/items/twitch.headset.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="twitch.headset"><a href="#twitch.headset"><Badge type="tip" text="#"/></a> Headset </h5> 
@@ -1423,7 +1423,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/twitchrivalsflag.png">
+			<img src="https://carbonmod.gg/assets/media/items/twitchrivalsflag.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="twitchrivalsflag"><a href="#twitchrivalsflag"><Badge type="tip" text="#"/></a> Twitch Rivals Flag <Badge type="tip" text="Backpack"/></h5> 
@@ -1433,7 +1433,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/gingerbreadsuit.png">
+			<img src="https://carbonmod.gg/assets/media/items/gingerbreadsuit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="gingerbreadsuit"><a href="#gingerbreadsuit"><Badge type="tip" text="#"/></a> Gingerbread Suit </h5> 
@@ -1443,7 +1443,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.reindeer.headband.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.reindeer.headband.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.reindeer.headband"><a href="#attire.reindeer.headband"><Badge type="tip" text="#"/></a> Reindeer Antlers </h5> 
@@ -1453,7 +1453,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/santabeard.png">
+			<img src="https://carbonmod.gg/assets/media/items/santabeard.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="santabeard"><a href="#santabeard"><Badge type="tip" text="#"/></a> Santa Beard </h5> 
@@ -1463,7 +1463,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/santahat.png">
+			<img src="https://carbonmod.gg/assets/media/items/santahat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="santahat"><a href="#santahat"><Badge type="tip" text="#"/></a> Santa Hat </h5> 
@@ -1473,7 +1473,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/attire.snowman.helmet.png">
+			<img src="https://carbonmod.gg/assets/media/items/attire.snowman.helmet.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="attire.snowman.helmet"><a href="#attire.snowman.helmet"><Badge type="tip" text="#"/></a> Snowman Helmet </h5> 
@@ -1483,7 +1483,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/gloweyes.png">
+			<img src="https://carbonmod.gg/assets/media/items/gloweyes.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="gloweyes"><a href="#gloweyes"><Badge type="tip" text="#"/></a> Glowing Eyes </h5> 
@@ -1493,7 +1493,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/improvised.shield.png">
+			<img src="https://carbonmod.gg/assets/media/items/improvised.shield.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="improvised.shield"><a href="#improvised.shield"><Badge type="tip" text="#"/></a> Improvised Shield <Badge type="tip" text="Backpack"/></h5> 
@@ -1503,7 +1503,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/metal.shield.png">
+			<img src="https://carbonmod.gg/assets/media/items/metal.shield.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="metal.shield"><a href="#metal.shield"><Badge type="tip" text="#"/></a> Metal Shield <Badge type="tip" text="Backpack"/></h5> 
@@ -1513,7 +1513,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/reinforced.wooden.shield.png">
+			<img src="https://carbonmod.gg/assets/media/items/reinforced.wooden.shield.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="reinforced.wooden.shield"><a href="#reinforced.wooden.shield"><Badge type="tip" text="#"/></a> Reinforced Wooden Shield <Badge type="tip" text="Backpack"/></h5> 
@@ -1523,7 +1523,7 @@ Combined at a Frankenstein Table to create your very own monster.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wooden.shield.png">
+			<img src="https://carbonmod.gg/assets/media/items/wooden.shield.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wooden.shield"><a href="#wooden.shield"><Badge type="tip" text="#"/></a> Wooden Shield <Badge type="tip" text="Backpack"/></h5> 

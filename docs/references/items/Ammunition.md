@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.mlrs.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.mlrs.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.mlrs"><a href="#ammo.rocket.mlrs"><Badge type="tip" text="#"/></a> MLRS Rocket </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.hammerhead.png">
+			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.hammerhead.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ballista.bolt.hammerhead"><a href="#ballista.bolt.hammerhead"><Badge type="tip" text="#"/></a> Hammerhead Bolt </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.incendiary.png">
+			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.incendiary.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ballista.bolt.incendiary"><a href="#ballista.bolt.incendiary"><Badge type="tip" text="#"/></a> Incendiary Bolt </h5> 
@@ -35,7 +35,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.piercer.png">
+			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.piercer.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ballista.bolt.piercer"><a href="#ballista.bolt.piercer"><Badge type="tip" text="#"/></a> Piercer Bolt </h5> 
@@ -45,7 +45,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.pitchfork.png">
+			<img src="https://carbonmod.gg/assets/media/items/ballista.bolt.pitchfork.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ballista.bolt.pitchfork"><a href="#ballista.bolt.pitchfork"><Badge type="tip" text="#"/></a> Pitchfork Bolt </h5> 
@@ -55,7 +55,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.explosive.png">
+			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.explosive.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="catapult.ammo.explosive"><a href="#catapult.ammo.explosive"><Badge type="tip" text="#"/></a> Propane Explosive Bomb </h5> 
@@ -65,7 +65,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.incendiary.png">
+			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.incendiary.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="catapult.ammo.incendiary"><a href="#catapult.ammo.incendiary"><Badge type="tip" text="#"/></a> Firebomb </h5> 
@@ -75,7 +75,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.boulder.png">
+			<img src="https://carbonmod.gg/assets/media/items/catapult.ammo.boulder.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="catapult.ammo.boulder"><a href="#catapult.ammo.boulder"><Badge type="tip" text="#"/></a> Scattershot </h5> 
@@ -85,7 +85,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.buckshot.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.buckshot.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.grenadelauncher.buckshot"><a href="#ammo.grenadelauncher.buckshot"><Badge type="tip" text="#"/></a> 40mm Shotgun Round </h5> 
@@ -95,7 +95,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.he.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.he.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.grenadelauncher.he"><a href="#ammo.grenadelauncher.he"><Badge type="tip" text="#"/></a> 40mm HE Grenade </h5> 
@@ -105,7 +105,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.smoke.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.grenadelauncher.smoke.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.grenadelauncher.smoke"><a href="#ammo.grenadelauncher.smoke"><Badge type="tip" text="#"/></a> 40mm Smoke Grenade </h5> 
@@ -115,7 +115,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/arrow.hv.png">
+			<img src="https://carbonmod.gg/assets/media/items/arrow.hv.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="arrow.hv"><a href="#arrow.hv"><Badge type="tip" text="#"/></a> High Velocity Arrow </h5> 
@@ -125,7 +125,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/arrow.wooden.png">
+			<img src="https://carbonmod.gg/assets/media/items/arrow.wooden.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="arrow.wooden"><a href="#arrow.wooden"><Badge type="tip" text="#"/></a> Wooden Arrow </h5> 
@@ -135,7 +135,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/arrow.bone.png">
+			<img src="https://carbonmod.gg/assets/media/items/arrow.bone.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="arrow.bone"><a href="#arrow.bone"><Badge type="tip" text="#"/></a> Bone Arrow </h5> 
@@ -145,7 +145,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/arrow.fire.png">
+			<img src="https://carbonmod.gg/assets/media/items/arrow.fire.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="arrow.fire"><a href="#arrow.fire"><Badge type="tip" text="#"/></a> Fire Arrow </h5> 
@@ -155,7 +155,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/dart.bone.png">
+			<img src="https://carbonmod.gg/assets/media/items/dart.bone.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="dart.bone"><a href="#dart.bone"><Badge type="tip" text="#"/></a> Bone Dart </h5> 
@@ -165,7 +165,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.handmade.shell.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.handmade.shell.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.handmade.shell"><a href="#ammo.handmade.shell"><Badge type="tip" text="#"/></a> Handmade Shell </h5> 
@@ -175,7 +175,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.nailgun.nails.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.nailgun.nails.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.nailgun.nails"><a href="#ammo.nailgun.nails"><Badge type="tip" text="#"/></a> Nailgun Nails </h5> 
@@ -185,7 +185,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.pistol"><a href="#ammo.pistol"><Badge type="tip" text="#"/></a> Pistol Bullet </h5> 
@@ -195,7 +195,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.fire.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.fire.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.pistol.fire"><a href="#ammo.pistol.fire"><Badge type="tip" text="#"/></a> Incendiary Pistol Bullet </h5> 
@@ -205,7 +205,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.hv.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.pistol.hv.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.pistol.hv"><a href="#ammo.pistol.hv"><Badge type="tip" text="#"/></a> HV Pistol Ammo </h5> 
@@ -215,7 +215,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rifle"><a href="#ammo.rifle"><Badge type="tip" text="#"/></a> 5.56 Rifle Ammo </h5> 
@@ -225,7 +225,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.explosive.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.explosive.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rifle.explosive"><a href="#ammo.rifle.explosive"><Badge type="tip" text="#"/></a> Explosive 5.56 Rifle Ammo </h5> 
@@ -235,7 +235,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.incendiary.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.incendiary.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rifle.incendiary"><a href="#ammo.rifle.incendiary"><Badge type="tip" text="#"/></a> Incendiary 5.56 Rifle Ammo </h5> 
@@ -245,7 +245,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.hv.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rifle.hv.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rifle.hv"><a href="#ammo.rifle.hv"><Badge type="tip" text="#"/></a> HV 5.56 Rifle Ammo </h5> 
@@ -255,7 +255,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.basic.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.basic.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.basic"><a href="#ammo.rocket.basic"><Badge type="tip" text="#"/></a> Rocket </h5> 
@@ -265,7 +265,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.fire.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.fire.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.fire"><a href="#ammo.rocket.fire"><Badge type="tip" text="#"/></a> Incendiary Rocket </h5> 
@@ -275,7 +275,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.hv.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.hv.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.hv"><a href="#ammo.rocket.hv"><Badge type="tip" text="#"/></a> High Velocity Rocket </h5> 
@@ -285,7 +285,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.seeker.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.seeker.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.seeker"><a href="#ammo.rocket.seeker"><Badge type="tip" text="#"/></a> Homing Missile </h5> 
@@ -295,7 +295,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.smoke.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.smoke.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.smoke"><a href="#ammo.rocket.smoke"><Badge type="tip" text="#"/></a> Smoke Rocket WIP!!!! </h5> 
@@ -305,7 +305,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.shotgun"><a href="#ammo.shotgun"><Badge type="tip" text="#"/></a> 12 Gauge Buckshot </h5> 
@@ -315,7 +315,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.fire.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.fire.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.shotgun.fire"><a href="#ammo.shotgun.fire"><Badge type="tip" text="#"/></a> 12 Gauge Incendiary Shell </h5> 
@@ -325,7 +325,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.slug.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.shotgun.slug.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.shotgun.slug"><a href="#ammo.shotgun.slug"><Badge type="tip" text="#"/></a> 12 Gauge Slug </h5> 
@@ -335,7 +335,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/speargun.spear.png">
+			<img src="https://carbonmod.gg/assets/media/items/speargun.spear.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="speargun.spear"><a href="#speargun.spear"><Badge type="tip" text="#"/></a> Speargun Spear </h5> 
@@ -345,7 +345,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/submarine.torpedo.straight.png">
+			<img src="https://carbonmod.gg/assets/media/items/submarine.torpedo.straight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="submarine.torpedo.straight"><a href="#submarine.torpedo.straight"><Badge type="tip" text="#"/></a> Torpedo </h5> 
@@ -355,7 +355,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.snowballgun.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.snowballgun.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.snowballgun"><a href="#ammo.snowballgun"><Badge type="tip" text="#"/></a>  </h5> 
@@ -365,7 +365,7 @@ Full list of all <Badge type="danger" text="37"/> items in the **Ammunition** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.sam.png">
+			<img src="https://carbonmod.gg/assets/media/items/ammo.rocket.sam.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ammo.rocket.sam"><a href="#ammo.rocket.sam"><Badge type="tip" text="#"/></a> SAM Ammo </h5> 

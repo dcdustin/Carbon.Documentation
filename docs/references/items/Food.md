@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/apple.png">
+			<img src="https://carbonmod.gg/assets/media/items/apple.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="apple"><a href="#apple"><Badge type="tip" text="#"/></a> Apple </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/apple.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/apple.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="apple.spoiled"><a href="#apple.spoiled"><Badge type="tip" text="#"/></a> Rotten Apple <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/black.raspberries.png">
+			<img src="https://carbonmod.gg/assets/media/items/black.raspberries.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="black.raspberries"><a href="#black.raspberries"><Badge type="tip" text="#"/></a> Black Raspberries </h5> 
@@ -35,7 +35,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/blueberries.png">
+			<img src="https://carbonmod.gg/assets/media/items/blueberries.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="blueberries"><a href="#blueberries"><Badge type="tip" text="#"/></a> Blueberries </h5> 
@@ -45,7 +45,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bread.loaf.png">
+			<img src="https://carbonmod.gg/assets/media/items/bread.loaf.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bread.loaf"><a href="#bread.loaf"><Badge type="tip" text="#"/></a> Bread Loaf </h5> 
@@ -55,7 +55,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/grub.png">
+			<img src="https://carbonmod.gg/assets/media/items/grub.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="grub"><a href="#grub"><Badge type="tip" text="#"/></a> Grub <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -65,7 +65,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/worm.png">
+			<img src="https://carbonmod.gg/assets/media/items/worm.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="worm"><a href="#worm"><Badge type="tip" text="#"/></a> Worm <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -75,7 +75,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/cactusflesh.png">
+			<img src="https://carbonmod.gg/assets/media/items/cactusflesh.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="cactusflesh"><a href="#cactusflesh"><Badge type="tip" text="#"/></a> Cactus Flesh </h5> 
@@ -85,7 +85,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/can.beans.png">
+			<img src="https://carbonmod.gg/assets/media/items/can.beans.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="can.beans"><a href="#can.beans"><Badge type="tip" text="#"/></a> Can of Beans </h5> 
@@ -95,7 +95,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/can.tuna.png">
+			<img src="https://carbonmod.gg/assets/media/items/can.tuna.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="can.tuna"><a href="#can.tuna"><Badge type="tip" text="#"/></a> Can of Tuna </h5> 
@@ -105,7 +105,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chocolate.png">
+			<img src="https://carbonmod.gg/assets/media/items/chocolate.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chocolate"><a href="#chocolate"><Badge type="tip" text="#"/></a> Chocolate Bar </h5> 
@@ -115,7 +115,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/egg.png">
+			<img src="https://carbonmod.gg/assets/media/items/egg.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="egg"><a href="#egg"><Badge type="tip" text="#"/></a> Egg </h5> 
@@ -125,7 +125,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.anchovy.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.anchovy.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.anchovy"><a href="#fish.anchovy"><Badge type="tip" text="#"/></a> Anchovy </h5> 
@@ -135,7 +135,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.catfish.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.catfish.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.catfish"><a href="#fish.catfish"><Badge type="tip" text="#"/></a> Catfish </h5> 
@@ -145,7 +145,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.herring.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.herring.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.herring"><a href="#fish.herring"><Badge type="tip" text="#"/></a> Herring </h5> 
@@ -155,7 +155,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.minnows.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.minnows.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.minnows"><a href="#fish.minnows"><Badge type="tip" text="#"/></a> Minnows </h5> 
@@ -165,7 +165,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.orangeroughy.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.orangeroughy.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.orangeroughy"><a href="#fish.orangeroughy"><Badge type="tip" text="#"/></a> Orange Roughy </h5> 
@@ -175,7 +175,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.salmon.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.salmon.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.salmon"><a href="#fish.salmon"><Badge type="tip" text="#"/></a> Salmon </h5> 
@@ -185,7 +185,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.sardine.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.sardine.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.sardine"><a href="#fish.sardine"><Badge type="tip" text="#"/></a> Sardine </h5> 
@@ -195,7 +195,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.smallshark.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.smallshark.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.smallshark"><a href="#fish.smallshark"><Badge type="tip" text="#"/></a> Small Shark </h5> 
@@ -205,7 +205,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.troutsmall.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.troutsmall.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.troutsmall"><a href="#fish.troutsmall"><Badge type="tip" text="#"/></a> Small Trout </h5> 
@@ -215,7 +215,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.yellowperch.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.yellowperch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.yellowperch"><a href="#fish.yellowperch"><Badge type="tip" text="#"/></a> Yellow Perch </h5> 
@@ -225,7 +225,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/granolabar.png">
+			<img src="https://carbonmod.gg/assets/media/items/granolabar.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="granolabar"><a href="#granolabar"><Badge type="tip" text="#"/></a> Granola Bar </h5> 
@@ -235,7 +235,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/honey.png">
+			<img src="https://carbonmod.gg/assets/media/items/honey.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="honey"><a href="#honey"><Badge type="tip" text="#"/></a> Jar of Honey </h5> 
@@ -245,7 +245,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bearmeat.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/bearmeat.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bearmeat.burned"><a href="#bearmeat.burned"><Badge type="tip" text="#"/></a> Burnt Bear Meat </h5> 
@@ -255,7 +255,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bearmeat.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/bearmeat.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bearmeat.cooked"><a href="#bearmeat.cooked"><Badge type="tip" text="#"/></a> Cooked Bear Meat </h5> 
@@ -265,7 +265,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bearmeat.png">
+			<img src="https://carbonmod.gg/assets/media/items/bearmeat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bearmeat"><a href="#bearmeat"><Badge type="tip" text="#"/></a> Raw Bear Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -275,7 +275,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bearmeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/bearmeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bearmeat.spoiled"><a href="#bearmeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Bear Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -285,7 +285,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chicken.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/chicken.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chicken.burned"><a href="#chicken.burned"><Badge type="tip" text="#"/></a> Burnt Chicken </h5> 
@@ -295,7 +295,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chicken.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/chicken.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chicken.cooked"><a href="#chicken.cooked"><Badge type="tip" text="#"/></a> Cooked Chicken </h5> 
@@ -305,7 +305,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chicken.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/chicken.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chicken.raw"><a href="#chicken.raw"><Badge type="tip" text="#"/></a> Raw Chicken Breast <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -315,7 +315,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/chicken.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/chicken.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="chicken.spoiled"><a href="#chicken.spoiled"><Badge type="tip" text="#"/></a> Spoiled Chicken <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -325,7 +325,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/deermeat.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/deermeat.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="deermeat.burned"><a href="#deermeat.burned"><Badge type="tip" text="#"/></a> Burnt Deer Meat </h5> 
@@ -335,7 +335,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/deermeat.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/deermeat.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="deermeat.cooked"><a href="#deermeat.cooked"><Badge type="tip" text="#"/></a> Cooked Deer Meat </h5> 
@@ -345,7 +345,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/deermeat.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/deermeat.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="deermeat.raw"><a href="#deermeat.raw"><Badge type="tip" text="#"/></a> Raw Deer Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -355,7 +355,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/deermeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/deermeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="deermeat.spoiled"><a href="#deermeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Deer Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -365,7 +365,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.cooked"><a href="#fish.cooked"><Badge type="tip" text="#"/></a> Cooked Fish </h5> 
@@ -375,7 +375,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.raw"><a href="#fish.raw"><Badge type="tip" text="#"/></a> Raw Fish <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -385,7 +385,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fish.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/fish.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fish.spoiled"><a href="#fish.spoiled"><Badge type="tip" text="#"/></a> Spoiled Fish Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -395,7 +395,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horsemeat.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/horsemeat.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horsemeat.burned"><a href="#horsemeat.burned"><Badge type="tip" text="#"/></a> Burnt Horse Meat </h5> 
@@ -405,7 +405,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horsemeat.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/horsemeat.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horsemeat.cooked"><a href="#horsemeat.cooked"><Badge type="tip" text="#"/></a> Cooked Horse Meat </h5> 
@@ -415,7 +415,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horsemeat.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/horsemeat.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horsemeat.raw"><a href="#horsemeat.raw"><Badge type="tip" text="#"/></a> Raw Horse Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -425,7 +425,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/horsemeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/horsemeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="horsemeat.spoiled"><a href="#horsemeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Horse Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -435,7 +435,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/humanmeat.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/humanmeat.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="humanmeat.burned"><a href="#humanmeat.burned"><Badge type="tip" text="#"/></a> Burnt Human Meat </h5> 
@@ -445,7 +445,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/humanmeat.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/humanmeat.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="humanmeat.cooked"><a href="#humanmeat.cooked"><Badge type="tip" text="#"/></a> Cooked Human Meat </h5> 
@@ -455,7 +455,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/humanmeat.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/humanmeat.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="humanmeat.raw"><a href="#humanmeat.raw"><Badge type="tip" text="#"/></a> Raw Human Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -465,7 +465,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/humanmeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/humanmeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="humanmeat.spoiled"><a href="#humanmeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Human Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -475,7 +475,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/meat.pork.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/meat.pork.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="meat.pork.burned"><a href="#meat.pork.burned"><Badge type="tip" text="#"/></a> Burnt Pork </h5> 
@@ -485,7 +485,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/meat.pork.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/meat.pork.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="meat.pork.cooked"><a href="#meat.pork.cooked"><Badge type="tip" text="#"/></a> Cooked Pork </h5> 
@@ -495,7 +495,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/meat.boar.png">
+			<img src="https://carbonmod.gg/assets/media/items/meat.boar.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="meat.boar"><a href="#meat.boar"><Badge type="tip" text="#"/></a> Raw Pork <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -505,7 +505,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/porkmeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/porkmeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="porkmeat.spoiled"><a href="#porkmeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Pork Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -515,7 +515,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.burned.png">
+			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.burned.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wolfmeat.burned"><a href="#wolfmeat.burned"><Badge type="tip" text="#"/></a> Burnt Wolf Meat </h5> 
@@ -525,7 +525,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.cooked.png">
+			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.cooked.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wolfmeat.cooked"><a href="#wolfmeat.cooked"><Badge type="tip" text="#"/></a> Cooked Wolf Meat </h5> 
@@ -535,7 +535,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.raw.png">
+			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.raw.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wolfmeat.raw"><a href="#wolfmeat.raw"><Badge type="tip" text="#"/></a> Raw Wolf Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -545,7 +545,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.spoiled.png">
+			<img src="https://carbonmod.gg/assets/media/items/wolfmeat.spoiled.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wolfmeat.spoiled"><a href="#wolfmeat.spoiled"><Badge type="tip" text="#"/></a> Spoiled Wolf Meat <Badge type="tip" text="NotStraightToBelt"/></h5> 
@@ -555,7 +555,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mushroom.png">
+			<img src="https://carbonmod.gg/assets/media/items/mushroom.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mushroom"><a href="#mushroom"><Badge type="tip" text="#"/></a> Mushroom </h5> 
@@ -565,7 +565,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/jar.pickle.png">
+			<img src="https://carbonmod.gg/assets/media/items/jar.pickle.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="jar.pickle"><a href="#jar.pickle"><Badge type="tip" text="#"/></a> Pickles </h5> 
@@ -575,7 +575,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.apple.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.apple.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.apple"><a href="#pie.apple"><Badge type="tip" text="#"/></a> Apple Pie </h5> 
@@ -585,7 +585,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.bear.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.bear.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.bear"><a href="#pie.bear"><Badge type="tip" text="#"/></a> Bear Pie </h5> 
@@ -595,7 +595,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.chicken.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.chicken.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.chicken"><a href="#pie.chicken"><Badge type="tip" text="#"/></a> Chicken Pie </h5> 
@@ -605,7 +605,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.fish.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.fish.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.fish"><a href="#pie.fish"><Badge type="tip" text="#"/></a> Fish Pie </h5> 
@@ -615,7 +615,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.hunters.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.hunters.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.hunters"><a href="#pie.hunters"><Badge type="tip" text="#"/></a> Hunters Pie </h5> 
@@ -625,7 +625,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.pork.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.pork.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.pork"><a href="#pie.pork"><Badge type="tip" text="#"/></a> Pork Pie </h5> 
@@ -635,7 +635,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.pumpkin.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.pumpkin.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.pumpkin"><a href="#pie.pumpkin"><Badge type="tip" text="#"/></a> Pumpkin Pie </h5> 
@@ -645,7 +645,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pie.survivors.png">
+			<img src="https://carbonmod.gg/assets/media/items/pie.survivors.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pie.survivors"><a href="#pie.survivors"><Badge type="tip" text="#"/></a> Survivor's Pie </h5> 
@@ -655,7 +655,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/smallwaterbottle.png">
+			<img src="https://carbonmod.gg/assets/media/items/smallwaterbottle.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="smallwaterbottle"><a href="#smallwaterbottle"><Badge type="tip" text="#"/></a> Small Water Bottle </h5> 
@@ -665,7 +665,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/waterjug.png">
+			<img src="https://carbonmod.gg/assets/media/items/waterjug.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="waterjug"><a href="#waterjug"><Badge type="tip" text="#"/></a> Water Jug </h5> 
@@ -675,7 +675,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/candycane.png">
+			<img src="https://carbonmod.gg/assets/media/items/candycane.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="candycane"><a href="#candycane"><Badge type="tip" text="#"/></a> Candy Cane </h5> 
@@ -685,7 +685,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bottle.vodka.png">
+			<img src="https://carbonmod.gg/assets/media/items/bottle.vodka.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bottle.vodka"><a href="#bottle.vodka"><Badge type="tip" text="#"/></a> Vodka Bottle </h5> 
@@ -695,7 +695,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/black.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/black.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="black.berry"><a href="#black.berry"><Badge type="tip" text="#"/></a> Black Berry </h5> 
@@ -705,7 +705,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.black.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.black.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.black.berry"><a href="#clone.black.berry"><Badge type="tip" text="#"/></a> Black Berry Clone </h5> 
@@ -715,7 +715,7 @@ Full list of all <Badge type="danger" text="136"/> items in the **Food** categor
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.black.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.black.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.black.berry"><a href="#seed.black.berry"><Badge type="tip" text="#"/></a> Black Berry Seed </h5> 
@@ -728,7 +728,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/blue.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/blue.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="blue.berry"><a href="#blue.berry"><Badge type="tip" text="#"/></a> Blue Berry </h5> 
@@ -738,7 +738,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.blue.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.blue.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.blue.berry"><a href="#clone.blue.berry"><Badge type="tip" text="#"/></a> Blue Berry Clone </h5> 
@@ -748,7 +748,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.blue.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.blue.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.blue.berry"><a href="#seed.blue.berry"><Badge type="tip" text="#"/></a> Blue Berry Seed </h5> 
@@ -761,7 +761,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/green.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/green.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="green.berry"><a href="#green.berry"><Badge type="tip" text="#"/></a> Green Berry </h5> 
@@ -771,7 +771,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.green.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.green.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.green.berry"><a href="#clone.green.berry"><Badge type="tip" text="#"/></a> Green Berry Clone </h5> 
@@ -781,7 +781,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.green.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.green.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.green.berry"><a href="#seed.green.berry"><Badge type="tip" text="#"/></a> Green Berry Seed </h5> 
@@ -794,7 +794,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/red.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/red.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="red.berry"><a href="#red.berry"><Badge type="tip" text="#"/></a> Red Berry </h5> 
@@ -804,7 +804,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.red.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.red.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.red.berry"><a href="#clone.red.berry"><Badge type="tip" text="#"/></a> Red Berry Clone </h5> 
@@ -814,7 +814,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.red.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.red.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.red.berry"><a href="#seed.red.berry"><Badge type="tip" text="#"/></a> Red Berry Seed </h5> 
@@ -827,7 +827,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/white.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/white.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="white.berry"><a href="#white.berry"><Badge type="tip" text="#"/></a> White Berry </h5> 
@@ -837,7 +837,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.white.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.white.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.white.berry"><a href="#clone.white.berry"><Badge type="tip" text="#"/></a> White Berry Clone </h5> 
@@ -847,7 +847,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.white.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.white.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.white.berry"><a href="#seed.white.berry"><Badge type="tip" text="#"/></a> White Berry Seed </h5> 
@@ -860,7 +860,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/yellow.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/yellow.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="yellow.berry"><a href="#yellow.berry"><Badge type="tip" text="#"/></a> Yellow Berry </h5> 
@@ -870,7 +870,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.yellow.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.yellow.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.yellow.berry"><a href="#clone.yellow.berry"><Badge type="tip" text="#"/></a> Yellow Berry Clone </h5> 
@@ -880,7 +880,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.yellow.berry.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.yellow.berry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.yellow.berry"><a href="#seed.yellow.berry"><Badge type="tip" text="#"/></a> Yellow Berry Seed </h5> 
@@ -893,7 +893,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/corn.png">
+			<img src="https://carbonmod.gg/assets/media/items/corn.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="corn"><a href="#corn"><Badge type="tip" text="#"/></a> Corn </h5> 
@@ -903,7 +903,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.corn.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.corn.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.corn"><a href="#clone.corn"><Badge type="tip" text="#"/></a> Corn Clone </h5> 
@@ -913,7 +913,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.corn.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.corn.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.corn"><a href="#seed.corn"><Badge type="tip" text="#"/></a> Corn Seed </h5> 
@@ -926,7 +926,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.hemp.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.hemp.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.hemp"><a href="#clone.hemp"><Badge type="tip" text="#"/></a> Hemp Clone </h5> 
@@ -936,7 +936,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.hemp.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.hemp.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.hemp"><a href="#seed.hemp"><Badge type="tip" text="#"/></a> Hemp Seed </h5> 
@@ -949,7 +949,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/orchid.png">
+			<img src="https://carbonmod.gg/assets/media/items/orchid.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="orchid"><a href="#orchid"><Badge type="tip" text="#"/></a> Orchid </h5> 
@@ -959,7 +959,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.orchid.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.orchid.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.orchid"><a href="#clone.orchid"><Badge type="tip" text="#"/></a> Orchid Clone </h5> 
@@ -969,7 +969,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.orchid.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.orchid.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.orchid"><a href="#seed.orchid"><Badge type="tip" text="#"/></a> Orchid Seed </h5> 
@@ -979,7 +979,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/potato.png">
+			<img src="https://carbonmod.gg/assets/media/items/potato.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="potato"><a href="#potato"><Badge type="tip" text="#"/></a> Potato </h5> 
@@ -989,7 +989,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.potato.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.potato.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.potato"><a href="#clone.potato"><Badge type="tip" text="#"/></a> Potato Clone </h5> 
@@ -999,7 +999,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.potato.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.potato.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.potato"><a href="#seed.potato"><Badge type="tip" text="#"/></a> Potato Seed </h5> 
@@ -1012,7 +1012,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pumpkin.png">
+			<img src="https://carbonmod.gg/assets/media/items/pumpkin.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pumpkin"><a href="#pumpkin"><Badge type="tip" text="#"/></a> Pumpkin </h5> 
@@ -1022,7 +1022,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.pumpkin.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.pumpkin.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.pumpkin"><a href="#clone.pumpkin"><Badge type="tip" text="#"/></a> Pumpkin Plant Clone </h5> 
@@ -1032,7 +1032,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.pumpkin.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.pumpkin.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.pumpkin"><a href="#seed.pumpkin"><Badge type="tip" text="#"/></a> Pumpkin Seed </h5> 
@@ -1045,7 +1045,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/rose.png">
+			<img src="https://carbonmod.gg/assets/media/items/rose.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="rose"><a href="#rose"><Badge type="tip" text="#"/></a> Rose </h5> 
@@ -1055,7 +1055,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.rose.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.rose.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.rose"><a href="#clone.rose"><Badge type="tip" text="#"/></a> Rose Clone </h5> 
@@ -1065,7 +1065,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.rose.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.rose.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.rose"><a href="#seed.rose"><Badge type="tip" text="#"/></a> Rose Seed </h5> 
@@ -1075,7 +1075,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sunflower.png">
+			<img src="https://carbonmod.gg/assets/media/items/sunflower.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sunflower"><a href="#sunflower"><Badge type="tip" text="#"/></a> Sunflower </h5> 
@@ -1085,7 +1085,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.sunflower.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.sunflower.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.sunflower"><a href="#clone.sunflower"><Badge type="tip" text="#"/></a> Sunflower Clone </h5> 
@@ -1095,7 +1095,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.sunflower.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.sunflower.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.sunflower"><a href="#seed.sunflower"><Badge type="tip" text="#"/></a> Sunflower Seed </h5> 
@@ -1105,7 +1105,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wheat.png">
+			<img src="https://carbonmod.gg/assets/media/items/wheat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wheat"><a href="#wheat"><Badge type="tip" text="#"/></a> Wheat </h5> 
@@ -1115,7 +1115,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/clone.wheat.png">
+			<img src="https://carbonmod.gg/assets/media/items/clone.wheat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="clone.wheat"><a href="#clone.wheat"><Badge type="tip" text="#"/></a> Wheat Clone </h5> 
@@ -1125,7 +1125,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/seed.wheat.png">
+			<img src="https://carbonmod.gg/assets/media/items/seed.wheat.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="seed.wheat"><a href="#seed.wheat"><Badge type="tip" text="#"/></a> Wheat Seed </h5> 
@@ -1138,7 +1138,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/coolingtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/coolingtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="coolingtea"><a href="#coolingtea"><Badge type="tip" text="#"/></a> Cooling Tea </h5> 
@@ -1148,7 +1148,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/craftingtea_quality.png">
+			<img src="https://carbonmod.gg/assets/media/items/craftingtea_quality.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="craftingtea_quality"><a href="#craftingtea_quality"><Badge type="tip" text="#"/></a> Crafting Quality Tea </h5> 
@@ -1158,7 +1158,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/harvestingtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/harvestingtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="harvestingtea"><a href="#harvestingtea"><Badge type="tip" text="#"/></a> Harvesting Tea </h5> 
@@ -1168,7 +1168,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/healingtea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/healingtea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="healingtea.advanced"><a href="#healingtea.advanced"><Badge type="tip" text="#"/></a> Advanced Healing Tea </h5> 
@@ -1178,7 +1178,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/healingtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/healingtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="healingtea"><a href="#healingtea"><Badge type="tip" text="#"/></a> Basic Healing Tea </h5> 
@@ -1188,7 +1188,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/healingtea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/healingtea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="healingtea.pure"><a href="#healingtea.pure"><Badge type="tip" text="#"/></a> Pure Healing Tea </h5> 
@@ -1198,7 +1198,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="maxhealthtea.advanced"><a href="#maxhealthtea.advanced"><Badge type="tip" text="#"/></a> Advanced Max Health Tea </h5> 
@@ -1208,7 +1208,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="maxhealthtea"><a href="#maxhealthtea"><Badge type="tip" text="#"/></a> Basic Max Health Tea </h5> 
@@ -1218,7 +1218,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/maxhealthtea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="maxhealthtea.pure"><a href="#maxhealthtea.pure"><Badge type="tip" text="#"/></a> Pure Max Health Tea </h5> 
@@ -1228,7 +1228,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/oretea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/oretea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="oretea.advanced"><a href="#oretea.advanced"><Badge type="tip" text="#"/></a> Advanced Ore Tea </h5> 
@@ -1238,7 +1238,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/oretea.png">
+			<img src="https://carbonmod.gg/assets/media/items/oretea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="oretea"><a href="#oretea"><Badge type="tip" text="#"/></a> Basic Ore Tea </h5> 
@@ -1248,7 +1248,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/oretea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/oretea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="oretea.pure"><a href="#oretea.pure"><Badge type="tip" text="#"/></a> Pure Ore Tea </h5> 
@@ -1258,7 +1258,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationremovetea.advanced"><a href="#radiationremovetea.advanced"><Badge type="tip" text="#"/></a> Advanced Rad. Removal Tea </h5> 
@@ -1268,7 +1268,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationremovetea"><a href="#radiationremovetea"><Badge type="tip" text="#"/></a> Rad. Removal Tea </h5> 
@@ -1278,7 +1278,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationremovetea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationremovetea.pure"><a href="#radiationremovetea.pure"><Badge type="tip" text="#"/></a> Pure Rad. Removal Tea </h5> 
@@ -1288,7 +1288,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationresisttea.advanced"><a href="#radiationresisttea.advanced"><Badge type="tip" text="#"/></a> Advanced Anti-Rad Tea </h5> 
@@ -1298,7 +1298,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationresisttea"><a href="#radiationresisttea"><Badge type="tip" text="#"/></a> Basic Anti-Rad Tea </h5> 
@@ -1308,7 +1308,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/radiationresisttea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="radiationresisttea.pure"><a href="#radiationresisttea.pure"><Badge type="tip" text="#"/></a> Pure Anti-Rad Tea </h5> 
@@ -1318,7 +1318,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scraptea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/scraptea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scraptea.advanced"><a href="#scraptea.advanced"><Badge type="tip" text="#"/></a> Advanced Scrap Tea </h5> 
@@ -1328,7 +1328,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scraptea.png">
+			<img src="https://carbonmod.gg/assets/media/items/scraptea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scraptea"><a href="#scraptea"><Badge type="tip" text="#"/></a> Basic Scrap Tea </h5> 
@@ -1338,7 +1338,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/scraptea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/scraptea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="scraptea.pure"><a href="#scraptea.pure"><Badge type="tip" text="#"/></a> Pure Scrap Tea </h5> 
@@ -1348,7 +1348,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/supertea.png">
+			<img src="https://carbonmod.gg/assets/media/items/supertea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="supertea"><a href="#supertea"><Badge type="tip" text="#"/></a> Super Serum </h5> 
@@ -1358,7 +1358,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/warmingtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/warmingtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="warmingtea"><a href="#warmingtea"><Badge type="tip" text="#"/></a> Warming Tea </h5> 
@@ -1368,7 +1368,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/woodtea.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/woodtea.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="woodtea.advanced"><a href="#woodtea.advanced"><Badge type="tip" text="#"/></a> Advanced Wood Tea </h5> 
@@ -1378,7 +1378,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/woodtea.png">
+			<img src="https://carbonmod.gg/assets/media/items/woodtea.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="woodtea"><a href="#woodtea"><Badge type="tip" text="#"/></a> Basic Wood Tea </h5> 
@@ -1388,7 +1388,7 @@ Planting these seeds in a planter, and then watering them with large quantities 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/woodtea.pure.png">
+			<img src="https://carbonmod.gg/assets/media/items/woodtea.pure.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="woodtea.pure"><a href="#woodtea.pure"><Badge type="tip" text="#"/></a> Pure Wood Tea </h5> 

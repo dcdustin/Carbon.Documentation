@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="5"/> items in the **Medical** catego
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/blood.png">
+			<img src="https://carbonmod.gg/assets/media/items/blood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="blood"><a href="#blood"><Badge type="tip" text="#"/></a> Blood </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="5"/> items in the **Medical** catego
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/antiradpills.png">
+			<img src="https://carbonmod.gg/assets/media/items/antiradpills.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="antiradpills"><a href="#antiradpills"><Badge type="tip" text="#"/></a> Anti-Radiation Pills </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="5"/> items in the **Medical** catego
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/largemedkit.png">
+			<img src="https://carbonmod.gg/assets/media/items/largemedkit.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="largemedkit"><a href="#largemedkit"><Badge type="tip" text="#"/></a> Large Medkit </h5> 
@@ -37,7 +37,7 @@ Guarantees 100% recovery from the wounded state if placed in your toolbar.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/syringe.medical.png">
+			<img src="https://carbonmod.gg/assets/media/items/syringe.medical.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="syringe.medical"><a href="#syringe.medical"><Badge type="tip" text="#"/></a> Medical Syringe </h5> 
@@ -47,7 +47,7 @@ Guarantees 100% recovery from the wounded state if placed in your toolbar.
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/bandage.png">
+			<img src="https://carbonmod.gg/assets/media/items/bandage.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="bandage"><a href="#bandage"><Badge type="tip" text="#"/></a> Bandage </h5> 

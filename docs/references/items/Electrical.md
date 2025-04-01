@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ceilinglight.png">
+			<img src="https://carbonmod.gg/assets/media/items/ceilinglight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ceilinglight"><a href="#ceilinglight"><Badge type="tip" text="#"/></a> Ceiling Light </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/computerstation.png">
+			<img src="https://carbonmod.gg/assets/media/items/computerstation.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="computerstation"><a href="#computerstation"><Badge type="tip" text="#"/></a> Computer Station </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/elevator.png">
+			<img src="https://carbonmod.gg/assets/media/items/elevator.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="elevator"><a href="#elevator"><Badge type="tip" text="#"/></a> Elevator </h5> 
@@ -35,7 +35,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/weaponrack.light.png">
+			<img src="https://carbonmod.gg/assets/media/items/weaponrack.light.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="weaponrack.light"><a href="#weaponrack.light"><Badge type="tip" text="#"/></a> Weapon Rack Light </h5> 
@@ -45,7 +45,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/weaponrack.doublelight.png">
+			<img src="https://carbonmod.gg/assets/media/items/weaponrack.doublelight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="weaponrack.doublelight"><a href="#weaponrack.doublelight"><Badge type="tip" text="#"/></a> Weapon Rack Double Light </h5> 
@@ -55,7 +55,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hopper.png">
+			<img src="https://carbonmod.gg/assets/media/items/hopper.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hopper"><a href="#hopper"><Badge type="tip" text="#"/></a> Hopper </h5> 
@@ -65,7 +65,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/modularcarlift.png">
+			<img src="https://carbonmod.gg/assets/media/items/modularcarlift.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="modularcarlift"><a href="#modularcarlift"><Badge type="tip" text="#"/></a> Modular Car Lift </h5> 
@@ -75,7 +75,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.audioalarm.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.audioalarm.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.audioalarm"><a href="#electric.audioalarm"><Badge type="tip" text="#"/></a> Audio Alarm </h5> 
@@ -85,7 +85,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/smart.alarm.png">
+			<img src="https://carbonmod.gg/assets/media/items/smart.alarm.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="smart.alarm"><a href="#smart.alarm"><Badge type="tip" text="#"/></a> Smart Alarm </h5> 
@@ -95,7 +95,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/smart.switch.png">
+			<img src="https://carbonmod.gg/assets/media/items/smart.switch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="smart.switch"><a href="#smart.switch"><Badge type="tip" text="#"/></a> Smart Switch </h5> 
@@ -105,7 +105,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/storage.monitor.png">
+			<img src="https://carbonmod.gg/assets/media/items/storage.monitor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="storage.monitor"><a href="#storage.monitor"><Badge type="tip" text="#"/></a> Storage Monitor </h5> 
@@ -115,7 +115,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.large.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.large.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.battery.rechargable.large"><a href="#electric.battery.rechargable.large"><Badge type="tip" text="#"/></a> Large Rechargeable Battery </h5> 
@@ -125,7 +125,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.medium.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.medium.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.battery.rechargable.medium"><a href="#electric.battery.rechargable.medium"><Badge type="tip" text="#"/></a> Medium Rechargeable Battery </h5> 
@@ -135,7 +135,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.small.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.battery.rechargable.small.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.battery.rechargable.small"><a href="#electric.battery.rechargable.small"><Badge type="tip" text="#"/></a> Small Rechargeable Battery </h5> 
@@ -145,7 +145,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.button.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.button.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.button"><a href="#electric.button"><Badge type="tip" text="#"/></a> Button </h5> 
@@ -155,7 +155,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.counter.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.counter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.counter"><a href="#electric.counter"><Badge type="tip" text="#"/></a> Counter </h5> 
@@ -165,7 +165,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.hbhfsensor.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.hbhfsensor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.hbhfsensor"><a href="#electric.hbhfsensor"><Badge type="tip" text="#"/></a> HBHF Sensor </h5> 
@@ -175,7 +175,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.laserdetector.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.laserdetector.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.laserdetector"><a href="#electric.laserdetector"><Badge type="tip" text="#"/></a> Laser Detector </h5> 
@@ -185,7 +185,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.pressurepad.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.pressurepad.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.pressurepad"><a href="#electric.pressurepad"><Badge type="tip" text="#"/></a> Pressure Pad </h5> 
@@ -195,7 +195,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.digitalclock.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.digitalclock.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.digitalclock"><a href="#electric.digitalclock"><Badge type="tip" text="#"/></a> Digital Clock </h5> 
@@ -205,7 +205,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.doorcontroller.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.doorcontroller.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.doorcontroller"><a href="#electric.doorcontroller"><Badge type="tip" text="#"/></a> Door Controller </h5> 
@@ -215,7 +215,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.furnace.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.furnace.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.furnace"><a href="#electric.furnace"><Badge type="tip" text="#"/></a> Electric Furnace </h5> 
@@ -225,7 +225,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.heater.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.heater.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.heater"><a href="#electric.heater"><Badge type="tip" text="#"/></a> Electric Heater </h5> 
@@ -235,7 +235,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fluid.combiner.png">
+			<img src="https://carbonmod.gg/assets/media/items/fluid.combiner.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fluid.combiner"><a href="#fluid.combiner"><Badge type="tip" text="#"/></a> Fluid Combiner </h5> 
@@ -245,7 +245,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fluid.splitter.png">
+			<img src="https://carbonmod.gg/assets/media/items/fluid.splitter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fluid.splitter"><a href="#fluid.splitter"><Badge type="tip" text="#"/></a> Fluid Splitter </h5> 
@@ -255,7 +255,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/fluid.switch.png">
+			<img src="https://carbonmod.gg/assets/media/items/fluid.switch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="fluid.switch"><a href="#fluid.switch"><Badge type="tip" text="#"/></a> Fluid Switch & Pump </h5> 
@@ -265,7 +265,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.andswitch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.andswitch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.andswitch"><a href="#electric.andswitch"><Badge type="tip" text="#"/></a> AND Switch </h5> 
@@ -275,7 +275,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.blocker.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.blocker.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.blocker"><a href="#electric.blocker"><Badge type="tip" text="#"/></a> Blocker </h5> 
@@ -285,7 +285,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electrical.branch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electrical.branch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electrical.branch"><a href="#electrical.branch"><Badge type="tip" text="#"/></a> Electrical Branch </h5> 
@@ -295,7 +295,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electrical.combiner.png">
+			<img src="https://carbonmod.gg/assets/media/items/electrical.combiner.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electrical.combiner"><a href="#electrical.combiner"><Badge type="tip" text="#"/></a> Root Combiner </h5> 
@@ -305,7 +305,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electrical.memorycell.png">
+			<img src="https://carbonmod.gg/assets/media/items/electrical.memorycell.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electrical.memorycell"><a href="#electrical.memorycell"><Badge type="tip" text="#"/></a> Memory Cell </h5> 
@@ -315,7 +315,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.orswitch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.orswitch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.orswitch"><a href="#electric.orswitch"><Badge type="tip" text="#"/></a> OR Switch </h5> 
@@ -325,7 +325,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.random.switch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.random.switch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.random.switch"><a href="#electric.random.switch"><Badge type="tip" text="#"/></a> RAND Switch </h5> 
@@ -335,7 +335,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.rf.broadcaster.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.rf.broadcaster.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.rf.broadcaster"><a href="#electric.rf.broadcaster"><Badge type="tip" text="#"/></a> RF Broadcaster </h5> 
@@ -345,7 +345,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.rf.receiver.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.rf.receiver.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.rf.receiver"><a href="#electric.rf.receiver"><Badge type="tip" text="#"/></a> RF Receiver </h5> 
@@ -355,7 +355,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.xorswitch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.xorswitch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.xorswitch"><a href="#electric.xorswitch"><Badge type="tip" text="#"/></a> XOR Switch </h5> 
@@ -365,7 +365,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.fuelgenerator.small.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.fuelgenerator.small.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.fuelgenerator.small"><a href="#electric.fuelgenerator.small"><Badge type="tip" text="#"/></a> Small Generator </h5> 
@@ -375,7 +375,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.generator.small.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.generator.small.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.generator.small"><a href="#electric.generator.small"><Badge type="tip" text="#"/></a> Test Generator </h5> 
@@ -385,7 +385,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.solarpanel.large.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.solarpanel.large.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.solarpanel.large"><a href="#electric.solarpanel.large"><Badge type="tip" text="#"/></a> Large Solar Panel </h5> 
@@ -395,7 +395,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.igniter.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.igniter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.igniter"><a href="#electric.igniter"><Badge type="tip" text="#"/></a> Igniter </h5> 
@@ -405,7 +405,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/storageadaptor.png">
+			<img src="https://carbonmod.gg/assets/media/items/storageadaptor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="storageadaptor"><a href="#storageadaptor"><Badge type="tip" text="#"/></a> Storage Adaptor </h5> 
@@ -415,7 +415,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.combiner.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.combiner.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.combiner"><a href="#industrial.combiner"><Badge type="tip" text="#"/></a> Industrial Combiner </h5> 
@@ -425,7 +425,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.conveyor.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.conveyor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.conveyor"><a href="#industrial.conveyor"><Badge type="tip" text="#"/></a> Industrial Conveyor </h5> 
@@ -435,7 +435,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.crafter.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.crafter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.crafter"><a href="#industrial.crafter"><Badge type="tip" text="#"/></a> Industrial Crafter </h5> 
@@ -445,7 +445,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.splitter.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.splitter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.splitter"><a href="#industrial.splitter"><Badge type="tip" text="#"/></a> Industrial Splitter </h5> 
@@ -455,7 +455,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.flasherlight.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.flasherlight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.flasherlight"><a href="#electric.flasherlight"><Badge type="tip" text="#"/></a> Flasher Light </h5> 
@@ -465,7 +465,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.simplelight.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.simplelight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.simplelight"><a href="#electric.simplelight"><Badge type="tip" text="#"/></a> Simple Light </h5> 
@@ -475,7 +475,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.sirenlight.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.sirenlight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.sirenlight"><a href="#electric.sirenlight"><Badge type="tip" text="#"/></a> Siren Light </h5> 
@@ -485,7 +485,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/powered.water.purifier.png">
+			<img src="https://carbonmod.gg/assets/media/items/powered.water.purifier.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="powered.water.purifier"><a href="#powered.water.purifier"><Badge type="tip" text="#"/></a> Powered Water Purifier </h5> 
@@ -495,7 +495,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.seismicsensor.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.seismicsensor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.seismicsensor"><a href="#electric.seismicsensor"><Badge type="tip" text="#"/></a> Seismic Sensor </h5> 
@@ -505,7 +505,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.switch.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.switch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.switch"><a href="#electric.switch"><Badge type="tip" text="#"/></a> Switch </h5> 
@@ -515,7 +515,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.splitter.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.splitter.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.splitter"><a href="#electric.splitter"><Badge type="tip" text="#"/></a> Splitter </h5> 
@@ -525,7 +525,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.sprinkler.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.sprinkler.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.sprinkler"><a href="#electric.sprinkler"><Badge type="tip" text="#"/></a> Sprinkler </h5> 
@@ -535,7 +535,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.teslacoil.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.teslacoil.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.teslacoil"><a href="#electric.teslacoil"><Badge type="tip" text="#"/></a> Tesla Coil </h5> 
@@ -545,7 +545,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.timer.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.timer.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.timer"><a href="#electric.timer"><Badge type="tip" text="#"/></a> Timer </h5> 
@@ -555,7 +555,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/electric.cabletunnel.png">
+			<img src="https://carbonmod.gg/assets/media/items/electric.cabletunnel.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="electric.cabletunnel"><a href="#electric.cabletunnel"><Badge type="tip" text="#"/></a> Cable Tunnel </h5> 
@@ -565,7 +565,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/waterpump.png">
+			<img src="https://carbonmod.gg/assets/media/items/waterpump.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="waterpump"><a href="#waterpump"><Badge type="tip" text="#"/></a> Water Pump </h5> 
@@ -575,7 +575,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ptz.cctv.camera.png">
+			<img src="https://carbonmod.gg/assets/media/items/ptz.cctv.camera.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ptz.cctv.camera"><a href="#ptz.cctv.camera"><Badge type="tip" text="#"/></a> PTZ CCTV Camera </h5> 
@@ -585,7 +585,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/target.reactive.png">
+			<img src="https://carbonmod.gg/assets/media/items/target.reactive.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="target.reactive"><a href="#target.reactive"><Badge type="tip" text="#"/></a> Reactive Target </h5> 
@@ -595,7 +595,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/searchlight.png">
+			<img src="https://carbonmod.gg/assets/media/items/searchlight.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="searchlight"><a href="#searchlight"><Badge type="tip" text="#"/></a> Search Light </h5> 
@@ -605,7 +605,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/generator.wind.scrap.png">
+			<img src="https://carbonmod.gg/assets/media/items/generator.wind.scrap.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="generator.wind.scrap"><a href="#generator.wind.scrap"><Badge type="tip" text="#"/></a> Wind Turbine </h5> 
@@ -615,7 +615,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.green.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.green.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.wall.light.green"><a href="#industrial.wall.light.green"><Badge type="tip" text="#"/></a> Green Industrial Wall Light </h5> 
@@ -625,7 +625,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.wall.light"><a href="#industrial.wall.light"><Badge type="tip" text="#"/></a> Industrial Wall Light </h5> 
@@ -635,7 +635,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.red.png">
+			<img src="https://carbonmod.gg/assets/media/items/industrial.wall.light.red.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="industrial.wall.light.red"><a href="#industrial.wall.light.red"><Badge type="tip" text="#"/></a> Red Industrial Wall Light </h5> 
@@ -645,7 +645,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/twitchrivals2023desk.png">
+			<img src="https://carbonmod.gg/assets/media/items/twitchrivals2023desk.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="twitchrivals2023desk"><a href="#twitchrivals2023desk"><Badge type="tip" text="#"/></a> Twitch Rivals Desk </h5> 
@@ -655,7 +655,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x125.png">
+			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x125.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sign.neon.125x125"><a href="#sign.neon.125x125"><Badge type="tip" text="#"/></a> Small Neon Sign </h5> 
@@ -665,7 +665,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x215.animated.png">
+			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x215.animated.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sign.neon.125x215.animated"><a href="#sign.neon.125x215.animated"><Badge type="tip" text="#"/></a> Medium Animated Neon Sign </h5> 
@@ -675,7 +675,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x215.png">
+			<img src="https://carbonmod.gg/assets/media/items/sign.neon.125x215.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sign.neon.125x215"><a href="#sign.neon.125x215"><Badge type="tip" text="#"/></a> Medium Neon Sign </h5> 
@@ -685,7 +685,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sign.neon.xl.animated.png">
+			<img src="https://carbonmod.gg/assets/media/items/sign.neon.xl.animated.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sign.neon.xl.animated"><a href="#sign.neon.xl.animated"><Badge type="tip" text="#"/></a> Large Animated Neon Sign </h5> 
@@ -695,7 +695,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/sign.neon.xl.png">
+			<img src="https://carbonmod.gg/assets/media/items/sign.neon.xl.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="sign.neon.xl"><a href="#sign.neon.xl"><Badge type="tip" text="#"/></a> Large Neon Sign </h5> 
@@ -705,7 +705,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/xmas.lightstring.advanced.png">
+			<img src="https://carbonmod.gg/assets/media/items/xmas.lightstring.advanced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="xmas.lightstring.advanced"><a href="#xmas.lightstring.advanced"><Badge type="tip" text="#"/></a> Deluxe Christmas Lights </h5> 
@@ -715,7 +715,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/autoturret.png">
+			<img src="https://carbonmod.gg/assets/media/items/autoturret.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="autoturret"><a href="#autoturret"><Badge type="tip" text="#"/></a> Auto Turret </h5> 
@@ -725,7 +725,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/hosetool.png">
+			<img src="https://carbonmod.gg/assets/media/items/hosetool.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="hosetool"><a href="#hosetool"><Badge type="tip" text="#"/></a> Hose Tool </h5> 
@@ -735,7 +735,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/rf_pager.png">
+			<img src="https://carbonmod.gg/assets/media/items/rf_pager.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="rf_pager"><a href="#rf_pager"><Badge type="tip" text="#"/></a> RF Pager </h5> 
@@ -745,7 +745,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/pipetool.png">
+			<img src="https://carbonmod.gg/assets/media/items/pipetool.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="pipetool"><a href="#pipetool"><Badge type="tip" text="#"/></a> Pipe Tool </h5> 
@@ -755,7 +755,7 @@ Full list of all <Badge type="danger" text="76"/> items in the **Electrical** ca
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wiretool.png">
+			<img src="https://carbonmod.gg/assets/media/items/wiretool.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wiretool"><a href="#wiretool"><Badge type="tip" text="#"/></a> Wire Tool </h5> 

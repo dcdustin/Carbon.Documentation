@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/trap.bear.png">
+			<img src="https://carbonmod.gg/assets/media/items/trap.bear.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="trap.bear"><a href="#trap.bear"><Badge type="tip" text="#"/></a> Snap Trap </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/spikes.floor.png">
+			<img src="https://carbonmod.gg/assets/media/items/spikes.floor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="spikes.floor"><a href="#spikes.floor"><Badge type="tip" text="#"/></a> Wooden Floor Spikes </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/trap.landmine.png">
+			<img src="https://carbonmod.gg/assets/media/items/trap.landmine.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="trap.landmine"><a href="#trap.landmine"><Badge type="tip" text="#"/></a> Homemade Landmine </h5> 
@@ -35,7 +35,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/tincan.alarm.png">
+			<img src="https://carbonmod.gg/assets/media/items/tincan.alarm.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="tincan.alarm"><a href="#tincan.alarm"><Badge type="tip" text="#"/></a> Tin Can Alarm </h5> 
@@ -45,7 +45,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/guntrap.png">
+			<img src="https://carbonmod.gg/assets/media/items/guntrap.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="guntrap"><a href="#guntrap"><Badge type="tip" text="#"/></a> Shotgun Trap </h5> 
@@ -55,7 +55,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/flameturret.png">
+			<img src="https://carbonmod.gg/assets/media/items/flameturret.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="flameturret"><a href="#flameturret"><Badge type="tip" text="#"/></a> Flame Turret </h5> 
@@ -65,7 +65,7 @@ Full list of all <Badge type="danger" text="7"/> items in the **Traps** category
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/samsite.png">
+			<img src="https://carbonmod.gg/assets/media/items/samsite.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="samsite"><a href="#samsite"><Badge type="tip" text="#"/></a> SAM Site </h5> 

@@ -5,7 +5,7 @@ Full list of all <Badge type="danger" text="62"/> items in the **Construction** 
 <table>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.double.hinged.metal"><a href="#door.double.hinged.metal"><Badge type="tip" text="#"/></a> Sheet Metal Double Door </h5> 
@@ -15,7 +15,7 @@ Full list of all <Badge type="danger" text="62"/> items in the **Construction** 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.toptier.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.toptier.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.double.hinged.toptier"><a href="#door.double.hinged.toptier"><Badge type="tip" text="#"/></a> Armored Double Door </h5> 
@@ -25,7 +25,7 @@ Full list of all <Badge type="danger" text="62"/> items in the **Construction** 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.double.hinged.wood"><a href="#door.double.hinged.wood"><Badge type="tip" text="#"/></a> Wood Double Door </h5> 
@@ -37,7 +37,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.hinged.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.hinged.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.hinged.metal"><a href="#door.hinged.metal"><Badge type="tip" text="#"/></a> Sheet Metal Door </h5> 
@@ -47,7 +47,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.hinged.toptier.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.hinged.toptier.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.hinged.toptier"><a href="#door.hinged.toptier"><Badge type="tip" text="#"/></a> Armored Door </h5> 
@@ -57,7 +57,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.hinged.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.hinged.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.hinged.wood"><a href="#door.hinged.wood"><Badge type="tip" text="#"/></a> Wooden Door </h5> 
@@ -69,7 +69,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/floor.grill.png">
+			<img src="https://carbonmod.gg/assets/media/items/floor.grill.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="floor.grill"><a href="#floor.grill"><Badge type="tip" text="#"/></a> Floor grill </h5> 
@@ -79,7 +79,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/floor.ladder.hatch.png">
+			<img src="https://carbonmod.gg/assets/media/items/floor.ladder.hatch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="floor.ladder.hatch"><a href="#floor.ladder.hatch"><Badge type="tip" text="#"/></a> Ladder Hatch </h5> 
@@ -89,7 +89,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.grill.png">
+			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.grill.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="floor.triangle.grill"><a href="#floor.triangle.grill"><Badge type="tip" text="#"/></a> Floor triangle grill </h5> 
@@ -99,7 +99,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.ladder.hatch.png">
+			<img src="https://carbonmod.gg/assets/media/items/floor.triangle.ladder.hatch.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="floor.triangle.ladder.hatch"><a href="#floor.triangle.ladder.hatch"><Badge type="tip" text="#"/></a> Triangle Ladder Hatch </h5> 
@@ -109,7 +109,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.stone.png">
+			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.stone.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="gates.external.high.stone"><a href="#gates.external.high.stone"><Badge type="tip" text="#"/></a> High External Stone Gate </h5> 
@@ -119,7 +119,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/gates.external.high.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="gates.external.high.wood"><a href="#gates.external.high.wood"><Badge type="tip" text="#"/></a> High External Wooden Gate </h5> 
@@ -129,7 +129,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/ladder.wooden.wall.png">
+			<img src="https://carbonmod.gg/assets/media/items/ladder.wooden.wall.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="ladder.wooden.wall"><a href="#ladder.wooden.wall"><Badge type="tip" text="#"/></a> Wooden Ladder </h5> 
@@ -139,7 +139,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/legacy.shelter.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/legacy.shelter.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="legacy.shelter.wood"><a href="#legacy.shelter.wood"><Badge type="tip" text="#"/></a> Legacy Wood Shelter </h5> 
@@ -149,7 +149,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.stone.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.stone.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.external.high.stone"><a href="#wall.external.high.stone"><Badge type="tip" text="#"/></a> High External Stone Wall </h5> 
@@ -159,7 +159,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.external.high"><a href="#wall.external.high"><Badge type="tip" text="#"/></a> High External Wooden Wall </h5> 
@@ -169,7 +169,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.gate.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.gate.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.cell.gate"><a href="#wall.frame.cell.gate"><Badge type="tip" text="#"/></a> Prison Cell Gate </h5> 
@@ -179,7 +179,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.cell.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.cell"><a href="#wall.frame.cell"><Badge type="tip" text="#"/></a> Prison Cell Wall </h5> 
@@ -189,7 +189,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.gate.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.gate.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.fence.gate"><a href="#wall.frame.fence.gate"><Badge type="tip" text="#"/></a> Chainlink Fence Gate </h5> 
@@ -199,7 +199,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.fence.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.fence"><a href="#wall.frame.fence"><Badge type="tip" text="#"/></a> Chainlink Fence </h5> 
@@ -209,7 +209,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.garagedoor.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.garagedoor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.garagedoor"><a href="#wall.frame.garagedoor"><Badge type="tip" text="#"/></a> Garage Door </h5> 
@@ -219,7 +219,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.netting.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.netting.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.netting"><a href="#wall.frame.netting"><Badge type="tip" text="#"/></a> Netting </h5> 
@@ -229,7 +229,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.shopfront"><a href="#wall.frame.shopfront"><Badge type="tip" text="#"/></a> Shop Front </h5> 
@@ -239,7 +239,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.shopfront.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.shopfront.metal"><a href="#wall.frame.shopfront.metal"><Badge type="tip" text="#"/></a> Metal Shop Front </h5> 
@@ -249,7 +249,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.window.bars.metal"><a href="#wall.window.bars.metal"><Badge type="tip" text="#"/></a> Metal Window Bars </h5> 
@@ -259,7 +259,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.toptier.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.toptier.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.window.bars.toptier"><a href="#wall.window.bars.toptier"><Badge type="tip" text="#"/></a> Reinforced Glass Window </h5> 
@@ -269,7 +269,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.window.bars.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.window.bars.wood"><a href="#wall.window.bars.wood"><Badge type="tip" text="#"/></a> Wooden Window Bars </h5> 
@@ -279,7 +279,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.a.png">
+			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.a.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shutter.metal.embrasure.a"><a href="#shutter.metal.embrasure.a"><Badge type="tip" text="#"/></a> Metal horizontal embrasure </h5> 
@@ -289,7 +289,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.b.png">
+			<img src="https://carbonmod.gg/assets/media/items/shutter.metal.embrasure.b.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shutter.metal.embrasure.b"><a href="#shutter.metal.embrasure.b"><Badge type="tip" text="#"/></a> Metal Vertical embrasure </h5> 
@@ -299,7 +299,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.window.glass.reinforced.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.window.glass.reinforced.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.window.glass.reinforced"><a href="#wall.window.glass.reinforced"><Badge type="tip" text="#"/></a> Strengthened Glass Window </h5> 
@@ -309,7 +309,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/shutter.wood.a.png">
+			<img src="https://carbonmod.gg/assets/media/items/shutter.wood.a.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="shutter.wood.a"><a href="#shutter.wood.a"><Badge type="tip" text="#"/></a> Wood Shutters </h5> 
@@ -319,7 +319,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/watchtower.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/watchtower.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="watchtower.wood"><a href="#watchtower.wood"><Badge type="tip" text="#"/></a> Watch Tower </h5> 
@@ -329,7 +329,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.concrete.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.concrete.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.concrete"><a href="#barricade.concrete"><Badge type="tip" text="#"/></a> Concrete Barricade </h5> 
@@ -339,7 +339,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.cover.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.cover.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.wood.cover"><a href="#barricade.wood.cover"><Badge type="tip" text="#"/></a> Wooden Barricade Cover </h5> 
@@ -349,7 +349,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.medieval.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.medieval.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.medieval"><a href="#barricade.medieval"><Badge type="tip" text="#"/></a> Medieval Barricade </h5> 
@@ -359,7 +359,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.metal"><a href="#barricade.metal"><Badge type="tip" text="#"/></a> Metal Barricade </h5> 
@@ -369,7 +369,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.sandbags.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.sandbags.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.sandbags"><a href="#barricade.sandbags"><Badge type="tip" text="#"/></a> Sandbag Barricade </h5> 
@@ -379,7 +379,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.stone.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.stone.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.stone"><a href="#barricade.stone"><Badge type="tip" text="#"/></a> Stone Barricade </h5> 
@@ -389,7 +389,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.wood.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.wood"><a href="#barricade.wood"><Badge type="tip" text="#"/></a> Wooden Barricade </h5> 
@@ -399,7 +399,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/barricade.woodwire.png">
+			<img src="https://carbonmod.gg/assets/media/items/barricade.woodwire.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="barricade.woodwire"><a href="#barricade.woodwire"><Badge type="tip" text="#"/></a> Barbed Wooden Barricade </h5> 
@@ -409,7 +409,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/beehive.png">
+			<img src="https://carbonmod.gg/assets/media/items/beehive.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="beehive"><a href="#beehive"><Badge type="tip" text="#"/></a> Beehive </h5> 
@@ -419,7 +419,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_a.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_a.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.lunar2025_a"><a href="#wall.frame.lunar2025_a"><Badge type="tip" text="#"/></a> Lunar Wall Frame Inlay </h5> 
@@ -429,7 +429,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_b.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_b.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.lunar2025_b"><a href="#wall.frame.lunar2025_b"><Badge type="tip" text="#"/></a> Lunar Wall Frame Swirling </h5> 
@@ -439,7 +439,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_c.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.frame.lunar2025_c.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.frame.lunar2025_c"><a href="#wall.frame.lunar2025_c"><Badge type="tip" text="#"/></a> Lunar Wall Frame Floral </h5> 
@@ -449,7 +449,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mining.pumpjack.png">
+			<img src="https://carbonmod.gg/assets/media/items/mining.pumpjack.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mining.pumpjack"><a href="#mining.pumpjack"><Badge type="tip" text="#"/></a> Pump Jack </h5> 
@@ -459,7 +459,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/mining.quarry.png">
+			<img src="https://carbonmod.gg/assets/media/items/mining.quarry.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="mining.quarry"><a href="#mining.quarry"><Badge type="tip" text="#"/></a> Mining Quarry </h5> 
@@ -469,7 +469,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.png">
+			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="cupboard.tool"><a href="#cupboard.tool"><Badge type="tip" text="#"/></a> Tool Cupboard </h5> 
@@ -479,7 +479,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.retro.png">
+			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.retro.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="cupboard.tool.retro"><a href="#cupboard.tool.retro"><Badge type="tip" text="#"/></a> Retro Tool Cupboard </h5> 
@@ -489,7 +489,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.shockbyte.png">
+			<img src="https://carbonmod.gg/assets/media/items/cupboard.tool.shockbyte.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="cupboard.tool.shockbyte"><a href="#cupboard.tool.shockbyte"><Badge type="tip" text="#"/></a> Shockbyte Tool Cupboard </h5> 
@@ -499,7 +499,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/water.catcher.large.png">
+			<img src="https://carbonmod.gg/assets/media/items/water.catcher.large.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="water.catcher.large"><a href="#water.catcher.large"><Badge type="tip" text="#"/></a> Large Water Catcher </h5> 
@@ -509,7 +509,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/water.catcher.small.png">
+			<img src="https://carbonmod.gg/assets/media/items/water.catcher.small.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="water.catcher.small"><a href="#water.catcher.small"><Badge type="tip" text="#"/></a> Small Water Catcher </h5> 
@@ -519,7 +519,7 @@ The Wooden Door can take two kinds of locks the basic Key Lock and the Code Lock
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/lock.key.png">
+			<img src="https://carbonmod.gg/assets/media/items/lock.key.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="lock.key"><a href="#lock.key"><Badge type="tip" text="#"/></a> Key Lock </h5> 
@@ -531,7 +531,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/lock.code.png">
+			<img src="https://carbonmod.gg/assets/media/items/lock.code.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="lock.code"><a href="#lock.code"><Badge type="tip" text="#"/></a> Code Lock </h5> 
@@ -541,7 +541,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.bardoors.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.double.hinged.bardoors.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.double.hinged.bardoors"><a href="#door.double.hinged.bardoors"><Badge type="tip" text="#"/></a> Wooden Frontier Bar Doors </h5> 
@@ -551,7 +551,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.closer.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.closer.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.closer"><a href="#door.closer"><Badge type="tip" text="#"/></a> Door Closer </h5> 
@@ -561,7 +561,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/medieval.door.double.hinged.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/medieval.door.double.hinged.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="medieval.door.double.hinged.metal"><a href="#medieval.door.double.hinged.metal"><Badge type="tip" text="#"/></a> Medieval Sheet Metal Double Door </h5> 
@@ -571,7 +571,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/medieval.door.hinged.metal.png">
+			<img src="https://carbonmod.gg/assets/media/items/medieval.door.hinged.metal.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="medieval.door.hinged.metal"><a href="#medieval.door.hinged.metal"><Badge type="tip" text="#"/></a> Medieval Sheet Metal Door </h5> 
@@ -581,7 +581,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/factorydoor.png">
+			<img src="https://carbonmod.gg/assets/media/items/factorydoor.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="factorydoor"><a href="#factorydoor"><Badge type="tip" text="#"/></a> Factory Door </h5> 
@@ -591,7 +591,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr style="background-color:#300000;">
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/door.hinged.industrial.a.png">
+			<img src="https://carbonmod.gg/assets/media/items/door.hinged.industrial.a.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="door.hinged.industrial.a"><a href="#door.hinged.industrial.a"><Badge type="tip" text="#"/></a> Industrial Door </h5> 
@@ -601,7 +601,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.ice.wall.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.ice.wall.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.ice.wall"><a href="#wall.ice.wall"><Badge type="tip" text="#"/></a> Short Ice Wall </h5> 
@@ -611,7 +611,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.ice.png">
+			<img src="https://carbonmod.gg/assets/media/items/wall.external.high.ice.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="wall.external.high.ice"><a href="#wall.external.high.ice"><Badge type="tip" text="#"/></a> High Ice Wall </h5> 
@@ -621,7 +621,7 @@ If the key is lost, you cannot make another, so don't forget to make extras and 
 </tr>
 	<tr >
 		<td style="width:15%;">
-			<img src="https://carbonmod.gg/assets/media/items/building.planner.png">
+			<img src="https://carbonmod.gg/assets/media/items/building.planner.png" onerror='this.src = "https://carbonmod.gg/assets/media/missing.jpg"'>
 			</td>
 		<td>
 	<h5 id="building.planner"><a href="#building.planner"><Badge type="tip" text="#"/></a> Building Plan </h5> 
