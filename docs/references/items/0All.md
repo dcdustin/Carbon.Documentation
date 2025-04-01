@@ -1,6 +1,10 @@
 # All Items
 Full list of all <Badge type="danger" text="1,024"/> items.
 
+## API
+Here's the API endpoint for you to use in your projects.
+<CarbonButton href="/Carbon.Documentation/rust/items.json" text="Items API" icon="buffer" external="true"/>
+
 ## Attire
 <table>
 	<tr >

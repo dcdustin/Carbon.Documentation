@@ -2,6 +2,10 @@
 The following list contains information of a total of <Badge type="warning" text="10,819"/>
  prefabs.
 
+## API
+Here's the API endpoint for you to use in your projects.
+<CarbonButton href="/Carbon.Documentation/rust/prefabs.json" text="Prefab API" icon="accusoft" external="true"/>
+
 ---
 | Entity Type, ID & Path |
 | --- |
