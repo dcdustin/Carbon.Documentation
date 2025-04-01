@@ -1,0 +1,8 @@
+# DynamicDungeon
+Full list of all <Badge type="warning" text="2"/> entity prefabs with the **DynamicDungeon** entity type.
+
+---
+| ID & Path |
+| --- |
+| <Badge type="tip" text="2750475248"/> <br> assets/prefabs/missions/portal/bunker.prefab |
+| <Badge type="tip" text="362606634"/> <br> assets/prefabs/missions/portal/bunker_corridor_a.prefab |

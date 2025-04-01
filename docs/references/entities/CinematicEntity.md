@@ -1,0 +1,35 @@
+# CinematicEntity
+Full list of all <Badge type="warning" text="29"/> entity prefabs with the **CinematicEntity** entity type.
+
+---
+| ID & Path |
+| --- |
+| <Badge type="tip" text="2591728644"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_black.prefab |
+| <Badge type="tip" text="2292776106"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_blue.prefab |
+| <Badge type="tip" text="2234666354"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_green.prefab |
+| <Badge type="tip" text="558936370"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_grey.prefab |
+| <Badge type="tip" text="3253929870"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_neutral.prefab |
+| <Badge type="tip" text="3671475527"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinebg_white.prefab |
+| <Badge type="tip" text="1447385912"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_black.prefab |
+| <Badge type="tip" text="482438116"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_blue.prefab |
+| <Badge type="tip" text="1860184634"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_green.prefab |
+| <Badge type="tip" text="1306620303"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_grey.prefab |
+| <Badge type="tip" text="2334104199"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_neutral.prefab |
+| <Badge type="tip" text="3704788625"/> <br> assets/bundled/prefabs/modding/cinematic/backdrops/cinecyc_white.prefab |
+| <Badge type="tip" text="3602562162"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_3p_cool.prefab |
+| <Badge type="tip" text="3795442096"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_3p_warm.prefab |
+| <Badge type="tip" text="1898416990"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_blue.prefab |
+| <Badge type="tip" text="160023459"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_cool.prefab |
+| <Badge type="tip" text="2423685124"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_green.prefab |
+| <Badge type="tip" text="2835806094"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_red.prefab |
+| <Badge type="tip" text="1872375139"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_warm.prefab |
+| <Badge type="tip" text="2128315598"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_point_white.prefab |
+| <Badge type="tip" text="3754980051"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_blue.prefab |
+| <Badge type="tip" text="3590519405"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_cool.prefab |
+| <Badge type="tip" text="761588015"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_green.prefab |
+| <Badge type="tip" text="3794823196"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_red.prefab |
+| <Badge type="tip" text="2260738994"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_warm.prefab |
+| <Badge type="tip" text="1180129634"/> <br> assets/bundled/prefabs/modding/cinematic/cinelights/cinelight_spot_white.prefab |
+| <Badge type="tip" text="1760473991"/> <br> assets/bundled/prefabs/modding/cinematic/flags/cineflag_l.prefab |
+| <Badge type="tip" text="2859730042"/> <br> assets/bundled/prefabs/modding/cinematic/flags/cineflag_m.prefab |
+| <Badge type="tip" text="1094548865"/> <br> assets/bundled/prefabs/modding/cinematic/flags/cineflag_s.prefab |

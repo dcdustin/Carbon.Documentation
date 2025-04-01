@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import fs from 'fs'
 import path from 'path'
 
-function getHooks(dir: string): { text: string; items: { text: string; link: string }[] }[] {
+function getCategorized(dir: string): { text: string; items: { text: string; link: string }[] }[] {
   const fullDir = path.resolve(__dirname, dir)
   const categories = fs.readdirSync(fullDir, { withFileTypes: true })
 
@@ -21,14 +21,28 @@ function getHooks(dir: string): { text: string; items: { text: string; link: str
           }
         }) 
       return {
-        text: category.name + " (" + getHookCount(categoryPath) + ")",
+        text: category.name + " (" + getFileCount(categoryPath) + ")",
         collapsed: true,
         items
       }  
     }) 
 } 
- 
-function getHookCount(dir: string): number {
+
+function getFiles(dir: string): { text: string; link: string }[] {
+  const fullDir = path.resolve(__dirname, dir)
+  const files = fs.readdirSync(fullDir)
+  return files
+    .filter(file => file.endsWith('.md') && file.toLowerCase() !== 'index.md')
+    .map(file => {
+      const name = file.replace(/\.md$/, '')
+      return {
+        text: name.replace(/-/g, ' '),
+        link: `/${dir}/${name}` // ✅ Backticks added here
+      }
+    })  
+}
+
+function getFileCount(dir: string): number {
   const fullDir = path.resolve(__dirname, dir);
   const files = fs.readdirSync(fullDir);
   return files
@@ -79,7 +93,7 @@ export default defineConfig({
         {
           text: 'Hooks',
           link: '/hooks',
-          items: getHooks("../hooks")
+          items: getCategorized("../hooks")
         } 
       ],
       
@@ -91,7 +105,7 @@ export default defineConfig({
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
-            { text: 'Entities', link: '/references/entities' },
+            { text: 'Entities', collapsed: true, link: '/references/entities', items: getFiles("../references/entities") },
             { text: 'Items', link: '/references/items' },
             { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
@@ -122,3 +136,4 @@ export default defineConfig({
     
   },
 })
+ 
