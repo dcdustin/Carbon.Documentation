@@ -21,6 +21,6 @@ jobs:
         with:
           name: Archive
           path: |
-            %GITHUB_WORKSPACE%\tools\Server\generator_log.txt
-            %GITHUB_WORKSPACE%\tools\Server\carbon\plugins\CodeGen.cs
-            %GITHUB_WORKSPACE%\tools\Server\carbon\generated\*
+            tools\Server\generator_log.txt
+            tools\Server\carbon\plugins\CodeGen.cs
+            tools\Server\carbon\generated\*
