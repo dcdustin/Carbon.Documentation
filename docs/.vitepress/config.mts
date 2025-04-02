@@ -4,7 +4,6 @@ import { getCategorized, getFiles } from './carbonUtils.mts';
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Carbon Mod Documentation",
-  base: '/Carbon.Documentation/',
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   cleanUrls: true,
   lastUpdated: true,
