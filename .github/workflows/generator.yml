@@ -1,0 +1,26 @@
+name: Generator
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Process
+        shell: cmd
+        run: |
+          cd %GITHUB_WORKSPACE%\tools
+          Generate.bat
+          
+      - name: Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: |
+            tools/Server/generator_log.txt
+            tools/Server/carbon/plugins/CodeGen.cs
+            tools/Server/carbon/generated/*
