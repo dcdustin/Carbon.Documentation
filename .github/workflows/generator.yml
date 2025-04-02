@@ -29,5 +29,5 @@ jobs:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: 147.135.88.204
-          src: "tools/Server/carbon/results/*"
+          src: "tools/Server/carbon/results"
           dest: "metadata"
