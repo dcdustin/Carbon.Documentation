@@ -80,6 +80,6 @@ RustDedicated.exe -nographics -batchmode -logs -silent-crashes ^
                   -aimanager.nav_disable 1 ^
                   +server.seed 123123 ^
                   +server.worldsize 1500 ^
-                  -logfile "main_log.txt" ^
+                  -logfile "generator_log.txt" ^
 			 
 exit /b 0

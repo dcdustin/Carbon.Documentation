@@ -35,7 +35,7 @@ public class CodeGen : CarbonPlugin
 				items.Add(Item.Parse<Item>(item));
 			}
 
-			OsEx.File.Create(Path.Combine("items.json"), JsonConvert.SerializeObject(items, Formatting.Indented));
+			OsEx.File.Create(Path.Combine("carbon", "results", "items.json"), JsonConvert.SerializeObject(items, Formatting.Indented));
 		}
 
 		// Entities
@@ -61,7 +61,7 @@ public class CodeGen : CarbonPlugin
 				}
 			}
 
-			OsEx.File.Create(Path.Combine("entities.json"), JsonConvert.SerializeObject(entities, Formatting.Indented));
+			OsEx.File.Create(Path.Combine("carbon", "results", "entities.json"), JsonConvert.SerializeObject(entities, Formatting.Indented));
 		}
 
 		// Prefabs
@@ -86,7 +86,7 @@ public class CodeGen : CarbonPlugin
 				}
 			}
 
-			OsEx.File.Create(Path.Combine("prefabs.json"), JsonConvert.SerializeObject(prefabs, Formatting.Indented));
+			OsEx.File.Create(Path.Combine("carbon", "results", "prefabs.json"), JsonConvert.SerializeObject(prefabs, Formatting.Indented));
 		}
 
 		// Blueprints
@@ -109,7 +109,7 @@ public class CodeGen : CarbonPlugin
 				});
 			}
 
-			OsEx.File.Create(Path.Combine("blueprints.json"), JsonConvert.SerializeObject(blueprints, Formatting.Indented));
+			OsEx.File.Create(Path.Combine("carbon", "results", "blueprints.json"), JsonConvert.SerializeObject(blueprints, Formatting.Indented));
 		}
 
 		// Loot Tables
@@ -161,7 +161,7 @@ public class CodeGen : CarbonPlugin
 				}
 			}
 
-			OsEx.File.Create(Path.Combine("loot-tables.json"), JsonConvert.SerializeObject(lootTables, Formatting.Indented));
+			OsEx.File.Create(Path.Combine("carbon", "results", "loot-tables.json"), JsonConvert.SerializeObject(lootTables, Formatting.Indented));
 		}
 	}
 
