@@ -22,3 +22,13 @@ jobs:
           name: Archive
           path: |
             tools\Server\carbon
+
+      - name: ⬆️ FTP Upload Debug
+        uses: tomasbkk/action-ftp-upload@v1.0
+        if: ${{ inputs.debug }}
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/*"
+          dest: "metadata"
