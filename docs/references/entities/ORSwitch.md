@@ -4,5 +4,5 @@ Full list of all <Badge type="warning" text="2"/> entity prefabs with the **ORSw
 ---
 | ID & Path |
 | --- |
-| <a href="#1354328722"><Badge id="1354328722" type="tip" text="#"/></a> <Badge type="tip" text="1354328722"/> <br> assets/prefabs/deployable/playerioents/gates/orswitch/orswitch.entity.prefab |
-| <a href="#2179325520"><Badge id="2179325520" type="tip" text="#"/></a> <Badge type="tip" text="2179325520"/> <br> assets/prefabs/io/electric/switches/orswitch.prefab |
+| <a href="#1354328722"><Badge id="1354328722" type="tip" text="#"/></a> <Badge type="tip" text="1354328722"/> <Badge type="info" text="Poolable"/> <Badge type="info" text="GroundWatch"/> <Badge type="info" text="DestroyOnGroundMissing"/> <Badge type="info" text="Deployable"/> <Badge type="info" text="Construction"/> <Badge type="info" text="Rust.PropRenderer"/> <Badge type="info" text="RealmedRemove"/> <br> assets/prefabs/deployable/playerioents/gates/orswitch/orswitch.entity.prefab |
+| <a href="#2179325520"><Badge id="2179325520" type="tip" text="#"/></a> <Badge type="tip" text="2179325520"/>  <br> assets/prefabs/io/electric/switches/orswitch.prefab |

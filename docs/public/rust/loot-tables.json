@@ -7,6 +7,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/autospawn/resource/loot/loot-barrel-1.prefab",
     "Name": "Loot-Barrel-1",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 966676416
   },
   {
@@ -17,6 +22,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/autospawn/resource/loot/loot-barrel-2.prefab",
     "Name": "Loot-Barrel-2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 555882409
   },
   {
@@ -27,6 +37,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/autospawn/resource/loot/trash-pile-1.prefab",
     "Name": "Trash-Pile-1",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "AmbienceEmitter"
+    ],
     "ID": 615147957
   },
   {
@@ -58,6 +74,14 @@
     "Type": "HackableLockedCrate",
     "Path": "assets/bundled/prefabs/modding/asset_store/hiddenhackablecrate.prefab",
     "Name": "HiddenHackableCrate",
+    "Components": [
+      "Poolable",
+      "HackableLockedCrate",
+      "RealmedRemove",
+      "Model",
+      "EntityFlag_Toggle",
+      "EntityFlag_Toggle"
+    ],
     "ID": 3527151681
   },
   {
@@ -79,6 +103,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_basic.prefab",
     "Name": "invisible_crate_basic",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 506215165
   },
   {
@@ -124,6 +153,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_elite.prefab",
     "Name": "invisible_crate_elite",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3590920894
   },
   {
@@ -164,6 +198,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_normal.prefab",
     "Name": "invisible_crate_normal",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1510201832
   },
   {
@@ -219,6 +258,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_normal_2.prefab",
     "Name": "invisible_crate_normal_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2789666127
   },
   {
@@ -229,6 +273,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_normal_2_food.prefab",
     "Name": "invisible_crate_normal_2_food",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 178719473
   },
   {
@@ -239,6 +288,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_normal_2_medical.prefab",
     "Name": "invisible_crate_normal_2_medical",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3143506515
   },
   {
@@ -249,6 +303,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_crate_tools.prefab",
     "Name": "invisible_crate_tools",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 922765448
   },
   {
@@ -259,6 +318,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_foodbox.prefab",
     "Name": "invisible_foodbox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 3009986025
   },
   {
@@ -269,6 +334,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/modding/lootables/invisible/invisible_lootable_prefabs/invisible_vehicle_parts.prefab",
     "Name": "invisible_vehicle_parts",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2291464081
   },
   {
@@ -290,6 +360,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_basic.prefab",
     "Name": "crate_basic",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 1603759333
   },
   {
@@ -335,6 +411,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_elite.prefab",
     "Name": "crate_elite",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 3286607235
   },
   {
@@ -345,6 +427,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_mine.prefab",
     "Name": "crate_mine",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1071933290
   },
   {
@@ -423,6 +510,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_normal.prefab",
     "Name": "crate_normal",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 2857304752
   },
   {
@@ -478,6 +571,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_normal_2.prefab",
     "Name": "crate_normal_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 1546200557
   },
   {
@@ -488,6 +587,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_normal_2_food.prefab",
     "Name": "crate_normal_2_food",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2066926276
   },
   {
@@ -498,6 +602,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_normal_2_medical.prefab",
     "Name": "crate_normal_2_medical",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1791916628
   },
   {
@@ -508,6 +617,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_tools.prefab",
     "Name": "crate_tools",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 1892026534
   },
   {
@@ -553,6 +668,12 @@
     "Type": "FreeableLootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_underwater_advanced.prefab",
     "Name": "crate_underwater_advanced",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "FreeableLootContainer",
+      "RealmedRemove"
+    ],
     "ID": 2803512399
   },
   {
@@ -584,6 +705,12 @@
     "Type": "FreeableLootContainer",
     "Path": "assets/bundled/prefabs/radtown/crate_underwater_basic.prefab",
     "Name": "crate_underwater_basic",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "FreeableLootContainer",
+      "RealmedRemove"
+    ],
     "ID": 3852690109
   },
   {
@@ -594,6 +721,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm ammo.prefab",
     "Name": "DM Ammo",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1352353115
   },
   {
@@ -618,6 +750,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm c4.prefab",
     "Name": "DM C4",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3521356550
   },
   {
@@ -707,6 +844,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm construction resources.prefab",
     "Name": "DM Construction Resources",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3355994359
   },
   {
@@ -770,6 +912,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm construction tools.prefab",
     "Name": "DM Construction Tools",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 97593500
   },
   {
@@ -780,6 +927,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm food.prefab",
     "Name": "DM Food",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3701957711
   },
   {
@@ -790,6 +942,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm medical.prefab",
     "Name": "DM Medical",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3298381149
   },
   {
@@ -866,6 +1023,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm res.prefab",
     "Name": "DM Res",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 668744722
   },
   {
@@ -876,6 +1038,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm tier1 lootbox.prefab",
     "Name": "DM Tier1 Lootbox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "DecorAlign"
+    ],
     "ID": 269706561
   },
   {
@@ -886,6 +1054,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm tier2 lootbox.prefab",
     "Name": "DM Tier2 Lootbox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 4149070860
   },
   {
@@ -896,6 +1069,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/dmloot/dm tier3 lootbox.prefab",
     "Name": "DM Tier3 Lootbox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 226982278
   },
   {
@@ -906,6 +1084,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/foodbox.prefab",
     "Name": "foodbox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 2896170989
   },
   {
@@ -916,6 +1100,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/loot_barrel_1.prefab",
     "Name": "loot_barrel_1",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3364121927
   },
   {
@@ -926,6 +1115,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/loot_barrel_2.prefab",
     "Name": "loot_barrel_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 3269883781
   },
   {
@@ -936,6 +1131,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/loot_component_test.prefab",
     "Name": "loot_component_test",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1906351305
   },
   {
@@ -946,6 +1146,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/loot_trash.prefab",
     "Name": "loot_trash",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3279100614
   },
   {
@@ -956,6 +1161,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/minecart.prefab",
     "Name": "minecart",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1768976424
   },
   {
@@ -993,6 +1203,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/oil_barrel.prefab",
     "Name": "oil_barrel",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3438187947
   },
   {
@@ -1003,6 +1218,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_ammunition.prefab",
     "Name": "crate_ammunition",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2439530480
   },
   {
@@ -1029,6 +1249,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_elite.prefab",
     "Name": "crate_elite",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 96231181
   },
   {
@@ -1039,6 +1264,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_food_1.prefab",
     "Name": "crate_food_1",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 808303766
   },
   {
@@ -1049,6 +1279,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_food_2.prefab",
     "Name": "crate_food_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3249643118
   },
   {
@@ -1086,6 +1321,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_fuel.prefab",
     "Name": "crate_fuel",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2159599897
   },
   {
@@ -1096,6 +1336,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_medical.prefab",
     "Name": "crate_medical",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1800392710
   },
   {
@@ -1136,6 +1381,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_normal.prefab",
     "Name": "crate_normal",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1009499252
   },
   {
@@ -1191,6 +1441,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_normal_2.prefab",
     "Name": "crate_normal_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2276830067
   },
   {
@@ -1201,6 +1456,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/crate_tools.prefab",
     "Name": "crate_tools",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3027334492
   },
   {
@@ -1211,6 +1471,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/tech_parts_1.prefab",
     "Name": "tech_parts_1",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3185867955
   },
   {
@@ -1221,6 +1486,11 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/tech_parts_2.prefab",
     "Name": "tech_parts_2",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 2571433948
   },
   {
@@ -1231,6 +1501,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/underwater_labs/vehicle_parts.prefab",
     "Name": "vehicle_parts",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 971684836
   },
   {
@@ -1241,6 +1517,12 @@
     "Type": "LootContainer",
     "Path": "assets/bundled/prefabs/radtown/vehicle_parts.prefab",
     "Name": "vehicle_parts",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 356724277
   },
   {
@@ -1278,6 +1560,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign1.prefab",
     "Name": "Roadsign1",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 1470494616
   },
   {
@@ -1315,6 +1605,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign2.prefab",
     "Name": "Roadsign2",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 3393718932
   },
   {
@@ -1352,6 +1650,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign3.prefab",
     "Name": "Roadsign3",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 1974685386
   },
   {
@@ -1389,6 +1695,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign4.prefab",
     "Name": "Roadsign4",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 3212769340
   },
   {
@@ -1426,6 +1740,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign5.prefab",
     "Name": "Roadsign5",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 1002653177
   },
   {
@@ -1463,6 +1785,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign6.prefab",
     "Name": "Roadsign6",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 2963320017
   },
   {
@@ -1500,6 +1830,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign7.prefab",
     "Name": "Roadsign7",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 1272210039
   },
   {
@@ -1537,6 +1875,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign8.prefab",
     "Name": "Roadsign8",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 1751361167
   },
   {
@@ -1574,6 +1920,14 @@
     "Type": "LootContainer",
     "Path": "assets/content/props/roadsigns/roadsign9.prefab",
     "Name": "Roadsign9",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "Gibbable",
+      "RealmedRemove",
+      "Spawnable",
+      "TakeCollisionDamage"
+    ],
     "ID": 2277225257
   },
   {
@@ -1614,6 +1968,10 @@
     "Type": "LootContainer",
     "Path": "assets/content/vehicles/trains/wagons/subents/wagon_crate_normal.prefab",
     "Name": "wagon_crate_normal",
+    "Components": [
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 2225695845
   },
   {
@@ -1669,6 +2027,10 @@
     "Type": "LootContainer",
     "Path": "assets/content/vehicles/trains/wagons/subents/wagon_crate_normal_2.prefab",
     "Name": "wagon_crate_normal_2",
+    "Components": [
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 1187125596
   },
   {
@@ -1679,6 +2041,10 @@
     "Type": "LootContainer",
     "Path": "assets/content/vehicles/trains/wagons/subents/wagon_crate_normal_2_food.prefab",
     "Name": "wagon_crate_normal_2_food",
+    "Components": [
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 3590824134
   },
   {
@@ -1689,6 +2055,10 @@
     "Type": "LootContainer",
     "Path": "assets/content/vehicles/trains/wagons/subents/wagon_crate_normal_2_medical.prefab",
     "Name": "wagon_crate_normal_2_medical",
+    "Components": [
+      "LootContainer",
+      "RealmedRemove"
+    ],
     "ID": 2479563290
   },
   {
@@ -1805,6 +2175,14 @@
     "Type": "HackableLockedCrate",
     "Path": "assets/prefabs/deployable/chinooklockedcrate/codelockedhackablecrate.prefab",
     "Name": "CodelockedHackableCrate",
+    "Components": [
+      "Poolable",
+      "HackableLockedCrate",
+      "RealmedRemove",
+      "Model",
+      "EntityFlag_Toggle",
+      "EntityFlag_Toggle"
+    ],
     "ID": 209286362
   },
   {
@@ -1921,6 +2299,14 @@
     "Type": "HackableLockedCrate",
     "Path": "assets/prefabs/deployable/chinooklockedcrate/codelockedhackablecrate_oilrig.prefab",
     "Name": "CodelockedHackableCrate_Oilrig",
+    "Components": [
+      "Poolable",
+      "HackableLockedCrate",
+      "RealmedRemove",
+      "Model",
+      "EntityFlag_Toggle",
+      "EntityFlag_Toggle"
+    ],
     "ID": 2043434947
   },
   {
@@ -1931,6 +2317,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/food cache/food_cache_001.prefab",
     "Name": "Food_Cache_001",
+    "Components": [
+      "MeshLOD",
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1254812818
   },
   {
@@ -1941,6 +2333,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/food cache/food_cache_002.prefab",
     "Name": "Food_Cache_002",
+    "Components": [
+      "MeshLOD",
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 4273542191
   },
   {
@@ -1951,6 +2349,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/food cache/food_cache_003.prefab",
     "Name": "Food_Cache_003",
+    "Components": [
+      "MeshLOD",
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 3858903386
   },
   {
@@ -1961,6 +2365,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/food cache/food_cache_004.prefab",
     "Name": "Food_Cache_004",
+    "Components": [
+      "MeshLOD",
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 372904702
   },
   {
@@ -1971,6 +2381,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/food cache/food_cache_005.prefab",
     "Name": "Food_Cache_005",
+    "Components": [
+      "RendererLOD",
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1465626697
   },
   {
@@ -2047,6 +2463,13 @@
     "Type": "SupplyDrop",
     "Path": "assets/prefabs/misc/supply drop/supply_drop.prefab",
     "Name": "supply_drop",
+    "Components": [
+      "Poolable",
+      "SupplyDrop",
+      "EntityTimedDestroy",
+      "RealmedRemove",
+      "MusicChangeIntensity"
+    ],
     "ID": 3632568684
   },
   {
@@ -2057,6 +2480,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/misc/xmas/giftbox/giftbox_loot.prefab",
     "Name": "giftbox_loot",
+    "Components": [
+      "Poolable",
+      "LootContainer",
+      "RealmedRemove",
+      "EntityTimedDestroy"
+    ],
     "ID": 2216891097
   },
   {
@@ -2125,6 +2554,14 @@
     "Type": "SupplyDrop",
     "Path": "assets/prefabs/misc/xmas/sleigh/presentdrop.prefab",
     "Name": "presentdrop",
+    "Components": [
+      "Poolable",
+      "SupplyDrop",
+      "EntityTimedDestroy",
+      "RealmedRemove",
+      "MusicChangeIntensity",
+      "SoundPlayer"
+    ],
     "ID": 1473303316
   },
   {
@@ -2135,6 +2572,18 @@
     "Type": "Stocking",
     "Path": "assets/prefabs/misc/xmas/stockings/stocking_large_deployed.prefab",
     "Name": "stocking_large_deployed",
+    "Components": [
+      "Poolable",
+      "Stocking",
+      "Model",
+      "Construction",
+      "DeployVolumeOBB",
+      "Deployable",
+      "EntityFlag_Toggle",
+      "GroundWatch",
+      "DestroyOnGroundMissing",
+      "RealmedRemove"
+    ],
     "ID": 771996658
   },
   {
@@ -2145,6 +2594,18 @@
     "Type": "Stocking",
     "Path": "assets/prefabs/misc/xmas/stockings/stocking_small_deployed.prefab",
     "Name": "stocking_small_deployed",
+    "Components": [
+      "Poolable",
+      "Stocking",
+      "Model",
+      "Construction",
+      "DeployVolumeOBB",
+      "Deployable",
+      "EntityFlag_Toggle",
+      "RealmedRemove",
+      "GroundWatch",
+      "DestroyOnGroundMissing"
+    ],
     "ID": 3141927338
   },
   {
@@ -2169,6 +2630,10 @@
     "Type": "WhitelistLootContainer",
     "Path": "assets/prefabs/missions/entities/logstash.prefab",
     "Name": "LogStash",
+    "Components": [
+      "Poolable",
+      "WhitelistLootContainer"
+    ],
     "ID": 1943082497
   },
   {
@@ -2195,6 +2660,10 @@
     "Type": "WhitelistLootContainer",
     "Path": "assets/prefabs/missions/entities/missionlootbox_basic.prefab",
     "Name": "MissionLootBox_Basic",
+    "Components": [
+      "Poolable",
+      "WhitelistLootContainer"
+    ],
     "ID": 3128236346
   },
   {
@@ -2219,6 +2688,10 @@
     "Type": "WhitelistLootContainer",
     "Path": "assets/prefabs/missions/entities/missionstash.prefab",
     "Name": "MissionStash",
+    "Components": [
+      "Poolable",
+      "WhitelistLootContainer"
+    ],
     "ID": 3490516309
   },
   {
@@ -2256,6 +2729,10 @@
     "Type": "WhitelistLootContainer",
     "Path": "assets/prefabs/missions/entities/tacklebox.prefab",
     "Name": "TackleBox",
+    "Components": [
+      "Poolable",
+      "WhitelistLootContainer"
+    ],
     "ID": 1126295133
   },
   {
@@ -2306,6 +2783,14 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/missions/portal/proceduraldungeon/xmastunnels/loot/xmastunnellootbox.prefab",
     "Name": "XmasTunnelLootBox",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "RealmedRemove",
+      "SoundPlayer",
+      "Model"
+    ],
     "ID": 3343729976
   },
   {
@@ -2376,6 +2861,10 @@
     "Type": "LootContainerAchievement",
     "Path": "assets/prefabs/missions/tutorialisland/crate_elite_tutorial.prefab",
     "Name": "crate_elite_tutorial",
+    "Components": [
+      "Poolable",
+      "LootContainerAchievement"
+    ],
     "ID": 3586383791
   },
   {
@@ -2413,6 +2902,11 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/missions/tutorialisland/loot-barrel-tutorial.prefab",
     "Name": "Loot-Barrel-Tutorial",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer"
+    ],
     "ID": 1380255172
   },
   {
@@ -2540,6 +3034,11 @@
     "Type": "LockedByEntCrate",
     "Path": "assets/prefabs/npc/m2bradley/bradley_crate.prefab",
     "Name": "bradley_crate",
+    "Components": [
+      "Poolable",
+      "LockedByEntCrate",
+      "RealmedRemove"
+    ],
     "ID": 1737870479
   },
   {
@@ -2550,6 +3049,11 @@
     "Type": "LockedByEntCrate",
     "Path": "assets/prefabs/npc/patrol helicopter/heli_crate.prefab",
     "Name": "heli_crate",
+    "Components": [
+      "Poolable",
+      "LockedByEntCrate",
+      "RealmedRemove"
+    ],
     "ID": 1314849795
   },
   {
@@ -2587,6 +3091,12 @@
     "Type": "LootContainer",
     "Path": "assets/prefabs/resource/diesel barrel/diesel_barrel_world.prefab",
     "Name": "diesel_barrel_world",
+    "Components": [
+      "Poolable",
+      "Spawnable",
+      "LootContainer",
+      "Rust.PropRenderer"
+    ],
     "ID": 4140706055
   },
   {
@@ -2611,6 +3121,10 @@
     "Type": "NaturalBeehive",
     "Path": "assets/prefabs/resource/natural beehive/beehive.natural.prefab",
     "Name": "beehive.natural",
+    "Components": [
+      "NaturalBeehive",
+      "RealmedRemove"
+    ],
     "ID": 1577933610
   },
   {
@@ -2621,6 +3135,10 @@
     "Type": "VisualStorageContainer",
     "Path": "assets/scripts/entity/misc/visualstoragecontainer/visualshelvestest.prefab",
     "Name": "VisualShelvesTest",
+    "Components": [
+      "Poolable",
+      "VisualStorageContainer"
+    ],
     "ID": 3989929317
   }
 ]
