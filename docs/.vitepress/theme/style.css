@@ -47,7 +47,7 @@
   --c-carbon-1: #fc583b;
   --c-carbon-2: #fc3b3b;
   --c-carbon-3: #e04c4c;
-  --c-carbon-soft: rgba(252, 88, 59, 0.1);
+  --c-carbon-soft: rgba(49, 150, 36, 0.1);
 
   --c-carbon-release-add: #286e2e9a;
   --c-carbon-release-fix: #a8a73daf;
@@ -171,26 +171,4 @@
 
 .VPButton.medium.sponsor{
   border-radius: 0%;
-}
-
-.vp-doc .custom-block {
-  position: relative;
-  padding: 15px 15px 5px;
-  border-radius: 0px;
-  background: transparent;
-}
-
-.vp-doc .custom-block::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: #ffffff0e;
-  filter: blur(15px); /* You can tweak this */
-  z-index: 0;
-}
-
-.vp-doc .custom-block > * {
-  position: relative;
-  z-index: 1;
 }
