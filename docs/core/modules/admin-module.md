@@ -17,7 +17,7 @@ To gain access to the Admin panel for the first time:
 The Carbon tab comes with a variety of options and information about the live server, as well as Carbon configurations that be modified on the fly.
 
 ### Players Tab
-It's a simplified and straight-forward tab that displays all active and inactive players from the server. You may also search them using the search bar.
+It's a simplified and straight-forward tab that displays all active and inactive players from the server. You may also search them using the search bar. This tab also acts as an interface to do common actions with your players that you would expect out of an admin panel like banning, viewing inventories, healing players, and much more.
 
 ### Entities Tab
 Comes with a lot of filtering and searching options for specific entity type or names in the world. Inspecting entities will allow you to teleport to their positions, or you teleporting them to yours, spectating or changing flags (doors open/close), access and loot any container on the map, modify the health of entities on the fly, and metabolism options of players.
