@@ -49,6 +49,60 @@
   --vp-c-brand-dark: #00916d;
   --vp-c-brand-darker: #007d5d;
   --vp-c-brand-dimm: rgba(0, 166, 125, 0.08);
+
+  --rarity-none: #9ca3af;
+  --rarity-common: #10b981;
+  --rarity-uncommon: #3b82f6;
+  --rarity-rare: #8b5cf6;
+  --rarity-veryrare: #f59e0b;
+
+  /* Category Colors */
+  --category-weapon: #ef4444;      /* Red */
+  --category-construction: #78350f; /* Brown */
+  --category-items: #6b7280;       /* Gray */
+  --category-resources: #fbbf24;    /* Yellow */
+  --category-attire: #60a5fa;      /* Light Blue */
+  --category-tool: #f97316;        /* Orange */
+  --category-medical: #34d399;     /* Green */
+  --category-food: #c084fc;        /* Light Purple */
+  --category-ammunition: #dc2626;   /* Dark Red */
+  --category-traps: #ea580c;       /* Dark Orange */
+  --category-misc: #9ca3af;        /* Gray */
+  --category-all: #3b82f6;         /* Blue */
+  --category-common: #9ca3af;      /* Gray */
+  --category-component: #92400e;    /* Light Brown */
+  --category-search: #2563eb;      /* Dark Blue */
+  --category-favourite: #facc15;    /* Gold */
+  --category-electrical: #3b82f6;   /* Blue */
+  --category-fun: #d946ef;         /* Pink */
+}
+
+.dark {
+  --rarity-none: #6b7280;
+  --rarity-common: #059669;
+  --rarity-uncommon: #2563eb;
+  --rarity-rare: #7c3aed;
+  --rarity-veryrare: #d97706;
+
+  /* Category Colors - Dark Theme */
+  --category-weapon: #b91c1c;
+  --category-construction: #92400e;
+  --category-items: #4b5563;
+  --category-resources: #d97706;
+  --category-attire: #2563eb;
+  --category-tool: #ea580c;
+  --category-medical: #059669;
+  --category-food: #a855f7;
+  --category-ammunition: #991b1b;
+  --category-traps: #c2410c;
+  --category-misc: #6b7280;
+  --category-all: #2563eb;
+  --category-common: #6b7280;
+  --category-component: #78350f;
+  --category-search: #1d4ed8;
+  --category-favourite: #eab308;
+  --category-electrical: #2563eb;
+  --category-fun: #c026d3;
 }
 
 /**

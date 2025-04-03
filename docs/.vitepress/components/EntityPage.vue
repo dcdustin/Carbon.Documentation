@@ -147,7 +147,7 @@ watch(entity, (newEntity) => {
 
         <!-- Entity Info -->
         <div class="flex-1 space-y-4">
-          <div class="bg-gray-100 dark:bg-gray-700">
+          <div class=" dark:bg-gray-700">
             <div class="flex flex-wrap gap-1.5 pt-0.5">
               <template v-for="component in entity.Components" :key="component">
                 <VPBadge type="info" :text="component"/>

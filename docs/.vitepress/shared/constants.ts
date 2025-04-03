@@ -67,33 +67,33 @@ export const getSpawnTypeText = (type: SpawnType): string => {
 
 // Color mappings
 export const RARITY_COLORS = {
-  [ItemRarity.None]: 'gray',
-  [ItemRarity.Common]: 'blue',
-  [ItemRarity.Uncommon]: 'green',
-  [ItemRarity.Rare]: 'purple',
-  [ItemRarity.VeryRare]: 'orange',
+  [ItemRarity.None]: 'var(--rarity-none)',
+  [ItemRarity.Common]: 'var(--rarity-common)',
+  [ItemRarity.Uncommon]: 'var(--rarity-uncommon)',
+  [ItemRarity.Rare]: 'var(--rarity-rare)',
+  [ItemRarity.VeryRare]: 'var(--rarity-veryrare)',
 } as const
 
 export const CATEGORY_COLORS = {
-  [ItemCategory.Weapon]: 'red',
-  [ItemCategory.Construction]: 'brown',
-  [ItemCategory.Items]: 'gray',
-  [ItemCategory.Resources]: 'yellow',
-  [ItemCategory.Attire]: 'blue',
-  [ItemCategory.Tool]: 'orange',
-  [ItemCategory.Medical]: 'green',
-  [ItemCategory.Food]: 'purple',
-  [ItemCategory.Ammunition]: 'red',
-  [ItemCategory.Traps]: 'orange',
-  [ItemCategory.Misc]: 'gray',
-  [ItemCategory.All]: 'blue',
-  [ItemCategory.Common]: 'gray',
-  [ItemCategory.Component]: 'brown',
-  [ItemCategory.Search]: 'blue',
-  [ItemCategory.Favourite]: 'yellow',
-  [ItemCategory.Electrical]: 'blue',
-  [ItemCategory.Fun]: 'purple',
-} as const 
+  [ItemCategory.Weapon]: 'var(--category-weapon)',
+  [ItemCategory.Construction]: 'var(--category-construction)',
+  [ItemCategory.Items]: 'var(--category-items)',
+  [ItemCategory.Resources]: 'var(--category-resources)',
+  [ItemCategory.Attire]: 'var(--category-attire)',
+  [ItemCategory.Tool]: 'var(--category-tool)',
+  [ItemCategory.Medical]: 'var(--category-medical)',
+  [ItemCategory.Food]: 'var(--category-food)',
+  [ItemCategory.Ammunition]: 'var(--category-ammunition)',
+  [ItemCategory.Traps]: 'var(--category-traps)',
+  [ItemCategory.Misc]: 'var(--category-misc)',
+  [ItemCategory.All]: 'var(--category-all)',
+  [ItemCategory.Common]: 'var(--category-common)',
+  [ItemCategory.Component]: 'var(--category-component)',
+  [ItemCategory.Search]: 'var(--category-search)',
+  [ItemCategory.Favourite]: 'var(--category-favourite)',
+  [ItemCategory.Electrical]: 'var(--category-electrical)',
+  [ItemCategory.Fun]: 'var(--category-fun)',
+} as const
 
 export const GAME_DATA_FOLDER = 'https://carbonmod.gg/redist/metadata/rust'
 

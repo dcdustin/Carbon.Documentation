@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue'
-import { Copy, CheckCircle2, ExternalLink, Database, Tag } from 'lucide-vue-next'
+import { Copy, CheckCircle2, ExternalLink, Database, Tag, Loader2, ArrowLeft } from 'lucide-vue-next'
 import { 
   getGameData,
   GAME_DATA_FOLDER,
@@ -8,12 +8,12 @@ import {
   getItemRarityText,
   getItemFlagText,
   ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL
+  MISSING_IMAGE_URL,
+  CATEGORY_COLORS,
+  RARITY_COLORS
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-
-import { ArrowLeft } from 'lucide-vue-next'
 
 const item = ref(null)
 const isLoading = ref(true)
@@ -113,6 +113,18 @@ watch(item, (newItem) => {
                      size="14"
             />
           </button>
+          <button 
+            @click="copyToClipboard(item.ShortName, 'shortname')" 
+            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          >
+            <span class="font-mono">{{ item.ShortName }}</span>
+            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" 
+                     class="ml-2" 
+                     size="14"
+            />
+          </button>
+
+
         </div>
         <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database size="16"/>
@@ -140,11 +152,11 @@ watch(item, (newItem) => {
 
         <!-- Item Info -->
         <div class="flex-1 space-y-4">
-          <div class="bg-gray-100 dark:bg-gray-700">
+          <div class=" dark:bg-gray-700">
             <p class="text-gray-600 dark:text-gray-300">{{ item.Description }}</p>
             <div class="flex flex-wrap gap-2 mt-4">
-              <VPBadge type="info" :text="getItemCategoryText(item.Category)"/>
-              <VPBadge type="warning" :text="`Rarity: ${getItemRarityText(item.Rarity)}`"/>
+              <VPBadge :text="getItemCategoryText(item.Category)" :style="{ backgroundColor: CATEGORY_COLORS[item.Category], color: '#fff' }"/>
+              <VPBadge :text="getItemRarityText(item.Rarity)" :style="{ backgroundColor: RARITY_COLORS[item.Rarity], color: '#fff' }"/>
               <VPBadge v-if="item.Stack > 1" type="tip" :text="`Stack: ${item.Stack}`"/>
               <template v-for="flag in getItemFlagText(item.Flags)" :key="flag">
                 <VPBadge type="danger" :text="flag"/>
@@ -153,19 +165,13 @@ watch(item, (newItem) => {
           </div>
 
           <div class="space-y-2">
-            <h2 class="text-xl font-semibold">Short Name:</h2>
             <div class="flex items-center gap-2">
-              <div class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all p-3 bg-gray-50 dark:bg-gray-800 flex-1">
-                {{ item.ShortName }}
+              <div class="font-mono ">
+              Id: {{ item.Id }}
+              <br>
+              Short Name: {{ item.ShortName }}
               </div>
-              <button 
-                @click="copyToClipboard(item.ShortName, 'shortname')" 
-                class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              >
-                <component :is="copiedId === 'shortname' ? CheckCircle2 : Copy" 
-                        size="14"
-                />
-              </button>
+             
             </div>
           </div>
         </div>

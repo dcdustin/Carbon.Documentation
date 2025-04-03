@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, nextTick, watch } from 'vue'
+import { ref, onMounted, computed, nextTick, watch, onUnmounted } from 'vue'
 import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
 import { 
   getGameData,
@@ -12,6 +12,10 @@ const copiedId = ref(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
+const pageSize = 50
+const currentPage = ref(1)
+const loadingMore = ref(false)
+const hasMore = ref(true)
 
 const LINK_API = `${GAME_DATA_FOLDER}/entities.json`
 const API_URL = LINK_API
@@ -64,11 +68,18 @@ const filteredEntities = computed(() => {
   return filtered
 })
 
+const paginatedEntities = computed(() => {
+  const start = 0
+  const end = currentPage.value * pageSize
+  return filteredEntities.value.slice(start, end)
+})
+
 let debounceTimeout
 const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
+    currentPage.value = 1 
   }, 300)
 }
 
@@ -99,11 +110,42 @@ const scrollToHash = () => {
   }
 }
 
-// Watch for changes in entities data
+const loadMore = () => {
+  if (loadingMore.value || !hasMore.value) return
+  
+  const totalItems = filteredEntities.value.length
+  const currentItems = currentPage.value * pageSize
+  
+  if (currentItems >= totalItems) {
+    hasMore.value = false
+    return
+  }
+  
+  loadingMore.value = true
+  currentPage.value += 1
+  loadingMore.value = false
+}
+
+const handleScroll = () => {
+  const scrollHeight = document.documentElement.scrollHeight
+  const scrollTop = document.documentElement.scrollTop
+  const clientHeight = document.documentElement.clientHeight
+  
+  if (scrollHeight - scrollTop <= clientHeight + 100) {
+    loadMore()
+  }
+}
+
+
 watch(entities, async () => {
   await nextTick()
   scrollToHash()
 }, { immediate: true })
+
+watch(debouncedSearchQuery, () => {
+  currentPage.value = 1
+  hasMore.value = true
+})
 
 onMounted(async () => {
   try {    
@@ -144,12 +186,16 @@ onMounted(async () => {
 
 onMounted(() => {
   window.addEventListener('hashchange', scrollToHash)
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-
     <h1 class="text-2xl font-bold mb-4">Rust Game Entities Reference</h1>
     <p class="mb-8">This section contains a comprehensive list of all entity prefabs available in the game. Each entity is listed with its unique ID, components, and file path.</p>
 
@@ -169,7 +215,7 @@ onMounted(() => {
     </div>
 
     <div v-else>
-      <div class="filters mb-4">
+      <div class="filters ">
         <div class="flex items-center">
           <Search class="text-gray-400" size="20"/>
           <div class="relative flex-1 flex">
@@ -178,22 +224,29 @@ onMounted(() => {
               v-model="searchQuery" 
               @input="updateDebouncedSearch($event.target.value)"
               placeholder="Search entities..." 
-              class="w-[400px] px-4 py-2"
+              class="w-[400px] "
             >
           </div>
         </div>
       </div>
 
-      <div v-if="filteredEntities && filteredEntities.length">
+      <div v-if="paginatedEntities && paginatedEntities.length">
+        
+        <div class="fixed bottom-4 right-4 z-50">
+          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 border border-gray-200 dark:border-gray-700">
+            Showing {{ paginatedEntities.length }} of {{ filteredEntities.length }} entities
+          </div>
+        </div>
+
+
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full align-middle p-2">
+          <div class="inline-block min-w-full  ">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            
-              <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                <tr v-for="entity in filteredEntities" :key="entity.ID" :id="entity.ID">
-                  <td class="px-4 py-4 whitespace-normal">
-                    <div class="flex flex-col gap-3">
-                      <div class="flex flex-wrap items-center gap-2">
+              <tbody >
+                <tr v-for="entity in paginatedEntities" :key="entity.ID" :id="entity.ID" class="items-table-row">
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex flex-col ">
+                      <div class="flex flex-wrap items-center ">
                         <a :href="`/Carbon.Documentation/references/entities/details?id=${entity.ID}`" class="flex-shrink-0">
                           <VPBadge :id="entity.ID.toString()" type="tip" text="#"/>
                         </a>
@@ -223,6 +276,10 @@ onMounted(() => {
             </table>
           </div>
         </div>
+
+        <div v-if="loadingMore" class="flex justify-center py-4">
+          <Loader2 class="animate-spin" size="24"/>
+        </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No entities found matching your search</p>
@@ -235,4 +292,18 @@ onMounted(() => {
       </div>
     </div>
   </div>
-</template> 
+</template>
+
+<style scoped>
+.items-table-row {
+  transition: background-color 0.2s ease;
+}
+
+.items-table-row:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .items-table-row:hover {
+  background-color: #1f2937;
+}
+</style> 

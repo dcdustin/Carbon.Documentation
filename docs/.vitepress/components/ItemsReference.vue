@@ -1,11 +1,13 @@
 <script setup>
-import { ref, onMounted, computed, nextTick } from 'vue'
+import { ref, onMounted, computed, nextTick, watch, onUnmounted } from 'vue'
 import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
 import { 
   getItemFlagText, 
   getItemCategoryText, 
   getItemRarityText, 
   ItemCategory,
+  RARITY_COLORS,
+  CATEGORY_COLORS,
   getGameData,
   GAME_DATA_FOLDER,
   ITEM_IMAGE_SERVER,
@@ -21,6 +23,10 @@ const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
 const selectedCategory = ref('all')
+const pageSize = 50
+const currentPage = ref(1)
+const loadingMore = ref(false)
+const hasMore = ref(true)
 
 const LINK_API = `${GAME_DATA_FOLDER}/items.json`
 const API_URL = LINK_API
@@ -94,11 +100,18 @@ const filteredItems = computed(() => {
   return filtered
 })
 
+const paginatedItems = computed(() => {
+  const start = 0
+  const end = currentPage.value * pageSize
+  return filteredItems.value.slice(start, end)
+})
+
 let debounceTimeout
 const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
+    currentPage.value = 1
   }, 300)
 }
 
@@ -127,23 +140,42 @@ const handleImageError = (event) => {
   console.warn(`Failed to load image for item: ${event.target.src}`)
 }
 
+const loadMore = () => {
+  if (loadingMore.value || !hasMore.value) return
+  
+  const totalItems = filteredItems.value.length
+  const currentItems = currentPage.value * pageSize
+  
+  if (currentItems >= totalItems) {
+    hasMore.value = false
+    return
+  }
+  
+  loadingMore.value = true
+  currentPage.value += 1
+  loadingMore.value = false
+}
+
+const handleScroll = () => {
+  const scrollHeight = document.documentElement.scrollHeight
+  const scrollTop = document.documentElement.scrollTop
+  const clientHeight = document.documentElement.clientHeight
+  
+  if (scrollHeight - scrollTop <= clientHeight + 100) {
+    loadMore()
+  }
+}
+
 onMounted(async () => {
   try {
-    console.log('Starting to load items...')
-    
     const cachedData = getCachedData()
     if (cachedData) {
-      console.log('Found cached data:', cachedData.length, 'items')
       items.value = cachedData
       isLoading.value = false
-    } else {
-      console.log('No cached data found')
     }
 
-    console.log('Fetching from:', API_URL)
     try {
       const data = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
-      console.log('Data received:', data?.length || 0, 'items')
       
       if (!Array.isArray(data)) {
         throw new Error('Data is not an array')
@@ -156,32 +188,13 @@ onMounted(async () => {
         typeof item.DisplayName !== 'undefined' &&
         typeof item.ShortName !== 'undefined'
       )
-
-      console.log('Filtered data:', filteredData.length, 'items')
       
       setCachedData(filteredData)
       items.value = filteredData
-      console.log('Items loaded successfully')
     } catch (fetchError) {
       console.error('Fetch error:', fetchError)
       if (!items.value.length) {
         throw fetchError
-      }
-    }
-
-    const hash = window.location.hash
-    if (hash) {
-      await nextTick()
-      const element = document.querySelector(hash)
-      if (element) {
-        const headerOffset = 100
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
       }
     }
   } catch (error) {
@@ -193,27 +206,29 @@ onMounted(async () => {
 })
 
 onMounted(() => {
-  window.addEventListener('hashchange', () => {
-    const hash = window.location.hash
-    if (hash) {
-      const element = document.querySelector(hash)
-      if (element) {
-        const headerOffset = 100
-        const elementPosition = element.getBoundingClientRect().top
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+  window.addEventListener('scroll', handleScroll)
+})
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
-      }
-    }
-  })
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+watch(debouncedSearchQuery, () => {
+  currentPage.value = 1
+  hasMore.value = true
+})
+
+watch(selectedCategory, () => {
+  currentPage.value = 1
+  hasMore.value = true
 })
 </script>
 
 <template>
-  <div class="">
+  <div class="max-w-screen-lg mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-4">Rust Game Items Reference</h1>
+    <p class="mb-8">This section contains a comprehensive list of all items available in the game. Each item is listed with its unique ID, components, and file path.</p>
+
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
@@ -231,9 +246,9 @@ onMounted(() => {
 
     <div v-else>
       <div class="filters mb-4">
-        <div class="flex  items-center">
-          <Search class="text-gray-400" size="20"/>
-          <div class="relative flex-1 flex ">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center flex-1">
+            <Search class="text-gray-400" size="20"/>
             <input 
               type="text" 
               v-model="searchQuery" 
@@ -258,85 +273,101 @@ onMounted(() => {
         </div>
       </div>
 
-      <div v-if="filteredItems && filteredItems.length" class="overflow-x-auto">
-        <table class="items-table">
-          <thead>
-            <tr>
-              <th style="width:150px;">Image</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in filteredItems" :key="item.Id">
-              <td style="width:150px;">
-                <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" class="block">
-                  <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
-                    <img 
-                      :src="getItemImageUrl(item.ShortName)" 
-                      @error="handleImageError"
-                      class="w-full h-full object-contain p-4"
-                      :alt="item.DisplayName"
-                    >
-                    <div class="absolute inset-0 flex items-center justify-center" v-if="!item.ShortName">
-                      <Tag size="24" />
+      <div v-if="paginatedItems && paginatedItems.length">
+        <div class="fixed bottom-4 right-4 z-50">
+          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 border border-gray-200 dark:border-gray-700">
+            Showing {{ paginatedItems.length }} of {{ filteredItems.length }} items
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <div class="inline-block min-w-full">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody>
+                <tr v-for="item in paginatedItems" :key="item.Id" :id="item.Id" class="items-table-row">
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex gap-4">
+                      <div class="flex-shrink-0">
+                        <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" class="block">
+                          <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
+                            <img 
+                              :src="getItemImageUrl(item.ShortName)" 
+                              @error="handleImageError"
+                              class="w-full h-full object-contain p-4"
+                              :alt="item.DisplayName"
+                            >
+                            <div class="absolute inset-0 flex items-center justify-center" v-if="!item.ShortName">
+                              <Tag size="24" />
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                          <h5 :id="getSanitizedAnchor(item.DisplayName)" class="text-lg font-medium">
+                            <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" 
+                               class="hover:text-primary inline-flex items-center gap-2">
+                              {{ item.DisplayName }}
+                              <ExternalLink size="14" class="opacity-60"/>
+                            </a>
+                          </h5>
+                          <div v-if="item.Hidden">
+                            <VPBadge type="danger" text="Hidden"/>
+                          </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 mt-2">
+                          <template v-for="flag in getFlags(item.Flags)" :key="flag">
+                            <VPBadge type="warning" :text="flag"/>
+                          </template>
+                          <VPBadge v-if="item.Category !== undefined" 
+                                  :text="getItemCategoryText(item.Category)"
+                                  :style="{ backgroundColor: CATEGORY_COLORS[item.Category], color: '#fff' }"/>
+                          <VPBadge v-if="item.Rarity !== undefined" 
+                                  :text="getItemRarityText(item.Rarity)"
+                                  :style="{ backgroundColor: RARITY_COLORS[item.Rarity], color: '#fff' }"/>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 mt-3">
+                          <button 
+                            v-if="item.Id"
+                            @click="copyToClipboard(item.Id, 'id', item.Id)" 
+                            class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                          >
+                            <span class="font-mono">ID: {{ item.Id }}</span>
+                            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" 
+                                     class="ml-2" 
+                                     size="14"
+                            />
+                          </button>
+                          <button 
+                            v-if="item.ShortName"
+                            @click="copyToClipboard(item.ShortName, 'name')" 
+                            class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                          >
+                            <span class="font-mono">{{ item.ShortName }}</span>
+                            <component :is="copiedName ? CheckCircle2 : Copy" 
+                                     class="ml-2" 
+                                     size="14"
+                            />
+                          </button>
+                        </div>
+
+                        <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                          {{ item.Description }}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </td>
-              <td class="align-top">
-                <div class="flex items-center justify-between mb-2">
-                  <h5 :id="getSanitizedAnchor(item.DisplayName)" class="text-lg font-medium">
-                    <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" 
-                       class="hover:text-primary inline-flex items-center gap-2">
-                      {{ item.DisplayName }}
-                      <ExternalLink size="14" class="opacity-60"/>
-                    </a>
-                  </h5>
-                  <div v-if="item.Hidden">
-                    <VPBadge type="danger" text="Hidden"/>
-                  </div>
-                </div>
-                
-                <div class="flex flex-wrap gap-2 mt-2">
-                  <template v-for="flag in getFlags(item.Flags)" :key="flag">
-                    <VPBadge type="warning" :text="flag"/>
-                  </template>
-                  <VPBadge v-if="item.Category !== undefined" type="info" :text="getItemCategoryText(item.Category)"/>
-                  <VPBadge v-if="item.Rarity" type="tip" :text="getItemRarityText(item.Rarity)"/>
-                </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <button 
-                    v-if="item.Id"
-                    @click="copyToClipboard(item.Id, 'id', item.Id)" 
-                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                  >
-                    <span class="font-mono">ID: {{ item.Id }}</span>
-                    <component :is="copiedId === item.Id ? CheckCircle2 : Copy" 
-                             class="ml-2" 
-                             size="14"
-                    />
-                  </button>
-                  <button 
-                    v-if="item.ShortName"
-                    @click="copyToClipboard(item.ShortName, 'name')" 
-                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                  >
-                    <span class="font-mono">{{ item.ShortName }}</span>
-                    <component :is="copiedName ? CheckCircle2 : Copy" 
-                             class="ml-2" 
-                             size="14"
-                    />
-                  </button>
-                </div>
-
-                <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                  {{ item.Description }}
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div v-if="loadingMore" class="flex justify-center py-4">
+          <Loader2 class="animate-spin" size="24"/>
+        </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No items found matching your search</p>
@@ -353,3 +384,17 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.items-table-row {
+  transition: background-color 0.2s ease;
+}
+
+.items-table-row:hover {
+  background-color: #f3f4f6;
+}
+
+.dark .items-table-row:hover {
+  background-color: #1f2937;
+}
+</style>
