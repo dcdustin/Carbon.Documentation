@@ -6,6 +6,7 @@ import './style.css'
 import CarbonButton from '../components/CarbonButton.vue'
 import CarbonBadge from '../components/CarbonBadge.vue'
 import CarbonChange from '../components/CarbonChange.vue'
+import ItemsReference from './components/ItemsReference.vue'
 
 export default {
   extends: DefaultTheme,
@@ -19,5 +20,6 @@ export default {
     app.component('CarbonButton', CarbonButton)
     app.component('CarbonBadge', CarbonBadge)
     app.component('CarbonChange', CarbonChange)
+    app.component('ItemsReference', ItemsReference)
   }
 } satisfies Theme

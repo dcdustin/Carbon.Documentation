@@ -59,8 +59,8 @@ export default defineConfig({
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
+            { text: 'Items', link: '/references/items' },
             { text: 'Entities', collapsed: true, items: getFiles("../references/entities") },
-            { text: 'Items', collapsed: true, items: getFiles("../references/items") },
             { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
             { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
