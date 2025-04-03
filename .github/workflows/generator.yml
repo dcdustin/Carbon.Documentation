@@ -1,0 +1,69 @@
+name: Generator
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Process
+        shell: cmd
+        run: |
+          cd %GITHUB_WORKSPACE%\tools
+          Generate.bat
+          
+      - name: Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Archive
+          path: |
+            tools\Server\carbon
+
+      - name: FTP Upload (rust/blueprints.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/blueprints.json"
+          dest: "metadata/rust/blueprints.json"
+
+      - name: FTP Upload (rust/entities.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/entities.json"
+          dest: "metadata/rust/entities.json"
+
+      - name: FTP Upload (rust/prefabs.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/prefabs.json"
+          dest: "metadata/rust/prefabs.json"
+
+      - name: FTP Upload (rust/items.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/items.json"
+          dest: "metadata/rust/items.json"
+
+      - name: FTP Upload (rust/loot-tables.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/loot-tables.json"
+          dest: "metadata/rust/loot-tables.json"
