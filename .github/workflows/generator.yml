@@ -9,7 +9,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
+      
+      - name: Environment Setup
+        id: step1
+        shell: bash
+        run: |
+          echo "version=$(curl -s -L 'https://carbonmod.gg/version?id=docs&token=${{secrets.VERSIONS_TOKEN}}')" >> $GITHUB_OUTPUT
+          
       - name: Process
         shell: cmd
         run: |
