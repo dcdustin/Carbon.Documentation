@@ -23,11 +23,12 @@ jobs:
           path: |
             tools\Server\carbon
 
-      - name: FTP Upload Debug
-        uses: tomasbkk/action-ftp-upload@v1.0
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          user: redist@carbonmod.gg
+          server: ftp://147.135.88.204
+          username: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
-          src: "tools/Server/carbon/results/"
-          dest: "metadata/"
+          local-dir: tools/Server/carbon/results
+          server-dir: /metadata/
+
