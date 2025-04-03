@@ -30,4 +30,4 @@ jobs:
           password: ${{ secrets.FTP_PWD }}
           host: 147.135.88.204
           src: "tools/Server/carbon/results/"
-          dest: "metadata"
+          dest: "metadata/"
