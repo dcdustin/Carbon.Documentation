@@ -103,9 +103,12 @@ public class CodeGen : CarbonPlugin
 					Rarity = blueprint.rarity,
 					CraftAmount = blueprint.amountToCreate,
 					ScrapRequired = blueprint.scrapRequired,
+					ScrapFromRecycle = blueprint.scrapFromRecycle,
 					WorkbenchLevelRequired = blueprint.workbenchLevelRequired,
 					NeedsSteamItem = blueprint.NeedsSteamItem,
 					NeedsSteamDLC = blueprint.NeedsSteamDLC,
+					Time = blueprint.time,
+					RequireUnlockedItem = blueprint.RequireUnlockedItem != null ? Item.Parse<Item>(blueprint.RequireUnlockedItem) : null
 				});
 			}
 
@@ -175,7 +178,8 @@ public class CodeGen : CarbonPlugin
 		public bool Hidden { get; set; }
 		public ItemDefinition.Flag Flags { get; set; }
 		public ItemCategory Category { get; set; }
-		public Rust.Rarity Rarity { get; set; }
+		public Rarity Rarity { get; set; }
+		public SteamDlcItem SteamDlcItem { get; set; }
 
 		public static T Parse<T>(ItemDefinition definition) where T : Item
 		{
@@ -190,10 +194,25 @@ public class CodeGen : CarbonPlugin
 			instance.Flags = definition.flags;
 			instance.Category = definition.category;
 			instance.Rarity = definition.rarity;
+			if (definition.steamDlc != null)
+			{
+				instance.SteamDlcItem = new()
+				{
+					Name = definition.steamDlc.dlcName.english,
+					AppId = definition.steamDlc.dlcAppID
+				};
+			}
 
 			return instance;
 		}
 	}
+
+	public class SteamDlcItem
+	{
+		public string Name { get; set; }
+		public int AppId { get; set; }
+	}
+
 	public class Entity : Prefab
 	{
 		public static T Parse<T>(BaseEntity entity) where T : Entity
@@ -223,9 +242,12 @@ public class CodeGen : CarbonPlugin
 		public Item Item { get; set; }
 		public bool UserCraftable { get; set; }
 		public Rarity Rarity { get; set; }
+		public float Time { get; set; }
 		public int CraftAmount { get; set; }
 		public int ScrapRequired { get; set; }
+		public int ScrapFromRecycle { get; set; }
 		public int WorkbenchLevelRequired { get; set; }
+		public Item RequireUnlockedItem { get; set; }
 		public bool NeedsSteamItem { get; set; }
 		public bool NeedsSteamDLC { get; set; }
 
