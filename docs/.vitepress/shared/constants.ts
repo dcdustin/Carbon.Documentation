@@ -94,3 +94,39 @@ export const CATEGORY_COLORS = {
   [ItemCategory.Electrical]: 'blue',
   [ItemCategory.Fun]: 'purple',
 } as const 
+
+export const GAME_DATA_FOLDER = 'https://carbonmod.gg/redist/metadata/rust'
+
+export const getGameData = async (url: string) => {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`)
+    }
+    return response.json()
+  } catch (error) {
+    console.error('Error fetching data:', error)
+    throw error
+  }
+}
+
+export const ITEM_IMAGE_SERVER = 'https://carbonmod.gg/assets/media/items'
+export const MISSING_IMAGE_URL = 'https://carbonmod.gg/assets/media/missing.jpg'
+
+// need to use item shortname to get the image ex: https://carbonmod.gg/assets/media/items/hat.wolf.png
+export const getImage = async (image: string) => {
+  try {
+    const response = await fetch(`${ITEM_IMAGE_SERVER}/${image}`)
+    if (!response.ok) {
+      return MISSING_IMAGE_URL
+    }
+    return response.blob()
+  } catch (error) {
+    console.error('Error fetching image:', error)
+    return MISSING_IMAGE_URL
+  }
+}
+
+
+
+

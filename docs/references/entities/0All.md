@@ -4,7 +4,7 @@ The following list contains information of a total of <Badge type="warning" text
 
 ## API
 Here's the API endpoint for you to use in your projects.
-<CarbonButton href="/Carbon.Documentation/rust/entities.json" text="Entities API" icon="gtk" external="true"/>
+<CarbonButton href="/Carbon.Documentation/rust/entities.json" text="Entities API" icon="Database" external="true"/>
 
 ---
 | Entity Type, ID & Path |

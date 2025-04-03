@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --c-carbon-1: #fc583b;
   --c-carbon-2: #fc3b3b;
@@ -38,6 +42,13 @@
   --vp-c-danger-2: var(--vp-c-red-2);
   --vp-c-danger-3: var(--vp-c-red-3);
   --vp-c-danger-soft: var(--vp-c-red-soft);
+
+  --vp-c-brand: #00a67d;
+  --vp-c-brand-light: #00c08b;
+  --vp-c-brand-lighter: #00d699;
+  --vp-c-brand-dark: #00916d;
+  --vp-c-brand-darker: #007d5d;
+  --vp-c-brand-dimm: rgba(0, 166, 125, 0.08);
 }
 
 /**

@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitepress'
-import { getCategorized, getFiles } from './carbonUtils.mts';
+import tailwindcss from '@tailwindcss/postcss7-compat'
+import autoprefixer from 'autoprefixer'
+// import { getCategorized, getFiles } from './carbonUtils.mts';
  
 export default defineConfig({
   title: "Carbon Documentation",
-  description: "Carbon Mod Documentation",
+  description: "Documentation for Carbon",
   base: '/Carbon.Documentation/',
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   cleanUrls: true,
@@ -47,7 +49,7 @@ export default defineConfig({
         {
           text: 'Hooks',
           link: '/hooks',
-          items: getCategorized("../hooks")
+          // items: getCategorized("../hooks")
         } 
       ],
       
@@ -60,8 +62,8 @@ export default defineConfig({
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
             { text: 'Items', link: '/references/items' },
-            { text: 'Entities', collapsed: true, items: getFiles("../references/entities") },
-            { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
+            { text: 'Entities', link: '/references/entities' },
+            // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
             { text: 'Loot Tables', link: '/references/loot-tables' },
           ]
         } 
@@ -90,5 +92,22 @@ export default defineConfig({
     },
     
   },
+  vite: {
+    css: {
+      postcss: {
+        plugins: [
+          tailwindcss,
+          autoprefixer
+        ]
+      }
+    }
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.includes('-')
+      }
+    }
+  }
 })
   
