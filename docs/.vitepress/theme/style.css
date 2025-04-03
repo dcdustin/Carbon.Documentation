@@ -85,24 +85,24 @@
   --rarity-veryrare: #d97706;
 
   /* Category Colors - Dark Theme */
-  --category-weapon: #b91c1c;
-  --category-construction: #92400e;
-  --category-items: #4b5563;
-  --category-resources: #d97706;
-  --category-attire: #2563eb;
-  --category-tool: #ea580c;
-  --category-medical: #059669;
-  --category-food: #a855f7;
-  --category-ammunition: #991b1b;
-  --category-traps: #c2410c;
-  --category-misc: #6b7280;
-  --category-all: #2563eb;
-  --category-common: #6b7280;
-  --category-component: #78350f;
-  --category-search: #1d4ed8;
-  --category-favourite: #eab308;
-  --category-electrical: #2563eb;
-  --category-fun: #c026d3;
+  --category-weapon: #7f1d1d;
+  --category-construction: #5c2c0e;
+  --category-items: #374151;
+  --category-resources: #92400e;
+  --category-attire: #1e40af;
+  --category-tool: #9a3412;
+  --category-medical: #047857;
+  --category-food: #7e22ce;
+  --category-ammunition: #7f1d1d;
+  --category-traps: #9a3412;
+  --category-misc: #4b5563;
+  --category-all: #1e40af;
+  --category-common: #4b5563;
+  --category-component: #5c2c0e;
+  --category-search: #1e40af;
+  --category-favourite: #a16207;
+  --category-electrical: #1e40af;
+  --category-fun: #9333ea;
 }
 
 /**

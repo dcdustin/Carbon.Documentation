@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, nextTick, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image } from 'lucide-vue-next'
 import { 
   getItemFlagText, 
   getItemCategoryText, 
@@ -14,6 +14,7 @@ import {
   MISSING_IMAGE_URL,
   getImage
 } from '../shared/constants'
+import { getCachedData } from '../shared/utils'
 import { VPBadge } from 'vitepress/theme'
 
 const items = ref([])
@@ -27,31 +28,12 @@ const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
+const imageErrors = ref(new Map())
 
 const LINK_API = `${GAME_DATA_FOLDER}/items.json`
 const API_URL = LINK_API
 
 const CACHE_KEY = 'carbon_items_cache'
-const CACHE_EXPIRY = 24 * 60 * 60 * 1000
-
-const getCachedData = () => {
-  const cached = localStorage.getItem(CACHE_KEY)
-  if (!cached) return null
-  
-  const { data, timestamp } = JSON.parse(cached)
-  if (Date.now() - timestamp > CACHE_EXPIRY) {
-    localStorage.removeItem(CACHE_KEY)
-    return null
-  }
-  return data
-}
-
-const setCachedData = (data) => {
-  localStorage.setItem(CACHE_KEY, JSON.stringify({
-    data,
-    timestamp: Date.now()
-  }))
-}
 
 const toString = (value) => value?.toString() || ''
 
@@ -135,8 +117,8 @@ const getItemImageUrl = (shortName) => {
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
 }
 
-const handleImageError = (event) => {
-  event.target.src = MISSING_IMAGE_URL
+const handleImageError = (event, itemId) => {
+  imageErrors.value.set(itemId, true)
   console.warn(`Failed to load image for item: ${event.target.src}`)
 }
 
@@ -168,35 +150,23 @@ const handleScroll = () => {
 
 onMounted(async () => {
   try {
-    const cachedData = getCachedData()
-    if (cachedData) {
-      items.value = cachedData
-      isLoading.value = false
-    }
-
-    try {
-      const data = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
-      
-      if (!Array.isArray(data)) {
+    isLoading.value = true
+    
+    const data = await getCachedData(CACHE_KEY, async () => {
+      const response = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
+      if (!Array.isArray(response)) {
         throw new Error('Data is not an array')
       }
-
-      const filteredData = data.filter(item => 
+      return response.filter(item => 
         item && 
         typeof item.Category !== 'undefined' &&
         typeof item.Id !== 'undefined' &&
         typeof item.DisplayName !== 'undefined' &&
         typeof item.ShortName !== 'undefined'
       )
-      
-      setCachedData(filteredData)
-      items.value = filteredData
-    } catch (fetchError) {
-      console.error('Fetch error:', fetchError)
-      if (!items.value.length) {
-        throw fetchError
-      }
-    }
+    })
+    
+    items.value = data
   } catch (error) {
     console.error('Failed to load items:', error)
     items.value = []
@@ -290,14 +260,21 @@ watch(selectedCategory, () => {
                       <div class="flex-shrink-0">
                         <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" class="block">
                           <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
-                            <img 
-                              :src="getItemImageUrl(item.ShortName)" 
-                              @error="handleImageError"
-                              class="w-full h-full object-contain p-4"
-                              :alt="item.DisplayName"
-                            >
-                            <div class="absolute inset-0 flex items-center justify-center" v-if="!item.ShortName">
-                              <Tag size="24" />
+                            <template v-if="!imageErrors.get(item.Id)">
+                              <img 
+                                :src="getItemImageUrl(item.ShortName)" 
+                                @error="(e) => handleImageError(e, item.Id)"
+                                class="w-full h-full object-contain p-4"
+                                :alt="item.DisplayName"
+                              >
+                            </template>
+                            <div v-else 
+                                 class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                              <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                <Image size="48" class="text-gray-400"/>
+                              </div>
+                              <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
+                              <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{ item.ShortName }}</span>
                             </div>
                           </div>
                         </a>

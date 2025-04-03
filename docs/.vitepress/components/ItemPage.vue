@@ -144,7 +144,7 @@ watch(item, (newItem) => {
               class="w-full h-full object-contain p-8"
               :alt="item.DisplayName"
             >
-            <div class="absolute inset-0 flex items-center justify-center" v-if="!item.ShortName">
+            <div class="absolute inset-0 flex items-center justify-center" v-if="!item.Id">
               <Tag size="48" class="text-gray-400"/>
             </div>
           </div>

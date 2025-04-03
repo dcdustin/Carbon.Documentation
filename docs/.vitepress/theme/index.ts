@@ -11,6 +11,9 @@ import EntitiesReference from '../components/EntitiesReference.vue'
 import EntityPage from '../components/EntityPage.vue'
 import BlueprintsReference from '../components/BlueprintsReference.vue'
 import ItemPage from '../components/ItemPage.vue'
+import BlueprintPage from '../components/BlueprintPage.vue'
+import LootTableList from '../components/LootTableList.vue'
+
 
 export default {
   extends: DefaultTheme,
@@ -29,5 +32,8 @@ export default {
     app.component('EntityPage', EntityPage)
     app.component('BlueprintsReference', BlueprintsReference)
     app.component('ItemPage', ItemPage)
+    app.component('BlueprintPage', BlueprintPage)
+    app.component('LootTableList', LootTableList)
+    
   }
 } satisfies Theme

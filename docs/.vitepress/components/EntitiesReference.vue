@@ -5,6 +5,7 @@ import {
   getGameData,
   GAME_DATA_FOLDER,
 } from '../shared/constants'
+import { getCachedData } from '../shared/utils'
 import { VPBadge } from 'vitepress/theme'
 
 const entities = ref([])
@@ -22,25 +23,6 @@ const API_URL = LINK_API
 
 const CACHE_KEY = 'carbon_entities_cache'
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000
-
-const getCachedData = () => {
-  const cached = localStorage.getItem(CACHE_KEY)
-  if (!cached) return null
-  
-  const { data, timestamp } = JSON.parse(cached)
-  if (Date.now() - timestamp > CACHE_EXPIRY) {
-    localStorage.removeItem(CACHE_KEY)
-    return null
-  }
-  return data
-}
-
-const setCachedData = (data) => {
-  localStorage.setItem(CACHE_KEY, JSON.stringify({
-    data,
-    timestamp: Date.now()
-  }))
-}
 
 const getSanitizedAnchor = (text) => {
   return text
@@ -93,23 +75,6 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-const scrollToHash = () => {
-  const hash = window.location.hash
-  if (hash) {
-    const element = document.querySelector(hash)
-    if (element) {
-      const headerOffset = 100
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
-  }
-}
-
 const loadMore = () => {
   if (loadingMore.value || !hasMore.value) return
   
@@ -136,12 +101,6 @@ const handleScroll = () => {
   }
 }
 
-
-watch(entities, async () => {
-  await nextTick()
-  scrollToHash()
-}, { immediate: true })
-
 watch(debouncedSearchQuery, () => {
   currentPage.value = 1
   hasMore.value = true
@@ -149,48 +108,27 @@ watch(debouncedSearchQuery, () => {
 
 onMounted(async () => {
   try {    
-    const cachedData = getCachedData()
-    if (cachedData) {
-      entities.value = cachedData
-      isLoading.value = false
-    }
-
-    try {
-      const data = await getGameData(`${GAME_DATA_FOLDER}/entities.json`)
-      
-      if (!Array.isArray(data)) {
+    isLoading.value = true
+    
+    const data = await getCachedData(CACHE_KEY, async () => {
+      const response = await getGameData(`${GAME_DATA_FOLDER}/entities.json`)
+      if (!Array.isArray(response)) {
         throw new Error('Data is not an array')
       }
-
-      const filteredData = data.filter(entity => 
+      return response.filter(entity => 
         entity && 
         typeof entity.ID !== 'undefined' &&
         typeof entity.Path !== 'undefined'
       )
-      
-      setCachedData(filteredData)
-      entities.value = filteredData
-    } catch (fetchError) {
-      console.error('Fetch error:', fetchError)
-      if (!entities.value.length) {
-        throw fetchError
-      }
-    }
+    })
+    
+    entities.value = data
   } catch (error) {
     console.error('Failed to load entities:', error)
     entities.value = []
   } finally {
     isLoading.value = false
   }
-})
-
-onMounted(() => {
-  window.addEventListener('hashchange', scrollToHash)
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -215,16 +153,16 @@ onUnmounted(() => {
     </div>
 
     <div v-else>
-      <div class="filters ">
-        <div class="flex items-center">
-          <Search class="text-gray-400" size="20"/>
-          <div class="relative flex-1 flex">
+      <div class="filters mb-4">
+        <div class="flex items-center gap-4">
+          <div class="flex items-center flex-1">
+            <Search class="text-gray-400" size="20"/>
             <input 
               type="text" 
               v-model="searchQuery" 
               @input="updateDebouncedSearch($event.target.value)"
               placeholder="Search entities..." 
-              class="w-[400px] "
+              class="w-[400px] px-4 py-2"
             >
           </div>
         </div>
