@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, nextTick } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search } from 'lucide-vue-next'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
 import { getItemFlagText, getItemCategoryText, getItemRarityText, ItemCategory } from '../constants'
 import { VPBadge } from 'vitepress/theme'
 
@@ -201,12 +201,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="items-container max-w-full">
-    <div class="flex items-center mb-4">
-      <a :href="LINK_API" class="vp-button medium brand">
+  <div class="">
+    <div class=" mb-4">
+    <div class=" flex items-center gap-2 ">
+      <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2 ">
+        <Database size="16"/>
         Items API
-        <Database class="ml-2" size="18"/>
+        <ExternalLink size="14" class="opacity-80"/>
       </a>
+        </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
@@ -216,34 +219,30 @@ onMounted(() => {
 
     <div v-else>
       <div class="filters mb-4">
-        <div class="flex flex-col md:flex-row gap-4">
-          <div class="flex-1">
-            <div class="relative">
-              <input 
-                type="text" 
-                v-model="searchQuery" 
-                @input="updateDebouncedSearch($event.target.value)"
-                placeholder="Search items..." 
-                class="w-full px-4 py-2 pl-10 rounded border dark:border-gray-700 bg-transparent"
-              >
-              <Search class="absolute left-3 top-2.5 text-gray-400" size="18"/>
-            </div>
-          </div>
-          <div class="w-full md:w-48">
-            <select 
-              v-model="selectedCategory"
-              class="w-full px-4 py-2 rounded border dark:border-gray-700 bg-transparent"
+        <div class="flex  items-center">
+          <Search class="text-gray-400" size="20"/>
+          <div class="relative flex-1 flex ">
+            <input 
+              type="text" 
+              v-model="searchQuery" 
+              @input="updateDebouncedSearch($event.target.value)"
+              placeholder="Search items..." 
+              class="w-[400px] px-4 py-2"
             >
-              <option value="all">All Categories</option>
-              <option 
-                v-for="category in categories.filter(c => c !== 'all')" 
-                :key="category" 
-                :value="category"
-              >
-                {{ getItemCategoryText(category) }}
-              </option>
-            </select>
           </div>
+          <select 
+            v-model="selectedCategory"
+            class="px-4 py-2 min-w-[140px]"
+          >
+            <option value="all">All Categories</option>
+            <option 
+              v-for="category in categories.filter(c => c !== 'all')" 
+              :key="category" 
+              :value="category"
+            >
+              {{ getItemCategoryText(category) }}
+            </option>
+          </select>
         </div>
       </div>
 
@@ -336,116 +335,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style>
-.filters {
-  margin: 1rem 0;
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Base utility classes */
-.max-w-full { max-width: 100%; }
-.overflow-x-auto { overflow-x: auto; }
-.space-y-3 > * + * { margin-top: 0.75rem; }
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-.transition-shadow { transition: box-shadow 0.2s; }
-.transition-colors { transition: background-color 0.2s; }
-
-/* Flex and Grid */
-.flex { display: flex; }
-.grid { display: grid; }
-.flex-1 { flex: 1 1 0%; }
-.flex-col { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.gap-1 { gap: 0.25rem; }
-.gap-2 { gap: 0.5rem; }
-.gap-4 { gap: 1rem; }
-.gap-6 { gap: 1.5rem; }
-
-/* Spacing */
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-4 { margin-bottom: 1rem; }
-.ml-1 { margin-left: 0.25rem; }
-.ml-2 { margin-left: 0.5rem; }
-.mr-2 { margin-right: 0.5rem; }
-.mt-2 { margin-top: 0.5rem; }
-.p-4 { padding: 1rem; }
-.p-6 { padding: 1.5rem; }
-.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
-.py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-.pl-10 { padding-left: 2.5rem; }
-
-/* Typography */
-.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-.font-medium { font-weight: 500; }
-.font-mono { font-family: ui-monospace, monospace; }
-
-/* Colors */
-.text-gray-400 { color: var(--vp-c-text-3); }
-.text-gray-500 { color: var(--vp-c-text-2); }
-.text-gray-600 { color: var(--vp-c-text-2); }
-.bg-gray-50 { background-color: var(--vp-c-bg-soft); }
-.bg-gray-100 { background-color: var(--vp-c-bg-soft); }
-.hover\:bg-gray-200:hover { background-color: var(--vp-c-bg-mute); }
-
-/* Dark mode */
-.dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); }
-.dark .dark\:bg-gray-900 { background-color: var(--vp-c-bg); }
-.dark .dark\:bg-gray-700 { background-color: var(--vp-c-bg-mute); }
-.dark .dark\:hover\:bg-gray-600:hover { background-color: var(--vp-c-bg-alt); }
-
-/* Responsive Grid */
-.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-
-@media (min-width: 768px) {
-  .md\:flex-row { flex-direction: row; }
-  .md\:w-48 { width: 12rem; }
-  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1024px) {
-  .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1280px) {
-  .xl\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-.items-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-}
-
-.items-table th,
-.items-table td {
-  padding: 1.5rem;
-  text-align: left;
-  border-bottom: 1px solid var(--vp-c-divider);
-  vertical-align: top;
-}
-
-.items-table th {
-  font-weight: 600;
-  background-color: var(--vp-c-bg-soft);
-}
-</style> 
