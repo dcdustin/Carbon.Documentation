@@ -1,47 +1,6 @@
-/**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
- */
-
-/**
- * Colors
- *
- * Each colors have exact same color scale system with 3 levels of solid
- * colors with different brightness, and 1 soft color.
- *
- * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
- *
- * - `XXX-2`: The color used mainly for hover state of the button.
- *
- * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
- *
- * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
- *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
- *
- * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
- *
- * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
- *
- * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
- *
- * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
- *
- * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
- * -------------------------------------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --c-carbon-1: #fc583b;
@@ -83,6 +42,67 @@
   --vp-c-danger-2: var(--vp-c-red-2);
   --vp-c-danger-3: var(--vp-c-red-3);
   --vp-c-danger-soft: var(--vp-c-red-soft);
+
+  --vp-c-brand: #00a67d;
+  --vp-c-brand-light: #00c08b;
+  --vp-c-brand-lighter: #00d699;
+  --vp-c-brand-dark: #00916d;
+  --vp-c-brand-darker: #007d5d;
+  --vp-c-brand-dimm: rgba(0, 166, 125, 0.08);
+
+  --rarity-none: #9ca3af;
+  --rarity-common: #10b981;
+  --rarity-uncommon: #3b82f6;
+  --rarity-rare: #8b5cf6;
+  --rarity-veryrare: #f59e0b;
+
+  /* Category Colors */
+  --category-weapon: #ef4444;      /* Red */
+  --category-construction: #78350f; /* Brown */
+  --category-items: #6b7280;       /* Gray */
+  --category-resources: #fbbf24;    /* Yellow */
+  --category-attire: #60a5fa;      /* Light Blue */
+  --category-tool: #f97316;        /* Orange */
+  --category-medical: #34d399;     /* Green */
+  --category-food: #c084fc;        /* Light Purple */
+  --category-ammunition: #dc2626;   /* Dark Red */
+  --category-traps: #ea580c;       /* Dark Orange */
+  --category-misc: #9ca3af;        /* Gray */
+  --category-all: #3b82f6;         /* Blue */
+  --category-common: #9ca3af;      /* Gray */
+  --category-component: #92400e;    /* Light Brown */
+  --category-search: #2563eb;      /* Dark Blue */
+  --category-favourite: #facc15;    /* Gold */
+  --category-electrical: #3b82f6;   /* Blue */
+  --category-fun: #d946ef;         /* Pink */
+}
+
+.dark {
+  --rarity-none: #6b7280;
+  --rarity-common: #059669;
+  --rarity-uncommon: #2563eb;
+  --rarity-rare: #7c3aed;
+  --rarity-veryrare: #d97706;
+
+  /* Category Colors - Dark Theme */
+  --category-weapon: #7f1d1d;
+  --category-construction: #5c2c0e;
+  --category-items: #374151;
+  --category-resources: #92400e;
+  --category-attire: #1e40af;
+  --category-tool: #9a3412;
+  --category-medical: #047857;
+  --category-food: #7e22ce;
+  --category-ammunition: #7f1d1d;
+  --category-traps: #9a3412;
+  --category-misc: #4b5563;
+  --category-all: #1e40af;
+  --category-common: #4b5563;
+  --category-component: #5c2c0e;
+  --category-search: #1e40af;
+  --category-favourite: #a16207;
+  --category-electrical: #1e40af;
+  --category-fun: #9333ea;
 }
 
 /**
@@ -193,4 +213,143 @@
 .vp-doc .custom-block > * {
   position: relative;
   z-index: 1;
+}
+
+/**
+ * Component: ItemsReference
+ * -------------------------------------------------------------------------- */
+
+.items-container {
+  max-width: 100%;
+}
+
+.filters {
+  margin: 1rem 0;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.items-table th,
+.items-table td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--vp-c-divider);
+  vertical-align: top;
+}
+
+.items-table th {
+  font-weight: 600;
+  background-color: var(--vp-c-bg-soft);
+}
+
+/**
+ * Utility Classes
+ * -------------------------------------------------------------------------- */
+
+/* Base utilities */
+.max-w-full { max-width: 100%; }
+.overflow-x-auto { overflow-x: auto; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+.transition-shadow { transition: box-shadow 0.2s; }
+.transition-colors { transition: background-color 0.2s; }
+
+/* Flex and Grid */
+.flex { display: flex; }
+.grid { display: grid; }
+.flex-1 { flex: 1 1 0%; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+
+/* Spacing */
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.ml-1 { margin-left: 0.25rem; }
+.ml-2 { margin-left: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.pl-10 { padding-left: 2.5rem; }
+
+/* Typography */
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.font-medium { font-weight: 500; }
+.font-mono { font-family: ui-monospace, monospace; }
+
+/* Colors */
+.text-gray-400 { color: var(--vp-c-text-3); }
+.text-gray-500 { color: var(--vp-c-text-2); }
+.text-gray-600 { color: var(--vp-c-text-2); }
+.bg-gray-50 { background-color: var(--vp-c-bg-soft); }
+.bg-gray-100 { background-color: var(--vp-c-bg-soft); }
+.hover\:bg-gray-200:hover { background-color: var(--vp-c-bg-mute); }
+
+/* Dark mode */
+.dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); }
+.dark .dark\:bg-gray-900 { background-color: var(--vp-c-bg); }
+.dark .dark\:bg-gray-700 { background-color: var(--vp-c-bg-mute); }
+.dark .dark\:hover\:bg-gray-600:hover { background-color: var(--vp-c-bg-alt); }
+
+/* Responsive Grid */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+
+@media (min-width: 768px) {
+  .md\:flex-row { flex-direction: row; }
+  .md\:w-48 { width: 12rem; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/**
+ * Layout Overrides
+ * -------------------------------------------------------------------------- */
+
+.VPDoc.has-aside .container {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* Only remove padding on reference pages */
+.VPDoc.reference-page .container {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.VPDoc.reference-page .content {
+  max-width: none !important;
+  padding: 0 !important;
 }

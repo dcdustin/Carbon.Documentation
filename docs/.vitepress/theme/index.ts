@@ -6,6 +6,14 @@ import './style.css'
 import CarbonButton from '../components/CarbonButton.vue'
 import CarbonBadge from '../components/CarbonBadge.vue'
 import CarbonChange from '../components/CarbonChange.vue'
+import ItemsReference from '../components/ItemsReference.vue'
+import EntitiesReference from '../components/EntitiesReference.vue'
+import EntityPage from '../components/EntityPage.vue'
+import BlueprintsReference from '../components/BlueprintsReference.vue'
+import ItemPage from '../components/ItemPage.vue'
+import BlueprintPage from '../components/BlueprintPage.vue'
+import LootTableList from '../components/LootTableList.vue'
+
 
 export default {
   extends: DefaultTheme,
@@ -19,5 +27,13 @@ export default {
     app.component('CarbonButton', CarbonButton)
     app.component('CarbonBadge', CarbonBadge)
     app.component('CarbonChange', CarbonChange)
+    app.component('ItemsReference', ItemsReference)
+    app.component('EntitiesReference', EntitiesReference)
+    app.component('EntityPage', EntityPage)
+    app.component('BlueprintsReference', BlueprintsReference)
+    app.component('ItemPage', ItemPage)
+    app.component('BlueprintPage', BlueprintPage)
+    app.component('LootTableList', LootTableList)
+    
   }
 } satisfies Theme

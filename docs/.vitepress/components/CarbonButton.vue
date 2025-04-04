@@ -1,27 +1,55 @@
 <template>
     <a
       :href="href"
-      :target="external ? '_blank' : null"
+      :target="isExternal ? '_blank' : null"
       class="carbon-button"
     >
-      <img
+      <component
         v-if="icon"
-        :src="`https://simpleicons.org/icons/${icon.toLowerCase()}.svg`"
-        :alt="icon"
+        :is="getIconComponent"
         class="carbon-button-icon"
+        size="16"
       />
       {{ text }}
+      <ExternalLink
+        v-if="isExternal"
+        class="carbon-button-icon"
+        size="14"
+      />
     </a>
   </template>
   
   <script setup>
-  defineProps({
+  import { ExternalLink, Globe, Database } from 'lucide-vue-next'
+  import { computed } from 'vue'
+
+  const props = defineProps({
     href: String,
     text: String,
-    icon: String,
+    icon: {
+      type: String,
+      default: null
+    },
     external: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
+    }
+  })
+
+  const isExternal = computed(() => {
+    return props.external === true || props.external === 'true'
+  })
+
+  const getIconComponent = computed(() => {
+    switch(props.icon?.toLowerCase()) {
+      case 'database':
+        return Database
+      case 'globe':
+        return Globe
+      case 'externallink':
+        return ExternalLink
+      default:
+        return null
     }
   })
   </script>
@@ -48,8 +76,6 @@
 }
   
 .carbon-button-icon {
-    filter: invert(1);
-    width: 16px;
-    height: 16px;
+  color: white;
 }
   </style>
