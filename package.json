@@ -1,14 +1,23 @@
 {
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.17",
+    "autoprefixer": "^9.8.8",
+    "postcss": "^7.0.39",
     "vitepress": "^1.6.3",
     "vue": "^3.5.13"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
-    "docs:build": "NODE_OPTIONS='--max-old-space-size=8192' vitepress build docs",
+    "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "markdown-it": "^14.1.0"
+    "@vueuse/core": "^13.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.487.0",
+    "markdown-it": "^14.1.0",
+    "tailwind-merge": "^3.1.0",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
