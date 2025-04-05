@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitepress'
-import { getCategorized, getFiles } from './carbonUtils.mts';
+import tailwindcss from '@tailwindcss/postcss7-compat'
+import autoprefixer from 'autoprefixer'
+// import { getCategorized, getFiles } from './carbonUtils.mts';
  
 export default defineConfig({
   title: "Carbon Documentation",
-  description: "Carbon Mod Documentation",
+  description: "Documentation for Carbon",
   base: '/Carbon.Documentation/',
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
   cleanUrls: true,
@@ -65,7 +67,7 @@ export default defineConfig({
         {
           text: 'Hooks',
           link: '/hooks',
-          items: getCategorized("../hooks")
+          // items: getCategorized("../hooks")
         } 
       ],
       
@@ -75,12 +77,15 @@ export default defineConfig({
           link: '/references',
           items: [ 
             { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', link: '/references/entities' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
-            { text: 'Entities', collapsed: true, items: getFiles("../references/entities") },
-            { text: 'Items', collapsed: true, items: getFiles("../references/items") },
-            { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
-            { text: 'Loot Tables', link: '/references/loot-tables' },
+            { text: 'Permissions', link: '/references/permissions' },
+            { text: 'Loot Tables', link: '/references/loot' },
+
+            // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
+
           ]
         } 
       ]
@@ -108,5 +113,43 @@ export default defineConfig({
     },
     
   },
+  vite: {
+    css: {
+      postcss: {
+        plugins: [
+          tailwindcss,
+          autoprefixer
+        ]
+      }
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('@vueuse')) return 'vueuse'
+              if (id.includes('markdown-it')) return 'markdown'
+              if (id.includes('lucide-vue-next')) return 'icons'
+              if (id.includes('class-variance-authority') || 
+                  id.includes('clsx') || 
+                  id.includes('tailwind-merge') || 
+                  id.includes('tailwindcss-animate')) return 'ui'
+            }
+          }
+        }
+      }
+    },
+    optimizeDeps: {
+      exclude: ['@tailwindcss/postcss7-compat']
+    }
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.includes('-')
+      }
+    }
+  }
 })
   
