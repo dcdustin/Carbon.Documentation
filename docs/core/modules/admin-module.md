@@ -5,12 +5,12 @@ The Admin module introduces a new and intuitive way of managing your server in p
 The Admin module is enabled by default and will not enforce the server to be in the modded tab when enabled.
 :::
 
-### Initial Access
+### Initial Access 
 To gain access to the Admin panel for the first time:
 1. Open RCON/Console
 2. Run `ownerid <steamid>` replacing `<steamid>` with your own
 3. Go in-game and execute `/cpanel` or `/cp` in chat to open up the Admin Panel
----
+
 ## Admin Module/Panel Tabs
 
 ### Carbon Tab
