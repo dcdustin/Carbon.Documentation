@@ -54,5 +54,5 @@ The file below automatically keeps your environment up-to-date with the latest C
 <CarbonButton
   href="/Carbon.ExtensionTemplate.zip"
   text="Download Template"
-  icon="icloud"
+  icon="download"
 />

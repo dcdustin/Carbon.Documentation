@@ -20,7 +20,7 @@
   </template>
   
   <script setup>
-  import { ExternalLink, Globe, Database } from 'lucide-vue-next'
+  import { ExternalLink, Globe, Database, CloudDownload, Download } from 'lucide-vue-next'
   import { computed } from 'vue'
 
   const props = defineProps({
@@ -48,6 +48,10 @@
         return Globe
       case 'externallink':
         return ExternalLink
+      case 'clouddownload':
+        return CloudDownload
+      case 'download':
+        return Download
       default:
         return null
     }

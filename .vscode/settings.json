@@ -19,23 +19,5 @@
             "other": "off"
         },
         "editor.minimap.enabled": false
-    },
-    "frontMatter.content.pageFolders": [
-        {
-            "title": "docs",
-            "path": "[[workspace]]/docs"
-        },
-        {
-            "title": "hooks",
-            "path": "[[workspace]]/docs/hooks"
-        },
-        {
-            "title": "development",
-            "path": "[[workspace]]/docs/development"
-        },
-        {
-            "title": "archive",
-            "path": "[[workspace]]/docs/archive"
-        }
-    ]
+    }
 }
