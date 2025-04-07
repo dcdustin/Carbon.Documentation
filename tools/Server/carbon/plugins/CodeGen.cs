@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.IO;
 using System.Net;
@@ -195,6 +196,7 @@ public partial class CodeGen : CarbonPlugin
 		{
 			try
 			{
+				var name = assembly.GetName().Name;
 				foreach (var type in assembly.GetTypes())
 				{
 					var hookAttributes = type.GetCustomAttributes();
@@ -203,7 +205,7 @@ public partial class CodeGen : CarbonPlugin
 						continue;
 					}
 
-					var hook = CarbonHook.Parse(hookAttributes);
+					var hook = CarbonHook.Parse(hookAttributes, name.Equals("Carbon.Hooks.Oxide"));
 					if (!hook.IsValid)
 					{
 						continue;
@@ -219,8 +221,11 @@ public partial class CodeGen : CarbonPlugin
 			}
 		}
 
-		Logger.Log($"Found {hooks.Count} hooks");
-		OsEx.File.Create(Path.Combine("carbon", "results", "hooks.json"), JsonConvert.SerializeObject(hooks, Formatting.Indented));
+		OsEx.File.Create(Path.Combine("carbon", "results", "hooks.json"),
+			JsonConvert.SerializeObject(
+				hooks.Where(x => !x.category.Equals("_patches", StringComparison.CurrentCultureIgnoreCase) &&
+						(!x.name.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)) || (x.name.Equals("Init") || x.name.Equals("InitLogging"))).GroupBy(x => x.category)
+					.ToDictionary(key => key.Key, value => value.ToArray()), Formatting.Indented));
 	}
 
 	public class Item
@@ -377,7 +382,7 @@ public partial class CodeGen : CarbonPlugin
 		public string category;
 		public Parameter[] parameters;
 		public HookFlags flags;
-		[JsonIgnore] public string[] descriptions;
+		public string[] descriptions;
 		[JsonIgnore] public Type target;
 		[JsonIgnore] public MethodInfo method;
 		[JsonIgnore] public Assembly assembly;
@@ -397,12 +402,13 @@ public partial class CodeGen : CarbonPlugin
 		public struct Parameter
 		{
 			public string name;
+			public string typeName => type.FullName.Replace("+", ".");
 			[JsonIgnore]
 			public Type type;
 			public bool optional;
 		}
 
-		public static CarbonHook Parse(IEnumerable<Attribute> attributes)
+		public static CarbonHook Parse(IEnumerable<Attribute> attributes, bool isOxideHooks)
 		{
 			var patch = attributes.FirstOrDefault(x => x.GetType().Name.Equals("Patch"));
 			if (patch == null)
@@ -434,7 +440,7 @@ public partial class CodeGen : CarbonPlugin
 			hook.assembly = hook.target?.Assembly;
 			hook.returnType = returnType?.GetType().GetProperty("Type").GetValue(returnType) as Type;
 			hook.carbonCompatible = true;
-			hook.oxideCompatible = isOxideCompatbile;
+			hook.oxideCompatible = isOxideHooks || isOxideCompatbile;
 			if (optionsType != null)
 			{
 				hook.flags = (HookFlags)optionsType.GetType().GetProperty("Value").GetValue(optionsType);
