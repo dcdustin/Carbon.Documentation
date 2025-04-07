@@ -11,7 +11,7 @@
         "editor.fontSize": 14,
         "editor.lineHeight": 26,
         "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 128,
+        "editor.wordWrapColumn": 64,
         "editor.lineNumbers": "off",
         "editor.quickSuggestions": {
             "comments": "off",
@@ -19,5 +19,6 @@
             "other": "off"
         },
         "editor.minimap.enabled": false
-    }
+    },
+    "frontMatter.panel.openOnSupportedFile": false
 }

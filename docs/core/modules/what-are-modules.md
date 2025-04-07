@@ -2,9 +2,8 @@
 Carbon modules similar to plugins that built into Carbon. Modules act as a lightweight way to achieve functionality of common plugins, from managing players to increasing stack sizes.
 
 ## Core Modules
-- Admin Module
-- Image Database Module
-
+- [Admin Module](admin-module)
+- [Image Database Module](image-db-module)
 
 ## Optional Modules
 - [AutoWipe Module](optional-modules/autowipe-module)

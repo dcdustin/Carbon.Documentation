@@ -16,7 +16,14 @@
     Server,
     List,
     BugOff,
-    Play
+    Play,
+    Star,
+    FolderPlus,
+    ScrollText,
+    FilePenLine,
+    Power,
+    FilePlus,
+    Snail
   } from 'lucide-vue-next'
   import { computed } from 'vue'
   
@@ -47,6 +54,20 @@
             return BugOff
         case 'play':
             return Play
+        case 'star':
+            return Star
+        case 'folderplus':
+            return FolderPlus
+        case 'scrolltext':
+            return ScrollText
+        case 'filepenline':
+            return FilePenLine
+        case 'power':
+            return Power
+        case 'fileplus':
+            return FilePlus
+        case 'snail':
+            return Snail
         default:
             return null
     }

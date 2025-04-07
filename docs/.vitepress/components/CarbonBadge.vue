@@ -1,5 +1,5 @@
 <template>
-    <span :class="['carbon-badge', type]">
+    <span :class="['carbon-badge', variant]">
       <slot>{{ text }}</slot>
     </span>
   </template>
@@ -7,7 +7,7 @@
   <script setup lang="ts">
   interface Props {
     text?: string
-    type: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
+    variant: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
   }
   defineProps<Props>()
   </script>
