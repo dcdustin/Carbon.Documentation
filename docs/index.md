@@ -15,7 +15,7 @@ hero:
       link: /introduction
     - theme: alt
       text: View Hooks
-      link: /hooks
+      link: /references/hooks
 
 features:
   - title: Simplified Administration
