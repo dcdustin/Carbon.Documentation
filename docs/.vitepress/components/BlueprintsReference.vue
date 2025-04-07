@@ -193,7 +193,6 @@ const showItemModal = async (itemId) => {
     selectedIngredient.value = ingredient
     showIngredientModal.value = true
 
-    // Fetch DLC data if needed
     if (ingredient.Item.SteamDlcItem?.AppId) {
       await fetchDlcData(ingredient.Item.SteamDlcItem.AppId)
     }

@@ -130,6 +130,14 @@ onMounted(async () => {
     isLoading.value = false
   }
 })
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
