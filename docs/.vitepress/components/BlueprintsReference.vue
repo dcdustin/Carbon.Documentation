@@ -257,17 +257,17 @@ const closeIngredientModal = () => {
 
       <div v-if="paginatedBlueprints && paginatedBlueprints.length">
         <div class="fixed bottom-4 right-4 z-50">
-          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 border border-gray-200 dark:border-gray-700">
+          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
             Showing {{ paginatedBlueprints.length }} of {{ filteredBlueprints.length }} blueprints
           </div>
         </div>
 
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full">
+          <div class="inline-block min-w-full p-4">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
                 <tr v-for="bp in paginatedBlueprints" :key="bp.Item.ShortName" class="items-table-row">
-                  <td class="whitespace-normal border-b py-4">
+                  <td class="whitespace-normal py-4">
                     <div class="flex gap-8">
                       <!-- Left Column: Blueprint Details -->
                       <div class="flex-1">

@@ -2,9 +2,9 @@
 ## Latest Update
 Latest production release build changelog based on the [production branch](https://github.com/CarbonCommunity/Carbon.Core/tree/production).
 
-<Badge type="info" text="Current Version: 2.0.181" style="text-align:center; width:178px" /> <br>
+<Badge type="info" text="Current Version: 2.0.181" style="text-align:center; width:195px" /> <br>
 <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build" text="Download Latest" icon="clouddownload" external/> <br>
-<Badge type="info" text="21.03.2025 1:58PM GMT+1" style="text-align:center; width:178px" />
+<Badge type="info" text="21.03.2025 1:58PM GMT+1" style="text-align:center; width:195px" />
 ## Current Changes
 
 <CarbonChange variant="add" text="Added `-harmonydir` which allows you to modify the directory path of HarmonyMods." style="font-size:15px" />
