@@ -292,7 +292,7 @@ watch(blueprint, (newBlueprint) => {
       </div>
 
       <!-- DLC Info -->
-      <div v-if="blueprint.Item.SteamDlcItem" class="mt-4 pt-4 border-t">
+      <div v-if="blueprint.Item.SteamDlcItem" class="mt-4 pt-4">
         <div class="flex items-center gap-2 text-lg font-medium mb-4">
           <Lock size="20" class="text-gray-400"/>
           <span>Required DLC</span>
@@ -423,7 +423,7 @@ watch(blueprint, (newBlueprint) => {
         </div>
 
         <!-- DLC Info -->
-        <div v-if="selectedIngredient?.Item?.SteamDlcItem" class="mt-4 pt-4 border-t">
+        <div v-if="selectedIngredient?.Item?.SteamDlcItem" class="mt-4 pt-4">
           <div class="flex items-center gap-2 text-sm font-medium mb-2">
             <Lock size="16" class="text-gray-400"/>
             <span>Steam DLC Required</span>

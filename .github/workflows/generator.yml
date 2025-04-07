@@ -73,3 +73,12 @@ jobs:
           host: 147.135.88.204
           src: "tools/Server/carbon/results/loot-tables.json"
           dest: "metadata/rust/loot-tables.json"
+
+      - name: FTP Upload (carbon/hooks.json)
+        uses: tomasbkk/action-ftp-upload@v1.0
+        with:
+          user: redist@carbonmod.gg
+          password: ${{ secrets.FTP_PWD }}
+          host: 147.135.88.204
+          src: "tools/Server/carbon/results/hooks.json"
+          dest: "metadata/carbon/hooks.json"
