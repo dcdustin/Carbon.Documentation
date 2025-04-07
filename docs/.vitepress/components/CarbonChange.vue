@@ -1,6 +1,6 @@
 <template>
     <div class="carbon-change">
-      <CarbonBadge :type="type">{{ type.toUpperCase() }}</CarbonBadge>
+      <CarbonBadge :variant="variant">{{ variant.toUpperCase() }}</CarbonBadge>
   
       <div class="carbon-change-text">{{ text }}</div>
     </div>
@@ -10,7 +10,7 @@
   import CarbonBadge from './CarbonBadge.vue';
   
   interface Props {
-    type: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
+    variant: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
     text: string;
   }
   

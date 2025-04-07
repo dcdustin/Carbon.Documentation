@@ -12,36 +12,28 @@
           "type": "string"
         },
         {
-          "title": "Description",
-          "name": "description",
-          "type": "string"
+          "title": "layout",
+          "name": "layout",
+          "type": "string",
+          "default": "doc"
         },
         {
-          "title": "Publishing date",
-          "name": "date",
-          "type": "datetime",
-          "default": "{{now}}",
-          "isPublishDate": true
+          "title": "editLink",
+          "name": "editLink",
+          "type": "boolean",
+          "default": true
         },
         {
-          "title": "Content preview",
-          "name": "preview",
-          "type": "image"
+          "title": "footer",
+          "name": "footer",
+          "type": "boolean",
+          "default": true
         },
         {
-          "title": "Is in draft",
-          "name": "draft",
-          "type": "draft"
-        },
-        {
-          "title": "Tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "Categories",
-          "name": "categories",
-          "type": "categories"
+          "title": "lastUpdated",
+          "name": "lastUpdated",
+          "type": "boolean",
+          "default": true
         }
       ]
     }
@@ -52,10 +44,6 @@
       "path": "[[workspace]]/docs"
     },
     {
-      "title": "hooks",
-      "path": "[[workspace]]/docs/hooks"
-    },
-    {
       "title": "development",
       "path": "[[workspace]]/docs/development"
     }
@@ -63,6 +51,6 @@
   "frontMatter.preview.host": "http://localhost:5173",
   "frontMatter.framework.startCommand": "npx vitepress dev docs",
   "frontMatter.website.host": "http://localhost:5173",
-  "frontMatter.content.publicFolder": "",
+  "frontMatter.content.publicFolder": "[[workspace]]/docs/public/",
   "frontMatter.framework.id": "other"
 }

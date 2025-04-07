@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from '@tailwindcss/postcss7-compat'
 import autoprefixer from 'autoprefixer'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 // import { getCategorized, getFiles } from './carbonUtils.mts';
  
 export default defineConfig({
@@ -13,14 +14,26 @@ export default defineConfig({
   markdown: {
     image: {
       lazyLoading: true
+    },
+    config(md) {
+      md.use(tabsMarkdownPlugin)
     }
   },
   themeConfig: {
+    logo: '/img/carbon-logo.png',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Docs', link: '/introduction' },
-      { text: 'Hooks', link: '/hooks' },
-      { text: 'References', link: '/references' },
+      { text: 'References', items: [
+        {text: 'Hooks', link: '/references/hooks'},
+        { text: 'Blueprints', link: '/references/blueprints' },
+        { text: 'Items', link: '/references/items' },
+        { text: 'Entities', link: '/references/entities' },
+        { text: 'Commands', link: '/references/commands' },
+        { text: 'ConVars', link: '/references/convars' },
+        { text: 'Permissions', link: '/references/permissions' },
+        { text: 'Loot Tables', link: '/references/loot' },
+      ]},
       { text: 'Release Notes', link: '/release-notes'},
     ], 
 
@@ -41,7 +54,7 @@ export default defineConfig({
           text: 'Core',
           items: [
             { text: 'Extensions', link: '/core/extensions'},
-            {text: 'Modules', collapsed: true, items: [
+            {text: 'Modules', collapsed: false, items: [
               { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
               { text: 'Admin Module', link: '/core/modules/admin-module' },
               
@@ -62,20 +75,13 @@ export default defineConfig({
           ]
         },
       ],
-      
-      '/hooks/': [
-        {
-          text: 'Hooks',
-          link: '/hooks',
-          // items: getCategorized("../hooks")
-        } 
-      ],
-      
+
       '/references/': [
         {
           text: 'References',
           link: '/references',
           items: [ 
+            {text: 'Hooks', link: '/references/hooks'},
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Items', link: '/references/items' },
             { text: 'Entities', link: '/references/entities' },
