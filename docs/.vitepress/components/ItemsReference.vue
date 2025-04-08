@@ -100,9 +100,32 @@ let debounceTimeout
 const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
-    debouncedSearchQuery.value = value
+    // Clean up search input to handle special characters
+    const cleanValue = value.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    debouncedSearchQuery.value = cleanValue
     currentPage.value = 1
+
+    // Update URL with cleaned value
+    if (cleanValue) {
+      const hash = cleanValue.toLowerCase().replace(/\s+/g, '-')
+      window.history.replaceState(null, '', `#${hash}`)
+    } else {
+      window.history.replaceState(null, '', window.location.pathname)
+    }
   }, 300)
+}
+
+// Handle URL anchor for search on load
+const handleUrlSearch = () => {
+  const hash = window.location.hash.slice(1) // Remove the # symbol
+  if (hash) {
+    // Convert anchor to search query by replacing dashes with spaces
+    const searchTerm = decodeURIComponent(hash).replace(/-/g, ' ')
+    // Clean up the search term
+    const cleanTerm = searchTerm.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    searchQuery.value = cleanTerm
+    updateDebouncedSearch(cleanTerm)
+  }
 }
 
 const copyToClipboard = async (text, id = null) => {
@@ -117,10 +140,22 @@ const copyToClipboard = async (text, id = null) => {
 
 const loadItems = async () => {
   try {
+
+    //  need to clear the items array before loading new items
+    items.value = []
     isLoading.value = true
     error.value = null
     const data = await getGameData(LINK_API)
     items.value = data
+
+    // Handle URL anchor for search
+    const hash = window.location.hash.slice(1) // Remove the # symbol
+    if (hash) {
+      // Convert anchor to search query by replacing dashes with spaces
+      const searchTerm = decodeURIComponent(hash).replace(/-/g, ' ')
+      searchQuery.value = searchTerm
+      updateDebouncedSearch(searchTerm)
+    }
   } catch (err) {
     console.error('Failed to load items:', err)
     error.value = 'Failed to load items. Please try again later.'
@@ -144,9 +179,22 @@ const handleScroll = () => {
   }
 }
 
+// Update URL hash when search changes
+watch(debouncedSearchQuery, (newQuery) => {
+  if (newQuery) {
+    // Convert search query to URL-friendly format
+    const hash = newQuery.toLowerCase().replace(/\s+/g, '-')
+    window.history.replaceState(null, '', `#${hash}`)
+  } else {
+    // Remove hash if search is cleared
+    window.history.replaceState(null, '', window.location.pathname)
+  }
+})
+
 onMounted(async () => {
   await loadItems()
   window.addEventListener('scroll', handleScroll)
+  handleUrlSearch()
 })
 
 onUnmounted(() => {
