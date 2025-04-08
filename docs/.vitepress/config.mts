@@ -61,9 +61,9 @@ export default defineConfig({
               { text: 'Image Database Module', link: '/core/modules/image-db-module' },
               { text: 'Optional Modules', collapsed: true, items: [
                 { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
+                { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
                 { text: 'Gather Manager Module', link: '/core/modules/optional-modules/gather-manager-module' },
                 { text: 'Moderation Tools Module', link: '/core/modules/optional-modules/moderation-tools-module' },
-                { text: 'Optimizations Module', link: '/core/modules/optional-modules/optimizations-module' },
                 { text: 'Selective EAC Module', link: '/core/modules/optional-modules/selective-eac-module' },
                 { text: 'Stack Manager Module', link: '/core/modules/optional-modules/stack-manager-module' },
                 { text: 'Vanish Module', link: '/core/modules/optional-modules/vanish-module' },
