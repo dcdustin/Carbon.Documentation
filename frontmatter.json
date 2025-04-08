@@ -46,6 +46,46 @@
     {
       "title": "development",
       "path": "[[workspace]]/docs/development"
+    },
+    {
+      "title": "core",
+      "path": "[[workspace]]/docs/core"
+    },
+    {
+      "title": "modules",
+      "path": "[[workspace]]/docs/core/modules"
+    },
+    {
+      "title": "optional-modules",
+      "path": "[[workspace]]/docs/core/modules/optional-modules"
+    },
+    {
+      "title": "development",
+      "path": "[[workspace]]/docs/development"
+    },
+    {
+      "title": "prefabs",
+      "path": "[[workspace]]/docs/references/prefabs"
+    },
+    {
+      "title": "loot",
+      "path": "[[workspace]]/docs/references/loot"
+    },
+    {
+      "title": "items",
+      "path": "[[workspace]]/docs/references/items"
+    },
+    {
+      "title": "hooks",
+      "path": "[[workspace]]/docs/references/hooks"
+    },
+    {
+      "title": "entities",
+      "path": "[[workspace]]/docs/references/entities"
+    },
+    {
+      "title": "blueprints",
+      "path": "[[workspace]]/docs/references/blueprints"
     }
   ],
   "frontMatter.preview.host": "http://localhost:5173",

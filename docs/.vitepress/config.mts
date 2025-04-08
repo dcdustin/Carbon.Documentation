@@ -31,7 +31,6 @@ export default defineConfig({
         { text: 'Entities', link: '/references/entities' },
         { text: 'Commands', link: '/references/commands' },
         { text: 'ConVars', link: '/references/convars' },
-        { text: 'Permissions', link: '/references/permissions' },
         { text: 'Loot Tables', link: '/references/loot' },
       ]},
       { text: 'Release Notes', link: '/release-notes'},
@@ -54,11 +53,15 @@ export default defineConfig({
           text: 'Core',
           items: [
             { text: 'Extensions', link: '/core/extensions'},
+            { text: 'Permissions', link: '/core/permissions' },
             {text: 'Modules', collapsed: false, items: [
               { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
               { text: 'Admin Module', link: '/core/modules/admin-module' },
-              
+              { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
+              { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
+              { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
               { text: 'Image Database Module', link: '/core/modules/image-db-module' },
+              { text: 'Modal Module', link: '/core/modules/modal-module' },
               { text: 'Optional Modules', collapsed: true, items: [
                 { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
                 { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
@@ -87,7 +90,6 @@ export default defineConfig({
             { text: 'Entities', link: '/references/entities' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
-            { text: 'Permissions', link: '/references/permissions' },
             { text: 'Loot Tables', link: '/references/loot' },
 
             // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },

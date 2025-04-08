@@ -13,37 +13,37 @@ To gain access to the Admin panel for the first time:
 
 ## Carbon Tab
 
-<img src="/public/misc/admin_a.webp"/>
+![Carbon Tab](/misc/admin_a.webp)
 
 The Carbon tab comes with a variety of options and information about the live server, as well as Carbon configurations that be modified on the fly.
 
 ## Players Tab
 
-<img src="/public/misc/admin_b.webp"/>
+![Players Tab](/misc/admin_b.webp)
 
 It's a simplified and straight-forward tab that displays all active and inactive players from the server. You may also search them using the search bar. This tab also acts as an interface to do common actions with your players that you would expect out of an admin panel like banning, viewing inventories, healing players, and much more.
 
 ## Entities Tab
 
-<img src="/public/misc/admin_c.webp"/>
+![Entities Tab](/misc/admin_c.webp)
 
 Comes with a lot of filtering and searching options for specific entity type or names in the world. Inspecting entities will allow you to teleport to their positions, or you teleporting them to yours, spectating or changing flags (doors open/close), access and loot any container on the map, modify the health of entities on the fly, and metabolism options of players.
 
 ## Permissions Tab
 
-<img src="/public/misc/admin_d.webp"/>
+![Permissions Tab](/misc/admin_d.webp)
 
 It's a very straight-forward and similar implementation to [Permissions Manager](https://codefling.com/plugins/permissions-manager) from Codefling. It allows you to grant or revoke permissions and group from players. As well as the ability to edit or add new groups or parent groups for inherited permissions.
 
 ## Modules Tab
 
-<img src="/public/misc/admin_e.webp"/>
+![Modules Tab](/misc/admin_e.webp)
 
 A generic and global place where you can modify module configs, save or load, or enable and disable modules on the fly.
 
 ## Plugins Tab
 
-<img src="/public/misc/admin_f.webp"/>
+![Plugins Tab](/misc/admin_f.webp)
 
 This tab is disabled by default, but it's a tab that allows you to browse, download and edit configs straight into the UI of any free plugin or plugin that you own from Codefling and uMod. It comes with rich filtering features, very fast and intuitive searching and tag-based filters.
 

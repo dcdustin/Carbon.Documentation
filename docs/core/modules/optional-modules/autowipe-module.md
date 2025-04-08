@@ -17,17 +17,17 @@ It's a list of map URLs. If marked as temporary, when they're picked from the li
 
 ### Wipes
 
-The base definition of a wipe.&#x20;
+The base definition of a wipe.
 
-* **WipeName** - An unused value and its sole purpose is to identify the wipes in the config.&#x20;
-* **Commands** - A list of commands which execute after the server was initialized, ideally used to let players know that a new wipe is available before restarting.
-* **MapBrowserName** - The custom name of your map which shows up in the server browser. Keep empty for default behavior.
-* **MapUrl** - The wipe's map URL. Keep empty for procedural mode (map size and seed are used), set it with a custom map URL or name it "POOL" if you want for a random map from the MapPool to be used for said wipe.
-* **MapSize** - Only used when MapUrl is empty/not set, when procedural mode is activated.
-* **ServerSeed** - Only used when MapUrl is empty/not set, when procedural mode is activated.
-* **WipeType** - The wipe type which can be 0 (full wipe) or 1 (map wipe). Depending on this, when wipes happen, events defined in the previous Full & Map Wipe configs will happen.
-* **Temp** - Once true, the wipe configuration that got picked as the new wipe will be removed from the list - it's a one-time wipe.
-* **Cron** - The Cron expression of when the Wipe configuration should be applied. If this condition is met, all Commands defined in this wipe, will be ran while the server is running. Do the announcements and restarts there. Next boot will apply this wipe configuration accordingly.
+* <span style="color:var(--c-carbon-1);">WipeName</span> - An unused value and its sole purpose is to identify the wipes in the config.
+* <span style="color:var(--c-carbon-1);">Commands</span> - A list of commands which execute after the server was initialized, ideally used to let players know that a new wipe is available before restarting.
+* <span style="color:var(--c-carbon-1);">MapBrowserName</span> - The custom name of your map which shows up in the server browser. Keep empty for default behavior.
+* <span style="color:var(--c-carbon-1);">MapUrl</span> - The wipe's map URL. Keep empty for procedural mode (map size and seed are used), set it with a custom map URL or name it "POOL" if you want for a random map from the MapPool to be used for said wipe.
+* <span style="color:var(--c-carbon-1);">MapSize</span> - Only used when MapUrl is empty/not set, when procedural mode is activated.
+* <span style="color:var(--c-carbon-1);">ServerSeed</span> - Only used when MapUrl is empty/not set, when procedural mode is activated.
+* <span style="color:var(--c-carbon-1);">WipeType</span> - The wipe type which can be 0 (full wipe) or 1 (map wipe). Depending on this, when wipes happen, events defined in the previous Full & Map Wipe configs will happen.
+* <span style="color:var(--c-carbon-1);">Temp</span> - Once true, the wipe configuration that got picked as the new wipe will be removed from the list - it's a one-time wipe.
+* <span style="color:var(--c-carbon-1);">Cron</span> - The Cron expression of when the Wipe configuration should be applied. If this condition is met, all Commands defined in this wipe, will be ran while the server is running. Do the announcements and restarts there. Next boot will apply this wipe configuration accordingly.
 
 ## Commands
 

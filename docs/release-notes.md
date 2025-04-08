@@ -25,7 +25,7 @@ Latest production release build changelog based on the [production branch](https
 ## Older Changes
 The following are archived changes of older releases of Carbon. Publicly, we only ship the very latest version of Carbon as older ones are out of support.
 
-:::details 2.0.178 <CarbonBadge type="date" text="Released on 12.03.2025 3:40AM GMT+1" />
+:::details 2.0.178 <CarbonBadge variant="date" text="Released on 12.03.2025 3:40AM GMT+1" />
 
 <CarbonChange variant="add" text="Added `-harmonydir` which allows you to modify the directory path of HarmonyMods." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `c.createplugin` which creates a new blank plugin with the `OnServerInitialized` hook." style="font-size:15px" />
@@ -50,7 +50,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed unused mask softness property from CUI." style="font-size:15px" />
 
 :::
-:::details 2.0.171 <CarbonBadge type="date" text="Released on 21.02.2025 6:02PM GMT+1" />
+:::details 2.0.171 <CarbonBadge variant="date" text="Released on 21.02.2025 6:02PM GMT+1" />
 
 <CarbonChange variant="add" text="[Admin Module] **Completely revamped the Plugins tab**." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added informational message under Configurations->ConVars tab (regarding values not being saved deliberately)." style="font-size:15px" />
@@ -75,7 +75,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed Library from Timer." style="font-size:15px" />
 
 :::
-:::details 2.0.170 <CarbonBadge type="date" text="Released on 07.02.2025 8:41PM GMT+1" />
+:::details 2.0.170 <CarbonBadge variant="date" text="Released on 07.02.2025 8:41PM GMT+1" />
 
 <CarbonChange variant="add" text="Added ReloadAllPlugins (compat)." style="font-size:15px" />
 <CarbonChange variant="fix" text="Fixed returning types of OxideMod.LoadPlugin/ReloadPlugin." style="font-size:15px" />
@@ -88,7 +88,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Stripped irrelevant configuration from Preloader." style="font-size:15px" />
 
 :::
-:::details 2.0.167 <CarbonBadge type="date" text="Released on 30.01.2025 10:00PM GMT+1" />
+:::details 2.0.167 <CarbonBadge variant="date" text="Released on 30.01.2025 10:00PM GMT+1" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Codefling login analytic." style="font-size:15px" />
 <CarbonChange variant="add" text="Added [AutoWipe module](https://docs.carbonmod.gg/docs/core/modules/autowipe-module)." style="font-size:15px" />
@@ -122,7 +122,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed HarmonyWatchers config + command." style="font-size:15px" />
 
 :::
-:::details 2.0.164 <CarbonBadge type="date" text="Released on 02.01.2025 7:30PM GMT+2" />
+:::details 2.0.164 <CarbonBadge variant="date" text="Released on 02.01.2025 7:30PM GMT+2" />
 
 <CarbonChange variant="add" text="Added `c.devdump` - Creates a zip package in the temporary directory of the Carbon folder with useful information (output log & profile snapshot)." style="font-size:15px" />
 <CarbonChange variant="add" text="Added Facepunch Steam references into Roslyn compiler." style="font-size:15px" />
@@ -133,7 +133,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed HAB bump debug log spam fix." style="font-size:15px" />
 
 :::
-:::details 2.0.155 <CarbonBadge type="date" text="Released on 14.11.2024 0:45AM GMT+2" />
+:::details 2.0.155 <CarbonBadge variant="date" text="Released on 14.11.2024 0:45AM GMT+2" />
 
 <CarbonChange variant="add" text="Added `ConfigVersionChecks` override to BaseModule, enabled by default." style="font-size:15px" />
 <CarbonChange variant="add" text="Added CuiRawImageComponent.SteamId property which is used for placing the steam avatar on the image." style="font-size:15px" />
@@ -157,7 +157,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed obsolete `PoolEx` methods." style="font-size:15px" />
 
 :::
-:::details 2.0.143 <CarbonBadge type="date" text="Released on 03.10.2024 6:59PM GMT+2" />
+:::details 2.0.143 <CarbonBadge variant="date" text="Released on 03.10.2024 6:59PM GMT+2" />
 
 <CarbonChange variant="add" text="Added `c.grant group xx *` and `c.revoke user xx *` (wildcard) options." style="font-size:15px" />
 <CarbonChange variant="add" text="Added obsolete attribute on custom dictionary/stringbuilder Carbon pool methods (will be removed on Nov. 7th 2024)." style="font-size:15px" />
@@ -170,7 +170,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="update" text="Renamed Optimisations to Circular Networking since that's what it is." style="font-size:15px" />
 
 :::
-:::details 2.0.132 <CarbonBadge type="date" text="Released on 05.09.2024 7:22PM GMT+2" />
+:::details 2.0.132 <CarbonBadge variant="date" text="Released on 05.09.2024 7:22PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added player wetness properties to the Entities and Players tab." style="font-size:15px" />
 <CarbonChange variant="add" text="[Gather Manager Module] Include caught fish and scale collected amount based on module settings." style="font-size:15px" />
@@ -200,7 +200,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed extra clears for Carbon's PoolEx extensions (since Rust's Facepunch.Pool handles it all now)." style="font-size:15px" />
 
 :::
-:::details 2.0.126 <CarbonBadge type="date" text="Released on 15.08.2024 4:56AM GMT+2" />
+:::details 2.0.126 <CarbonBadge variant="date" text="Released on 15.08.2024 4:56AM GMT+2" />
 
 <CarbonChange variant="add" text="Added `Carbon.Defines.GetHooksFolder`." style="font-size:15px" />
 <CarbonChange variant="fix" text="Fixed `lang` NRE." style="font-size:15px" />
@@ -220,7 +220,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed various unused references from unrelated repository projects." style="font-size:15px" />
 
 :::
-:::details 2.0.122 <CarbonBadge type="date" text="Released on 23.07.2024 12:23PM GMT+2" />
+:::details 2.0.122 <CarbonBadge variant="date" text="Released on 23.07.2024 12:23PM GMT+2" />
 
 <CarbonChange variant="add" text="Added `UnsubscribeAll` and `GetHookSubscribers(string identifier)` to patch manager." style="font-size:15px" />
 <CarbonChange variant="add" text="Added File browser module." style="font-size:15px" />
@@ -233,7 +233,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed Carbon.Common.Client from compiler whitelist." style="font-size:15px" />
 
 :::
-:::details 2.0.114 <CarbonBadge type="date" text="Released on 04.07.2024 06:52PM GMT+2" />
+:::details 2.0.114 <CarbonBadge variant="date" text="Released on 04.07.2024 06:52PM GMT+2" />
 
 <CarbonChange variant="add" text="Added Carbon.Assemblies which tracks ALL Carbon processed assemblies." style="font-size:15px" />
 <CarbonChange variant="fix" text="Fixed `del` command patch not properly error handling." style="font-size:15px" />
@@ -254,7 +254,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed scaling in ImageDatabase (fixing GDI+ issues)." style="font-size:15px" />
 
 :::
-:::details 2.0.105 <CarbonBadge type="date" text="Released on 06.06.2024 08:21AM GMT+2" />
+:::details 2.0.105 <CarbonBadge variant="date" text="Released on 06.06.2024 08:21AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added confirmation dialog whenever changing hostname (Carbon tab)." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added max players option with confirmation (Carbon tab)." style="font-size:15px" />
@@ -287,7 +287,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `Column` from Failed plugins section under `c.plugins` and merged it with Line (`line:column` format)." style="font-size:15px" />
 
 :::
-:::details 1.2024.2137.2420 <CarbonBadge type="date" text="Released on 17.05.2024 12:30AM GMT+2" />
+:::details 1.2024.2137.2420 <CarbonBadge variant="date" text="Released on 17.05.2024 12:30AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added background blur and opacity settings to Admin module." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added display name to Carbon Auto variables (present in Admin module configurations tab)." style="font-size:15px" />
@@ -317,7 +317,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed unused Carbon updater." style="font-size:15px" />
 
 :::
-:::details 1.2024.2126.5629 <CarbonBadge type="date" text="Released on 05.05.2024 00:02AM GMT+2" />
+:::details 1.2024.2126.5629 <CarbonBadge variant="date" text="Released on 05.05.2024 00:02AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] **Added Profiler tab with exporting support**." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added Carbon Auto variables in the Admin module configuration tab." style="font-size:15px" />
@@ -372,7 +372,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed TimeAverageGeneric (obsolete)." style="font-size:15px" />
 
 :::
-:::details 1.2024.2098.3237 <CarbonBadge type="date" text="Released on 04.05.2024 12:47PM GMT+2" />
+:::details 1.2024.2098.3237 <CarbonBadge variant="date" text="Released on 04.05.2024 12:47PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] **Added language editor (plugin phrases)**." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] **Added Quick Actions to the main Carbon tab**." style="font-size:15px" />
@@ -403,7 +403,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed base module shutdown debug message." style="font-size:15px" />
 
 :::
-:::details 1.2024.1087.0520 <CarbonBadge type="date" text="Released on 03.28.2024 12:09AM GMT+2" />
+:::details 1.2024.1087.0520 <CarbonBadge variant="date" text="Released on 03.28.2024 12:09AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Items tab to Carbon's configuration page (can create custom items)." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added Reload button on installed Plugins." style="font-size:15px" />
@@ -441,7 +441,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `c.report`, `carbon/reports` folder and overall implementation (obsolete)." style="font-size:15px" />
 
 :::
-:::details 1.2024.1074.1303 <CarbonBadge type="date" text="Released on 03.14.2024 06:17PM GMT+2" />
+:::details 1.2024.1074.1303 <CarbonBadge variant="date" text="Released on 03.14.2024 06:17PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added configurations tab to Admin module (gear button next to X)." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `ConVarSnapshots` (takes a snapshot of all default Rust ConVar values)." style="font-size:15px" />
@@ -461,7 +461,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `OnServerInitialized` hook from modules." style="font-size:15px" />
 
 :::
-:::details 1.2024.1067.4507 <CarbonBadge type="date" text="Released on 03.07.2024 06:49PM GMT+2" />
+:::details 1.2024.1067.4507 <CarbonBadge variant="date" text="Released on 03.07.2024 06:49PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added `adminmodule.players.see_ips` which when granted, they can see player IP address when inspecting." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added Admin module wizard analytic for walkthrough or skipping." style="font-size:15px" />
@@ -489,7 +489,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Revamped entire Carbon config." style="font-size:15px" />
 
 :::
-:::details 1.2024.1055.5525 <CarbonBadge type="date" text="Released on 02.24.2024 12:41AM GMT+2" />
+:::details 1.2024.1055.5525 <CarbonBadge variant="date" text="Released on 02.24.2024 12:41AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Admin module Plugins tab HidePluginIcons config." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `GetConfigPath()` and `GetDataPath()` to BaseModule." style="font-size:15px" />
@@ -506,7 +506,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `keepArgs` from HookCaller." style="font-size:15px" />
 
 :::
-:::details 1.2024.1046.4234 <CarbonBadge type="date" text="Released on 02.15.2024 1:46AM GMT+2" />
+:::details 1.2024.1046.4234 <CarbonBadge variant="date" text="Released on 02.15.2024 1:46AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added module permissions in the Permissions tab." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `GroupExists` to BaseModule." style="font-size:15px" />
@@ -525,7 +525,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="No longer inject `System.Memory` into plugins as it uses mscorlib redirected types." style="font-size:15px" />
 
 :::
-:::details 1.2024.1033.4309 <CarbonBadge type="date" text="Released on 02.01.2024 7:46PM GMT+2" />
+:::details 1.2024.1033.4309 <CarbonBadge variant="date" text="Released on 02.01.2024 7:46PM GMT+2" />
 
 <CarbonChange variant="add" text="Added `c.fetchhooks` which will update hooks at runtime." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `c.harmonyload` and `c.harmonyunload`." style="font-size:15px" />
@@ -549,7 +549,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed GroupHasPermission Debug log." style="font-size:15px" />
 
 :::
-:::details 1.2024.1014.3039 <CarbonBadge type="date" text="Released on 14.01.2024 4:34PM GMT+2" />
+:::details 1.2024.1014.3039 <CarbonBadge variant="date" text="Released on 14.01.2024 4:34PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Environment tab." style="font-size:15px" />
 <CarbonChange variant="fix" text="Corrected C4C log information showing C4C enabled when it wasn't." style="font-size:15px" />
@@ -561,7 +561,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Disable `server.secure` convar if Carbon client mode is enabled." style="font-size:15px" />
 
 :::
-:::details 1.2024.1004.1024 <CarbonBadge type="date" text="Released on 04.01.2024 7:14PM GMT+2" />
+:::details 1.2024.1004.1024 <CarbonBadge variant="date" text="Released on 04.01.2024 7:14PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added `SpectatingInfoOverlay` disabling center-screen text when spectating." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added ability to change the owner id of an entity through the Entities tab (and select the owner's entity when available)." style="font-size:15px" />
@@ -586,7 +586,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `+carbon.client` and `+carbon.nomap` since it got moved to the config." style="font-size:15px" />
 
 :::
-:::details 1.2023.4341.1112 <CarbonBadge type="date" text="Released on 12.07.2023 10:14PM GMT+2" />
+:::details 1.2023.4341.1112 <CarbonBadge variant="date" text="Released on 12.07.2023 10:14PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added ability to change entity skin to the Entities tab." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `c.reloadmodule`." style="font-size:15px" />
@@ -611,7 +611,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed slight fullscreen fade when spectating." style="font-size:15px" />
 
 :::
-:::details 1.2023.4313.5300 <CarbonBadge type="date" text="Released on 11.10.2023 12:56AM GMT+2" />
+:::details 1.2023.4313.5300 <CarbonBadge variant="date" text="Released on 11.10.2023 12:56AM GMT+2" />
 
 <CarbonChange variant="add" text="[Image Database Module] Added multithread error handling." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `LastAccess` flag in windows builds in our base processor's watcher." style="font-size:15px" />
@@ -632,7 +632,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `HigherPriorityHookWarns` config." style="font-size:15px" />
 
 :::
-:::details 1.2023.4306.0506 <CarbonBadge type="date" text="Released on 11.02.2023 5:08PM GMT+2" />
+:::details 1.2023.4306.0506 <CarbonBadge variant="date" text="Released on 11.02.2023 5:08PM GMT+2" />
 
 <CarbonChange variant="add" text="Added 'carbon/harmony' shipped with our build patches." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `Carbon.Cache` - contains boxed values and defaults, meant to be used to reduce GC by plugins." style="font-size:15px" />
@@ -650,7 +650,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed unnecessary duplicate permission check on the same plugin." style="font-size:15px" />
 
 :::
-:::details 1.2023.4296.2150 <CarbonBadge type="date" text="Released on 10.23.2023 11:25PM GMT+2" />
+:::details 1.2023.4296.2150 <CarbonBadge variant="date" text="Released on 10.23.2023 11:25PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added ability to toggle the UI with the same chat command (or bind), locking keyboard movement/hotkeys when typing in input fields." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `async ValueTask OnAsyncServerShutdown` in CarbonPlugin which gets called before the server shuts down (or restart), making the server wait for all plugins to complete said task without stalling the server." style="font-size:15px" />
@@ -671,7 +671,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `EntityMapBufferSize` option (config, admin module)." style="font-size:15px" />
 
 :::
-:::details 1.2023.4285.4633 <CarbonBadge type="date" text="Released on 10.13.2023 12:49AM GMT+2" />
+:::details 1.2023.4285.4633 <CarbonBadge variant="date" text="Released on 10.13.2023 12:49AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added ability to view players within groups in Permissions tab." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added WebRequest IP validation check." style="font-size:15px" />
@@ -715,7 +715,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `c.reboot` command." style="font-size:15px" />
 
 :::
-:::details 1.2023.4278.1603 <CarbonBadge type="date" text="Released on 10.05.2023 7:19PM GMT+2" />
+:::details 1.2023.4278.1603 <CarbonBadge variant="date" text="Released on 10.05.2023 7:19PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Carbon-only plugins from Codefling (including Carbon extensions)." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `+nomap` server mode which disables the Rust map from being present (used by Carbon4Client) as well as server convars (like events, etc)." style="font-size:15px" />
@@ -738,7 +738,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed the use of delegates (for precompiled hookables)." style="font-size:15px" />
 
 :::
-:::details 0.2023.3249.0039 <CarbonBadge type="date" text="Released on 09.06.2023 4:04AM GMT+2" />
+:::details 0.2023.3249.0039 <CarbonBadge variant="date" text="Released on 09.06.2023 4:04AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added player inventory locking." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added player renaming." style="font-size:15px" />
@@ -774,7 +774,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed Oxide `Rust.opj` file requests and processing." style="font-size:15px" />
 
 :::
-:::details 0.2023.3222.2550 <CarbonBadge type="date" text="Released on 08.10.2023 5:30PM GMT+2" />
+:::details 0.2023.3222.2550 <CarbonBadge variant="date" text="Released on 08.10.2023 5:30PM GMT+2" />
 
 <CarbonChange variant="add" text="Added `application/x-www-form-urlencoded` by default in `POST|PUT|PATCH|DELETE` requests." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `AsyncEx` extensions." style="font-size:15px" />
@@ -788,7 +788,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed config/data path validation for inconsistency reasons with custom switch directories." style="font-size:15px" />
 
 :::
-:::details 0.2023.3219.0627 <CarbonBadge type="date" text="Released on 08.07.2023 07:09PM GMT+2" />
+:::details 0.2023.3219.0627 <CarbonBadge variant="date" text="Released on 08.07.2023 07:09PM GMT+2" />
 
 <CarbonChange variant="add" text="Added extension and module hotloading." style="font-size:15px" />
 <CarbonChange variant="add" text="Added more Covalence compatibility." style="font-size:15px" />
@@ -798,7 +798,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed hook/plugin priorities." style="font-size:15px" />
 
 :::
-:::details 0.2023.3215.4402 <CarbonBadge type="date" text="Released on 08.03.2023 7:47PM GMT+2" />
+:::details 0.2023.3215.4402 <CarbonBadge variant="date" text="Released on 08.03.2023 7:47PM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Plugins tab badges on previewed plugins." style="font-size:15px" />
 <CarbonChange variant="add" text="Added [Codefling auth](https://docs.carbonmod.gg/docs/core/modules/admin-module/codefling-auth)." style="font-size:15px" />
@@ -824,7 +824,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed `RustEdit.Ext` module." style="font-size:15px" />
 
 :::
-:::details 0.2023.3193.1938 <CarbonBadge type="date" text="Released on 07.12.2023 10:22PM GMT+2" />
+:::details 0.2023.3193.1938 <CarbonBadge variant="date" text="Released on 07.12.2023 10:22PM GMT+2" />
 
 <CarbonChange variant="add" text="Added plugin hook call memory allocation tracking." style="font-size:15px" />
 <CarbonChange variant="update" text="Display plugin memory usage in `c.plugins`." style="font-size:15px" />
@@ -833,7 +833,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Print and store stack and inner information of unhandled exceptions (Unity, Rust, plugin monos)." style="font-size:15px" />
 
 :::
-:::details 0.2023.3190.0119 <CarbonBadge type="date" text="Released on 07.09.2023 05:03PM GMT+2" />
+:::details 0.2023.3190.0119 <CarbonBadge variant="date" text="Released on 07.09.2023 05:03PM GMT+2" />
 
 <CarbonChange variant="add" text="Added Command disposal." style="font-size:15px" />
 <CarbonChange variant="add" text="Added Global Usings and enabled Implicit Usings for Carbon.Common." style="font-size:15px" />
@@ -846,7 +846,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Publicized `ConsoleSystem.Index.All`." style="font-size:15px" />
 
 :::
-:::details 0.2023.3188.0903 <CarbonBadge type="date" text="Released on 07.07.2023 03:11AM GMT+2" />
+:::details 0.2023.3188.0903 <CarbonBadge variant="date" text="Released on 07.07.2023 03:11AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added back flipping direction when selecting the same filter in Plugins tab." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added error message when users with auth 0 try to use Carbon Admin Panel commands." style="font-size:15px" />
@@ -874,7 +874,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Multiply command cooldown every time a player tries to call it (to avoid spam) (defaults to *0.5)." style="font-size:15px" />
 
 :::
-:::details 0.2023.2178.5536 <CarbonBadge type="date" text="Released on 06.27.2023 06:59AM GMT+2" />
+:::details 0.2023.2178.5536 <CarbonBadge variant="date" text="Released on 06.27.2023 06:59AM GMT+2" />
 
 <CarbonChange variant="add" text="Added `c.frametickbuffersize` (defaults to 1000)." style="font-size:15px" />
 <CarbonChange variant="fix" text="Fixed asynchronous hooks not being picked up by the code generator." style="font-size:15px" />
@@ -883,7 +883,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="update" text="Reimplemented NextTick/NextFrame processing (fixes frequently called hooks creating timers/nextticks slowing down the spawning of entities on boot)." style="font-size:15px" />
 
 :::
-:::details 0.2023.2177.3145 <CarbonBadge type="date" text="Released on 06.26.2023 2:34AM GMT+2" />
+:::details 0.2023.2177.3145 <CarbonBadge variant="date" text="Released on 06.26.2023 2:34AM GMT+2" />
 
 <CarbonChange variant="add" text="[Admin Module] Added alpha property in color picker (CUI and implementation)." style="font-size:15px" />
 <CarbonChange variant="add" text="Added safe-error handling for `Plugin.Subscribe/Unsubscribe`." style="font-size:15px" />
@@ -893,7 +893,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Code generator improvements for calling hooks with nullified arguments." style="font-size:15px" />
 
 :::
-:::details 0.2023.2171.0519 <CarbonBadge type="date" text="Released on 06.20.2023 8:07AM GMT+2" />
+:::details 0.2023.2171.0519 <CarbonBadge variant="date" text="Released on 06.20.2023 8:07AM GMT+2" />
 
 <CarbonChange variant="add" text="Added `Pair<string, CuiElement, CuiElement>` support (Carbon CUI)." style="font-size:15px" />
 <CarbonChange variant="add" text="Added `Plugin.IsPrecompiled` indicating if a plugin's managed programmatically." style="font-size:15px" />
@@ -921,7 +921,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Don't insert elements into pooled containers if they're updateable (Carbon CUI)." style="font-size:15px" />
 
 :::
-:::details 0.2023.2159.1312 <CarbonBadge type="date" text="Released on 06.08.2023 8:15PM GMT" />
+:::details 0.2023.2159.1312 <CarbonBadge variant="date" text="Released on 06.08.2023 8:15PM GMT" />
 
 <CarbonChange variant="add" text="[Admin Module] Added Date picker (accessible by plugins as well)." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added player Ban button in Players/Entities - with date picker for duration [defaults to 100y] [BasePlayer type] (access level 2)." style="font-size:15px" />
@@ -952,13 +952,13 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="remove" text="Removed legacy `HookValidation` convar (from Admin module as well) as it's now entirely obsolete." style="font-size:15px" />
 
 :::
-:::details 0.2023.2153.2845 <CarbonBadge type="date" text="Released on 2023-06-02 09:31PM GMT" />
+:::details 0.2023.2153.2845 <CarbonBadge variant="date" text="Released on 2023-06-02 09:31PM GMT" />
 
 <CarbonChange variant="add" text="Fixed issue where some players do not get added to the user database." style="font-size:15px" />
 <CarbonChange variant="add" text="Fixed script loader and watcher occasional issue." style="font-size:15px" />
 
 :::
-:::details 0.2023.2152.0418 <CarbonBadge type="date" text="Released on 2023-06-01 4:06PM GMT" />
+:::details 0.2023.2152.0418 <CarbonBadge variant="date" text="Released on 2023-06-01 4:06PM GMT" />
 
 <CarbonChange variant="add" text="[Admin Module] Added ability to add a temporary nickname on the added Steam IDs to ease identification." style="font-size:15px" />
 <CarbonChange variant="add" text="[Admin Module] Added modal for adding Steam IDs in the data file - for assigning permissions/groups on Steam ID before they connect." style="font-size:15px" />
@@ -995,12 +995,12 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Place admin players that are noclipping high on the ground to avoid fall damage." style="font-size:15px" />
 
 :::
-:::details 0.2023.2143.0715 <CarbonBadge type="date" text="Released on 2023-05-23 13:07:15" />
+:::details 0.2023.2143.0715 <CarbonBadge variant="date" text="Released on 2023-05-23 13:07:15" />
 
 <CarbonChange variant="misc" text="Rust optional update patch for pooling changes." style="font-size:15px" />
 
 :::
-:::details 0.2023.2138.1804 <CarbonBadge type="date" text="Released on " />
+:::details 0.2023.2138.1804 <CarbonBadge variant="date" text="Released on " />
 
 <CarbonChange variant="add" text="Added back `c.version`, `c.protocol` and `c.build`." style="font-size:15px" />
 <CarbonChange variant="add" text="Added new Carbon events: `FileSystemWarmup`, `FileSystemWarmupComplete` & `PluginPreload`." style="font-size:15px" />
@@ -1014,7 +1014,7 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Whitelisted `Ionic.Zip.Reduced`." style="font-size:15px" />
 
 :::
-:::details 0.2023.2131.5323 <CarbonBadge type="date" text="Released on " />
+:::details 0.2023.2131.5323 <CarbonBadge variant="date" text="Released on " />
 
 <CarbonChange variant="add" text="[Gather Manager Module] Added OvenSpeedOverride - changes the smelting speed in all ovens." style="font-size:15px" />
 <CarbonChange variant="add" text="[Gather Manager Module] Added smelt speed override blacklisting (based on prefab shortname and entity type)." style="font-size:15px" />
@@ -1028,14 +1028,14 @@ The following are archived changes of older releases of Carbon. Publicly, we onl
 <CarbonChange variant="misc" text="Implemented 'DELETE' in WebRequest." style="font-size:15px" />
 
 :::
-:::details 0.1013.1018.3044 <CarbonBadge type="date" text="Released on " />
+:::details 0.1013.1018.3044 <CarbonBadge variant="date" text="Released on " />
 
 <CarbonChange variant="add" text="[Admin Module] Added multi-selection support in the Entities tab." style="font-size:15px" />
 <CarbonChange variant="update" text="[Vanish Module] Made Bradley ignore vanished players." style="font-size:15px" />
 <CarbonChange variant="update" text="Legacy code cleanup." style="font-size:15px" />
 
 :::
-:::details 0.1013.1107 <CarbonBadge type="date" text="Released on " />
+:::details 0.1013.1107 <CarbonBadge variant="date" text="Released on " />
 
 <CarbonChange variant="add" text="Add new functionality to FileWatcherManager." style="font-size:15px" />
 <CarbonChange variant="add" text="Added +carbon.onboot (called after modules initialize) and +carbon.onserverinit (called after server is marked as completely initialized)." style="font-size:15px" />
