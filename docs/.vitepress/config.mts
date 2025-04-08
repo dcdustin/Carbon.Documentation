@@ -31,7 +31,6 @@ export default defineConfig({
         { text: 'Entities', link: '/references/entities' },
         { text: 'Commands', link: '/references/commands' },
         { text: 'ConVars', link: '/references/convars' },
-        { text: 'Permissions', link: '/references/permissions' },
         { text: 'Loot Tables', link: '/references/loot' },
       ]},
       { text: 'Release Notes', link: '/release-notes'},
@@ -54,6 +53,7 @@ export default defineConfig({
           text: 'Core',
           items: [
             { text: 'Extensions', link: '/core/extensions'},
+            { text: 'Permissions', link: '/core/permissions' },
             {text: 'Modules', collapsed: false, items: [
               { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
               { text: 'Admin Module', link: '/core/modules/admin-module' },
@@ -87,7 +87,6 @@ export default defineConfig({
             { text: 'Entities', link: '/references/entities' },
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
-            { text: 'Permissions', link: '/references/permissions' },
             { text: 'Loot Tables', link: '/references/loot' },
 
             // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
