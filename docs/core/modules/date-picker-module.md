@@ -9,6 +9,7 @@ The Date Picker Module is a **core module** included in the Carbon modding frame
 - **Class Name:** `DatePickerModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
+- **Supports Configuration:** No
 
 This module is intended for use by **other plugins** to enable date selection through a UI interface. It includes a calendar layout, year/month input, and selection confirmation.
 

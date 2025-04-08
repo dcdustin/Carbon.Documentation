@@ -9,6 +9,7 @@ The Image Database Module is a **core module** included in the Carbon modding fr
 - **Class Name:** `ImageDatabaseModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
+- **Supports Configuration:** No
 
 This module allows **plugins to download images from URLs**, assign internal keys to them, and reuse them efficiently with caching. It also supports QR code generation.
 

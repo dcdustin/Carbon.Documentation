@@ -9,6 +9,7 @@ The File Module is a **core module** included in the Carbon modding framework fo
 - **Class Name:** `FileModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
+- **Supports Configuration:** No
 
 This module is intended for use by **other plugins** that need to expose a browsable file system interface to players or admins in-game. It supports file filtering, directory limits, and callback integration.
 
@@ -47,7 +48,7 @@ fileModule.Open(player, "Title", "start/path", "path/limit", "json",
 ## Example Use in Plugin
 
 ```csharp
-fileModule.Open(player, "Browse JSON Files", "/oxide/data", "/oxide/data", "json",
+fileModule.Open(player, "Browse JSON Files", "/carbon/data", "/carbon/data", "json",
     onConfirm: (player, browser) =>
     {
         Puts($"Confirmed: {browser.SelectedFile}");

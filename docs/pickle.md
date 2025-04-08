@@ -1,0 +1,1 @@
+![Pickle](/misc/pickle.svg)
