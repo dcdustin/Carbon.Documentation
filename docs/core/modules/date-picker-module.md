@@ -6,7 +6,7 @@ The Date Picker Module is a **core module** included in the Carbon modding frame
 
 
 ## Overview
-![Permissions Tab](/misc/datepicker_a.webp)
+![Date Picker](/misc/datepicker_a.webp)
 
 - **Class Name:** `DatePickerModule`
 - **Enabled by default:** Yes
