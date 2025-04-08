@@ -156,6 +156,7 @@ export default defineConfig({
         isCustomElement: (tag) => tag.includes('-')
       }
     }
-  }
+  },
+
 })
   

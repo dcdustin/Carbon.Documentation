@@ -1,25 +1,22 @@
 <script setup>
-import { ref, onMounted, computed, nextTick, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image } from 'lucide-vue-next'
+import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
 import { 
-  getItemFlagText, 
-  getItemCategoryText, 
-  getItemRarityText, 
-  ItemCategory,
-  RARITY_COLORS,
-  CATEGORY_COLORS,
   getGameData,
-  GAME_DATA_FOLDER,
+  ITEMS_API_URL,
+  getItemCategoryText,
+  getItemRarityText,
+  CATEGORY_COLORS,
+  RARITY_COLORS,
   ITEM_IMAGE_SERVER,
   MISSING_IMAGE_URL,
-  getImage
+  CACHE_VERSION_API_URL
 } from '../shared/constants'
-import { getCachedData } from '../shared/utils'
 import { VPBadge } from 'vitepress/theme'
+import '../theme/style.css'
 
 const items = ref([])
 const copiedId = ref(null)
-const copiedName = ref(false)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
@@ -29,24 +26,35 @@ const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
 const imageErrors = ref(new Map())
+const error = ref(null)
 
-const LINK_API = `${GAME_DATA_FOLDER}/items.json`
-const API_URL = LINK_API
+const LINK_API = ITEMS_API_URL
 
-const CACHE_KEY = 'carbon_items_cache'
+const getItemImageUrl = (shortName) => {
+  if (!shortName) return MISSING_IMAGE_URL
+  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+}
 
-const toString = (value) => value?.toString() || ''
+const handleImageError = (event, itemId) => {
+  imageErrors.value.set(itemId, true)
+  console.warn(`Failed to load image for item: ${event.target.src}`)
+}
+
+const getFlags = (flags) => {
+  if (!flags) return []
+  const flagList = []
+  if (flags & 1) flagList.push('No Condition')
+  if (flags & 2) flagList.push('No Durability')
+  if (flags & 4) flagList.push('No Wear')
+  if (flags & 8) flagList.push('Is Shield')
+  return flagList
+}
 
 const getSanitizedAnchor = (text) => {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-') 
     .replace(/^-+|-+$/g, '') 
-}
-
-const getFlags = (flags) => {
-  if (!flags) return []
-  return getItemFlagText(flags)
 }
 
 const categories = computed(() => {
@@ -60,7 +68,7 @@ const categories = computed(() => {
 const filteredItems = computed(() => {
   if (!items.value?.length) return []
   
-  let filtered = items.value.filter(item => item && item.DisplayName && item.Id)
+  let filtered = items.value.filter(item => item && item.DisplayName)
 
   if (selectedCategory.value !== 'all') {
     const categoryNum = parseInt(selectedCategory.value)
@@ -97,85 +105,47 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-const copyToClipboard = async (text, type, id = null) => {
+const copyToClipboard = async (text, id = null) => {
   try {
     await navigator.clipboard.writeText(text)
-    if (type === 'id') {
-      copiedId.value = id
-      setTimeout(() => copiedId.value = null, 2000)
-    } else {
-      copiedName.value = true
-      setTimeout(() => copiedName.value = false, 2000)
-    }
+    copiedId.value = id
+    setTimeout(() => copiedId.value = null, 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
 }
 
-const getItemImageUrl = (shortName) => {
-  if (!shortName) return MISSING_IMAGE_URL
-  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+const loadItems = async () => {
+  try {
+    isLoading.value = true
+    error.value = null
+    const data = await getGameData(LINK_API)
+    items.value = data
+  } catch (err) {
+    console.error('Failed to load items:', err)
+    error.value = 'Failed to load items. Please try again later.'
+  } finally {
+    isLoading.value = false
+  }
 }
 
-const handleImageError = (event, itemId) => {
-  imageErrors.value.set(itemId, true)
-  console.warn(`Failed to load image for item: ${event.target.src}`)
-}
-
-const loadMore = () => {
+const loadMore = async () => {
   if (loadingMore.value || !hasMore.value) return
   
-  const totalItems = filteredItems.value.length
-  const currentItems = currentPage.value * pageSize
-  
-  if (currentItems >= totalItems) {
-    hasMore.value = false
-    return
-  }
-  
   loadingMore.value = true
-  currentPage.value += 1
+  currentPage.value++
+  hasMore.value = currentPage.value * pageSize < filteredItems.value.length
   loadingMore.value = false
 }
 
 const handleScroll = () => {
-  const scrollHeight = document.documentElement.scrollHeight
-  const scrollTop = document.documentElement.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  
-  if (scrollHeight - scrollTop <= clientHeight + 100) {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
     loadMore()
   }
 }
 
 onMounted(async () => {
-  try {
-    isLoading.value = true
-    
-    const data = await getCachedData(CACHE_KEY, async () => {
-      const response = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
-      if (!Array.isArray(response)) {
-        throw new Error('Data is not an array')
-      }
-      return response.filter(item => 
-        item && 
-        typeof item.Category !== 'undefined' &&
-        typeof item.Id !== 'undefined' &&
-        typeof item.DisplayName !== 'undefined' &&
-        typeof item.ShortName !== 'undefined'
-      )
-    })
-    
-    items.value = data
-  } catch (error) {
-    console.error('Failed to load items:', error)
-    items.value = []
-  } finally {
-    isLoading.value = false
-  }
-})
-
-onMounted(() => {
+  await loadItems()
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -183,14 +153,30 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-watch(debouncedSearchQuery, () => {
-  currentPage.value = 1
-  hasMore.value = true
+// Watch for version changes
+let versionCheckInterval
+onMounted(() => {
+  versionCheckInterval = setInterval(async () => {
+    try {
+      const response = await fetch(CACHE_VERSION_API_URL)
+      if (!response.ok) return
+      const version = await response.text()
+      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
+      
+      if (cachedVersion !== version) {
+        // Reload data if version changed
+        await loadItems()
+      }
+    } catch (error) {
+      console.warn('Error checking version:', error)
+    }
+  }, 60000) // Check every minute
 })
 
-watch(selectedCategory, () => {
-  currentPage.value = 1
-  hasMore.value = true
+onUnmounted(() => {
+  if (versionCheckInterval) {
+    clearInterval(versionCheckInterval)
+  }
 })
 </script>
 
@@ -201,7 +187,7 @@ watch(selectedCategory, () => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="ITEMS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database size="16"/>
           Items API
           <ExternalLink size="14" class="opacity-80"/>
@@ -319,11 +305,11 @@ watch(selectedCategory, () => {
                           </button>
                           <button 
                             v-if="item.ShortName"
-                            @click="copyToClipboard(item.ShortName, 'name')" 
+                            @click="copyToClipboard(item.ShortName, item.ShortName)" 
                             class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                           >
                             <span class="font-mono">{{ item.ShortName }}</span>
-                            <component :is="copiedName ? CheckCircle2 : Copy" 
+                            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" 
                                      class="ml-2" 
                                      size="14"
                             />

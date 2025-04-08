@@ -3,13 +3,14 @@ import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
 import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
 import { 
   getGameData,
-  GAME_DATA_FOLDER,
+  BLUEPRINTS_API_URL,
   getItemCategoryText,
   getItemRarityText,
   CATEGORY_COLORS,
   RARITY_COLORS,
   ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL
+  MISSING_IMAGE_URL,
+  CACHE_VERSION_API_URL
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
@@ -28,8 +29,9 @@ const imageErrors = ref(new Map())
 const selectedIngredient = ref(null)
 const showIngredientModal = ref(false)
 const dlcData = ref(new Map())
+const error = ref(null)
 
-const LINK_API = `${GAME_DATA_FOLDER}/blueprints.json`
+const LINK_API = BLUEPRINTS_API_URL
 
 const getItemImageUrl = (shortName) => {
   if (!shortName) return MISSING_IMAGE_URL
@@ -99,77 +101,68 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-const loadMore = () => {
+const loadBlueprints = async () => {
+  try {
+    isLoading.value = true
+    error.value = null
+    const data = await getGameData(LINK_API)
+    blueprints.value = data
+  } catch (err) {
+    console.error('Failed to load blueprints:', err)
+    error.value = 'Failed to load blueprints. Please try again later.'
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const loadMore = async () => {
   if (loadingMore.value || !hasMore.value) return
   
-  const totalItems = filteredBlueprints.value.length
-  const currentItems = currentPage.value * pageSize
-  
-  if (currentItems >= totalItems) {
-    hasMore.value = false
-    return
-  }
-  
   loadingMore.value = true
-  currentPage.value += 1
+  currentPage.value++
+  hasMore.value = currentPage.value * pageSize < filteredBlueprints.value.length
   loadingMore.value = false
 }
 
 const handleScroll = () => {
-  const scrollHeight = document.documentElement.scrollHeight
-  const scrollTop = document.documentElement.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  
-  if (scrollHeight - scrollTop <= clientHeight + 100) {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
     loadMore()
   }
 }
 
-const fetchDlcData = async (appId) => {
-  if (dlcData.value.has(appId)) return dlcData.value.get(appId)
-  
-  try {
-    const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`)
-    const data = await response.json()
-    if (data[appId]?.success) {
-      dlcData.value.set(appId, data[appId].data)
-      return data[appId].data
-    }
-  } catch (error) {
-    console.error('Failed to fetch DLC data:', error)
-  }
-  return null
-}
-
 onMounted(async () => {
-  try {
-    isLoading.value = true
-    const data = await getGameData(`${GAME_DATA_FOLDER}/blueprints.json`)
-    
-    if (!Array.isArray(data)) {
-      throw new Error('Data is not an array')
-    }
-
-    blueprints.value = data.filter(bp => 
-      bp && 
-      bp.Item &&
-      bp.Item.DisplayName &&
-      bp.Item.ShortName
-    )
-  } catch (error) {
-    console.error('Failed to load blueprints:', error)
-    blueprints.value = []
-  } finally {
-    isLoading.value = false
-  }
-})
-
-onMounted(() => {
+  await loadBlueprints()
   window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+})
+
+// Watch for version changes
+let versionCheckInterval
+onMounted(() => {
+  versionCheckInterval = setInterval(async () => {
+    try {
+      const response = await fetch(CACHE_VERSION_API_URL)
+      if (!response.ok) return
+      const version = await response.text()
+      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
+      
+      if (cachedVersion !== version) {
+        // Reload data if version changed
+        await loadBlueprints()
+      }
+    } catch (error) {
+      console.warn('Error checking version:', error)
+    }
+  }, 60000) // Check every minute
+})
+
+onUnmounted(() => {
+  if (versionCheckInterval) {
+    clearInterval(versionCheckInterval)
+  }
 })
 
 watch(debouncedSearchQuery, () => {
@@ -202,6 +195,22 @@ const showItemModal = async (itemId) => {
 const closeIngredientModal = () => {
   showIngredientModal.value = false
   selectedIngredient.value = null
+}
+
+const fetchDlcData = async (appId) => {
+  if (dlcData.value.has(appId)) return dlcData.value.get(appId)
+  
+  try {
+    const response = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`)
+    const data = await response.json()
+    if (data[appId]?.success) {
+      dlcData.value.set(appId, data[appId].data)
+      return data[appId].data
+    }
+  } catch (error) {
+    console.error('Failed to fetch DLC data:', error)
+  }
+  return null
 }
 </script>
 

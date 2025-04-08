@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onMounted, computed, watch, onUnmounted, nextTick } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X, RefreshCw } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-csharp'
 import '../theme/custom-prism.css'
-import { HookFlags, getHookFlagsText } from '../shared/constants'
+import { HookFlags, getHookFlagsText, getGameData, HOOKS_API_URL, CACHE_VERSION_API_URL } from '../shared/constants'
+import '../theme/style.css'
 
 const hooks = ref([])
-const copiedName = ref(null)
+const copiedId = ref(null)
 const isLoading = ref(true)
+const error = ref(null)
+const retryCount = ref(0)
+const maxRetries = 3
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
 const pageSize = 50
@@ -18,8 +22,9 @@ const loadingMore = ref(false)
 const hasMore = ref(true)
 const categories = ref([])
 const selectedCategory = ref('')
+const showOxideOnly = ref(false)
 
-const LINK_API = 'https://carbonmod.gg/redist/metadata/carbon/hooks.json'
+const LINK_API = HOOKS_API_URL
 
 const getSanitizedAnchor = (text) => {
   return text
@@ -31,7 +36,15 @@ const getSanitizedAnchor = (text) => {
 const filteredHooks = computed(() => {
   if (!hooks.value?.length) return []
   
-  let filtered = hooks.value.filter(hook => hook && hook.name && hook.fullName)
+  let filtered = hooks.value.filter(hook => hook && hook.name)
+
+  if (selectedCategory.value) {
+    filtered = filtered.filter(hook => hook?.category === selectedCategory.value)
+  }
+
+  if (showOxideOnly.value) {
+    filtered = filtered.filter(hook => hook.oxideCompatible)
+  }
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
@@ -39,14 +52,9 @@ const filteredHooks = computed(() => {
       if (!hook) return false
       return (
         (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
-        (hook.fullName && hook.fullName.toLowerCase().includes(searchLower)) ||
-        (hook.category && hook.category.toLowerCase().includes(searchLower))
+        (hook.descriptions && hook.descriptions.some(desc => desc.toLowerCase().includes(searchLower)))
       )
     })
-  }
-
-  if (selectedCategory.value && selectedCategory.value !== '') {
-    filtered = filtered.filter(hook => hook.category === selectedCategory.value)
   }
 
   return filtered
@@ -63,92 +71,87 @@ const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
-    currentPage.value = 1 
+    currentPage.value = 1
   }, 300)
 }
 
-const copyToClipboard = async (text, name = null) => {
+const copyToClipboard = async (text, id = null) => {
   try {
     await navigator.clipboard.writeText(text)
-    copiedName.value = name
-    setTimeout(() => copiedName.value = null, 2000)
+    copiedId.value = id
+    setTimeout(() => copiedId.value = null, 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
 }
 
-const loadMore = () => {
-  if (loadingMore.value || !hasMore.value) return
-  
-  const totalItems = filteredHooks.value.length
-  const currentItems = currentPage.value * pageSize
-  
-  if (currentItems >= totalItems) {
-    hasMore.value = false
-    return
-  }
-  
-  loadingMore.value = true
-  currentPage.value += 1
-  loadingMore.value = false
-}
-
-const handleScroll = () => {
-  const scrollHeight = document.documentElement.scrollHeight
-  const scrollTop = document.documentElement.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  
-  if (scrollHeight - scrollTop <= clientHeight + 100) {
-    loadMore()
-  }
-}
-
-watch(debouncedSearchQuery, () => {
-  currentPage.value = 1
-  hasMore.value = true
-})
-
-watch(selectedCategory, () => {
-  currentPage.value = 1
-  hasMore.value = true
-})
-
-onMounted(async () => {
-  try {    
+const loadHooks = async () => {
+  try {
     isLoading.value = true
+    error.value = null
+    const data = await getGameData(LINK_API)
+    console.log('Raw hooks data:', data) // Debug log
     
-    const response = await fetch(LINK_API)
-    if (!response.ok) {
-      throw new Error('Failed to fetch hooks data')
+    if (!data) {
+      throw new Error('No data received from API')
     }
-    
-    const data = await response.json()
-    if (typeof data !== 'object') {
-      throw new Error('Data is not an object')
-    }
-    
-    // Process the data by category
-    categories.value = Object.keys(data)
-    
-    // Flatten the hooks from all categories
-    const allHooks = []
+
+    // Transform the categorized data into a flat array
+    const flatHooks = []
     for (const category in data) {
       if (Array.isArray(data[category])) {
         data[category].forEach(hook => {
-          if (hook && typeof hook.name !== 'undefined' && typeof hook.fullName !== 'undefined') {
-            allHooks.push(hook)
+          if (hook && hook.name) {
+            flatHooks.push({
+              ...hook,
+              category: category,
+              name: hook.name,
+              fullName: hook.fullName || hook.name,
+              parameters: hook.parameters || [],
+              returnTypeName: hook.returnTypeName,
+              flags: hook.flags,
+              carbonCompatible: hook.carbonCompatible,
+              oxideCompatible: hook.oxideCompatible,
+              descriptions: hook.descriptions || []
+            })
           }
         })
       }
     }
+    console.log('Transformed hooks:', flatHooks) // Debug log
     
-    hooks.value = allHooks
-  } catch (error) {
-    console.error('Failed to load hooks:', error)
-    hooks.value = []
+    if (flatHooks.length === 0) {
+      throw new Error('No hooks found in the data')
+    }
+
+    hooks.value = flatHooks
+    categories.value = ['all', ...new Set(flatHooks.map(hook => hook.category))]
+  } catch (err) {
+    console.error('Failed to load hooks:', err)
+    error.value = err.message || 'Failed to load hooks. Please try again later.'
   } finally {
     isLoading.value = false
   }
+}
+
+const loadMore = async () => {
+  if (loadingMore.value || !hasMore.value) return
+  
+  loadingMore.value = true
+  currentPage.value++
+  hasMore.value = currentPage.value * pageSize < filteredHooks.value.length
+  loadingMore.value = false
+}
+
+const handleScroll = () => {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+    loadMore()
+  }
+}
+
+onMounted(async () => {
+  await loadHooks()
+  window.addEventListener('scroll', handleScroll)
 })
 
 onMounted(() => {
@@ -167,6 +170,42 @@ watch(() => hooks.value, () => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
+
+// Watch for version changes
+let versionCheckInterval
+onMounted(() => {
+  versionCheckInterval = setInterval(async () => {
+    try {
+      const response = await fetch(CACHE_VERSION_API_URL)
+      if (!response.ok) return
+      const version = await response.text()
+      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
+      
+      if (cachedVersion !== version) {
+        // Reload data if version changed
+        await loadHooks()
+      }
+    } catch (error) {
+      console.warn('Error checking version:', error)
+    }
+  }, 60000) // Check every minute
+})
+
+onUnmounted(() => {
+  if (versionCheckInterval) {
+    clearInterval(versionCheckInterval)
+  }
+})
+
+// Add retry function
+const retryFetch = () => {
+  if (retryCount.value < maxRetries) {
+    retryCount.value++
+    loadHooks()
+  } else {
+    error.value = 'Maximum retry attempts reached. Please refresh the page.'
+  }
+}
 </script>
 
 <template>
@@ -189,6 +228,17 @@ onUnmounted(() => {
       <span class="ml-2">Loading hooks...</span>
     </div>
 
+    <div v-else-if="error" class="flex flex-col items-center justify-center py-8 text-center">
+      <div class="text-red-500 mb-4">{{ error }}</div>
+      <button 
+        @click="retryFetch"
+        class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
+      >
+        <RefreshCw size="16"/>
+        Retry
+      </button>
+    </div>
+
     <div v-else>
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
@@ -206,13 +256,21 @@ onUnmounted(() => {
             <span class="text-sm font-medium">Category:</span>
             <select 
               v-model="selectedCategory" 
-              class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md"
+              class="px-3 py-2  bg-inherit"
             >
-              <option value="">All Categories</option>
+              <option value="all">All Categories</option>
               <option v-for="category in categories" :key="category" :value="category">
                 {{ category }}
               </option>
             </select>
+          </div>
+          <div class="flex items-center gap-2">
+            <input 
+              type="checkbox" 
+              v-model="showOxideOnly"
+              class="w-4 h-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary"
+            >
+            <span class="text-sm">Oxide Compatible</span>
           </div>
         </div>
       </div>
@@ -244,7 +302,7 @@ onUnmounted(() => {
                           class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0 ml-2"
                         >
                           <span class="font-mono">{{ hook.fullName }}</span>
-                          <component :is="copiedName === hook.fullName ? CheckCircle2 : Copy" 
+                          <component :is="copiedId === hook.fullName ? CheckCircle2 : Copy" 
                                    class="ml-2" 
                                    size="14"
                           />
