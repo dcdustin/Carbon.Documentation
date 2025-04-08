@@ -6,10 +6,12 @@ The Modal Module is a **core module** included in the Carbon modding framework f
 
 
 ## Overview
+![Permissions Tab](/misc/modal_a.webp)
+
 - **Class Name:** `ModalModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
-- **Supports Configuration:** No
+- **Source:** [ModalModule.cs](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/ModalModule/ModalModule.cs)
 
 This module allows **plugins to create modals** with input fields such as strings, booleans, numbers, colors, enums, and even buttons. Field validation and callbacks are supported.
 
