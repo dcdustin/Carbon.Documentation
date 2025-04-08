@@ -81,117 +81,73 @@ export default defineConfig({
     ],
 
     sidebar: {
-      "/": [
-        { text: "Introduction", link: "/introduction" },
-        { text: "Installing Carbon", link: "/installing-carbon" },
-        { text: "Configuring Carbon", link: "/configuring-carbon" },
+      '/': [
+        {text: 'Introduction', link: '/introduction'},
+        {text: 'Installing Carbon', link: '/installing-carbon'},
+        {text: 'Configuring Carbon', link: '/configuring-carbon'},
         {
-          text: "Development",
+          text: 'Development',
           items: [
-            {
-              text: "Local Server Hosting",
-              link: "/development/local-server-hosting",
-            },
-            {
-              text: "Creating Your Project",
-              link: "/development/creating-your-project",
-            },
-            {
-              text: "Creating Your First Plugin",
-              link: "/development/creating-your-first-plugin",
-            },
-          ],
+            { text: 'Local Server Hosting', link: '/development/local-server-hosting' },
+            { text: 'Creating Your Project', link: '/development/creating-your-project' },
+            { text: 'Creating Your First Plugin', link: '/development/creating-your-first-plugin' },
+          ]
         },
         {
-          text: "Core",
+          text: 'Core',
           items: [
-            { text: "Extensions", link: "/core/extensions" },
-            {
-              text: "Modules",
-              collapsed: false,
-              items: [
-                {
-                  text: "What are Modules?",
-                  link: "/core/modules/what-are-modules",
-                },
-                { text: "Admin Module", link: "/core/modules/admin-module" },
-
-                {
-                  text: "Image Database Module",
-                  link: "/core/modules/image-db-module",
-                },
-                {
-                  text: "Optional Modules",
-                  collapsed: true,
-                  items: [
-                    {
-                      text: "AutoWipe Module",
-                      link: "/core/modules/optional-modules/autowipe-module",
-                    },
-                    {
-                      text: "Circular Networking Module",
-                      link: "/core/modules/optional-modules/circularnetworking-module",
-                    },
-                    {
-                      text: "Gather Manager Module",
-                      link: "/core/modules/optional-modules/gather-manager-module",
-                    },
-                    {
-                      text: "Moderation Tools Module",
-                      link: "/core/modules/optional-modules/moderation-tools-module",
-                    },
-                    {
-                      text: "Selective EAC Module",
-                      link: "/core/modules/optional-modules/selective-eac-module",
-                    },
-                    {
-                      text: "Stack Manager Module",
-                      link: "/core/modules/optional-modules/stack-manager-module",
-                    },
-                    {
-                      text: "Vanish Module",
-                      link: "/core/modules/optional-modules/vanish-module",
-                    },
-                    {
-                      text: "Whitelist Module",
-                      link: "/core/modules/optional-modules/whitelist-module",
-                    },
-                  ],
-                },
-              ],
+            { text: 'Extensions', link: '/core/extensions'},
+            { text: 'Permissions', link: '/core/permissions' },
+            {text: 'Modules', collapsed: false, items: [
+              { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
+              { text: 'Admin Module', link: '/core/modules/admin-module' },
+              { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
+              { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
+              { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
+              { text: 'Modal Module', link: '/core/modules/modal-module' },
+              { text: 'Image Database Module', link: '/core/modules/image-db-module' },
+              { text: 'Optional Modules', collapsed: true, items: [
+                { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
+                { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
+                { text: 'Gather Manager Module', link: '/core/modules/optional-modules/gather-manager-module' },
+                { text: 'Moderation Tools Module', link: '/core/modules/optional-modules/moderation-tools-module' },
+                { text: 'Selective EAC Module', link: '/core/modules/optional-modules/selective-eac-module' },
+                { text: 'Stack Manager Module', link: '/core/modules/optional-modules/stack-manager-module' },
+                { text: 'Vanish Module', link: '/core/modules/optional-modules/vanish-module' },
+                { text: 'Whitelist Module', link: '/core/modules/optional-modules/whitelist-module' },
+              ]
             },
-          ],
+            ]
+            }
+          ]
         },
       ],
 
-      "/references/": [
+      '/references/': [
         {
-          text: "References",
-          link: "/references",
-          items: [
-            { text: "Hooks", link: "/references/hooks" },
-            { text: "Blueprints", link: "/references/blueprints" },
-            { text: "Items", link: "/references/items" },
-            { text: "Entities", link: "/references/entities" },
-            { text: "Commands", link: "/references/commands" },
-            { text: "ConVars", link: "/references/convars" },
-            { text: "Permissions", link: "/references/permissions" },
-            { text: "Loot Tables", link: "/references/loot" },
+          text: 'References',
+          link: '/references',
+          items: [ 
+            {text: 'Hooks', link: '/references/hooks'},
+            { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', link: '/references/entities' },
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' },
+            { text: 'Loot Tables', link: '/references/loot' },
 
             // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
-          ],
-        },
-      ],
+
+          ]
+        } 
+      ]
     },
 
     socialLinks: [
-      {
-        icon: "github",
-        link: "https://github.com/CarbonCommunity/Carbon.Documentation",
-      },
-      { icon: "discord", link: "https://discord.com/invite/carbonmod" },
-      { icon: "twitter", link: "https://twitter.com/CarbonModGG" },
-      { icon: "youtube", link: "https://www.youtube.com/@carbonmodgg" },
+      { icon: 'github', link: 'https://github.com/CarbonCommunity/Carbon.Documentation' },
+      { icon: 'discord', link: 'https://discord.com/invite/carbonmod' },
+      { icon: 'twitter', link: 'https://twitter.com/CarbonModGG' },
+      { icon: 'youtube', link: 'https://www.youtube.com/@carbonmodgg' },
     ],
 
     footer: {
