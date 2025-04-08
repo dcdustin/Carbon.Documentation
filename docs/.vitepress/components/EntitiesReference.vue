@@ -1,48 +1,51 @@
 <script setup>
-import { ref, onMounted, computed, nextTick, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
+import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
 import { 
   getGameData,
-  GAME_DATA_FOLDER,
+  ENTITIES_API_URL,
+  getSpawnTypeText,
+  SpawnType,
+  CACHE_VERSION_API_URL
 } from '../shared/constants'
-import { getCachedData } from '../shared/utils'
 import { VPBadge } from 'vitepress/theme'
+import '../theme/style.css'
 
 const entities = ref([])
 const copiedId = ref(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
+const selectedSpawnType = ref('all')
 const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
+const error = ref(null)
 
-const LINK_API = `${GAME_DATA_FOLDER}/entities.json`
-const API_URL = LINK_API
+const LINK_API = ENTITIES_API_URL
 
-const CACHE_KEY = 'carbon_entities_cache'
-const CACHE_EXPIRY = 24 * 60 * 60 * 1000
-
-const getSanitizedAnchor = (text) => {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-') 
-    .replace(/^-+|-+$/g, '') 
-}
+const spawnTypes = computed(() => {
+  return ['all', ...Object.keys(SpawnType).filter(key => isNaN(Number(key)))]
+})
 
 const filteredEntities = computed(() => {
   if (!entities.value?.length) return []
   
-  let filtered = entities.value.filter(entity => entity && entity.ID && entity.Path)
+  let filtered = entities.value.filter(entity => entity && entity.Name)
+
+  if (selectedSpawnType.value !== 'all') {
+    filtered = filtered.filter(entity => entity?.SpawnType === SpawnType[selectedSpawnType.value])
+  }
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
     filtered = filtered.filter(entity => {
       if (!entity) return false
       return (
-        (entity.Path && entity.Path.toLowerCase().includes(searchLower)) ||
-        (entity.ID && entity.ID.toString().includes(searchLower))
+        (entity.Name && entity.Name.toLowerCase().includes(searchLower)) ||
+        (entity.PrefabName && entity.PrefabName.toLowerCase().includes(searchLower)) ||
+        (entity.Description && entity.Description.toLowerCase().includes(searchLower))
       )
     })
   }
@@ -61,7 +64,7 @@ const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
-    currentPage.value = 1 
+    currentPage.value = 1
   }, 300)
 }
 
@@ -75,68 +78,68 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-const loadMore = () => {
+const loadEntities = async () => {
+  try {
+    isLoading.value = true
+    error.value = null
+    const data = await getGameData(LINK_API)
+    entities.value = data
+  } catch (err) {
+    console.error('Failed to load entities:', err)
+    error.value = 'Failed to load entities. Please try again later.'
+  } finally {
+    isLoading.value = false
+  }
+}
+
+const loadMore = async () => {
   if (loadingMore.value || !hasMore.value) return
   
-  const totalItems = filteredEntities.value.length
-  const currentItems = currentPage.value * pageSize
-  
-  if (currentItems >= totalItems) {
-    hasMore.value = false
-    return
-  }
-  
   loadingMore.value = true
-  currentPage.value += 1
+  currentPage.value++
+  hasMore.value = currentPage.value * pageSize < filteredEntities.value.length
   loadingMore.value = false
 }
 
 const handleScroll = () => {
-  const scrollHeight = document.documentElement.scrollHeight
-  const scrollTop = document.documentElement.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  
-  if (scrollHeight - scrollTop <= clientHeight + 100) {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
     loadMore()
   }
 }
 
-watch(debouncedSearchQuery, () => {
-  currentPage.value = 1
-  hasMore.value = true
-})
-
 onMounted(async () => {
-  try {    
-    isLoading.value = true
-    
-    const data = await getCachedData(CACHE_KEY, async () => {
-      const response = await getGameData(`${GAME_DATA_FOLDER}/entities.json`)
-      if (!Array.isArray(response)) {
-        throw new Error('Data is not an array')
-      }
-      return response.filter(entity => 
-        entity && 
-        typeof entity.ID !== 'undefined' &&
-        typeof entity.Path !== 'undefined'
-      )
-    })
-    
-    entities.value = data
-  } catch (error) {
-    console.error('Failed to load entities:', error)
-    entities.value = []
-  } finally {
-    isLoading.value = false
-  }
-})
-
-onMounted(() => {
+  await loadEntities()
   window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+})
+
+// Watch for version changes
+let versionCheckInterval
+onMounted(() => {
+  versionCheckInterval = setInterval(async () => {
+    try {
+      const response = await fetch(CACHE_VERSION_API_URL)
+      if (!response.ok) return
+      const version = await response.text()
+      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
+      
+      if (cachedVersion !== version) {
+        // Reload data if version changed
+        await loadEntities()
+      }
+    } catch (error) {
+      console.warn('Error checking version:', error)
+    }
+  }, 60000) // Check every minute
+})
+
+onUnmounted(() => {
+  if (versionCheckInterval) {
+    clearInterval(versionCheckInterval)
+  }
 })
 </script>
 
