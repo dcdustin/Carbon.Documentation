@@ -65,7 +65,7 @@
   gap: 0.5em;
   padding: 0.3em 1em;
   background-color: var(--c-carbon-1);
-  color: white;
+  color: white !important;
   border: none;
   border-radius: 0;
   cursor: pointer;
@@ -76,7 +76,7 @@
 
 .carbon-button:hover {
   background-color: var(--c-carbon-2);
-  color: white;
+  color: white !important;
 }
   
 .carbon-button-icon {

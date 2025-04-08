@@ -1,57 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Favorit Regular';
-  src:
-    url('../theme/fonts/favorit-regular.woff2') format('woff2 supports variations'),
-    url('../theme/fonts/favorit-regular.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-@font-face {
-  font-family: 'Favorit Book';
-  src:
-    url('../theme/fonts/favorit-book.woff2') format('woff2 supports variations'),
-    url('../theme/fonts/favorit-book.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-@font-face {
-  font-family: 'Favorit Expanded';
-  src:
-    url('../theme/fonts/favorit-expanded-bold.woff2') format('woff2 supports variations'),
-    url('../theme/fonts/favorit-expanded-bold.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-@font-face {
-  font-family: 'Favorit Variable';
-  src:
-    url('../theme/fonts/favorit-variable.woff2') format('woff2 supports variations'),
-    url('../theme/fonts/favorit-variable.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-
-@font-face {
-  font-family: 'Favorit Bold';
-  src:
-    url('../theme/fonts/favorit-bold.woff2') format('woff2 supports variations'),
-    url('../theme/fonts/favorit-bold.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-stretch: 75% 125%;
-}
-
-/* Set Favorit Regular as the main font */
 body {
-  font-family: 'Roboto Condensed', 'Favorit Expanded', 'Favorit Variable', 'Favorit Bold', sans-serif;
-}
+  font-family: 'Roboto', 'Roboto Condensed', sans-serif;
+} 
 
 :root {
   --c-carbon-1: #fc583b;
