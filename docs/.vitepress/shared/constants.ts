@@ -43,6 +43,15 @@ export enum SpawnType {
   ROADSIDE = 5,
 }
 
+export enum HookFlags {
+  None = 0,
+  Static = 1,
+  Patch = 2,
+  Hidden = 4,
+  IgnoreChecksum = 8,
+  MetadataOnly = 16,
+}
+
 // Helper functions
 export const getItemFlagText = (flag: number): string[] => {
   const flags: string[] = []
@@ -63,6 +72,16 @@ export const getItemRarityText = (rarity: ItemRarity): string => {
 
 export const getSpawnTypeText = (type: SpawnType): string => {
   return SpawnType[type]
+}
+
+export const getHookFlagsText = (flags: number): string[] => {
+  const flagTexts: string[] = []
+  if (flags & HookFlags.Static) flagTexts.push('Static')
+  if (flags & HookFlags.Patch) flagTexts.push('Patch')
+  if (flags & HookFlags.Hidden) flagTexts.push('Hidden')
+  if (flags & HookFlags.IgnoreChecksum) flagTexts.push('IgnoreChecksum')
+  if (flags & HookFlags.MetadataOnly) flagTexts.push('MetadataOnly')
+  return flagTexts
 }
 
 // Color mappings

@@ -7,11 +7,11 @@ Carbon modules similar to plugins that built into Carbon. Modules act as a light
 - [Date Picker Module](date-picker-module) - Allows you to display a date picker, select, and save the date
 - [File Picker Module](file-picker-module) - Allows you to pick files from the filesystem and save the value
 - [Image Database Module](image-db-module) - Allows devs to quickly store and retrieve images
-- [Modal Module](model-module) - Displays modals to the player
+- [Modal Module](modal-module) - Displays modals to the player
 
 ## Optional Modules
 - [AutoWipe Module](optional-modules/autowipe-module) - Automatically complete wipe actions with cron jobs
-- [Circular Networking Module](optional-modules/optimizations-module) - Optimizes player networking to be a radius around the player
+- [Circular Networking Module](optional-modules/circularnetworking-module) - Optimizes player networking to be a radius around the player
 - [Gather Manager Module](optional-modules/gather-manager-module) - Change the gather rates of resources in-game
 - [Moderation Tools Module](optional-modules/moderation-tools-module) - Allows `Auth 0` players to use `noclip` and `god true`
 - [Selective EAC Module](optional-modules/selective-eac-module) - Toggle EAC for certain players with permissions

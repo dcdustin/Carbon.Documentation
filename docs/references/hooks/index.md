@@ -1,16 +1,9 @@
-<3 goo
+---
+layout: page
+title: Hooks Reference
+description: Complete reference for all hooks in the game
+---
 
-:::tabs
-== tab Goo
-Goo
-== tab Goo 1
-Goo goo
-:::
+<HooksIndex />
 
-:::tabs
-== tab Goo 2
-goo goo goo
-== tab Goo 3
-goo goo goo goo
-:::
 

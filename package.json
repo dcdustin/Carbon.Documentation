@@ -1,8 +1,10 @@
 {
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.17",
+    "@types/prismjs": "^1.26.5",
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
+    "prismjs": "^1.30.0",
     "vitepress": "^1.6.3",
     "vitepress-plugin-tabs": "^0.6.0",
     "vue": "^3.5.13"
