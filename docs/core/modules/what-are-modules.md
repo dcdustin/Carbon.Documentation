@@ -11,7 +11,7 @@ Carbon modules similar to plugins that built into Carbon. Modules act as a light
 
 ## Optional Modules
 - [AutoWipe Module](optional-modules/autowipe-module) - Automatically complete wipe actions with cron jobs
-- [Circular Networking Module](optional-modules/optimizations-module) - Optimizes player networking to be a radius around the player
+- [Circular Networking Module](optional-modules/circularnetworking-module) - Optimizes player networking to be a radius around the player
 - [Gather Manager Module](optional-modules/gather-manager-module) - Change the gather rates of resources in-game
 - [Moderation Tools Module](optional-modules/moderation-tools-module) - Allows `Auth 0` players to use `noclip` and `god true`
 - [Selective EAC Module](optional-modules/selective-eac-module) - Toggle EAC for certain players with permissions
