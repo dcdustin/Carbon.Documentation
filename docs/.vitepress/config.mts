@@ -60,8 +60,8 @@ export default defineConfig({
               { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
               { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
               { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
-              { text: 'Image Database Module', link: '/core/modules/image-db-module' },
               { text: 'Modal Module', link: '/core/modules/modal-module' },
+              { text: 'Image Database Module', link: '/core/modules/image-db-module' },
               { text: 'Optional Modules', collapsed: true, items: [
                 { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
                 { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },

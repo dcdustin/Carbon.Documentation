@@ -6,6 +6,8 @@ The Modal Module is a **core module** included in the Carbon modding framework f
 
 
 ## Overview
+![Permissions Tab](/misc/modal_a.webp)
+
 - **Class Name:** `ModalModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)

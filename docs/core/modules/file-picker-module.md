@@ -6,6 +6,8 @@ The File Module is a **core module** included in the Carbon modding framework fo
 
 
 ## Overview
+![Permissions Tab](/misc/filepicker_a.webp)
+
 - **Class Name:** `FileModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
