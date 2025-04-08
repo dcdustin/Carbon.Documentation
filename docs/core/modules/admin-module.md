@@ -11,6 +11,9 @@ To gain access to the Admin panel for the first time:
 2. Run `ownerid <steamid>` replacing `<steamid>` with your own
 3. Go in-game and execute `/cpanel` or `/cp` in chat to open up the Admin Panel
 
+**Source:** [AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
+
+
 ## Carbon Tab
 
 ![Carbon Tab](/misc/admin_a.webp)
