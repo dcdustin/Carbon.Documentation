@@ -2,10 +2,10 @@ import { defineConfig } from "vitepress";
 import tailwindcss from "@tailwindcss/postcss7-compat";
 import autoprefixer from "autoprefixer";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
-import { ITEMS_API_URL } from "./shared/constants";
+import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
 // import { getCategorized, getFiles } from './carbonUtils.mts';
 
-// Function to fetch items data
+
 async function fetchItems() {
   try {
     const response = await fetch(ITEMS_API_URL);
@@ -15,6 +15,33 @@ async function fetchItems() {
     console.error("Failed to fetch items for search indexing:", error);
     return [];
   }
+}
+
+// Function to convert category numbers to readable names
+function getItemCategoryText(category: number): string {
+  const categories: Record<number, string> = {
+    0: 'Weapon',
+    1: 'Construction',
+    2: 'Items',
+    3: 'Resources',
+    4: 'Attire',
+    5: 'Tools',
+    6: 'Medical',
+    7: 'Food',
+    8: 'Ammunition',
+    9: 'Traps',
+    10: 'Misc',
+    11: 'Common',
+    12: 'Component',
+    13: 'Component',
+    14: 'Electrical',
+    15: 'Fun',
+    16: 'Decor',
+    17: 'Vehicle',
+    18: 'Misc',
+    19: 'All',
+  }
+  return categories[category] || 'Uncategorized'
 }
 
 export default defineConfig({
@@ -191,13 +218,11 @@ export default defineConfig({
         _render: async (src, env, md) => {
           const html = await md.render(src, env)
           
-          // Only add items data to the search index for the items reference page
           if (env.relativePath === 'references/items/index.md') {
             try {
               const items = await fetchItems()
-              // Transform items into searchable documents with proper structure
               const itemContent = items.map(item => `
-# ${item.DisplayName}
+# [*Item*] ${item.DisplayName} 
 
 ${item.Description || ''}
 
@@ -207,6 +232,54 @@ ${item.Description || ''}
               return html + '\n\n' + await md.render(itemContent)
             } catch (error) {
               console.error('Error processing items for search:', error)
+              return html
+            }
+          }
+
+          if (env.relativePath === 'references/hooks/index.md') {
+            try {
+              const response = await fetch(HOOKS_API_URL)
+              const data = await response.json()
+              const hookContent = Object.entries(data as Record<string, any[]>)
+                .flatMap(([category, hooks]) => 
+                  hooks.map((hook: any) => `
+# [*Hook*] ${hook.name || ''} 
+
+${(hook.descriptions || []).join('\n\n') || ''}
+
+**Category:** ${category}
+${(hook.parameters || []).length ? `**Parameters:** ${(hook.parameters || []).map((p: any) => `${p.name}: ${p.typeName}`).join(', ')}` : ''}
+${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
+
+[View Details](/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName || hook.name || '')})
+`)).join('\n\n---\n\n')
+              
+              return html + '\n\n' + await md.render(hookContent)
+            } catch (error) {
+              console.error('Error processing hooks for search:', error)
+              return html
+            }
+          }
+
+          if (env.relativePath === 'references/blueprints/index.md') {
+            try {
+              const response = await fetch(BLUEPRINTS_API_URL)
+              const blueprints = await response.json()
+              const blueprintContent = blueprints.map((blueprint: any) => `
+# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
+
+${blueprint.Item.Description || ''}
+
+**Category:** ${getItemCategoryText(blueprint.Item.Category)}
+**Workbench Level:** ${blueprint.WorkbenchLevelRequired || 0}
+${blueprint.Ingredients ? `**Ingredients:** ${blueprint.Ingredients.map((i: any) => `${i.Amount}x ${i.Item.DisplayName}`).join(', ')}` : ''}
+
+[View Details](/Carbon.Documentation/references/blueprints/details?id=${encodeURIComponent(blueprint.Item.ShortName || '')})
+`).join('\n\n---\n\n')
+              
+              return html + '\n\n' + await md.render(blueprintContent)
+            } catch (error) {
+              console.error('Error processing blueprints for search:', error)
               return html
             }
           }

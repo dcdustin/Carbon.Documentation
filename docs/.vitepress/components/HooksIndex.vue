@@ -70,9 +70,27 @@ let debounceTimeout
 const updateDebouncedSearch = (value) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
-    debouncedSearchQuery.value = value
+    const cleanValue = value.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    debouncedSearchQuery.value = cleanValue
     currentPage.value = 1
+
+    if (cleanValue) {
+      const hash = cleanValue.toLowerCase().replace(/\s+/g, '-')
+      window.history.replaceState(null, '', `#${hash}`)
+    } else {
+      window.history.replaceState(null, '', window.location.pathname)
+    }
   }, 300)
+}
+
+const handleUrlSearch = () => {
+  const hash = window.location.hash.slice(1) 
+  if (hash) {
+    const searchTerm = decodeURIComponent(hash).replace(/^hook-/, '').replace(/-/g, ' ')
+    const cleanTerm = searchTerm.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    searchQuery.value = cleanTerm
+    updateDebouncedSearch(cleanTerm)
+  }
 }
 
 const copyToClipboard = async (text, id = null) => {
@@ -90,13 +108,11 @@ const loadHooks = async () => {
     isLoading.value = true
     error.value = null
     const data = await getGameData(LINK_API)
-    console.log('Raw hooks data:', data) // Debug log
     
     if (!data) {
       throw new Error('No data received from API')
     }
 
-    // Transform the categorized data into a flat array
     const flatHooks = []
     for (const category in data) {
       if (Array.isArray(data[category])) {
@@ -118,7 +134,7 @@ const loadHooks = async () => {
         })
       }
     }
-    console.log('Transformed hooks:', flatHooks) // Debug log
+    console.log('Transformed hooks:', flatHooks) 
     
     if (flatHooks.length === 0) {
       throw new Error('No hooks found in the data')
@@ -152,15 +168,14 @@ const handleScroll = () => {
 onMounted(async () => {
   await loadHooks()
   window.addEventListener('scroll', handleScroll)
+  handleUrlSearch() 
 })
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  // Initialize Prism.js for dynamic content
   Prism.highlightAll()
 })
 
-// Add a watch to re-highlight when hooks change
 watch(() => hooks.value, () => {
   nextTick(() => {
     Prism.highlightAll()
@@ -171,7 +186,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-// Watch for version changes
 let versionCheckInterval
 onMounted(() => {
   versionCheckInterval = setInterval(async () => {
@@ -182,13 +196,12 @@ onMounted(() => {
       const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
       
       if (cachedVersion !== version) {
-        // Reload data if version changed
         await loadHooks()
       }
     } catch (error) {
       console.warn('Error checking version:', error)
     }
-  }, 60000) // Check every minute
+  }, 60000)
 })
 
 onUnmounted(() => {
@@ -197,7 +210,6 @@ onUnmounted(() => {
   }
 })
 
-// Add retry function
 const retryFetch = () => {
   if (retryCount.value < maxRetries) {
     retryCount.value++
@@ -206,6 +218,12 @@ const retryFetch = () => {
     error.value = 'Maximum retry attempts reached. Please refresh the page.'
   }
 }
+
+watch(() => window.location.hash, (newHash) => {
+  if (newHash) {
+    handleUrlSearch()
+  }
+})
 </script>
 
 <template>

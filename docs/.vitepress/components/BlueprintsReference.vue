@@ -14,6 +14,10 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { useRouter, useData } from 'vitepress'
+
+const router = useRouter()
+const { page } = useData()
 
 const blueprints = ref([])
 const copiedId = ref(null)
@@ -133,13 +137,30 @@ const handleScroll = () => {
 onMounted(async () => {
   await loadBlueprints()
   window.addEventListener('scroll', handleScroll)
+  
+  // Handle URL hash for search
+  const hash = decodeURIComponent(window.location.hash.slice(1))
+  if (hash) {
+    searchQuery.value = hash
+    updateDebouncedSearch(hash)
+  }
+
+  // Listen for hash changes, not really needed but fuck it
+  window.addEventListener('hashchange', () => {
+    const newHash = decodeURIComponent(window.location.hash.slice(1))
+    if (newHash) {
+      searchQuery.value = newHash
+      updateDebouncedSearch(newHash)
+    }
+  })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('hashchange', () => {})
 })
 
-// Watch for version changes
+// Watch for version changes to dump the cache
 let versionCheckInterval
 onMounted(() => {
   versionCheckInterval = setInterval(async () => {
@@ -150,13 +171,12 @@ onMounted(() => {
       const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
       
       if (cachedVersion !== version) {
-        // Reload data if version changed
         await loadBlueprints()
       }
     } catch (error) {
       console.warn('Error checking version:', error)
     }
-  }, 60000) // Check every minute
+  }, 60000)
 })
 
 onUnmounted(() => {

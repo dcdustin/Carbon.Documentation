@@ -115,13 +115,10 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-// Handle URL anchor for search on load
 const handleUrlSearch = () => {
-  const hash = window.location.hash.slice(1) // Remove the # symbol
+  const hash = window.location.hash.slice(1) 
   if (hash) {
-    // Convert anchor to search query by replacing dashes with spaces
-    const searchTerm = decodeURIComponent(hash).replace(/-/g, ' ')
-    // Clean up the search term
+    const searchTerm = decodeURIComponent(hash).replace(/^item-/, '').replace(/-/g, ' ')
     const cleanTerm = searchTerm.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
     searchQuery.value = cleanTerm
     updateDebouncedSearch(cleanTerm)
