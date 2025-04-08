@@ -6,7 +6,7 @@ The Color Picker Module is a **core module** included in the Carbon modding fram
 
 
 ## Overview
-![Permissions Tab](/misc/colorpicker_a.webp)
+![Color Picker](/misc/colorpicker_a.webp)
 
 - **Class Name:** `ColorPickerModule`
 - **Enabled by default:** Yes
