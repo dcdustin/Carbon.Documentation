@@ -7,7 +7,7 @@ Carbon modules similar to plugins that built into Carbon. Modules act as a light
 - [Date Picker Module](date-picker-module) - Allows you to display a date picker, select, and save the date
 - [File Picker Module](file-picker-module) - Allows you to pick files from the filesystem and save the value
 - [Image Database Module](image-db-module) - Allows devs to quickly store and retrieve images
-- [Modal Module](model-module) - Displays modals to the player
+- [Modal Module](modal-module) - Displays modals to the player
 
 ## Optional Modules
 - [AutoWipe Module](optional-modules/autowipe-module) - Automatically complete wipe actions with cron jobs
