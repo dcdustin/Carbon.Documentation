@@ -29,13 +29,22 @@ It's a simplified and straight-forward tab that displays all active and inactive
 
 Comes with a lot of filtering and searching options for specific entity type or names in the world. Inspecting entities will allow you to teleport to their positions, or you teleporting them to yours, spectating or changing flags (doors open/close), access and loot any container on the map, modify the health of entities on the fly, and metabolism options of players.
 
-### Permissions Tab
+## Permissions Tab
+
+<img src="/public/misc/admin_d.webp"/>
+
 It's a very straight-forward and similar implementation to [Permissions Manager](https://codefling.com/plugins/permissions-manager) from Codefling. It allows you to grant or revoke permissions and group from players. As well as the ability to edit or add new groups or parent groups for inherited permissions.
 
-### Modules Tab
+## Modules Tab
+
+<img src="/public/misc/admin_e.webp"/>
+
 A generic and global place where you can modify module configs, save or load, or enable and disable modules on the fly.
 
-### Plugins Tab
+## Plugins Tab
+
+<img src="/public/misc/admin_f.webp"/>
+
 This tab is disabled by default, but it's a tab that allows you to browse, download and edit configs straight into the UI of any free plugin or plugin that you own from Codefling and uMod. It comes with rich filtering features, very fast and intuitive searching and tag-based filters.
 
 **To enable it, please do the following:**
