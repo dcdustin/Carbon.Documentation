@@ -1,7 +1,11 @@
 <script setup>
-import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
+import { ref, onMounted, computed, watch, onUnmounted, nextTick } from 'vue'
 import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-csharp'
+import '../theme/custom-prism.css'
+import { HookFlags, getHookFlagsText } from '../shared/constants'
 
 const hooks = ref([])
 const copiedName = ref(null)
@@ -12,6 +16,8 @@ const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
+const categories = ref([])
+const selectedCategory = ref('')
 
 const LINK_API = 'https://carbonmod.gg/redist/metadata/carbon/hooks.json'
 
@@ -37,6 +43,10 @@ const filteredHooks = computed(() => {
         (hook.category && hook.category.toLowerCase().includes(searchLower))
       )
     })
+  }
+
+  if (selectedCategory.value && selectedCategory.value !== '') {
+    filtered = filtered.filter(hook => hook.category === selectedCategory.value)
   }
 
   return filtered
@@ -98,6 +108,11 @@ watch(debouncedSearchQuery, () => {
   hasMore.value = true
 })
 
+watch(selectedCategory, () => {
+  currentPage.value = 1
+  hasMore.value = true
+})
+
 onMounted(async () => {
   try {    
     isLoading.value = true
@@ -108,15 +123,26 @@ onMounted(async () => {
     }
     
     const data = await response.json()
-    if (!Array.isArray(data)) {
-      throw new Error('Data is not an array')
+    if (typeof data !== 'object') {
+      throw new Error('Data is not an object')
     }
     
-    hooks.value = data.filter(hook => 
-      hook && 
-      typeof hook.name !== 'undefined' &&
-      typeof hook.fullName !== 'undefined'
-    )
+    // Process the data by category
+    categories.value = Object.keys(data)
+    
+    // Flatten the hooks from all categories
+    const allHooks = []
+    for (const category in data) {
+      if (Array.isArray(data[category])) {
+        data[category].forEach(hook => {
+          if (hook && typeof hook.name !== 'undefined' && typeof hook.fullName !== 'undefined') {
+            allHooks.push(hook)
+          }
+        })
+      }
+    }
+    
+    hooks.value = allHooks
   } catch (error) {
     console.error('Failed to load hooks:', error)
     hooks.value = []
@@ -127,7 +153,16 @@ onMounted(async () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  // Initialize Prism.js for dynamic content
+  Prism.highlightAll()
 })
+
+// Add a watch to re-highlight when hooks change
+watch(() => hooks.value, () => {
+  nextTick(() => {
+    Prism.highlightAll()
+  })
+}, { deep: true })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
@@ -166,6 +201,18 @@ onUnmounted(() => {
               placeholder="Search hooks..." 
               class="w-[400px] px-4 py-2"
             >
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-medium">Category:</span>
+            <select 
+              v-model="selectedCategory" 
+              class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md"
+            >
+              <option value="">All Categories</option>
+              <option v-for="category in categories" :key="category" :value="category">
+                {{ category }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -208,7 +255,7 @@ onUnmounted(() => {
                         <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
                         <VPBadge v-if="hook.carbonCompatible" type="success" text="Carbon Compatible"/>
                         <VPBadge v-if="hook.oxideCompatible" type="warning" text="Oxide Compatible"/>
-                        <VPBadge v-if="hook.flags" type="tip" :text="`Flags: ${hook.flags}`"/>
+                        <VPBadge v-if="hook.flags" type="tip" :text="`${getHookFlagsText(hook.flags).join(', ')}`"/>
                       </div>
                       
                       <div v-if="hook.parameters && hook.parameters.length" class="mt-2">
@@ -217,6 +264,7 @@ onUnmounted(() => {
                           <div v-for="param in hook.parameters" :key="param.name" class="text-sm">
                             <span class="font-mono">{{ param.name }}</span>
                             <span v-if="param.optional" class="text-gray-500">(optional)</span>
+                            <span v-if="param.typeName" class="text-gray-500">: {{ param.typeName }}</span>
                           </div>
                         </div>
                       </div>
@@ -227,11 +275,15 @@ onUnmounted(() => {
                           <span class="font-mono">{{ hook.returnTypeName }}</span>
                         </div>
                       </div>
-                      
+
+                      <!--
                       <div v-if="hook.methodSource" class="mt-2">
                         <div class="text-sm font-medium">Source:</div>
-                        <pre class="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mt-1 overflow-x-auto">{{ hook.methodSource }}</pre>
+                        <pre class="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mt-1 overflow-x-auto"><code class="language-csharp">{{ hook.methodSource }}</code></pre>
                       </div>
+                      -->
+                    
+                    
                     </div>
                   </td>
                 </tr>
@@ -262,12 +314,30 @@ onUnmounted(() => {
   transition: background-color 0.2s ease;
 }
 
-.items-table-row:hover {
-  background-color: #f3f4f6;
+:deep(pre) {
+  margin: 0;
+  padding: 1rem;
+  background: var(--vp-c-bg-soft) !important;
+  border-radius: 0.375rem;
 }
 
-.dark .items-table-row:hover {
-  background-color: #1f2937;
+.dark :deep(pre) {
+  background: var(--vp-c-bg-mute) !important;
+}
+
+:deep(code) {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background: transparent !important;
+}
+
+:deep(.language-csharp) {
+  color: var(--vp-c-text-1);
+}
+
+.dark :deep(.language-csharp) {
+  color: var(--vp-c-text-1);
 }
 </style>
 
