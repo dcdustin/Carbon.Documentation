@@ -15,7 +15,7 @@ import BlueprintPage from '../components/BlueprintPage.vue'
 import LootTableList from '../components/LootTableList.vue'
 import CarbonIcons from '../components/CarbonIcons.vue'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
-
+import HooksIndex from '../components/HooksIndex.vue'
 
 export default {
   extends: DefaultTheme,
@@ -37,6 +37,7 @@ export default {
     app.component('BlueprintPage', BlueprintPage)
     app.component('LootTableList', LootTableList)
     app.component('CarbonIcons', CarbonIcons)
+    app.component('HooksIndex', HooksIndex)
     enhanceAppWithTabs(app)
 
   }
