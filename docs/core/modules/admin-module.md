@@ -93,7 +93,7 @@ Access to Carbon's Admin panel can be granted to players that do not have owneri
 `adminmodule.permissions.use` - Access the Permissions tab.  
 
 ### Entities
-`adminmodule.entities.use` - Access he Entities tab.  
+`adminmodule.entities.use` - Access the Entities tab.  
 `adminmodule.entities.kill_entity` - Access to kill entities through the Entities tab.  
 `adminmodule.entities.tp_entity` - Access to teleport entities to self or to it.  
 `adminmodule.entities.loot_entity` - Access to loot container entities.  
