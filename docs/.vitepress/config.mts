@@ -1,40 +1,84 @@
-import { defineConfig } from 'vitepress'
-import tailwindcss from '@tailwindcss/postcss7-compat'
-import autoprefixer from 'autoprefixer'
-import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+import { defineConfig } from "vitepress";
+import tailwindcss from "@tailwindcss/postcss7-compat";
+import autoprefixer from "autoprefixer";
+import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
+import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
 // import { getCategorized, getFiles } from './carbonUtils.mts';
- 
+
+
+async function fetchItems() {
+  try {
+    const response = await fetch(ITEMS_API_URL);
+    const items = await response.json();
+    return items;
+  } catch (error) {
+    console.error("Failed to fetch items for search indexing:", error);
+    return [];
+  }
+}
+
+// Function to convert category numbers to readable names
+function getItemCategoryText(category: number): string {
+  const categories: Record<number, string> = {
+    0: 'Weapon',
+    1: 'Construction',
+    2: 'Items',
+    3: 'Resources',
+    4: 'Attire',
+    5: 'Tools',
+    6: 'Medical',
+    7: 'Food',
+    8: 'Ammunition',
+    9: 'Traps',
+    10: 'Misc',
+    11: 'Common',
+    12: 'Component',
+    13: 'Component',
+    14: 'Electrical',
+    15: 'Fun',
+    16: 'Decor',
+    17: 'Vehicle',
+    18: 'Misc',
+    19: 'All',
+  }
+  return categories[category] || 'Uncategorized'
+}
+
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
-  base: '/Carbon.Documentation/',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  base: "/Carbon.Documentation/",
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
     image: {
-      lazyLoading: true
+      lazyLoading: true,
     },
     config(md) {
-      md.use(tabsMarkdownPlugin)
-    }
+      md.use(tabsMarkdownPlugin);
+    },
   },
   themeConfig: {
-    logo: '/img/carbon-logo.png',
+    logo: "/img/carbon-logo.png",
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Docs', link: '/introduction' },
-      { text: 'References', items: [
-        {text: 'Hooks', link: '/references/hooks'},
-        { text: 'Blueprints', link: '/references/blueprints' },
-        { text: 'Items', link: '/references/items' },
-        { text: 'Entities', link: '/references/entities' },
-        { text: 'Commands', link: '/references/commands' },
-        { text: 'ConVars', link: '/references/convars' },
-        { text: 'Loot Tables', link: '/references/loot' },
-      ]},
-      { text: 'Release Notes', link: '/release-notes'},
-    ], 
+      { text: "Home", link: "/" },
+      { text: "Docs", link: "/introduction" },
+      {
+        text: "References",
+        items: [
+          { text: "Hooks", link: "/references/hooks" },
+          { text: "Blueprints", link: "/references/blueprints" },
+          { text: "Items", link: "/references/items" },
+          { text: "Entities", link: "/references/entities" },
+          { text: "Commands", link: "/references/commands" },
+          { text: "ConVars", link: "/references/convars" },
+          { text: "Permissions", link: "/references/permissions" },
+          { text: "Loot Tables", link: "/references/loot" },
+        ],
+      },
+      { text: "Release Notes", link: "/release-notes" },
+    ],
 
     sidebar: {
       '/': [
@@ -107,57 +151,142 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.'
+      message: "Released under the MIT License.",
+      copyright:
+        "All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.",
     },
 
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        detailedView: true,
+        miniSearch: {
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true,
+            boost: {
+              title: 5,
+              headers: 4,
+              text: 1
+            }
+          }
+        },
+        _render: async (src, env, md) => {
+          const html = await md.render(src, env)
+          
+          if (env.relativePath === 'references/items/index.md') {
+            try {
+              const items = await fetchItems()
+              const itemContent = items.map(item => `
+# [*Item*] ${item.DisplayName} 
+
+${item.Description || ''}
+
+[View Details](/Carbon.Documentation/references/items/details?id=${item.Id})
+`).join('\n\n---\n\n')
+              
+              return html + '\n\n' + await md.render(itemContent)
+            } catch (error) {
+              console.error('Error processing items for search:', error)
+              return html
+            }
+          }
+
+          if (env.relativePath === 'references/hooks/index.md') {
+            try {
+              const response = await fetch(HOOKS_API_URL)
+              const data = await response.json()
+              const hookContent = Object.entries(data as Record<string, any[]>)
+                .flatMap(([category, hooks]) => 
+                  hooks.map((hook: any) => `
+# [*Hook*] ${hook.name || ''} 
+
+${(hook.descriptions || []).join('\n\n') || ''}
+
+**Category:** ${category}
+${(hook.parameters || []).length ? `**Parameters:** ${(hook.parameters || []).map((p: any) => `${p.name}: ${p.typeName}`).join(', ')}` : ''}
+${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
+
+[View Details](/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName || hook.name || '')})
+`)).join('\n\n---\n\n')
+              
+              return html + '\n\n' + await md.render(hookContent)
+            } catch (error) {
+              console.error('Error processing hooks for search:', error)
+              return html
+            }
+          }
+
+          if (env.relativePath === 'references/blueprints/index.md') {
+            try {
+              const response = await fetch(BLUEPRINTS_API_URL)
+              const blueprints = await response.json()
+              const blueprintContent = blueprints.map((blueprint: any) => `
+# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
+
+${blueprint.Item.Description || ''}
+
+**Category:** ${getItemCategoryText(blueprint.Item.Category)}
+**Workbench Level:** ${blueprint.WorkbenchLevelRequired || 0}
+${blueprint.Ingredients ? `**Ingredients:** ${blueprint.Ingredients.map((i: any) => `${i.Amount}x ${i.Item.DisplayName}`).join(', ')}` : ''}
+
+[View Details](/Carbon.Documentation/references/blueprints/details?id=${encodeURIComponent(blueprint.Item.ShortName || '')})
+`).join('\n\n---\n\n')
+              
+              return html + '\n\n' + await md.render(blueprintContent)
+            } catch (error) {
+              console.error('Error processing blueprints for search:', error)
+              return html
+            }
+          }
+          
+          return html
+        }
+      }
     },
 
     editLink: {
-      pattern: 'https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path',
-      text: 'Suggest a change'
+      pattern:
+        "https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path",
+      text: "Suggest a change",
     },
-    
   },
   vite: {
     css: {
       postcss: {
-        plugins: [
-          tailwindcss,
-          autoprefixer
-        ]
-      }
+        plugins: [tailwindcss, autoprefixer],
+      },
     },
     build: {
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes('node_modules')) {
-              if (id.includes('@vueuse')) return 'vueuse'
-              if (id.includes('markdown-it')) return 'markdown'
-              if (id.includes('lucide-vue-next')) return 'icons'
-              if (id.includes('class-variance-authority') || 
-                  id.includes('clsx') || 
-                  id.includes('tailwind-merge') || 
-                  id.includes('tailwindcss-animate')) return 'ui'
+            if (id.includes("node_modules")) {
+              if (id.includes("@vueuse")) return "vueuse";
+              if (id.includes("markdown-it")) return "markdown";
+              if (id.includes("lucide-vue-next")) return "icons";
+              if (
+                id.includes("class-variance-authority") ||
+                id.includes("clsx") ||
+                id.includes("tailwind-merge") ||
+                id.includes("tailwindcss-animate")
+              )
+                return "ui";
             }
-          }
-        }
-      }
+          },
+        },
+      },
     },
     optimizeDeps: {
-      exclude: ['@tailwindcss/postcss7-compat']
-    }
+      exclude: ["@tailwindcss/postcss7-compat"],
+    },
   },
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag) => tag.includes('-')
-      }
-    }
-  }
-})
-  
+        isCustomElement: (tag) => tag.includes("-"),
+      },
+    },
+  },
+});

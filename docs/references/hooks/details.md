@@ -1,1 +1,6 @@
-<3 goo
+---
+layout: page
+title: Hook Details
+---
+
+<HooksDetails />
