@@ -98,27 +98,31 @@ export default defineConfig({
           items: [
             { text: 'Extensions', link: '/core/extensions'},
             { text: 'Permissions', link: '/core/permissions' },
-            {text: 'Modules', collapsed: false, items: [
-              { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
-              { text: 'Admin Module', link: '/core/modules/admin-module' },
-              { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
-              { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
-              { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
-              { text: 'Modal Module', link: '/core/modules/modal-module' },
-              { text: 'Image Database Module', link: '/core/modules/image-db-module' },
-              { text: 'Optional Modules', collapsed: true, items: [
-                { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
-                { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
-                { text: 'Gather Manager Module', link: '/core/modules/optional-modules/gather-manager-module' },
-                { text: 'Moderation Tools Module', link: '/core/modules/optional-modules/moderation-tools-module' },
-                { text: 'Selective EAC Module', link: '/core/modules/optional-modules/selective-eac-module' },
-                { text: 'Stack Manager Module', link: '/core/modules/optional-modules/stack-manager-module' },
-                { text: 'Vanish Module', link: '/core/modules/optional-modules/vanish-module' },
-                { text: 'Whitelist Module', link: '/core/modules/optional-modules/whitelist-module' },
-              ]
-            },
+            { text: 'Client Entities', link: '/core/client-entities' },
+            { text: 'LUI (Lightweight UI)', link: '/core/lightweight-ui' },
+          ]
+        },
+        {
+          text: 'Modules',
+          items: [
+            { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
+            { text: 'Admin Module', link: '/core/modules/admin-module' },
+            { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
+            { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
+            { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
+            { text: 'Modal Module', link: '/core/modules/modal-module' },
+            { text: 'Image Database Module', link: '/core/modules/image-db-module' },
+            { text: 'Optional Modules', collapsed: true, items: [
+              { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
+              { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
+              { text: 'Gather Manager Module', link: '/core/modules/optional-modules/gather-manager-module' },
+              { text: 'Moderation Tools Module', link: '/core/modules/optional-modules/moderation-tools-module' },
+              { text: 'Selective EAC Module', link: '/core/modules/optional-modules/selective-eac-module' },
+              { text: 'Stack Manager Module', link: '/core/modules/optional-modules/stack-manager-module' },
+              { text: 'Vanish Module', link: '/core/modules/optional-modules/vanish-module' },
+              { text: 'Whitelist Module', link: '/core/modules/optional-modules/whitelist-module' },
             ]
-            }
+          }
           ]
         },
       ],

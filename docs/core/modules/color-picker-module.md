@@ -11,7 +11,9 @@ The Color Picker Module is a **core module** included in the Carbon modding fram
 - **Class Name:** `ColorPickerModule`
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
+- **Supports Configuration:** No
 - **Source:** [ColorPickerModule.cs](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/ColorPickerModule/ColorPickerModule.cs)
+- **Forces Modded Tag:** No
 
 This module is intended for use by **other plugins** to enable color selection through a UI interface. It includes fade-in animations, brightness and alpha sliders, and hex color input fields.
 
