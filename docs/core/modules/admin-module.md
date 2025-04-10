@@ -5,13 +5,40 @@ The Admin module introduces a new and intuitive way of managing your server in p
 The Admin module is enabled by default and will not enforce the server to be in the modded tab when enabled.
 :::
 
+## Overview
+- **Class Name:** `Multiple Classes, see source`
+- **Enabled by default:** Yes
+- **Force enabled:** Yes (cannot be disabled)
+- **Supports Configuration:** Yes
+- **Source:** [AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
+- **Forces Modded Tag:** No
+
 ### Initial Access 
 To gain access to the Admin panel for the first time:
 1. Open RCON/Console
 2. Run `ownerid <steamid>` replacing `<steamid>` with your own
 3. Go in-game and execute `/cpanel` or `/cp` in chat to open up the Admin Panel
 
-**Source:** [AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
+### Configuration
+```json
+{
+  "Enabled": true,
+  "Config": {
+    "OpenCommands": [
+      "cp",
+      "cpanel"
+    ],
+    "MinimumAuthLevel": 2,
+    "DisableEntitiesTab": true,
+    "DisablePluginsTab": false,
+    "DisableConsole": false,
+    "SpectatingInfoOverlay": true,
+    "SpectatingEndTeleportBack": false,
+    "QuickActions": []
+  },
+  "Version": "3927179163"
+}
+```
 
 
 ## Carbon Tab

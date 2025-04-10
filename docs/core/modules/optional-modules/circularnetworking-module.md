@@ -8,8 +8,9 @@ The CircularNetworking Module is an **optional Carbon module** that overrides th
 ## Overview
 - **Class Name:** `CircularNetworkingModule`
 - **Enabled by default:** No
-- **Force enabled:** No
 - **Supports Configuration:** No
+- **Source:** [CircularNetworkingModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/CircularNetworkingModule)
+- **Forces Modded Tag:** No
 
 When enabled, this module replaces the standard Rust grid visibility system with a custom circular fallback using precomputed radius masks.
 

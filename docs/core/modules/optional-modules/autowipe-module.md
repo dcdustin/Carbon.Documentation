@@ -8,8 +8,9 @@ The AutoWipe Module is an **optional Carbon module** that automates scheduled ma
 ## Overview
 - **Class Name:** `AutoWipeModule`
 - **Enabled by default:** No
-- **Force enabled:** No
 - **Supports Configuration:** Yes
+- **Source:** [AutoWipeModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/AutoWipeModule)
+- **Forces Modded Tag:** No
 
 AutoWipe lets you schedule wipes using cron syntax, execute commands or delete files/folders after wiping, and even randomize maps from a pool.
 
