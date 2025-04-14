@@ -39,7 +39,7 @@ const filteredHooks = computed(() => {
   let filtered = hooks.value.filter(hook => hook && hook.name)
 
   if (selectedCategory.value) {
-    filtered = filtered.filter(hook => hook?.category === selectedCategory.value)
+    filtered = filtered.filter(hook => selectedCategory.value === "all" || hook?.category === selectedCategory.value)
   }
 
   if (showOxideOnly.value) {
@@ -141,7 +141,7 @@ const loadHooks = async () => {
     }
 
     hooks.value = flatHooks
-    categories.value = ['all', ...new Set(flatHooks.map(hook => hook.category))]
+    categories.value = [...new Set(flatHooks.map(hook => hook.category))]
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err.message || 'Failed to load hooks. Please try again later.'
@@ -276,7 +276,7 @@ watch(() => window.location.hash, (newHash) => {
               v-model="selectedCategory" 
               class="px-3 py-2  bg-inherit"
             >
-              <option value="all">All Categories</option>
+              <option value="all">All</option>
               <option v-for="category in categories" :key="category" :value="category">
                 {{ category }}
               </option>
