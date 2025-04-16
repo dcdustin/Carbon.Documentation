@@ -34,7 +34,7 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/blueprints.json"
           dest: "metadata/rust/blueprints.json"
 
@@ -43,7 +43,7 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/entities.json"
           dest: "metadata/rust/entities.json"
 
@@ -52,7 +52,7 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/prefabs.json"
           dest: "metadata/rust/prefabs.json"
 
@@ -61,7 +61,7 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/items.json"
           dest: "metadata/rust/items.json"
 
@@ -70,7 +70,7 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/loot-tables.json"
           dest: "metadata/rust/loot-tables.json"
 
@@ -79,6 +79,6 @@ jobs:
         with:
           user: redist@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
-          host: 147.135.88.204
+          host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/hooks.json"
           dest: "metadata/carbon/hooks.json"
