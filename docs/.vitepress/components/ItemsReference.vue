@@ -37,6 +37,7 @@ const getItemImageUrl = (shortName) => {
 
 const handleImageError = (event, itemId) => {
   imageErrors.value.set(itemId, true)
+  console.log(event);
   console.warn(`Failed to load image for item: ${event.target.src}`)
 }
 
