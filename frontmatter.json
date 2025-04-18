@@ -44,26 +44,6 @@
       "path": "[[workspace]]/docs"
     },
     {
-      "title": "development",
-      "path": "[[workspace]]/docs/development"
-    },
-    {
-      "title": "core",
-      "path": "[[workspace]]/docs/core"
-    },
-    {
-      "title": "modules",
-      "path": "[[workspace]]/docs/core/modules"
-    },
-    {
-      "title": "optional-modules",
-      "path": "[[workspace]]/docs/core/modules/optional-modules"
-    },
-    {
-      "title": "development",
-      "path": "[[workspace]]/docs/development"
-    },
-    {
       "title": "prefabs",
       "path": "[[workspace]]/docs/references/prefabs"
     },
