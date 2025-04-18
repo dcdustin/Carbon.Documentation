@@ -11,17 +11,23 @@ hero:
       text: Join our Discord
       link: https://discord.com/invite/carbonmod
     - theme: alt
-      text: View Documentation
-      link: /introduction
+      text: User Docs
+      link: /users/introduction
     - theme: alt
-      text: View Hooks
-      link: /references/hooks
+      text: Developer Docs
+      link: /devs/local-server-hosting
 
 features:
-  - title: Simplified Administration
-    details: Carbon's built in admin panel provide easy player and server administration
+  - title: High Performance
+    details: Carbon offers a carefully written framework with performance as the number one factor to provide an even better experience for your players.
+  - title: Oxide Support
+    details: We have made it very easy to make the switch from Oxide to Carbon by keeping the folder/plugin structure the same.
+  - title: Scalability
+    details: We have made Carbon super lightweight by only providing the very essential hooks needed.
+  - title: Permissions
+    details: We have created a more optimized modular permission system that allows for users to create thier own serializers.
   - title: Dynamic Hooks
-    details: Carbon only uses the hooks it needs, increasing performance
-  - title: Simplified Classes
-    details: Carbon uses a single class to inherit from and all of its main features just work
+    details: Hooks are loaded dynamically to ensure only the hooks used by plugins are loaded. This eliminates a ton of redundant calls and will improve the performance of your server.
+  - title: Hot Reload
+    details: Carbon allows for your Harmony mods to be reloaded on the fly when changes are made.
 ---

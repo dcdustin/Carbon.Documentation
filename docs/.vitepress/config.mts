@@ -61,9 +61,14 @@ export default defineConfig({
   },
   themeConfig: {
     logo: "/img/carbon-logo.png",
+    outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
-      { text: "Docs", link: "/introduction" },
+      { text: "Docs", items: [
+        { text: "Users", link: "/users/introduction" },
+        { text: "Developers", link: "/devs/local-server-hosting" },
+      ]
+    },
       {
         text: "References",
         items: [
@@ -81,51 +86,6 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/': [
-        {text: 'Introduction', link: '/introduction'},
-        {text: 'Installing Carbon', link: '/installing-carbon'},
-        {text: 'Configuring Carbon', link: '/configuring-carbon'},
-        {
-          text: 'Development',
-          items: [
-            { text: 'Local Server Hosting', link: '/development/local-server-hosting' },
-            { text: 'Creating Your Project', link: '/development/creating-your-project' },
-            { text: 'Creating Your First Plugin', link: '/development/creating-your-first-plugin' },
-          ]
-        },
-        {
-          text: 'Core',
-          items: [
-            { text: 'Extensions', link: '/core/extensions'},
-            { text: 'Permissions', link: '/core/permissions' },
-            { text: 'Client Entities', link: '/core/client-entities' },
-            { text: 'LUI (Lightweight UI)', link: '/core/lightweight-ui' },
-          ]
-        },
-        {
-          text: 'Modules',
-          items: [
-            { text: 'What are Modules?', link: '/core/modules/what-are-modules' },
-            { text: 'Admin Module', link: '/core/modules/admin-module' },
-            { text: 'Color Picker Module', link: '/core/modules/color-picker-module' },
-            { text: 'Date Picker Module', link: '/core/modules/date-picker-module' },
-            { text: 'File Picker Module', link: '/core/modules/file-picker-module' },
-            { text: 'Modal Module', link: '/core/modules/modal-module' },
-            { text: 'Image Database Module', link: '/core/modules/image-db-module' },
-            { text: 'Optional Modules', collapsed: true, items: [
-              { text: 'AutoWipe Module', link: '/core/modules/optional-modules/autowipe-module' },
-              { text: 'Circular Networking Module', link: '/core/modules/optional-modules/circularnetworking-module' },
-              { text: 'Gather Manager Module', link: '/core/modules/optional-modules/gather-manager-module' },
-              { text: 'Moderation Tools Module', link: '/core/modules/optional-modules/moderation-tools-module' },
-              { text: 'Selective EAC Module', link: '/core/modules/optional-modules/selective-eac-module' },
-              { text: 'Stack Manager Module', link: '/core/modules/optional-modules/stack-manager-module' },
-              { text: 'Vanish Module', link: '/core/modules/optional-modules/vanish-module' },
-              { text: 'Whitelist Module', link: '/core/modules/optional-modules/whitelist-module' },
-            ]
-          }
-          ]
-        },
-      ],
 
       '/references/': [
         {
@@ -142,6 +102,79 @@ export default defineConfig({
 
             // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
 
+          ]
+        } 
+      ],
+
+      '/users/': [
+        {
+          text: 'User Documentation',
+          link: '/users',
+          items: [
+            {text: 'Introduction', link: '/users/introduction'},
+            {text: 'Installing Carbon', link: '/users/installing-carbon'},
+            {text: 'Configuring Carbon', link: '/users/configuring-carbon'},
+            {
+              text: 'Carbon Modules',
+              collapsed: true,
+              items: [
+                { text: 'What are Modules?', link: '/users/modules/what-are-modules' },
+                { text: 'Admin Module', link: '/users/modules/admin-module' },
+                { text: 'Color Picker Module', link: '/users/modules/color-picker-module' },
+                { text: 'Date Picker Module', link: '/users/modules/date-picker-module' },
+                { text: 'File Picker Module', link: '/users/modules/file-picker-module' },
+                {text: 'Image Database Module', link: '/users/modules/image-db-module' },
+                { text: 'Modal Module', link: '/users/modules/modal-module' },
+                { text: 'Optional Modules', collapsed: true, items: [
+                  { text: 'AutoWipe Module', link: '/users/modules/optional-modules/autowipe-module' },
+                  { text: 'Circular Networking Module', link: '/users/modules/optional-modules/circularnetworking-module' },
+                  { text: 'Gather Manager Module', link: '/users/modules/optional-modules/gather-manager-module' },
+                  { text: 'Moderation Tools Module', link: '/users/modules/optional-modules/moderation-tools-module' },
+                  { text: 'Selective EAC Module', link: '/users/modules/optional-modules/selective-eac-module' },
+                  { text: 'Stack Manager Module', link: '/users/modules/optional-modules/stack-manager-module' },
+                  { text: 'Vanish Module', link: '/users/modules/optional-modules/vanish-module' },
+                  { text: 'Whitelist Module', link: '/users/modules/optional-modules/whitelist-module' },
+                ]
+              }
+              ]
+            },
+            { text: 'Developer Documentation', link: '/devs/local-server-hosting'},
+            
+          ]
+        } 
+      ],
+
+      '/devs/': [
+        {
+          text: 'Developer Documentation',
+          link: '/devs',
+          items: [
+            { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
+            { text: 'Creating Your Project', link: '/devs/creating-your-project' },
+            { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
+            {
+              text: 'Core Features',
+              collapsed: true,
+              items: [
+                { text: 'Extensions', link: '/devs/core/extensions'},
+                { text: 'Permissions', link: '/devs/core/permissions' },
+                { text: 'Client Entities', link: '/devs/core/client-entities' },
+                { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+              ]
+            },
+            {
+              text: 'Using Modules',
+              collapsed: true,
+              items: [
+                {text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
+                { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
+                { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
+                { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
+                { text: 'Modal Module', link: '/devs/modules/modal-module' },
+              ]
+            },
+            { text: 'User Documentation', link: '/users/introduction' },
           ]
         } 
       ]
