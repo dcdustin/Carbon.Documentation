@@ -6,6 +6,8 @@ The Whitelist Module is an **optional Carbon module** that restricts server acce
 
 
 ## Overview
+![Whitelist Module](/misc/whitelist_a.webp)
+
 - **Class Name:** `WhitelistModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes

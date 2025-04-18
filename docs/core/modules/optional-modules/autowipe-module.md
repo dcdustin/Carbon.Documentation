@@ -6,6 +6,8 @@ The AutoWipe Module is an **optional Carbon module** that automates scheduled ma
 
 
 ## Overview
+![AutoWipe Module](/misc/autowipe_a.webp)
+
 - **Class Name:** `AutoWipeModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes

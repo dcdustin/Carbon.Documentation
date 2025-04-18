@@ -6,6 +6,8 @@ The GatherManager Module is an **optional Carbon module** that allows server adm
 
 
 ## Overview
+![GatherManager Module](/misc/gathermanager_a.webp)
+
 - **Class Name:** `GatherManagerModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes

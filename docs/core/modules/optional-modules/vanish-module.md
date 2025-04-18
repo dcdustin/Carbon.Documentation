@@ -6,6 +6,8 @@ The Vanish Module is an **optional Carbon module** that enables administrators o
 
 
 ## Overview
+![Vanish Module](/misc/vanish_a.webp)
+
 - **Class Name:** `VanishModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
