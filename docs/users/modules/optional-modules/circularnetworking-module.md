@@ -6,6 +6,8 @@ The CircularNetworking Module is an **optional Carbon module** that overrides th
 
 
 ## Overview
+![CircularNetworking Module](/misc/circularnetworking_a.webp)
+
 - **Class Name:** `CircularNetworkingModule`
 - **Enabled by default:** No
 - **Supports Configuration:** No

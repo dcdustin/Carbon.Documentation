@@ -6,6 +6,8 @@ The SelectiveEAC Module is an **optional Carbon module** that allows certain use
 
 
 ## Overview
+![SelectiveEAC Module](/misc/selectiveeac_a.webp)
+
 - **Class Name:** `SelectiveEACModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes

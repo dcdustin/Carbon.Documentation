@@ -6,6 +6,8 @@ The ModerationTools Module is an **optional Carbon module** that provides built-
 
 
 ## Overview
+![ModerationTools Module](/misc/moderationtools_a.webp)
+
 - **Class Name:** `ModerationToolsModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes

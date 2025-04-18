@@ -48,7 +48,7 @@ It is recommended that you create your these folders in or close to your root di
 ## <CarbonIcons icon="download" /> Step 2: Download the Carbon QuickStart Files  
 Download the Carbon QuickStart files from the [Carbon QuickStart Repository](https://github.com/CarbonCommunity/Carbon.QuickStart/tree/main/win) and place them inside the **Carbon Server** folder.
 :::info Installation Instructions
-You can find the [Installation Instructions here](/development/local-server-hosting), please follow them when installing your local server.
+You can find the [Installation Instructions here](/devs/local-server-hosting), please follow them when installing your local server.
 :::
 
 ## <CarbonIcons icon="scrolltext" /> Step 3: Update Carbon  

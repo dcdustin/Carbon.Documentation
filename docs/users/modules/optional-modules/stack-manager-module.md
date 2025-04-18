@@ -6,6 +6,8 @@ The StackManager Module is an **optional Carbon module** that allows fine-graine
 
 
 ## Overview
+![StackManager Module](/misc/stackmanager_a.webp)
+
 - **Class Name:** `StackManagerModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
