@@ -78,7 +78,6 @@ export default defineConfig({
           { text: "Entities", link: "/references/entities" },
           { text: "Commands", link: "/references/commands" },
           { text: "ConVars", link: "/references/convars" },
-          { text: "Permissions", link: "/references/permissions" },
           { text: "Loot Tables", link: "/references/loot" },
         ],
       },
