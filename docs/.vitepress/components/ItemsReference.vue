@@ -263,7 +263,7 @@ onUnmounted(() => {
             v-model="selectedCategory"
             class="px-4 py-2 min-w-[140px]"
           >
-            <option value="all">All Categories</option>
+            <option value="all">All Items</option>
             <option 
               v-for="category in categories.filter(c => c !== 'all')" 
               :key="category" 
@@ -300,8 +300,7 @@ onUnmounted(() => {
                                 :alt="item.DisplayName"
                               >
                             </template>
-                            <div v-else 
-                                 class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                            <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
                               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                                 <Image size="48" class="text-gray-400"/>
                               </div>
@@ -318,6 +317,17 @@ onUnmounted(() => {
                                class="hover:text-primary inline-flex items-center gap-2">
                               {{ item.DisplayName }}
                               <ExternalLink size="14" class="opacity-60"/>
+                              <div class="flex flex-wrap gap-2 mt-3">
+                          <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <span class="font-mono">ID: {{ item.Id }}</span>
+                            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                          </button>
+                          <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                            <span class="font-mono">{{ item.ShortName }}</span>
+                            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                          </button>
+                        </div>
+
                             </a>
                           </h5>
                           <div v-if="item.Hidden">
@@ -330,37 +340,11 @@ onUnmounted(() => {
                             <VPBadge type="warning" :text="flag"/>
                           </template>
                           <VPBadge v-if="item.Category !== undefined" 
-                                  :text="getItemCategoryText(item.Category)"
-                                  :style="{ backgroundColor: CATEGORY_COLORS[item.Category], color: '#fff' }"/>
+                            :text="getItemCategoryText(item.Category)"/>
                           <VPBadge v-if="item.Rarity !== undefined" 
-                                  :text="getItemRarityText(item.Rarity)"
-                                  :style="{ backgroundColor: RARITY_COLORS[item.Rarity], color: '#fff' }"/>
+                            :text="getItemRarityText(item.Rarity)"/>
                         </div>
 
-                        <div class="flex flex-wrap gap-2 mt-3">
-                          <button 
-                            v-if="item.Id"
-                            @click="copyToClipboard(item.Id, 'id', item.Id)" 
-                            class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                          >
-                            <span class="font-mono">ID: {{ item.Id }}</span>
-                            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" 
-                                     class="ml-2" 
-                                     size="14"
-                            />
-                          </button>
-                          <button 
-                            v-if="item.ShortName"
-                            @click="copyToClipboard(item.ShortName, item.ShortName)" 
-                            class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                          >
-                            <span class="font-mono">{{ item.ShortName }}</span>
-                            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" 
-                                     class="ml-2" 
-                                     size="14"
-                            />
-                          </button>
-                        </div>
 
                         <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
                           {{ item.Description }}

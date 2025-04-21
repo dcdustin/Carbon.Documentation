@@ -159,7 +159,6 @@ export const getHookFlagsText = (flags: number): string[] => {
   if (flags & HookFlags.Patch) flagTexts.push('Patch')
   if (flags & HookFlags.Hidden) flagTexts.push('Hidden')
   if (flags & HookFlags.IgnoreChecksum) flagTexts.push('IgnoreChecksum')
-  if (flags & HookFlags.MetadataOnly) flagTexts.push('MetadataOnly')
   return flagTexts
 }
 

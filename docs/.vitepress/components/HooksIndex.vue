@@ -21,7 +21,7 @@ const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
 const categories = ref([])
-const selectedCategory = ref('')
+const selectedCategory = ref('all')
 const showOxideOnly = ref(false)
 
 const LINK_API = HOOKS_API_URL
@@ -288,7 +288,7 @@ watch(() => window.location.hash, (newHash) => {
               v-model="showOxideOnly"
               class="w-4 h-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary"
             >
-            <span class="text-sm">Oxide Compatible</span>
+            <span class="text-sm">Oxide-Only</span>
           </div>
         </div>
       </div>
@@ -313,53 +313,21 @@ watch(() => window.location.hash, (newHash) => {
                              class="hover:text-primary inline-flex items-center gap-2">
                             {{ hook.name }}
                             <ExternalLink size="14" class="opacity-60"/>
+                            <div class="flex flex-wrap gap-1.5 mt-2">
+                              <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
+                              <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
+                                <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
+                              </div>                       
+                              <VPBadge v-if="hook.carbonCompatible" type="warning" text="Carbon Compatible"/>
+                              <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
+                            </div>               
                           </a>
                         </h5>
-                        <button 
-                          @click="copyToClipboard(hook.fullName, hook.fullName)" 
-                          class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0 ml-2"
-                        >
-                          <span class="font-mono">{{ hook.fullName }}</span>
-                          <component :is="copiedId === hook.fullName ? CheckCircle2 : Copy" 
-                                   class="ml-2" 
-                                   size="14"
-                          />
-                        </button>
                       </div>
-                      
-                      <div class="flex flex-wrap gap-1.5 mt-2">
-                        <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
-                        <VPBadge v-if="hook.carbonCompatible" type="success" text="Carbon Compatible"/>
-                        <VPBadge v-if="hook.oxideCompatible" type="warning" text="Oxide Compatible"/>
-                        <VPBadge v-if="hook.flags" type="tip" :text="`${getHookFlagsText(hook.flags).join(', ')}`"/>
-                      </div>
-                      
-                      <div v-if="hook.parameters && hook.parameters.length" class="mt-2">
-                        <div class="text-sm font-medium">Parameters:</div>
-                        <div class="flex flex-wrap gap-2 mt-1">
-                          <div v-for="param in hook.parameters" :key="param.name" class="text-sm">
-                            <span class="font-mono">{{ param.name }}</span>
-                            <span v-if="param.optional" class="text-gray-500">(optional)</span>
-                            <span v-if="param.typeName" class="text-gray-500">: {{ param.typeName }}</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div v-if="hook.returnTypeName" class="mt-2">
-                        <div class="text-sm">
-                          <span class="font-medium">Returns:</span> 
-                          <span class="font-mono">{{ hook.returnTypeName }}</span>
-                        </div>
-                      </div>
-
-                      <!--
-                      <div v-if="hook.methodSource" class="mt-2">
-                        <div class="text-sm font-medium">Source:</div>
-                        <pre class="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded mt-1 overflow-x-auto"><code class="language-csharp">{{ hook.methodSource }}</code></pre>
-                      </div>
-                      -->
-                    
-                    
+                      <div v-for="param in hook.descriptions" :key="param.name" class="text-sm">
+                        <span class="text-gray-500">{{ param }}</span>
+                      </div>                    
+ 
                     </div>
                   </td>
                 </tr>

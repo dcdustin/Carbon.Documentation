@@ -271,7 +271,7 @@ const fetchDlcData = async (appId) => {
             v-model="selectedCategory"
             class="px-4 py-2 min-w-[140px]"
           >
-            <option value="all">All Categories</option>
+            <option value="all">All Blueprints</option>
             <option 
               v-for="category in categories.filter(c => c !== 'all')" 
               :key="category" 
