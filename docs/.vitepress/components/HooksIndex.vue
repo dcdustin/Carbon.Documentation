@@ -318,7 +318,6 @@ watch(() => window.location.hash, (newHash) => {
                               <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
                                 <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
                               </div>                       
-                              <VPBadge v-if="hook.carbonCompatible" type="warning" text="Carbon Compatible"/>
                               <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
                             </div>               
                           </a>
