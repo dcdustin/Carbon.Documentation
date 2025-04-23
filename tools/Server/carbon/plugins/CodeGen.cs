@@ -5,6 +5,8 @@ using System.Linq;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Text;
+using API.Commands;
 using Carbon.Components;
 using Carbon.Extensions;
 using Oxide.Core.Plugins;
@@ -19,6 +21,7 @@ namespace Carbon.Plugins;
 public partial class CodeGen : CarbonPlugin
 {
 	private static WebClient _client = new();
+	private static StringBuilder _builder = new();
 
 	private void OnServerInitialized()
 	{
@@ -43,6 +46,8 @@ public partial class CodeGen : CarbonPlugin
 		Generate_Blueprints();
 		Generate_LootTables();
 		Generate_Hooks();
+		Generate_Commands();
+		Generate_ConVars();
 	}
 
 	private static void Generate_Items()
@@ -55,6 +60,48 @@ public partial class CodeGen : CarbonPlugin
 		}
 
 		OsEx.File.Create(Path.Combine("carbon", "results", "items.json"), JsonConvert.SerializeObject(items, Formatting.Indented));
+	}
+
+	private static void Generate_Commands()
+	{
+		var commands = new List<object>();
+
+		foreach (var command in Community.Runtime.CommandManager.ClientConsole.OrderBy(x => x.Name, StringComparer.InvariantCultureIgnoreCase))
+		{
+			if (string.IsNullOrEmpty(command.Help) || !command.Name.StartsWith("c.") || command.HasFlag(CommandFlags.Protected))
+			{
+				continue;
+			}
+
+			var authedCommand = command as AuthenticatedCommand;
+			commands.Add(new
+			{
+				Name = command.Name,
+				Help = command.Help,
+				AuthLevel = authedCommand?.Help == null ? 0 : authedCommand.Auth.AuthLevel
+			});
+		}
+
+		OsEx.File.Create(Path.Combine("carbon", "results", "commands.json"), JsonConvert.SerializeObject(commands, Formatting.Indented));
+	}
+
+	private static void Generate_ConVars()
+	{
+		var conVars = new List<object>();
+
+		foreach (var conVar in CarbonAuto.AutoCache)
+		{
+			conVars.Add(new
+			{
+				Name = conVar.Key,
+				DisplayName = conVar.Value.Variable.DisplayName,
+				Help = conVar.Value.Variable.Help,
+				ForceModded = conVar.Value.Variable.ForceModded,
+				Protected = conVar.Value.Variable.Protected
+			});
+		}
+
+		OsEx.File.Create(Path.Combine("carbon", "results", "convars.json"), JsonConvert.SerializeObject(conVars, Formatting.Indented));
 	}
 
 	private static void Generate_Entities()
@@ -228,18 +275,67 @@ public partial class CodeGen : CarbonPlugin
 					.ToDictionary(key => key.Key, value => value.ToArray()), Formatting.Indented));
 	}
 
+	#region Helpers
+
+	public static string GetFriendlyType(string type, string empty = "null")
+	{
+		if (type == null) return empty;
+
+		if (type == typeof(void).FullName) return "void";
+		if (type == typeof(string).FullName) return "string";
+		if (type == typeof(uint).FullName) return "uint";
+		if (type == typeof(int).FullName) return "int";
+		if (type == typeof(double).FullName) return "double";
+		if (type == typeof(float).FullName) return "float";
+		if (type == typeof(ulong).FullName) return "ulong";
+		if (type == typeof(object).FullName) return "object";
+		if (type == typeof(bool).FullName) return "bool";
+		if (type == typeof(string[]).FullName) return "string[]";
+
+		return type.Replace("+", ".");
+	}
+	public static string GetParameterName(Type type)
+	{
+		return $"{char.ToLower(type.Name[0])}{type.Name.Substring(1)}";
+	}
+	public static string GetPrettyTypeName(Type type, bool fullName = true)
+	{
+		var name = fullName ? (type.FullName ?? type.Name) : type.Name;
+
+		if (!type.IsGenericType)
+			return name;
+
+		_builder.Clear();
+		_builder.Append(name.Substring(0, name.IndexOf('`')));
+		_builder.Append("<");
+
+		var genericArguments = type.GetGenericArguments();
+		for (int i = 0; i < genericArguments.Length; i++)
+		{
+			if (i > 0)
+				_builder.Append(", ");
+
+			_builder.Append(GetFriendlyType(GetPrettyTypeName(genericArguments[i]), "T"));
+		}
+
+		_builder.Append(">");
+		return _builder.ToString();
+	}
+
+	#endregion
+
 	public class Item
 	{
-		public long Id { get; set; }
-		public string DisplayName { get; set; }
-		public string ShortName { get; set; }
-		public string Description { get; set; }
-		public int Stack { get; set; }
-		public bool Hidden { get; set; }
-		public ItemDefinition.Flag Flags { get; set; }
-		public ItemCategory Category { get; set; }
-		public Rarity Rarity { get; set; }
-		public SteamDlcItem SteamDlcItem { get; set; }
+		public long Id;
+		public string DisplayName;
+		public string ShortName;
+		public string Description;
+		public int Stack;
+		public bool Hidden;
+		public ItemDefinition.Flag Flags;
+		public ItemCategory Category;
+		public Rarity Rarity;
+		public SteamDlcItem SteamDlcItem;
 
 		public static T Parse<T>(ItemDefinition definition) where T : Item
 		{
@@ -269,8 +365,8 @@ public partial class CodeGen : CarbonPlugin
 
 	public class SteamDlcItem
 	{
-		public string Name { get; set; }
-		public int AppId { get; set; }
+		public string Name;
+		public int AppId;
 	}
 
 	public class Entity : Prefab
@@ -291,65 +387,65 @@ public partial class CodeGen : CarbonPlugin
 
 	public class Prefab
 	{
-		public string Type { get; set; }
-		public string Path { get; set; }
-		public string Name { get; set; }
-		public string[] Components { get; set; }
-		public uint ID { get; set; }
+		public string Type;
+		public string Path;
+		public string Name;
+		public string[] Components;
+		public uint ID;
 	}
 
 	public class Blueprint
 	{
-		public Ingredient[] Ingredients { get; set; }
-		public Item Item { get; set; }
-		public bool UserCraftable { get; set; }
-		public Rarity Rarity { get; set; }
-		public float Time { get; set; }
-		public int CraftAmount { get; set; }
-		public int ScrapRequired { get; set; }
-		public int ScrapFromRecycle { get; set; }
-		public int WorkbenchLevelRequired { get; set; }
-		public Item RequireUnlockedItem { get; set; }
-		public bool NeedsSteamItem { get; set; }
-		public bool NeedsSteamDLC { get; set; }
+		public Ingredient[] Ingredients;
+		public Item Item;
+		public bool UserCraftable;
+		public Rarity Rarity;
+		public float Time;
+		public int CraftAmount;
+		public int ScrapRequired;
+		public int ScrapFromRecycle;
+		public int WorkbenchLevelRequired;
+		public Item RequireUnlockedItem;
+		public bool NeedsSteamItem;
+		public bool NeedsSteamDLC;
 
 		public class Ingredient
 		{
-			public Item Item { get; set; }
-			public float Amount { get; set; }
+			public Item Item;
+			public float Amount;
 		}
 	}
 
 	public class LootTable : Entity
 	{
-		public RangeItem[] Items { get; set; } = [];
-		public SpawnSlotItem[] SpawnSlotItems { get; set; } = [];
-		public int ScrapAmount { get; set; }
-		public LootContainer.spawnType SpawnType { get; set; }
+		public RangeItem[] Items = [];
+		public SpawnSlotItem[] SpawnSlotItems = [];
+		public int ScrapAmount;
+		public LootContainer.spawnType SpawnType;
 
 		public class RangeItem : Item
 		{
-			public float Amount { get; set; }
-			public float MaxAmount { get; set; }
+			public float Amount;
+			public float MaxAmount;
 		}
 		public class SpawnSlotItem
 		{
-			public RangeItem[] Items { get; set; } = new RangeItem[0];
-			public int NumberToSpawn { get; set; }
-			public float Probability { get; set; }
+			public RangeItem[] Items = new RangeItem[0];
+			public int NumberToSpawn;
+			public float Probability;
 		}
 	}
 
 	public class Changelog
 	{
-		public string Date { get; set; }
-		public string Version { get; set; }
-		public Change[] Changes { get; set; }
+		public string Date;
+		public string Version;
+		public Change[] Changes;
 
 		public class Change
 		{
-			public string Message { get; set; }
-			public ChangeTypes Type { get; set; } = ChangeTypes.Added;
+			public string Message;
+			public ChangeTypes Type = ChangeTypes.Added;
 		}
 
 		public enum ChangeTypes
@@ -381,6 +477,7 @@ public partial class CodeGen : CarbonPlugin
 		public string fullName;
 		public string category;
 		public Parameter[] parameters;
+		public string parametersText => string.Join(", ", parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
 		public HookFlags flags;
 		public string[] descriptions;
 		[JsonIgnore] public Type target;
@@ -395,7 +492,7 @@ public partial class CodeGen : CarbonPlugin
 		public string targetName => target?.FullName;
 		public string methodName => method?.Name;
 		public string assemblyName => assembly?.GetName().Name;
-		public string returnTypeName => returnType?.FullName ?? "void";
+		public string returnTypeName => GetFriendlyType(returnType?.FullName, "void");
 
 		[JsonIgnore] public readonly bool IsValid => !string.IsNullOrEmpty(name);
 
@@ -403,6 +500,7 @@ public partial class CodeGen : CarbonPlugin
 		{
 			public string name;
 			public string typeName => type.FullName.Replace("+", ".");
+			public string typeFriendly => GetFriendlyType(type.FullName, "null");
 			[JsonIgnore]
 			public Type type;
 			public bool optional;
