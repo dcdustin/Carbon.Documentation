@@ -12,7 +12,7 @@ The Date Picker Module is a **core module** included in the Carbon modding frame
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
 - **Supports Configuration:** No
-- **Source:** [DatePickerModule.cs](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/DatePickerModule/DatePickerModule.cs)
+- **Source:** [Carbon.Common/DatePickerModule](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/DatePickerModule/DatePickerModule.cs)
 - **Forces Modded Tag:** No
 
 This module is intended for use by **other plugins** to enable date selection through a UI interface. It includes a calendar layout, year/month input, and selection confirmation.

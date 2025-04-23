@@ -87,7 +87,7 @@ When prompted to choose a framework, select `.NET Framework 4.8` and proceed wit
 ## <CarbonIcons icon="filepenline" /> Step 8: Modify the Project File  
 Inside your newly created project, locate the `.csproj` file. Open it in a text editor and add the following line on the second line of the file:  
 
-`<Import Project="<root>/carbon/Carbon.targets" />`  
+`<Import Project="<root>/Carbon.targets" />`  
 
 This ensures that your project has access to the necessary Carbon assemblies. Save the file once done.  
 

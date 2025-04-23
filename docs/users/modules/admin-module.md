@@ -10,7 +10,7 @@ The Admin module is enabled by default and will not enforce the server to be in 
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
 - **Supports Configuration:** Yes
-- **Source:** [AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
+- **Source:** [Carbon.Common/AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
 - **Forces Modded Tag:** No
 
 ### Initial Access 

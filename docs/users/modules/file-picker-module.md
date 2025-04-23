@@ -12,7 +12,7 @@ The File Module is a **core module** included in the Carbon modding framework fo
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
 - **Supports Configuration:** No
-- **Source:** [FileModule.cs](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/FileModule/FileModule.cs)
+- **Source:** [Carbon.Common/FileModule](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Modules/FileModule/FileModule.cs)
 - **Forces Modded Tag:** No
 
 This module is intended for use by **other plugins** that need to expose a browsable file system interface to players or admins in-game. It supports file filtering, directory limits, and callback integration.
