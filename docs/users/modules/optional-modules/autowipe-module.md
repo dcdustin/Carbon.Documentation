@@ -82,6 +82,9 @@ They're in place to automate server host name and descriptions with last wipe da
 ::: warning 
 <strong>You'll see a warning printed in the server log upon the module updating the host name and description.</strong> It usually only happens once per server boot, unless you update any of two with the inclusion of replacement keys. <strong>This only happens when the server sends Steam server information.</strong>
 :::
+::: tip Example
+From `My Cool Server (WIPED [WIPE_MONTH]/[WIPE_DAY])` to `My Cool Server (WIPED 4/23)`.
+:::
 
 ## How It Works
 - Every 30 seconds, the module checks if a wipe is due via cron.
