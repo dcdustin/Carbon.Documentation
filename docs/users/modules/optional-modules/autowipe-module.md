@@ -11,7 +11,7 @@ The AutoWipe Module is an **optional Carbon module** that automates scheduled ma
 - **Class Name:** `AutoWipeModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [AutoWipeModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/AutoWipeModule)
+- **Source:** [Carbon.Modules/AutoWipeModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/AutoWipeModule)
 - **Forces Modded Tag:** No
 
 AutoWipe lets you schedule wipes using cron syntax, execute commands or delete files/folders after wiping, and even randomize maps from a pool.
@@ -58,11 +58,8 @@ The configuration is stored in the `AutoWipeConfig` class and includes the follo
 
 ## Commands
 
-### Chat Command
-```csharp
-nextwipe
-```
-Displays time until next wipe (configured via `WipeChatCommand`).
+### User Wipe Command
+- `/nextwipe` – Displays time until next wipe (configured via `WipeChatCommand` property).
 
 ### Console Commands
 - `autowipe.wipes` – Lists all configured wipes
@@ -73,6 +70,13 @@ Displays time until next wipe (configured via `WipeChatCommand`).
 - `autowipe.deletemap` – Deletes a map URL from the pool
 - `autowipe.wipechat` – Sets the chat command name
 
+## String Replacements
+They're in place to automate server host name and descriptions with last wipe date and time information.
+- `[WIPE_DAY]` – Wipe day replacement
+- `[WIPE_MONTH]` – Wipe month replacement
+- `[WIPE_YEAR]` – Wipe year replacement
+- `[WIPE_HOUR]` – Wipe hour replacement
+- `[WIPE_MINUTE]` – Wipe minute replacement
 
 ## How It Works
 - Every 30 seconds, the module checks if a wipe is due via cron.
@@ -83,7 +87,8 @@ Displays time until next wipe (configured via `WipeChatCommand`).
   - Deletes files/folders in `PostWipeDeletes`
   - Updates the current wipe state and resets timers
 
-Maps can be randomly pulled from the map pool using `"MapUrl": "POOL"`.
+Maps can be randomly pulled from the map pool using `"MapUrl": "POOL"`. <br>
+The maps get automatically removed from the list if they're marked as `"Temp": true`.
 
 ---
 

@@ -276,7 +276,7 @@ watch(() => window.location.hash, (newHash) => {
               v-model="selectedCategory" 
               class="px-3 py-2  bg-inherit"
             >
-              <option value="all">All</option>
+              <option value="all">All Hooks</option>
               <option v-for="category in categories" :key="category" :value="category">
                 {{ category }}
               </option>

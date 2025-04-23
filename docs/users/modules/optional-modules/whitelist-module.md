@@ -11,7 +11,7 @@ The Whitelist Module is an **optional Carbon module** that restricts server acce
 - **Class Name:** `WhitelistModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [WhitelistModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/WhitelistModule)
+- **Source:** [Carbon.Modules/WhitelistModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/WhitelistModule)
 - **Forces Modded Tag:** No
 
 This module enforces a simple, permission-based access list when players attempt to connect.

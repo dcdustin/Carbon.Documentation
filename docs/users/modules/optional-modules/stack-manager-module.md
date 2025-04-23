@@ -11,7 +11,7 @@ The StackManager Module is an **optional Carbon module** that allows fine-graine
 - **Class Name:** `StackManagerModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [StackManagerModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/StackManagerModule)
+- **Source:** [Carbon.Modules/StackManagerModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/StackManagerModule)
 - **Forces Modded Tag:** Yes
 
 StackManager adjusts `ItemDefinition.stackable` values for all items based on configurable rules.

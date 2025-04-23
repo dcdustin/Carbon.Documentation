@@ -11,7 +11,7 @@ The ModerationTools Module is an **optional Carbon module** that provides built-
 - **Class Name:** `ModerationToolsModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [ModerationToolsModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/ModerationToolsModule)
+- **Source:** [Carbon.Modules/ModerationToolsModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/ModerationToolsModule)
 - **Forces Modded Tag:** No
 
 This module adds a powerful yet lightweight moderation layer to your Rust server, directly usable through chat and console commands.

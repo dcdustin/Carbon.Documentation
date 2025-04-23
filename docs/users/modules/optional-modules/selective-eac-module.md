@@ -11,7 +11,7 @@ The SelectiveEAC Module is an **optional Carbon module** that allows certain use
 - **Class Name:** `SelectiveEACModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [SelectiveEACModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/SelectiveEACModule)
+- **Source:** [Carbon.Modules/SelectiveEACModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/SelectiveEACModule)
 - **Forces Modded Tag:** No
 
 When enabled, this module patches internal Rust server methods to override how encryption and EAC validation work on join.

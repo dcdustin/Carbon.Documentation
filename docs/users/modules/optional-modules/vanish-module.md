@@ -11,7 +11,7 @@ The Vanish Module is an **optional Carbon module** that enables administrators o
 - **Class Name:** `VanishModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [VanishModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/VanishModule)
+- **Source:** [Carbon.Modules/VanishModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/VanishModule)
 - **Forces Modded Tag:** No
 
 When a player is vanished, they become invisible, unattackable, and undetectable by most game systems and AI. Reappearance restores normal status.
