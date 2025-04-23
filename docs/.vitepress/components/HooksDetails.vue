@@ -148,14 +148,14 @@ watch(hook, (newHook) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="mb-6">
       <a href="/Carbon.Documentation/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
-        <ArrowLeft size="16"/>
+        <ArrowLeft size="18"/>
         Back to Hooks
       </a>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      <span class="ml-2">Loading hook details...</span>
+      <span class="ml-2">Loading hook..</span>
     </div>
 
     <div v-else-if="error" class="text-center py-8">
@@ -166,11 +166,10 @@ watch(hook, (newHook) => {
       <div class="flex items-start justify-between mb-6">
         <div>
           <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1">
             <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
-            <VPBadge v-if="hook.carbonCompatible" type="success" text="Carbon Compatible"/>
-            <VPBadge v-if="hook.oxideCompatible" type="warning" text="Oxide Compatible"/>
-            <VPBadge v-if="hook.flags" type="tip" :text="`${getHookFlagsText(hook.flags).join(', ')}`"/>
+            <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm"><VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/></div>
+            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
           </div>
         </div>
         <button 
@@ -192,31 +191,20 @@ watch(hook, (newHook) => {
         </div>
       </div>
 
-      <div v-if="hook.parameters && hook.parameters.length" class="mb-6">
-        <h2 class="text-xl font-semibold mb-2">Parameters</h2>
-        <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead>
-              <tr>
-                <th class="px-4 py-2 text-left">Name</th>
-                <th class="px-4 py-2 text-left">Type</th>
-                <th class="px-4 py-2 text-left">Optional</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="param in hook.parameters" :key="param.name" class="border-t border-gray-200 dark:border-gray-700">
-                <td class="px-4 py-2 font-mono">{{ param.name }}</td>
-                <td class="px-4 py-2 font-mono">{{ param.typeName }}</td>
-                <td class="px-4 py-2">{{ param.optional ? 'Yes' : 'No' }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
       <div v-if="hook.returnTypeName" class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Return Type</h2>
-        <div class="font-mono">{{ hook.returnTypeName }}</div>
+        <p v-if="hook.returnTypeName != 'void'">Returning a non-null value cancels default behavior.</p>
+        <p v-if="hook.returnTypeName == 'void'">This hook has no return behavior.</p>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Example</h2>
+        
+        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">private {{ hook.returnTypeName }} {{ hook.name }}(<div class="font-mono" v-for="param in hook.parameters" :key="param.name">{{ param.typeName }} {{ param.name }}</div>)
+{
+    Puts("{{ hook.name }} has been called!");
+    <span v-if="hook.returnTypeName != 'void'">return ({{ hook.returnTypeName }})default;</span>
+}</code></pre>
       </div>
 
       <div v-if="hook.methodSource" class="mb-6">

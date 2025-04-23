@@ -299,7 +299,6 @@ watch(() => window.location.hash, (newHash) => {
             Showing {{ paginatedHooks.length }} of {{ filteredHooks.length }} hooks
           </div>
         </div>
-
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -311,7 +310,7 @@ watch(() => window.location.hash, (newHash) => {
                         <h5 class="text-lg font-medium">
                           <a :href="`/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`" 
                              class="hover:text-primary inline-flex items-center gap-2">
-                            {{ hook.name }}
+                            {{ hook.name }} 
                             <ExternalLink size="14" class="opacity-60"/>
                             <div class="flex flex-wrap gap-1.5 mt-2">
                               <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
@@ -326,7 +325,9 @@ watch(() => window.location.hash, (newHash) => {
                       <div v-for="param in hook.descriptions" :key="param.name" class="text-sm">
                         <span class="text-gray-500">{{ param }}</span>
                       </div>                    
- 
+                      <span class="text-sm text-gray-500" v-if="hook.returnTypeName != 'void'">Returning a non-null value cancels default behavior.</span>
+                      <span class="text-sm text-gray-500" v-if="hook.returnTypeName == 'void'">No return behavior.</span>
+
                     </div>
                   </td>
                 </tr>
