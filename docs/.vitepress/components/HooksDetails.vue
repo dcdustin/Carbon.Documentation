@@ -198,6 +198,7 @@ watch(hook, (newHook) => {
 
       <div v-if="hook.methodSource" class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Source Code</h2>
+        <VPBadge type="info" :text="hook.assemblyName"/> <VPBadge type="danger" :text="hook.targetName"/>
         <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">{{ hook.methodSource }}</code></pre>
       </div>
     </div>
