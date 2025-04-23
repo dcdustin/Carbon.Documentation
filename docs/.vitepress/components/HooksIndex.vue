@@ -300,7 +300,7 @@ watch(() => window.location.hash, (newHash) => {
                         <h5 class="text-lg font-medium">
                           <a :href="`/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`" 
                              class="hover:text-primary inline-flex items-center gap-2">
-                            {{ hook.name }} 
+                            {{ hook.fullName }} 
                             <ExternalLink size="14" class="opacity-60"/>
                             <div class="flex flex-wrap gap-1.5 mt-2">
                               <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
