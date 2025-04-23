@@ -93,16 +93,6 @@ const handleUrlSearch = () => {
   }
 }
 
-const copyToClipboard = async (text, id = null) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
-}
-
 const loadHooks = async () => {
   try {
     isLoading.value = true
@@ -314,9 +304,7 @@ watch(() => window.location.hash, (newHash) => {
                             <ExternalLink size="14" class="opacity-60"/>
                             <div class="flex flex-wrap gap-1.5 mt-2">
                               <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
-                              <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
-                                <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
-                              </div>                       
+                              <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm"><VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/></div>                       
                               <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
                             </div>               
                           </a>

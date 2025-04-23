@@ -66,18 +66,7 @@ const loadHookDetails = async () => {
     console.log('Found hook:', foundHook) // Debug log
 
     // Transform the hook data
-    hook.value = {
-      name: foundHook.name,
-      fullName: foundHook.fullName,
-      category: foundCategory,
-      parameters: foundHook.parameters || [],
-      returnTypeName: foundHook.returnTypeName,
-      flags: foundHook.flags,
-      carbonCompatible: foundHook.carbonCompatible,
-      oxideCompatible: foundHook.oxideCompatible,
-      descriptions: foundHook.descriptions || [],
-      methodSource: foundHook.methodSource
-    }
+    hook.value = foundHook
 
     console.log('Transformed hook:', hook.value) // Debug log
 
@@ -199,12 +188,12 @@ watch(hook, (newHook) => {
 
       <div class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Example</h2>
-        
-        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">private {{ hook.returnTypeName }} {{ hook.name }}(<div class="font-mono" v-for="param in hook.parameters" :key="param.name">{{ param.typeName }} {{ param.name }}</div>)
+<pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">private {{ hook.returnTypeName }} {{ hook.name }}({{ hook.parametersText }})
 {
-    Puts("{{ hook.name }} has been called!");
-    <span v-if="hook.returnTypeName != 'void'">return ({{ hook.returnTypeName }})default;</span>
+    Puts("{{ hook.name }} has been called!");<span v-if="hook.returnTypeName != 'void'">
+    return ({{ hook.returnTypeName }})default;</span>
 }</code></pre>
+
       </div>
 
       <div v-if="hook.methodSource" class="mb-6">

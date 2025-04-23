@@ -480,27 +480,27 @@ public partial class CodeGen : CarbonPlugin
 		public string parametersText => string.Join(", ", parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
 		public HookFlags flags;
 		public string[] descriptions;
-		[JsonIgnore] public Type target;
-		[JsonIgnore] public MethodInfo method;
-		[JsonIgnore] public Assembly assembly;
-		[JsonIgnore] public Type returnType;
 		public bool carbonCompatible;
 		public bool oxideCompatible;
-		public string methodSource;
-		[JsonIgnore] public int iteration;
 
 		public string targetName => target?.FullName;
 		public string methodName => method?.Name;
 		public string assemblyName => assembly?.GetName().Name;
 		public string returnTypeName => GetFriendlyType(returnType?.FullName, "void");
+		public string methodSource;
 
+		[JsonIgnore] public Type target;
+		[JsonIgnore] public MethodInfo method;
+		[JsonIgnore] public Assembly assembly;
+		[JsonIgnore] public Type returnType;
+		[JsonIgnore] public int iteration;
 		[JsonIgnore] public readonly bool IsValid => !string.IsNullOrEmpty(name);
 
 		public struct Parameter
 		{
 			public string name;
 			public string typeName => type.FullName.Replace("+", ".");
-			public string typeFriendly => GetFriendlyType(type.FullName, "null");
+			public string typeFriendly => GetFriendlyType(type.FullName);
 			[JsonIgnore]
 			public Type type;
 			public bool optional;
