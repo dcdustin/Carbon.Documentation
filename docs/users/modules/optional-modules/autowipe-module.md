@@ -70,6 +70,8 @@ The configuration is stored in the `AutoWipeConfig` class and includes the follo
 - `autowipe.deletemap` – Deletes a map URL from the pool
 - `autowipe.wipechat` – Sets the chat command name
 
+
+
 ## String Replacements
 They're in place to automate server host name and descriptions with last wipe date and time information.
 - `[WIPE_DAY]` – Wipe day replacement
@@ -77,6 +79,9 @@ They're in place to automate server host name and descriptions with last wipe da
 - `[WIPE_YEAR]` – Wipe year replacement
 - `[WIPE_HOUR]` – Wipe hour replacement
 - `[WIPE_MINUTE]` – Wipe minute replacement
+::: warning 
+<strong>You'll see a warning printed in the server log upon the module updating the host name and description.</strong> It usually only happens once per server boot, unless you update any of two with the inclusion of replacement keys. <strong>This only happens when the server sends Steam server information.</strong>
+:::
 
 ## How It Works
 - Every 30 seconds, the module checks if a wipe is due via cron.
