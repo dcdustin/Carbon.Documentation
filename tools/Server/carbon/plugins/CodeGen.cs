@@ -1,17 +1,22 @@
-﻿using System;
+﻿// Reference: System.IO.Compression
+// Reference: System.IO.Compression.FileSystem
+
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using API.Commands;
 using Carbon.Components;
 using Carbon.Extensions;
 using Oxide.Core.Plugins;
 using HarmonyLib;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Rust;
 using UnityEngine;
 
@@ -38,13 +43,14 @@ public partial class CodeGen : CarbonPlugin
 		}
 	}
 
-	private static void Generate()
+	private static async ValueTask Generate()
 	{
 		Generate_Items();
 		Generate_Entities();
 		Generate_Prefabs();
 		Generate_Blueprints();
 		Generate_LootTables();
+		await DownloadOxideToTemp();
 		Generate_Hooks();
 		Generate_Commands();
 		Generate_ConVars();
@@ -277,6 +283,16 @@ public partial class CodeGen : CarbonPlugin
 
 	#region Helpers
 
+	private static async ValueTask DownloadOxideToTemp()
+	{
+		var core = Community.Runtime.Core;
+		var latest = JObject.Parse((await core.webrequest.EnqueueAsync("https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest", null, null, core)).ResponseObject as string);
+		var oxideLatest = latest["assets"][1]["browser_download_url"].ToObject<string>();
+		var zip = (await core.webrequest.EnqueueDataAsync(oxideLatest, null, null, core)).ResponseObject as byte[];
+		var oxideZipPath = Path.Combine(Carbon.Core.Defines.GetTempFolder(), "oxide.zip");
+		File.WriteAllBytes(oxideZipPath, zip);
+		ZipFile.ExtractToDirectory(oxideZipPath, Carbon.Core.Defines.GetTempFolder(), overwrite: true);
+	}
 	public static string GetFriendlyType(string type, string empty = "null")
 	{
 		if (type == null) return empty;
@@ -583,7 +599,7 @@ public partial class CodeGen : CarbonPlugin
 			{
 				if (!string.IsNullOrEmpty(hook.assembly.Location))
 				{
-					hook.methodSource = SourceCodeBank.Parse(hook.assembly.Location).ParseMethod(hook.target.FullName, hook.method.Name);
+					hook.methodSource = SourceCodeBank.Parse(Path.Combine(Carbon.Core.Defines.GetTempFolder(), "RustDedicated_Data", "Managed", $"{hook.assemblyName}.dll")).ParseMethod(hook.target.FullName, hook.method.Name);
 				}
 			}
 
@@ -593,7 +609,7 @@ public partial class CodeGen : CarbonPlugin
 
 	public class HooksAIResearch
 	{
-		public static List<Hook>? hooks;
+		public static List<Hook> hooks;
 
 		public static void LoadResearch()
 		{
