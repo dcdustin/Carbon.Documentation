@@ -599,7 +599,8 @@ public partial class CodeGen : CarbonPlugin
 			{
 				if (!string.IsNullOrEmpty(hook.assembly.Location))
 				{
-					hook.methodSource = SourceCodeBank.Parse(Path.Combine(Carbon.Core.Defines.GetTempFolder(), "RustDedicated_Data", "Managed", $"{hook.assemblyName}.dll")).ParseMethod(hook.target.FullName, hook.method.Name);
+					var oxidePath = Path.Combine(Carbon.Core.Defines.GetTempFolder(), "RustDedicated_Data", "Managed", $"{hook.assemblyName}.dll");
+					hook.methodSource = SourceCodeBank.Parse(File.Exists(oxidePath) ? oxidePath : hook.assembly.Location).ParseMethod(hook.target.FullName, hook.method.Name);
 				}
 			}
 
