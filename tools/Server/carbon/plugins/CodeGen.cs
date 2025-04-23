@@ -33,12 +33,17 @@ public partial class CodeGen : CarbonPlugin
 		Generate();
 	}
 
+	public override async ValueTask OnAsyncServerShutdown()
+	{
+		await Generate();
+		await base.OnAsyncServerShutdown();
+	}
+
 	[AutoPatch, HarmonyPatch(typeof(Bootstrap), nameof(Bootstrap.StartServer), typeof(bool), typeof(string), typeof(bool))]
 	public class GenPatch
 	{
 		public static void Prefix(bool doLoad, string saveFileOverride, bool allowOutOfDateSaves)
 		{
-			Generate();
 			ConsoleSystem.Run(ConsoleSystem.Option.Server, "quit");
 		}
 	}
