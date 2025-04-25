@@ -80,8 +80,7 @@ export default defineConfig({
           { text: "Entities", link: "/references/entities" },
           { text: "Prefabs", link: "/references/prefabs" },
           { text: "Commands", link: "/references/commands" },
-          { text: "ConVars", link: "/references/convars" },
-          { text: "Loot Tables", link: "/references/loot" },
+          { text: "ConVars", link: "/references/convars" }
         ],
       },
       { text: "Release Notes", link: "/release-notes" },
@@ -99,8 +98,7 @@ export default defineConfig({
             { text: 'Entities', link: '/references/entities' },
             { text: 'Prefabs', link: '/references/prefabs' },
             { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' },
-            { text: 'Loot Tables', link: '/references/loot' },
+            { text: 'ConVars', link: '/references/convars' }
           ]
         } 
       ],
