@@ -67,7 +67,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Docs", items: [
-        { text: "Users", link: "/users/introduction" },
+        { text: "Owners", link: "/owners/introduction" },
         { text: "Developers", link: "/devs/local-server-hosting" },
       ]
     },
@@ -103,33 +103,33 @@ export default defineConfig({
         } 
       ],
 
-      '/users/': [
+      '/owners/': [
         {
-          text: 'User Documentation',
+          text: 'Owners Documentation',
           items: [
-            {text: 'Introduction', link: '/users/introduction'},
-            {text: 'Installing Carbon', link: '/users/installing-carbon'},
-            {text: 'Configuring Carbon', link: '/users/configuring-carbon'},
+            {text: 'Introduction', link: '/owners/introduction'},
+            {text: 'Installing Carbon', link: '/owners/installing-carbon'},
+            {text: 'Configuring Carbon', link: '/owners/configuring-carbon'},
             {
               text: 'Carbon Modules',
               collapsed: true,
               items: [
-                { text: 'What are Modules?', link: '/users/modules/what-are-modules' },
-                { text: 'Admin Module', link: '/users/modules/admin-module' },
-                { text: 'Color Picker Module', link: '/users/modules/color-picker-module' },
-                { text: 'Date Picker Module', link: '/users/modules/date-picker-module' },
-                { text: 'File Picker Module', link: '/users/modules/file-picker-module' },
-                {text: 'Image Database Module', link: '/users/modules/image-db-module' },
-                { text: 'Modal Module', link: '/users/modules/modal-module' },
+                { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
+                { text: 'Admin Module', link: '/owners/modules/admin-module' },
+                { text: 'Color Picker Module', link: '/owners/modules/color-picker-module' },
+                { text: 'Date Picker Module', link: '/owners/modules/date-picker-module' },
+                { text: 'File Picker Module', link: '/owners/modules/file-picker-module' },
+                {text: 'Image Database Module', link: '/owners/modules/image-db-module' },
+                { text: 'Modal Module', link: '/owners/modules/modal-module' },
                 { text: 'Optional Modules', collapsed: true, items: [
-                  { text: 'AutoWipe Module', link: '/users/modules/optional-modules/autowipe-module' },
-                  { text: 'Circular Networking Module', link: '/users/modules/optional-modules/circularnetworking-module' },
-                  { text: 'Gather Manager Module', link: '/users/modules/optional-modules/gather-manager-module' },
-                  { text: 'Moderation Tools Module', link: '/users/modules/optional-modules/moderation-tools-module' },
-                  { text: 'Selective EAC Module', link: '/users/modules/optional-modules/selective-eac-module' },
-                  { text: 'Stack Manager Module', link: '/users/modules/optional-modules/stack-manager-module' },
-                  { text: 'Vanish Module', link: '/users/modules/optional-modules/vanish-module' },
-                  { text: 'Whitelist Module', link: '/users/modules/optional-modules/whitelist-module' },
+                  { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
+                  { text: 'Circular Networking Module', link: '/owners/modules/optional-modules/circularnetworking-module' },
+                  { text: 'Gather Manager Module', link: '/owners/modules/optional-modules/gather-manager-module' },
+                  { text: 'Moderation Tools Module', link: '/owners/modules/optional-modules/moderation-tools-module' },
+                  { text: 'Selective EAC Module', link: '/owners/modules/optional-modules/selective-eac-module' },
+                  { text: 'Stack Manager Module', link: '/owners/modules/optional-modules/stack-manager-module' },
+                  { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
+                  { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
                 ]
               }
               ]
@@ -169,7 +169,7 @@ export default defineConfig({
                 { text: 'Modal Module', link: '/devs/modules/modal-module' },
               ]
             },
-            { text: 'User Documentation', link: '/users/introduction' },
+            { text: 'Owners Documentation', link: '/owners/introduction' },
           ]
         } 
       ]
@@ -177,7 +177,7 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CarbonCommunity/Carbon.Documentation' },
-      { icon: 'discord', link: 'https://discord.com/invite/carbonmod' },
+      { icon: 'discord', link: 'https://discord.gg/carbonmod' },
       { icon: 'twitter', link: 'https://twitter.com/CarbonModGG' },
       { icon: 'youtube', link: 'https://www.youtube.com/@carbonmodgg' },
     ],

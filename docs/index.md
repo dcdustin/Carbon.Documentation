@@ -10,8 +10,8 @@ hero:
       text: Join our Discord
       link: https://discord.gg/carbonmod
     - theme: alt
-      text: User Docs
-      link: /users/introduction
+      text: Owner Docs
+      link: /owners/introduction
     - theme: alt
       text: Developer Docs
       link: /devs/local-server-hosting
