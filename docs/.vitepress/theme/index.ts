@@ -9,6 +9,8 @@ import CarbonChange from '../components/CarbonChange.vue'
 import ItemsReference from '../components/ItemsReference.vue'
 import EntitiesReference from '../components/EntitiesReference.vue'
 import EntityPage from '../components/EntityPage.vue'
+import PrefabReference from '../components/PrefabReference.vue'
+import PrefabPage from '../components/PrefabPage.vue'
 import BlueprintsReference from '../components/BlueprintsReference.vue'
 import ItemPage from '../components/ItemPage.vue'
 import BlueprintPage from '../components/BlueprintPage.vue'
@@ -33,6 +35,8 @@ export default {
     app.component('ItemsReference', ItemsReference)
     app.component('EntitiesReference', EntitiesReference)
     app.component('EntityPage', EntityPage)
+    app.component('PrefabReference', PrefabReference)
+    app.component('PrefabPage', PrefabPage)
     app.component('BlueprintsReference', BlueprintsReference)
     app.component('ItemPage', ItemPage)
     app.component('BlueprintPage', BlueprintPage)

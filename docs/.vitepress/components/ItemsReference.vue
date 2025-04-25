@@ -193,6 +193,15 @@ onMounted(async () => {
   await loadItems()
   window.addEventListener('scroll', handleScroll)
   handleUrlSearch()
+
+    // Listen for hash changes, not really needed but fuck it
+    window.addEventListener('hashchange', () => {
+    const newHash = decodeURIComponent(window.location.hash.slice(1))
+    if (newHash) {
+      searchQuery.value = newHash
+      updateDebouncedSearch(newHash)
+    }
+  })
 })
 
 onUnmounted(() => {
@@ -277,7 +286,7 @@ onUnmounted(() => {
 
       <div v-if="paginatedItems && paginatedItems.length">
         <div class="fixed bottom-4 right-4 z-50">
-          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 border border-gray-200 dark:border-gray-700">
+          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
             Showing {{ paginatedItems.length }} of {{ filteredItems.length }} items
           </div>
         </div>
