@@ -106,7 +106,6 @@ export enum ItemCategory {
 }
 
 export enum ItemRarity {
-  None = 0,
   Common = 1,
   Uncommon = 2,
   Rare = 3,
@@ -123,7 +122,6 @@ export enum SpawnType {
 }
 
 export enum HookFlags {
-  None = 0,
   Static = 1,
   Patch = 2,
   Hidden = 4,
@@ -164,7 +162,6 @@ export const getHookFlagsText = (flags: number): string[] => {
 
 // Color mappings
 export const RARITY_COLORS = {
-  [ItemRarity.None]: 'var(--rarity-none)',
   [ItemRarity.Common]: 'var(--rarity-common)',
   [ItemRarity.Uncommon]: 'var(--rarity-uncommon)',
   [ItemRarity.Rare]: 'var(--rarity-rare)',

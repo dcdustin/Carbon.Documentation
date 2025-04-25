@@ -102,28 +102,19 @@ watch(item, (newItem) => {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
+          <VPBadge type="info" :text="getItemCategoryText(item.Category)"/><h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
           <button 
             @click="copyToClipboard(item.Id, item.Id)" 
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
+            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.Id }}</span>
-            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" 
-                     class="ml-2" 
-                     size="14"
-            />
+            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
           </button>
           <button 
             @click="copyToClipboard(item.ShortName, 'shortname')" 
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
+            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.ShortName }}</span>
-            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" 
-                     class="ml-2" 
-                     size="14"
-            />
+            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
           </button>
-
 
         </div>
         <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank" class="vp-button medium brand flex items-center gap-2">
@@ -154,10 +145,10 @@ watch(item, (newItem) => {
         <div class="flex-1 space-y-4">
           <div class=" dark:bg-gray-700">
             <p class="text-gray-600 dark:text-gray-300">{{ item.Description }}</p>
-            <div class="flex flex-wrap gap-2 mt-4">
-              <VPBadge :text="getItemCategoryText(item.Category)" :style="{ backgroundColor: CATEGORY_COLORS[item.Category], color: '#fff' }"/>
-              <VPBadge :text="getItemRarityText(item.Rarity)" :style="{ backgroundColor: RARITY_COLORS[item.Rarity], color: '#fff' }"/>
-              <VPBadge v-if="item.Stack > 1" type="tip" :text="`Stack: ${item.Stack}`"/>
+            <div class="flex flex-wrap gap-1 mt-4">
+              <VPBadge v-if="item.Rarity != 0" type="danger" :text="getItemRarityText(item.Rarity)"/>
+              
+              <VPBadge type="info" :text="`Stack: ${item.Stack}`"/>
               <template v-for="flag in getItemFlagText(item.Flags)" :key="flag">
                 <VPBadge type="danger" :text="flag"/>
               </template>
@@ -166,12 +157,6 @@ watch(item, (newItem) => {
 
           <div class="space-y-2">
             <div class="flex items-center gap-2">
-              <div class="font-mono ">
-              Id: {{ item.Id }}
-              <br>
-              Short Name: {{ item.ShortName }}
-              </div>
-             
             </div>
           </div>
         </div>

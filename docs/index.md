@@ -4,18 +4,22 @@ layout: home
 
 hero:
   name: "Carbon Documentation"
+  icon: "/dev/public/logos/carbon-log.png"
   text: "Innovating Rust Modding"
   tagline: Carbon, making up most of the known universe since at least 1992
   actions:
     - theme: brand
       text: Join our Discord
-      link: https://discord.com/invite/carbonmod
+      link: https://discord.gg/carbonmod
     - theme: alt
       text: User Docs
       link: /users/introduction
     - theme: alt
       text: Developer Docs
       link: /devs/local-server-hosting
+    - theme: alt
+      text: Hooks
+      link: /references/hooks
 
 features:
   - title: High Performance

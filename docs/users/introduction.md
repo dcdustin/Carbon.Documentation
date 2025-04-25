@@ -1,4 +1,4 @@
-![alt text](/logos/carbon-banner.png)
+![alt text](/logos/carbon-banner.webp)
 
 :::info 
 **Carbon** is a modding framework that is dedicated to take care of all background processing and execution of customized plugins and extensions in the most optimal way possible.

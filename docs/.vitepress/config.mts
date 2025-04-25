@@ -4,6 +4,8 @@ import autoprefixer from "autoprefixer";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
 // import { getCategorized, getFiles } from './carbonUtils.mts';
+import fs from 'fs'
+import path from 'path'
 
 
 async function fetchItems() {
@@ -15,7 +17,7 @@ async function fetchItems() {
     console.error("Failed to fetch items for search indexing:", error);
     return [];
   }
-}
+} 
 
 // Function to convert category numbers to readable names
 function getItemCategoryText(category: number): string {
@@ -48,7 +50,7 @@ export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
   base: "/Carbon.Documentation/",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/Carbon.Documentation/favicon.ico" }]],
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
@@ -60,7 +62,7 @@ export default defineConfig({
     },
   },
   themeConfig: {
-    logo: "/img/carbon-logo.png",
+    logo: "/logos/carbon-logo.webp",
     outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
@@ -98,9 +100,6 @@ export default defineConfig({
             { text: 'Commands', link: '/references/commands' },
             { text: 'ConVars', link: '/references/convars' },
             { text: 'Loot Tables', link: '/references/loot' },
-
-            // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
-
           ]
         } 
       ],
@@ -108,7 +107,6 @@ export default defineConfig({
       '/users/': [
         {
           text: 'User Documentation',
-          link: '/users',
           items: [
             {text: 'Introduction', link: '/users/introduction'},
             {text: 'Installing Carbon', link: '/users/installing-carbon'},
@@ -146,7 +144,6 @@ export default defineConfig({
       '/devs/': [
         {
           text: 'Developer Documentation',
-          link: '/devs',
           items: [
             { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
             { text: 'Creating Your Project', link: '/devs/creating-your-project' },
@@ -203,7 +200,7 @@ export default defineConfig({
             boost: {
               title: 5,
               headers: 4,
-              text: 1
+              text: 2
             }
           }
         },
@@ -213,13 +210,9 @@ export default defineConfig({
           if (env.relativePath === 'references/items/index.md') {
             try {
               const items = await fetchItems()
-              const itemContent = items.map(item => `
-# [*Item*] ${item.DisplayName} 
+              const itemContent = items.map(item => `# Item *⪢* ${item.DisplayName} 
 
-${item.Description || ''}
-
-[View Details](/Carbon.Documentation/references/items/details?id=${item.Id})
-`).join('\n\n---\n\n')
+${item.Description || ''}`).join('\n\n---\n\n')
               
               return html + '\n\n' + await md.render(itemContent)
             } catch (error) {
@@ -234,17 +227,7 @@ ${item.Description || ''}
               const data = await response.json()
               const hookContent = Object.entries(data as Record<string, any[]>)
                 .flatMap(([category, hooks]) => 
-                  hooks.map((hook: any) => `
-# [*Hook*] ${hook.name || ''} 
-
-${(hook.descriptions || []).join('\n\n') || ''}
-
-**Category:** ${category}
-${(hook.parameters || []).length ? `**Parameters:** ${(hook.parameters || []).map((p: any) => `${p.name}: ${p.typeName}`).join(', ')}` : ''}
-${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
-
-[View Details](/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName || hook.name || '')})
-`)).join('\n\n---\n\n')
+                  hooks.map((hook: any) => `# [*Hook*] ${hook.category || ''} *⪢* ${hook.fullName || ''}`)).join('\n\n---\n\n')
               
               return html + '\n\n' + await md.render(hookContent)
             } catch (error) {
@@ -257,25 +240,16 @@ ${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
             try {
               const response = await fetch(BLUEPRINTS_API_URL)
               const blueprints = await response.json()
-              const blueprintContent = blueprints.map((blueprint: any) => `
-# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
+              const blueprintContent = blueprints.map((blueprint: any) => `# Blueprint *⪢* ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
 
-${blueprint.Item.Description || ''}
-
-**Category:** ${getItemCategoryText(blueprint.Item.Category)}
-**Workbench Level:** ${blueprint.WorkbenchLevelRequired || 0}
-${blueprint.Ingredients ? `**Ingredients:** ${blueprint.Ingredients.map((i: any) => `${i.Amount}x ${i.Item.DisplayName}`).join(', ')}` : ''}
-
-[View Details](/Carbon.Documentation/references/blueprints/details?id=${encodeURIComponent(blueprint.Item.ShortName || '')})
-`).join('\n\n---\n\n')
-              
+${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
               return html + '\n\n' + await md.render(blueprintContent)
             } catch (error) {
               console.error('Error processing blueprints for search:', error)
               return html
             }
           }
-          
+    
           return html
         }
       }

@@ -123,9 +123,7 @@ const loadHooks = async () => {
           }
         })
       }
-    }
-    console.log('Transformed hooks:', flatHooks) 
-    
+    }    
     if (flatHooks.length === 0) {
       throw new Error('No hooks found in the data')
     }

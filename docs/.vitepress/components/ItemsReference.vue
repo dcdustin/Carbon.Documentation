@@ -339,9 +339,9 @@ onUnmounted(() => {
                           <template v-for="flag in getFlags(item.Flags)" :key="flag">
                             <VPBadge type="warning" :text="flag"/>
                           </template>
-                          <VPBadge v-if="item.Category !== undefined" 
+                          <VPBadge v-if="item.Category !== 0" 
                             :text="getItemCategoryText(item.Category)"/>
-                          <VPBadge v-if="item.Rarity !== undefined" 
+                          <VPBadge v-if="item.Rarity !== 0" 
                             :text="getItemRarityText(item.Rarity)"/>
                         </div>
 
