@@ -354,7 +354,6 @@ onUnmounted(() => {
                             :text="getItemRarityText(item.Rarity)"/>
                         </div>
 
-
                         <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
                           {{ item.Description }}
                         </p>

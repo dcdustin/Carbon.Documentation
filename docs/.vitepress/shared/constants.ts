@@ -5,6 +5,7 @@ export const ITEMS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/items.js
 export const ENTITIES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/entities.json'
 export const LOOT_TABLES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/loot_tables.json'
 export const PREFABS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/prefabs.json'
+export const COMMANDS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/commands.json'
 export const ITEM_IMAGE_SERVER = 'https://carbonmod.gg/assets/media/items'
 export const MISSING_IMAGE_URL = 'https://carbonmod.gg/assets/media/missing.jpg'
 export const CACHE_VERSION_API_URL = 'https://carbonmod.gg/version/?id=docs'

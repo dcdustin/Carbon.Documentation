@@ -19,6 +19,8 @@ import CarbonIcons from '../components/CarbonIcons.vue'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import HooksIndex from '../components/HooksIndex.vue'
 import HooksDetails from '../components/HooksDetails.vue'
+import CommandReference from '../components/CommandReference.vue'
+import ConVarReference from '../components/ConVarReference.vue'
 
 export default {
   extends: DefaultTheme,
@@ -44,6 +46,8 @@ export default {
     app.component('CarbonIcons', CarbonIcons)
     app.component('HooksIndex', HooksIndex)
     app.component('HooksDetails', HooksDetails)
+    app.component('CommandReference', CommandReference)
+    app.component('ConVarReference', ConVarReference)
     enhanceAppWithTabs(app)
 
   }
