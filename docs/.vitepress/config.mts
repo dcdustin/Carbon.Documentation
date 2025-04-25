@@ -92,7 +92,6 @@ export default defineConfig({
       '/references/': [
         {
           text: 'References',
-          link: '/references',
           items: [ 
             {text: 'Hooks', link: '/references/hooks'},
             { text: 'Blueprints', link: '/references/blueprints' },

@@ -1,10 +1,8 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
   name: "Carbon Documentation"
-  icon: "/dev/public/logos/carbon-log.png"
   text: "Innovating Rust Modding"
   tagline: Carbon, making up most of the known universe since at least 1992
   actions:
