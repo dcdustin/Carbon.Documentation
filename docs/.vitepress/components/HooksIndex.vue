@@ -220,9 +220,9 @@ watch(() => window.location.hash, (newHash) => {
     <p class="mb-8">This section contains a comprehensive list of all hooks available in Carbon. Each hook is listed with its name, category, and compatibility information.</p>
 
     <h3 class="text-1xl font-bold mb-3">Flag Legend</h3>
-    <li class="mb-1"> Hooks marked as <VPBadge type="tip" text="Static"/> indicate that said hooks are permanently active upon being loaded</li>
-    <li class="mb-1"> Hooks marked as <VPBadge type="tip" text="Patch"/> indicate that they're patches permanently active which don't necessarily execute hooks (modify game code)</li>
-    <li class="mb-8"> Hooks marked as <VPBadge type="tip" text="IgnoreChecksum"/> indicate that hooks or patches with this flag will be dynamically patched regardless of version</li>
+    <p class="mb-1"> Hooks marked as <VPBadge type="tip" text="Static"/> indicate that said hooks are permanently active upon being loaded</p>
+    <p class="mb-1"> Hooks marked as <VPBadge type="tip" text="Patch"/> indicate that they're patches permanently active which don't necessarily execute hooks (modify game code)</p>
+    <p class="mb-8"> Hooks marked as <VPBadge type="tip" text="IgnoreChecksum"/> indicate that hooks or patches with this flag will be dynamically patched regardless of version</p>
     <p class="mb-8"><VPBadge type="danger" text="IMPORTANT"/> By default, if hooks are not Static or Patches, they're dynamically applied upon plugin subscription, otherwise inactive.</p>
 
     <div class="mb-4">
