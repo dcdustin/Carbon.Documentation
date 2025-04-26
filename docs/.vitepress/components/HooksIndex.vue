@@ -7,9 +7,9 @@ import 'prismjs/components/prism-csharp'
 import '../theme/custom-prism.css'
 import { HookFlags, getHookFlagsText, getGameData, HOOKS_API_URL, CACHE_VERSION_API_URL } from '../shared/constants'
 import '../theme/style.css'
+import CarbonBadge from './CarbonBadge.vue'
 
 const hooks = ref([])
-const copiedId = ref(null)
 const isLoading = ref(true)
 const error = ref(null)
 const retryCount = ref(0)
@@ -219,6 +219,12 @@ watch(() => window.location.hash, (newHash) => {
     <h1 class="text-2xl font-bold mb-4">Carbon Hooks Reference</h1>
     <p class="mb-8">This section contains a comprehensive list of all hooks available in Carbon. Each hook is listed with its name, category, and compatibility information.</p>
 
+    <h3 class="text-1xl font-bold mb-3">Flag Legend</h3>
+    <li class="mb-1"> Hooks marked as <VPBadge type="tip" text="Static"/> indicate that said hooks are permanently active upon being loaded</li>
+    <li class="mb-1"> Hooks marked as <VPBadge type="tip" text="Patch"/> indicate that they're patches permanently active which don't necessarily execute hooks (modify game code)</li>
+    <li class="mb-8"> Hooks marked as <VPBadge type="tip" text="IgnoreChecksum"/> indicate that hooks or patches with this flag will be dynamically patched regardless of version</li>
+    <p class="mb-8"><VPBadge type="danger" text="IMPORTANT"/> By default, if hooks are not Static or Patches, they're dynamically applied upon plugin subscription, otherwise inactive.</p>
+
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
@@ -238,8 +244,7 @@ watch(() => window.location.hash, (newHash) => {
       <div class="text-red-500 mb-4">{{ error }}</div>
       <button 
         @click="retryFetch"
-        class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
-      >
+        class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
         <RefreshCw size="16"/>
         Retry
       </button>
