@@ -7,8 +7,6 @@ description: Execute code that's only compiled when a condition is met.
 
 If you have a plugin which has code that is supposed to be executed only on a specific framework, operating system, branch or even a specific Rust or Carbon protocol, you can use this system.
 
-> **Note:** This is not a plugin or module. `ClientEntity` is part of Carbon’s runtime and always available.
-
 ## Framework
 Since Carbon is for the most part compatible with over 95% of the plugins written for Oxide out there, you may want to use features that are only present in Carbon and not on Oxide.
 

@@ -133,23 +133,25 @@ export default defineConfig({
               text: '🧱 Features',
               collapsed: true,
               items: [
-                { text: 'Extensions', link: '/devs/core/extensions' },
-                { text: 'Permissions', link: '/devs/core/permissions' },
-                { text: 'Client Entities', link: '/devs/core/client-entities' },
-                { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
-                { text: 'Conditionals', link: '/devs/core/conditionals' }
+                { text: '🔧 Extensions', link: '/devs/core/extensions' },
+                { text: '🔧 Permissions', link: '/devs/core/permissions' },
+                { text: '🔧 Client Entities', link: '/devs/core/client-entities' },
+                { text: '🔧 LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: '🔧 Conditionals', link: '/devs/core/conditionals' },
+                { text: '🔧 Async Shutdown', link: '/devs/core/async-shutdown' },
+                { text: '🔧 ZIP Scripts & Packages', link: '/devs/core/zip-script-packages' }
               ]
             },
             {
               text: 'Using Modules',
               collapsed: true,
               items: [
-                { text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
-                { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
-                { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
-                { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
-                { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
-                { text: 'Modal Module', link: '/devs/modules/modal-module' },
+                { text: '🔧 Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: '🔧 Color Picker Module', link: '/devs/modules/color-picker-module' },
+                { text: '🔧 Date Picker Module', link: '/devs/modules/date-picker-module' },
+                { text: '🔧 File Picker Module', link: '/devs/modules/file-picker-module' },
+                { text: '🔧 Image Database Module', link: '/devs/modules/image-db-module' },
+                { text: '🔧 Modal Module', link: '/devs/modules/modal-module' },
               ]
             }
           ]
