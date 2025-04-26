@@ -87,12 +87,12 @@ export default defineConfig({
     ],
 
     sidebar: {
-
       '/references/': [
         {
           text: 'References',
+          collapsed: false,
           items: [ 
-            {text: 'Hooks', link: '/references/hooks'},
+            { text: 'Hooks', link: '/references/hooks'},
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Items', link: '/references/items' },
             { text: 'Entities', link: '/references/entities' },
@@ -103,9 +103,10 @@ export default defineConfig({
         } 
       ],
 
-      '/owners/': [
+      '/': [
         {
           text: 'Owners Documentation',
+          collapsed: true,
           items: [
             {text: 'Introduction', link: '/owners/introduction'},
             {text: 'Installing Carbon', link: '/owners/installing-carbon'},
@@ -119,7 +120,7 @@ export default defineConfig({
                 { text: 'Color Picker Module', link: '/owners/modules/color-picker-module' },
                 { text: 'Date Picker Module', link: '/owners/modules/date-picker-module' },
                 { text: 'File Picker Module', link: '/owners/modules/file-picker-module' },
-                {text: 'Image Database Module', link: '/owners/modules/image-db-module' },
+                { text: 'Image Database Module', link: '/owners/modules/image-db-module' },
                 { text: 'Modal Module', link: '/owners/modules/modal-module' },
                 { text: 'Optional Modules', collapsed: true, items: [
                   { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
@@ -133,16 +134,12 @@ export default defineConfig({
                 ]
               }
               ]
-            },
-            { text: 'Developer Documentation', link: '/devs/local-server-hosting'},
-            
+            }            
           ]
-        } 
-      ],
-
-      '/devs/': [
+        },
         {
           text: 'Developer Documentation',
+          collapsed: true,
           items: [
             { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
             { text: 'Creating Your Project', link: '/devs/creating-your-project' },
@@ -161,17 +158,16 @@ export default defineConfig({
               text: 'Using Modules',
               collapsed: true,
               items: [
-                {text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
                 { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
                 { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
                 { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
                 { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
                 { text: 'Modal Module', link: '/devs/modules/modal-module' },
               ]
-            },
-            { text: 'Owners Documentation', link: '/owners/introduction' },
+            }
           ]
-        } 
+        }
       ]
     },
 
