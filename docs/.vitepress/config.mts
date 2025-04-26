@@ -87,32 +87,17 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/references/': [
-        {
-          text: 'References',
-          collapsed: false,
-          items: [ 
-            { text: 'Hooks', link: '/references/hooks'},
-            { text: 'Blueprints', link: '/references/blueprints' },
-            { text: 'Items', link: '/references/items' },
-            { text: 'Entities', link: '/references/entities' },
-            { text: 'Prefabs', link: '/references/prefabs' },
-            { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' }
-          ]
-        } 
-      ],
-
       '/': [
         {
           text: 'Owners Documentation',
           collapsed: false,
           items: [
-            {text: 'Introduction', link: '/owners/introduction'},
-            {text: 'Installing Carbon', link: '/owners/installing-carbon'},
-            {text: 'Configuring Carbon', link: '/owners/configuring-carbon'},
+            { text: 'Getting Started', link: '/owners/introduction'},
+            { text: '⚙ Installing Carbon', link: '/owners/installing-carbon'},
+            { text: '⚙ Configuring Carbon', link: '/owners/configuring-carbon'},
             {
-              text: 'Carbon Modules',
+              text: '⚙ Carbon Modules',
+              link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
                 { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
@@ -141,17 +126,18 @@ export default defineConfig({
           text: 'Developer Documentation',
           collapsed: false,
           items: [
-            { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
-            { text: 'Creating Your Project', link: '/devs/creating-your-project' },
-            { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
+            { text: '🖥️ Local Server Hosting', link: '/devs/local-server-hosting' },
+            { text: '📦 Creating Your Project', link: '/devs/creating-your-project' },
+            { text: '🐒 Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
             {
-              text: 'Core Features',
+              text: '🧱 Features',
               collapsed: true,
               items: [
-                { text: 'Extensions', link: '/devs/core/extensions'},
+                { text: 'Extensions', link: '/devs/core/extensions' },
                 { text: 'Permissions', link: '/devs/core/permissions' },
                 { text: 'Client Entities', link: '/devs/core/client-entities' },
                 { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: 'Conditionals', link: '/devs/core/conditionals' }
               ]
             },
             {
@@ -166,6 +152,25 @@ export default defineConfig({
                 { text: 'Modal Module', link: '/devs/modules/modal-module' },
               ]
             }
+          ]
+        },
+        {
+          text: 'Rust References',
+          collapsed: false,
+          items: [ 
+            { text: 'Hooks', link: '/references/hooks'},
+            { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', link: '/references/entities' },
+            { text: 'Prefabs', link: '/references/prefabs' }
+          ]
+        },
+        {
+          text: 'Carbon References',
+          collapsed: false,
+          items: [ 
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' }
           ]
         }
       ]
