@@ -5,7 +5,7 @@
       class="carbon-icons"
     />
 </template>
-  
+
   <script setup>
   import {
     ExternalLink,
@@ -26,14 +26,14 @@
     Snail
   } from 'lucide-vue-next'
   import { computed } from 'vue'
-  
+
   const props = defineProps({
     icon: {
       type: String,
       default: null
     }
   })
-  
+
   const getIconComponent = computed(() => {
     switch (props.icon?.toLowerCase()) {
         case 'database':
@@ -73,7 +73,7 @@
     }
   })
   </script>
-  
+
   <style scoped>
   .carbon-icons {
     display: inline-block;

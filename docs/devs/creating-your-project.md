@@ -25,7 +25,6 @@ You can download the Visual Studio 2022 project template for Carbon below. This 
 6. Restart Visual Studio after the server boots
 :::
 
-
 ## <CarbonIcons icon="clouddownload" /> Picking an IDE
 
 To get started with a good developing environment, you need to install [**Visual Studio 2022**](https://visualstudio.microsoft.com/vs/) or [**Rider**](https://www.jetbrains.com/rider/). 

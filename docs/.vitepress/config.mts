@@ -106,7 +106,7 @@ export default defineConfig({
       '/': [
         {
           text: 'Owners Documentation',
-          collapsed: true,
+          collapsed: false,
           items: [
             {text: 'Introduction', link: '/owners/introduction'},
             {text: 'Installing Carbon', link: '/owners/installing-carbon'},
@@ -139,7 +139,7 @@ export default defineConfig({
         },
         {
           text: 'Developer Documentation',
-          collapsed: true,
+          collapsed: false,
           items: [
             { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
             { text: 'Creating Your Project', link: '/devs/creating-your-project' },
