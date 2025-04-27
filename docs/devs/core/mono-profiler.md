@@ -20,7 +20,7 @@ The Mono Profiler is a Carbon built-in feature, offering high performance and co
 * **Extension assemblies**
 :::
 
-Search for `c.profile` in the [Commands reference](./../../references/commands) index for an up to date list of profiler commands
+Search for `c.profile` in the [Commands reference](../../references/commands) index for an up to date list of profiler commands
 
 ## Config
 The configuration for the profiler is located at `carbon/config.profiler.json`.
