@@ -2,6 +2,7 @@
 title: Creating Hooks
 description: Here's a brief overview on how to create and add new hooks in Carbon, as well as adding hooks that are only processed by your plugin &/or module.
 slug: creating-hooks
+type: page
 ---
 
 # Hooks
@@ -12,8 +13,6 @@ Carbon hooks are only applied at runtime whenever a plugin needs them, meaning t
 
 ## Guidelines
 There are a few things that need to be met for the hooks to be considered valid and ready to be released to the public, please follow the guide on how to do so.
-
-
 
 ## 🌟 Community Hooks
 How to get started with submitting community-driven hook changes, requests and additions.
@@ -61,7 +60,7 @@ We use regular Harmony patches for our hooks, so depending on the purpose of you
 ```csharp
 public static bool Prefix(BasePlayer ply, ref PatrolHelicopterAI __instance, out bool __result)
 {
-	if (HookCaller.CallStaticHook(1610282469, __instance, ply) is bool boolean)
+	if (HookCaller.CallStaticHook(1610282469, __instance, ply) is bool boolean) // [!code focus]
 	{
 		__result = boolean;
 		
@@ -106,7 +105,7 @@ public class MyPatch { ... }
 :::
 
 Example:
-```csharp
+```csharp {12-13}
 using System;
 using HarmonyLib;
 using Oxide.Core.Plugins;
@@ -118,8 +117,8 @@ public class Collaborate : CarbonPlugin
 {
     #region Patches
     
-    [AutoPatch]
-    [HarmonyPatch(typeof(BasePlayer), "CanSuicide", new Type[] { })]
+    [AutoPatch] // [!code focus]
+    [HarmonyPatch(typeof(BasePlayer), "CanSuicide", new Type[] { })] // [!code focus]
     public class Patch_1
     {
        public static bool Prefix(BasePlayer __instance, ref bool __result)
@@ -153,10 +152,10 @@ public class Collaborate : CarbonPlugin
      	// Run special code here only if the patch is successful
      }
 
-     [AutoPatch(
-     	IsRequired = true, // If the patch fails, automatically unload the plugin
-     	Order = AutoPatchAttribute.Orders.AfterOnServerInitialized, // Specify at what time on the plugin's initialization should the patch apply
-     	PatchSuccessCallback = nameof(OnPatchComplete))]
+     [AutoPatch( // [!code focus]
+     	IsRequired = true, // If the patch fails, automatically unload the plugin // [!code focus]
+     	Order = AutoPatchAttribute.Orders.AfterOnServerInitialized, // Specify at what time on the plugin's initialization should the patch apply // [!code focus]
+     	PatchSuccessCallback = nameof(OnPatchComplete))] // [!code focus]
      [HarmonyPatch(typeof(BasePlayer), "CanSuicide", new Type[] { })]
      public class Patch_1
      {
