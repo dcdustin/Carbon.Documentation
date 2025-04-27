@@ -1,7 +1,6 @@
 <template>
   <div class="carbon-change">
     <CarbonBadge :variant="variant">{{ variant.toUpperCase() }}</CarbonBadge>
-
     <div class="carbon-change-text" v-html="renderedText"></div>
   </div>
 </template>
@@ -36,6 +35,7 @@ const renderedText = md.renderInline(props.text);
   margin-top: 0.25em;
   margin-bottom: 0.25em;
   font-size: 15px;
+  align-self: center;
 }
 
 .carbon-change-text {
