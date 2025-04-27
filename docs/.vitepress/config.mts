@@ -126,13 +126,15 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Extensions', link: '/devs/core/extensions' },
-                { text: 'Permissions', link: '/devs/core/permissions' },
                 { text: 'Client Entities', link: '/devs/core/client-entities' },
                 { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
                 { text: 'Conditionals', link: '/devs/core/conditionals' },
                 { text: 'Async Shutdown', link: '/devs/core/async-shutdown' },
                 { text: 'ZIP Scripts & Packages', link: '/devs/core/zip-script-packages' },
-                { text: 'Profiler (Mono)', link: '/devs/core/mono-profiler' }
+                { text: 'Profiler (Mono)', link: '/devs/core/mono-profiler' },
+                { text: 'Permissions', link: '/devs/core/permissions' },
+                { text: 'Commands', link: '/devs/core/commands' },
+                { text: 'Timers', link: '/devs/core/timers' }
               ]
             },
             {

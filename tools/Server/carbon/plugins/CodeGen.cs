@@ -60,6 +60,8 @@ public partial class CodeGen : CarbonPlugin
 		Generate_Hooks();
 		Generate_Commands();
 		Generate_ConVars();
+		Generate_Rust_ConVars();
+		Generate_Rust_Commands();
 		Generate_Switches();
 	}
 
@@ -115,6 +117,34 @@ public partial class CodeGen : CarbonPlugin
 		}
 
 		OsEx.File.Create(Path.Combine("carbon", "results", "convars.json"), JsonConvert.SerializeObject(conVars, Formatting.Indented));
+	}
+
+	private static void Generate_Rust_ConVars()
+	{
+		OsEx.File.Create(Path.Combine("carbon", "results", "rust_convars.json"), JsonConvert.SerializeObject(ConVarSnapshots.Snapshots.Select(x => new
+		{
+			Name = x.Key.ToLower(),
+			Help = x.Value.Field.Value.Help,
+			Type = GetFriendlyType(x.Value.Value?.GetType().FullName, null),
+			Saved = x.Value.Field.Value.Saved,
+			ServerAdmin = x.Value.Field.Value.ServerAdmin,
+			ServerUser = x.Value.Field.Value.ServerUser,
+			Clientside = x.Value.Field.Value.Clientside,
+			Serverside = x.Value.Field.Value.Serverside,
+			DefaultValue = x.Value.Value
+		}), Formatting.Indented));
+	}
+
+	private static void Generate_Rust_Commands()
+	{
+		OsEx.File.Create(Path.Combine("carbon", "results", "rust_commands.json"), JsonConvert.SerializeObject(ConsoleSystem.Index.All.Where(x => !x.Variable).Select<ConsoleSystem.Command, object>(x => new
+		{
+			Name = x.FullName,
+			Help = x.Description,
+			ServerUser = x.ServerUser,
+			Client = x.Client,
+			Server = x.Server
+		}), Formatting.Indented));
 	}
 
 	private static void Generate_Entities()
