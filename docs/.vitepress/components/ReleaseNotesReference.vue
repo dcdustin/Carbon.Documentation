@@ -217,7 +217,7 @@ const getChangeType = (val) => {
               <tbody>
                 <tr v-for="releaseNote in releaseNotes" class="items-table-row">
                   <td>
-                    <details style="margin: 2.5px; margin-left: 10px;">
+                    <details v-if="releaseNote != releaseNotes[0]" style="margin: 2.5px; margin-left: 10px;">
                     <summary style="font-size: 15px; color: #e3e3e3;">
                       <span style="display: inline-flex; align-items: center; gap: 5px;">
                         {{ releaseNote.Version }}
