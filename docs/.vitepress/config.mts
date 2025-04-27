@@ -160,22 +160,22 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Rust References',
+          text: 'Carbon References',
           collapsed: false,
           items: [ 
             { text: 'Hooks', link: '/references/hooks'},
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' }
+          ]
+        },
+        {
+          text: 'Rust References',
+          collapsed: false,
+          items: [ 
             { text: 'Blueprints', link: '/references/blueprints' },
             { text: 'Items', link: '/references/items' },
             { text: 'Entities', link: '/references/entities' },
             { text: 'Prefabs', link: '/references/prefabs' }
-          ]
-        },
-        {
-          text: 'Carbon References',
-          collapsed: false,
-          items: [ 
-            { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' }
           ]
         }
       ]
