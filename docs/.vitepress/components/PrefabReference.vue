@@ -45,7 +45,7 @@ const filteredPrefabs = computed(() => {
       return (
         (prefab.Name && prefab.Name.toLowerCase().includes(searchLower)) ||
         (prefab.PrefabName && prefab.PrefabName.toLowerCase().includes(searchLower)) ||
-        (prefab.Description && prefab.Description.toLowerCase().includes(searchLower))||
+        (prefab.Description && prefab.Description.toLowerCase().includes(searchLower)) ||
         (prefab.ID.toString().includes(searchLower))
       )
     })

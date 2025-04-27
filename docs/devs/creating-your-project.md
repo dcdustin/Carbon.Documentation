@@ -37,9 +37,8 @@ Choose a location for your files, such as `F:\RustModding\`. Inside this locatio
 1. **Carbon Server** – This will contain all the server files needed to run Carbon.
 2. **Plugin Dev** – This is where you’ll develop your plugins.  
 
-:::details Windows FileSystem Limitations
-Windows has a limit of 256 characters for each file name, this includes all the folders in the filepath.
-
+:::danger Windows FileSystem Limitations
+**Windows has a limit of 256 characters for each file name, this includes all the folders in the filepath.**
 It is recommended that you create your these folders in or close to your root directory.
 :::
 

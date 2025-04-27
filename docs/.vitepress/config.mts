@@ -151,7 +151,7 @@ export default defineConfig({
             { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
             { text: 'Creating Your Project', link: '/devs/creating-your-project' },
             { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
-            { text: 'Adding Hooks', link: '/devs/adding-hooks' },
+            { text: 'Creating Hooks', link: '/devs/creating-hooks' },
             {
               text: 'Features',
               collapsed: true,
@@ -181,7 +181,7 @@ export default defineConfig({
           ]
         },
         {
-          collapsed: true, items: getReferences("References")
+          items: getReferences("References")
         }
       ]
     },

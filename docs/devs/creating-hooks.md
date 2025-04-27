@@ -1,6 +1,7 @@
 ---
-title: Adding Hooks
+title: Creating Hooks
 description: Here's a brief overview on how to create and add new hooks in Carbon, as well as adding hooks that are only processed by your plugin &/or module.
+slug: creating-hooks
 ---
 
 # Hooks
