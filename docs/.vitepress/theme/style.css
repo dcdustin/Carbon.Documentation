@@ -15,6 +15,10 @@
   --c-carbon-release-remove: #c2292991;
   --c-carbon-release-misc: #4c62e09d;
 
+  --c-carbon-bg-dark: #161618;
+
+  
+
   /*--vp-c-default-1: var(--vp-c-gray-1);*/
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
@@ -101,6 +105,11 @@
   --category-favourite: #a16207;
   --category-electrical: #1e40af;
   --category-fun: #9333ea;
+
+
+  --vp-c-bg: var(--c-carbon-bg-dark);
+  --vp-c-gutter: var(--vp-c-bg-soft);
+  --vp-code-block-bg: var(--vp-c-bg-soft);
 }
 
 /**
@@ -168,6 +177,10 @@
 
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
+
+.DocSearch-Button {
+  background-color: var(--vp-c-bg-soft) !important;
 }
 
 :root {
@@ -288,7 +301,8 @@
 .hover\:bg-gray-200:hover { background-color: var(--vp-c-bg-mute); }
 
 /* Dark mode */
-.dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); }
+/* .dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); } */
+.dark .dark\:bg-gray-800 { background-color: var(--c-carbon-bg-dark); }
 .dark .dark\:bg-gray-900 { background-color: var(--vp-c-bg); }
 .dark .dark\:bg-gray-700 { background-color: var(--vp-c-bg-mute); }
 .dark .dark\:hover\:bg-gray-600:hover { background-color: var(--vp-c-bg-alt); }
