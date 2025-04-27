@@ -45,7 +45,8 @@ const filteredEntities = computed(() => {
       return (
         (entity.Name && entity.Name.toLowerCase().includes(searchLower)) ||
         (entity.PrefabName && entity.PrefabName.toLowerCase().includes(searchLower)) ||
-        (entity.Description && entity.Description.toLowerCase().includes(searchLower))
+        (entity.Description && entity.Description.toLowerCase().includes(searchLower)) ||
+        (entity.ID.toString().includes(searchLower))
       )
     })
   }
