@@ -69,6 +69,7 @@ export default defineConfig({
       },
       { text: "References", items: references},
       { text: "Release Notes", link: "/release-notes" },
+      { text: "Release Notes (WIP)", link: "/references/release-notes/" }
     ],
 
     sidebar: {

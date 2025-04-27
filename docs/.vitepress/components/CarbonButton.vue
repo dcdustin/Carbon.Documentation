@@ -1,27 +1,22 @@
 <template>
-    <a
-      :href="href"
-      :target="isExternal ? '_blank' : null"
-      class="carbon-button"
-    >
-      <component
-        v-if="icon"
-        :is="getIconComponent"
-        class="carbon-button-icon"
-        size="16"
-      />
+    <a :href="href":target="isExternal ? '_blank' : null"class="carbon-button">
+      <component v-if="icon" :is="getIconComponent" class="carbon-button-icon" size="18"/>
       {{ text }}
-      <ExternalLink
-        v-if="isExternal"
-        class="carbon-button-icon"
-        size="14"
-      />
+      <component v-if="isExternal" :is='getNamedIconComponent("externallink")' class="carbon-button-icon" size="14"/>
     </a>
   </template>
   
   <script setup>
-  import { ExternalLink, Globe, Database, CloudDownload, Download } from 'lucide-vue-next'
+  import * as icons from 'lucide-vue-next'
+  import CarbonIcons from './CarbonIcons.vue'
   import { computed } from 'vue'
+
+  const getNamedIconComponent = (iconName) => {
+        iconName = iconName?.toLowerCase();
+        const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName);
+        return matchedKey ? icons[matchedKey] : undefined;
+    };
+  const getIconComponent = computed(() => getNamedIconComponent(props.icon));
 
   const props = defineProps({
     href: String,
@@ -40,22 +35,6 @@
     return props.external === true || props.external === 'true'
   })
 
-  const getIconComponent = computed(() => {
-    switch(props.icon?.toLowerCase()) {
-      case 'database':
-        return Database
-      case 'globe':
-        return Globe
-      case 'externallink':
-        return ExternalLink
-      case 'clouddownload':
-        return CloudDownload
-      case 'download':
-        return Download
-      default:
-        return null
-    }
-  })
   </script>
   
   <style scoped>
