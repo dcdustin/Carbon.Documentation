@@ -28,7 +28,7 @@ If you need help to identify what an Oxide extension looks like in your files, a
 ### Oxide (o.*) Commands
 They don't work, this is Carbon. It might be difficult to get used to it, but all our commands are prefixed with c.*. Although you may create aliases which reflect commands. 
 
-Look for `alias` in the Commands page. [Read more here.](/Carbon.Documentation/references/commands)
+Look for `alias` in the Commands page. [Read more here.](./../references/commands)
 
 ## Full Successful Transfer
 There's a requirement where you must delete all `Oxide.*.dll` from your `<root>/RustDedicated_Data/Managed` folder, as well as verifying and re-updating your Rust server so files like Assembly-CSharp.dll get redownloaded, since Oxide processes them.
