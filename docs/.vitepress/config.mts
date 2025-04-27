@@ -3,9 +3,31 @@ import tailwindcss from "@tailwindcss/postcss7-compat";
 import autoprefixer from "autoprefixer";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
-// import { getCategorized, getFiles } from './carbonUtils.mts';
-import fs from 'fs'
-import path from 'path'
+
+
+const references = [
+  {
+    text: 'Carbon',
+    collapsed: false,
+    items: [
+      { text: 'Hooks', link: '/references/hooks/' },
+      { text: 'Commands', link: '/references/commands/' },
+      { text: 'ConVars', link: '/references/convars/' },
+      { text: 'Switches', link: '/references/switches/' }
+    ]
+  },
+  {
+    text: 'Rust',
+    collapsed: false,
+    items: [
+      { text: 'Blueprints', link: '/references/blueprints/' },
+      { text: 'Items', link: '/references/items/' },
+      { text: 'Entities', link: '/references/entities/' },
+      { text: 'Prefabs', link: '/references/prefabs/' }
+    ]
+  }
+];
+
 
 
 async function fetchItems() {
@@ -19,57 +41,6 @@ async function fetchItems() {
   }
 } 
 
-// Function to convert category numbers to readable names
-function getItemCategoryText(category: number): string {
-  const categories: Record<number, string> = {
-    0: 'Weapon',
-    1: 'Construction',
-    2: 'Items',
-    3: 'Resources',
-    4: 'Attire',
-    5: 'Tools',
-    6: 'Medical',
-    7: 'Food',
-    8: 'Ammunition',
-    9: 'Traps',
-    10: 'Misc',
-    11: 'Common',
-    12: 'Component',
-    13: 'Component',
-    14: 'Electrical',
-    15: 'Fun',
-    16: 'Decor',
-    17: 'Vehicle',
-    18: 'Misc',
-    19: 'All',
-  }
-  return categories[category] || 'Uncategorized'
-}
-
-function getReferences(prefix: string) : object {
-  return [
-    {
-      text: 'Carbon ' + prefix,
-      collapsed: false,
-      items: [ 
-        { text: 'Hooks', link: '/references/hooks/'},
-        { text: 'Commands', link: '/references/commands/' },
-        { text: 'ConVars', link: '/references/convars/' },
-        { text: 'Switches', link: '/references/switches/' }
-      ]
-    },
-    {
-      text: 'Rust ' + prefix,
-      collapsed: false,
-      items: [ 
-        { text: 'Blueprints', link: '/references/blueprints/' },
-        { text: 'Items', link: '/references/items/' },
-        { text: 'Entities', link: '/references/entities/' },
-        { text: 'Prefabs', link: '/references/prefabs/' }
-      ]
-    }
-  ];
-}
 
 export default defineConfig({
   title: "Carbon Documentation",
@@ -96,8 +67,9 @@ export default defineConfig({
         { text: "Owners", link: "/owners/introduction" },
         { text: "Developers", link: "/devs/local-server-hosting" }]
       },
-      { text: "References", items: getReferences("") },
+      { text: "References", items: references},
       { text: "Release Notes", link: "/release-notes" },
+      { text: "Release Notes (WIP)", link: "/references/release-notes/" }
     ],
 
     sidebar: {
@@ -181,7 +153,7 @@ export default defineConfig({
           ]
         },
         {
-          items: getReferences("References")
+          items: references
         }
       ]
     },

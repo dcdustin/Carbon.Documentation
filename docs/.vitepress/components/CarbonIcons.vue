@@ -7,24 +7,7 @@
 </template>
 
   <script setup>
-  import {
-    ExternalLink,
-    Globe,
-    Database,
-    CloudDownload,
-    Download,
-    Server,
-    List,
-    BugOff,
-    Play,
-    Star,
-    FolderPlus,
-    ScrollText,
-    FilePenLine,
-    Power,
-    FilePlus,
-    Snail
-  } from 'lucide-vue-next'
+  import * as icons from 'lucide-vue-next'
   import { computed } from 'vue'
 
   const props = defineProps({
@@ -34,44 +17,12 @@
     }
   })
 
-  const getIconComponent = computed(() => {
-    switch (props.icon?.toLowerCase()) {
-        case 'database':
-            return Database
-        case 'globe':
-            return Globe
-        case 'externallink':
-            return ExternalLink
-        case 'clouddownload':
-            return CloudDownload
-        case 'download':
-            return Download
-        case 'server':
-            return Server
-        case 'list':
-            return List
-        case 'bugoff':
-            return BugOff
-        case 'play':
-            return Play
-        case 'star':
-            return Star
-        case 'folderplus':
-            return FolderPlus
-        case 'scrolltext':
-            return ScrollText
-        case 'filepenline':
-            return FilePenLine
-        case 'power':
-            return Power
-        case 'fileplus':
-            return FilePlus
-        case 'snail':
-            return Snail
-        default:
-            return null
-    }
-  })
+  const getNamedIconComponent = (iconName) => {
+        iconName = iconName?.toLowerCase();
+        const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName);
+        return matchedKey ? icons[matchedKey] : undefined;
+    };
+  const getIconComponent = computed(() => getNamedIconComponent(props.icon));
   </script>
 
   <style scoped>
