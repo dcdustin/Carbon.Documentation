@@ -68,8 +68,7 @@ export default defineConfig({
         { text: "Developers", link: "/devs/local-server-hosting" }]
       },
       { text: "References", items: references},
-      { text: "Release Notes", link: "/release-notes" },
-      { text: "Release Notes (WIP)", link: "/references/release-notes/" }
+      { text: "Release Notes", link: "/references/release-notes/" }
     ],
 
     sidebar: {
