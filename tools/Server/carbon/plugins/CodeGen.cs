@@ -60,6 +60,7 @@ public partial class CodeGen : CarbonPlugin
 		Generate_Hooks();
 		Generate_Commands();
 		Generate_ConVars();
+		Generate_Switches();
 	}
 
 	private static void Generate_Items()
@@ -285,6 +286,21 @@ public partial class CodeGen : CarbonPlugin
 				hooks.Where(x => !x.category.Equals("_patches", StringComparison.CurrentCultureIgnoreCase) &&
 						(!x.name.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)) || (x.name.Equals("Init") || x.name.Equals("InitLogging"))).GroupBy(x => x.category)
 					.ToDictionary(key => key.Key, value => value.ToArray()), Formatting.Indented));
+	}
+
+	private static void Generate_Switches()
+	{
+		try
+		{
+			OsEx.File.Create(Path.Combine("carbon", "results", "switches.json"),
+				JsonConvert.SerializeObject(
+					typeof(Switches).GetMethods().Select(x => x.GetCustomAttribute<SwitchAttribute>()).Where(x => x != null)
+						.Select(x => new { Name = x.Name, Help = x.Help }), Formatting.Indented));
+		}
+		catch(Exception ex)
+		{
+			Logger.Error("Fumbled", ex);
+		}
 	}
 
 	#region Helpers
