@@ -22,6 +22,7 @@ import HooksDetails from '../components/HooksDetails.vue'
 import CommandReference from '../components/CommandReference.vue'
 import ConVarReference from '../components/ConVarReference.vue'
 import SwitchesReference from '../components/SwitchesReference.vue'
+import ReleaseNotesReference from '../components/ReleaseNotesReference.vue'
 
 export default {
   extends: DefaultTheme,
@@ -50,6 +51,7 @@ export default {
     app.component('CommandReference', CommandReference)
     app.component('ConVarReference', ConVarReference)
     app.component('SwitchesReference', SwitchesReference)
+    app.component('ReleaseNotesReference', ReleaseNotesReference)
     enhanceAppWithTabs(app)
 
   }

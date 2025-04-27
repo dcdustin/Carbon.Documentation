@@ -57,7 +57,7 @@ namespace Extension
 The file below automatically keeps your environment up-to-date with the latest Carbon version and is designed to easily build your extension for Carbon-only, Oxide-only or both within the same project.
 
 <CarbonButton
-  href="/Carbon.ExtensionTemplate.zip"
+  href="/Carbon.Documentation/Carbon.ExtensionTemplate.zip"
   text="Download Template"
-  icon="download"
+  icon="download" external
 />
