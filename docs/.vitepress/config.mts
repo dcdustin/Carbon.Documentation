@@ -215,7 +215,7 @@ export default defineConfig({
           if (env.relativePath === 'references/items/index.md') {
             try {
               const items = await fetchItems()
-              const itemContent = items.map(item => `# Item *⪢* ${item.DisplayName} 
+              const itemContent = items.map(item => `# [*Item*] ${item.DisplayName} 
 
 ${item.Description || ''}`).join('\n\n---\n\n')
               
@@ -232,7 +232,7 @@ ${item.Description || ''}`).join('\n\n---\n\n')
               const data = await response.json()
               const hookContent = Object.entries(data as Record<string, any[]>)
                 .flatMap(([category, hooks]) => 
-                  hooks.map((hook: any) => `# [*Hook*] ${hook.category || ''} *⪢* ${hook.fullName || ''}`)).join('\n\n---\n\n')
+                  hooks.map((hook: any) => `# [*Hook*] ${hook.name || ''}`)).join('\n\n---\n\n')
               
               return html + '\n\n' + await md.render(hookContent)
             } catch (error) {
@@ -245,7 +245,7 @@ ${item.Description || ''}`).join('\n\n---\n\n')
             try {
               const response = await fetch(BLUEPRINTS_API_URL)
               const blueprints = await response.json()
-              const blueprintContent = blueprints.map((blueprint: any) => `# Blueprint *⪢* ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
+              const blueprintContent = blueprints.map((blueprint: any) => `# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
 
 ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
               return html + '\n\n' + await md.render(blueprintContent)

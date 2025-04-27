@@ -72,7 +72,8 @@ const filteredBlueprints = computed(() => {
       return (
         (bp.Item.DisplayName && bp.Item.DisplayName.toLowerCase().includes(searchLower)) ||
         (bp.Item.ShortName && bp.Item.ShortName.toLowerCase().includes(searchLower)) ||
-        (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower))
+        (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower)) ||
+        (bp.Item.Id == searchLower)
       )
     })
   }

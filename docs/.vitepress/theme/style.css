@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Roboto', 'Roboto Condensed', sans-serif;
-} 
-
 :root {
   --c-carbon-1: #fc583b;
   --c-carbon-2: #fc3b3b;

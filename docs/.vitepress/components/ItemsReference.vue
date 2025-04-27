@@ -83,7 +83,8 @@ const filteredItems = computed(() => {
       return (
         (item.DisplayName && item.DisplayName.toLowerCase().includes(searchLower)) ||
         (item.ShortName && item.ShortName.toLowerCase().includes(searchLower)) ||
-        (item.Description && item.Description.toLowerCase().includes(searchLower))
+        (item.Description && item.Description.toLowerCase().includes(searchLower)) ||
+        (item.Id == searchLower)
       )
     })
   }
@@ -326,18 +327,17 @@ onUnmounted(() => {
                                class="hover:text-primary inline-flex items-center gap-2">
                               {{ item.DisplayName }}
                               <ExternalLink size="14" class="opacity-60"/>
-                              <div class="flex flex-wrap gap-2 mt-3">
-                          <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            <span class="font-mono">ID: {{ item.Id }}</span>
-                            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
-                          </button>
-                          <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            <span class="font-mono">{{ item.ShortName }}</span>
-                            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
-                          </button>
-                        </div>
-
                             </a>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                  <span class="font-mono">ID: {{ item.Id }}</span>
+                                  <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                                </button>
+                                <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                  <span class="font-mono">{{ item.ShortName }}</span>
+                                  <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                                </button>
+                              </div>
                           </h5>
                           <div v-if="item.Hidden">
                             <VPBadge type="danger" text="Hidden"/>
