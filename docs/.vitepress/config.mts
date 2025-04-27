@@ -87,32 +87,17 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/references/': [
-        {
-          text: 'References',
-          collapsed: false,
-          items: [ 
-            { text: 'Hooks', link: '/references/hooks'},
-            { text: 'Blueprints', link: '/references/blueprints' },
-            { text: 'Items', link: '/references/items' },
-            { text: 'Entities', link: '/references/entities' },
-            { text: 'Prefabs', link: '/references/prefabs' },
-            { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' }
-          ]
-        } 
-      ],
-
       '/': [
         {
           text: 'Owners Documentation',
           collapsed: false,
           items: [
-            {text: 'Introduction', link: '/owners/introduction'},
-            {text: 'Installing Carbon', link: '/owners/installing-carbon'},
-            {text: 'Configuring Carbon', link: '/owners/configuring-carbon'},
+            { text: 'Getting Started', link: '/owners/introduction'},
+            { text: '⚙️ Installing Carbon', link: '/owners/installing-carbon'},
+            { text: '⚙️ Configuring Carbon', link: '/owners/configuring-carbon'},
             {
-              text: 'Carbon Modules',
+              text: '🎳 Carbon Modules',
+              link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
                 { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
@@ -134,38 +119,62 @@ export default defineConfig({
                 ]
               }
               ]
-            }            
+            },
+            { text: '🥳 Oxide Porting', link: '/owners/oxide-porting'},
           ]
         },
         {
           text: 'Developer Documentation',
           collapsed: false,
           items: [
-            { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
-            { text: 'Creating Your Project', link: '/devs/creating-your-project' },
-            { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
+            { text: '🖥️ Local Server Hosting', link: '/devs/local-server-hosting' },
+            { text: '📦 Creating Your Project', link: '/devs/creating-your-project' },
+            { text: '🐒 Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
             {
-              text: 'Core Features',
+              text: '🧱 Features',
               collapsed: true,
               items: [
-                { text: 'Extensions', link: '/devs/core/extensions'},
-                { text: 'Permissions', link: '/devs/core/permissions' },
-                { text: 'Client Entities', link: '/devs/core/client-entities' },
-                { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: '🔧 Extensions', link: '/devs/core/extensions' },
+                { text: '🔧 Permissions', link: '/devs/core/permissions' },
+                { text: '🔧 Client Entities', link: '/devs/core/client-entities' },
+                { text: '🔧 LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: '🔧 Conditionals', link: '/devs/core/conditionals' },
+                { text: '🔧 Async Shutdown', link: '/devs/core/async-shutdown' },
+                { text: '🔧 ZIP Scripts & Packages', link: '/devs/core/zip-script-packages' },
+                { text: '🔧 Profiler (Mono)', link: '/devs/core/mono-profiler' }
               ]
             },
             {
-              text: 'Using Modules',
+              text: '🛠️ Modules',
               collapsed: true,
               items: [
-                { text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
-                { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
-                { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
-                { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
-                { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
-                { text: 'Modal Module', link: '/devs/modules/modal-module' },
+                { text: '🛠️ Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: '🛠️ Color Picker Module', link: '/devs/modules/color-picker-module' },
+                { text: '🛠️ Date Picker Module', link: '/devs/modules/date-picker-module' },
+                { text: '🛠️ File Picker Module', link: '/devs/modules/file-picker-module' },
+                { text: '🛠️ Image Database Module', link: '/devs/modules/image-db-module' },
+                { text: '🛠️ Modal Module', link: '/devs/modules/modal-module' },
               ]
             }
+          ]
+        },
+        {
+          text: 'Rust References',
+          collapsed: false,
+          items: [ 
+            { text: 'Hooks', link: '/references/hooks'},
+            { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', link: '/references/entities' },
+            { text: 'Prefabs', link: '/references/prefabs' }
+          ]
+        },
+        {
+          text: 'Carbon References',
+          collapsed: false,
+          items: [ 
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' }
           ]
         }
       ]
