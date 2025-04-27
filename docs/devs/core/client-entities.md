@@ -1,3 +1,8 @@
+---
+title: ClientEntity
+description: ClientEntity is a component of the Carbon framework that enables the creation and management of lightweight networked entities visible only to selected clients.
+---
+
 # ClientEntity (Client-side Networked Entity)
 
 `ClientEntity` is a **core component** of the Carbon framework that enables the creation and management of lightweight networked entities visible only to selected clients. These entities do not exist server-side, making them extremely efficient for client-specific interactions and visual elements.

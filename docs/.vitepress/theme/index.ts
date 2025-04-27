@@ -9,6 +9,8 @@ import CarbonChange from '../components/CarbonChange.vue'
 import ItemsReference from '../components/ItemsReference.vue'
 import EntitiesReference from '../components/EntitiesReference.vue'
 import EntityPage from '../components/EntityPage.vue'
+import PrefabReference from '../components/PrefabReference.vue'
+import PrefabPage from '../components/PrefabPage.vue'
 import BlueprintsReference from '../components/BlueprintsReference.vue'
 import ItemPage from '../components/ItemPage.vue'
 import BlueprintPage from '../components/BlueprintPage.vue'
@@ -17,6 +19,8 @@ import CarbonIcons from '../components/CarbonIcons.vue'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import HooksIndex from '../components/HooksIndex.vue'
 import HooksDetails from '../components/HooksDetails.vue'
+import CommandReference from '../components/CommandReference.vue'
+import ConVarReference from '../components/ConVarReference.vue'
 
 export default {
   extends: DefaultTheme,
@@ -33,6 +37,8 @@ export default {
     app.component('ItemsReference', ItemsReference)
     app.component('EntitiesReference', EntitiesReference)
     app.component('EntityPage', EntityPage)
+    app.component('PrefabReference', PrefabReference)
+    app.component('PrefabPage', PrefabPage)
     app.component('BlueprintsReference', BlueprintsReference)
     app.component('ItemPage', ItemPage)
     app.component('BlueprintPage', BlueprintPage)
@@ -40,6 +46,8 @@ export default {
     app.component('CarbonIcons', CarbonIcons)
     app.component('HooksIndex', HooksIndex)
     app.component('HooksDetails', HooksDetails)
+    app.component('CommandReference', CommandReference)
+    app.component('ConVarReference', ConVarReference)
     enhanceAppWithTabs(app)
 
   }

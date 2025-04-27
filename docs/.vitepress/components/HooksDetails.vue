@@ -152,7 +152,7 @@ watch(hook, (newHook) => {
     </div>
 
     <div v-else-if="hook" class="hook-details">
-      <div class="flex items-start justify-between mb-6">
+      <div class="flex items-start justify-left mb-6">
         <div>
           <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
           <div class="flex flex-wrap gap-1">
@@ -161,15 +161,9 @@ watch(hook, (newHook) => {
             <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
           </div>
         </div>
-        <button 
-          @click="copyToClipboard(hook.fullName, 'fullName')" 
-          class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-        >
-          <span class="font-mono">{{ hook.fullName }}</span>
-          <component :is="copiedId === 'fullName' ? CheckCircle2 : Copy" 
-                   class="ml-2" 
-                   size="14"
-          />
+        <button @click="copyToClipboard(hook.id, 'id')" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+          <span class="font-mono">{{ hook.id }}</span>
+          <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14"/>
         </button>
       </div>
 

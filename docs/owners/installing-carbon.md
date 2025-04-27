@@ -4,7 +4,8 @@
 To get started, please follow the following instructions underneath, specified for the operating system of your liking:
 <iframe width="690" height="388" src="https://www.youtube.com/embed/htfazTbNsPs?si=7ZIJvvrAvBA3FrUP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-:::details Windows {open}
+:::tabs
+== Windows
 To install **Carbon** on your Windows dedicated Rust server, you must follow these steps:
 
 Please verify all server files and keep the server up to date every time it boots up.
@@ -16,9 +17,7 @@ Please verify all server files and keep the server up to date every time it boot
 
 :::tip
 **TARGET** can be **Release** or **Debug**, depending on the build branch you're using.
-:::
-
-:::details Linux
+== Linux
 To install **Carbon** on your Linux dedicated Rust server, you must follow these steps:
 
 1. Download the latest **Carbon.Linux.`TARGET`.tar.gz** from the [Github Releases page](https://github.com/CarbonCommunity/Carbon.Core/releases).
@@ -33,12 +32,9 @@ To install **Carbon** on your Linux dedicated Rust server, you must follow these
 
 :::tip
 For more information have a look at the example [launcher script](https://github.com/CarbonCommunity/Carbon.QuickStart/blob/main/linux/run.sh). On some distros and specially with docker you'll also need to `export TERM=xterm` before launching the server.
-:::
-
-:::details OXS
+== OSX
 _There's currently no support for the OSX operating system._
-:::
 
-:::details Smart Fridge
+== Smart Fridge
 _There's currently no support for any Smart Fridge systems._
 :::

@@ -1,3 +1,8 @@
+---
+title: LUI (Lightweight UI)
+description: LUI is a **core UI component** of the Carbon framework that provides a fluent, object-oriented API for constructing and managing CUI elements in Rust.
+---
+
 # LUI (Lightweight UI)
 
 LUI is a **core UI component** of the Carbon framework that provides a fluent, object-oriented API for constructing and managing CUI elements in Rust. It simplifies creation, updates, and dispatch of UI elements, supports advanced layout logic, and is tightly integrated with Carbon’s UI and image systems.

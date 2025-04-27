@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using API.Commands;
 using Carbon.Components;
 using Carbon.Extensions;
+using Carbon.Pooling;
 using Oxide.Core.Plugins;
 using HarmonyLib;
 using Newtonsoft.Json;
@@ -494,6 +495,7 @@ public partial class CodeGen : CarbonPlugin
 			MetadataOnly = 16
 		}
 
+		public uint id;
 		public string name;
 		public string fullName;
 		public string category;
@@ -547,6 +549,7 @@ public partial class CodeGen : CarbonPlugin
 			string methodName = patchType?.GetProperty("Method").GetValue(patch) as string;
 			Type[] methodArgs = patchType?.GetProperty("MethodArgs").GetValue(patch) as Type[];
 			hook.name = patchType.GetProperty("Name").GetValue(patch) as string;
+			hook.id = HookStringPool.GetOrAdd(hook.name);
 			hook.fullName = patchType.GetProperty("FullName").GetValue(patch) as string;
 			if (iterations.TryGetValue(hook.fullName, out var iteration))
 			{

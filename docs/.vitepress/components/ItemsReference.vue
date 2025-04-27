@@ -83,7 +83,8 @@ const filteredItems = computed(() => {
       return (
         (item.DisplayName && item.DisplayName.toLowerCase().includes(searchLower)) ||
         (item.ShortName && item.ShortName.toLowerCase().includes(searchLower)) ||
-        (item.Description && item.Description.toLowerCase().includes(searchLower))
+        (item.Description && item.Description.toLowerCase().includes(searchLower)) ||
+        (item.Id == searchLower)
       )
     })
   }
@@ -193,6 +194,15 @@ onMounted(async () => {
   await loadItems()
   window.addEventListener('scroll', handleScroll)
   handleUrlSearch()
+
+    // Listen for hash changes, not really needed but fuck it
+    window.addEventListener('hashchange', () => {
+    const newHash = decodeURIComponent(window.location.hash.slice(1))
+    if (newHash) {
+      searchQuery.value = newHash
+      updateDebouncedSearch(newHash)
+    }
+  })
 })
 
 onUnmounted(() => {
@@ -277,7 +287,7 @@ onUnmounted(() => {
 
       <div v-if="paginatedItems && paginatedItems.length">
         <div class="fixed bottom-4 right-4 z-50">
-          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2 border border-gray-200 dark:border-gray-700">
+          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
             Showing {{ paginatedItems.length }} of {{ filteredItems.length }} items
           </div>
         </div>
@@ -317,18 +327,17 @@ onUnmounted(() => {
                                class="hover:text-primary inline-flex items-center gap-2">
                               {{ item.DisplayName }}
                               <ExternalLink size="14" class="opacity-60"/>
-                              <div class="flex flex-wrap gap-2 mt-3">
-                          <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            <span class="font-mono">ID: {{ item.Id }}</span>
-                            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
-                          </button>
-                          <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            <span class="font-mono">{{ item.ShortName }}</span>
-                            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
-                          </button>
-                        </div>
-
                             </a>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                  <span class="font-mono">ID: {{ item.Id }}</span>
+                                  <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                                </button>
+                                <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)" class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                                  <span class="font-mono">{{ item.ShortName }}</span>
+                                  <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                                </button>
+                              </div>
                           </h5>
                           <div v-if="item.Hidden">
                             <VPBadge type="danger" text="Hidden"/>
@@ -339,12 +348,11 @@ onUnmounted(() => {
                           <template v-for="flag in getFlags(item.Flags)" :key="flag">
                             <VPBadge type="warning" :text="flag"/>
                           </template>
-                          <VPBadge v-if="item.Category !== undefined" 
+                          <VPBadge v-if="item.Category !== 0" 
                             :text="getItemCategoryText(item.Category)"/>
-                          <VPBadge v-if="item.Rarity !== undefined" 
+                          <VPBadge v-if="item.Rarity !== 0" 
                             :text="getItemRarityText(item.Rarity)"/>
                         </div>
-
 
                         <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
                           {{ item.Description }}

@@ -72,7 +72,8 @@ const filteredBlueprints = computed(() => {
       return (
         (bp.Item.DisplayName && bp.Item.DisplayName.toLowerCase().includes(searchLower)) ||
         (bp.Item.ShortName && bp.Item.ShortName.toLowerCase().includes(searchLower)) ||
-        (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower))
+        (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower)) ||
+        (bp.Item.Id == searchLower)
       )
     })
   }
@@ -524,11 +525,8 @@ const fetchDlcData = async (appId) => {
               <span class="font-mono text-sm">{{ selectedIngredient.Item.Id }}</span>
               <button 
                 @click="copyToClipboard(selectedIngredient.Item.Id, 'ingredient-id')" 
-                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              >
-                <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy" 
-                         size="12"
-                />
+                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy" size="12"/>
               </button>
             </div>
             
@@ -536,11 +534,8 @@ const fetchDlcData = async (appId) => {
               <span class="font-mono text-sm">{{ selectedIngredient.Item.ShortName }}</span>
               <button 
                 @click="copyToClipboard(selectedIngredient.Item.ShortName, 'ingredient-shortname')" 
-                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-              >
-                <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy" 
-                         size="12"
-                />
+                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy" size="12"/>
               </button>
             </div>
 

@@ -5,6 +5,8 @@ export const ITEMS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/items.js
 export const ENTITIES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/entities.json'
 export const LOOT_TABLES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/loot_tables.json'
 export const PREFABS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/prefabs.json'
+export const COMMANDS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/commands.json'
+export const CONVARS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/convars.json'
 export const ITEM_IMAGE_SERVER = 'https://carbonmod.gg/assets/media/items'
 export const MISSING_IMAGE_URL = 'https://carbonmod.gg/assets/media/missing.jpg'
 export const CACHE_VERSION_API_URL = 'https://carbonmod.gg/version/?id=docs'
@@ -106,7 +108,6 @@ export enum ItemCategory {
 }
 
 export enum ItemRarity {
-  None = 0,
   Common = 1,
   Uncommon = 2,
   Rare = 3,
@@ -123,7 +124,6 @@ export enum SpawnType {
 }
 
 export enum HookFlags {
-  None = 0,
   Static = 1,
   Patch = 2,
   Hidden = 4,
@@ -164,7 +164,6 @@ export const getHookFlagsText = (flags: number): string[] => {
 
 // Color mappings
 export const RARITY_COLORS = {
-  [ItemRarity.None]: 'var(--rarity-none)',
   [ItemRarity.Common]: 'var(--rarity-common)',
   [ItemRarity.Uncommon]: 'var(--rarity-uncommon)',
   [ItemRarity.Rare]: 'var(--rarity-rare)',

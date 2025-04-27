@@ -3,7 +3,7 @@ import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
 import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
 import { 
   getGameData,
-  ENTITIES_API_URL,
+  CONVARS_API_URL,
   getSpawnTypeText,
   SpawnType,
   CACHE_VERSION_API_URL
@@ -11,41 +11,31 @@ import {
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 
-const entities = ref([])
+const convars = ref([])
 const copiedId = ref(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
-const selectedSpawnType = ref('all')
 const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
 const error = ref(null)
 
-const LINK_API = ENTITIES_API_URL
+const LINK_API = CONVARS_API_URL
 
-const spawnTypes = computed(() => {
-  return ['all', ...Object.keys(SpawnType).filter(key => isNaN(Number(key)))]
-})
-
-const filteredEntities = computed(() => {
-  if (!entities.value?.length) return []
+const filteredConvars = computed(() => {
+  if (!convars.value?.length) return []
   
-  let filtered = entities.value.filter(entity => entity && entity.Name)
-
-  if (selectedSpawnType.value !== 'all') {
-    filtered = filtered.filter(entity => entity?.SpawnType === SpawnType[selectedSpawnType.value])
-  }
+  let filtered = convars.value.filter(convar => convar && convar.Name)
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(entity => {
-      if (!entity) return false
+    filtered = filtered.filter(convar => {
+      if (!convar) return false
       return (
-        (entity.Name && entity.Name.toLowerCase().includes(searchLower)) ||
-        (entity.PrefabName && entity.PrefabName.toLowerCase().includes(searchLower)) ||
-        (entity.Description && entity.Description.toLowerCase().includes(searchLower))
+        (convar.Name && convar.Name.toLowerCase().includes(searchLower)) ||
+        (convar.Help && convar.Help.toLowerCase().includes(searchLower))
       )
     })
   }
@@ -53,10 +43,10 @@ const filteredEntities = computed(() => {
   return filtered
 })
 
-const paginatedEntities = computed(() => {
+const paginatedConvars = computed(() => {
   const start = 0
   const end = currentPage.value * pageSize
-  return filteredEntities.value.slice(start, end)
+  return filteredConvars.value.slice(start, end)
 })
 
 let debounceTimeout
@@ -78,15 +68,15 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-const loadEntities = async () => {
+const loadConvars = async () => {
   try {
     isLoading.value = true
     error.value = null
     const data = await getGameData(LINK_API)
-    entities.value = data
+    convars.value = data
   } catch (err) {
-    console.error('Failed to load entities:', err)
-    error.value = 'Failed to load entities. Please try again later.'
+    console.error('Failed to load convar:', err)
+    error.value = 'Failed to load convar. Please try again later.'
   } finally {
     isLoading.value = false
   }
@@ -97,7 +87,7 @@ const loadMore = async () => {
   
   loadingMore.value = true
   currentPage.value++
-  hasMore.value = currentPage.value * pageSize < filteredEntities.value.length
+  hasMore.value = currentPage.value * pageSize < filteredConvars.value.length
   loadingMore.value = false
 }
 
@@ -108,7 +98,7 @@ const handleScroll = () => {
 }
 
 onMounted(async () => {
-  await loadEntities()
+  await loadConvars()
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -128,7 +118,7 @@ onMounted(() => {
       
       if (cachedVersion !== version) {
         // Reload data if version changed
-        await loadEntities()
+        await loadConvars()
       }
     } catch (error) {
       console.warn('Error checking version:', error)
@@ -145,14 +135,14 @@ onUnmounted(() => {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Rust Game Entities Reference</h1>
-    <p class="mb-8">This section contains a comprehensive list of all entity prefabs available in the game. Each entity is listed with its unique ID, components, and file path.</p>
+    <h1 class="text-2xl font-bold mb-4">Carbon ConVar Reference</h1>
+    <p class="mb-8">Here's a full list of all currently available CarbonAuto variables you can use to expand on what Rust already provides.</p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database size="16"/>
-          Entities API
+          ConVar API
           <ExternalLink size="14" class="opacity-80"/>
         </a>
       </div>
@@ -160,7 +150,7 @@ onUnmounted(() => {
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
       <Loader2 class="animate-spin" size="24"/>
-      <span class="ml-2">Loading entities...</span>
+      <span class="ml-2">Loading convars...</span>
     </div>
 
     <div v-else>
@@ -172,18 +162,18 @@ onUnmounted(() => {
               type="text" 
               v-model="searchQuery" 
               @input="updateDebouncedSearch($event.target.value)"
-              placeholder="Search entities..." 
+              placeholder="Search convars..." 
               class="w-[400px] px-4 py-2"
             >
           </div>
         </div>
       </div>
 
-      <div v-if="paginatedEntities && paginatedEntities.length">
+      <div v-if="paginatedConvars && paginatedConvars.length">
         
         <div class="fixed bottom-4 right-4 z-50">
           <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
-            Showing {{ paginatedEntities.length }} of {{ filteredEntities.length }} entities
+            Showing {{ paginatedConvars.length }} of {{ filteredConvars.length }} convars
           </div>
         </div>
 
@@ -192,33 +182,17 @@ onUnmounted(() => {
           <div class="inline-block min-w-full  ">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody >
-                <tr v-for="entity in paginatedEntities" :key="entity.ID" :id="entity.ID" class="items-table-row">
+                <tr v-for="convar in paginatedConvars" :key="convar.Name" :id="convar.Name" class="items-table-row">
                   <td class="whitespace-normal pb-4">
-                    <div class="flex flex-col ">
-                      <div class="flex flex-wrap items-center ">
-                        <a :href="`/Carbon.Documentation/references/entities/details?id=${entity.ID}`" class="flex-shrink-0">
-                          <VPBadge :id="entity.ID.toString()" type="tip" text="#"/>
-                        </a>
-                        <button 
-                          @click="copyToClipboard(entity.ID, entity.ID)" 
-                          class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
-                        >
-                          <span class="font-mono">{{ entity.ID }}</span>
-                          <component :is="copiedId === entity.ID ? CheckCircle2 : Copy" 
-                                   class="ml-2" 
-                                   size="14"
-                          />
-                        </button>
-                      </div>
-                      <div class="flex flex-wrap gap-1.5">
-                        <template v-for="component in entity.Components" :key="component">
-                          <VPBadge type="info" :text="component"/>
-                        </template>
-                      </div>
-                      <div class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all">
-                        {{ entity.Path }}
-                      </div>
-                    </div>
+                      <div class="flex items-center gap-2"><h1>{{ convar.DisplayName }} <VPBadge v-if="convar.ForceModded" type="tip" :text="'Modded'"/></h1>  <button 
+                          @click="copyToClipboard(convar.Name, convar.Name)" 
+                          class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0">
+                          <span class="font-mono">{{ convar.Name }}</span>
+                          <component :is="copiedId === convar.Name ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+                        </button> </div>
+                      <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                          {{ convar.Help }}
+                        </p>
                   </td>
                 </tr>
               </tbody>
@@ -231,9 +205,9 @@ onUnmounted(() => {
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
-        <p>No entities found matching your search</p>
-        <p v-if="entities.value && entities.value.length === 0" class="mt-2 text-sm">
-          Debug: No entities loaded. Check console for errors.
+        <p>No convars found matching your search</p>
+        <p v-if="convars.value && convars.value.length === 0" class="mt-2 text-sm">
+          Debug: No convars loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
           Debug: Search query "{{ debouncedSearchQuery }}" returned no results.

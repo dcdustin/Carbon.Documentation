@@ -1,4 +1,9 @@
-# 🧲 Extensions
+---
+title: Extensions
+description: Carbon Extension allow you to extend and reuse tools in one or multiple of your plugins.
+---
+
+# <CarbonIcons icon="star" /> Extensions
 
 Carbon Extension allow you to extend and reuse tools in one or multiple of your plugins. These can viewed a library or common code base to reference across multiple locations. 
 

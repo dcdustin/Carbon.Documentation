@@ -1,5 +1,4 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
@@ -9,13 +8,16 @@ hero:
   actions:
     - theme: brand
       text: Join our Discord
-      link: https://discord.com/invite/carbonmod
+      link: https://discord.gg/carbonmod
     - theme: alt
-      text: User Docs
-      link: /users/introduction
+      text: Owner Docs
+      link: /owners/introduction
     - theme: alt
       text: Developer Docs
       link: /devs/local-server-hosting
+    - theme: alt
+      text: Hooks
+      link: /references/hooks
 
 features:
   - title: High Performance

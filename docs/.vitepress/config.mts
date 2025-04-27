@@ -4,6 +4,8 @@ import autoprefixer from "autoprefixer";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
 // import { getCategorized, getFiles } from './carbonUtils.mts';
+import fs from 'fs'
+import path from 'path'
 
 
 async function fetchItems() {
@@ -15,7 +17,7 @@ async function fetchItems() {
     console.error("Failed to fetch items for search indexing:", error);
     return [];
   }
-}
+} 
 
 // Function to convert category numbers to readable names
 function getItemCategoryText(category: number): string {
@@ -48,7 +50,8 @@ export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
   base: "/Carbon.Documentation/",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/Carbon.Documentation/favicon.ico" }]],
+  ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
@@ -60,12 +63,12 @@ export default defineConfig({
     },
   },
   themeConfig: {
-    logo: "/img/carbon-logo.png",
+    logo: "/logos/carbon-logo.webp",
     outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
       { text: "Docs", items: [
-        { text: "Users", link: "/users/introduction" },
+        { text: "Owners", link: "/owners/introduction" },
         { text: "Developers", link: "/devs/local-server-hosting" },
       ]
     },
@@ -76,112 +79,111 @@ export default defineConfig({
           { text: "Blueprints", link: "/references/blueprints" },
           { text: "Items", link: "/references/items" },
           { text: "Entities", link: "/references/entities" },
+          { text: "Prefabs", link: "/references/prefabs" },
           { text: "Commands", link: "/references/commands" },
-          { text: "ConVars", link: "/references/convars" },
-          { text: "Loot Tables", link: "/references/loot" },
+          { text: "ConVars", link: "/references/convars" }
         ],
       },
       { text: "Release Notes", link: "/release-notes" },
     ],
 
     sidebar: {
-
-      '/references/': [
+      '/': [
         {
-          text: 'References',
-          link: '/references',
-          items: [ 
-            {text: 'Hooks', link: '/references/hooks'},
-            { text: 'Blueprints', link: '/references/blueprints' },
-            { text: 'Items', link: '/references/items' },
-            { text: 'Entities', link: '/references/entities' },
-            { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' },
-            { text: 'Loot Tables', link: '/references/loot' },
-
-            // { text: 'Prefabs', collapsed: true, items: getFiles("../references/prefabs") },
-
-          ]
-        } 
-      ],
-
-      '/users/': [
-        {
-          text: 'User Documentation',
-          link: '/users',
+          text: 'Owners Documentation',
+          collapsed: false,
           items: [
-            {text: 'Introduction', link: '/users/introduction'},
-            {text: 'Installing Carbon', link: '/users/installing-carbon'},
-            {text: 'Configuring Carbon', link: '/users/configuring-carbon'},
+            { text: 'Getting Started', link: '/owners/introduction'},
+            { text: '⚙️ Installing Carbon', link: '/owners/installing-carbon'},
+            // { text: '⚙️ Configuring Carbon', link: '/owners/configuring-carbon'},
             {
-              text: 'Carbon Modules',
+              text: '🎳 Carbon Modules',
+              link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
-                { text: 'What are Modules?', link: '/users/modules/what-are-modules' },
-                { text: 'Admin Module', link: '/users/modules/admin-module' },
-                { text: 'Color Picker Module', link: '/users/modules/color-picker-module' },
-                { text: 'Date Picker Module', link: '/users/modules/date-picker-module' },
-                { text: 'File Picker Module', link: '/users/modules/file-picker-module' },
-                {text: 'Image Database Module', link: '/users/modules/image-db-module' },
-                { text: 'Modal Module', link: '/users/modules/modal-module' },
+                { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
+                { text: 'Admin Module', link: '/owners/modules/admin-module' },
+                { text: 'Color Picker Module', link: '/owners/modules/color-picker-module' },
+                { text: 'Date Picker Module', link: '/owners/modules/date-picker-module' },
+                { text: 'File Picker Module', link: '/owners/modules/file-picker-module' },
+                { text: 'Image Database Module', link: '/owners/modules/image-db-module' },
+                { text: 'Modal Module', link: '/owners/modules/modal-module' },
                 { text: 'Optional Modules', collapsed: true, items: [
-                  { text: 'AutoWipe Module', link: '/users/modules/optional-modules/autowipe-module' },
-                  { text: 'Circular Networking Module', link: '/users/modules/optional-modules/circularnetworking-module' },
-                  { text: 'Gather Manager Module', link: '/users/modules/optional-modules/gather-manager-module' },
-                  { text: 'Moderation Tools Module', link: '/users/modules/optional-modules/moderation-tools-module' },
-                  { text: 'Selective EAC Module', link: '/users/modules/optional-modules/selective-eac-module' },
-                  { text: 'Stack Manager Module', link: '/users/modules/optional-modules/stack-manager-module' },
-                  { text: 'Vanish Module', link: '/users/modules/optional-modules/vanish-module' },
-                  { text: 'Whitelist Module', link: '/users/modules/optional-modules/whitelist-module' },
+                  { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
+                  { text: 'Circular Networking Module', link: '/owners/modules/optional-modules/circularnetworking-module' },
+                  { text: 'Gather Manager Module', link: '/owners/modules/optional-modules/gather-manager-module' },
+                  { text: 'Moderation Tools Module', link: '/owners/modules/optional-modules/moderation-tools-module' },
+                  { text: 'Selective EAC Module', link: '/owners/modules/optional-modules/selective-eac-module' },
+                  { text: 'Stack Manager Module', link: '/owners/modules/optional-modules/stack-manager-module' },
+                  { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
+                  { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
                 ]
               }
               ]
             },
-            { text: 'Developer Documentation', link: '/devs/local-server-hosting'},
-            
+            { text: '🥳 Oxide Porting', link: '/owners/oxide-porting'},
           ]
-        } 
-      ],
-
-      '/devs/': [
+        },
         {
           text: 'Developer Documentation',
-          link: '/devs',
+          collapsed: false,
           items: [
-            { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
-            { text: 'Creating Your Project', link: '/devs/creating-your-project' },
-            { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
+            { text: '🖥️ Local Server Hosting', link: '/devs/local-server-hosting' },
+            { text: '📦 Creating Your Project', link: '/devs/creating-your-project' },
+            { text: '🐒 Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
             {
-              text: 'Core Features',
+              text: '🧱 Features',
               collapsed: true,
               items: [
-                { text: 'Extensions', link: '/devs/core/extensions'},
-                { text: 'Permissions', link: '/devs/core/permissions' },
-                { text: 'Client Entities', link: '/devs/core/client-entities' },
-                { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: '🔧 Extensions', link: '/devs/core/extensions' },
+                { text: '🔧 Permissions', link: '/devs/core/permissions' },
+                { text: '🔧 Client Entities', link: '/devs/core/client-entities' },
+                { text: '🔧 LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
+                { text: '🔧 Conditionals', link: '/devs/core/conditionals' },
+                { text: '🔧 Async Shutdown', link: '/devs/core/async-shutdown' },
+                { text: '🔧 ZIP Scripts & Packages', link: '/devs/core/zip-script-packages' },
+                { text: '🔧 Profiler (Mono)', link: '/devs/core/mono-profiler' }
               ]
             },
             {
-              text: 'Using Modules',
+              text: '🛠️ Modules',
               collapsed: true,
               items: [
-                {text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
-                { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
-                { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
-                { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
-                { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
-                { text: 'Modal Module', link: '/devs/modules/modal-module' },
+                { text: '🛠️ Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: '🛠️ Color Picker Module', link: '/devs/modules/color-picker-module' },
+                { text: '🛠️ Date Picker Module', link: '/devs/modules/date-picker-module' },
+                { text: '🛠️ File Picker Module', link: '/devs/modules/file-picker-module' },
+                { text: '🛠️ Image Database Module', link: '/devs/modules/image-db-module' },
+                { text: '🛠️ Modal Module', link: '/devs/modules/modal-module' },
               ]
-            },
-            { text: 'User Documentation', link: '/users/introduction' },
+            }
           ]
-        } 
+        },
+        {
+          text: 'Carbon References',
+          collapsed: false,
+          items: [ 
+            { text: 'Hooks', link: '/references/hooks'},
+            { text: 'Commands', link: '/references/commands' },
+            { text: 'ConVars', link: '/references/convars' }
+          ]
+        },
+        {
+          text: 'Rust References',
+          collapsed: false,
+          items: [ 
+            { text: 'Blueprints', link: '/references/blueprints' },
+            { text: 'Items', link: '/references/items' },
+            { text: 'Entities', link: '/references/entities' },
+            { text: 'Prefabs', link: '/references/prefabs' }
+          ]
+        }
       ]
     },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CarbonCommunity/Carbon.Documentation' },
-      { icon: 'discord', link: 'https://discord.com/invite/carbonmod' },
+      { icon: 'discord', link: 'https://discord.gg/carbonmod' },
       { icon: 'twitter', link: 'https://twitter.com/CarbonModGG' },
       { icon: 'youtube', link: 'https://www.youtube.com/@carbonmodgg' },
     ],
@@ -203,7 +205,7 @@ export default defineConfig({
             boost: {
               title: 5,
               headers: 4,
-              text: 1
+              text: 2
             }
           }
         },
@@ -213,13 +215,9 @@ export default defineConfig({
           if (env.relativePath === 'references/items/index.md') {
             try {
               const items = await fetchItems()
-              const itemContent = items.map(item => `
-# [*Item*] ${item.DisplayName} 
+              const itemContent = items.map(item => `# [*Item*] ${item.DisplayName} 
 
-${item.Description || ''}
-
-[View Details](/Carbon.Documentation/references/items/details?id=${item.Id})
-`).join('\n\n---\n\n')
+${item.Description || ''}`).join('\n\n---\n\n')
               
               return html + '\n\n' + await md.render(itemContent)
             } catch (error) {
@@ -234,17 +232,7 @@ ${item.Description || ''}
               const data = await response.json()
               const hookContent = Object.entries(data as Record<string, any[]>)
                 .flatMap(([category, hooks]) => 
-                  hooks.map((hook: any) => `
-# [*Hook*] ${hook.name || ''} 
-
-${(hook.descriptions || []).join('\n\n') || ''}
-
-**Category:** ${category}
-${(hook.parameters || []).length ? `**Parameters:** ${(hook.parameters || []).map((p: any) => `${p.name}: ${p.typeName}`).join(', ')}` : ''}
-${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
-
-[View Details](/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName || hook.name || '')})
-`)).join('\n\n---\n\n')
+                  hooks.map((hook: any) => `# [*Hook*] ${hook.name || ''}`)).join('\n\n---\n\n')
               
               return html + '\n\n' + await md.render(hookContent)
             } catch (error) {
@@ -257,25 +245,16 @@ ${hook.returnTypeName ? `**Returns:** ${hook.returnTypeName}` : ''}
             try {
               const response = await fetch(BLUEPRINTS_API_URL)
               const blueprints = await response.json()
-              const blueprintContent = blueprints.map((blueprint: any) => `
-# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
+              const blueprintContent = blueprints.map((blueprint: any) => `# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
 
-${blueprint.Item.Description || ''}
-
-**Category:** ${getItemCategoryText(blueprint.Item.Category)}
-**Workbench Level:** ${blueprint.WorkbenchLevelRequired || 0}
-${blueprint.Ingredients ? `**Ingredients:** ${blueprint.Ingredients.map((i: any) => `${i.Amount}x ${i.Item.DisplayName}`).join(', ')}` : ''}
-
-[View Details](/Carbon.Documentation/references/blueprints/details?id=${encodeURIComponent(blueprint.Item.ShortName || '')})
-`).join('\n\n---\n\n')
-              
+${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
               return html + '\n\n' + await md.render(blueprintContent)
             } catch (error) {
               console.error('Error processing blueprints for search:', error)
               return html
             }
           }
-          
+    
           return html
         }
       }
