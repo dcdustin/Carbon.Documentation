@@ -173,7 +173,8 @@ export default defineConfig({
           items: [ 
             { text: 'Hooks', link: '/references/hooks'},
             { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' }
+            { text: 'ConVars', link: '/references/convars' },
+            { text: 'Switches', link: '/references/switches' }
           ]
         },
         {

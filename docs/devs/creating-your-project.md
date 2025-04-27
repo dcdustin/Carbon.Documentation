@@ -4,25 +4,24 @@ This section will guide you through creating your project and linking it to a lo
 
 Having a local server can help ensure you the latest DLLs for both Rust and Carbon.
 
-:::details Carbon Project Template
-
+:::tabs 
+== Template
 You can download the Visual Studio 2022 project template for Carbon below. This acts as a self contained server and development environment for Carbon Plugins.
 
 ### **Features:**
-- Batch file to download the [Carbon QuickStart Repository](https://github.com/CarbonCommunity/Carbon.QuickStart/tree/main/win)
-- Preconfigured `.csproj` pointing to `Carbon.targets`
-- Self contained local server inside project folder
+- Batch file to download the [Carbon QuickStart Repository](https://github.com/CarbonCommunity/Carbon.QuickStart/tree/main/win).
+- Preconfigured `.csproj` pointing to `Carbon.targets`.
+- Self contained local server inside project folder.
 
-<CarbonButton href="http://carbonmod.gg/redist/TemplateProject.zip" text="TemplateProject.zip" icon="clouddownload" external/> <br>
-
-:::details Instructions:
-1. Download `TemplateProject.zip` and move it to  
-   `%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates\`
-2. Open Visual Studio 2022 → `Create a new project` → search `carbon` → select `Carbon Template`
-3. Set project `Name` and `Location`, check `Place solution and project in the same directory`, then click `Create`
-4. Run `/Rust/Download_Quickstart.bat`, then `update_edge.bat` — wait for each to finish
-5. Edit and run `run.bat`
-6. Restart Visual Studio after the server boots
+<CarbonButton href="http://carbonmod.gg/redist/TemplateProject.zip" text="TemplateProject.zip" icon="clouddownload" external/> 
+== Instructions
+1. Download `TemplateProject.zip` and move it to
+   `%USERPROFILE%\Documents\Visual Studio 2022\Templates\ProjectTemplates\`.
+2. Open Visual Studio 2022 → `Create a new project` → search `carbon` → select `Carbon Template`.
+3. Set project `Name` and `Location`, check `Place solution and project in the same directory`, then click `Create`.
+4. Run `/Rust/Download_Quickstart.bat`, then `update_edge.bat` — wait for each to finish.
+5. Edit and run `run.bat`.
+6. Restart Visual Studio after the server boots.
 :::
 
 ## <CarbonIcons icon="clouddownload" /> Picking an IDE
