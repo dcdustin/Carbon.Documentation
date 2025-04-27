@@ -8,7 +8,7 @@ import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/const
 const references = [
   {
     text: 'Carbon',
-    collapsed: false,
+    collapsed: true,
     items: [
       { text: 'Hooks', link: '/references/hooks/' },
       { text: 'Commands', link: '/references/commands/' },
@@ -18,7 +18,7 @@ const references = [
   },
   {
     text: 'Rust',
-    collapsed: false,
+    collapsed: true,
     items: [
       { text: 'Blueprints', link: '/references/blueprints/' },
       { text: 'Items', link: '/references/items/' },
@@ -27,8 +27,6 @@ const references = [
     ]
   }
 ];
-
-
 
 async function fetchItems() {
   try {
@@ -152,7 +150,7 @@ export default defineConfig({
           ]
         },
         {
-          items: references
+          text: 'References', items: references
         }
       ]
     },
