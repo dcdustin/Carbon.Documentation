@@ -10,6 +10,7 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import CarbonBadge from './CarbonBadge.vue'
 
 const releaseNotes = ref([])
 const copiedId = ref(null)
@@ -154,10 +155,14 @@ const getChangeType = (val) => {
     <h1 class="text-2xl font-bold mb-4">Latest Update</h1>
     <p class="mb-8">Latest production release build changelog based on the <a href="https://github.com/CarbonCommunity/Carbon/tree/production" target="_blank"><strong>production branch</strong></a>.</p>
 
-
-    <Badge type="info" :text="'Current Version: ' + (releaseNotes[0] == null ? 'loading...' : releaseNotes[0]?.Version)" style="text-align:center; width:195px" /> <br>
-    <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build" text="Download Latest" icon="CloudDownload" external/> <br>
-    <Badge type="info" :text="(releaseNotes[0] == null ? 'loading...' : releaseNotes[0]?.Date)" style="text-align:center; width:195px" />
+    <div v-if="!isLoading">
+      <Badge type="info" :text="'Current Version: ' + releaseNotes[0]?.Version" style="text-align:center; width:195px" /> <br>
+      <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build" text="Download Latest" icon="CloudDownload" external/> <br>
+      <Badge type="info" :text="releaseNotes[0].Date" style="text-align:center; width:195px" />
+    </div>
+    <div v-else class="flex justify-center py-4">
+          <Loader2 class="animate-spin" size="24"/>
+    </div>
     <p class="mb-8"></p>
 
     <div class="mb-4">
@@ -167,7 +172,8 @@ const getChangeType = (val) => {
           Release Notes API
           <ExternalLink size="14" class="opacity-80"/>
         </a>
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <div style="width: 10px;"></div>
+        <a v-if="releaseNotes[0]?.CommitUrl" :href="releaseNotes[0]?.CommitUrl" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <GitPullRequestIcon size="16"/>
           Full Commit Log
           <ExternalLink size="14" class="opacity-80"/>
@@ -191,9 +197,8 @@ const getChangeType = (val) => {
           </div>
         </div>
 
-
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full  ">
+          <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
                 <tr v-for="change in releaseNotes[0].Changes.slice().sort((a, b) => a.Type - b.Type)" class="items-table-row">
@@ -203,6 +208,39 @@ const getChangeType = (val) => {
                 </tr>
               </tbody>
             </table>
+
+            <p class="mb-8"></p>
+            <h1 class="text-2xl font-bold mb-4">Older Updates</h1>
+            <p class="mb-8">All changelogs from previous Carbon updates.</p>
+
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody>
+                <tr v-for="releaseNote in releaseNotes" class="items-table-row">
+                  <td>
+                    <details style="margin: 2.5px; margin-left: 10px;">
+                    <summary style="font-size: 15px; color: #e3e3e3;">
+                      <span style="display: inline-flex; align-items: center; gap: 5px;">
+                        {{ releaseNote.Version }}
+                        <a v-if="releaseNote.CommitUrl" :href="releaseNote.CommitUrl" target="_blank"><ExternalLink style="width: 15px; height: 15px;" /></a>
+                        <CarbonBadge v-if="releaseNote.Date" variant="date" :text="releaseNote.Date"/>
+                      </span>
+                      
+                    </summary>
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" style="margin: 10px;">
+                      <tbody>
+                        <tr v-for="change in releaseNote.Changes.slice().sort((a, b) => a.Type - b.Type)">
+                          <td class="whitespace-normal">
+                              <CarbonChange :variant="getChangeType(change.Type)" :text="change.Message" />
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
+                  </details>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
           </div>
         </div>
 
