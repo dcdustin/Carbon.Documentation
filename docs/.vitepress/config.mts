@@ -121,6 +121,13 @@ export default defineConfig({
               }
               ]
             },
+            {
+              text: 'Hosting',
+              collapsed: true,
+              items: [
+                { text: 'Linux Hosting', link: '/owners/linux-hosting' },
+              ]
+            },
             { text: 'Oxide Porting', link: '/owners/oxide-porting'},
           ]
         },
