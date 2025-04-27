@@ -21,6 +21,7 @@ import HooksIndex from '../components/HooksIndex.vue'
 import HooksDetails from '../components/HooksDetails.vue'
 import CommandReference from '../components/CommandReference.vue'
 import ConVarReference from '../components/ConVarReference.vue'
+import SwitchesReference from '../components/SwitchesReference.vue'
 
 export default {
   extends: DefaultTheme,
@@ -48,6 +49,7 @@ export default {
     app.component('HooksDetails', HooksDetails)
     app.component('CommandReference', CommandReference)
     app.component('ConVarReference', ConVarReference)
+    app.component('SwitchesReference', SwitchesReference)
     enhanceAppWithTabs(app)
 
   }

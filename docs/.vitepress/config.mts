@@ -46,6 +46,31 @@ function getItemCategoryText(category: number): string {
   return categories[category] || 'Uncategorized'
 }
 
+function getReferences(prefix: string) : object {
+  return [
+    {
+      text: 'Carbon ' + prefix,
+      collapsed: false,
+      items: [ 
+        { text: 'Hooks', link: '/references/hooks/'},
+        { text: 'Commands', link: '/references/commands/' },
+        { text: 'ConVars', link: '/references/convars/' },
+        { text: 'Switches', link: '/references/switches/' }
+      ]
+    },
+    {
+      text: 'Rust ' + prefix,
+      collapsed: false,
+      items: [ 
+        { text: 'Blueprints', link: '/references/blueprints/' },
+        { text: 'Items', link: '/references/items/' },
+        { text: 'Entities', link: '/references/entities/' },
+        { text: 'Prefabs', link: '/references/prefabs/' }
+      ]
+    }
+  ];
+}
+
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
@@ -69,21 +94,9 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "Docs", items: [
         { text: "Owners", link: "/owners/introduction" },
-        { text: "Developers", link: "/devs/local-server-hosting" },
-      ]
-    },
-      {
-        text: "References",
-        items: [
-          { text: "Hooks", link: "/references/hooks" },
-          { text: "Blueprints", link: "/references/blueprints" },
-          { text: "Items", link: "/references/items" },
-          { text: "Entities", link: "/references/entities" },
-          { text: "Prefabs", link: "/references/prefabs" },
-          { text: "Commands", link: "/references/commands" },
-          { text: "ConVars", link: "/references/convars" }
-        ],
+        { text: "Developers", link: "/devs/local-server-hosting" }]
       },
+      { text: "References", items: getReferences("") },
       { text: "Release Notes", link: "/release-notes" },
     ],
 
@@ -121,6 +134,13 @@ export default defineConfig({
               }
               ]
             },
+            {
+              text: 'Hosting',
+              collapsed: true,
+              items: [
+                { text: 'Linux Hosting', link: '/owners/linux-hosting' },
+              ]
+            },
             { text: 'Oxide Porting', link: '/owners/oxide-porting'},
           ]
         },
@@ -131,6 +151,7 @@ export default defineConfig({
             { text: 'Local Server Hosting', link: '/devs/local-server-hosting' },
             { text: 'Creating Your Project', link: '/devs/creating-your-project' },
             { text: 'Creating Your First Plugin', link: '/devs/creating-your-first-plugin' },
+            { text: 'Creating Hooks', link: '/devs/creating-hooks' },
             {
               text: 'Features',
               collapsed: true,
@@ -160,23 +181,7 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Carbon References',
-          collapsed: false,
-          items: [ 
-            { text: 'Hooks', link: '/references/hooks'},
-            { text: 'Commands', link: '/references/commands' },
-            { text: 'ConVars', link: '/references/convars' }
-          ]
-        },
-        {
-          text: 'Rust References',
-          collapsed: false,
-          items: [ 
-            { text: 'Blueprints', link: '/references/blueprints' },
-            { text: 'Items', link: '/references/items' },
-            { text: 'Entities', link: '/references/entities' },
-            { text: 'Prefabs', link: '/references/prefabs' }
-          ]
+          items: getReferences("References")
         }
       ]
     },
