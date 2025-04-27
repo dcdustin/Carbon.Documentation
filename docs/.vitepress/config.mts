@@ -51,6 +51,7 @@ export default defineConfig({
   description: "Documentation for Carbon",
   base: "/Carbon.Documentation/",
   head: [["link", { rel: "icon", href: "/Carbon.Documentation/favicon.ico" }]],
+  ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
