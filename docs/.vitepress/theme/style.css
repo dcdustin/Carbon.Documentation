@@ -301,8 +301,7 @@
 .hover\:bg-gray-200:hover { background-color: var(--vp-c-bg-mute); }
 
 /* Dark mode */
-/* .dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); } */
-.dark .dark\:bg-gray-800 { background-color: var(--c-carbon-bg-dark); }
+.dark .dark\:bg-gray-800 { background-color: var(--vp-c-bg-soft); }
 .dark .dark\:bg-gray-900 { background-color: var(--vp-c-bg); }
 .dark .dark\:bg-gray-700 { background-color: var(--vp-c-bg-mute); }
 .dark .dark\:hover\:bg-gray-600:hover { background-color: var(--vp-c-bg-alt); }
