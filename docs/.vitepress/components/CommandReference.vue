@@ -185,7 +185,7 @@ onUnmounted(() => {
                 <tr v-for="command in paginatedCommands" :key="command.Name" :id="command.Name" class="items-table-row">
                   <td class="whitespace-normal pb-4">
                     <div class="flex flex-col ">
-                      <h1 class="font-mono">{{ command.Name }} <VPBadge type="tip" :text="`Auth Level: ${(command.AuthLevel <= 0 ? '0' : command.AuthLevel)}`"/></h1> 
+                      <h1 class="font-mono">{{ command.Name }} <VPBadge :type="`${(command.AuthLevel <= 0 ? 'info' : command.AuthLevel == 1 ? 'info' : 'danger')}`" :text="`${(command.AuthLevel <= 0 ? 'User' : command.AuthLevel == 1 ? 'Moderator' : 'Admin')}`"/></h1> 
                       <p v-if="command.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
                           {{ command.Help }}
                         </p>
