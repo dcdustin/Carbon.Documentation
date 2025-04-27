@@ -218,7 +218,7 @@ const getChangeType = (val) => {
                 <tr v-for="releaseNote in releaseNotes" class="items-table-row">
                   <td>
                     <details v-if="releaseNote != releaseNotes[0]" style="margin: 2.5px; margin-left: 10px;">
-                    <summary style="font-size: 15px; color: #e3e3e3;">
+                    <summary style="font-size: 15px; ">
                       <span style="display: inline-flex; align-items: center; gap: 5px;">
                         {{ releaseNote.Version }}
                         <a v-if="releaseNote.CommitUrl" :href="releaseNote.CommitUrl" target="_blank"><ExternalLink class="opacity-60" style="width: 15px; height: 15px;" /></a>
