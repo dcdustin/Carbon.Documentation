@@ -93,10 +93,10 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Getting Started', link: '/owners/introduction'},
-            { text: '⚙ Installing Carbon', link: '/owners/installing-carbon'},
-            { text: '⚙ Configuring Carbon', link: '/owners/configuring-carbon'},
+            { text: '⚙️ Installing Carbon', link: '/owners/installing-carbon'},
+            { text: '⚙️ Configuring Carbon', link: '/owners/configuring-carbon'},
             {
-              text: '⚙ Carbon Modules',
+              text: '🎳 Carbon Modules',
               link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
@@ -119,7 +119,8 @@ export default defineConfig({
                 ]
               }
               ]
-            }            
+            },
+            { text: '🥳 Oxide Porting', link: '/owners/oxide-porting'},
           ]
         },
         {
