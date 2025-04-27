@@ -33,7 +33,8 @@ const renderedText = md.renderInline(props.text);
   align-items: flex-start;
   gap: 5px;
   flex-wrap: wrap;
-  margin-top: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   font-size: 15px;
 }
 

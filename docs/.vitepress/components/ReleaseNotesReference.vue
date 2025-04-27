@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X, GitMergeIcon, GitPullRequestIcon } from 'lucide-vue-next'
 import { 
   getGameData,
   RELEASE_NOTES_API_URL,
@@ -152,7 +152,7 @@ const getChangeType = (val) => {
     <p class="mb-8">Carbon change patch notes and more information about the changes we've done recently.</p>
 
     <h1 class="text-2xl font-bold mb-4">Latest Update</h1>
-    <p class="mb-8">Latest production release build changelog based on the <a href="https://github.com/CarbonCommunity/Carbon/tree/production"><strong>production branch</strong></a>.</p>
+    <p class="mb-8">Latest production release build changelog based on the <a href="https://github.com/CarbonCommunity/Carbon/tree/production" target="_blank"><strong>production branch</strong></a>.</p>
 
 
     <Badge type="info" :text="'Current Version: ' + (releaseNotes[0] == null ? 'loading...' : releaseNotes[0]?.Version)" style="text-align:center; width:195px" /> <br>
@@ -168,7 +168,7 @@ const getChangeType = (val) => {
           <ExternalLink size="14" class="opacity-80"/>
         </a>
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16"/>
+          <GitPullRequestIcon size="16"/>
           Full Commit Log
           <ExternalLink size="14" class="opacity-80"/>
         </a>
@@ -195,12 +195,10 @@ const getChangeType = (val) => {
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full  ">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <tbody >
+              <tbody>
                 <tr v-for="change in releaseNotes[0].Changes.slice().sort((a, b) => a.Type - b.Type)" class="items-table-row">
-                  <td class="whitespace-normal pb-1">
-                    <div class="flex flex-col ">
+                  <td class="whitespace-normal">
                       <CarbonChange :variant="getChangeType(change.Type)" :text="change.Message" />
-                    </div>
                   </td>
                 </tr>
               </tbody>
