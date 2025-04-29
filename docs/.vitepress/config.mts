@@ -45,7 +45,14 @@ export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
   base: "/.",
-  head: [["link", { rel: "icon", href: "/Carbon.Documentation/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    ["meta", { property: "og:title", content: "Carbon Documentation" }],
+    ["meta", { property: "og:description", content: "Documentation for Carbon and its ecosystem." }],
+    ["meta", { property: "og:image", content: "/carbon-bg.webp" }],
+    ["meta", { property: "og:url", content: "https://docs.carbonmod.gg" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }]
+  ],  
   ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
@@ -54,7 +61,7 @@ export default defineConfig({
       lazyLoading: true,
     },
     config(md) {
-      md.use(tabsMarkdownPlugin);
+      md.use(tabsMarkdownPlugin); 
     },
   },
   themeConfig: {

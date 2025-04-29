@@ -45,7 +45,7 @@ This is the format the config properties will look like;
 
 The properties with the `[JsonConverter(typeof(Vault.Protected))]` attribute will only pick up protected keys.
 
-:::tip VALUES
+:::danger VALUES
 The format of the values are `{factory:id}`. The `factory` is basically a 'folder' of encrypted and non-encryted strings, and the `id` is the identifier or name of a string in the factory.
 :::
 

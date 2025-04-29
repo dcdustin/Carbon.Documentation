@@ -17,7 +17,7 @@
 
   --c-carbon-bg-dark: #161618;
 
-  
+
 
   /*--vp-c-default-1: var(--vp-c-gray-1);*/
   --vp-c-default-1: var(--vp-c-gray-1);
@@ -85,6 +85,10 @@ html.dark .light-only {
 
 html:not(.dark) .dark-only {
   display: none !important;
+}
+
+.custom-block {
+	background: var(--vp-custom-block-tip-bg);
 }
 
 .dark {
@@ -174,7 +178,7 @@ html:not(.dark) .dark-only {
 :root {
   --vp-custom-block-tip-border: transparent;
   --vp-custom-block-tip-text: var(--vp-c-text-1);
-  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+  --vp-custom-block-tip-bg: linear-gradient(125deg, var(--vp-c-brand-soft), color-mix(in srgb, var(--vp-c-brand-soft), rgba(0, 138, 71, 0.692) 20%));
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
@@ -192,7 +196,7 @@ html:not(.dark) .dark-only {
 
 :root {
 /* override for code line text color */
-  --vp-code-color: var(--c-carbon-1); 
+  --vp-code-color: var(--c-carbon-1);
 }
 
 .VPBadge{
