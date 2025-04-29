@@ -79,6 +79,14 @@
   --category-fun: #d946ef;         /* Pink */
 }
 
+html.dark .light-only {
+  display: none !important;
+}
+
+html:not(.dark) .dark-only {
+  display: none !important;
+}
+
 .dark {
   --rarity-common: #40af8ca4;
   --rarity-uncommon: #265bccb4;

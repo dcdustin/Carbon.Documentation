@@ -1,4 +1,155 @@
-![alt text](/logos/carbon-banner.webp)
+![alt](/logos/carbon-banner-dark.webp){.dark-only}
+![alt](/logos/carbon-banner-light.webp){.light-only}
+
+<script setup>
+import { VPBadge } from 'vitepress/theme'
+
+const getDownloadUrl = (tag, build) => {
+    return "https://github.com/CarbonCommunity/Carbon/releases/download/" + tag + "_build/" + build
+}
+
+const getBorderColor = (release) => {
+    switch(release.priority) {
+        case -1:
+            return "#8f3333"
+        case 1:
+            return "#6a6a0c"
+    }
+    return "#44444400"
+}
+
+const releases = [
+    {
+        color: "#8f3333",
+        displayName: "Production Build",
+        branch: "production",
+        tag: "production_build",
+        rustBranches: ["public", "release"],
+        builds: [
+        {
+            name: "Release"
+        },
+        {
+            name: "Minimal"
+        }] 
+    },
+    {
+        color: "#6a6a0c",
+        priority: 1,
+        displayName: "Edge Build",
+        branch: "develop",
+        tag: "edge_build",
+        rustBranches: ["public", "release"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        color: "#0c676a",
+        priority: 1,
+        displayName: "QA Build",
+        branch: "qa",
+        tag: "qa_build",
+        rustBranches: ["public", "release", "staging"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Release"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Preview Build",
+        branch: "preview",
+        tag: "preview_build",
+        rustBranches: ["public", "release"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Rust (Beta) Staging Build",
+        branch: "rust_beta/staging",
+        tag: "rustbeta_staging_build",
+        rustBranches: ["staging"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Rust (Beta) Release Build",
+        branch: "rust_beta/release",
+        tag: "rustbeta_release_build",
+        rustBranches: ["release"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Release"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Rust (Beta) Aux01 Build",
+        branch: "rust_beta/aux01",
+        tag: "rustbeta_aux01_build",
+        rustBranches: ["aux01"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Rust (Beta) Aux02 Build",
+        branch: "rust_beta/aux02",
+        tag: "rustbeta_aux02_build",
+        rustBranches: ["aux02"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    },
+    {
+        displayName: "Rust (Beta) Aux03 Build",
+        branch: "rust_beta/aux03",
+        tag: "rustbeta_aux03_build",
+        rustBranches: ["aux03"],
+        builds: [
+        {
+            name: "Debug"
+        },
+        {
+            name: "Minimal"
+        }]
+    }
+]
+
+</script>
 
 :::info 
 **Carbon** is a modding framework that is dedicated to take care of all background processing and execution of customized plugins and extensions in the most optimal way possible.
@@ -15,57 +166,6 @@ To follow up with the development of Carbon, keep up with our repositories [**he
 ## Releases  
 This is the download list for all official files redistributed with Carbon:
 
-**Downloads**
-:::tabs
-== ⭐ Production Build
-This is a build of Carbon based on the `production` branch.
-
-This build is targeted at the general public.
-
-|Windows|Linux|
-| :-----: | :----: |
-| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/production\_build/Carbon.Windows.Release.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/production\_build/Carbon.Linux.Release.tar.gz" text="Download Here" external/> |
-
-== Edge Build
-This is a development build of Carbon based on the latest commit pushed to the repository.
-
-This build is best used to test the very last changes that can be found in the commit history list, since the [preview](https://github.com/Carbon-Modding/Carbon.Core/releases/preview\_build) and [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
-
-This build is targeted at developers.
-
-|Windows|Linux|
-| :-----: | :----: |
-| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
-
-== Preview Build
-This is a build of Carbon based on the `develop` branch.
-
-This build is targeted at developers.
-
-|Windows|Linux|
-| :-----: | :----: |
-| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
-
-== NuGet Package
-The production-ready NuGet package which you can use in your day to day development environment can be found below.
-
-<CarbonButton href="https://www.nuget.org/packages/Carbon.Community" text="Download Here" external/>
-:::
-
-:::tabs
-== Rust (Beta) Staging Build
-This is a build of Carbon based on the `rust_beta/staging` branch.
-
-This build is targeted at developers.\
-The general public is advised to use one of the [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
-
-|Windows|Linux|
-| :-----: | :----: |
-| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
-
-
-:::
-
 :::tip How to install
 1. Download the archive from the attachments below.
 2. Unzip the archive to the root of your Rust Dedicated Server.
@@ -73,3 +173,26 @@ The general public is advised to use one of the [stable](https://github.com/Carb
 
 More detailed instructions can be found in the [Installing Carbon](./installing-carbon.md) section.
 :::
+
+## Downloads
+<div class="plugin-tabs" v-for="release in releases" :key="release" :style="'border: 1px solid' + (release.color == null ? '#44444400' : release.color)">
+    <div style="padding: 20px;">
+    <h3 :id="release.tag" style="margin: 0px 0 20px 10px"><a class="header-anchor" :href="'#' + release.tag"/> {{ release.displayName }} <code><a :href="'https://github.com/CarbonCommunity/Carbon/tree/' + release.branch" target="_blank">{{ release.tag }}</a></code></h3>
+    This is a release build of Carbon based on the <code>{{ release.branch }}</code> branch.
+    <table>
+    <thead>
+    <tr>
+        <th>Windows</th>
+        <th>Linux</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr v-for="build in release.builds" :key="build">
+        <td><CarbonButton :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Windows.' + build.name + '.zip'" :text="build.name + ' Build'" external/></td>
+        <td><CarbonButton :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Linux.' + build.name + '.tar.gz'" :text="build.name + ' Build'" external/></td>
+        </tr>
+    </tbody>
+    </table>
+    This build is compatible with <a :href="'https://steamdb.info/app/258550/depots/?branch=' + rustBranch" target="_blank" v-for="rustBranch in release.rustBranches" :key="rustBranch"><VPBadge type="warning">{{rustBranch.toUpperCase()}} <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a> Rust branch.
+    </div>
+</div>
