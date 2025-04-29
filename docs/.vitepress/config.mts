@@ -135,7 +135,8 @@ export default defineConfig({
                 { text: 'Profiler (Mono)', link: '/devs/core/mono-profiler' },
                 { text: 'Permissions', link: '/devs/core/permissions' },
                 { text: 'Commands', link: '/devs/core/commands' },
-                { text: 'Timers', link: '/devs/core/timers' }
+                { text: 'Timers', link: '/devs/core/timers' },
+                { text: 'Vault', link: '/devs/core/vault' }
               ]
             },
             {

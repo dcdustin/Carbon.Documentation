@@ -188,8 +188,8 @@ More detailed instructions can be found in the [Installing Carbon](./installing-
     </thead>
     <tbody>
         <tr v-for="build in release.builds" :key="build">
-        <td><CarbonButton :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Windows.' + build.name + '.zip'" :text="build.name + ' Build'" external/></td>
-        <td><CarbonButton :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Linux.' + build.name + '.tar.gz'" :text="build.name + ' Build'" external/></td>
+        <td><CarbonButton style="width: 140px;" :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Windows.' + build.name + '.zip'" :text="build.name + ' Build'" external/></td>
+        <td><CarbonButton style="width: 140px;" :href="'https://github.com/CarbonCommunity/Carbon/releases/download/' + release.tag + '/Carbon.Linux.' + build.name + '.tar.gz'" :text="build.name + ' Build'" external/></td>
         </tr>
     </tbody>
     </table>
