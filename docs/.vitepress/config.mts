@@ -112,6 +112,7 @@ export default defineConfig({
               ]
             },
             { text: 'Oxide Porting', link: '/owners/oxide-porting'},
+            { text: 'Vault', link: '/devs/core/vault' }
           ]
         },
         {
