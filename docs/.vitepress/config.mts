@@ -67,10 +67,8 @@ export default defineConfig({
     outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
-      { text: "Docs", items: [
-        { text: "Owners", link: "/owners/introduction" },
-        { text: "Developers", link: "/devs/local-server-hosting" }]
-      },
+      { text: "Owners", link: "/owners/introduction" },
+      { text: "Developers", link: "/devs/local-server-hosting" },
       { text: "References", items: references},
       { text: "Release Notes", link: "/references/release-notes/" }
     ],
@@ -83,7 +81,6 @@ export default defineConfig({
           items: [
             { text: 'Getting Started', link: '/owners/introduction'},
             { text: 'Installing Carbon', link: '/owners/installing-carbon'},
-            // { text: 'Configuring Carbon', link: '/owners/configuring-carbon'},
             {
               text: 'Carbon Modules',
               link: '/owners/modules/what-are-modules',
