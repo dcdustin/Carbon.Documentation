@@ -177,8 +177,9 @@ More detailed instructions can be found in the [Installing Carbon](./installing-
 ## Downloads
 <div class="plugin-tabs" v-for="release in releases" :key="release" :style="'border: 1px solid' + (release.color == null ? '#44444400' : release.color)">
     <div style="padding: 20px;">
-    <h3 :id="release.tag" style="margin: 0px 0 20px 10px"><a class="header-anchor" :href="'#' + release.tag"/> {{ release.displayName }} <code><a :href="'https://github.com/CarbonCommunity/Carbon/tree/' + release.branch" target="_blank">{{ release.tag }}</a></code></h3>
-    This is a release build of Carbon based on the <code>{{ release.branch }}</code> branch.
+    <h3 :id="release.tag" style="margin: 0px 0 20px 10px"><a class="header-anchor" :href="'#' + release.tag"/> {{ release.displayName }}</h3>
+    This is a release build of Carbon based on the <code>{{ release.branch }}</code> branch. <br/><br/>
+    <a :href="'https://github.com/CarbonCommunity/Carbon/releases/tag/' + release.tag" target="_blank"><VPBadge type="danger">Github Release <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a> <a :href="'https://github.com/CarbonCommunity/Carbon/tree/' + release.branch" target="_blank"><VPBadge type="danger">Github Branch <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a> <a :href="'https://github.com/CarbonCommunity/Carbon/commit/' + release.branch" target="_blank"><VPBadge type="info">Latest Commit <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a>
     <table>
     <thead>
     <tr>
@@ -193,6 +194,6 @@ More detailed instructions can be found in the [Installing Carbon](./installing-
         </tr>
     </tbody>
     </table>
-    This build is compatible with <a :href="'https://steamdb.info/app/258550/depots/?branch=' + rustBranch" target="_blank" v-for="rustBranch in release.rustBranches" :key="rustBranch"><VPBadge type="warning">{{rustBranch.toUpperCase()}} <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a> Rust branch.
+    This build is compatible with <a :href="'https://steamdb.info/app/258550/depots/?branch=' + rustBranch" target="_blank" v-for="rustBranch in release.rustBranches" :key="rustBranch"><VPBadge type="warning">{{rustBranch}} <CarbonIcons icon="ExternalLink" size="14"/></VPBadge></a> Rust branch.
     </div>
 </div>
