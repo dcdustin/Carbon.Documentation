@@ -136,7 +136,7 @@ watch(hook, (newHook) => {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="mb-6">
-      <a href="/Carbon.Documentation/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
+      <a href="/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
         <ArrowLeft size="18"/>
         Back to Hooks
       </a>

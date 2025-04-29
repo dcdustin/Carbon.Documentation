@@ -301,7 +301,7 @@ watch(() => window.location.hash, (newHash) => {
                     <div class="flex flex-col">
                       <div class="flex flex-wrap items-center">
                         <h5 class="text-lg font-medium">
-                          <a :href="`/Carbon.Documentation/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`" 
+                          <a :href="`/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`" 
                              class="hover:text-primary inline-flex items-center gap-2">
                             {{ hook.fullName }} 
                             <ExternalLink size="14" class="opacity-60"/>

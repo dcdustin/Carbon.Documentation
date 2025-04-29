@@ -303,7 +303,7 @@ const fetchDlcData = async (appId) => {
                         <div class="flex gap-4">
                           <!-- Item Image -->
                           <div class="flex-shrink-0">
-                            <a :href="`/Carbon.Documentation/references/blueprints/details?id=${bp.Item.Id}`" class="block">
+                            <a :href="`/references/blueprints/details?id=${bp.Item.Id}`" class="block">
                               <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
                                 <div v-if="!imageErrors.get(bp.Item.Id)" 
                                      class="absolute inset-0 bg-cover bg-center" 
@@ -334,7 +334,7 @@ const fetchDlcData = async (appId) => {
                             <!-- Header -->
                             <div class="flex items-center justify-between mb-2">
                               <h5 class="text-lg font-medium">
-                                <a :href="`/Carbon.Documentation/references/blueprints/details?id=${bp.Item.Id}`" 
+                                <a :href="`/references/blueprints/details?id=${bp.Item.Id}`" 
                                   class="hover:text-primary inline-flex items-center gap-2">
                                   {{ bp.Item.DisplayName }}
                                   <ExternalLink size="14" class="opacity-60"/>
@@ -551,7 +551,7 @@ const fetchDlcData = async (appId) => {
             </p>
 
             <div class="pt-2">
-              <a :href="`/Carbon.Documentation/references/items/details?id=${selectedIngredient.Item.Id}`" 
+              <a :href="`/references/items/details?id=${selectedIngredient.Item.Id}`" 
                  class="vp-button medium brand flex items-center gap-2">
                 View Full Details
                 <ExternalLink size="14"/>

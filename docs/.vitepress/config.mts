@@ -44,7 +44,7 @@ async function fetchItems() {
 export default defineConfig({
   title: "Carbon Documentation",
   description: "Documentation for Carbon",
-  base: "/Carbon.Documentation/",
+  base: "/.",
   head: [["link", { rel: "icon", href: "/Carbon.Documentation/favicon.ico" }]],
   ignoreDeadLinks: true,
   cleanUrls: true,
@@ -188,14 +188,14 @@ export default defineConfig({
         },
         _render: async (src, env, md) => {
           const html = await md.render(src, env)
-          
+
           if (env.relativePath === 'references/items/index.md') {
             try {
               const items = await fetchItems()
-              const itemContent = items.map(item => `# [*Item*] ${item.DisplayName} 
+              const itemContent = items.map(item => `# [*Item*] ${item.DisplayName}
 
 ${item.Description || ''}`).join('\n\n---\n\n')
-              
+
               return html + '\n\n' + await md.render(itemContent)
             } catch (error) {
               console.error('Error processing items for search:', error)
@@ -208,9 +208,9 @@ ${item.Description || ''}`).join('\n\n---\n\n')
               const response = await fetch(HOOKS_API_URL)
               const data = await response.json()
               const hookContent = Object.entries(data as Record<string, any[]>)
-                .flatMap(([category, hooks]) => 
+                .flatMap(([category, hooks]) =>
                   hooks.map((hook: any) => `# [*Hook*] ${hook.name || ''}`)).join('\n\n---\n\n')
-              
+
               return html + '\n\n' + await md.render(hookContent)
             } catch (error) {
               console.error('Error processing hooks for search:', error)
@@ -231,7 +231,7 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
               return html
             }
           }
-    
+
           return html
         }
       }

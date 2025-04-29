@@ -1,11 +1,9 @@
 <script setup>
 import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
+import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink } from 'lucide-vue-next'
 import { 
   getGameData,
   CONVARS_API_URL,
-  getSpawnTypeText,
-  SpawnType,
   CACHE_VERSION_API_URL
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'

@@ -166,7 +166,7 @@ watch(item, (newItem) => {
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
           <ArrowLeft size="16" class="opacity-80"/>
-          <a href="/Carbon.Documentation/references/items" class="vp-button medium brand underline">
+          <a href="/references/items" class="vp-button medium brand underline">
             Back to Items
           </a>
         </div>
@@ -177,7 +177,7 @@ watch(item, (newItem) => {
     <div v-else class="text-center py-8">
       <div class="space-y-4">
         <p class="text-gray-500">Item not found</p>
-        <a href="/Carbon.Documentation/references/items" class="vp-button medium brand">
+        <a href="/references/items" class="vp-button medium brand">
           Back to Items
         </a>
       </div>

@@ -1,3 +1,19 @@
+<script setup>
+import { ref } from 'vue';
+
+const apiData = ref([]);
+
+console.log("test");
+var thing = fetch('https://carbonmod.gg/api', {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json'
+  }
+});
+
+console.log(thing.json);
+</script>
+
 ![alt text](/logos/carbon-banner.webp)
 
 :::info 
@@ -12,6 +28,8 @@ An anticipated system designed to execute **existent** Oxide plugins, all within
 
 To follow up with the development of Carbon, keep up with our repositories [**here**](https://github.com/CarbonCommunity).
 
+<div>Data: {{ apiData }}</div>
+
 ## Releases  
 This is the download list for all official files redistributed with Carbon:
 
@@ -25,8 +43,36 @@ This build is targeted at the general public.
 |Windows|Linux|
 | :-----: | :----: |
 | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/production\_build/Carbon.Windows.Release.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/production\_build/Carbon.Linux.Release.tar.gz" text="Download Here" external/> |
+
+== Edge Build
+This is a development build of Carbon based on the latest commit pushed to the repository.
+
+This build is best used to test the very last changes that can be found in the commit history list, since the [preview](https://github.com/Carbon-Modding/Carbon.Core/releases/preview\_build) and [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
+
+This build is targeted at developers.
+
+|Windows|Linux|
+| :-----: | :----: |
+| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
+
 == Preview Build
 This is a build of Carbon based on the `develop` branch.
+
+This build is targeted at developers.
+
+|Windows|Linux|
+| :-----: | :----: |
+| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
+
+== NuGet Package
+The production-ready NuGet package which you can use in your day to day development environment can be found below.
+
+<CarbonButton href="https://www.nuget.org/packages/Carbon.Community" text="Download Here" external/>
+:::
+
+:::tabs
+== Rust (Beta) Staging Build
+This is a build of Carbon based on the `rust_beta/staging` branch.
 
 This build is targeted at developers.\
 The general public is advised to use one of the [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
@@ -34,21 +80,8 @@ The general public is advised to use one of the [stable](https://github.com/Carb
 |Windows|Linux|
 | :-----: | :----: |
 | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/preview\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
-== Edge Build
-This is a development build of Carbon based on the latest commit pushed to the repository.
 
-This build is best used to test the very last changes that can be found in the commit history list, since the [preview](https://github.com/Carbon-Modding/Carbon.Core/releases/preview\_build) and [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
 
-This build is targeted at developers.
-The general public is advised to use one of the [stable](https://github.com/Carbon-Modding/Carbon.Core/releases/latest) builds.
-
-|Windows|Linux|
-| :-----: | :----: |
-| <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Windows.Debug.zip" text="Download Here" external/> | <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/download/edge\_build/Carbon.Linux.Debug.tar.gz" text="Download Here" external/> |
-== NuGet Package
-The production-ready NuGet package which you can use in your day to day development environment can be found below.
-
-<CarbonButton href="https://www.nuget.org/packages/Carbon.Community" text="Download Here" external/>
 :::
 
 :::tip How to install

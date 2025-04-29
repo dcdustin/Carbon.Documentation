@@ -178,7 +178,7 @@ watch(prefab, (newPrefab) => {
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
           <ArrowLeft size="16" class="opacity-80"/>
-          <a href="/Carbon.Documentation/references/prefabs" class="vp-button medium brand underline">
+          <a href="/references/prefabs" class="vp-button medium brand underline">
             Back to Prefabs
           </a>
         </div>
@@ -191,7 +191,7 @@ watch(prefab, (newPrefab) => {
         <p class="text-gray-500">Prefab not found</p>
         <div class="flex items-center gap-2 justify-center">
           <ArrowLeft size="16" class="opacity-80"/>
-          <a href="/Carbon.Documentation/references/prefabs" class="vp-button medium brand underline">
+          <a href="/references/prefabs" class="vp-button medium brand underline">
             Back to Prefabs
           </a>
         </div>

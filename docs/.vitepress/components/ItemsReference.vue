@@ -300,7 +300,7 @@ onUnmounted(() => {
                   <td class="whitespace-normal pb-4">
                     <div class="flex gap-4">
                       <div class="flex-shrink-0">
-                        <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" class="block">
+                        <a :href="`/references/items/details?id=${item.Id}`" class="block">
                           <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
                             <template v-if="!imageErrors.get(item.Id)">
                               <img 
@@ -323,7 +323,7 @@ onUnmounted(() => {
                       <div class="flex-1">
                         <div class="flex items-center justify-between mb-2">
                           <h5 :id="getSanitizedAnchor(item.DisplayName)" class="text-lg font-medium">
-                            <a :href="`/Carbon.Documentation/references/items/details?id=${item.Id}`" 
+                            <a :href="`/references/items/details?id=${item.Id}`" 
                                class="hover:text-primary inline-flex items-center gap-2">
                               {{ item.DisplayName }}
                               <ExternalLink size="14" class="opacity-60"/>

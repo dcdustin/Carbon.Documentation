@@ -341,7 +341,7 @@ watch(blueprint, (newBlueprint) => {
     <div v-else class="text-center py-8">
       <div class="space-y-4">
         <p class="text-gray-500">Blueprint not found</p>
-        <a href="/Carbon.Documentation/references/blueprints" class="vp-button medium brand">
+        <a href="/references/blueprints" class="vp-button medium brand">
           Back to Blueprints
         </a>
       </div>
@@ -413,7 +413,7 @@ watch(blueprint, (newBlueprint) => {
             </p>
 
             <div class="pt-2">
-              <a :href="`/Carbon.Documentation/references/items/details?id=${selectedIngredient.Item.Id}`" 
+              <a :href="`/references/items/details?id=${selectedIngredient.Item.Id}`" 
                  class="vp-button medium brand flex items-center gap-2">
                 View Full Details
                 <ExternalLink size="14"/>

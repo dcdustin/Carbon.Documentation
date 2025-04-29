@@ -197,7 +197,7 @@ onUnmounted(() => {
                   <td class="whitespace-normal pb-4">
                     <div class="flex flex-col ">
                       <div class="flex flex-wrap items-center ">
-                        <a :href="`/Carbon.Documentation/references/prefabs/details?id=${prefab.ID}`" class="flex-shrink-0">
+                        <a :href="`/references/prefabs/details?id=${prefab.ID}`" class="flex-shrink-0">
                           <VPBadge :id="prefab.ID.toString()" type="tip" text="#"/>
                         </a>
                         <button 
