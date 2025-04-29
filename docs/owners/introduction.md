@@ -1,19 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-
-const apiData = ref([]);
-
-console.log("test");
-var thing = fetch('https://carbonmod.gg/api', {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json'
-  }
-});
-
-console.log(thing.json);
-</script>
-
 ![alt text](/logos/carbon-banner.webp)
 
 :::info 
@@ -27,8 +11,6 @@ An anticipated system designed to execute **existent** Oxide plugins, all within
 ## Development
 
 To follow up with the development of Carbon, keep up with our repositories [**here**](https://github.com/CarbonCommunity).
-
-<div>Data: {{ apiData }}</div>
 
 ## Releases  
 This is the download list for all official files redistributed with Carbon:
