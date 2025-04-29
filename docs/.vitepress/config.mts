@@ -47,8 +47,6 @@ export default defineConfig({
   base: "/.",
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
-    ["meta", { property: "og:title", content: "Carbon Documentation" }],
-    ["meta", { property: "og:description", content: "Documentation for Carbon and its ecosystem." }],
     ["meta", { property: "og:image", content: "/carbon-bg.webp" }],
     ["meta", { property: "og:url", content: "https://docs.carbonmod.gg" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }]
