@@ -353,3 +353,17 @@ html:not(.dark) .dark-only {
   max-width: none !important;
   padding: 0 !important;
 }
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 200vw;
+  height: 200vh;
+  pointer-events: none;
+  background-image: url('/noisy.webp');
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: 9999;
+  mix-blend-mode: color-dodge;
+}

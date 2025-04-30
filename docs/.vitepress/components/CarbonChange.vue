@@ -17,7 +17,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const md = new MarkdownIt({
-  html: false,
+  html: true,
   linkify: true,
   typographer: true,
   breaks: false
@@ -29,6 +29,7 @@ const renderedText = md.renderInline(props.text);
 <style scoped>
 .carbon-change {
   display: flex;
+  white-space: pre-line;
   align-items: flex-start;
   gap: 5px;
   flex-wrap: wrap;

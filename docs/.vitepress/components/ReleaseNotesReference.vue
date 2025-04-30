@@ -11,6 +11,7 @@ import {
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
+import CarbonIcons from './CarbonIcons.vue'
 
 const releaseNotes = ref([])
 const copiedId = ref(null)
@@ -203,7 +204,7 @@ const getChangeType = (val) => {
               <tbody>
                 <tr v-for="change in releaseNotes[0].Changes.slice().sort((a, b) => a.Type - b.Type)" class="items-table-row">
                   <td class="whitespace-normal">
-                      <CarbonChange :variant="getChangeType(change.Type)" :text="change.Message" />
+                      <CarbonChange :variant="getChangeType(change.Type)" :text="change.Message + (change.Authors != null ? `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')"/>
                   </td>
                 </tr>
               </tbody>
