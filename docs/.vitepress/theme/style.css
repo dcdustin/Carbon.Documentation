@@ -402,6 +402,11 @@ body::after {
   vertical-align: bottom;
 }
 
+.image-bg {
+  background-image: url("/logos/carbon-hero-bg.webp");
+}
+
+
 .vpi-social-cf {
   --icon: url("/logos/cf.svg");
 }
