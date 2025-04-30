@@ -43,7 +43,7 @@ async function fetchItems() {
 
 export default defineConfig({
   title: "Carbon Documentation",
-  description: "Documentation for Carbon",
+  description: "A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.\nCarbon is a self-updating, lightweight, intelligent mod loader for Rust utilizing the latest C# and Harmony for the best performance and stability possible, fully compatible with Oxide.",
   base: "/.",
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],

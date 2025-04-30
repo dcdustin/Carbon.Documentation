@@ -130,13 +130,13 @@ html:not(.dark) .dark-only {
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand-3);
+  --vp-button-brand-bg: linear-gradient(to bottom, var(--vp-c-brand-3), color-mix(in srgb, var(--vp-c-brand-3), rgb(0, 0, 0) 50%));
   --vp-button-brand-hover-border: transparent;
   --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
+  --vp-button-brand-hover-bg: linear-gradient(to bottom, var(--vp-c-brand-2), color-mix(in srgb, var(--vp-c-brand-2), rgb(0, 0, 0) 50%));
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+  --vp-button-brand-active-bg: linear-gradient(to bottom, var(--vp-c-brand-1), color-mix(in srgb, var(--vp-c-brand-1), rgb(0, 0, 0) 50%));
 }
 
 /**
@@ -203,8 +203,11 @@ html:not(.dark) .dark-only {
   border-radius: 0%;
 }
 
-.VPButton.medium.alt{
+.VPButton.medium.alt {
   border-radius: 0%;
+  background: linear-gradient(to bottom, var(--vp-button-alt-active-bg), color-mix(in srgb, var(--vp-button-alt-active-bg), rgb(0, 0, 0) 50%));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .VPButton.medium.brand{
@@ -213,6 +216,18 @@ html:not(.dark) .dark-only {
 
 .VPButton.medium.sponsor{
   border-radius: 0%;
+}
+
+.VPButton.brand {
+  background: var(--vp-button-brand-bg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.VPButton.brand:hover {
+  background: var(--vp-button-brand-hover-bg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 /**
