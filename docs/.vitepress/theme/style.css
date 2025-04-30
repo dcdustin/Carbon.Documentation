@@ -401,3 +401,13 @@ body::after {
   margin-left: 0.1rem;
   vertical-align: bottom;
 }
+
+.vpi-social-cf {
+  --icon: url("/logos/cf.svg");
+}
+
+.last-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

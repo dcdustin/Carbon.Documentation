@@ -39,3 +39,149 @@ features:
     details: Carbon allows for your Harmony mods to be reloaded on the fly when changes are made.
     icon: 🔥
 ---
+
+<script setup>
+import { VPTeamMembers } from 'vitepress/theme'
+
+const members = [
+  {
+    avatar: '/team/Raul.webp',
+    name: 'Raul',
+    title: 'Creator',
+    links: [
+      { icon: 'github', link: 'https://github.com/raulssorban' },
+      { icon: 'twitter', link: 'https://twitter.com/raulssorban' },
+      { icon: 'cf', link: 'https://codefling.com/raul' }
+    ]
+  },
+  {
+    avatar: '/team/Death.webp',
+    name: 'Death',
+    title: 'Co-Producer',
+    links: [
+      { icon: 'github', link: 'https://github.com/Deathicated' },
+      { icon: 'cf', link: 'https://twitter.com/raulssorban' }
+    ]
+  },
+  {
+    avatar: '/team/MalS.webp',
+    name: 'MalS',
+    title: 'Moderator',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/mals' }
+    ]
+  },
+  {
+    avatar: '/team/Bubbafett.webp',
+    name: 'Bubbafett',
+    title: 'Documentation',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/bubbafett' }
+    ]
+  },
+  {
+    avatar: '/team/Goo.webp',
+    name: 'Goo',
+    title: 'Documentation',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/goo_' }
+    ]
+  },
+  {
+    avatar: '/team/Patrette.webp',
+    name: 'Patrette',
+    title: 'Contributor',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/patrette' }
+    ]
+  },
+  {
+    avatar: '/team/ThePitereq.webp',
+    name: 'ThePitereq',
+    title: 'Contributor',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/thepitereq' }
+    ]
+  },
+  {
+    avatar: '/team/DezLife.webp',
+    name: 'DezLife',
+    title: 'Contributor',
+    links: [
+      { icon: 'github', link: 'https://codefling.com/DezLife' },
+      { icon: 'cf', link: 'https://codefling.com/dezlife' }
+    ]
+  },
+  {
+    avatar: '/team/Kulltero.webp',
+    name: 'Kulltero',
+    title: 'Contributor',
+    links: [
+      { icon: 'github', link: 'https://github.com/Kulltero' },
+      { icon: 'cf', link: 'https://codefling.com/Kulltero' }
+    ]
+  },
+  {
+    avatar: '/team/JakeRich.webp',
+    name: 'JakeRich',
+    title: 'Contributor',
+    links: [
+      { icon: 'github', link: 'https://github.com/Jake-Rich' }
+    ]
+  },
+  {
+    avatar: '/team/Grimston.webp',
+    name: 'Grimston',
+    title: 'Contributor',
+    links: [
+      { icon: 'github', link: 'https://github.com/Grimston' },
+      { icon: 'cf', link: 'https://codefling.com/grimston' }
+    ]
+  },
+  {
+    avatar: '/team/BillyJoe.webp',
+    name: 'BillyJoe',
+    title: 'Contributor',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/Billy-Joe' }
+    ]
+  },
+  {
+    avatar: '/team/Farkas.webp',
+    name: 'Farkas',
+    title: 'Contributor',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/farkas' }
+    ]
+  },
+  {
+    avatar: '/team/Kopter.webp',
+    name: 'Kopter',
+    title: 'Contributor',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/kopter' }
+    ]
+  },
+  {
+    avatar: '/team/Hizen.webp',
+    name: 'Hizen',
+    title: 'Contributor',
+    links: [
+      { icon: 'github', link: 'https://github.com/hizenxyz' },
+      { icon: 'cf', link: 'https://codefling.com/hizenxyz' }
+    ]
+  },
+  {
+    avatar: '/team/Steenamaroo.webp',
+    name: 'Steenamaroo',
+    title: 'Emotional Support',
+    links: [
+      { icon: 'github', link: 'https://github.com/steenamaroo' },
+      { icon: 'cf', link: 'https://codefling.com/steenamaroo' }
+    ]
+  }
+]
+</script>
+
+<h1 style="padding-top: 40px;">Our Team</h1>
+<VPTeamMembers size="small" :members />
