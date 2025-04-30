@@ -63,7 +63,7 @@ export default defineConfig({
     },
   },
   themeConfig: {
-    logo: "/logos/carbon-logo.webp",
+    logo: "/logos/carbon-logo-small.webp",
     outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
