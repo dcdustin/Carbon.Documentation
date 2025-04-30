@@ -389,3 +389,15 @@ body::after {
   z-index: 9999;
   mix-blend-mode: color-dodge;
 }
+
+.textLink {
+  color: var(--c-carbon-1)
+}
+
+.textLink::after {
+  content: "↗";
+  font-family: "Segoe UI Symbol", "Noto Sans Symbols", "Arial", sans-serif;
+  font-size: 1em;
+  margin-left: 0.1rem;
+  vertical-align: bottom;
+}
