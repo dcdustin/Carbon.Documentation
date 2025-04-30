@@ -358,7 +358,7 @@ html:not(.dark) .dark-only {
   background-image: url('/carbon-full-bg.webp');
   background-repeat: repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: auto;
 }
 
 body::after {
