@@ -22,7 +22,7 @@ This module allows **plugins to create modals** with input fields such as string
 Plugins can access the `ModalModule` using:
 
 ```csharp
-var modalModule = Carbon.GetModule<ModalModule>();
+var modalModule = Carbon.Base.BaseModule.GetModule<ModalModule>();
 ```
 
 ## How It Works

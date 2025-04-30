@@ -108,7 +108,7 @@ const members = [
     name: 'DezLife',
     title: 'Contributor',
     links: [
-      { icon: 'github', link: 'https://codefling.com/DezLife' },
+      { icon: 'github', link: 'https://github.com/DezLife' },
       { icon: 'cf', link: 'https://codefling.com/dezlife' }
     ]
   },

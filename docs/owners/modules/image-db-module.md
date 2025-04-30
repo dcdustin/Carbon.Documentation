@@ -18,7 +18,7 @@ This module allows **plugins to download images from URLs**, assign internal key
 ## Accessing the Module in Plugins
 
 ```csharp
-var imageDb = Carbon.GetModule<ImageDatabaseModule>();
+var imageDb = Carbon.Base.BaseModule.GetModule<ImageDatabaseModule>();
 ```
 
 ## How It Works

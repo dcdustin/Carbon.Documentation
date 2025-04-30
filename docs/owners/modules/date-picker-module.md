@@ -22,7 +22,7 @@ This module is intended for use by **other plugins** to enable date selection th
 Plugins can access the `DatePicker` module using:
 
 ```csharp
-var datePicker = Carbon.GetModule<DatePickerModule>();
+var datePicker = Carbon.Base.BaseModule.GetModule<DatePickerModule>();
 ```
 
 ## How It Works

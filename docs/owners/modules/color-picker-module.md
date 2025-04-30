@@ -22,7 +22,7 @@ This module is intended for use by **other plugins** to enable color selection t
 Plugins can access the `ColorPicker` module using:
 
 ```csharp
-var colorPicker = Carbon.GetModule<ColorPickerModule>();
+var colorPicker = Carbon.Base.BaseModule.GetModule<ColorPickerModule>();
 ```
 
 ## How It Works

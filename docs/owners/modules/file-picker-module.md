@@ -22,7 +22,7 @@ This module is intended for use by **other plugins** that need to expose a brows
 Plugins can access the `File` module using:
 
 ```csharp
-var fileModule = Carbon.GetModule<FileModule>();
+var fileModule = Carbon.Base.BaseModule.GetModule<FileModule>();
 ```
 
 ## How It Works

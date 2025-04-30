@@ -50,17 +50,17 @@ export default defineConfig({
     ["meta", { property: "og:image", content: "/carbon-bg.webp" }],
     ["meta", { property: "og:url", content: "https://docs.carbonmod.gg" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }]
-  ],  
+  ],
   ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
     image: {
-      lazyLoading: true,
+      lazyLoading: true
     },
     config(md) {
-      md.use(tabsMarkdownPlugin); 
-    },
+      md.use(tabsMarkdownPlugin);
+    }
   },
   themeConfig: {
     logo: "/logos/carbon-logo-small.webp",
