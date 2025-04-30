@@ -210,11 +210,11 @@ html:not(.dark) .dark-only {
   background-size: 100% 100%;
 }
 
-.VPButton.medium.brand{
+.VPButton.medium.brand {
   border-radius: 0%;
 }
 
-.VPButton.medium.sponsor{
+.VPButton.medium.sponsor {
   border-radius: 0%;
 }
 
