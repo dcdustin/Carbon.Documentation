@@ -255,6 +255,16 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
     },
     build: {
       minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+          pure_funcs: ['console.info', 'console.debug'],
+        },
+        format: {
+          comments: false,
+        },
+      },
       cssCodeSplit: true,
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
