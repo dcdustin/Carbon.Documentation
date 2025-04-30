@@ -254,6 +254,8 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
       },
     },
     build: {
+      minify: 'terser',
+      cssCodeSplit: true,
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
