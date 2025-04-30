@@ -1,5 +1,5 @@
-![alt](/logos/carbon-banner-dark.webp){.dark-only}
-![alt](/logos/carbon-banner-light.webp){.light-only}
+![alt](/logos/carbon-banner-dark-small.webp){.dark-only}
+![alt](/logos/carbon-banner-light-small.webp){.light-only}
 
 <script setup>
 import { VPBadge } from 'vitepress/theme'
