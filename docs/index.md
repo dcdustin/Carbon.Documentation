@@ -5,9 +5,6 @@ hero:
   name: "Carbon Documentation"
   text: "Innovating Rust Modding"
   tagline: A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.
-  image:
-    src: /logos/carbon-vector.webp
-    alt: Carbon Logo
   actions:
     - theme: brand
       text: Join our Discord
