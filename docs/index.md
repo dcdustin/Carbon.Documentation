@@ -43,7 +43,7 @@ features:
 <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
 
-const members = [
+const mainMembers = [
   {
     avatar: '/team/Raul.webp',
     name: 'Raul',
@@ -72,6 +72,18 @@ const members = [
     ]
   },
   {
+    avatar: '/team/Steenamaroo.webp',
+    name: 'Steenamaroo',
+    title: 'Emotional Support',
+    links: [
+      { icon: 'github', link: 'https://github.com/steenamaroo' },
+      { icon: 'cf', link: 'https://codefling.com/steenamaroo' }
+    ]
+  }
+]
+
+const docsMembers = [
+  {
     avatar: '/team/Bubbafett.webp',
     name: 'Bubbafett',
     title: 'Documentation',
@@ -86,7 +98,10 @@ const members = [
     links: [
       { icon: 'cf', link: 'https://codefling.com/goo_' }
     ]
-  },
+  }
+]
+
+const contributorMembers = [
   {
     avatar: '/team/Patrette.webp',
     name: 'Patrette',
@@ -172,19 +187,35 @@ const members = [
     ]
   },
   {
-    avatar: '/team/Steenamaroo.webp',
-    name: 'Steenamaroo',
-    title: 'Emotional Support',
+    avatar: '/team/Whispers88.webp',
+    name: 'Whispers88',
+    title: 'Contributor',
     links: [
-      { icon: 'github', link: 'https://github.com/steenamaroo' },
-      { icon: 'cf', link: 'https://codefling.com/steenamaroo' }
+      { icon: 'github', link: 'https://github.com/Whispers88' },
+      { icon: 'cf', link: 'https://codefling.com/Whispers88' }
+    ]
+  },
+  {
+    avatar: '/team/Raichu.webp',
+    name: 'Raichu',
+    title: 'Bug Finder',
+    links: [
+      { icon: 'cf', link: 'https://codefling.com/Raichu' }
     ]
   }
 ]
+
 </script>
 
 <h1 style="padding-top: 40px;">Only on Carbon</h1>
 <CarbonProducts />
 
 <h1 style="padding-top: 40px;">Our Team</h1>
-<VPTeamMembers size="small" :members />
+
+<VPTeamMembers size="small" :members=mainMembers />
+
+<h2>Docs</h2>
+<VPTeamMembers size="small" :members=docsMembers />
+
+<h2>Contributor</h2>
+<VPTeamMembers size="small" :members=contributorMembers />
