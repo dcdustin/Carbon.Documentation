@@ -186,5 +186,8 @@ const members = [
 ]
 </script>
 
+<h1 style="padding-top: 40px;">Only on Carbon</h1>
+<CarbonProducts />
+
 <h1 style="padding-top: 40px;">Our Team</h1>
 <VPTeamMembers size="small" :members />
