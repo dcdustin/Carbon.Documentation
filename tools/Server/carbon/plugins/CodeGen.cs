@@ -338,9 +338,9 @@ public partial class CodeGen : CarbonPlugin
 	private static async ValueTask DownloadOxideToTemp()
 	{
 		var core = Community.Runtime.Core;
-		//var latest = JObject.Parse((await core.webrequest.EnqueueAsync("https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest", null, null, core)).ResponseObject as string);
-		//var oxideLatest = latest["assets"][1]["browser_download_url"].ToObject<string>();
-		var zip = (await core.webrequest.EnqueueDataAsync("https://downloads.oxidemod.com/artifacts/Oxide.Rust/staging/Oxide.Rust.zip", null, null, core)).ResponseObject as byte[];
+		var latest = JObject.Parse((await core.webrequest.EnqueueAsync("https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest", null, null, core)).ResponseObject as string);
+		var oxideLatest = latest["assets"][1]["browser_download_url"].ToObject<string>();
+		var zip = (await core.webrequest.EnqueueDataAsync(oxideLatest, null, null, core)).ResponseObject as byte[];
 		var oxideZipPath = Path.Combine(Carbon.Core.Defines.GetTempFolder(), "oxide.zip");
 		File.WriteAllBytes(oxideZipPath, zip);
 		ZipFile.ExtractToDirectory(oxideZipPath, Carbon.Core.Defines.GetTempFolder(), overwrite: true);
