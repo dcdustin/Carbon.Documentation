@@ -5,14 +5,18 @@ description: Carbon.Vault is an encrypted and locally stored database dedicated 
 
 # Vault
 
-Carbon.Vault is an encrypted and locally stored database dedicated to storing sensitive information in plugin configurations and more.
+Carbon.Vault is an encrypted and locally stored database dedicated to storing sensitive information in plugin
+configurations and more.
 
 :::tip STORAGE
-It's an encrypted, compressed and locally stored file named `<root>/server/identity/carbon.vault` in which all of the encrypted strings get stored.
+It's an encrypted, compressed and locally stored file named `<root>/server/identity/carbon.vault` in which all the
+encrypted strings get stored.
 :::
 
 ## Commands
+
 The system comes with 3 built-in RCon commands.
+
 - `c.vault` — Prints a whole list of all vault factory and item keys without any protected values
 - `c.vault_add` — Adds a new element to the vault
 - `c.vault_remove` — Removes an element from the vault
@@ -34,6 +38,7 @@ Syntax: c.vault_add <key> <value> [encrypted|true] [factory|global]
 ```
 
 ## Config Files
+
 This is the format the config properties will look like;
 
 ```json
@@ -46,10 +51,11 @@ This is the format the config properties will look like;
 The properties with the `[JsonConverter(typeof(Vault.Protected))]` attribute will only pick up protected keys.
 
 :::danger VALUES
-The format of the values are `{factory:id}`. The `factory` is basically a 'folder' of encrypted and non-encryted strings, and the `id` is the identifier or name of a string in the factory.
+The format of the values are `{factory:id}`. The `factory` is basically a 'folder' of encrypted and non-encrypted
+strings, and the `id` is the identifier or name of a string in the factory.
 :::
 
-```cs
+```csharp
 public class ConfigTest
 {
     public string Username;
@@ -61,6 +67,8 @@ public class ConfigTest
 ```
 
 ## Backward Compatibility
-It's backward compatible with Oxide if you just use the `#if CARBON` conditional symbol, in which people place the real plain text string of the sensitive data in the config since Oxide doesn't have something like this. 
+
+It's backward compatible with Oxide if you just use the `#if CARBON` conditional symbol, in which people place the real
+plain text string of the sensitive data in the config since Oxide doesn't have something like this.
 
 This works for data files as well but nobody uses them as configuration files, right?
