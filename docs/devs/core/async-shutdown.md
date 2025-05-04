@@ -5,9 +5,11 @@ description: Grants the ability for plugins to let the server know that it shoul
 
 # Async Shutdown
 
-This is a **CarbonPlugin** specific feature, which allows developers to halt (in a non-laggy way) the server shutdown to complete processes that require more than one frame to complete.
+This is a **CarbonPlugin** specific feature, which allows developers to halt (in a non-laggy way) the server shutdown to
+complete processes that require more than one frame to complete.
 
 ## How It Works
+
 :::danger NOTEWORTHY
 This affects the process of the direct shutdown or queued restart of the server.
 :::
@@ -21,23 +23,23 @@ public virtual async ValueTask OnAsyncServerShutdown()
 }
 ```
 
-And this is an use example of how you can override and make the shutdown process wait until completion:
+And this is a use example of how you can override and make the shutdown process wait until completion:
 
 ```csharp:line-numbers
 public override async ValueTask OnAsyncServerShutdown()
 {
-	// Do stuff after 3 seconds.
-	await AsyncEx.WaitForSeconds(3f);
-	
-	// Wait for a full web request call
-	await webrequest.EnqueueAsync("https://google.com", null, (code, data) =>
-	{
-		if(code != 400)
-		{
-			return;
-		}
-		
-		// Handle `data`
-	}, this);
+    // Do stuff after 3 seconds.
+    await AsyncEx.WaitForSeconds(3f);
+
+    // Wait for a full web request call
+    await webrequest.EnqueueAsync("https://google.com", null, (code, data) =>
+    {
+        if (code != 400)
+        {
+            return;
+        }
+
+        // Handle `data`
+    }, this);
 }
 ```
