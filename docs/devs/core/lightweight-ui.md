@@ -10,7 +10,7 @@ managing CUI elements in Rust. It simplifies creation, updates, and dispatch of 
 logic, and is tightly integrated with Carbon’s UI and image systems.
 
 :::info Note
-This is a internal utility of Carbon (not a plugin) for creating and managing CUI elements. Always available within
+This is an internal utility of Carbon (not a plugin) for creating and managing CUI elements. Always available within
 Carbon.
 :::
 

@@ -10,7 +10,7 @@ These entities exist solely on the client-side, making them ideal for visual eff
 without server overhead.
 
 :::info Note
-This is a internal utility of Carbon (not a plugin) for creating client-visible entities. Always available within
+This is an internal utility of Carbon (not a plugin) for creating client-visible entities. Always available within
 Carbon.
 :::
 
