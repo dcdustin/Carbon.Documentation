@@ -1,37 +1,45 @@
-# <CarbonIcons icon="filepenline" /> Creating your First Plugin
+# <CarbonIcons icon="filepenline" /> Creating Your First Plugin
 
-If you’re looking at creating Oxide-compatible plugins, it’s as easy as you’ve always known it. It uses the same syntax, naming and formatting as regular Oxide plugins.
+If you’re looking at creating Oxide-compatible plugins, it’s as easy as you’ve always known it.
+It uses the same syntax, naming and formatting as regular Oxide plugins.
 
-```csharp:line-numbers
+::: code-group
+
+```csharp:line-numbers [MyPlugin.cs]
 namespace Oxide.Plugins;
 
-[Info ( "Template", "<author>", "1.0.0" )]
-[Description ( "<optional_description>" )]
-public class Template : RustPlugin
+[Info("MyPlugin", "<author>", "1.0.0")]
+[Description("<optional_description>")]
+public class MyPlugin : RustPlugin
 {
-    private void OnServerInitialized ()
+    private void OnServerInitialized()
     {
-        Puts ( "Hello world!" );
+        Puts("Hello world!");
     }
 }
-
 ```
+
+:::
 
 ## <CarbonIcons icon="star" /> CarbonPlugin
 
-If you’re looking to create Carbon-only plugins, which extends the functionality of regular Oxide plugins, and brings you more tools for easing the development of your plugins, you may now use **CarbonPlugin** as your file’s inheritance.
+If you’re looking to create Carbon-only plugins, which **extend** the functionality of regular Oxide plugins and provide
+additional tools to ease development, you can use `CarbonPlugin` as your base class.
 
-```csharp:line-numbers
+::: code-group
+
+```csharp:line-numbers [MyPlugin.cs]
 namespace Carbon.Plugins;
 
-[Info ( "Template", "<author>", "1.0.0" )]
-[Description ( "<optional_description>" )]
-public class Template : CarbonPlugin
+[Info("MyPlugin", "<author>", "1.0.0")]
+[Description("<optional_description>")]
+public class MyPlugin : CarbonPlugin
 {
-    private void OnServerInitialized ()
+    private void OnServerInitialized()
     {
-        Puts ( "Hello world!" );
+        Puts("Hello world!");
     }
 }
-
 ```
+
+:::

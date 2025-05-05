@@ -35,7 +35,7 @@ public partial class MyPlugin : CarbonPlugin
 {
     private void OnServerInitialized()
     {
-        Puts($"Wee woo!");
+        Puts("Wee woo!");
     }
 }
 ```

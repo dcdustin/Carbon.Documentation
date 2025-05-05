@@ -37,36 +37,29 @@ The configuration for the profiler is located at `carbon/config.profiler.json`.
 {
   // Disabling it will shut it off entirely
   "Enabled": true,
-
   // Keeps track of all calls for assemblies and methods
   "TrackCalls": true,
-
   // Disabled by default, allows authorized users to access the Admin module
   // profiler source viewer and view source code of called methods
   "SourceViewer": true,
-
   // All assemblies and libraries (Rust, Carbon, libs..)
   // Enabling all (*) assemblines, will bypass the categories below
   "Assemblies": [
     "Assembly-CSharp",
     "Assembly-CSharp-firstpass"
   ],
-
   // All .cs and .cszip plugins
   "Plugins": [
     "*"
   ],
-
   // All modules from carbon/managed/modules directory
   "Modules": [
     "*"
   ],
-
   // All extensions from carbon/extensions directory
   "Extensions": [
     "Carbon.Ext.MyExtension"
   ],
-
   // All Harmony mods from carbon/harmony directory
   "Harmony": []
 }
@@ -74,10 +67,10 @@ The configuration for the profiler is located at `carbon/config.profiler.json`.
 
 :::
 
-:::danger NOTE
+:::tip Note
 To enable profiling with full selection for one or more categories, use a wildcard/star ( `*` ).
 :::
-:::tip IMPORTANT
+:::danger Important
 Remove the `//` comments from the JSON above if you're willing to override it locally with it.
 :::
 
@@ -87,7 +80,7 @@ Remove the `//` comments from the JSON above if you're willing to override it lo
 
 They're used when starting or stopping the profiler when processing is executed.
 
-:::info USEFUL
+:::info Tip
 If the `Calls` flag is **NOT** set, only memory allocations will be profiled.
 :::
 
@@ -102,7 +95,7 @@ Requires the `Calls` flag to be set. The profiler will keep track of the memory 
 
 ### `Timings`
 
-:::danger IMPORTANT
+:::danger Important
 **This flag will significantly affect performance due to having to calculate the time taken on each call.**
 :::
 Requires the `Calls` flag to be set. The profiler will keep track of the timing & duration information for each call in

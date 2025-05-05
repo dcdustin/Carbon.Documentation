@@ -1,16 +1,17 @@
 ---
 title: Timers
-description: Timers grant you the ability to execute code at set intervals, repeating or every specified time, as well as using NextFrame which can be useful in some cases.
+description: Timers grant you the ability to execute code at set intervals, repeating or every specified time, as well as using `NextFrame` which can be useful in some cases.
 ---
 
 # Timers
 
 Timers grant you the ability to execute code at set intervals, repeating or every specified time, as well as using
-NextFrame which can be useful in some cases.
+`NextFrame` which can be useful in some cases.
 
 ## One-shots
 
-They allow you to execute callbacks once after a certain amount of time. There's no difference between In and Once.
+They allow you to execute callbacks once after a certain amount of time.
+There's no difference between `In` and `Once`.
 
 ```csharp
 timer.In(1f, () =>
@@ -98,7 +99,7 @@ Puts("Frame 3");
 //     Frame 2
 ```
 
-:::danger NOTICE
+:::danger Notice
 Important to note, **NextFrame** and **NextTick** are the exact same thing. They're both inside of Carbon due to Oxide
 compatibility.
 :::
