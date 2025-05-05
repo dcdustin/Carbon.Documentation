@@ -1,62 +1,82 @@
 ---
 title: Commands
-description: The general use of commands and introduction to Carbon-only features that will benefit you.
+description: Comprehensive guide to command types and authentication in Carbon plugins for Rust
 ---
 
-# Commands
+# Command System Overview
 
-The general use of commands and introduction to Carbon-only features that will benefit you.
+Carbon provides multiple command types to handle different interaction scenarios, along with powerful authentication
+mechanisms to control access.
 
-## Console commands
+:::info Core Concept
+Commands are the primary interface between players/admins and your plugin functionality. Carbon extends upon Rust and
+Oxide command systems with enhanced security and flexibility features.
+:::
 
-These commands can be executed from your RCon, Windows Console window or from the in-game F1 console.
+## Command Types Overview
+
+### 1. Chat Commands
+
+**Client-only execution** through in-game chat.
 
 ```csharp
-[ConsoleCommand("mycommand")]
-private void MyCommand(ConsoleSystem.Arg arg)
+[ChatCommand("welcome")]
+private void WelcomeCommand(BasePlayer player, string command, string[] args)
+{
+    player.ChatMessage("Welcome to our server! Type /help for guides.");
+}
+```
+
+### 2. Console Commands
+
+Available in F1 console and server terminal or RCon.
+
+```csharp
+[ConsoleCommand("mycommand2")]
+private void MyCommand2(ConsoleSystem.Arg arg)
 {
     arg.ReplyWith("Just got called!");
 }
 ```
 
-Side note, using `arg.ReplyWith` will print a reply log from the place where it was called, for example calling
+:::tip Reply Context
+`arg.ReplyWith` will print a reply log from the place where it was called, for example calling
 `mycommand` from the client F1 console, it'll print that log only there.
+:::
 
-## Chat commands
+### 3. Universal Commands
 
-They can only be executed by clients.
-
-```csharp
-[ChatCommand("mycommand2")]
-private void MyCommand2(BasePlayer player, string command, string[] args)
-{
-    player.ChatMessage("You've called this!");
-}
-```
-
-## Universal commands
-
-They're executable by both in-game client chat, F1 console and windows console (or RCon).
+Accessible through all interfaces (chat, F1, console, RCon).
 
 ```csharp
 [Command("myunicommand")]
 private void MyUniversalCommand(BasePlayer player, string command, string[] args)
 {
-    Puts("Wee woo!");
+    if (player == null)
+    {
+        Puts("woo Wee!");
+    }
+    else
+    {
+        player.ChatMessage("Wee woo!");
+    }
 }
 ```
 
-Whenever the universal commands are called from the windows console or RCon, the player will always be null.
+:::danger Note
+Always check for `null` player when handling universal commands.
+:::
 
-## Protected commands
+### 4. Protected Commands
 
-This is a special type of command mainly used by Carbon CUI elements (e.g. **ProtectedButton**, **ProtectedInputField**)
-which randomizes the command in a server-specific way to protect servers from players calling plugin commands that are
-meant to be called using the authority-based UIs and having the ability to do so if they own the said plugins, and know
-what the commands of the plugin are.
+Secure commands with randomized identifiers
 
-This can be used in many other ways, and it is highly recommended that ALL your plugins that have commands that aren't
-supposed to be manually called (in console/chat by players) should use this system.
+> This is a special type of command mainly used by Carbon CUI elements
+> (e.g. **ProtectedButton**, **ProtectedInputField**)
+> which randomizes the command in a server-specific way to protect servers from players calling plugin commands that are
+> meant to be called using the authority-based UIs and having the ability to do so if they own the said plugins, and
+> know
+> what the commands of the plugin are.
 
 ```csharp
 [ProtectedCommand("mydopecommand")]
@@ -65,22 +85,25 @@ private void SuperSecret(ConsoleSystem.Arg arg)
     Puts("How'd you do that!?");
 }
 
+// Demonstration
 private void OnServerInitialized()
 {
     var callableCommand = Community.Protect("mydopecommand");
-    Puts($"{callableCommand}"); 
-    
+    Puts($"{callableCommand}");
+
     // Command that can be called by the clients:
     //     carbonprotecc_npomamd1mompd8d2
-    
+
     ConsoleSystem.Run(ConsoleSystem.Option.Server, callableCommand);
 }
 ```
 
-## Authentication
+:::danger Security Note
+It is highly recommended that ALL your plugins that have commands that aren't
+supposed to be manually called (in console/chat by players) should consider using `ProtectedCommand`.
+:::
 
-This allows you to grant authentication levels to your commands, from auth level to permissions, groups, and command
-cooldowns. **All these authentication attributes work on any kinds of commands explained above.**
+## Authentication Attributes
 
 ### Permission attribute (multiple allowed)
 
@@ -104,15 +127,17 @@ private void HelloWorld(BasePlayer player, string command, string[] args) { }
 
 Will only allow players which minimally have the auth-level set to execute the command.
 
-* **Level 0**: Standard players.
-* **Level 1**: Moderator players.
-* **Level 2**: Owner players.
-* **Level 3**: Developer players.
-
 ```csharp
-[ProtectedCommand("helloworld"), AuthLevel(2)]
+[ConsoleCommand("helloworld"), AuthLevel(2)]
 private void HelloWorld(ConsoleSystem.Arg arg) { }
 ```
+
+| Level | Player type |
+|:-----:|:-----------:|
+|  `0`  |   Player    |
+|  `1`  |  Moderator  |
+|  `2`  |    Owner    |
+|  `3`  |  Developer  |
 
 ### Cooldown attribute
 
@@ -120,7 +145,8 @@ This will disallow players from executing a command too fast. It's relative to p
 command.
 
 ```csharp
-[ChatCommand("helloworld"), Cooldown(5000)] // Cools down the command for 5 seconds.
+// Cools down the command for 5 seconds.
+[ChatCommand("helloworld"), Cooldown(5_000)]
 private void HelloWorld(BasePlayer player, string command, string[] args) { }
 ```
 
@@ -130,8 +156,27 @@ You may use one (like above) or multiple authentication levels, like the followi
 
 ```csharp
 // Players must have the 'plugin.use' permission,
-// have assigned owner power and will only allow
-// the command to be called every 10 seconds by the same player. 
-[ChatCommand("helloworld"), Permission("plugin.use"), AuthLevel(2), Cooldown(10000)]
+// have assigned owner AuthLevel and will only allow
+// the command to be called every 10 seconds by the same player.
+[ChatCommand("helloworld"),
+ Permission("plugin.use"),
+ AuthLevel(2),
+ Cooldown(10_000)]
 private void HelloWorld(BasePlayer player, string command, string[] args) { }
 ```
+
+:::tip Recommendations
+
+- Combine multiple authentication layers for sensitive operations
+- Use **Cooldown** to prevent abuse of resource-intensive commands
+  :::
+
+## Reference Table
+
+| Command Type         | Chat | F1 Console | Server Terminal & RCon |
+|----------------------|:----:|:----------:|:----------------------:|
+| `[ChatCommand]`      |  ✅   |     ❌      |           ❌            |
+| `[ConsoleCommand]`   |  ❌   |     ✅      |           ✅            |
+| `[RConCommand]`      |  ❌   |     ❌      |           ✅            |
+| `[Command]`          |  ✅   |     ✅      |           ✅            |
+| `[ProtectedCommand]` |  ❌   |     ⚠️     |           ⚠️           |
