@@ -60,7 +60,7 @@ const mainMembers = [
     title: 'Co-Producer',
     links: [
       { icon: 'github', link: 'https://github.com/Deathicated' },
-      { icon: 'cf', link: 'https://twitter.com/raulssorban' }
+      { icon: 'cf', link: 'https://codefling.com/death' }
     ]
   },
   {
