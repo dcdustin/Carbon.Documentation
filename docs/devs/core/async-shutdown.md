@@ -5,41 +5,48 @@ description: Grants the ability for plugins to let the server know that it shoul
 
 # Async Shutdown
 
-This is a **CarbonPlugin** specific feature, which allows developers to halt (in a non-laggy way) the server shutdown to
+This is a `CarbonPlugin` specific feature, which allows developers to halt (in a non-laggy way) the server shutdown to
 complete processes that require more than one frame to complete.
+
+:::danger Important
+This affects the process of the **direct shutdown** and **queued restart** of the server.
+:::
 
 ## How It Works
 
-:::danger NOTEWORTHY
-This affects the process of the direct shutdown or queued restart of the server.
-:::
+Carbon plugins inherit a virtual method for handling shutdowns:
 
-This is the following source code, a virtual method that can be overridden in your plugin.
-
-```csharp:line-numbers
+```csharp
 public virtual async ValueTask OnAsyncServerShutdown()
 {
     await Task.CompletedTask;
 }
 ```
 
-And this is a use example of how you can override and make the shutdown process wait until completion:
+Override this method in your plugin to execute asynchronous cleanup logic.
+The server shutdown process will wait until completion.
 
-```csharp:line-numbers
+## Implementation Example
+
+Here’s how to override `OnAsyncServerShutdown` to delay shutdown for critical tasks:
+
+```csharp
 public override async ValueTask OnAsyncServerShutdown()
 {
-    // Do stuff after 3 seconds.
+    // Simulate a 3-second cleanup task.
     await AsyncEx.WaitForSeconds(3f);
 
     // Wait for a full web request call
-    await webrequest.EnqueueAsync("https://google.com", null, (code, data) =>
-    {
-        if (code != 400)
+    await webrequest.EnqueueAsync(
+        "https://google.com", 
+        null, 
+        (code, data) =>
         {
-            return;
-        }
-
-        // Handle `data`
-    }, this);
+            if (code != 200)
+                return; // Handle errors
+            // Process response data
+        }, 
+        this
+    );
 }
 ```
