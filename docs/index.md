@@ -2,13 +2,14 @@
 layout: home
 
 hero:
-  name: "Carbon Documentation"
-  text: "Innovating Rust Modding"
-  tagline: A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.
+  name: "Carbon"
+  text: "Modding Framework"
+  tagline: A self-updating & lightweight mod loader for Rust running latest C# and Harmony for the best performance, fully compatible with Oxide.
   actions:
     - theme: brand
-      text: Join our Discord
-      link: https://discord.gg/carbonmod
+      text: Get Carbon
+      icon: github
+      link: https://github.com/CarbonCommunity/Carbon/releases/latest
     - theme: alt
       text: Owner Docs
       link: /owners/introduction
@@ -206,9 +207,6 @@ const contributorMembers = [
 ]
 
 </script>
-
-<h1 style="padding-top: 40px;">Only on Carbon</h1>
-<CarbonProducts />
 
 <h1 style="padding-top: 40px;">Our Team</h1>
 

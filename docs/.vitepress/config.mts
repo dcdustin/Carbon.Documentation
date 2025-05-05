@@ -42,7 +42,7 @@ async function fetchItems() {
 } 
 
 export default defineConfig({
-  title: "Carbon Documentation",
+  title: "Carbon",
   description: "A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.",
   base: "/.",
   head: [
@@ -67,7 +67,7 @@ export default defineConfig({
     outlineTitle: "On this page",
     nav: [
       { text: "Home", link: "/" },
-      { text: "Owners", link: "/owners/introduction" },
+      { text: "Owners", link: "/owners/getting-started" },
       { text: "Developers", link: "/devs/local-server-hosting" },
       { text: "References", items: references},
       { text: "Release Notes", link: "/references/release-notes/" }
@@ -129,17 +129,17 @@ export default defineConfig({
               text: 'Features',
               collapsed: true,
               items: [
-                { text: 'Commands', link: '/devs/core/commands' },
-                { text: 'Permissions', link: '/devs/core/permissions' },
-                { text: 'Timers', link: '/devs/core/timers' },
-                { text: 'LUI (Lightweight UI)', link: '/devs/core/lightweight-ui' },
-                { text: 'Extensions', link: '/devs/core/extensions' },
-                { text: 'Client Entities', link: '/devs/core/client-entities' },
-                { text: 'Conditionals', link: '/devs/core/conditionals' },
-                { text: 'Vault', link: '/devs/core/vault' },
-                { text: 'Async Shutdown', link: '/devs/core/async-shutdown' },
-                { text: 'ZIP Scripts & Packages', link: '/devs/core/zip-script-packages' },
-                { text: 'Profiler (Mono)', link: '/devs/core/mono-profiler' },
+                { text: 'Commands', link: '/devs/features/commands' },
+                { text: 'Permissions', link: '/devs/features/permissions' },
+                { text: 'Timers', link: '/devs/features/timers' },
+                { text: 'LUI (Lightweight UI)', link: '/devs/features/lightweight-ui' },
+                { text: 'Extensions', link: '/devs/features/extensions' },
+                { text: 'Client Entities', link: '/devs/features/client-entities' },
+                { text: 'Conditionals', link: '/devs/features/conditionals' },
+                { text: 'Vault', link: '/devs/features/vault' },
+                { text: 'Async Shutdown', link: '/devs/features/async-shutdown' },
+                { text: 'ZIP Scripts & Packages', link: '/devs/features/zip-script-packages' },
+                { text: 'Profiler (Mono)', link: '/devs/features/mono-profiler' },
               ]
             },
             {
