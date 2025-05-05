@@ -10,7 +10,7 @@ An overall look at how permissions work and how you can use them.
 ## Permission Registration
 
 A good place to start using permissions in your plugins, here's how you register your permissions within your plugin.
-Usually done at the very beginning of your plugin, which can be **Init()** or **OnServerInitialized()**.
+Usually done at the very beginning of your plugin, which can be `Init()` or `OnServerInitialized()`.
 
 ```csharp
 private void Init()

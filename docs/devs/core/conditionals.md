@@ -10,12 +10,12 @@ branch or even a specific Rust or Carbon protocol, you can use this system.
 
 ## Framework
 
-Since Carbon is for the most part compatible with over 95% of the plugins written for Oxide out there, you may want to
+Since Carbon is for the most part compatible with over `95%` of the plugins written for Oxide out there, you may want to
 use features that are only present in Carbon and not on Oxide.
 
 It's as simple using as the following example:
 
-```csharp:line-numbers
+```csharp
 private void OnServerInitialized()
 {
 #if CARBON
@@ -32,7 +32,7 @@ private void OnServerInitialized()
 
 Carbon feeds the Roslyn compiler the `WIN` or `UNIX` compilation symbols. They work as the following:
 
-```csharp:line-numbers
+```csharp
 private void OnServerInitialized()
 {
 #if WIN
@@ -48,7 +48,7 @@ private void OnServerInitialized()
 You may want to have code that gets executed only on a specific branch of Rust. If that's the case, this is how you do
 that:
 
-```csharp:line-numbers
+```csharp
 private void OnServerInitialized()
 {
 #if STAGING
@@ -70,7 +70,7 @@ update earlier.
 You'd also want the version that implements that new logic only accessible in a future update to be within the currently
 released file, but want it to still compile. You can now use this:
 
-```csharp:line-numbers
+```csharp
 private void OnServerInitialized()
 {
 #if RUST_ABV_2511_243_1

@@ -9,13 +9,19 @@ LUI is a **core UI component** of the Carbon framework that provides a fluent, o
 managing CUI elements in Rust. It simplifies creation, updates, and dispatch of UI elements, supports advanced layout
 logic, and is tightly integrated with Carbon’s UI and image systems.
 
-> **Note:** This is not a module. LUI is an internal utility that is always available within Carbon.
+:::info Note
+This is a internal utility of Carbon (not a plugin) for creating and managing CUI elements. Always available within
+Carbon.
+:::
 
 ## Overview
 
 - **Type:** `Carbon.Components.LUI`
 - **Purpose:** Simplified, high-performance UI construction and manipulation
 - **Dependencies:** `CUI`, `ImageDatabaseModule`
+- **Source**:
+  [`Carbon.Common/LUI.cs`](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Components/LUI.cs)
+
 
 ## Getting Started
 
@@ -29,8 +35,12 @@ using CUI cui = new CUI(CuiHandler);
 ### Sending the UI to a Player
 
 ```csharp
-cui.v2.SendUi(player);           // Sends built UI to player
-cui.v2.SendUiJson(player);       // Sends JSON variant of UI (optional debug/test alternative, sending UI in bytes is more efficient)
+// Sends built UI to player
+cui.v2.SendUi(player);
+
+// Sends JSON variant of UI
+// (optional debug/test alternative, sending UI in bytes is more efficient)
+cui.v2.SendUiJson(player);
 ```
 
 ## Creating Aliases
@@ -39,10 +49,10 @@ Most of the elements have at least 4 aliases of methods, where only the first fi
 Example is based on Panel Creation.
 
 ```csharp
-CreatePanel(string parent, LuiPosition position, LuiOffset offset, ...);           //Base
-CreatePanel(string parent, LuiOffset offset, ...);                                 //When position is None, we don't need to include it in method.
-CreatePanel(LuiContainer container, LuiPosition position, LuiOffset offset, ...);  //Same as first, but we can just put the element we created previously without name knowledge.
-CreatePanel(LuiContainer container, LuiOffset offset, ...);                        //Same as second, but we can just put the element we created previously without name knowledge.
+CreatePanel(string parent, LuiPosition position, LuiOffset offset, ...);           // Base
+CreatePanel(string parent, LuiOffset offset, ...);                                 // When position is None, we don't need to include it in method.
+CreatePanel(LuiContainer container, LuiPosition position, LuiOffset offset, ...);  // Same as first, but we can just put the element we created previously without name knowledge.
+CreatePanel(LuiContainer container, LuiOffset offset, ...);                        // Same as second, but we can just put the element we created previously without name knowledge.
 ```
 
 ## Creating Parent
@@ -52,7 +62,7 @@ cui.v2.CreateParent(CUI.ClientPanels parent, LuiPosition position, string name =
 ```
 
 Simple method for creating a parent that will be attached to one of the RUST CUI panels.
-You can find all types of client panels in the CUI.ClientPanels enum.
+You can find all types of client panels in the `CUI.ClientPanels` enum.
 
 ## Creating Panels
 
@@ -88,7 +98,7 @@ no unnecessary allocations!
 
 ```csharp
 // One-line method.
-cui.v2.CreateText(...).SetTextFont(CUI.Handler.FontTypes.RobotoCondensedRegular); 
+cui.v2.CreateText(...).SetTextFont(CUI.Handler.FontTypes.RobotoCondensedRegular);
 
 // Multi-line method.
 LUI.LuiContainer text = cui.v2.CreateText(...);
@@ -374,5 +384,5 @@ Debug.Log(cui.v2.ToJson());
 ---
 
 For a full list of component types, fonts, alignments, and helper methods, see the
-[`LUI.cs`](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Components/LUI.cs) source and
-support classes.
+[`LUI.cs`](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Components/LUI.cs)
+source and support classes.
