@@ -79,10 +79,19 @@ export default defineConfig({
           text: 'Owners Documentation',
           collapsed: false,
           items: [
-            { text: 'Getting Started', link: '/owners/introduction'},
+            { text: 'Getting Started', link: '/owners/getting-started'},
             { text: 'Installing Carbon', link: '/owners/installing-carbon'},
             {
-              text: 'Carbon Modules',
+              text: 'Features',
+              collapsed: true,
+              items: [
+                { text: 'Vault', link: '/devs/features/vault' },
+                { text: 'Minimal', link: '/owners/features/minimal' },
+                { text: 'CarbonAuto', link: '/owners/features/carbonauto' }
+              ]
+            },
+            {
+              text: 'Modules',
               link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
@@ -103,8 +112,7 @@ export default defineConfig({
                   { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
                   { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
                 ]
-              }
-              ]
+              }]
             },
             {
               text: 'Hosting',
@@ -113,8 +121,7 @@ export default defineConfig({
                 { text: 'Linux Hosting', link: '/owners/linux-hosting' },
               ]
             },
-            { text: 'Oxide Porting', link: '/owners/oxide-porting'},
-            { text: 'Vault', link: '/devs/core/vault' }
+            { text: 'Oxide Porting', link: '/owners/oxide-porting'}
           ]
         },
         {
