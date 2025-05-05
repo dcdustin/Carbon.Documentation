@@ -23,8 +23,8 @@ Here's a list of all of the differences between regular Carbon builds and Minima
 <thead>
 <tr>
 <th>Feature</th>
-<th style="text-align:center; min-width:95px">Carbon</th>
-<th style="text-align:center; min-width:95px">Minimal</th>
+<th style="text-align:center; min-width:100px">Carbon</th>
+<th style="text-align:center; min-width:100px">Minimal</th>
 </tr>
 </thead>
 <tr v-for="feature in features">
