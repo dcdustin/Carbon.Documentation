@@ -427,10 +427,12 @@ html:not(.dark) .dark-only {
   z-index: 1;
 }
 
-.card-body {
-  display: flex;
-  padding: 40px;
-  gap: 10px
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(181px, 1fr)); /* .card width */
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
 }
 
 .card {
@@ -473,6 +475,7 @@ html:not(.dark) .dark-only {
 }
 
 .card-body {
+  gap: 10px;
   padding: 10px 12px;
   display: flex;
   align-items: flex-start;
