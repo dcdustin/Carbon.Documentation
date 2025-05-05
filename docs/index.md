@@ -12,7 +12,7 @@ hero:
       link: https://github.com/CarbonCommunity/Carbon/releases/latest
     - theme: alt
       text: Owner Docs
-      link: /owners/introduction
+      link: /owners/getting-started
     - theme: alt
       text: Developer Docs
       link: /devs/local-server-hosting
