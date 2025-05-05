@@ -89,6 +89,7 @@ const docsMembers = [
     name: 'Bubbafett',
     title: 'Documentation',
     links: [
+      { icon: 'github', link: 'https://github.com/bubbafett5611' },
       { icon: 'cf', link: 'https://codefling.com/bubbafett' }
     ]
   },
@@ -97,6 +98,7 @@ const docsMembers = [
     name: 'Goo',
     title: 'Documentation',
     links: [
+      { icon: 'github', link: 'https://github.com/purnellbp' },
       { icon: 'cf', link: 'https://codefling.com/goo_' }
     ]
   }
@@ -116,6 +118,7 @@ const contributorMembers = [
     name: 'ThePitereq',
     title: 'Contributor',
     links: [
+      { icon: 'github', link: 'https://github.com/ThePitereq' },
       { icon: 'cf', link: 'https://codefling.com/thepitereq' }
     ]
   },
@@ -159,6 +162,7 @@ const contributorMembers = [
     name: 'BillyJoe',
     title: 'Contributor',
     links: [
+      { icon: 'github', link: 'https://github.com/TravisDevLife' },
       { icon: 'cf', link: 'https://codefling.com/Billy-Joe' }
     ]
   },
@@ -167,6 +171,7 @@ const contributorMembers = [
     name: 'Farkas',
     title: 'Contributor',
     links: [
+      { icon: 'github', link: 'https://github.com/farkas1121' },
       { icon: 'cf', link: 'https://codefling.com/farkas' }
     ]
   },
@@ -175,6 +180,7 @@ const contributorMembers = [
     name: 'Kopter',
     title: 'Contributor',
     links: [
+      { icon: 'github', link: 'https://github.com/kop7er' },
       { icon: 'cf', link: 'https://codefling.com/kopter' }
     ]
   },
