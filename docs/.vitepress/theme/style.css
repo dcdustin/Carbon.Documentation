@@ -505,14 +505,14 @@ html:not(.dark) .dark-only {
   padding: 0 12px 12px;
 }
 
-.price {
+.card-price {
   color: #00ffa3;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 
-.stars {
-  font-size: 13px;
+.card-stars {
+  font-size: 16px;
   color: #46c1ff;
 }
 

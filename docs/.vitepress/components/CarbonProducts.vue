@@ -13,6 +13,28 @@ onMounted(async () => {
   products.value = await response.json()
   console.log(products.value)
 })
+
+function getStars(rating) {
+  const fullStar = '★'
+  const halfStar = '⯪'
+  const emptyStar = '☆'
+
+  const maxRating = 5
+  rating = Math.min(maxRating, rating)
+
+  const thresholdToFull = 0.1
+  const thresholdToHalf = 0.15
+
+  const floor = Math.floor(rating)
+  const ceil = Math.ceil(rating)
+
+  const shouldAddFullStar = rating < ceil && rating + thresholdToFull >= ceil
+  const shouldAddHalfStar = !shouldAddFullStar && rating + thresholdToHalf >= floor + 0.5
+
+  return fullStar.repeat(floor + shouldAddFullStar) +
+    halfStar.repeat(shouldAddHalfStar) +
+    emptyStar.repeat(maxRating - floor - (shouldAddFullStar || shouldAddHalfStar))
+}
 </script>
 
 <template>
@@ -32,8 +54,8 @@ onMounted(async () => {
             </div>
           </div>
           <div class="card-footer">
-            <div class="price">{{ product.prices == null ? 'Free' : product.prices.USD + ' USD' }}</div>
-            <div class="stars">★★★★☆</div>
+            <div class="card-price">{{ product.prices == null ? 'Free' : product.prices.USD + ' USD' }}</div>
+            <div v-if="product.rating !== 0" class="card-stars">{{ getStars(product.rating) }}</div>
           </div>
         </div>
       </a>
