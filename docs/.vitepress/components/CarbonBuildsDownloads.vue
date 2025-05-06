@@ -1,9 +1,11 @@
 ﻿<script lang="ts" setup>
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { VPBadge } from 'vitepress/theme'
+import CarbonIcons from './CarbonIcons.vue'
+import CarbonButton from './CarbonButton.vue'
 
 class ReleaseBuild {
-  private static __idCounter: Number = 0
+  private static __idCounter: number = 0
   _id: number
   branch: string
   tag: string
@@ -24,7 +26,7 @@ class ReleaseBuild {
 }
 
 class DownloadSection {
-  private static __idCounter: Number = 0
+  private static __idCounter: number = 0
   _id: number
   name: string
   releaseBuilds: ReleaseBuild[]
@@ -52,8 +54,8 @@ const sections = [
   ])
 ]
 
-const activeSection: DownloadSection = ref(sections.length ? sections[0] : {})
-const expandedReleases: boolean[] = ref(sections.flatMap(x => x.releaseBuilds).map(_ => false))
+const activeSection: Ref<DownloadSection | null> = ref(sections.length ? sections[0] : null)
+const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuilds).map(_ => false))
 </script>
 
 <template>
@@ -61,7 +63,7 @@ const expandedReleases: boolean[] = ref(sections.flatMap(x => x.releaseBuilds).m
     <template v-for="section in sections">
       <button
         class="section-button text-lg px-8 py-1.5 rounded-lg transition-all"
-        :class="{ active: activeSection.name == section.name }"
+        :class="{ active: activeSection?.name == section.name }"
         @click="activeSection = section"
       >
         {{ section.name }}
@@ -70,8 +72,7 @@ const expandedReleases: boolean[] = ref(sections.flatMap(x => x.releaseBuilds).m
   </div>
   <div class="flex flex-col gap-4">
     <template
-      v-for="releaseBuild in activeSection.releaseBuilds"
-      v-if="activeSection"
+      v-for="releaseBuild in activeSection?.releaseBuilds"
       :key="releaseBuild._id"
     >
       <div
@@ -87,7 +88,7 @@ const expandedReleases: boolean[] = ref(sections.flatMap(x => x.releaseBuilds).m
         </div>
         <Transition name="expand">
           <div
-            v-if="expandedReleases[releaseBuild._id]"
+            v-show="expandedReleases[releaseBuild._id]"
             class="collapsible-content px-6 py-3 flex flex-col"
           >
             <span>
