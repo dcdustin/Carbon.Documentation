@@ -5,7 +5,7 @@
 To get started, please follow the following instructions underneath, specified for the operating system of your liking:
 
 <iframe
-width="690"
+width="100%"
 height="388"
 src="https://www.youtube.com/embed/htfazTbNsPs?si=7ZIJvvrAvBA3FrUP"
 title="YouTube video player"
