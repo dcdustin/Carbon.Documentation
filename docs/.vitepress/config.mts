@@ -75,12 +75,12 @@ export default defineConfig({
 
     sidebar: {
       '/': [
+        { text: 'Getting Started', link: '/owners/getting-started'},
+        { text: 'Installing Carbon', link: '/owners/installing-carbon'},
         {
           text: 'Owners Documentation',
           collapsed: false,
           items: [
-            { text: 'Getting Started', link: '/owners/getting-started'},
-            { text: 'Installing Carbon', link: '/owners/installing-carbon'},
             {
               text: 'Features',
               collapsed: true,
