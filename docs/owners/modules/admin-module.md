@@ -1,7 +1,7 @@
 # Admin Module
 
 The Admin module introduces a new and intuitive way of managing your server in pretty much any way that you'd need. It's
-a modular system that comes with built in tabs helpful to see server statistics (such as dynamic hook use count), edit,
+a modular system that comes with built-in tabs helpful to see server statistics (such as dynamic hook use count), edit,
 teleport or manage entities using the dedicated inspector.
 
 :::warning IMPORTANT
@@ -14,7 +14,7 @@ The Admin module is enabled by default and will not enforce the server to be in 
 - **Enabled by default:** Yes
 - **Force enabled:** Yes (cannot be disabled)
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Common/AdminModule](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
+- **Source:** [`Carbon.Common/AdminModule`](https://github.com/CarbonCommunity/Carbon.Common/tree/develop/src/Carbon/Modules/AdminModule)
 - **Forces Modded Tag:** No
 
 ### Initial Access
@@ -67,7 +67,7 @@ would expect out of an admin panel like banning, viewing inventories, healing pl
 ![Entities Tab](/misc/admin_c.webp)
 
 Comes with a lot of filtering and searching options for specific entity type or names in the world. Inspecting entities
-will allow you to teleport to their positions, or you teleporting them to yours, spectating or changing flags (doors
+will allow you to teleport to their positions, or you're teleporting them to yours, spectating or changing flags (doors
 open/close), access and loot any container on the map, modify the health of entities on the fly, and metabolism options
 of players.
 
@@ -94,8 +94,8 @@ This tab is disabled by default, but it's a tab that allows you to browse, downl
 UI of any free plugin or plugin that you own from Codefling and uMod. It comes with rich filtering features, very fast
 and intuitive searching and tag-based filters.
 
-**To enable it, please do the following:**
-`Modules -> Admin -> Edit Config -> untick 'DisablePluginsTab' -> Save`
+**To enable it, please do the following:**\
+`Modules` -> `Admin` -> `Edit Config` -> untick `DisablePluginsTab` -> `Save`
 
 ## API
 
@@ -104,11 +104,12 @@ how you can get started up to creating your own tabs.
 
 ### Referencing
 
-To reference the module in your project, you may do the following in your class' constructor:
+To reference the module in your project, you may do the following in your class constructor:
 
 ```csharp
 using Carbon.Modules;
 using Carbon.Base;
+
 public AdminModule Admin = BaseModule.GetModule<AdminModule>();
 ```
 
@@ -129,7 +130,7 @@ var myValue = session.GetStorage<int>(tab, "my_key", @default: defaultValue);
 
 :::tip
 The `tab` and `@default` value is optional, you may globally store dynamically assigned content mapped to player
-sessions by setting the `tab` to null.
+sessions by setting the `tab` to `null`.
 :::
 
 The Admin module is enabled by default and will not enforce the server to be in the modded tab when enabled.
@@ -137,7 +138,7 @@ The Admin module is enabled by default and will not enforce the server to be in 
 ## Module Permissions
 
 Access to Carbon's Admin panel can be granted to players that do not have ownerid/auth 2. The list of permissions below
-can used to control exactly what each player has access to.
+can be used to control exactly what each player has access to.
 
 ### General
 

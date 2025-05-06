@@ -13,7 +13,7 @@ permission-based access control.
 - **Class Name:** `ModerationToolsModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Modules/ModerationToolsModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/ModerationToolsModule)
+- **Source:** [`Carbon.Modules/ModerationToolsModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/ModerationToolsModule)
 - **Forces Modded Tag:** No
 
 This module adds a powerful yet lightweight moderation layer to your Rust server, directly usable through chat and
@@ -36,7 +36,7 @@ The config is defined in `ModerationToolsConfig`:
 
 ## Permissions
 
-- `carbon.cadmin`: Required to toggle developer (cadmin) mode.
+- `carbon.cadmin`: Required to toggle developer (`cadmin`) mode.
 - `carbon.cmod`: Required to use mute, unmute, ban, kick, and view mute list.
 
 You must grant these permissions manually via the `oxide.grant` command or your preferred permission manager.

@@ -19,7 +19,7 @@ Carbon's minimal build, focused solely on plugin execution, stripping away Carbo
 
 ## Differences
 
-Here's a list of all of the differences between regular Carbon builds and Minimal:
+Here's a list of all the differences between regular Carbon builds and Minimal:
 
 <table tabindex="0">
   <thead>
@@ -43,5 +43,5 @@ Here's a list of all of the differences between regular Carbon builds and Minima
 
 
 :::tip 🔥 Release Optimizations
-All Minimal builds have Release optimisations and reduced debugging data. They're essentially **Release builds**.
+All Minimal builds have Release optimizations and reduced debugging data. They're essentially **Release builds**.
 :::

@@ -13,7 +13,7 @@ using a configurable wipe list and cron expressions. It can trigger commands and
 - **Class Name:** `AutoWipeModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Modules/AutoWipeModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/AutoWipeModule)
+- **Source:** [`Carbon.Modules/AutoWipeModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/AutoWipeModule)
 - **Forces Modded Tag:** No
 
 AutoWipe lets you schedule wipes using cron syntax, execute commands or delete files/folders after wiping, and even
@@ -103,7 +103,7 @@ From `My Cool Server (WIPED [WIPE_MONTH]/[WIPE_DAY])` to `My Cool Server (WIPED 
 ## How It Works
 
 - Every 30 seconds, the module checks if a wipe is due via cron.
-- Once a wipe runs, there is a 1 hour cooldown before another wipe can happen.
+- Once a wipe runs, there is a 1-hour cooldown before another wipe can happen.
 - When a wipe matches:
     - Runs any `Commands` listed in the wipe entry
     - Runs configured `PostWipeCommands`

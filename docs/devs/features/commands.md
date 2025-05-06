@@ -72,7 +72,7 @@ Always check for `null` player when handling universal commands.
 Secure commands with randomized identifiers
 
 > This is a special type of command mainly used by Carbon CUI elements
-> (e.g. **ProtectedButton**, **ProtectedInputField**)
+> (e.g. `ProtectedButton`, `ProtectedInputField`)
 > which randomizes the command in a server-specific way to protect servers from players calling plugin commands that are
 > meant to be called using the authority-based UIs and having the ability to do so if they own the said plugins, and
 > know

@@ -13,7 +13,7 @@ It supports both global and per-item configuration, and applies changes dynamica
 - **Class Name:** `StackManagerModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Modules/StackManagerModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/StackManagerModule)
+- **Source:** [`Carbon.Modules/StackManagerModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/StackManagerModule)
 - **Forces Modded Tag:** Yes
 
 StackManager adjusts `ItemDefinition.stackable` values for all items based on configurable rules.
@@ -48,18 +48,20 @@ The config is defined in `StackManagerConfig`:
 ## Example Use Case
 
 ```json
-"Categories": {
-  "Food": 3.0
-},
-"Items": {
-  "scrap": 5000,
-  "metal.refined": 1000
+{
+  "Categories": {
+    "Food": 3.0
+  },
+  "Items": {
+    "scrap": 5000,
+    "metal.refined": 1000
+  }
 }
 ```
 
 - All food stacks are tripled.
-- Scrap is capped at 5k per stack.
-- High quality metal is capped at 1k.
+- Scrap is capped at `5000` per stack.
+- High quality metal is capped at `1000`.
 
 ---
 

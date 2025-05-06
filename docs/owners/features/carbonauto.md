@@ -9,7 +9,7 @@ CarbonAuto variables, or Carbon ConVars exist with the purpose of expanding on R
 to your server.
 
 :::tip Explore
-There's an always up to date list of all of our CarbonAuto variables.
+There's an always up-to-date list of all of our CarbonAuto variables.
 
 <CarbonButton icon="database" href="/references/convars" text="Carbon ConVars"/><p></p>
 :::

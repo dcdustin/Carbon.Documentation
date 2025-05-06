@@ -27,7 +27,7 @@ functionality, such as managing players or increasing stack sizes.
 - [Gather Manager Module](optional-modules/gather-manager-module) – Adjusts in-game gather rates for resources.
 - [Moderation Tools Module](optional-modules/moderation-tools-module) – Grants `Auth 0` users access to specific F1
   commands like `noclip` and `god true`.
-- [Selective EAC Module](optional-modules/selective-eac-module) – Allows toggling Easy Anti-Cheat for specific players
+- [Selective EAC Module](optional-modules/selective-eac-module) – Allows toggling `Easy Anti-Cheat` for specific players
   via permissions.
 - [Stack Manager Module](optional-modules/stack-manager-module) – Enables in-game item stack customization.
 - [Vanish Module](optional-modules/vanish-module) – Lets players with permission use `/vanish` to toggle visibility from

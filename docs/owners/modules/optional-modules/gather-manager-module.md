@@ -1,7 +1,7 @@
 # GatherManager Module
 
 The GatherManager Module is an **optional Carbon module** that allows server administrators to modify item gather rates
-dynamically based on source type—like pickups, quarries, dispensers, and more.
+dynamically based on source type-like pickups, quarries, dispensers, and more.
 
 > **Note:** This module is **not used directly by other plugins** but is highly useful for fine-tuning resource
 > gathering.
@@ -13,7 +13,7 @@ dynamically based on source type—like pickups, quarries, dispensers, and more.
 - **Class Name:** `GatherManagerModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Modules/GatherManagerModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/GatherManagerModule)
+- **Source:** [`Carbon.Modules/GatherManagerModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/GatherManagerModule)
 - **Forces Modded Tag:** Yes
 
 When enabled, this module intercepts item gathering logic and adjusts the resulting amounts using multipliers defined in
@@ -66,14 +66,16 @@ The module supports a wildcard (`"*"`) as a fallback multiplier if no specific i
 ## Example: Custom Gather Rule
 
 ```json
-"Gather": {
-  "*": 1.0,
-  "stones": 0.75,
-  "wood": 1.25
+{
+  "Gather": {
+    "*": 1.0,
+    "stones": 0.75,
+    "wood": 1.25
+  }
 }
 ```
 
-This config reduces stone gather yield by 25% and increases wood by 25%.
+This config reduces stone gather yield by `25%` and increases wood by `25%`.
 
 ---
 

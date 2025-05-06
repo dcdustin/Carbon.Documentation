@@ -1,8 +1,9 @@
 # SelectiveEAC Module
 
-The SelectiveEAC Module is an **optional Carbon module** that allows certain users to bypass **EAC (Easy Anti-Cheat)
-encryption enforcement**. This is done using permission and group-based access control, making it ideal for custom
-clients, testers, or offline developer environments.
+The SelectiveEAC Module is an **optional Carbon module** that allows certain users to bypass
+`EAC (Easy Anti-Cheat)` **encryption enforcement**.
+This is done using permission and group-based access control, making it ideal for custom clients, testers, or
+offline developer environments.
 
 > **Note:** This module is best used in controlled or private environments. It modifies EAC behavior and may conflict
 > with strict anti-cheat setups.
@@ -14,10 +15,10 @@ clients, testers, or offline developer environments.
 - **Class Name:** `SelectiveEACModule`
 - **Enabled by default:** No
 - **Supports Configuration:** Yes
-- **Source:** [Carbon.Modules/SelectiveEACModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/SelectiveEACModule)
+- **Source:** [`Carbon.Modules/SelectiveEACModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/SelectiveEACModule)
 - **Forces Modded Tag:** No
 
-When enabled, this module patches internal Rust server methods to override how encryption and EAC validation work on
+When enabled, this module patches internal Rust server methods to override how encryption and `EAC` validation work on
 join.
 
 ## Configuration
@@ -50,7 +51,7 @@ oxide.usergroup add 7656119XXXXXX selectiveeac
 
 - Developer/test servers with custom clients
 - Admins using modified tools or builds
-- Partial EAC test environments
+- Partial `EAC` test environments
 
 > ⚠️ **Warning:** Misuse of this module can compromise server integrity. Use only when necessary and with trusted
 > players.

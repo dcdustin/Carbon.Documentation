@@ -100,6 +100,6 @@ Puts("Frame 3");
 ```
 
 :::danger Notice
-Important to note, **NextFrame** and **NextTick** are the exact same thing. They're both inside of Carbon due to Oxide
+Important to note, `NextFrame` and `NextTick` are the exact same thing. They're both inside of Carbon due to Oxide
 compatibility.
 :::

@@ -14,7 +14,7 @@ around a central point, improving performance and relevance.
 - **Class Name:** `CircularNetworkingModule`
 - **Enabled by default:** No
 - **Supports Configuration:** No
-- **Source:** [Carbon.Modules/CircularNetworkingModule](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/CircularNetworkingModule)
+- **Source:** [`Carbon.Modules/CircularNetworkingModule`](https://github.com/CarbonCommunity/Carbon.Modules/tree/develop/src/CircularNetworkingModule)
 - **Forces Modded Tag:** No
 
 When enabled, this module replaces the standard Rust grid visibility system with a custom circular fallback using
@@ -24,8 +24,8 @@ precomputed radius masks.
 
 When enabled, the module:
 
-- Sets `ConVar.Net.visibilityRadiusFarOverride = 6` (if not already set)
-- Sets `ConVar.Net.visibilityRadiusNearOverride = 4` (if not already set)
+- Sets `ConVar.Net.visibilityRadiusFarOverride` to `6` (if not already set)
+- Sets `ConVar.Net.visibilityRadiusNearOverride` to `4` (if not already set)
 - Restores original values when disabled
 
 This modifies how entities and network groups are calculated for clients by applying a circular pattern around each
