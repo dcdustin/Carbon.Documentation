@@ -31,7 +31,7 @@ features:
     details: Carbon super lightweight by only providing the very essential hooks needed, keeping things vanilla when there are no changes made by plugins.
     icon: ⚖️
   - title: Permissions
-    details: We have created a more optimized modular permission system that allows for users to create thier own serializers. <a class="textLink" href="/devs/features/permissions">Learn more</a>
+    details: We have created a more optimized modular permission system that allows for users to create their own serializers. <a class="textLink" href="/devs/features/permissions">Learn more</a>
     icon: ⚙️
   - title: Dynamic Hooks
     details: Hooks are loaded dynamically to ensure only the hooks used by plugins are loaded. This eliminates a ton of redundant calls and will improve the performance of your server. <a class="textLink" href="/references/hooks">Learn more</a>
