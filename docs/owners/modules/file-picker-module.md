@@ -55,7 +55,7 @@ fileModule.Open(player, "Title", "start/path", "path/limit", "json",
 ## Example Use in Plugin
 
 ```csharp
-fileModule.Open(player, "Browse JSON Files", "/oxide/data", "/oxide/data", "json",
+fileModule.Open(player, "Browse JSON Files", "/carbon/data", "/carbon/data", "json",
     onConfirm: (player, browser) =>
     {
         Puts($"Confirmed: {browser.SelectedFile}");

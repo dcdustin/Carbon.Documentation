@@ -39,7 +39,7 @@ The config is defined in `ModerationToolsConfig`:
 - `carbon.cadmin`: Required to toggle developer (`cadmin`) mode.
 - `carbon.cmod`: Required to use mute, unmute, ban, kick, and view mute list.
 
-You must grant these permissions manually via the `oxide.grant` command or your preferred permission manager.
+You must grant these permissions manually via the `carbon.grant` or `c.grant` command or your preferred permission manager.
 
 ## Chat Commands
 

@@ -38,13 +38,13 @@ The config is defined in `SelectiveEACConfig`:
 You can grant permission like:
 
 ```bash
-oxide.grant user 7656119XXXXXX selectiveeac.use
+c.grant user 7656119XXXXXX selectiveeac.use
 ```
 
 Or assign a user to the group:
 
 ```bash
-oxide.usergroup add 7656119XXXXXX selectiveeac
+c.usergroup add 7656119XXXXXX selectiveeac
 ```
 
 ## Use Cases

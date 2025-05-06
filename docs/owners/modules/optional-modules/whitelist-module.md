@@ -43,8 +43,8 @@ Players can join the server if they:
 Grant permission or add to group via:
 
 ```bash
-oxide.grant user 7656119XXXXXX whitelist.bypass
-oxide.usergroup add 7656119XXXXXX whitelisted
+c.grant user 7656119XXXXXX whitelist.bypass
+c.usergroup add 7656119XXXXXX whitelisted
 ```
 
 Default Lang `en`:

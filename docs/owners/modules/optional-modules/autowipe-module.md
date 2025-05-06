@@ -28,10 +28,10 @@ The configuration is stored in the `AutoWipeConfig` class and includes the follo
   "WipeChatCommand": "nextwipe",
   "FullWipe": {
     "PostWipeCommands": [
-      "oxide.reload MyPlugin"
+      "c.reload MyPlugin"
     ],
     "PostWipeDeletes": [
-      "oxide/data/myfile.json"
+      "carbon/data/myfile.json"
     ]
   },
   "MapWipe": {
@@ -93,7 +93,7 @@ They're in place to automate server host name and descriptions with last wipe da
 - `[WIPE_YEAR]` – Wipe year replacement
 - `[WIPE_HOUR]` – Wipe hour replacement
 - `[WIPE_MINUTE]` – Wipe minute replacement
-::: warning 
+::: warning
 <strong>You'll see a warning printed in the server log upon the module updating the host name and description.</strong> It usually only happens once per server boot, unless you update any of two with the inclusion of replacement keys. <strong>This only happens when the server sends Steam server information.</strong>
 :::
 ::: tip Example
