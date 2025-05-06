@@ -1,11 +1,13 @@
 # StackManager Module
 
-The StackManager Module is an **optional Carbon module** that allows fine-grained control over item stack sizes in Rust. It supports both global and per-item configuration, and applies changes dynamically on server load or when enabled.
+The StackManager Module is an **optional Carbon module** that allows fine-grained control over item stack sizes in Rust.
+It supports both global and per-item configuration, and applies changes dynamically on server load or when enabled.
 
-> **Note:** This module is designed for balancing loot, optimizing inventory space, or reducing item spam. It does not affect vanilla server validation.
-
+> **Note:** This module is designed for balancing loot, optimizing inventory space, or reducing item spam. It does not
+> affect vanilla server validation.
 
 ## Overview
+
 ![StackManager Module](/misc/stackmanager_a.webp)
 
 - **Class Name:** `StackManagerModule`
@@ -16,8 +18,8 @@ The StackManager Module is an **optional Carbon module** that allows fine-graine
 
 StackManager adjusts `ItemDefinition.stackable` values for all items based on configurable rules.
 
-
 ## Configuration
+
 The config is defined in `StackManagerConfig`:
 
 ```json
@@ -43,8 +45,8 @@ The config is defined in `StackManagerConfig`:
 }
 ```
 
-
 ## Example Use Case
+
 ```json
 "Categories": {
   "Food": 3.0
@@ -54,11 +56,13 @@ The config is defined in `StackManagerConfig`:
   "metal.refined": 1000
 }
 ```
+
 - All food stacks are tripled.
 - Scrap is capped at 5k per stack.
 - High quality metal is capped at 1k.
 
 ---
 
-StackManager is perfect for fine-tuning inventory flow and improving server quality-of-life. Combine with loot mods for full control over Rust's economy.
+StackManager is perfect for fine-tuning inventory flow and improving server quality-of-life. Combine with loot mods for
+full control over Rust's economy.
 
