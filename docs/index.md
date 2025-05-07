@@ -101,6 +101,14 @@ const docsMembers = [
       { icon: 'github', link: 'https://github.com/purnellbp' },
       { icon: 'cf', link: 'https://codefling.com/goo_' }
     ]
+  },
+  {
+    avatar: '/team/evs-ptr.webp',
+    name: 'evs-ptr',
+    title: 'Documentation',
+    links: [
+      { icon: 'github', link: 'https://github.com/evs-ptr' }
+    ]
   }
 ]
 
