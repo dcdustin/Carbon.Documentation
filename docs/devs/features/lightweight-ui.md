@@ -22,7 +22,6 @@ Carbon.
 - **Source**:
   [`Carbon.Common/LUI.cs`](https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Components/LUI.cs)
 
-
 ## Getting Started
 
 ### Creating an Instance

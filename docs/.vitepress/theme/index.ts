@@ -62,5 +62,5 @@ export default {
     app.component('CarbonBuildsDownloads', CarbonBuildsDownloads)
     enhanceAppWithTabs(app)
 
-  }
+  },
 } satisfies Theme

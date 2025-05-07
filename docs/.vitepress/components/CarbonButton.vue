@@ -1,43 +1,42 @@
 <template>
-    <a :href="href":target="isExternal ? '_blank' : null"class="carbon-button">
-      <component v-if="icon" :is="getIconComponent" class="carbon-button-icon" size="18"/>
-      {{ text }}
-      <component v-if="isExternal" :is='getNamedIconComponent("externallink")' class="carbon-button-icon" size="14"/>
-    </a>
-  </template>
-  
-  <script setup>
-  import * as icons from 'lucide-vue-next'
-  import CarbonIcons from './CarbonIcons.vue'
-  import { computed } from 'vue'
+  <a :href="href" :target="isExternal ? '_blank' : null" class="carbon-button">
+    <component v-if="icon" :is="getIconComponent" class="carbon-button-icon" size="18" />
+    {{ text }}
+    <component v-if="isExternal" :is='getNamedIconComponent("externallink")' class="carbon-button-icon" size="14" />
+  </a>
+</template>
 
-  const getNamedIconComponent = (iconName) => {
-        iconName = iconName?.toLowerCase();
-        const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName);
-        return matchedKey ? icons[matchedKey] : undefined;
-    };
-  const getIconComponent = computed(() => getNamedIconComponent(props.icon));
+<script setup>
+import * as icons from 'lucide-vue-next'
+import { computed } from 'vue'
 
-  const props = defineProps({
-    href: String,
-    text: String,
-    icon: {
-      type: String,
-      default: null
-    },
-    external: {
-      type: [Boolean, String],
-      default: false
-    }
-  })
+const getNamedIconComponent = (iconName) => {
+  iconName = iconName?.toLowerCase()
+  const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName)
+  return matchedKey ? icons[matchedKey] : undefined
+}
+const getIconComponent = computed(() => getNamedIconComponent(props.icon))
 
-  const isExternal = computed(() => {
-    return props.external === true || props.external === 'true'
-  })
+const props = defineProps({
+  href: String,
+  text: String,
+  icon: {
+    type: String,
+    default: null,
+  },
+  external: {
+    type: [Boolean, String],
+    default: false,
+  },
+})
 
-  </script>
-  
-  <style scoped>
+const isExternal = computed(() => {
+  return props.external === true || props.external === 'true'
+})
+
+</script>
+
+<style scoped>
 .carbon-button {
   display: inline-flex;
   align-items: center;
@@ -57,8 +56,8 @@
   background-color: var(--c-carbon-2);
   color: white !important;
 }
-  
+
 .carbon-button-icon {
   color: white;
 }
-  </style>
+</style>

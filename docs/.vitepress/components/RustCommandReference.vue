@@ -1,13 +1,7 @@
 <script setup>
-import { ref, onMounted, computed, watch, onUnmounted } from 'vue'
-import { Copy, Database, CheckCircle2, Tag, Loader2, Search, ExternalLink, Image, Clock, Wrench, Scissors, Lock, Unlock, X } from 'lucide-vue-next'
-import { 
-  getGameData,
-  RUST_COMMANDS_API_URL,
-  getSpawnTypeText,
-  SpawnType,
-  CACHE_VERSION_API_URL
-} from '../shared/constants'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
+import { CACHE_VERSION_API_URL, getGameData, RUST_COMMANDS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 
@@ -26,7 +20,7 @@ const LINK_API = RUST_COMMANDS_API_URL
 
 const filteredCommands = computed(() => {
   if (!commands.value?.length) return []
-  
+
   let filtered = commands.value.filter(command => command && command.Name)
 
   if (debouncedSearchQuery.value) {
@@ -84,7 +78,7 @@ const loadCommands = async () => {
 
 const loadMore = async () => {
   if (loadingMore.value || !hasMore.value) return
-  
+
   loadingMore.value = true
   currentPage.value++
   hasMore.value = currentPage.value * pageSize < filteredCommands.value.length
@@ -115,7 +109,7 @@ onMounted(() => {
       if (!response.ok) return
       const version = await response.text()
       const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
-      
+
       if (cachedVersion !== version) {
         // Reload data if version changed
         await loadCommands()
@@ -141,15 +135,15 @@ onUnmounted(() => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16"/>
+          <Database size="16" />
           Rust Command API
-          <ExternalLink size="14" class="opacity-80"/>
+          <ExternalLink size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24"/>
+      <Loader2 class="animate-spin" size="24" />
       <span class="ml-2">Loading commands...</span>
     </div>
 
@@ -157,12 +151,12 @@ onUnmounted(() => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20"/>
-            <input 
-              type="text" 
-              v-model="searchQuery" 
+            <Search class="text-gray-400" size="20" />
+            <input
+              type="text"
+              v-model="searchQuery"
               @input="updateDebouncedSearch($event.target.value)"
-              placeholder="Search commands..." 
+              placeholder="Search commands..."
               class="w-[400px] px-4 py-2"
             >
           </div>
@@ -170,9 +164,10 @@ onUnmounted(() => {
       </div>
 
       <div v-if="paginatedCommands && paginatedCommands.length">
-        
+
         <div class="fixed bottom-4 right-4 z-50">
-          <div class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+          <div
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
             Showing {{ paginatedCommands.length }} of {{ filteredCommands.length }} commands
           </div>
         </div>
@@ -181,24 +176,27 @@ onUnmounted(() => {
         <div class="overflow-x-auto">
           <div class="inline-block min-w-full  ">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <tbody >
-                <tr v-for="command in paginatedCommands" :key="command.Name" :id="command.Name" class="items-table-row">
-                  <td class="whitespace-normal pb-3">
-                    <div class="flex flex-col ">
-                      <h1 class="font-mono">{{ command.Name }} <VPBadge v-if="command.ServerUser" type="info" :text="`Server User`"/> <VPBadge v-if="command.Client" type="danger" :text="`Client`"/></h1> 
-                      <p v-if="command.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                          {{ command.Help }}
-                      </p>
-                    </div>
-                  </td>
-                </tr>
+              <tbody>
+              <tr v-for="command in paginatedCommands" :key="command.Name" :id="command.Name" class="items-table-row">
+                <td class="whitespace-normal pb-3">
+                  <div class="flex flex-col ">
+                    <h1 class="font-mono">{{ command.Name }}
+                      <VPBadge v-if="command.ServerUser" type="info" :text="`Server User`" />
+                      <VPBadge v-if="command.Client" type="danger" :text="`Client`" />
+                    </h1>
+                    <p v-if="command.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                      {{ command.Help }}
+                    </p>
+                  </div>
+                </td>
+              </tr>
               </tbody>
             </table>
           </div>
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24"/>
+          <Loader2 class="animate-spin" size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
