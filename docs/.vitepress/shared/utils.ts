@@ -1,5 +1,3 @@
-import { GAME_DATA_FOLDER } from './constants'
-
 const VERSION_CHECK_URL = 'https://carbonmod.gg/version/?id=docs'
 const VERSION_CACHE_KEY = 'carbon_data_version'
 
@@ -7,7 +5,7 @@ export async function checkDataVersion(): Promise<boolean> {
   try {
     // Get cached version
     const cachedVersion = localStorage.getItem(VERSION_CACHE_KEY)
-    
+
     // Fetch current version
     const response = await fetch(VERSION_CHECK_URL)
     if (!response.ok) throw new Error('Failed to fetch version')
@@ -18,7 +16,7 @@ export async function checkDataVersion(): Promise<boolean> {
       localStorage.setItem(VERSION_CACHE_KEY, currentVersion)
       return true // Force update needed
     }
-    
+
     return false // No update needed
   } catch (error) {
     console.error('Version check failed:', error)
@@ -35,7 +33,7 @@ export async function getCachedData<T>(cacheKey: string, fetchFn: () => Promise<
   try {
     // Check if we need to force update
     const needsUpdate = await checkDataVersion()
-    
+
     // Get cached data
     const cached = localStorage.getItem(cacheKey)
     if (cached && !needsUpdate) {
@@ -44,14 +42,14 @@ export async function getCachedData<T>(cacheKey: string, fetchFn: () => Promise<
         return data
       }
     }
-    
+
     // Fetch fresh data
     const data = await fetchFn()
     localStorage.setItem(cacheKey, JSON.stringify({
       data,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     }))
-    
+
     return data
   } catch (error) {
     console.error(`Failed to get cached data for ${cacheKey}:`, error)

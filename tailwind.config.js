@@ -5,11 +5,11 @@ module.exports = {
     './docs/.vitepress/**/*.{js,ts,vue,md}',
 
     '!./docs/.vitepress/cache',
-    '!./docs/.vitepress/dist'
+    '!./docs/.vitepress/dist',
   ],
   darkMode: 'selector',
   theme: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 }
