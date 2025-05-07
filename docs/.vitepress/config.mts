@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-import tailwindcss from "@tailwindcss/postcss7-compat";
+import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
@@ -280,9 +280,6 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
           },
         },
       },
-    },
-    optimizeDeps: {
-      exclude: ["@tailwindcss/postcss7-compat"],
     },
   },
   vue: {
