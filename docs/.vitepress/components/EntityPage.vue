@@ -1,15 +1,9 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
-import { Copy, CheckCircle2, ExternalLink, Database, Loader2 } from 'lucide-vue-next'
-import { 
-  getGameData,
-  GAME_DATA_FOLDER,
-  ITEM_IMAGE_SERVER,
-} from '../shared/constants'
+import { onMounted, ref, watch } from 'vue'
+import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
+import { GAME_DATA_FOLDER, getGameData, ITEM_IMAGE_SERVER } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-
-import { ArrowLeft, Image } from 'lucide-vue-next'
 
 const entity = ref(null)
 const isLoading = ref(true)
@@ -93,7 +87,7 @@ watch(entity, (newEntity) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24"/>
+      <Loader2 class="animate-spin" size="24" />
       <span class="ml-2">Loading entity...</span>
     </div>
 
@@ -103,21 +97,22 @@ watch(entity, (newEntity) => {
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-4">
           <h1 class="text-2xl font-bold">{{ entity.Path.split('/').pop() }}</h1>
-          <button 
-            @click="copyToClipboard(entity.ID, entity.ID)" 
+          <button
+            @click="copyToClipboard(entity.ID, entity.ID)"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <span class="font-mono">{{ entity.ID }}</span>
-            <component :is="copiedId === entity.ID ? CheckCircle2 : Copy" 
-                     class="ml-2" 
-                     size="14"
+            <component :is="copiedId === entity.ID ? CheckCircle2 : Copy"
+                       class="ml-2"
+                       size="14"
             />
           </button>
         </div>
-        <a :href="`${GAME_DATA_FOLDER}/entities.json`" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16"/>
+        <a :href="`${GAME_DATA_FOLDER}/entities.json`" target="_blank"
+           class="vp-button medium brand flex items-center gap-2">
+          <Database size="16" />
           Entities API
-          <ExternalLink size="14" class="opacity-80"/>
+          <ExternalLink size="14" class="opacity-80" />
         </a>
       </div>
 
@@ -127,17 +122,17 @@ watch(entity, (newEntity) => {
         <div class="flex-shrink-0">
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width:300px; height:300px;">
             <template v-if="!imageError && getEntityImageUrl(entity.ID)">
-              <img 
-                :src="getEntityImageUrl(entity.ID)" 
+              <img
+                :src="getEntityImageUrl(entity.ID)"
                 @error="handleImageError"
                 class="w-full h-full object-contain p-8"
                 :alt="entity.Path.split('/').pop()"
               >
             </template>
-            <div v-else 
+            <div v-else
                  class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <Image size="48" class="text-gray-400"/>
+                <Image size="48" class="text-gray-400" />
               </div>
               <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
               <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">ID: {{ entity.ID }}</span>
@@ -150,7 +145,7 @@ watch(entity, (newEntity) => {
           <div class=" dark:bg-gray-700">
             <div class="flex flex-wrap gap-1.5 pt-0.5">
               <template v-for="component in entity.Components" :key="component">
-                <VPBadge type="info" :text="component"/>
+                <VPBadge type="info" :text="component" />
               </template>
             </div>
           </div>
@@ -158,15 +153,16 @@ watch(entity, (newEntity) => {
           <div class="space-y-2">
             <h2 class="text-xl font-semibold">Path:</h2>
             <div class="flex items-center gap-2">
-              <div class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all p-3 bg-gray-50 dark:bg-gray-800 flex-1">
+              <div
+                class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all p-3 bg-gray-50 dark:bg-gray-800 flex-1">
                 {{ entity.Path }}
               </div>
-              <button 
-                @click="copyToClipboard(entity.Path, 'path')" 
+              <button
+                @click="copyToClipboard(entity.Path, 'path')"
                 class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
-                <component :is="copiedId === 'path' ? CheckCircle2 : Copy" 
-                        size="14"
+                <component :is="copiedId === 'path' ? CheckCircle2 : Copy"
+                           size="14"
                 />
               </button>
             </div>
@@ -177,7 +173,7 @@ watch(entity, (newEntity) => {
       <!-- Return to Entities -->
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
-          <ArrowLeft size="16" class="opacity-80"/>
+          <ArrowLeft size="16" class="opacity-80" />
           <a href="/references/entities" class="vp-button medium brand underline">
             Back to Entities
           </a>
@@ -190,7 +186,7 @@ watch(entity, (newEntity) => {
       <div class="space-y-4">
         <p class="text-gray-500">Entity not found</p>
         <div class="flex items-center gap-2 justify-center">
-          <ArrowLeft size="16" class="opacity-80"/>
+          <ArrowLeft size="16" class="opacity-80" />
           <a href="/references/entities" class="vp-button medium brand underline">
             Back to Entities
           </a>

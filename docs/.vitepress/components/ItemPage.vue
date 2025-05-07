@@ -1,16 +1,14 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
-import { Copy, CheckCircle2, ExternalLink, Database, Tag, Loader2, ArrowLeft } from 'lucide-vue-next'
-import { 
-  getGameData,
+import { onMounted, ref, watch } from 'vue'
+import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
+import {
   GAME_DATA_FOLDER,
+  getGameData,
   getItemCategoryText,
-  getItemRarityText,
   getItemFlagText,
+  getItemRarityText,
   ITEM_IMAGE_SERVER,
   MISSING_IMAGE_URL,
-  CATEGORY_COLORS,
-  RARITY_COLORS
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
@@ -93,7 +91,7 @@ watch(item, (newItem) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24"/>
+      <Loader2 class="animate-spin" size="24" />
       <span class="ml-2">Loading item...</span>
     </div>
 
@@ -102,25 +100,27 @@ watch(item, (newItem) => {
       <!-- Header -->
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-4">
-          <VPBadge type="info" :text="getItemCategoryText(item.Category)"/><h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
-          <button 
-            @click="copyToClipboard(item.Id, item.Id)" 
+          <VPBadge type="info" :text="getItemCategoryText(item.Category)" />
+          <h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
+          <button
+            @click="copyToClipboard(item.Id, item.Id)"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.Id }}</span>
-            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14" />
           </button>
-          <button 
-            @click="copyToClipboard(item.ShortName, 'shortname')" 
+          <button
+            @click="copyToClipboard(item.ShortName, 'shortname')"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.ShortName }}</span>
-            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14" />
           </button>
 
         </div>
-        <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16"/>
+        <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank"
+           class="vp-button medium brand flex items-center gap-2">
+          <Database size="16" />
           Items API
-          <ExternalLink size="14" class="opacity-80"/>
+          <ExternalLink size="14" class="opacity-80" />
         </a>
       </div>
 
@@ -129,14 +129,14 @@ watch(item, (newItem) => {
         <!-- Item Image -->
         <div class="flex-shrink-0">
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width:300px; height:300px;">
-            <img 
-              :src="getItemImageUrl(item.ShortName)" 
+            <img
+              :src="getItemImageUrl(item.ShortName)"
               @error="handleImageError"
               class="w-full h-full object-contain p-8"
               :alt="item.DisplayName"
             >
             <div class="absolute inset-0 flex items-center justify-center" v-if="!item.Id">
-              <Tag size="48" class="text-gray-400"/>
+              <Tag size="48" class="text-gray-400" />
             </div>
           </div>
         </div>
@@ -146,11 +146,11 @@ watch(item, (newItem) => {
           <div class=" dark:bg-gray-700">
             <p class="text-gray-600 dark:text-gray-300">{{ item.Description }}</p>
             <div class="flex flex-wrap gap-1 mt-4">
-              <VPBadge v-if="item.Rarity != 0" type="danger" :text="getItemRarityText(item.Rarity)"/>
-              
-              <VPBadge type="info" :text="`Stack: ${item.Stack}`"/>
+              <VPBadge v-if="item.Rarity != 0" type="danger" :text="getItemRarityText(item.Rarity)" />
+
+              <VPBadge type="info" :text="`Stack: ${item.Stack}`" />
               <template v-for="flag in getItemFlagText(item.Flags)" :key="flag">
-                <VPBadge type="danger" :text="flag"/>
+                <VPBadge type="danger" :text="flag" />
               </template>
             </div>
           </div>
@@ -165,7 +165,7 @@ watch(item, (newItem) => {
       <!-- Return to Items -->
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
-          <ArrowLeft size="16" class="opacity-80"/>
+          <ArrowLeft size="16" class="opacity-80" />
           <a href="/references/items" class="vp-button medium brand underline">
             Back to Items
           </a>

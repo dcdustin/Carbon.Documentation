@@ -13,8 +13,9 @@ class ReleaseBuild {
   color: string
   rustBranches: string[]
   builds: string[]
+  collapsed: boolean
 
-  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[]) {
+  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[], collapsed: boolean = false) {
     this._id = ReleaseBuild.__idCounter++
     this.branch = branch
     this.tag = tag
@@ -22,6 +23,7 @@ class ReleaseBuild {
     this.color = color
     this.rustBranches = rustBranches
     this.builds = builds
+    this.collapsed = collapsed
   }
 }
 
@@ -40,22 +42,22 @@ class DownloadSection {
 
 const sections = [
   new DownloadSection('Main', [
-    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal']),
+    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal'], true),
     new ReleaseBuild('develop', 'edge_build', 'Edge Build', '#6a6a0c', ['public', 'release'], ['Debug', 'Minimal']),
     new ReleaseBuild('qa', 'qa_build', 'QA', '#0c676a', ['public', 'release', 'staging'], ['Debug', 'Release', 'Minimal']),
-    new ReleaseBuild('preview', 'preview_build', 'Preview', '#984b2b', ['public', 'release'], ['Debug', 'Minimal'])
+    new ReleaseBuild('preview', 'preview_build', 'Preview', '#984b2b', ['public', 'release'], ['Debug', 'Minimal']),
   ]),
   new DownloadSection('Rust', [
     new ReleaseBuild('rust_beta/staging', 'rustbeta_staging_build', 'Rust (Beta) Staging', '', ['staging'], ['Debug', 'Minimal']),
     new ReleaseBuild('rust_beta/release', 'rustbeta_release_build', 'Rust (Beta) Release', '', ['release'], ['Debug', 'Release', 'Minimal']),
     new ReleaseBuild('rust_beta/aux01', 'rustbeta_aux01_build', 'Rust (Beta) Aux01', '', ['aux01'], ['Debug', 'Minimal']),
     new ReleaseBuild('rust_beta/aux02', 'rustbeta_aux02_build', 'Rust (Beta) Aux02', '', ['aux02'], ['Debug', 'Minimal']),
-    new ReleaseBuild('rust_beta/aux03', 'rustbeta_aux03_build', 'Rust (Beta) Aux03', '', ['aux03'], ['Debug', 'Minimal'])
-  ])
+    new ReleaseBuild('rust_beta/aux03', 'rustbeta_aux03_build', 'Rust (Beta) Aux03', '', ['aux03'], ['Debug', 'Minimal']),
+  ]),
 ]
 
 const activeSection: Ref<DownloadSection | null> = ref(sections.length ? sections[0] : null)
-const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuilds).map(_ => false))
+const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuilds).map(release => release.collapsed))
 </script>
 
 <template>

@@ -6,24 +6,24 @@
 </template>
 
 <script setup lang="ts">
-import CarbonBadge from './CarbonBadge.vue';
-import MarkdownIt from 'markdown-it';
+import CarbonBadge from './CarbonBadge.vue'
+import MarkdownIt from 'markdown-it'
 
 interface Props {
   variant: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'
   text: string;
 }
 
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  breaks: false
-});
+  breaks: false,
+})
 
-const renderedText = md.renderInline(props.text);
+const renderedText = md.renderInline(props.text)
 </script>
 
 <style scoped>
