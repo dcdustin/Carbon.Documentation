@@ -29,7 +29,7 @@ const checkVersion = async () => {
     if (!response.ok) return null
     const version = await response.text()
     const cachedVersion = localStorage.getItem(VERSION_CACHE_KEY)
-    
+
     if (cachedVersion !== version) {
       // Clear all cached data
       Object.keys(localStorage)
@@ -73,7 +73,7 @@ const setCache = (url: string, data: any) => {
     const key = getCacheKey(url)
     localStorage.setItem(key, JSON.stringify({
       data,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     }))
   } catch (error) {
     console.warn('Error writing to cache:', error)
@@ -208,14 +208,14 @@ export const getGameData = async (url: string) => {
       throw new Error(`Failed to fetch data: ${response.status}`)
     }
     const data = await response.json()
-    
+
     // Cache the response in localStorage
     try {
       setCache(url, data)
     } catch (cacheError) {
       console.warn('Failed to cache data:', cacheError)
     }
-    
+
     return data
   } catch (error) {
     console.error('Error fetching data:', error)

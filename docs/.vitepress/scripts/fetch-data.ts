@@ -1,7 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { HOOKS_API_URL } from '../shared/constants'
+import { HOOKS_API_URL } from '@/shared/constants'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -34,19 +34,19 @@ async function fetchData() {
     console.log('Fetching hooks data...')
     const response = await fetch(HOOKS_API_URL)
     const data = await response.json()
-    
+
     // Create data directory if it doesn't exist
     const dataDir = path.resolve(__dirname, '../data')
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true })
     }
-    
+
     // Save the raw data
     fs.writeFileSync(
       path.resolve(dataDir, 'hooks.json'),
-      JSON.stringify(data, null, 2)
+      JSON.stringify(data, null, 2),
     )
-    
+
     // Transform data for search index
     const searchData: SearchData[] = []
     for (const category in data) {
@@ -61,21 +61,21 @@ async function fetchData() {
                 hook.descriptions?.join(' ') || '',
                 hook.methodSource || '',
                 hook.parameters?.map(p => `${p.name} ${p.typeName}`).join(' ') || '',
-                hook.returnTypeName || ''
+                hook.returnTypeName || '',
               ].filter(Boolean).join(' '),
-              link: `/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`
+              link: `/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`,
             })
           }
         })
       }
     }
-    
+
     // Save the search data
     fs.writeFileSync(
       path.resolve(dataDir, 'hooks-search.json'),
-      JSON.stringify(searchData, null, 2)
+      JSON.stringify(searchData, null, 2),
     )
-    
+
     console.log('Hooks data fetched and saved successfully')
   } catch (error) {
     console.error('Error fetching hooks data:', error)
