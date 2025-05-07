@@ -1,8 +1,8 @@
-import { defineConfig } from "vitepress";
-import tailwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
-import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
-import { ITEMS_API_URL, HOOKS_API_URL, BLUEPRINTS_API_URL } from "./shared/constants";
+import { defineConfig } from 'vitepress'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+import { BLUEPRINTS_API_URL, HOOKS_API_URL, ITEMS_API_URL } from './shared/constants'
 
 
 const references = [
@@ -13,8 +13,8 @@ const references = [
       { text: 'Hooks', link: '/references/hooks/' },
       { text: 'Commands', link: '/references/commands/' },
       { text: 'ConVars', link: '/references/convars/' },
-      { text: 'Switches', link: '/references/switches/' }
-    ]
+      { text: 'Switches', link: '/references/switches/' },
+    ],
   },
   {
     text: 'Rust',
@@ -25,59 +25,59 @@ const references = [
       { text: 'Entities', link: '/references/entities/' },
       { text: 'Prefabs', link: '/references/prefabs/' },
       { text: 'ConVars', link: '/references/rust-convars/' },
-      { text: 'Commands', link: '/references/rust-commands/' }
-    ]
-  }
-];
+      { text: 'Commands', link: '/references/rust-commands/' },
+    ],
+  },
+]
 
 async function fetchItems() {
   try {
-    const response = await fetch(ITEMS_API_URL);
-    const items = await response.json();
-    return items;
+    const response = await fetch(ITEMS_API_URL)
+    const items = await response.json()
+    return items
   } catch (error) {
-    console.error("Failed to fetch items for search indexing:", error);
-    return [];
+    console.error('Failed to fetch items for search indexing:', error)
+    return []
   }
-} 
+}
 
 export default defineConfig({
-  title: "Carbon",
-  description: "A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.",
-  base: "/.",
+  title: 'Carbon',
+  description: 'A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.',
+  base: '/.',
   head: [
-    ["link", { rel: "icon", href: "/favicon.ico" }],
-    ["meta", { property: "og:image", content: "/carbon-bg.webp" }],
-    ["meta", { property: "og:url", content: "https://docs.carbonmod.gg" }],
-    ["meta", { name: "twitter:card", content: "summary_large_image" }]
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { property: 'og:image', content: '/carbon-bg.webp' }],
+    ['meta', { property: 'og:url', content: 'https://docs.carbonmod.gg' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],
   ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
     image: {
-      lazyLoading: true
+      lazyLoading: true,
     },
     config(md) {
-      md.use(tabsMarkdownPlugin);
-    }
+      md.use(tabsMarkdownPlugin)
+    },
   },
   themeConfig: {
-    logo: "/logos/carbon-logo-small.webp",
-    outlineTitle: "On this page",
+    logo: '/logos/carbon-logo-small.webp',
+    outlineTitle: 'On this page',
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Owners", link: "/owners/getting-started" },
-      { text: "Developers", link: "/devs/local-server-hosting" },
-      { text: "References", items: references},
-      { text: "Release Notes", link: "/references/release-notes/" }
+      { text: 'Home', link: '/' },
+      { text: 'Owners', link: '/owners/getting-started' },
+      { text: 'Developers', link: '/devs/local-server-hosting' },
+      { text: 'References', items: references },
+      { text: 'Release Notes', link: '/references/release-notes/' },
     ],
 
     sidebar: {
       '/': [
-        { text: 'Getting Started', link: '/owners/getting-started'},
-        { text: 'Installing Carbon', link: '/owners/installing-carbon'},
-        { text: "Release Notes", link: "/references/release-notes/" },
+        { text: 'Getting Started', link: '/owners/getting-started' },
+        { text: 'Installing Carbon', link: '/owners/installing-carbon' },
+        { text: 'Release Notes', link: '/references/release-notes/' },
         {
           text: 'Owners Documentation',
           collapsed: false,
@@ -88,8 +88,8 @@ export default defineConfig({
               items: [
                 { text: 'Vault', link: '/devs/features/vault' },
                 { text: 'Minimal', link: '/owners/features/minimal' },
-                { text: 'CarbonAuto', link: '/owners/features/carbonauto' }
-              ]
+                { text: 'CarbonAuto', link: '/owners/features/carbonauto' },
+              ],
             },
             {
               text: 'Modules',
@@ -103,27 +103,34 @@ export default defineConfig({
                 { text: 'File Picker Module', link: '/owners/modules/file-picker-module' },
                 { text: 'Image Database Module', link: '/owners/modules/image-db-module' },
                 { text: 'Modal Module', link: '/owners/modules/modal-module' },
-                { text: 'Optional Modules', collapsed: true, items: [
-                  { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
-                  { text: 'Circular Networking Module', link: '/owners/modules/optional-modules/circularnetworking-module' },
-                  { text: 'Gather Manager Module', link: '/owners/modules/optional-modules/gather-manager-module' },
-                  { text: 'Moderation Tools Module', link: '/owners/modules/optional-modules/moderation-tools-module' },
-                  { text: 'Selective EAC Module', link: '/owners/modules/optional-modules/selective-eac-module' },
-                  { text: 'Stack Manager Module', link: '/owners/modules/optional-modules/stack-manager-module' },
-                  { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
-                  { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
-                ]
-              }]
+                {
+                  text: 'Optional Modules', collapsed: true, items: [
+                    { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
+                    {
+                      text: 'Circular Networking Module',
+                      link: '/owners/modules/optional-modules/circularnetworking-module',
+                    },
+                    { text: 'Gather Manager Module', link: '/owners/modules/optional-modules/gather-manager-module' },
+                    {
+                      text: 'Moderation Tools Module',
+                      link: '/owners/modules/optional-modules/moderation-tools-module',
+                    },
+                    { text: 'Selective EAC Module', link: '/owners/modules/optional-modules/selective-eac-module' },
+                    { text: 'Stack Manager Module', link: '/owners/modules/optional-modules/stack-manager-module' },
+                    { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
+                    { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
+                  ],
+                }],
             },
             {
               text: 'Hosting',
               collapsed: true,
               items: [
                 { text: 'Linux Hosting', link: '/owners/linux-hosting' },
-              ]
+              ],
             },
-            { text: 'Oxide Porting', link: '/owners/oxide-porting'}
-          ]
+            { text: 'Oxide Porting', link: '/owners/oxide-porting' },
+          ],
         },
         {
           text: 'Developer Documentation',
@@ -148,26 +155,26 @@ export default defineConfig({
                 { text: 'Async Shutdown', link: '/devs/features/async-shutdown' },
                 { text: 'ZIP Scripts & Packages', link: '/devs/features/zip-script-packages' },
                 { text: 'Profiler (Mono)', link: '/devs/features/mono-profiler' },
-              ]
+              ],
             },
             {
               text: 'Modules',
               collapsed: true,
               items: [
-                { text: 'Integrating Modules', link: '/devs/modules/integrating-modules'},
+                { text: 'Integrating Modules', link: '/devs/modules/integrating-modules' },
                 { text: 'Color Picker Module', link: '/devs/modules/color-picker-module' },
                 { text: 'Date Picker Module', link: '/devs/modules/date-picker-module' },
                 { text: 'File Picker Module', link: '/devs/modules/file-picker-module' },
                 { text: 'Image Database Module', link: '/devs/modules/image-db-module' },
                 { text: 'Modal Module', link: '/devs/modules/modal-module' },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         {
-          text: 'References', items: references
-        }
-      ]
+          text: 'References', items: references,
+        },
+      ],
     },
 
     socialLinks: [
@@ -178,9 +185,9 @@ export default defineConfig({
     ],
 
     footer: {
-      message: "Released under the MIT License. Feel free to <a href='https://github.com/CarbonCommunity/Carbon.Documentation' target='_blank'>help us improve</a>!",
+      message: 'Released under the MIT License. Feel free to <a href=\'https://github.com/CarbonCommunity/Carbon.Documentation\' target=\'_blank\'>help us improve</a>!',
       copyright:
-        "All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.",
+        'All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.',
     },
 
     search: {
@@ -194,9 +201,9 @@ export default defineConfig({
             boost: {
               title: 5,
               headers: 4,
-              text: 2
-            }
-          }
+              text: 2,
+            },
+          },
         },
         _render: async (src, env, md) => {
           const html = await md.render(src, env)
@@ -245,14 +252,14 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
           }
 
           return html
-        }
-      }
+        },
+      },
     },
 
     editLink: {
       pattern:
-        "https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path",
-      text: "Suggest a change",
+        'https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path',
+      text: 'Suggest a change',
     },
   },
   vite: {
@@ -266,17 +273,17 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes("node_modules")) {
-              if (id.includes("@vueuse")) return "vueuse";
-              if (id.includes("markdown-it")) return "markdown";
-              if (id.includes("lucide-vue-next")) return "icons";
+            if (id.includes('node_modules')) {
+              if (id.includes('@vueuse')) return 'vueuse'
+              if (id.includes('markdown-it')) return 'markdown'
+              if (id.includes('lucide-vue-next')) return 'icons'
               if (
-                id.includes("class-variance-authority") ||
-                id.includes("clsx") ||
-                id.includes("tailwind-merge") ||
-                id.includes("tailwindcss-animate")
+                id.includes('class-variance-authority') ||
+                id.includes('clsx') ||
+                id.includes('tailwind-merge') ||
+                id.includes('tailwindcss-animate')
               )
-                return "ui";
+                return 'ui'
             }
           },
         },
@@ -286,8 +293,8 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
   vue: {
     template: {
       compilerOptions: {
-        isCustomElement: (tag) => tag.includes("-"),
+        isCustomElement: (tag) => tag.includes('-'),
       },
     },
   },
-});
+})
