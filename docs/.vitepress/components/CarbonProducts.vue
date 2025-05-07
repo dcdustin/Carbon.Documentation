@@ -6,8 +6,8 @@ const products = ref([])
 onMounted(async () => {
   const response = await fetch('https://codefling.com/db/?category=21', {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
 
   products.value = await response.json()
