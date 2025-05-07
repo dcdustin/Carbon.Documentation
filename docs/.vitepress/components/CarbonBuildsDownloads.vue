@@ -13,8 +13,9 @@ class ReleaseBuild {
   color: string
   rustBranches: string[]
   builds: string[]
+  collapsed: boolean
 
-  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[]) {
+  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[], collapsed: boolean = false) {
     this._id = ReleaseBuild.__idCounter++
     this.branch = branch
     this.tag = tag
@@ -22,6 +23,7 @@ class ReleaseBuild {
     this.color = color
     this.rustBranches = rustBranches
     this.builds = builds
+    this.collapsed = collapsed
   }
 }
 
@@ -40,7 +42,7 @@ class DownloadSection {
 
 const sections = [
   new DownloadSection('Main', [
-    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal']),
+    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal'], true),
     new ReleaseBuild('develop', 'edge_build', 'Edge Build', '#6a6a0c', ['public', 'release'], ['Debug', 'Minimal']),
     new ReleaseBuild('qa', 'qa_build', 'QA', '#0c676a', ['public', 'release', 'staging'], ['Debug', 'Release', 'Minimal']),
     new ReleaseBuild('preview', 'preview_build', 'Preview', '#984b2b', ['public', 'release'], ['Debug', 'Minimal']),
@@ -55,7 +57,7 @@ const sections = [
 ]
 
 const activeSection: Ref<DownloadSection | null> = ref(sections.length ? sections[0] : null)
-const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuilds).map(_ => false))
+const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuilds).map(release => release.collapsed))
 </script>
 
 <template>
