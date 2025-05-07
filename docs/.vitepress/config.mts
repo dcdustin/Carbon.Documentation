@@ -77,6 +77,7 @@ export default defineConfig({
       '/': [
         { text: 'Getting Started', link: '/owners/getting-started'},
         { text: 'Installing Carbon', link: '/owners/installing-carbon'},
+        { text: "Release Notes", link: "/references/release-notes/" },
         {
           text: 'Owners Documentation',
           collapsed: false,
