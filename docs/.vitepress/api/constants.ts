@@ -19,4 +19,4 @@ export const URL_ASSETS_MISSING = 'https://carbonmod.gg/assets/media/missing.jpg
 export const URL_VERSION_DOCS = 'https://carbonmod.gg/version/?id=docs'
 
 export const CACHE_TIME_VERSION_FETCH_DELAY = 1000 * 20
-export const CACHE_TIME_ITEM_TTL = 1000 * 60 * 60 * 3
+export const CACHE_TIME_ITEM_TTL = 1000 * 60 * 60 * 12
