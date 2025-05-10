@@ -1,7 +1,7 @@
 <script setup>
 import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { ArrowLeft, CheckCircle2, Copy } from 'lucide-vue-next'
+import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-csharp'
@@ -143,7 +143,7 @@ watch(hook, (newHook) => {
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      <Loader2 class="animate-spin" size="24"/>
       <span class="ml-2">Loading hook..</span>
     </div>
 
