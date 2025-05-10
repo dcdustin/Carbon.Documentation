@@ -1,4 +1,6 @@
 // API URLs from environment variables
+import { getFromCache, saveToCache } from '../api/cache'
+
 export const HOOKS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/hooks.json'
 export const BLUEPRINTS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/blueprints.json'
 export const ITEMS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/items.json'
@@ -46,7 +48,7 @@ const checkVersion = async () => {
   }
 }
 
-const getFromCache = async (url: string) => {
+/*const getFromCache = async (url: string) => {
   try {
     // Check version first
     const isVersionValid = await checkVersion()
@@ -66,7 +68,7 @@ const getFromCache = async (url: string) => {
     console.warn('Error reading from cache:', error)
     return null
   }
-}
+}*/
 
 const setCache = (url: string, data: any) => {
   try {
@@ -196,42 +198,20 @@ export const CATEGORY_COLORS = {
 } as const
 
 export const getGameData = async (url: string) => {
-  try {
-    // Check localStorage cache first
-    const cached = await getFromCache(url)
-    if (cached) {
-      return cached
-    }
-
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.status}`)
-    }
-    const data = await response.json()
-
-    // Cache the response in localStorage
-    try {
-      setCache(url, data)
-    } catch (cacheError) {
-      console.warn('Failed to cache data:', cacheError)
-    }
-
-    return data
-  } catch (error) {
-    console.error('Error fetching data:', error)
-    // Try to get cached data even if it's expired
-    try {
-      const key = getCacheKey(url)
-      const cached = localStorage.getItem(key)
-      if (cached) {
-        const { data } = JSON.parse(cached)
-        return data
-      }
-    } catch (cacheError) {
-      console.warn('Failed to get expired cache:', cacheError)
-    }
-    throw error
+  const cached = await getFromCache(url)
+  if (cached) {
+    return cached
   }
+
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data: ${response.status}`)
+  }
+  const data = await response.json()
+
+  saveToCache(url, data)
+
+  return data
 }
 
 // need to use item shortname to get the image ex: https://carbonmod.gg/assets/media/items/hat.wolf.png
