@@ -21,7 +21,8 @@ const loadingMore = ref(false)
 const hasMore = ref(true)
 const categories = ref([])
 const selectedCategory = ref('all')
-const showOxideOnly = ref(false)
+const showOxideHooks = ref(true)
+const showCarbonHooks = ref(true)
 
 const LINK_API = HOOKS_API_URL
 
@@ -41,19 +42,21 @@ const filteredHooks = computed(() => {
     filtered = filtered.filter(hook => selectedCategory.value === 'all' || hook?.category === selectedCategory.value)
   }
 
-  if (showOxideOnly.value) {
-    filtered = filtered.filter(hook => hook.oxideCompatible)
+  if (showOxideHooks.value !== showCarbonHooks.value) {
+    filtered = filtered.filter(hook => hook.oxideCompatible === showOxideHooks.value && hook.oxideCompatible !== showCarbonHooks.value)
+  } else if (!showOxideHooks.value && !showCarbonHooks.value) {
+    filtered = []
   }
 
   if (debouncedSearchQuery.value) {
-    const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchLower = debouncedSearchQuery.value.toLowerCase();
     filtered = filtered.filter(hook => {
       if (!hook) return false
       return (
         (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
         (hook.descriptions && hook.descriptions.some(desc => desc.toLowerCase().includes(searchLower)))
       )
-    })
+    });
   }
 
   return filtered
@@ -289,12 +292,24 @@ watch(() => window.location.hash, (newHash) => {
             </select>
           </div>
           <div class="flex items-center gap-2">
-            <input
-              type="checkbox"
-              v-model="showOxideOnly"
-              class="w-4 h-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary"
-            >
-            <span class="text-sm">Oxide-Only</span>
+            <div class="flex items-center gap-1">
+              <input
+                  type="checkbox"
+                  id="chkBkFl1"
+                  v-model="showOxideHooks"
+                  class="w-4 h-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary"
+              >
+              <label class="text-sm" for="chkBkFl1">Oxide</label>
+            </div>
+            <div class="flex items-center gap-1">
+              <input
+                  type="checkbox"
+                  id="chkBkFl2"
+                  v-model="showCarbonHooks"
+                  class="w-4 h-4 rounded border-gray-300 dark:border-gray-700 text-primary focus:ring-primary"
+              >
+              <label class="text-sm" for="chkBkFl2">Carbon</label>
+            </div>
           </div>
         </div>
       </div>
