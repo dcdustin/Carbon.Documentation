@@ -40,7 +40,7 @@ async function tryUpdateCacheVersion() {
 }
 
 function encodeUrl(url: string): string {
-  return btoa(encodeURIComponent(url))
+  return 'CST2_' + btoa(encodeURIComponent(url))
 }
 
 export function getFromMemOrStorage(id: string): CacheItem | null {
@@ -85,6 +85,7 @@ export function saveToCache(url: string, data: any) {
   const cacheItem: CacheItem = { data: data, timestampCreated: Date.now(), versionId: _currentCacheVersion }
 
   _cacheMap.set(id, cacheItem)
+
   try {
     localStorage.setItem(id, JSON.stringify(cacheItem))
   } catch (e) {
