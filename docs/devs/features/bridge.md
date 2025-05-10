@@ -14,7 +14,7 @@ At its core, it uses `Fleck` (AKA Facepunch `RCon`'s listener). It's entirely in
 :::tip USEFUL
 Carbon attempts to boot up **Carbon.Bridge** right before Rust's `RCon` attempts to get online. It looks for `-bridge.ip` [optional], `-bridge-port` [optional] and `-bridge.password` [required]. 
 
-> By default **the Bridge server won't boot**, unless the password is set in the command-line.
+> By default, **the Bridge server won't boot**, unless the password is set in the command-line.
 
 ```csharp
 Carbon.Components.Bridge.Server.Start(
