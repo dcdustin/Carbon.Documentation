@@ -55,11 +55,20 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark'
+    },
     image: {
       lazyLoading: true,
     },
     config(md) {
       md.use(tabsMarkdownPlugin)
+      const originalFence = md.renderer.rules.fence!
+      md.renderer.rules.fence = (...args) => {
+        const raw = originalFence(...args)
+        return raw.replace('<pre', '<pre v-pre')
+      }
     },
   },
   themeConfig: {
