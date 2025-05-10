@@ -3,7 +3,7 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { BLUEPRINTS_API_URL, HOOKS_API_URL, ITEMS_API_URL } from './shared/constants'
-
+import MarkdownItFootnote from 'markdown-it-footnote';
 
 const references = [
   {
@@ -63,12 +63,7 @@ export default defineConfig({
       lazyLoading: true,
     },
     config(md) {
-      md.use(tabsMarkdownPlugin)
-      const originalFence = md.renderer.rules.fence!
-      md.renderer.rules.fence = (...args) => {
-        const raw = originalFence(...args)
-        return raw.replace('<pre', '<pre v-pre')
-      }
+      md.use(MarkdownItFootnote);
     },
   },
   themeConfig: {
