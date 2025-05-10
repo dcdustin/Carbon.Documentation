@@ -97,7 +97,6 @@ export default defineConfig({
             },
             {
               text: 'Modules',
-              link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
                 { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
