@@ -10,16 +10,18 @@ class ReleaseBuild {
   branch: string
   tag: string
   displayName: string
+  displayDesc : string
   color: string
   rustBranches: string[]
   builds: string[]
   collapsed: boolean
 
-  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[], collapsed: boolean = false) {
+  constructor(branch: string, tag: string, displayName: string, color: string, rustBranches: string[], builds: string[], collapsed: boolean = false, displayDesc: string = "") {
     this._id = ReleaseBuild.__idCounter++
     this.branch = branch
     this.tag = tag
     this.displayName = displayName
+    this.displayDesc = displayDesc
     this.color = color
     this.rustBranches = rustBranches
     this.builds = builds
@@ -42,10 +44,10 @@ class DownloadSection {
 
 const sections = [
   new DownloadSection('Main', [
-    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal'], true),
-    new ReleaseBuild('develop', 'edge_build', 'Edge Build', '#6a6a0c', ['public', 'release'], ['Debug', 'Minimal']),
-    new ReleaseBuild('qa', 'qa_build', 'QA', '#0c676a', ['public', 'release', 'staging'], ['Debug', 'Release', 'Minimal']),
-    new ReleaseBuild('preview', 'preview_build', 'Preview', '#984b2b', ['public', 'release'], ['Debug', 'Minimal']),
+    new ReleaseBuild('production', 'production_build', 'Production', '#8f3333', ['public', 'release'], ['Release', 'Minimal'], true, "This is the most stable Carbon build you could run against the official Rust server public release."),
+    new ReleaseBuild('develop', 'edge_build', 'Edge Build', '#6a6a0c', ['public', 'release'], ['Debug', 'Minimal'], false, "This build is Carbon's version of a staging build, packed with the most recent changes and features in Carbon that might end up getting added or not in the production build."),
+    new ReleaseBuild('qa', 'qa_build', 'QA', '#0c676a', ['public', 'release', 'staging'], ['Debug', 'Release', 'Minimal'], false, "Periodically updated when the Carbon team has one or more significant changes that need crowd testing."),
+    new ReleaseBuild('preview', 'preview_build', 'Preview', '#984b2b', ['public', 'release'], ['Debug', 'Minimal'], false, "This build is periodically updated and is packed with latest or experimental features and ideas that might never end up getting released in the official Carbon build."),
   ]),
   new DownloadSection('Rust', [
     new ReleaseBuild('rust_beta/staging', 'rustbeta_staging_build', 'Rust (Beta) Staging', '', ['staging'], ['Debug', 'Minimal']),
@@ -94,6 +96,7 @@ const expandedReleases: Ref<boolean[]> = ref(sections.flatMap(x => x.releaseBuil
             class="collapsible-content px-6 py-3 flex flex-col"
           >
             <span>
+              <p v-if="releaseBuild.displayDesc != ''">{{ releaseBuild.displayDesc }}</p>
               Based on the
               <code>
                 <a
