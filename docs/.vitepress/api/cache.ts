@@ -46,6 +46,7 @@ function encodeUrl(url: string): string {
 export function getFromMemOrStorage(id: string): CacheItem | null {
   const itemFromMemory = _cacheMap.get(id) as CacheItem
   if (itemFromMemory) {
+    console.log('Retrieved cache from memory')
     return itemFromMemory
   }
 
@@ -56,14 +57,18 @@ export function getFromMemOrStorage(id: string): CacheItem | null {
       // should reflect `CacheItem` type
       if (parsed && typeof parsed.versionId === 'string' && typeof parsed.timestampCreated === 'number' && parsed.data !== undefined) {
         const cacheItem = parsed as CacheItem
+        console.log('Saved to mem from storage')
         _cacheMap.set(id, cacheItem)
+        console.log('Retrieved from localstorage')
         return cacheItem
       } else {
         console.warn('Error: parsing item from storage, invalid structure:', parsed)
+        console.log('removing from storage, cuz invalid')
         localStorage.removeItem(id)
       }
     } catch (e) {
       console.warn('Error: parsing item from storage:', e)
+      console.log('removing from storage, cuz invalid')
       localStorage.removeItem(id)
     }
   }
@@ -73,10 +78,16 @@ export function getFromMemOrStorage(id: string): CacheItem | null {
 
 function isCacheItemValid(item: CacheItem) {
   if (item.versionId !== _currentCacheVersion) {
+    console.log('cacheitem, version differs')
     return false
   }
 
-  return Date.now() - item.timestampCreated <= CACHE_TIME_ITEM_TTL
+  if (Date.now() - item.timestampCreated > CACHE_TIME_ITEM_TTL) {
+    console.log('cacheitem, timestamp expired', Date.now(), item.timestampCreated, Date.now() - item.timestampCreated, CACHE_TIME_ITEM_TTL)
+    return false
+  }
+
+  return  true
 }
 
 export function saveToCache(url: string, data: any) {
@@ -84,9 +95,11 @@ export function saveToCache(url: string, data: any) {
 
   const cacheItem: CacheItem = { data: data, timestampCreated: Date.now(), versionId: _currentCacheVersion }
 
+  console.log('saved to mem')
   _cacheMap.set(id, cacheItem)
 
   try {
+    console.log('saved to storage')
     localStorage.setItem(id, JSON.stringify(cacheItem))
   } catch (e) {
     console.warn('Error: saving to localstorage:')
@@ -103,6 +116,7 @@ export async function getFromCache<T>(url: string): Promise<T | null> {
   if (cacheItem && isCacheItemValid(cacheItem)) {
     return cacheItem.data as T
   } else {
+    console.log('removing from mem and storage, cuz didn\'t find in both')
     _cacheMap.delete(id)
     localStorage.removeItem(id)
   }
