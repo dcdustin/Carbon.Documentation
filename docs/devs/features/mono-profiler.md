@@ -8,6 +8,13 @@ description: A high-speed, lightweight Mono profiler written in Rust, designed t
 A high-speed, lightweight Mono profiler written in Rust, designed to profile game assemblies, Carbon,
 plugins, modules & extensions at high depth.
 
+:::danger JUST IN
+We now provide a standalone version of the Carbon profiler, that **doesn't** require you to run Carbon to use, **optimized to work in Rust vanilla or Oxide environments**. 
+
+You can export all profiles made using it to JSON, CSV or Proto, which you can view or load up in a Carbon server by importing the profiler through the UI. [Learn more.](https://github.com/CarbonCommunity/Carbon.Profiler)
+<CarbonButton href="https://github.com/CarbonCommunity/Carbon/releases/tag/profiler_build" text="Standalone Profiler" external/><p></p>
+:::
+
 ## Introduction
 
 ![Mono Profiler Header](/misc/mono-profiler-header.webp)

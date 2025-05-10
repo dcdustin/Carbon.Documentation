@@ -76,6 +76,7 @@ export default defineConfig({
       '/': [
         { text: 'Getting Started', link: '/owners/getting-started' },
         { text: 'Installing Carbon', link: '/owners/installing-carbon' },
+        { text: 'Configuring Carbon', link: '/owners/configuring-carbon' },
         { text: 'Release Notes', link: '/references/release-notes/' },
         {
           text: 'Owners Documentation',
@@ -88,6 +89,7 @@ export default defineConfig({
                 { text: 'Vault', link: '/devs/features/vault' },
                 { text: 'Minimal', link: '/owners/features/minimal' },
                 { text: 'CarbonAuto', link: '/owners/features/carbonauto' },
+                { text: 'Profiler (Mono)', link: '/devs/features/mono-profiler' },
               ],
             },
             {

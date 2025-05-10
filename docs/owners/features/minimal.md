@@ -4,7 +4,6 @@ description: Carbon's minimal build, focused solely on plugin execution, strippi
 ---
 
 <script setup>
-
 const features = [
     { name: 'CarbonAuto', desc: 'Carbon ConVar variables exist with the purpose of expanding on Rust\'s ConVars and add more customization to your server.', link: '/owners/features/carbonauto' },
     { name: 'Admin Panel', desc: 'The Admin module introduces a new and intuitive way of managing your server in pretty much any way that you\'d need.', link: '/owners/modules/admin-module' },
