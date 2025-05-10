@@ -3,6 +3,7 @@ import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
 import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+// sometime in the future it has to be replaced with the shiki
 import Prism from 'prismjs'
 import 'prismjs/components/prism-csharp'
 import '../theme/custom-prism.css'
