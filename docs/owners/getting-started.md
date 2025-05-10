@@ -1,3 +1,9 @@
+---
+title: Getting Started
+description: Welcome to using Carbon! Getting started should be fairly simple, especially if you have any knowledge of Rust server hosting in general.
+slug: getting-started
+---
+
 ![alt](/logos/carbon-banner-dark-small.webp){.dark-only}
 ![alt](/logos/carbon-banner-light-small.webp){.light-only}
 

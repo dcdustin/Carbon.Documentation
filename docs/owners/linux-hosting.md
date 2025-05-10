@@ -5,8 +5,10 @@ slug: linux-hosting
 ---
 
 # 🐧 Linux Hosting
+![LinuxGSM](/misc/linuxgsm.webp)
 
 ## Setup
+
 
 Carbon now ships with [`LinuxGSM`](https://linuxgsm.com) and can be installed and updated using the included one-liner install scripts!
 

@@ -4,7 +4,6 @@ import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { BLUEPRINTS_API_URL, HOOKS_API_URL, ITEMS_API_URL } from './shared/constants'
 
-
 const references = [
   {
     text: 'Carbon',
@@ -77,6 +76,7 @@ export default defineConfig({
       '/': [
         { text: 'Getting Started', link: '/owners/getting-started' },
         { text: 'Installing Carbon', link: '/owners/installing-carbon' },
+        { text: 'Configuring Carbon', link: '/owners/configuring-carbon' },
         { text: 'Release Notes', link: '/references/release-notes/' },
         {
           text: 'Owners Documentation',
@@ -89,6 +89,7 @@ export default defineConfig({
                 { text: 'Vault', link: '/devs/features/vault' },
                 { text: 'Minimal', link: '/owners/features/minimal' },
                 { text: 'CarbonAuto', link: '/owners/features/carbonauto' },
+                { text: 'Profiler (Mono)', link: '/devs/features/mono-profiler' },
               ],
             },
             {
