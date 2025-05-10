@@ -87,7 +87,7 @@ function isCacheItemValid(item: CacheItem) {
     return false
   }
 
-  return  true
+  return true
 }
 
 export function saveToCache(url: string, data: any) {
