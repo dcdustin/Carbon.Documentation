@@ -53,6 +53,10 @@ export default defineConfig({
   ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
+  sitemap: {
+    hostname: 'https://docs.carbonmod.gg',
+  },
+  lang: 'en-US',
   markdown: {
     image: {
       lazyLoading: true,
@@ -94,7 +98,6 @@ export default defineConfig({
             },
             {
               text: 'Modules',
-              link: '/owners/modules/what-are-modules',
               collapsed: true,
               items: [
                 { text: 'What are Modules?', link: '/owners/modules/what-are-modules' },
