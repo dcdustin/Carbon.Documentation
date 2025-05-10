@@ -54,6 +54,10 @@ export default defineConfig({
   ignoreDeadLinks: true,
   cleanUrls: true,
   lastUpdated: true,
+  sitemap: {
+    hostname: 'https://docs.carbonmod.gg',
+  },
+  lang: 'en-US',
   markdown: {
     theme: {
       light: 'github-light',
