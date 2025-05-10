@@ -28,9 +28,9 @@ const LINK_API = HOOKS_API_URL
 
 const getSanitizedAnchor = (text) => {
   return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
 }
 
 const filteredHooks = computed(() => {
@@ -53,8 +53,8 @@ const filteredHooks = computed(() => {
     filtered = filtered.filter(hook => {
       if (!hook) return false
       return (
-        (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
-        (hook.descriptions && hook.descriptions.some(desc => desc.toLowerCase().includes(searchLower)))
+          (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
+          (hook.descriptions && hook.descriptions.some(desc => desc.toLowerCase().includes(searchLower)))
       )
     });
   }
@@ -224,19 +224,19 @@ watch(() => window.location.hash, (newHash) => {
 
     <h3 class="text-1xl font-bold mb-3">Flag Legend</h3>
     <p class="mb-1"> Hooks marked as
-      <VPBadge type="tip" text="Static" />
+      <VPBadge type="tip" text="Static"/>
       indicate that said hooks are permanently active upon being loaded
     </p>
     <p class="mb-1"> Hooks marked as
-      <VPBadge type="tip" text="Patch" />
+      <VPBadge type="tip" text="Patch"/>
       indicate that they're patches permanently active which don't necessarily execute hooks (modify game code)
     </p>
     <p class="mb-8"> Hooks marked as
-      <VPBadge type="tip" text="IgnoreChecksum" />
+      <VPBadge type="tip" text="IgnoreChecksum"/>
       indicate that hooks or patches with this flag will be dynamically patched regardless of version
     </p>
     <p class="mb-8">
-      <VPBadge type="danger" text="IMPORTANT" />
+      <VPBadge type="danger" text="IMPORTANT"/>
       By default, if hooks are not Static or Patches, they're dynamically applied upon plugin subscription, otherwise
       inactive.
     </p>
@@ -244,24 +244,24 @@ watch(() => window.location.hash, (newHash) => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database size="16"/>
           Hooks API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink size="14" class="opacity-80"/>
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" size="24"/>
       <span class="ml-2">Loading hooks...</span>
     </div>
 
     <div v-else-if="error" class="flex flex-col items-center justify-center py-8 text-center">
       <div class="text-red-500 mb-4">{{ error }}</div>
       <button
-        @click="retryFetch"
-        class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
-        <RefreshCw size="16" />
+          @click="retryFetch"
+          class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
+        <RefreshCw size="16"/>
         Retry
       </button>
     </div>
@@ -270,20 +270,20 @@ watch(() => window.location.hash, (newHash) => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" size="20"/>
             <input
-              type="text"
-              v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
-              placeholder="Search hooks..."
-              class="w-[400px] px-4 py-2"
+                type="text"
+                v-model="searchQuery"
+                @input="updateDebouncedSearch($event.target.value)"
+                placeholder="Search hooks..."
+                class="w-[400px] px-4 py-2"
             >
           </div>
           <div class="flex items-center gap-2">
             <span class="text-sm font-medium">Category:</span>
             <select
-              v-model="selectedCategory"
-              class="px-3 py-2  bg-inherit"
+                v-model="selectedCategory"
+                class="px-3 py-2  bg-inherit"
             >
               <option value="all">All Hooks</option>
               <option v-for="category in categories" :key="category" :value="category">
@@ -317,7 +317,7 @@ watch(() => window.location.hash, (newHash) => {
       <div v-if="paginatedHooks && paginatedHooks.length">
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+              class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
             Showing {{ paginatedHooks.length }} of {{ filteredHooks.length }} hooks
           </div>
         </div>
@@ -334,13 +334,13 @@ watch(() => window.location.hash, (newHash) => {
                         <a :href="`/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`"
                            class="hover:text-primary inline-flex items-center gap-2">
                           {{ hook.fullName }}
-                          <ExternalLink size="14" class="opacity-60" />
+                          <ExternalLink size="14" class="opacity-60"/>
                           <div class="flex flex-wrap gap-1.5 mt-2">
-                            <VPBadge v-if="hook.category" type="info" :text="hook.category" />
+                            <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
                             <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
-                              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`" />
+                              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
                             </div>
-                            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible" />
+                            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
                           </div>
                         </a>
                       </h5>
@@ -360,7 +360,7 @@ watch(() => window.location.hash, (newHash) => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" size="24"/>
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
