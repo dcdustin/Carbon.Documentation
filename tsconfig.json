@@ -20,6 +20,10 @@
     "docs/.vitepress/**/*.ts",
     "docs/.vitepress/**/*.d.ts",
     "docs/.vitepress/**/*.tsx",
-    "docs/.vitepress/**/*.vue"
-  ]
+    "docs/.vitepress/**/*.vue",
+    "docs/**/*.md",
+  ],
+  "vueCompilerOptions": {
+    "vitePressExtensions": [".md"],
+  },
 } 

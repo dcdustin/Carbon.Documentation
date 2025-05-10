@@ -20,5 +20,9 @@
         },
         "editor.minimap.enabled": false
     },
-    "frontMatter.panel.openOnSupportedFile": false
+    "frontMatter.panel.openOnSupportedFile": false,
+    "vue.server.includeLanguages": [
+        "vue",
+        "markdown"
+    ],
 }

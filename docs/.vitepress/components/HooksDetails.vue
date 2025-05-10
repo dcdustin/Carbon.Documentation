@@ -1,8 +1,9 @@
 <script setup>
 import { nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { ArrowLeft, CheckCircle2, Copy } from 'lucide-vue-next'
+import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+// sometime in the future it has to be replaced with the shiki
 import Prism from 'prismjs'
 import 'prismjs/components/prism-csharp'
 import '../theme/custom-prism.css'
@@ -137,13 +138,13 @@ watch(hook, (newHook) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="mb-6">
       <a href="/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
-        <ArrowLeft size="18" />
+        <ArrowLeft size="18"/>
         Back to Hooks
       </a>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      <Loader2 class="animate-spin" size="24"/>
       <span class="ml-2">Loading hook..</span>
     </div>
 
@@ -156,17 +157,17 @@ watch(hook, (newHook) => {
         <div>
           <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
           <div class="flex flex-wrap gap-1">
-            <VPBadge v-if="hook.category" type="info" :text="hook.category" />
+            <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
             <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
-              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`" />
+              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
             </div>
-            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible" />
+            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
           </div>
         </div>
         <button @click="copyToClipboard(hook.id, 'id')"
                 class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
           <span class="font-mono">{{ hook.id }}</span>
-          <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14" />
+          <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14"/>
         </button>
       </div>
 
@@ -185,21 +186,21 @@ watch(hook, (newHook) => {
 
       <div class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Example</h2>
-        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">private {{ hook.returnTypeName
-          }} {{ hook.name }}({{ hook.parametersText }})
+        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code class="language-csharp">private {{ hook.returnTypeName }} {{ hook.name }}({{ hook.parametersText }})
 {
     Puts("{{ hook.name }} has been called!");<span v-if="hook.returnTypeName != 'void'">
     return ({{ hook.returnTypeName }})default;</span>
 }</code></pre>
-
       </div>
 
       <div v-if="hook.methodSource" class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Source Code</h2>
-        <VPBadge type="info" :text="hook.assemblyName" />
-        <VPBadge type="danger" :text="hook.targetName" />
-        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto"><code class="language-csharp">{{ hook.methodSource
-          }}</code></pre>
+        <VPBadge type="info" :text="hook.assemblyName"/>
+        <VPBadge type="danger" :text="hook.targetName"/>
+        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code class="language-csharp">{{ hook.methodSource }}</code>
+</pre>
       </div>
     </div>
   </div>
