@@ -3,7 +3,6 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { BLUEPRINTS_API_URL, HOOKS_API_URL, ITEMS_API_URL } from './shared/constants'
-import MarkdownItFootnote from 'markdown-it-footnote';
 
 const references = [
   {
@@ -55,15 +54,11 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
-    theme: {
-      light: 'github-light',
-      dark: 'github-dark'
-    },
     image: {
       lazyLoading: true,
     },
     config(md) {
-      md.use(MarkdownItFootnote);
+      md.use(tabsMarkdownPlugin)
     },
   },
   themeConfig: {
