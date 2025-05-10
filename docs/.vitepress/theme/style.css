@@ -535,3 +535,13 @@ body::after {
   justify-content: center;
   gap: 1rem;
 }
+
+.VPTeamMembers.small .container {
+  grid-template-columns: repeat(auto-fit, minmax(146px, 1fr)) !important;
+}
+
+@media (max-width: 364px) {
+  .VPTeamMembers.small .container {
+    grid-template-columns: repeat(auto-fit, minmax(134px, 1fr)) !important;
+  }
+}
