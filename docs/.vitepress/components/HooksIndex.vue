@@ -4,6 +4,7 @@ import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-n
 import { VPBadge } from 'vitepress/theme'
 import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 import '../theme/style.css'
+import { fetchHooks } from '@/api/metadata/rust/hooks'
 
 const hooks = ref([])
 const isLoading = ref(true)
@@ -96,14 +97,24 @@ const loadHooks = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
 
-    if (!data) {
+    // const data = await getGameData(LINK_API)
+
+    const data2 = await fetchHooks()
+
+    // console.log(data2)
+
+    if (!data2) {
       throw new Error('No data received from API')
     }
 
     const flatHooks = []
-    for (const category in data) {
+
+    data2.forEach((hooks) => {
+      flatHooks.push(...hooks)
+    })
+    
+/*     for (const {category, hooks} in data2) {
       if (Array.isArray(data[category])) {
         data[category].forEach(hook => {
           if (hook && hook.name) {
@@ -122,7 +133,7 @@ const loadHooks = async () => {
           }
         })
       }
-    }
+    } */
     if (flatHooks.length === 0) {
       throw new Error('No hooks found in the data')
     }
