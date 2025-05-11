@@ -77,7 +77,7 @@ class Cache {
     )
   }
 
-  public getFromMemOrStorage<T>(id: string): CacheItem<T> | null {
+  private getFromMemOrStorage<T>(id: string): CacheItem<T> | null {
     const itemFromMemory = this.cacheMap.get(id) as CacheItem<T>
     if (itemFromMemory) {
       return itemFromMemory
