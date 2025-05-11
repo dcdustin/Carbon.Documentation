@@ -49,14 +49,19 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-const copyToClipboard = async (text, id = null) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
+const moduleLinks = {
+  'Admin Module': '/owners/modules/admin-module',
+  'AutoWipe Module': '/owners/modules/optional-modules/autowipe-module',
+  'StackManager Module': '/owners/modules/optional-modules/stack-manager-module',
+  'GatherManager Module': '/owners/modules/optional-modules/gather-manager-module',
+  'Vanish Module': '/owners/modules/optional-modules/vanish-module'
+}
+
+const linkifyModules = (text) => {
+  return text.replace(/\[(.+?)\]/g, (match, moduleName) => {
+    const url = moduleLinks[moduleName]
+    return url ? `[${moduleName}](${url})` : match
+  })
 }
 
 const loadReleaseNotes = async () => {
@@ -64,7 +69,13 @@ const loadReleaseNotes = async () => {
     isLoading.value = true
     error.value = null
     const data = await getGameData(LINK_API)
-    releaseNotes.value = data
+    releaseNotes.value = data.map(release => ({
+      ...release,
+      Changes: release.Changes.map(change => ({
+        ...change,
+        Message: linkifyModules(change.Message)
+      }))
+    }))
   } catch (err) {
     console.error('Failed to load release notes:', err)
     error.value = 'Failed to load release notes. Please try again later.'
@@ -131,7 +142,7 @@ const getChangeType = (val) => {
       <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build"
                     text="Download Latest" icon="CloudDownload" external />
       <br>
-      <Badge type="info" :text="releaseNotes[0].Date" style="text-align:center; width:195px" />
+      <Badge type="info" :text="releaseNotes[0]?.Date" style="text-align:center; width:195px" />
     </div>
     <div v-else class="flex justify-center py-4">
       <Loader2 class="animate-spin" size="24" />
