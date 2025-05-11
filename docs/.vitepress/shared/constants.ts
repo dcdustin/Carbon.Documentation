@@ -1,5 +1,5 @@
 // API URLs from environment variables
-import { getFromCache, saveToCache } from '../api/cache'
+import { cache } from '../api/cache'
 
 export const HOOKS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/hooks.json'
 export const BLUEPRINTS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/blueprints.json'
@@ -198,7 +198,7 @@ export const CATEGORY_COLORS = {
 } as const
 
 export const getGameData = async (url: string) => {
-  const cached = await getFromCache(url)
+  const cached = await cache.getFromCache(url)
   if (cached) {
     return cached
   }
@@ -209,7 +209,7 @@ export const getGameData = async (url: string) => {
   }
   const data = await response.json()
 
-  saveToCache(url, data)
+  cache.saveToCache(url, data)
 
   return data
 }
