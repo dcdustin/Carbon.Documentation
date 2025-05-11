@@ -1,28 +1,28 @@
 {
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "[markdown]": {
+    "editor.fontSize": 14,
+    "editor.lineHeight": 26,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 128,
+    "editor.lineNumbers": "off",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
     },
-    "hide-files.files": [],
-    "[markdown]": {
-        "editor.fontSize": 14,
-        "editor.lineHeight": 26,
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 128,
-        "editor.lineNumbers": "off",
-        "editor.quickSuggestions": {
-            "comments": "off",
-            "strings": "off",
-            "other": "off"
-        },
-        "editor.minimap.enabled": false
-    },
-    "frontMatter.panel.openOnSupportedFile": false,
-    "vue.server.includeLanguages": [
-        "vue",
-        "markdown"
-    ],
+    "editor.minimap.enabled": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "frontMatter.panel.openOnSupportedFile": false,
+  "vue.server.includeLanguages": ["vue", "markdown"],
+  "[vue, json, jsonc, js, ts, mts, css, html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
