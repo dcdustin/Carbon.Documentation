@@ -272,7 +272,7 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
   vite: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '/.vitepress'), // should reflect whats in `tsconfig.json`
+        '@': '/.vitepress'
       },
     },
     css: {
