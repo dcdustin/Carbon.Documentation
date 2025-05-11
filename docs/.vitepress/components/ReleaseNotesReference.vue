@@ -136,13 +136,25 @@ const getChangeType = (val) => {
       branch</strong></a>.</p>
 
     <div v-if="!isLoading">
-      <Badge type="info" :text="'Current Version: ' + releaseNotes[0]?.Version"
-             style="text-align:center; width:195px" />
-      <br>
-      <CarbonButton href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build"
-                    text="Download Latest" icon="CloudDownload" external />
-      <br>
-      <Badge type="info" :text="releaseNotes[0]?.Date" style="text-align:center; width:195px" />
+<div style="width:215px; display: flex; flex-direction: column; align-items: center; gap:2px;">
+  <Badge
+    type="info"
+    :text="'Current Version: ' + releaseNotes[0]?.Version"
+    style="text-align:center; width:100%; user-select:none; margin: 0;" />
+
+  <CarbonButton
+    href="https://github.com/CarbonCommunity/Carbon.Core/releases/tag/production_build"
+    text="Download Latest"
+    icon="CloudDownload"
+    external
+    style="width:100%; text-align:center; margin-top: -4px;" />
+
+  <Badge
+    type="info"
+    :text="releaseNotes[0]?.Date"
+    style="text-align:center; width:100%; user-select:none; margin: 0;" />
+</div>
+
     </div>
     <div v-else class="flex justify-center py-4">
       <Loader2 class="animate-spin" size="24" />

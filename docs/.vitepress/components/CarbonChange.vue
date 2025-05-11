@@ -1,6 +1,6 @@
 <template>
   <div class="carbon-change">
-    <CarbonBadge :variant="variant">{{ variant.toUpperCase() }}</CarbonBadge>
+    <CarbonBadge style="user-select: none;" :variant="variant">{{ variant.toUpperCase() }}</CarbonBadge>
     <div class="carbon-change-text" v-html="renderedText"></div>
   </div>
 </template>
