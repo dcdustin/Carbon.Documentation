@@ -4,9 +4,10 @@ description: Carbon.Vault is an encrypted and locally stored database dedicated 
 ---
 
 # Vault
-
 `Carbon.Vault` is an encrypted and locally stored database dedicated to storing sensitive information in plugin
 configurations and more.
+
+<CarbonButton href="https://github.com/CarbonCommunity/Carbon.Common/blob/develop/src/Carbon/Components/Vault.cs" text="Source Code" external/>
 
 :::tip STORAGE
 It's an encrypted, compressed and locally stored file named `<root>/server/identity/carbon.vault` in which all the
