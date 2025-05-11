@@ -1,125 +1,145 @@
 import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from '../api/constants'
 
-let _cacheMap: Map<string, any> = new Map()
-let _lastTimeFetchedCache: number = 0
-let _currentCacheVersion: string = ''
-let _versionFetchPromise: Promise<void> | null = null
-
-type CacheItem = {
-  versionId: string,
-  timestampCreated: number,
-  data: any
+interface CacheItem<T> {
+  versionId: string
+  timestampCreated: number
+  data: T
 }
 
-async function tryUpdateCacheVersion() {
-  if (Date.now() - _lastTimeFetchedCache <= CACHE_TIME_VERSION_FETCH_DELAY) {
-    return
-  }
-  if (_versionFetchPromise) {
-    return _versionFetchPromise
+class Cache {
+  private cacheMap: Map<string, CacheItem<unknown>> = new Map()
+  private lastTimeFetchedCache: number = 0
+  private currentCacheVersion: string = ''
+  private versionFetchPromise: Promise<void> | null = null
+  private pendingStorageWrites: Map<string, string> = new Map()
+  private storageWriteTimeout: NodeJS.Timeout | null = null
+
+  private encodeUrl(url: string): string {
+    return 'CST2_' + btoa(encodeURIComponent(url))
   }
 
-  _versionFetchPromise = (async () => {
-    try {
-      const resp = await fetch(URL_VERSION_DOCS)
-      if (!resp.ok) {
-        console.warn(`Error: fetching ${URL_VERSION_DOCS}:`, resp)
-        return
-      }
-
-      _currentCacheVersion = await resp.text()
-      _lastTimeFetchedCache = Date.now()
-    } catch (e) {
-      console.warn(`Error: fetching ${URL_VERSION_DOCS}:`, e)
-    } finally {
-      _versionFetchPromise = null
+  private scheduleStorageWrite(): void {
+    if (this.storageWriteTimeout) {
+      clearTimeout(this.storageWriteTimeout)
     }
-  })()
 
-  return _versionFetchPromise
-}
-
-function encodeUrl(url: string): string {
-  return 'CST2_' + btoa(encodeURIComponent(url))
-}
-
-export function getFromMemOrStorage(id: string): CacheItem | null {
-  const itemFromMemory = _cacheMap.get(id) as CacheItem
-  if (itemFromMemory) {
-    console.log('Retrieved cache from memory')
-    return itemFromMemory
+    this.storageWriteTimeout = setTimeout(() => {
+      this.flushStorageWrites()
+    }, 1000)
   }
 
-  const stringFromStorage = localStorage.getItem(id)
-  if (stringFromStorage) {
-    try {
-      const parsed = JSON.parse(stringFromStorage)
-      // should reflect `CacheItem` type
-      if (parsed && typeof parsed.versionId === 'string' && typeof parsed.timestampCreated === 'number' && parsed.data !== undefined) {
-        const cacheItem = parsed as CacheItem
-        console.log('Saved to mem from storage')
-        _cacheMap.set(id, cacheItem)
-        console.log('Retrieved from localstorage')
-        return cacheItem
-      } else {
-        console.warn('Error: parsing item from storage, invalid structure:', parsed)
-        console.log('removing from storage, cuz invalid')
-        localStorage.removeItem(id)
+  private flushStorageWrites(): void {
+    this.pendingStorageWrites.forEach((value, key) => {
+      try {
+        localStorage.setItem(key, value)
+      } catch (e) {
+        console.warn('Error saving to localStorage:', e)
       }
-    } catch (e) {
-      console.warn('Error: parsing item from storage:', e)
-      console.log('removing from storage, cuz invalid')
+    })
+    this.pendingStorageWrites.clear()
+    this.storageWriteTimeout = null
+  }
+
+  private async tryUpdateCacheVersion(): Promise<void> {
+    if (Date.now() - this.lastTimeFetchedCache <= CACHE_TIME_VERSION_FETCH_DELAY) {
+      return
+    }
+
+    if (this.versionFetchPromise) {
+      return this.versionFetchPromise
+    }
+
+    this.versionFetchPromise = (async () => {
+      try {
+        const resp = await fetch(URL_VERSION_DOCS, {
+          cache: 'no-cache',
+        })
+
+        if (!resp.ok) {
+          throw new Error(`Failed to fetch version: ${resp.status} ${resp.statusText}`)
+        }
+
+        this.currentCacheVersion = await resp.text()
+        this.lastTimeFetchedCache = Date.now()
+      } catch (e) {
+        console.warn(`Error fetching ${URL_VERSION_DOCS}:`, e)
+      } finally {
+        this.versionFetchPromise = null
+      }
+    })()
+
+    return this.versionFetchPromise
+  }
+
+  private isCacheItemValid<T>(item: CacheItem<T>): boolean {
+    return (
+      item.versionId === this.currentCacheVersion && Date.now() - item.timestampCreated <= CACHE_TIME_ITEM_TTL
+    )
+  }
+
+  private getFromMemOrStorage<T>(id: string): CacheItem<T> | null {
+    const itemFromMemory = this.cacheMap.get(id) as CacheItem<T>
+    if (itemFromMemory) {
+      return itemFromMemory
+    }
+
+    const stringFromStorage = localStorage.getItem(id)
+    if (stringFromStorage) {
+      try {
+        const parsed = JSON.parse(stringFromStorage) as CacheItem<T>
+        if (this.validateCacheItem(parsed)) {
+          this.cacheMap.set(id, parsed)
+          return parsed
+        }
+      } catch (e) {
+        console.warn('Error parsing item from storage:', e)
+      }
       localStorage.removeItem(id)
     }
+
+    return null
   }
 
-  return null
-}
-
-function isCacheItemValid(item: CacheItem) {
-  if (item.versionId !== _currentCacheVersion) {
-    console.log('cacheitem, version differs')
-    return false
+  private validateCacheItem<T>(item: unknown): item is CacheItem<T> {
+    return (
+      typeof item === 'object' &&
+      item !== null &&
+      'versionId' in item &&
+      'timestampCreated' in item &&
+      'data' in item &&
+      typeof (item as CacheItem<T>).versionId === 'string' &&
+      typeof (item as CacheItem<T>).timestampCreated === 'number'
+    )
   }
 
-  if (Date.now() - item.timestampCreated > CACHE_TIME_ITEM_TTL) {
-    console.log('cacheitem, timestamp expired', Date.now(), item.timestampCreated, Date.now() - item.timestampCreated, CACHE_TIME_ITEM_TTL)
-    return false
+  public saveToCache<T>(url: string, data: T): void {
+    const id = this.encodeUrl(url)
+    const cacheItem: CacheItem<T> = {
+      data,
+      timestampCreated: Date.now(),
+      versionId: this.currentCacheVersion,
+    }
+
+    this.cacheMap.set(id, cacheItem)
+
+    this.pendingStorageWrites.set(id, JSON.stringify(cacheItem))
+    this.scheduleStorageWrite()
   }
 
-  return true
-}
+  public async getFromCache<T>(url: string): Promise<T | null> {
+    await this.tryUpdateCacheVersion()
 
-export function saveToCache(url: string, data: any) {
-  const id = encodeUrl(url)
+    const id = this.encodeUrl(url)
+    const cacheItem = this.getFromMemOrStorage<T>(id)
 
-  const cacheItem: CacheItem = { data: data, timestampCreated: Date.now(), versionId: _currentCacheVersion }
+    if (cacheItem && this.isCacheItemValid(cacheItem)) {
+      return cacheItem.data
+    }
 
-  console.log('saved to mem')
-  _cacheMap.set(id, cacheItem)
-
-  try {
-    console.log('saved to storage')
-    localStorage.setItem(id, JSON.stringify(cacheItem))
-  } catch (e) {
-    console.warn('Error: saving to localstorage:')
-    console.warn(e)
-  }
-}
-
-export async function getFromCache<T>(url: string): Promise<T | null> {
-  await tryUpdateCacheVersion()
-
-  const id = encodeUrl(url)
-
-  const cacheItem = getFromMemOrStorage(id)
-  if (cacheItem && isCacheItemValid(cacheItem)) {
-    return cacheItem.data as T
-  } else {
-    console.log('removing from mem and storage, cuz didn\'t find in both')
-    _cacheMap.delete(id)
+    this.cacheMap.delete(id)
     localStorage.removeItem(id)
+    return null
   }
-
-  return null
 }
+
+export const cache = new Cache()
