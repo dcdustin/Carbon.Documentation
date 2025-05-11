@@ -60,7 +60,7 @@ const moduleLinks = {
 const linkifyModules = (text) => {
   return text.replace(/\[(.+?)\]/g, (match, moduleName) => {
     const url = moduleLinks[moduleName]
-    return url ? `[${moduleName}](${url})` : match
+    return url ? `[[${moduleName}](${url})]` : match
   })
 }
 
