@@ -3,6 +3,7 @@ import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 import { BLUEPRINTS_API_URL, HOOKS_API_URL, ITEMS_API_URL } from './shared/constants'
+import path from 'path'
 
 const references = [
   {
@@ -269,6 +270,11 @@ ${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
     },
   },
   vite: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '/.vitepress'), // should reflect whats in `tsconfig.json`
+      },
+    },
     css: {
       postcss: {
         plugins: [tailwindcss, autoprefixer],
