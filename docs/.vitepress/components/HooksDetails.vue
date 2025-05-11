@@ -140,6 +140,21 @@ const highlightCode = (code: string, isDark: boolean, language = 'csharp') => {
   }
 }
 
+const exampleCodeRaw = computed(() => {
+  if (!hook.value) {
+    return ''
+  }
+  const code = `private ${hook.value.returnTypeName} ${hook.value.name}(${hook.value.parametersText})
+{
+    Puts("${hook.value.name} has been called!");${
+    hook.value.returnTypeName !== 'void'
+      ? `
+    return (${hook.value.returnTypeName})default;`
+      : ''
+  }
+}`
+  return code
+})
 const exampleCode = computed(() => {
   if (!hook.value) {
     return ''
@@ -234,15 +249,20 @@ watch(
       </div>
 
       <div class="mb-6">
-        <h2 class="text-xl font-semibold mb-2">Example</h2>
+        <h2 class="text-xl font-semibold mb-2" style="display: flex">Example <button
+              @click="copyToClipboard(exampleCodeRaw, 'examplecode')"
+              class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            >
+              <component :is="copiedId === 'examplecode' ? CheckCircle2 : Copy" class="ml-2" :size="14" />
+            </button></h2>
         <div
           v-if="isHighlighterReady"
           v-html="exampleCode"
           class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"
         ></div>
-        <pre v-else class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
+        <div v-else class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
           <code>{{ exampleCode }}</code>
-        </pre>
+        </div>
       </div>
 
       <div v-if="hook.methodSource" class="mb-6">
