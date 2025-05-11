@@ -1,19 +1,19 @@
 <script setup>
-import { nextTick, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-// sometime in the future it has to be replaced with the shiki
-// import Prism from 'prismjs'
-// import 'prismjs/components/prism-csharp'
-// import '../theme/custom-prism.css'
+import { getSingletonHighlighter } from 'shiki'
 import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 
-const route = useRoute()
+const data = useData()
+
 const hook = ref(null)
 const isLoading = ref(true)
 const error = ref(null)
 const copiedId = ref(null)
+const highlighter = ref(null)
+const isHighlighterReady = ref(false)
 
 const getHookName = () => {
   const urlParams = new URLSearchParams(window.location.search)
@@ -30,26 +30,17 @@ const loadHookDetails = async () => {
       throw new Error('No hook name provided')
     }
 
-    console.log('Loading hook:', hookName) // Debug log
-
     const data = await getGameData(HOOKS_API_URL)
     if (!data) {
       throw new Error('Failed to load hooks data')
     }
 
-    console.log('API Response:', data) // Debug log
-
-    // Search for the hook in all categories
     let foundHook = null
     let foundCategory = null
 
     for (const category in data) {
-      console.log('Checking category:', category) // Debug log
       if (Array.isArray(data[category])) {
-        console.log('Category data:', data[category]) // Debug log
         const hook = data[category].find(h => {
-          console.log('Hook data:', h) // Debug log
-          console.log('Comparing:', h.name, h.fullName, 'with', hookName) // Debug log
           return h.name === hookName || h.fullName === hookName
         })
         if (hook) {
@@ -64,15 +55,10 @@ const loadHookDetails = async () => {
       throw new Error(`Hook "${hookName}" not found`)
     }
 
-    console.log('Found hook:', foundHook) // Debug log
-
     // Transform the hook data
     hook.value = foundHook
 
-    console.log('Transformed hook:', hook.value) // Debug log
-
   } catch (err) {
-    console.error('Failed to load hook details:', err)
     error.value = err.message
   } finally {
     isLoading.value = false
@@ -89,16 +75,23 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-onMounted(() => {
-  // Initialize Prism.js for code highlighting
-  // Prism.highlightAll()
+onMounted(async () => {
+  try {
+    highlighter.value = await getSingletonHighlighter({
+      themes: ['github-dark', 'github-light'],
+      langs: ['csharp'],
+    })
+    isHighlighterReady.value = true
+  } catch (err) {
+    console.error('Failed to initialize Shiki:', err)
+    error.value = 'Failed to initialize code highlighting'
+  }
 
   // Load hook details if name is in URL
   const hookName = getHookName()
-  console.log('Initial URL check:', { hookName }) // Debug log
 
   if (hookName) {
-    loadHookDetails()
+    await loadHookDetails()
   } else {
     isLoading.value = false
     error.value = 'No hook name provided'
@@ -106,12 +99,11 @@ onMounted(() => {
 })
 
 // Watch for URL changes
-watch(() => window.location.search, () => {
+watch(() => window.location.search, async () => {
   const hookName = getHookName()
-  console.log('URL changed:', { hookName }) // Debug log
   if (hookName) {
     isLoading.value = true
-    loadHookDetails()
+    await loadHookDetails()
   } else {
     hook.value = null
     error.value = 'No hook name provided'
@@ -119,11 +111,38 @@ watch(() => window.location.search, () => {
   }
 })
 
-// Watch for hook changes to re-highlight code
-watch(hook, () => {
-  nextTick(() => {
-    // Prism.highlightAll()
-  })
+const highlightCode = (code, isDark, language = 'csharp') => {
+  if (!highlighter.value || !isHighlighterReady.value) {
+    return code
+  }
+  try {
+    return highlighter.value.codeToHtml(code, {
+      lang: language,
+      theme: isDark ? 'github-dark' : 'github-light',
+    })
+  } catch (err) {
+    console.error('Failed to highlight code:', err)
+    return code
+  }
+}
+
+const exampleCode = computed(() => {
+  if (!hook.value) {
+    return ''
+  }
+  const code = `private ${hook.value.returnTypeName} ${hook.value.name}(${hook.value.parametersText})
+{
+    Puts("${hook.value.name} has been called!");${hook.value.returnTypeName !== 'void' ? `
+    return (${hook.value.returnTypeName})default;` : ''}
+}`
+  return highlightCode(code, data.isDark.value)
+})
+
+const sourceCode = computed(() => {
+  if (!hook.value?.methodSource) {
+    return ''
+  }
+  return highlightCode(hook.value.methodSource, data.isDark.value)
 })
 
 // Update page title when hook is loaded
@@ -155,7 +174,15 @@ watch(hook, (newHook) => {
     <div v-else-if="hook" class="hook-details">
       <div class="flex items-start justify-left mb-6">
         <div>
-          <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
+          <div class="flex">
+            <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
+            <button @click="copyToClipboard(hook.id, 'id')"
+                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+              <span class="font-mono">{{ hook.id }}</span>
+              <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+            </button>
+          </div>
+
           <div class="flex flex-wrap gap-1">
             <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
             <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
@@ -164,11 +191,7 @@ watch(hook, (newHook) => {
             <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
           </div>
         </div>
-        <button @click="copyToClipboard(hook.id, 'id')"
-                class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-          <span class="font-mono">{{ hook.id }}</span>
-          <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14"/>
-        </button>
+
       </div>
 
       <div v-if="hook.descriptions && hook.descriptions.length" class="mb-6">
@@ -186,21 +209,22 @@ watch(hook, (newHook) => {
 
       <div class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Example</h2>
-        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto">
-<code class="language-csharp">private {{ hook.returnTypeName }} {{ hook.name }}({{ hook.parametersText }})
-{
-    Puts("{{ hook.name }} has been called!");<span v-if="hook.returnTypeName != 'void'">
-    return ({{ hook.returnTypeName }})default;</span>
-}</code></pre>
+        <div v-if="isHighlighterReady" v-html="exampleCode"
+             class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"></div>
+        <pre v-else class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
+          <code>{{ exampleCode }}</code>
+        </pre>
       </div>
 
       <div v-if="hook.methodSource" class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Source Code</h2>
         <VPBadge type="info" :text="hook.assemblyName"/>
         <VPBadge type="danger" :text="hook.targetName"/>
-        <pre class="text-sm bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto">
-<code class="language-csharp">{{ hook.methodSource }}</code>
-</pre>
+        <div v-if="isHighlighterReady" v-html="sourceCode"
+             class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"></div>
+        <pre v-else class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
+          <code>{{ sourceCode }}</code>
+        </pre>
       </div>
     </div>
   </div>
@@ -223,13 +247,5 @@ watch(hook, (newHook) => {
   font-size: 0.875rem;
   line-height: 1.5;
   background: transparent !important;
-}
-
-.hook-details :deep(.language-csharp) {
-  color: var(--vp-c-text-1);
-}
-
-.dark .hook-details :deep(.language-csharp) {
-  color: var(--vp-c-text-1);
 }
 </style>
