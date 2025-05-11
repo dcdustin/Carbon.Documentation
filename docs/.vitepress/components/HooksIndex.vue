@@ -1,14 +1,14 @@
-<script setup>
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { computed, nextTick, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 import '../theme/style.css'
-import { fetchHooks } from '@/api/metadata/rust/hooks'
+import { fetchHooks, Hook } from '@/api/metadata/rust/hooks'
 
-const hooks = ref([])
+const hooks: Ref<Hook[]> = ref<Hook[]>([])
 const isLoading = ref(true)
-const error = ref(null)
+const error = ref<string | null>(null)
 const retryCount = ref(0)
 const maxRetries = 3
 const searchQuery = ref('')
@@ -17,14 +17,14 @@ const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const categories = ref([])
+const categories = ref<string[]>([])
 const selectedCategory = ref('all')
 const showOxideHooks = ref(true)
 const showCarbonHooks = ref(true)
 
 const LINK_API = HOOKS_API_URL
 
-const getSanitizedAnchor = (text) => {
+const getSanitizedAnchor = (text: string) => {
   return text
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
@@ -66,8 +66,8 @@ const paginatedHooks = computed(() => {
   return filteredHooks.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     const cleanValue = value.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
@@ -108,7 +108,7 @@ const loadHooks = async () => {
       throw new Error('No data received from API')
     }
 
-    const flatHooks = []
+    const flatHooks: Hook[] = []
 
     data2.forEach((hooks) => {
       flatHooks.push(...hooks)
@@ -139,10 +139,10 @@ const loadHooks = async () => {
     }
 
     hooks.value = flatHooks
-    categories.value = [...new Set(flatHooks.map(hook => hook.category))]
+    categories.value = Array.from(data2.keys())
   } catch (err) {
     console.error('Failed to load hooks:', err)
-    error.value = err.message || 'Failed to load hooks. Please try again later.'
+    error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
   } finally {
     isLoading.value = false
   }
@@ -173,7 +173,7 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-let versionCheckInterval
+let versionCheckInterval: NodeJS.Timeout
 onMounted(() => {
   versionCheckInterval = setInterval(async () => {
     try {
@@ -241,15 +241,15 @@ watch(() => window.location.hash, (newHash) => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16"/>
+          <Database :size="16"/>
           Hooks API
-          <ExternalLink size="14" class="opacity-80"/>
+          <ExternalLink :size="14" class="opacity-80"/>
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24"/>
+      <Loader2 class="animate-spin" :size="24"/>
       <span class="ml-2">Loading hooks...</span>
     </div>
 
@@ -258,7 +258,7 @@ watch(() => window.location.hash, (newHash) => {
       <button
           @click="retryFetch"
           class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors">
-        <RefreshCw size="16"/>
+        <RefreshCw :size="16"/>
         Retry
       </button>
     </div>
@@ -267,11 +267,11 @@ watch(() => window.location.hash, (newHash) => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20"/>
+            <Search class="text-gray-400" :size="20"/>
             <input
                 type="text"
                 v-model="searchQuery"
-                @input="updateDebouncedSearch($event.target.value)"
+                @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement)?.value)"
                 placeholder="Search hooks..."
                 class="w-[400px] px-4 py-2"
             >
@@ -331,7 +331,7 @@ watch(() => window.location.hash, (newHash) => {
                         <a :href="`/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`"
                            class="hover:text-primary inline-flex items-center gap-2">
                           {{ hook.fullName }}
-                          <ExternalLink size="14" class="opacity-60"/>
+                          <ExternalLink :size="14" class="opacity-60"/>
                           <div class="flex flex-wrap gap-1.5 mt-2">
                             <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
                             <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
@@ -342,7 +342,7 @@ watch(() => window.location.hash, (newHash) => {
                         </a>
                       </h5>
                     </div>
-                    <div v-for="param in hook.descriptions" :key="param.name" class="text-sm">
+                    <div v-for="param in hook.descriptions" :key="param" class="text-sm">
                       <span class="text-gray-500"><strong>{{ param }}</strong></span>
                     </div>
                     <span class="text-sm text-gray-500" v-if="hook.returnTypeName != 'void'">Returning a non-null value cancels default behavior.</span>
@@ -357,12 +357,12 @@ watch(() => window.location.hash, (newHash) => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24"/>
+          <Loader2 class="animate-spin" :size="24"/>
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No hooks found matching your search</p>
-        <p v-if="hooks.value && hooks.value.length === 0" class="mt-2 text-sm">
+        <p v-if="hooks && hooks.length === 0" class="mt-2 text-sm">
           Debug: No hooks loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
