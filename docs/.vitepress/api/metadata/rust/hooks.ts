@@ -1,9 +1,9 @@
 import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
 
-type HooksData = Map<string, Hook[]>
+export type HooksData = Map<string, Hook[]>
 
-interface Hook {
+export interface Hook {
   id: number
   name: string
   fullName: string
@@ -21,7 +21,7 @@ interface Hook {
   returnTypeName: string
 }
 
-interface Parameter {
+export interface Parameter {
   name: string
   optional: boolean
   typeName: string
