@@ -43,4 +43,20 @@ const renderedText = md.renderInline(props.text)
   max-width: 90%;
   font-size: 15px;
 }
+
+::v-deep(.carbon-change-text a) {
+  transition-duration: 100ms;
+}
+
+::v-deep(.carbon-change-text a:hover) {
+  background-color: rgba(139, 233, 253, 0.1);
+  box-shadow: 0 0 0 2px rgba(139, 233, 253, 0.4);
+}
+
+::v-deep(.carbon-change-text a::after) {
+  content: "↗";
+  font-weight: initial;
+  color: #ffffff75
+}
+
 </style>
