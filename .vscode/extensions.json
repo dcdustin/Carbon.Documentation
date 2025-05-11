@@ -1,6 +1,7 @@
 {
-    "recommendations": [
-        "Vue.volar",
-        "eliostruyf.vscode-front-matter",
-    ]
+  "recommendations": [
+    "Vue.volar",
+    "eliostruyf.vscode-front-matter",
+    "esbenp.prettier-vscode"
+  ]
 }
