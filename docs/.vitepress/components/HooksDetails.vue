@@ -5,6 +5,7 @@ import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getSingletonHighlighter } from 'shiki'
 import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
+import { fetchHooks } from '@/api/metadata/rust/hooks'
 
 const data = useData()
 
@@ -30,7 +31,9 @@ const loadHookDetails = async () => {
       throw new Error('No hook name provided')
     }
 
-    const data = await getGameData(HOOKS_API_URL)
+    // const data = await getGameData(HOOKS_API_URL)
+    const data = await fetchHooks()
+    
     if (!data) {
       throw new Error('Failed to load hooks data')
     }
@@ -38,7 +41,7 @@ const loadHookDetails = async () => {
     let foundHook = null
     let foundCategory = null
 
-    for (const category in data) {
+/*     for (const category in data) {
       if (Array.isArray(data[category])) {
         const hook = data[category].find(h => {
           return h.name === hookName || h.fullName === hookName
@@ -47,6 +50,16 @@ const loadHookDetails = async () => {
           foundHook = hook
           foundCategory = category
           break
+        }
+      }
+    } */
+    loop1:
+    for (const [category, hooks] of data) {
+      for (const hook of hooks) {
+        if (hook.name === hookName) {
+          foundHook = hook
+          foundCategory = category
+          break loop1
         }
       }
     }
