@@ -99,32 +99,6 @@ onMounted(async () => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
-
-// Watch for version changes
-let versionCheckInterval
-onMounted(() => {
-  versionCheckInterval = setInterval(async () => {
-    try {
-      const response = await fetch(CACHE_VERSION_API_URL)
-      if (!response.ok) return
-      const version = await response.text()
-      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
-
-      if (cachedVersion !== version) {
-        // Reload data if version changed
-        await loadConvars()
-      }
-    } catch (error) {
-      console.warn('Error checking version:', error)
-    }
-  }, 60000) // Check every minute
-})
-
-onUnmounted(() => {
-  if (versionCheckInterval) {
-    clearInterval(versionCheckInterval)
-  }
-})
 </script>
 
 <template>

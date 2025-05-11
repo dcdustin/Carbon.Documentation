@@ -176,31 +176,6 @@ onUnmounted(() => {
   })
 })
 
-// Watch for version changes to dump the cache
-let versionCheckInterval
-onMounted(() => {
-  versionCheckInterval = setInterval(async () => {
-    try {
-      const response = await fetch(CACHE_VERSION_API_URL)
-      if (!response.ok) return
-      const version = await response.text()
-      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
-
-      if (cachedVersion !== version) {
-        await loadBlueprints()
-      }
-    } catch (error) {
-      console.warn('Error checking version:', error)
-    }
-  }, 60000)
-})
-
-onUnmounted(() => {
-  if (versionCheckInterval) {
-    clearInterval(versionCheckInterval)
-  }
-})
-
 watch(debouncedSearchQuery, () => {
   currentPage.value = 1
   hasMore.value = true

@@ -186,30 +186,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-let versionCheckInterval: NodeJS.Timeout
-onMounted(() => {
-  versionCheckInterval = setInterval(async () => {
-    try {
-      const response = await fetch(CACHE_VERSION_API_URL)
-      if (!response.ok) return
-      const version = await response.text()
-      const cachedVersion = localStorage.getItem('carbon_docs_cache_version')
-
-      if (cachedVersion !== version) {
-        await loadHooks()
-      }
-    } catch (error) {
-      console.warn('Error checking version:', error)
-    }
-  }, 60000)
-})
-
-onUnmounted(() => {
-  if (versionCheckInterval) {
-    clearInterval(versionCheckInterval)
-  }
-})
-
 const retryFetch = () => {
   if (retryCount.value < maxRetries) {
     retryCount.value++
