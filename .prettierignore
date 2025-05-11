@@ -1,0 +1,14 @@
+node_modules
+**/.git
+**/.svn
+**/.hg
+
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+.vscode
+.idea
+
+/docs/.vitepress/cache
+/docs/.vitepress/dist
