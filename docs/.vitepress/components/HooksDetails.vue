@@ -33,7 +33,7 @@ const loadHookDetails = async () => {
 
     // const data = await getGameData(HOOKS_API_URL)
     const data = await fetchHooks()
-    
+
     if (!data) {
       throw new Error('Failed to load hooks data')
     }
@@ -41,7 +41,7 @@ const loadHookDetails = async () => {
     let foundHook = null
     let foundCategory = null
 
-/*     for (const category in data) {
+    /*     for (const category in data) {
       if (Array.isArray(data[category])) {
         const hook = data[category].find(h => {
           return h.name === hookName || h.fullName === hookName
@@ -53,8 +53,7 @@ const loadHookDetails = async () => {
         }
       }
     } */
-    loop1:
-    for (const [category, hooks] of data) {
+    loop1: for (const [category, hooks] of data) {
       for (const hook of hooks) {
         if (hook.name === hookName) {
           foundHook = hook
@@ -70,7 +69,6 @@ const loadHookDetails = async () => {
 
     // Transform the hook data
     hook.value = foundHook
-
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load hook. Please try again later.'
   } finally {
@@ -82,7 +80,7 @@ const copyToClipboard = async (text: string, id: string | null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -112,17 +110,20 @@ onMounted(async () => {
 })
 
 // Watch for URL changes
-watch(() => window.location.search, async () => {
-  const hookName = getHookName()
-  if (hookName) {
-    isLoading.value = true
-    await loadHookDetails()
-  } else {
-    hook.value = null
-    error.value = 'No hook name provided'
-    isLoading.value = false
+watch(
+  () => window.location.search,
+  async () => {
+    const hookName = getHookName()
+    if (hookName) {
+      isLoading.value = true
+      await loadHookDetails()
+    } else {
+      hook.value = null
+      error.value = 'No hook name provided'
+      isLoading.value = false
+    }
   }
-})
+)
 
 const highlightCode = (code: string, isDark: boolean, language = 'csharp') => {
   if (!highlighter.value || !isHighlighterReady.value) {
@@ -145,8 +146,12 @@ const exampleCode = computed(() => {
   }
   const code = `private ${hook.value.returnTypeName} ${hook.value.name}(${hook.value.parametersText})
 {
-    Puts("${hook.value.name} has been called!");${hook.value.returnTypeName !== 'void' ? `
-    return (${hook.value.returnTypeName})default;` : ''}
+    Puts("${hook.value.name} has been called!");${
+    hook.value.returnTypeName !== 'void'
+      ? `
+    return (${hook.value.returnTypeName})default;`
+      : ''
+  }
 }`
   return highlightCode(code, data.isDark.value)
 })
@@ -159,24 +164,31 @@ const sourceCode = computed(() => {
 })
 
 // Update page title when hook is loaded
-watch(hook, (newHook) => {
-  if (newHook) {
-    document.title = `${newHook.name} - Carbon Documentation`
-  }
-}, { immediate: true })
+watch(
+  hook,
+  (newHook) => {
+    if (newHook) {
+      document.title = `${newHook.name} - Carbon Documentation`
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="mb-6">
-      <a href="/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
-        <ArrowLeft :size="18"/>
+      <a
+        href="/references/hooks/"
+        class="inline-flex items-center gap-2 text-primary hover:text-primary-dark"
+      >
+        <ArrowLeft :size="18" />
         Back to Hooks
       </a>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" :size="24"/>
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading hook..</span>
     </div>
 
@@ -189,22 +201,23 @@ watch(hook, (newHook) => {
         <div>
           <div class="flex">
             <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
-            <button @click="copyToClipboard(hook.id.toString(), 'id')"
-                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            <button
+              @click="copyToClipboard(hook.id.toString(), 'id')"
+              class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            >
               <span class="font-mono">{{ hook.id }}</span>
-              <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" :size="14"/>
+              <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" :size="14" />
             </button>
           </div>
 
           <div class="flex flex-wrap gap-1">
-            <VPBadge v-if="hook.category" type="info" :text="hook.category"/>
+            <VPBadge v-if="hook.category" type="info" :text="hook.category" />
             <div v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
-              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`"/>
+              <VPBadge v-if="hook.flags" type="info" :text="`${flag}`" />
             </div>
-            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible"/>
+            <VPBadge v-if="hook.oxideCompatible" type="tip" text="Oxide Compatible" />
           </div>
         </div>
-
       </div>
 
       <div v-if="hook.descriptions && hook.descriptions.length" class="mb-6">
@@ -222,8 +235,11 @@ watch(hook, (newHook) => {
 
       <div class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Example</h2>
-        <div v-if="isHighlighterReady" v-html="exampleCode"
-             class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"></div>
+        <div
+          v-if="isHighlighterReady"
+          v-html="exampleCode"
+          class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"
+        ></div>
         <pre v-else class="text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
           <code>{{ exampleCode }}</code>
         </pre>
@@ -231,10 +247,13 @@ watch(hook, (newHook) => {
 
       <div v-if="hook.methodSource" class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Source Code</h2>
-        <VPBadge type="info" :text="hook.assemblyName"/>
-        <VPBadge type="danger" :text="hook.targetName"/>
-        <div v-if="isHighlighterReady" v-html="sourceCode"
-             class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"></div>
+        <VPBadge type="info" :text="hook.assemblyName" />
+        <VPBadge type="danger" :text="hook.targetName" />
+        <div
+          v-if="isHighlighterReady"
+          v-html="sourceCode"
+          class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto"
+        ></div>
         <pre v-else class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 p-2 rounded-lg overflow-x-auto">
           <code>{{ sourceCode }}</code>
         </pre>
@@ -256,7 +275,8 @@ watch(hook, (newHook) => {
 }
 
 .hook-details :deep(code) {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
   font-size: 0.875rem;
   line-height: 1.5;
   background: transparent !important;
