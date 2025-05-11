@@ -2,9 +2,6 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-// import Prism from 'prismjs'
-// import 'prismjs/components/prism-csharp'
-// import '../theme/custom-prism.css'
 import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 import '../theme/style.css'
 
@@ -160,17 +157,6 @@ onMounted(async () => {
   window.addEventListener('scroll', handleScroll)
   handleUrlSearch()
 })
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-  // Prism.highlightAll()
-})
-
-watch(() => hooks.value, () => {
-  nextTick(() => {
-    // Prism.highlightAll()
-  })
-}, { deep: true })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
@@ -398,16 +384,4 @@ watch(() => window.location.hash, (newHash) => {
   line-height: 1.5;
   background: transparent !important;
 }
-
-:deep(.language-csharp) {
-  color: var(--vp-c-text-1);
-}
-
-.dark :deep(.language-csharp) {
-  color: var(--vp-c-text-1);
-}
 </style>
-
-
-
-
