@@ -1,19 +1,19 @@
-<script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, Ref, ref, watch } from 'vue'
 import { useData } from 'vitepress'
 import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getSingletonHighlighter } from 'shiki'
 import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
-import { fetchHooks } from '@/api/metadata/rust/hooks'
-
+import { fetchHooks, Hook } from '@/api/metadata/rust/hooks'
+import type { Highlighter } from 'shiki'
 const data = useData()
 
-const hook = ref(null)
+const hook: Ref<Hook | null> = ref(null)
 const isLoading = ref(true)
-const error = ref(null)
-const copiedId = ref(null)
-const highlighter = ref(null)
+const error = ref<string | null>(null)
+const copiedId = ref<string | null>(null)
+const highlighter = ref<Highlighter | null>(null)
 const isHighlighterReady = ref(false)
 
 const getHookName = () => {
@@ -72,13 +72,13 @@ const loadHookDetails = async () => {
     hook.value = foundHook
 
   } catch (err) {
-    error.value = err.message
+    error.value = err instanceof Error ? err.message : 'Failed to load hook. Please try again later.'
   } finally {
     isLoading.value = false
   }
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -124,7 +124,7 @@ watch(() => window.location.search, async () => {
   }
 })
 
-const highlightCode = (code, isDark, language = 'csharp') => {
+const highlightCode = (code: string, isDark: boolean, language = 'csharp') => {
   if (!highlighter.value || !isHighlighterReady.value) {
     return code
   }
@@ -170,13 +170,13 @@ watch(hook, (newHook) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="mb-6">
       <a href="/references/hooks/" class="inline-flex items-center gap-2 text-primary hover:text-primary-dark">
-        <ArrowLeft size="18"/>
+        <ArrowLeft :size="18"/>
         Back to Hooks
       </a>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24"/>
+      <Loader2 class="animate-spin" :size="24"/>
       <span class="ml-2">Loading hook..</span>
     </div>
 
@@ -189,10 +189,10 @@ watch(hook, (newHook) => {
         <div>
           <div class="flex">
             <h1 class="text-3xl font-bold mb-2">{{ hook.name }}</h1>
-            <button @click="copyToClipboard(hook.id, 'id')"
+            <button @click="copyToClipboard(hook.id.toString(), 'id')"
                     class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
               <span class="font-mono">{{ hook.id }}</span>
-              <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" size="14"/>
+              <component :is="copiedId === 'id' ? CheckCircle2 : Copy" class="ml-2" :size="14"/>
             </button>
           </div>
 
