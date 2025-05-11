@@ -1,5 +1,5 @@
-import { URL_METDAT_CARB_HOOKS } from '../../constants'
-import { fetchApiCaching } from '../../fetch-api'
+import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
+import { fetchApiCaching } from '@/api/fetch-api'
 
 export type HooksData = Map<string, Hook[]>
 

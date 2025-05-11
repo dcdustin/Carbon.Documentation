@@ -5,7 +5,7 @@ import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getSingletonHighlighter } from 'shiki'
 import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
-import { fetchHooks, Hook } from '../api/metadata/rust/hooks'
+import { fetchHooks, Hook } from '@/api/metadata/rust/hooks'
 import type { Highlighter } from 'shiki'
 const data = useData()
 
