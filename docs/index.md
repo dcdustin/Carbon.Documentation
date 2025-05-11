@@ -34,7 +34,7 @@ features:
     details: We have created a more optimized modular permission system that allows for users to create their own serializers. <a class="textLink" href="/devs/features/permissions">Learn more</a>
     icon: ⚙️
   - title: Dynamic Hooks
-    details: Hooks are loaded dynamically to ensure only the hooks used by plugins are loaded. This eliminates a ton of redundant calls and will improve the performance of your server. <a class="textLink" href="/references/hooks">Learn more</a>
+    details: Hooks are loaded dynamically to ensure only the hooks used by plugins are loaded. This eliminates a ton of redundant calls and will improve performance. <a class="textLink" href="/references/hooks">Learn more</a>
     icon: 🪝
   - title: Hot Reload
     details: Carbon allows for your Harmony mods to be reloaded on the fly when changes are made.
