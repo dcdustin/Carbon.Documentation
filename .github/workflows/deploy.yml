@@ -26,12 +26,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build
-    steps:
-      - name: Environment Setup
-        shell: bash
-        run: |
-          echo "version=$(curl -s -L 'https://carbonmod.gg/version?id=docs&token=${{secrets.VERSIONS_TOKEN}}')" >> $GITHUB_OUTPUT
-          
+    steps:    
       - name: Checkout
         uses: actions/checkout@v4
         with:
