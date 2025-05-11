@@ -6,7 +6,6 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true
     },
-    "hide-files.files": [],
     "[markdown]": {
         "editor.fontSize": 14,
         "editor.lineHeight": 26,
