@@ -2,9 +2,9 @@
 import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-import Prism from 'prismjs'
-import 'prismjs/components/prism-csharp'
-import '../theme/custom-prism.css'
+// import Prism from 'prismjs'
+// import 'prismjs/components/prism-csharp'
+// import '../theme/custom-prism.css'
 import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 import '../theme/style.css'
 
@@ -163,12 +163,12 @@ onMounted(async () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
-  Prism.highlightAll()
+  // Prism.highlightAll()
 })
 
 watch(() => hooks.value, () => {
   nextTick(() => {
-    Prism.highlightAll()
+    // Prism.highlightAll()
   })
 }, { deep: true })
 

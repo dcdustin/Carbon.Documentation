@@ -4,9 +4,9 @@ import { useRoute } from 'vitepress'
 import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 // sometime in the future it has to be replaced with the shiki
-import Prism from 'prismjs'
-import 'prismjs/components/prism-csharp'
-import '../theme/custom-prism.css'
+// import Prism from 'prismjs'
+// import 'prismjs/components/prism-csharp'
+// import '../theme/custom-prism.css'
 import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 
 const route = useRoute()
@@ -91,7 +91,7 @@ const copyToClipboard = async (text, id = null) => {
 
 onMounted(() => {
   // Initialize Prism.js for code highlighting
-  Prism.highlightAll()
+  // Prism.highlightAll()
 
   // Load hook details if name is in URL
   const hookName = getHookName()
@@ -122,7 +122,7 @@ watch(() => window.location.search, () => {
 // Watch for hook changes to re-highlight code
 watch(hook, () => {
   nextTick(() => {
-    Prism.highlightAll()
+    // Prism.highlightAll()
   })
 })
 
