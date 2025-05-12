@@ -197,7 +197,7 @@ watch(blueprint, (newBlueprint) => {
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width:300px; height:300px;">
             <div v-if="!imageError"
                  class="absolute inset-0 bg-cover bg-center"
-                 style="background-image: url('https://carbonmod.gg/assets/media/items/blueprintbase.png');">
+                 style="background-image: url('https://cdn.carbonmod.gg/items/blueprintbase.png');">
             </div>
             <template v-if="!imageError">
               <img

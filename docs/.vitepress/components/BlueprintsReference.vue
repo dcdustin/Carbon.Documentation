@@ -299,7 +299,7 @@ const fetchDlcData = async (appId) => {
                             <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
                               <div v-if="!imageErrors.get(bp.Item.Id)"
                                    class="absolute inset-0 bg-cover bg-center"
-                                   style="background-image: url('https://carbonmod.gg/assets/media/items/blueprintbase.png');">
+                                   style="background-image: url('https://cdn.carbonmod.gg/items/blueprintbase.png');">
                               </div>
                               <template v-if="!imageErrors.get(bp.Item.Id)">
                                 <img
