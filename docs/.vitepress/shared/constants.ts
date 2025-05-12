@@ -1,18 +1,18 @@
 // API URLs from environment variables
 import { cache } from '../api/cache'
 
-export const HOOKS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/hooks.json'
-export const BLUEPRINTS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/blueprints.json'
-export const ITEMS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/items.json'
-export const ENTITIES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/entities.json'
-export const LOOT_TABLES_API_URL = 'https://carbonmod.gg/redist/metadata/rust/loot_tables.json'
-export const PREFABS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/prefabs.json'
-export const COMMANDS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/commands.json'
-export const RELEASE_NOTES_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/changelogs.json'
-export const SWITCHES_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/switches.json'
-export const CONVARS_API_URL = 'https://carbonmod.gg/redist/metadata/carbon/convars.json'
-export const RUST_CONVARS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/convars.json'
-export const RUST_COMMANDS_API_URL = 'https://carbonmod.gg/redist/metadata/rust/commands.json'
+export const HOOKS_API_URL = 'https://api.carbonmod.gg/meta/carbon/hooks.json'
+export const BLUEPRINTS_API_URL = 'https://api.carbonmod.gg/meta/rust/blueprints.json'
+export const ITEMS_API_URL = 'https://api.carbonmod.gg/meta/rust/items.json'
+export const ENTITIES_API_URL = 'https://api.carbonmod.gg/meta/rust/entities.json'
+export const LOOT_TABLES_API_URL = 'https://api.carbonmod.gg/meta/rust/loot_tables.json'
+export const PREFABS_API_URL = 'https://api.carbonmod.gg/meta/rust/prefabs.json'
+export const COMMANDS_API_URL = 'https://api.carbonmod.gg/meta/carbon/commands.json'
+export const RELEASE_NOTES_API_URL = 'https://api.carbonmod.gg/meta/carbon/changelogs.json'
+export const SWITCHES_API_URL = 'https://api.carbonmod.gg/meta/carbon/switches.json'
+export const CONVARS_API_URL = 'https://api.carbonmod.gg/meta/carbon/convars.json'
+export const RUST_CONVARS_API_URL = 'https://api.carbonmod.gg/meta/rust/convars.json'
+export const RUST_COMMANDS_API_URL = 'https://api.carbonmod.gg/meta/rust/commands.json'
 export const ITEM_IMAGE_SERVER = 'https://carbonmod.gg/assets/media/items'
 export const MISSING_IMAGE_URL = 'https://carbonmod.gg/assets/media/missing.jpg'
 export const CACHE_VERSION_API_URL = 'https://carbonmod.gg/version/?id=docs'
@@ -83,7 +83,7 @@ const setCache = (url: string, data: any) => {
 }
 
 // Legacy constant for backward compatibility
-export const GAME_DATA_FOLDER = 'https://carbonmod.gg/redist/metadata/rust'
+export const GAME_DATA_FOLDER = 'https://api.carbonmod.gg/meta/rust'
 
 export enum ItemFlag {
   NoDropping = 1,
