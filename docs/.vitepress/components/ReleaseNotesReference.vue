@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { Database, ExternalLink, GitPullRequestIcon, Loader2 } from 'lucide-vue-next'
+import { Database, ExternalLink, GitPullRequestIcon, Loader2, LucideTextCursorInput } from 'lucide-vue-next'
 import { CACHE_VERSION_API_URL, getGameData, RELEASE_NOTES_API_URL } from '../shared/constants'
 import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
@@ -175,6 +175,12 @@ const getChangeType = (val) => {
           Full Commit Log
           <ExternalLink size="14" class="opacity-80" />
         </a>
+        <div style="width: 10px;"></div>
+        <a href="/tools/changelog-generator"
+           class="vp-button medium brand flex items-center gap-2">
+          <LucideTextCursorInput size="16" />
+          Editor
+        </a>
       </div>
     </div>
     <p class="mb-8"></p>
@@ -228,13 +234,15 @@ const getChangeType = (val) => {
 
                     </summary>
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700" style="margin: 10px;">
-                      <tbody>
-                      <tr v-for="change in releaseNote.Changes.slice().sort((a, b) => a.Type - b.Type)">
-                        <td class="whitespace-normal">
-                          <CarbonChange :variant="getChangeType(change.Type)" :text="change.Message" />
-                        </td>
-                      </tr>
-                      </tbody>
+                    <tbody>
+                    <tr v-for="change in releaseNote.Changes.slice().sort((a, b) => a.Type - b.Type)"
+                        class="items-table-row">
+                      <td class="whitespace-normal">
+                        <CarbonChange :variant="getChangeType(change.Type)"
+                                      :text="change.Message + (change.Authors != null ? `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')" />
+                      </td>
+                    </tr>
+                    </tbody>
                     </table>
                   </details>
                 </td>
