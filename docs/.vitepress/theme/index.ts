@@ -25,7 +25,6 @@ import SwitchesReference from '../components/SwitchesReference.vue'
 import ReleaseNotesReference from '../components/ReleaseNotesReference.vue'
 import RustConVarReference from '../components/RustConVarReference.vue'
 import RustCommandReference from '../components/RustCommandReference.vue'
-import CarbonProducts from '../components/CarbonProducts.vue'
 
 export default {
   extends: DefaultTheme,
@@ -57,7 +56,6 @@ export default {
     app.component('ReleaseNotesReference', ReleaseNotesReference)
     app.component('RustConVarReference', RustConVarReference)
     app.component('RustCommandReference', RustCommandReference)
-    app.component('CarbonProducts', CarbonProducts)
     enhanceAppWithTabs(app)
 
   },
