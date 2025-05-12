@@ -180,14 +180,7 @@ export default defineConfig({
         },
         {
           text: 'References', items: references,
-        },
-        {
-          text: 'WIP',
-          collapsed: true,
-          items: [
-            { text: 'Changelog Generator', link: '/wip/changelog-generator.md' },
-          ],
-        },
+        }
       ],
     },
 

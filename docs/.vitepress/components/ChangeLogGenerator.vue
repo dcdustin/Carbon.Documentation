@@ -70,7 +70,7 @@ const changeLog: Ref<ChangeLog> = ref(
   new ChangeLog(
     '',
     '',
-    'https://github.com/CarbonCommunity/Carbon/commit/7a125edf8896e29dd34d67bc4bbae252988222f8',
+    'https://github.com/CarbonCommunity/Carbon/commit/',
     [
       new ChangeLogSection('Add', 0, []),
       new ChangeLogSection('Update', 1, []),
