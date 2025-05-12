@@ -32,7 +32,7 @@ jobs:
       - name: FTP Upload (rust/blueprints.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/blueprints.json"
@@ -41,7 +41,7 @@ jobs:
       - name: FTP Upload (rust/entities.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/entities.json"
@@ -50,7 +50,7 @@ jobs:
       - name: FTP Upload (rust/items.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/items.json"
@@ -59,7 +59,7 @@ jobs:
       - name: FTP Upload (rust/loot-tables.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/loot-tables.json"
@@ -68,7 +68,7 @@ jobs:
       - name: FTP Upload (rust/prefabs.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/prefabs.json"
@@ -77,7 +77,7 @@ jobs:
       - name: FTP Upload (rust/convars.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/rust_convars.json"
@@ -86,7 +86,7 @@ jobs:
       - name: FTP Upload (rust/commands.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/rust_commands.json"
@@ -95,7 +95,7 @@ jobs:
       - name: FTP Upload (carbon/hooks.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/hooks.json"
@@ -104,7 +104,7 @@ jobs:
       - name: FTP Upload (carbon/commands.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/commands.json"
@@ -113,7 +113,7 @@ jobs:
       - name: FTP Upload (carbon/convars.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/convars.json"
@@ -122,7 +122,7 @@ jobs:
       - name: FTP Upload (carbon/switches.json)
         uses: tomasbkk/action-ftp-upload@v1.0
         with:
-          user: redist@carbonmod.gg
+          user: api@carbonmod.gg
           password: ${{ secrets.FTP_PWD }}
           host: ${{ secrets.FTP_IP }}
           src: "tools/Server/carbon/results/switches.json"
