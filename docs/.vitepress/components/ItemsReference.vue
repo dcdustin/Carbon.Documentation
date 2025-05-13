@@ -75,7 +75,7 @@ const filteredItems = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(item => {
+    filtered = filtered.filter((item) => {
       if (!item) return false
       return (
         (item.DisplayName && item.DisplayName.toLowerCase().includes(searchLower)) ||
@@ -100,7 +100,10 @@ const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     // Clean up search input to handle special characters
-    const cleanValue = value.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    const cleanValue = value
+      .replace(/[^\x20-\x7E]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
     debouncedSearchQuery.value = cleanValue
     currentPage.value = 1
 
@@ -117,8 +120,13 @@ const updateDebouncedSearch = (value: string) => {
 const handleUrlSearch = () => {
   const hash = window.location.hash.slice(1)
   if (hash) {
-    const searchTerm = decodeURIComponent(hash).replace(/^item-/, '').replace(/-/g, ' ')
-    const cleanTerm = searchTerm.replace(/[^\x20-\x7E]/g, ' ').replace(/\s+/g, ' ').trim()
+    const searchTerm = decodeURIComponent(hash)
+      .replace(/^item-/, '')
+      .replace(/-/g, ' ')
+    const cleanTerm = searchTerm
+      .replace(/[^\x20-\x7E]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
     searchQuery.value = cleanTerm
     updateDebouncedSearch(cleanTerm)
   }
@@ -128,7 +136,7 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -136,7 +144,6 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
 
 const loadItems = async () => {
   try {
-
     //  need to clear the items array before loading new items
     items.value = []
     isLoading.value = true
@@ -211,8 +218,10 @@ onUnmounted(() => {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-4">Rust Game Items Reference</h1>
-    <p class="mb-8">This section contains a comprehensive list of all items available in the game. Each item is listed
-      with its unique ID, components, and file path.</p>
+    <p class="mb-8">
+      This section contains a comprehensive list of all items available in the game. Each item is listed with
+      its unique ID, components, and file path.
+    </p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
@@ -240,15 +249,12 @@ onUnmounted(() => {
               @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search items..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
-          <select
-            v-model="selectedCategory"
-            class="px-4 py-2 min-w-[140px]"
-          >
+          <select v-model="selectedCategory" class="px-4 py-2 min-w-[140px]">
             <option value="all">All Items</option>
             <option
-              v-for="category in categories.filter(c => c !== 'all')"
+              v-for="category in categories.filter((c) => c !== 'all')"
               :key="category"
               :value="category"
             >
@@ -261,7 +267,8 @@ onUnmounted(() => {
       <div v-if="paginatedItems && paginatedItems.length">
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedItems.length }} of {{ filteredItems.length }} items
           </div>
         </div>
@@ -270,75 +277,102 @@ onUnmounted(() => {
           <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="item in paginatedItems" :key="item.Id" :id="item.Id.toString()" class="items-table-row">
-                <td class="whitespace-normal pb-4">
-                  <div class="flex gap-4">
-                    <div class="flex-shrink-0">
-                      <a :href="`/references/items/details?id=${item.Id}`" class="block">
-                        <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
-                          <template v-if="!imageErrors.get(item.Id)">
-                            <img
-                              :src="getItemImageUrl(item.ShortName)"
-                              @error="(e) => handleImageError(e, item.Id)"
-                              class="w-full h-full object-contain p-4"
-                              :alt="item.DisplayName"
+                <tr
+                  v-for="item in paginatedItems"
+                  :key="item.Id"
+                  :id="item.Id.toString()"
+                  class="items-table-row"
+                >
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex gap-4">
+                      <div class="flex-shrink-0">
+                        <a :href="`/references/items/details?id=${item.Id}`" class="block">
+                          <div
+                            class="relative aspect-square overflow-hidden"
+                            style="width: 150px; height: 150px"
+                          >
+                            <template v-if="!imageErrors.get(item.Id)">
+                              <img
+                                :src="getItemImageUrl(item.ShortName)"
+                                @error="(e) => handleImageError(e, item.Id)"
+                                class="w-full h-full object-contain p-4"
+                                :alt="item.DisplayName"
+                              />
+                            </template>
+                            <div
+                              v-else
+                              class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center"
                             >
-                          </template>
-                          <div v-else
-                               class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                            <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                              <Image :size="48" class="text-gray-400" />
+                              <div
+                                class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center"
+                              >
+                                <Image :size="48" class="text-gray-400" />
+                              </div>
+                              <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
+                              <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{
+                                item.ShortName
+                              }}</span>
                             </div>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
-                            <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{ item.ShortName }}</span>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="flex-1">
+                        <div class="flex items-center justify-between mb-2">
+                          <h5 :id="getSanitizedAnchor(item.DisplayName)" class="text-lg font-medium">
+                            <a
+                              :href="`/references/items/details?id=${item.Id}`"
+                              class="hover:text-primary inline-flex items-center gap-2"
+                            >
+                              {{ item.DisplayName }}
+                              <ExternalLink :size="14" class="opacity-60" />
+                            </a>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                              <button
+                                v-if="item.Id"
+                                @click="copyToClipboard(item.Id.toString(), item.Id)"
+                                class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                              >
+                                <span class="font-mono">ID: {{ item.Id }}</span>
+                                <component
+                                  :is="copiedId === item.Id ? CheckCircle2 : Copy"
+                                  class="ml-2"
+                                  :size="14"
+                                />
+                              </button>
+                              <button
+                                v-if="item.ShortName"
+                                @click="copyToClipboard(item.ShortName, item.ShortName)"
+                                class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                              >
+                                <span class="font-mono">{{ item.ShortName }}</span>
+                                <component
+                                  :is="copiedId === item.ShortName ? CheckCircle2 : Copy"
+                                  class="ml-2"
+                                  :size="14"
+                                />
+                              </button>
+                            </div>
+                          </h5>
+                          <div v-if="item.Hidden">
+                            <VPBadge type="danger" text="Hidden" />
                           </div>
                         </div>
-                      </a>
-                    </div>
-                    <div class="flex-1">
-                      <div class="flex items-center justify-between mb-2">
-                        <h5 :id="getSanitizedAnchor(item.DisplayName)" class="text-lg font-medium">
-                          <a :href="`/references/items/details?id=${item.Id}`"
-                             class="hover:text-primary inline-flex items-center gap-2">
-                            {{ item.DisplayName }}
-                            <ExternalLink :size="14" class="opacity-60" />
-                          </a>
-                          <div class="flex flex-wrap gap-2 mt-3">
-                            <button v-if="item.Id" @click="copyToClipboard(item.Id.toString(), item.Id)"
-                                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                              <span class="font-mono">ID: {{ item.Id }}</span>
-                              <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" :size="14" />
-                            </button>
-                            <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)"
-                                    class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                              <span class="font-mono">{{ item.ShortName }}</span>
-                              <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2"
-                                         :size="14" />
-                            </button>
-                          </div>
-                        </h5>
-                        <div v-if="item.Hidden">
-                          <VPBadge type="danger" text="Hidden" />
+
+                        <div class="flex flex-wrap gap-2 mt-2">
+                          <template v-for="flag in getFlags(item.Flags)" :key="flag">
+                            <VPBadge type="warning" :text="flag" />
+                          </template>
+                          <VPBadge v-if="item.Category !== 0" :text="getItemCategoryText(item.Category)" />
+                          <VPBadge v-if="item.Rarity !== 0" :text="getItemRarityText(item.Rarity)" />
                         </div>
-                      </div>
 
-                      <div class="flex flex-wrap gap-2 mt-2">
-                        <template v-for="flag in getFlags(item.Flags)" :key="flag">
-                          <VPBadge type="warning" :text="flag" />
-                        </template>
-                        <VPBadge v-if="item.Category !== 0"
-                                 :text="getItemCategoryText(item.Category)" />
-                        <VPBadge v-if="item.Rarity !== 0"
-                                 :text="getItemRarityText(item.Rarity)" />
+                        <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                          {{ item.Description }}
+                        </p>
                       </div>
-
-                      <p v-if="item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                        {{ item.Description }}
-                      </p>
                     </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
