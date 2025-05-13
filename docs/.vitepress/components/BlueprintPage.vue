@@ -1,5 +1,5 @@
-<script setup>
-import { onMounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref, watch, Ref } from 'vue'
 import {
   CheckCircle2,
   Clock,
@@ -17,7 +17,6 @@ import {
 import {
   CATEGORY_COLORS,
   GAME_DATA_FOLDER,
-  getGameData,
   getItemCategoryText,
   getItemRarityText,
   ITEM_IMAGE_SERVER,
@@ -26,13 +25,13 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
+import { fetchBlueprints, Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
 
-const blueprint = ref(null)
+const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)
-const copiedId = ref(null)
+const copiedId: Ref<string | number | null> = ref(null)
 const imageError = ref(false)
-const selectedIngredient = ref(null)
+const selectedIngredient: Ref<Ingredient | null> = ref(null)
 const showIngredientModal = ref(false)
 const dlcData = ref(new Map())
 
@@ -41,17 +40,17 @@ const getBlueprintId = () => {
   return urlParams.get('id')
 }
 
-const getItemImageUrl = (shortName) => {
+const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
 }
 
-const handleImageError = (event) => {
+const handleImageError = (event: Event) => {
   imageError.value = true
-  console.warn(`Failed to load image for blueprint: ${event.target.src}`)
+  console.warn(`Failed to load image for blueprint: ${(event.target as HTMLImageElement).src}`)
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -61,7 +60,7 @@ const copyToClipboard = async (text, id = null) => {
   }
 }
 
-const fetchDlcData = async (appId) => {
+const fetchDlcData = async (appId: number) => {
   if (dlcData.value.has(appId)) return dlcData.value.get(appId)
 
   try {
@@ -77,11 +76,11 @@ const fetchDlcData = async (appId) => {
   return null
 }
 
-const getDlcImageUrl = (appId) => {
+const getDlcImageUrl = (appId: number) => {
   return `https://cdn.akamai.steamstatic.com/steam/apps/${appId}/header.jpg`
 }
 
-const loadBlueprint = async (blueprintId) => {
+const loadBlueprint = async (blueprintId: string) => {
   try {
     if (!blueprintId) {
       console.error('No blueprint ID found in URL')
@@ -112,7 +111,7 @@ const loadBlueprint = async (blueprintId) => {
   }
 }
 
-const openIngredientModal = async (ingredient) => {
+const openIngredientModal = async (ingredient: Ingredient) => {
   selectedIngredient.value = ingredient
   showIngredientModal.value = true
 
@@ -153,7 +152,7 @@ watch(blueprint, (newBlueprint) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading blueprint...</span>
     </div>
 
@@ -164,13 +163,13 @@ watch(blueprint, (newBlueprint) => {
         <div class="flex items-center gap-4">
           <h1 class="text-2xl font-bold">{{ blueprint.Item.DisplayName }}</h1>
           <button
-            @click="copyToClipboard(blueprint.Item.Id, blueprint.Item.Id)"
+            @click="copyToClipboard(blueprint.Item.Id.toString(), blueprint.Item.Id)"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <span class="font-mono">{{ blueprint.Item.Id }}</span>
             <component :is="copiedId === blueprint.Item.Id ? CheckCircle2 : Copy"
                        class="ml-2"
-                       size="14"
+                       :size="14"
             />
           </button>
           <button
@@ -180,15 +179,15 @@ watch(blueprint, (newBlueprint) => {
             <span class="font-mono">{{ blueprint.Item.ShortName }}</span>
             <component :is="copiedId === blueprint.Item.ShortName ? CheckCircle2 : Copy"
                        class="ml-2"
-                       size="14"
+                       :size="14"
             />
           </button>
         </div>
         <a :href="`${GAME_DATA_FOLDER}/blueprints.json`" target="_blank"
            class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           Blueprints API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
 
@@ -212,7 +211,7 @@ watch(blueprint, (newBlueprint) => {
             <div v-else
                  class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <Image size="48" class="text-gray-400" />
+                <Image :size="48" class="text-gray-400" />
               </div>
               <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
               <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{ blueprint.Item.ShortName }}</span>
@@ -225,9 +224,9 @@ watch(blueprint, (newBlueprint) => {
           <!-- Badges -->
           <div class="flex flex-wrap gap-2">
             <VPBadge :text="getItemCategoryText(blueprint.Item.Category)" class="opacity-75"
-                     :style="{ backgroundColor: CATEGORY_COLORS[blueprint.Item.Category], color: '#fff' }" />
+                     :style="{ backgroundColor: CATEGORY_COLORS[blueprint.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
             <VPBadge :text="getItemRarityText(blueprint.Item.Rarity)" class="opacity-75"
-                     :style="{ backgroundColor: RARITY_COLORS[blueprint.Item.Rarity], color: '#fff' }" />
+                     :style="{ backgroundColor: RARITY_COLORS[blueprint.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
             <VPBadge v-if="blueprint.UserCraftable" type="danger" :text="'Craftable'" />
             <VPBadge v-if="blueprint.WorkbenchLevelRequired >= 0" class="opacity-75" type="warning"
                      :text="`Tier ${blueprint.WorkbenchLevelRequired}`" />
@@ -245,19 +244,19 @@ watch(blueprint, (newBlueprint) => {
           <div class="space-y-4">
             <!-- Time -->
             <div class="flex items-center gap-2">
-              <Clock size="16" class="text-gray-400" />
+              <Clock :size="16" class="text-gray-400" />
               <span>Crafting Time: {{ blueprint.Time }} seconds</span>
             </div>
 
             <!-- Workbench -->
             <div v-if="blueprint.WorkbenchLevelRequired >= 0" class="flex items-center gap-2">
-              <Wrench size="16" class="text-gray-400" />
+              <Wrench :size="16" class="text-gray-400" />
               <span>Requires Workbench Tier {{ blueprint.WorkbenchLevelRequired }}</span>
             </div>
 
             <!-- Craft Amount -->
             <div v-if="blueprint.CraftAmount > 1" class="flex items-center gap-2">
-              <Scissors size="16" class="text-gray-400" />
+              <Scissors :size="16" class="text-gray-400" />
               <span>Crafts {{ blueprint.CraftAmount }} at once</span>
             </div>
 
@@ -277,7 +276,7 @@ watch(blueprint, (newBlueprint) => {
                       >
                       <div v-if="imageError"
                            class="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-                        <Image size="16" class="text-gray-400" />
+                        <Image :size="16" class="text-gray-400" />
                       </div>
                     </div>
                     <button @click="openIngredientModal(ing)"
@@ -295,11 +294,11 @@ watch(blueprint, (newBlueprint) => {
               <h3 class="text-lg font-medium mb-2">Research Details:</h3>
               <div class="space-y-2">
                 <div v-if="blueprint.ScrapRequired > 0" class="flex items-center gap-2">
-                  <Lock size="16" class="text-gray-400" />
+                  <Lock :size="16" class="text-gray-400" />
                   <span>Research Cost: {{ blueprint.ScrapRequired }} Scrap</span>
                 </div>
                 <div v-if="blueprint.ScrapFromRecycle > 0" class="flex items-center gap-2">
-                  <Unlock size="16" class="text-gray-400" />
+                  <Unlock :size="16" class="text-gray-400" />
                   <span>Recycle Value: {{ blueprint.ScrapFromRecycle }} Scrap</span>
                 </div>
               </div>
@@ -311,7 +310,7 @@ watch(blueprint, (newBlueprint) => {
       <!-- DLC Info -->
       <div v-if="blueprint.Item.SteamDlcItem" class="mt-4 pt-4">
         <div class="flex items-center gap-2 text-lg font-medium mb-4">
-          <Lock size="20" class="text-gray-400" />
+          <Lock :size="20" class="text-gray-400" />
           <span>Required DLC</span>
         </div>
         <a :href="`https://store.steampowered.com/app/${blueprint.Item.SteamDlcItem.AppId}`"
@@ -324,7 +323,7 @@ watch(blueprint, (newBlueprint) => {
               <img :src="getDlcImageUrl(blueprint.Item.SteamDlcItem.AppId)"
                    class=""
                    :alt="blueprint.Item.SteamDlcItem.Name"
-                   @error="(e) => e.target.parentElement.classList.add('hidden')"
+                   @error="(e) => (e.target as HTMLImageElement).parentElement?.classList.add('hidden')"
               >
             </div>
 
@@ -341,7 +340,7 @@ watch(blueprint, (newBlueprint) => {
                 </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400">
                   View on Steam
-                  <ExternalLink size="14" class="inline ml-1" />
+                  <ExternalLink :size="14" class="inline ml-1" />
                 </div>
               </div>
               <div v-if="dlcData.get(blueprint.Item.SteamDlcItem.AppId)?.short_description"
@@ -374,7 +373,7 @@ watch(blueprint, (newBlueprint) => {
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold">{{ selectedIngredient.Item.DisplayName }}</h3>
           <button @click="closeIngredientModal" class="text-gray-500 hover:text-gray-700">
-            <X size="20" />
+            <X :size="20" />
           </button>
         </div>
 
@@ -389,7 +388,7 @@ watch(blueprint, (newBlueprint) => {
               >
               <div v-if="imageError"
                    class="absolute inset-0 flex items-center justify-center">
-                <Image size="32" class="text-gray-400" />
+                <Image :size="32" class="text-gray-400" />
               </div>
             </div>
           </div>
@@ -398,11 +397,11 @@ watch(blueprint, (newBlueprint) => {
             <div class="flex items-center gap-2">
               <span class="font-mono text-sm">{{ selectedIngredient.Item.Id }}</span>
               <button
-                @click="copyToClipboard(selectedIngredient.Item.Id, 'ingredient-id')"
+                @click="copyToClipboard(selectedIngredient.Item.Id.toString(), 'ingredient-id')"
                 class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
                 <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy"
-                           size="12"
+                           :size="12"
                 />
               </button>
             </div>
@@ -414,16 +413,16 @@ watch(blueprint, (newBlueprint) => {
                 class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
                 <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy"
-                           size="12"
+                           :size="12"
                 />
               </button>
             </div>
 
             <div class="flex flex-wrap gap-2">
               <VPBadge :text="getItemCategoryText(selectedIngredient.Item.Category)"
-                       :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category], color: '#fff' }" />
+                       :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
               <VPBadge :text="getItemRarityText(selectedIngredient.Item.Rarity)"
-                       :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity], color: '#fff' }" />
+                       :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
             </div>
 
             <p v-if="selectedIngredient.Item.Description" class="text-sm text-gray-600 dark:text-gray-300">
@@ -434,7 +433,7 @@ watch(blueprint, (newBlueprint) => {
               <a :href="`/references/items/details?id=${selectedIngredient.Item.Id}`"
                  class="vp-button medium brand flex items-center gap-2">
                 View Full Details
-                <ExternalLink size="14" />
+                <ExternalLink :size="14" />
               </a>
             </div>
           </div>
@@ -443,7 +442,7 @@ watch(blueprint, (newBlueprint) => {
         <!-- DLC Info -->
         <div v-if="selectedIngredient?.Item?.SteamDlcItem" class="mt-4 pt-4">
           <div class="flex items-center gap-2 text-sm font-medium mb-2">
-            <Lock size="16" class="text-gray-400" />
+            <Lock :size="16" class="text-gray-400" />
             <span>Steam DLC Required</span>
           </div>
           <a :href="`https://store.steampowered.com/app/${selectedIngredient.Item.SteamDlcItem.AppId}`"
@@ -455,7 +454,7 @@ watch(blueprint, (newBlueprint) => {
               <img :src="getDlcImageUrl(selectedIngredient.Item.SteamDlcItem.AppId)"
                    class="w-32 h-auto rounded"
                    :alt="selectedIngredient.Item.SteamDlcItem.Name"
-                   @error="(e) => e.target.parentElement.classList.add('hidden')"
+                   @error="(e) => (e.target as HTMLImageElement).parentElement?.classList.add('hidden')"
               >
               <div>
                 <div class="font-medium group-hover:text-primary">
