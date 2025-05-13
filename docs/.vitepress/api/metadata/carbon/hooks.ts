@@ -1,8 +1,6 @@
 import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
 
-export type HooksData = Map<string, Hook[]>
-
 export interface Hook {
   id: number
   name: string
@@ -27,6 +25,8 @@ export interface Parameter {
   typeName: string
   typeFriendly: string
 }
+
+export type HooksData = Map<string, Hook[]>
 
 export async function fetchHooks() {
   const url = URL_METDAT_CARB_HOOKS
