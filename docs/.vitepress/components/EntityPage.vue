@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 }
 import { GAME_DATA_FOLDER, getGameData, ITEM_IMAGE_SERVER } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchEntities } from '@/api/metadata/rust/entities'
 
 const entity = ref(null)
 const isLoading = ref(true)
@@ -42,7 +43,7 @@ const loadEntity = async (entityId) => {
       return
     }
 
-    const data = await getGameData(`${GAME_DATA_FOLDER}/entities.json`)
+    const data = await fetchEntities()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')
     }
