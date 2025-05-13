@@ -3,11 +3,11 @@ import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchCommands } from '@/api/metadata/rust/commands'
-import type { Command } from '@/api/metadata/rust/commands'
+import { fetchCommandsRust } from '@/api/metadata/rust/commands'
+import type { CommandRust } from '@/api/metadata/rust/commands'
 import { URL_METDAT_RUST_COMMANDS } from '@/api/constants'
 
-const commands: Ref<Command[]> = ref([])
+const commands: Ref<CommandRust[]> = ref([])
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
@@ -55,7 +55,7 @@ const loadCommands = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await fetchCommands()
+    const data = await fetchCommandsRust()
     commands.value = data
   } catch (err) {
     console.error('Failed to load commands:', err)

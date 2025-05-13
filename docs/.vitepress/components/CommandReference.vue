@@ -3,11 +3,11 @@ import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchCommands } from '@/api/metadata/carbon/commands'
-import type { Command } from '@/api/metadata/carbon/commands'
+import { fetchCommandsCarbon } from '@/api/metadata/carbon/commands'
+import type { CommandCarbon } from '@/api/metadata/carbon/commands'
 import { URL_METDAT_CARB_COMMANDS } from '@/api/constants'
 
-const commands: Ref<Command[]> = ref([])
+const commands: Ref<CommandCarbon[]> = ref([])
 const isLoading: Ref<boolean> = ref(true)
 const searchQuery: Ref<string> = ref('')
 const debouncedSearchQuery: Ref<string> = ref('')
@@ -55,7 +55,7 @@ const loadCommands = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await fetchCommands()
+    const data = await fetchCommandsCarbon()
     commands.value = data
   } catch (err) {
     console.error('Failed to load commands:', err)

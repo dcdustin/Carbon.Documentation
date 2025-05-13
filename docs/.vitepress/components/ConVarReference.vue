@@ -3,11 +3,11 @@ import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchConVars } from '@/api/metadata/carbon/convars'
-import type { ConVar } from '@/api/metadata/carbon/convars'
+import { fetchConVarsCarbon } from '@/api/metadata/carbon/convars'
+import type { ConVarCarbon } from '@/api/metadata/carbon/convars'
 import { URL_METDAT_CARB_CONVARS } from '@/api/constants'
 
-const convars: Ref<ConVar[]> = ref([])
+const convars: Ref<ConVarCarbon[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
 const isLoading: Ref<boolean> = ref(true)
 const searchQuery: Ref<string> = ref('')
@@ -66,7 +66,7 @@ const loadConvars = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await fetchConVars()
+    const data = await fetchConVarsCarbon()
     convars.value = data
   } catch (err) {
     console.error('Failed to load convar:', err)
