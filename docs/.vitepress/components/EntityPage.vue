@@ -1,17 +1,18 @@
-<script setup>
-import { onMounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref, watch, Ref } from 'vue'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
-import { GAME_DATA_FOLDER, getGameData, ITEM_IMAGE_SERVER } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchEntities } from '@/api/metadata/rust/entities'
+import type { Entity } from '@/api/metadata/rust/entities'
+import { URL_ASSETS_ITEMS, URL_METDAT_RUST_ENTITIES } from '@/api/constants'
 
-const entity = ref(null)
+const entity: Ref<Entity | null> = ref(null)
 const isLoading = ref(true)
-const copiedId = ref(null)
+const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -26,17 +27,17 @@ const getEntityId = () => {
   return urlParams.get('id')
 }
 
-const getEntityImageUrl = (id) => {
+const getEntityImageUrl = (id: number) => {
   if (!id) return null
-  return `${ITEM_IMAGE_SERVER}/${id}.png`
+  return `${URL_ASSETS_ITEMS}/${id}.png`
 }
 
-const handleImageError = (event) => {
+const handleImageError = (event: Event) => {
   imageError.value = true
-  console.warn(`Failed to load image for entity: ${event.target.src}`)
+  console.warn(`Failed to load image for entity: ${(event.target as HTMLImageElement).src}`)
 }
 
-const loadEntity = async (entityId) => {
+const loadEntity = async (entityId: string) => {
   try {
     if (!entityId) {
       console.error('No entity ID found in URL')
@@ -48,7 +49,7 @@ const loadEntity = async (entityId) => {
       throw new Error('Data is not an array')
     }
 
-    const foundEntity = data.find(e => e.ID.toString() === entityId)
+    const foundEntity = data.find((e) => e.ID.toString() === entityId)
     if (foundEntity) {
       entity.value = foundEntity
       imageError.value = false // Reset image error state when loading new entity
@@ -88,7 +89,7 @@ watch(entity, (newEntity) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading entity...</span>
     </div>
 
@@ -99,21 +100,21 @@ watch(entity, (newEntity) => {
         <div class="flex items-center gap-4">
           <h1 class="text-2xl font-bold">{{ entity.Path.split('/').pop() }}</h1>
           <button
-            @click="copyToClipboard(entity.ID, entity.ID)"
+            @click="copyToClipboard(entity.ID.toString(), entity.ID)"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <span class="font-mono">{{ entity.ID }}</span>
             <component :is="copiedId === entity.ID ? CheckCircle2 : Copy"
                        class="ml-2"
-                       size="14"
+                       :size="14"
             />
           </button>
         </div>
-        <a :href="`${GAME_DATA_FOLDER}/entities.json`" target="_blank"
+        <a :href="URL_METDAT_RUST_ENTITIES" target="_blank"
            class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           Entities API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
 
@@ -124,7 +125,7 @@ watch(entity, (newEntity) => {
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width:300px; height:300px;">
             <template v-if="!imageError && getEntityImageUrl(entity.ID)">
               <img
-                :src="getEntityImageUrl(entity.ID)"
+                :src="getEntityImageUrl(entity.ID)!"
                 @error="handleImageError"
                 class="w-full h-full object-contain p-8"
                 :alt="entity.Path.split('/').pop()"
@@ -133,7 +134,7 @@ watch(entity, (newEntity) => {
             <div v-else
                  class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <Image size="48" class="text-gray-400" />
+                <Image :size="48" class="text-gray-400" />
               </div>
               <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
               <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">ID: {{ entity.ID }}</span>
@@ -163,7 +164,7 @@ watch(entity, (newEntity) => {
                 class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
                 <component :is="copiedId === 'path' ? CheckCircle2 : Copy"
-                           size="14"
+                           :size="14"
                 />
               </button>
             </div>
@@ -174,7 +175,7 @@ watch(entity, (newEntity) => {
       <!-- Return to Entities -->
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
-          <ArrowLeft size="16" class="opacity-80" />
+          <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/entities" class="vp-button medium brand underline">
             Back to Entities
           </a>
@@ -187,7 +188,7 @@ watch(entity, (newEntity) => {
       <div class="space-y-4">
         <p class="text-gray-500">Entity not found</p>
         <div class="flex items-center gap-2 justify-center">
-          <ArrowLeft size="16" class="opacity-80" />
+          <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/entities" class="vp-button medium brand underline">
             Back to Entities
           </a>
