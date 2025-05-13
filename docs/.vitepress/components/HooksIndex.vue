@@ -4,7 +4,7 @@ import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-n
 import { VPBadge } from 'vitepress/theme'
 import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
 import '../theme/style.css'
-import { fetchHooks, Hook } from '@/api/metadata/rust/hooks'
+import { fetchHooks, Hook } from '@/api/metadata/carbon/hooks'
 
 const hooks: Ref<Hook[]> = ref<Hook[]>([])
 const isLoading = ref(true)
