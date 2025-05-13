@@ -1,21 +1,21 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { CACHE_VERSION_API_URL, CONVARS_API_URL, getGameData } from '../shared/constants'
+import { CONVARS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchConVars } from '@/api/metadata/carbon/convars'
+import { ConVar, fetchConVars } from '@/api/metadata/carbon/convars'
 
-const convars = ref([])
-const copiedId = ref(null)
-const isLoading = ref(true)
-const searchQuery = ref('')
-const debouncedSearchQuery = ref('')
-const pageSize = 50
-const currentPage = ref(1)
-const loadingMore = ref(false)
-const hasMore = ref(true)
-const error = ref(null)
+const convars: Ref<ConVar[]> = ref([])
+const copiedId: Ref<string | null> = ref(null)
+const isLoading: Ref<boolean> = ref(true)
+const searchQuery: Ref<string> = ref('')
+const debouncedSearchQuery: Ref<string> = ref('')
+const pageSize: number = 50
+const currentPage: Ref<number> = ref(1)
+const loadingMore: Ref<boolean> = ref(false)
+const hasMore: Ref<boolean> = ref(true)
+const error: Ref<string | null> = ref(null)
 
 const LINK_API = CONVARS_API_URL
 
@@ -44,8 +44,8 @@ const paginatedConvars = computed(() => {
   return filteredConvars.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
@@ -53,10 +53,10 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
-    copiedId.value = id
+    copiedId.value = text
     setTimeout(() => copiedId.value = null, 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
@@ -112,15 +112,15 @@ onUnmounted(() => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           ConVar API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading convars...</span>
     </div>
 
@@ -128,11 +128,11 @@ onUnmounted(() => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" :size="20" />
             <input
               type="text"
               v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
+              @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search convars..."
               class="w-[400px] px-4 py-2"
             >
@@ -161,10 +161,10 @@ onUnmounted(() => {
                       <VPBadge v-if="convar.ForceModded" type="tip" :text="'Modded'" />
                     </h1>
                     <button
-                      @click="copyToClipboard(convar.Name, convar.Name)"
+                      @click="copyToClipboard(convar.Name)"
                       class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0">
                       <span class="font-mono">{{ convar.Name }}</span>
-                      <component :is="copiedId === convar.Name ? CheckCircle2 : Copy" class="ml-2" size="14" />
+                      <component :is="copiedId === convar.Name ? CheckCircle2 : Copy" class="ml-2" :size="14" />
                     </button>
                   </div>
                   <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
@@ -178,12 +178,12 @@ onUnmounted(() => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No convars found matching your search</p>
-        <p v-if="convars.value && convars.value.length === 0" class="mt-2 text-sm">
+        <p v-if="convars && convars.length === 0" class="mt-2 text-sm">
           Debug: No convars loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
