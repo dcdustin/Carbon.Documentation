@@ -1,25 +1,8 @@
 import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
+import { Item } from './items'
 
 // fix naming issues with first letter being uppercase
-export interface SteamDlcItem {
-  AppId: number
-  Name: string
-}
-
-export interface Item {
-  Id: number
-  DisplayName: string
-  ShortName: string
-  Description: string
-  Stack: number
-  Hidden: boolean
-  Flags: number
-  Category: number
-  Rarity: number
-  SteamDlcItem: SteamDlcItem | null
-}
-
 export interface Ingredient {
   Item: Item
   Amount: number
