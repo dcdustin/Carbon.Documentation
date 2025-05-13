@@ -4,6 +4,7 @@ import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'luc
 import { getGameData, PREFABS_API_URL, SpawnType } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 
 const prefabs = ref([])
 const copiedId = ref(null)
@@ -77,7 +78,7 @@ const loadPrefabs = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchPrefabs()
     prefabs.value = data
   } catch (err) {
     console.error('Failed to load prefabs:', err)
