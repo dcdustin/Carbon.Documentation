@@ -60,8 +60,8 @@ const handleImageError = (event: Event, itemId: number) => {
 
 const categories = computed(() => {
   if (!blueprints.value?.length) return []
-  const uniqueCategories = [...new Set(blueprints.value.map(bp => bp?.Item?.Category))]
-    .filter(cat => cat !== undefined)
+  const uniqueCategories = [...new Set(blueprints.value.map((bp) => bp?.Item?.Category))]
+    .filter((cat) => cat !== undefined)
     .sort((a, b) => a - b)
   return ['all', ...uniqueCategories]
 })
@@ -69,22 +69,22 @@ const categories = computed(() => {
 const filteredBlueprints = computed(() => {
   if (!blueprints.value?.length) return []
 
-  let filtered = blueprints.value.filter(bp => bp && bp.Item && bp.Item.DisplayName)
+  let filtered = blueprints.value.filter((bp) => bp && bp.Item && bp.Item.DisplayName)
 
   if (selectedCategory.value !== 'all') {
     const categoryNum = parseInt(selectedCategory.value)
-    filtered = filtered.filter(bp => bp?.Item?.Category === categoryNum)
+    filtered = filtered.filter((bp) => bp?.Item?.Category === categoryNum)
   }
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(bp => {
+    filtered = filtered.filter((bp) => {
       if (!bp?.Item) return false
       return (
         (bp.Item.DisplayName && bp.Item.DisplayName.toLowerCase().includes(searchLower)) ||
         (bp.Item.ShortName && bp.Item.ShortName.toLowerCase().includes(searchLower)) ||
         (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower)) ||
-        (bp.Item.Id.toString() == searchLower)
+        bp.Item.Id.toString() == searchLower
       )
     })
   }
@@ -111,7 +111,7 @@ const copyToClipboard = async (text: string, id: string | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -170,8 +170,7 @@ onMounted(async () => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('hashchange', () => {
-  })
+  window.removeEventListener('hashchange', () => {})
 })
 
 watch(debouncedSearchQuery, () => {
@@ -188,8 +187,8 @@ const emit = defineEmits(['showItemModal'])
 
 const showItemModal = async (itemId: number) => {
   const ingredient = blueprints.value
-    .flatMap(bp => bp.Ingredients || [])
-    .find(ing => ing.Item.Id === itemId)
+    .flatMap((bp) => bp.Ingredients || [])
+    .find((ing) => ing.Item.Id === itemId)
 
   if (ingredient) {
     selectedIngredient.value = ingredient
@@ -226,8 +225,10 @@ const fetchDlcData = async (appId: number) => {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-4">Rust Game Blueprints Reference</h1>
-    <p class="mb-8">This section contains a comprehensive list of all crafting blueprints available in the game. Each
-      blueprint shows the item details, crafting requirements, and research costs.</p>
+    <p class="mb-8">
+      This section contains a comprehensive list of all crafting blueprints available in the game. Each
+      blueprint shows the item details, crafting requirements, and research costs.
+    </p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
@@ -255,19 +256,17 @@ const fetchDlcData = async (appId: number) => {
               @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search blueprints..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
-          <select
-            v-model="selectedCategory"
-            class="px-4 py-2 min-w-[140px]"
-          >
+          <select v-model="selectedCategory" class="px-4 py-2 min-w-[140px]">
             <option value="all">All Blueprints</option>
             <option
-              v-for="category in categories.filter(c => c !== 'all')"
+              v-for="category in categories.filter((c) => c !== 'all')"
               :key="category"
               :value="category"
             >
-              {{ getItemCategoryText(category as number) }} <!-- I guess -->
+              {{ getItemCategoryText(category as number) }}
+              <!-- I guess -->
             </option>
           </select>
         </div>
@@ -276,7 +275,8 @@ const fetchDlcData = async (appId: number) => {
       <div v-if="paginatedBlueprints && paginatedBlueprints.length">
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedBlueprints.length }} of {{ filteredBlueprints.length }} blueprints
           </div>
         </div>
@@ -285,179 +285,221 @@ const fetchDlcData = async (appId: number) => {
           <div class="inline-block min-w-full p-4">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="bp in paginatedBlueprints" :key="bp.Item.ShortName" class="items-table-row">
-                <td class="whitespace-normal py-4">
-                  <div class="flex gap-8">
-                    <!-- Left Column: Blueprint Details -->
-                    <div class="flex-1">
-                      <div class="flex gap-4">
-                        <!-- Item Image -->
-                        <div class="flex-shrink-0">
-                          <a :href="`/references/blueprints/details?id=${bp.Item.Id}`" class="block">
-                            <div class="relative aspect-square overflow-hidden" style="width:150px; height:150px;">
-                              <div v-if="!imageErrors.get(bp.Item.Id)"
-                                   class="absolute inset-0 bg-cover bg-center"
-                                   style="background-image: url('https://cdn.carbonmod.gg/items/blueprintbase.png');">
-                              </div>
-                              <template v-if="!imageErrors.get(bp.Item.Id)">
-                                <img
-                                  :src="getItemImageUrl(bp.Item.ShortName)"
-                                  @error="(e) => handleImageError(e, bp.Item.Id)"
-                                  class="w-full h-full object-contain p-4 relative z-10"
-                                  :alt="bp.Item.DisplayName"
-                                >
-                              </template>
-                              <div v-else
-                                   class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10">
-                                <div
-                                  class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                  <Image :size="48" class="text-gray-400" />
-                                </div>
-                                <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
-                                <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                                  {{ bp.Item.ShortName }}
-                                </span>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-
-                        <!-- Item Details -->
-                        <div class="flex-1">
-                          <!-- Header -->
-                          <div class="flex items-center justify-between mb-2">
-                            <h5 class="text-lg font-medium">
-                              <a :href="`/references/blueprints/details?id=${bp.Item.Id}`"
-                                 class="hover:text-primary inline-flex items-center gap-2">
-                                {{ bp.Item.DisplayName }}
-                                <ExternalLink :size="14" class="opacity-60" />
-                              </a>
-                            </h5>
-                            <div class="flex items-center gap-2">
-                              <button
-                                @click="copyToClipboard(bp.Item.ShortName, bp.Item.ShortName)"
-                                class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                <tr v-for="bp in paginatedBlueprints" :key="bp.Item.ShortName" class="items-table-row">
+                  <td class="whitespace-normal py-4">
+                    <div class="flex gap-8">
+                      <!-- Left Column: Blueprint Details -->
+                      <div class="flex-1">
+                        <div class="flex gap-4">
+                          <!-- Item Image -->
+                          <div class="flex-shrink-0">
+                            <a :href="`/references/blueprints/details?id=${bp.Item.Id}`" class="block">
+                              <div
+                                class="relative aspect-square overflow-hidden"
+                                style="width: 150px; height: 150px"
                               >
-                                <span class="font-mono">{{ bp.Item.ShortName }}</span>
-                                <component :is="copiedId === bp.Item.ShortName ? CheckCircle2 : Copy"
-                                           class="ml-2"
-                                           :size="14"
-                                />
-                              </button>
-                            </div>
+                                <div
+                                  v-if="!imageErrors.get(bp.Item.Id)"
+                                  class="absolute inset-0 bg-cover bg-center"
+                                  style="
+                                    background-image: url('https://cdn.carbonmod.gg/items/blueprintbase.png');
+                                  "
+                                ></div>
+                                <template v-if="!imageErrors.get(bp.Item.Id)">
+                                  <img
+                                    :src="getItemImageUrl(bp.Item.ShortName)"
+                                    @error="(e) => handleImageError(e, bp.Item.Id)"
+                                    class="w-full h-full object-contain p-4 relative z-10"
+                                    :alt="bp.Item.DisplayName"
+                                  />
+                                </template>
+                                <div
+                                  v-else
+                                  class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10"
+                                >
+                                  <div
+                                    class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center"
+                                  >
+                                    <Image :size="48" class="text-gray-400" />
+                                  </div>
+                                  <span class="text-sm text-gray-500 dark:text-gray-400"
+                                    >No image available</span
+                                  >
+                                  <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                                    {{ bp.Item.ShortName }}
+                                  </span>
+                                </div>
+                              </div>
+                            </a>
                           </div>
 
-                          <!-- Badges -->
-                          <div class="flex flex-wrap gap-2 mt-2">
-                            <VPBadge :text="getItemCategoryText(bp.Item.Category)" class="opacity-75"
-                                     :style="{ backgroundColor: CATEGORY_COLORS[bp.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
-                            <VPBadge v-if="getItemRarityText(bp.Item.Rarity)" class="opacity-75"
-                                     :text="getItemRarityText(bp.Item.Rarity)"
-                                     :style="{ backgroundColor: RARITY_COLORS[bp.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
-                            <VPBadge v-if="bp.UserCraftable" type="danger" :text="'Craftable'" />
-                            <VPBadge v-if="bp.WorkbenchLevelRequired >= 0" type="warning"
-                                     :text="`Tier ${bp.WorkbenchLevelRequired}`" />
-                            <VPBadge v-if="bp.ScrapRequired > 0" type="info" :text="`${bp.ScrapRequired} Scrap`" />
-                            <VPBadge v-if="bp.NeedsSteamItem" type="danger" :text="'Steam Item Required'" />
-                            <VPBadge v-if="bp.NeedsSteamDLC" type="danger" :text="'Steam DLC Required'" />
-                          </div>
-
-                          <!-- Description -->
-                          <p v-if="bp.Item.Description" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                            {{ bp.Item.Description }}
-                          </p>
-
-                          <!-- Crafting Details -->
-                          <div class="mt-4 space-y-3">
-                            <!-- Time -->
-                            <div class="flex items-center gap-2 text-sm">
-                              <Clock :size="16" class="text-gray-400" />
-                              <span>{{ bp.Time }} seconds</span>
+                          <!-- Item Details -->
+                          <div class="flex-1">
+                            <!-- Header -->
+                            <div class="flex items-center justify-between mb-2">
+                              <h5 class="text-lg font-medium">
+                                <a
+                                  :href="`/references/blueprints/details?id=${bp.Item.Id}`"
+                                  class="hover:text-primary inline-flex items-center gap-2"
+                                >
+                                  {{ bp.Item.DisplayName }}
+                                  <ExternalLink :size="14" class="opacity-60" />
+                                </a>
+                              </h5>
+                              <div class="flex items-center gap-2">
+                                <button
+                                  @click="copyToClipboard(bp.Item.ShortName, bp.Item.ShortName)"
+                                  class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                                >
+                                  <span class="font-mono">{{ bp.Item.ShortName }}</span>
+                                  <component
+                                    :is="copiedId === bp.Item.ShortName ? CheckCircle2 : Copy"
+                                    class="ml-2"
+                                    :size="14"
+                                  />
+                                </button>
+                              </div>
                             </div>
 
-                            <!-- Workbench -->
-                            <div v-if="bp.WorkbenchLevelRequired >= 0" class="flex items-center gap-2 text-sm">
-                              <Wrench :size="16" class="text-gray-400" />
-                              <span>Requires Workbench Tier {{ bp.WorkbenchLevelRequired }}</span>
+                            <!-- Badges -->
+                            <div class="flex flex-wrap gap-2 mt-2">
+                              <VPBadge
+                                :text="getItemCategoryText(bp.Item.Category)"
+                                class="opacity-75"
+                                :style="{ backgroundColor: CATEGORY_COLORS[bp.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }"
+                              />
+                              <VPBadge
+                                v-if="getItemRarityText(bp.Item.Rarity)"
+                                class="opacity-75"
+                                :text="getItemRarityText(bp.Item.Rarity)"
+                                :style="{ backgroundColor: RARITY_COLORS[bp.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }"
+                              />
+                              <VPBadge v-if="bp.UserCraftable" type="danger" :text="'Craftable'" />
+                              <VPBadge
+                                v-if="bp.WorkbenchLevelRequired >= 0"
+                                type="warning"
+                                :text="`Tier ${bp.WorkbenchLevelRequired}`"
+                              />
+                              <VPBadge
+                                v-if="bp.ScrapRequired > 0"
+                                type="info"
+                                :text="`${bp.ScrapRequired} Scrap`"
+                              />
+                              <VPBadge v-if="bp.NeedsSteamItem" type="danger" :text="'Steam Item Required'" />
+                              <VPBadge v-if="bp.NeedsSteamDLC" type="danger" :text="'Steam DLC Required'" />
                             </div>
 
-                            <!-- Craft Amount -->
-                            <div v-if="bp.CraftAmount > 1" class="flex items-center gap-2 text-sm">
-                              <Scissors :size="16" class="text-gray-400" />
-                              <span>Crafts {{ bp.CraftAmount }} at once</span>
-                            </div>
+                            <!-- Description -->
+                            <p
+                              v-if="bp.Item.Description"
+                              class="text-sm text-gray-600 dark:text-gray-400 mt-3"
+                            >
+                              {{ bp.Item.Description }}
+                            </p>
 
-                            <!-- Steam Requirements -->
-                            <div v-if="bp.NeedsSteamItem || bp.NeedsSteamDLC" class="flex items-center gap-2 text-sm">
-                              <Lock :size="16" class="text-gray-400" />
-                              <span v-if="bp.NeedsSteamItem">Requires Steam Item</span>
-                              <span v-if="bp.NeedsSteamItem && bp.NeedsSteamDLC"> & </span>
-                              <span v-if="bp.NeedsSteamDLC">
-                                  Requires Steam DLC: 
-                                  <a v-if="bp.Item.SteamDlcItem"
-                                     :href="`https://store.steampowered.com/app/${bp.Item.SteamDlcItem.AppId}`"
-                                     target="_blank"
-                                     class="text-primary hover:underline"
+                            <!-- Crafting Details -->
+                            <div class="mt-4 space-y-3">
+                              <!-- Time -->
+                              <div class="flex items-center gap-2 text-sm">
+                                <Clock :size="16" class="text-gray-400" />
+                                <span>{{ bp.Time }} seconds</span>
+                              </div>
+
+                              <!-- Workbench -->
+                              <div
+                                v-if="bp.WorkbenchLevelRequired >= 0"
+                                class="flex items-center gap-2 text-sm"
+                              >
+                                <Wrench :size="16" class="text-gray-400" />
+                                <span>Requires Workbench Tier {{ bp.WorkbenchLevelRequired }}</span>
+                              </div>
+
+                              <!-- Craft Amount -->
+                              <div v-if="bp.CraftAmount > 1" class="flex items-center gap-2 text-sm">
+                                <Scissors :size="16" class="text-gray-400" />
+                                <span>Crafts {{ bp.CraftAmount }} at once</span>
+                              </div>
+
+                              <!-- Steam Requirements -->
+                              <div
+                                v-if="bp.NeedsSteamItem || bp.NeedsSteamDLC"
+                                class="flex items-center gap-2 text-sm"
+                              >
+                                <Lock :size="16" class="text-gray-400" />
+                                <span v-if="bp.NeedsSteamItem">Requires Steam Item</span>
+                                <span v-if="bp.NeedsSteamItem && bp.NeedsSteamDLC"> & </span>
+                                <span v-if="bp.NeedsSteamDLC">
+                                  Requires Steam DLC:
+                                  <a
+                                    v-if="bp.Item.SteamDlcItem"
+                                    :href="`https://store.steampowered.com/app/${bp.Item.SteamDlcItem.AppId}`"
+                                    target="_blank"
+                                    class="text-primary hover:underline"
                                   >
                                     {{ bp.Item.SteamDlcItem.Name }}
                                   </a>
                                 </span>
-                            </div>
+                              </div>
 
-                            <!-- Research Info -->
-                            <div v-if="bp.ScrapRequired > 0 || bp.ScrapFromRecycle > 0" class="mt-2">
-                              <div class="text-sm font-medium mb-1">Research Details:</div>
-                              <div class="space-y-1">
-                                <div v-if="bp.ScrapRequired > 0" class="flex items-center gap-2 text-sm">
-                                  <Lock :size="16" class="text-gray-400" />
-                                  <span>Research Cost: {{ bp.ScrapRequired }} Scrap</span>
-                                </div>
-                                <div v-if="bp.ScrapFromRecycle > 0" class="flex items-center gap-2 text-sm">
-                                  <Unlock :size="16" class="text-gray-400" />
-                                  <span>Recycle Value: {{ bp.ScrapFromRecycle }} Scrap</span>
+                              <!-- Research Info -->
+                              <div v-if="bp.ScrapRequired > 0 || bp.ScrapFromRecycle > 0" class="mt-2">
+                                <div class="text-sm font-medium mb-1">Research Details:</div>
+                                <div class="space-y-1">
+                                  <div v-if="bp.ScrapRequired > 0" class="flex items-center gap-2 text-sm">
+                                    <Lock :size="16" class="text-gray-400" />
+                                    <span>Research Cost: {{ bp.ScrapRequired }} Scrap</span>
+                                  </div>
+                                  <div v-if="bp.ScrapFromRecycle > 0" class="flex items-center gap-2 text-sm">
+                                    <Unlock :size="16" class="text-gray-400" />
+                                    <span>Recycle Value: {{ bp.ScrapFromRecycle }} Scrap</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <!-- Right Column: Ingredients -->
-                    <div v-if="bp.Ingredients?.length" class="w-64 flex-shrink-0">
-                      <div class="sticky top-4">
-                        <div class="text-sm font-medium mb-2">Required Materials:</div>
-                        <div class="space-y-2">
-                          <div v-for="ing in bp.Ingredients" :key="ing.Item.ShortName"
-                               class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                            <div class="flex items-center gap-2">
-                              <div class="relative w-8 h-8 flex-shrink-0">
-                                <img
-                                  :src="getItemImageUrl(ing.Item.ShortName)"
-                                  @error="(e) => handleImageError(e, ing.Item.Id)"
-                                  class="w-full h-full object-contain"
-                                  :alt="ing.Item.DisplayName"
+                      <!-- Right Column: Ingredients -->
+                      <div v-if="bp.Ingredients?.length" class="w-64 flex-shrink-0">
+                        <div class="sticky top-4">
+                          <div class="text-sm font-medium mb-2">Required Materials:</div>
+                          <div class="space-y-2">
+                            <div
+                              v-for="ing in bp.Ingredients"
+                              :key="ing.Item.ShortName"
+                              class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded"
+                            >
+                              <div class="flex items-center gap-2">
+                                <div class="relative w-8 h-8 flex-shrink-0">
+                                  <img
+                                    :src="getItemImageUrl(ing.Item.ShortName)"
+                                    @error="(e) => handleImageError(e, ing.Item.Id)"
+                                    class="w-full h-full object-contain"
+                                    :alt="ing.Item.DisplayName"
+                                  />
+                                  <div
+                                    v-if="imageErrors.get(ing.Item.Id)"
+                                    class="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700"
+                                  >
+                                    <Image :size="16" class="text-gray-400" />
+                                  </div>
+                                </div>
+                                <button
+                                  class="text-sm hover:text-primary"
+                                  @click="showItemModal(ing.Item.Id)"
                                 >
-                                <div v-if="imageErrors.get(ing.Item.Id)"
-                                     class="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-                                  <Image :size="16" class="text-gray-400" />
-                                </div>
+                                  {{ ing.Item.DisplayName }}
+                                </button>
                               </div>
-                              <button
-                                class="text-sm hover:text-primary"
-                                @click="showItemModal(ing.Item.Id)"
-                              >
-                                {{ ing.Item.DisplayName }}
-                              </button>
+                              <span class="text-sm font-medium">{{ ing.Amount }}x</span>
                             </div>
-                            <span class="text-sm font-medium">{{ ing.Amount }}x</span>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -482,11 +524,12 @@ const fetchDlcData = async (appId: number) => {
     </div>
 
     <!-- Ingredient Modal -->
-    <div v-if="showIngredientModal && selectedIngredient"
-         class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-         @click="closeIngredientModal">
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4"
-           @click.stop>
+    <div
+      v-if="showIngredientModal && selectedIngredient"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      @click="closeIngredientModal"
+    >
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold">{{ selectedIngredient.Item.DisplayName }}</h3>
           <button @click="closeIngredientModal" class="text-gray-500 hover:text-gray-700">
@@ -496,15 +539,17 @@ const fetchDlcData = async (appId: number) => {
 
         <div class="flex gap-4">
           <div class="flex-shrink-0">
-            <div class="relative bg-gray-50 dark:bg-gray-700" style="width:100px; height:100px;">
+            <div class="relative bg-gray-50 dark:bg-gray-700" style="width: 100px; height: 100px">
               <img
                 :src="getItemImageUrl(selectedIngredient.Item.ShortName)"
                 @error="(e) => handleImageError(e, selectedIngredient!.Item.Id)"
                 class="w-full h-full object-contain p-4"
                 :alt="selectedIngredient.Item.DisplayName"
+              />
+              <div
+                v-if="imageErrors.get(selectedIngredient.Item.Id)"
+                class="absolute inset-0 flex items-center justify-center"
               >
-              <div v-if="imageErrors.get(selectedIngredient.Item.Id)"
-                   class="absolute inset-0 flex items-center justify-center">
                 <Image :size="32" class="text-gray-400" />
               </div>
             </div>
@@ -515,7 +560,8 @@ const fetchDlcData = async (appId: number) => {
               <span class="font-mono text-sm">{{ selectedIngredient.Item.Id }}</span>
               <button
                 @click="copyToClipboard(selectedIngredient!.Item.Id.toString(), 'ingredient-id')"
-                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
                 <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy" :size="12" />
               </button>
             </div>
@@ -524,16 +570,21 @@ const fetchDlcData = async (appId: number) => {
               <span class="font-mono text-sm">{{ selectedIngredient.Item.ShortName }}</span>
               <button
                 @click="copyToClipboard(selectedIngredient!.Item.ShortName, 'ingredient-shortname')"
-                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              >
                 <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy" :size="12" />
               </button>
             </div>
 
             <div class="flex flex-wrap gap-2">
-              <VPBadge :text="getItemCategoryText(selectedIngredient.Item.Category)"
-                       :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
-              <VPBadge :text="getItemRarityText(selectedIngredient.Item.Rarity)"
-                       :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
+              <VPBadge
+                :text="getItemCategoryText(selectedIngredient.Item.Category)"
+                :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }"
+              />
+              <VPBadge
+                :text="getItemRarityText(selectedIngredient.Item.Rarity)"
+                :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }"
+              />
             </div>
 
             <p v-if="selectedIngredient.Item.Description" class="text-sm text-gray-600 dark:text-gray-300">
@@ -541,8 +592,10 @@ const fetchDlcData = async (appId: number) => {
             </p>
 
             <div class="pt-2">
-              <a :href="`/references/items/details?id=${selectedIngredient.Item.Id}`"
-                 class="vp-button medium brand flex items-center gap-2">
+              <a
+                :href="`/references/items/details?id=${selectedIngredient.Item.Id}`"
+                class="vp-button medium brand flex items-center gap-2"
+              >
                 View Full Details
                 <ExternalLink :size="14" />
               </a>
@@ -556,25 +609,31 @@ const fetchDlcData = async (appId: number) => {
             <Lock :size="16" class="text-gray-400" />
             <span>Steam DLC Required</span>
           </div>
-          <a :href="`https://store.steampowered.com/app/${selectedIngredient.Item.SteamDlcItem.AppId}`"
-             target="_blank"
-             class="block group"
+          <a
+            :href="`https://store.steampowered.com/app/${selectedIngredient.Item.SteamDlcItem.AppId}`"
+            target="_blank"
+            class="block group"
           >
             <div
-              class="flex items-center gap-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-              <img v-if="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.header_image"
-                   :src="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.header_image"
-                   class="w-24 h-12 object-cover rounded"
-                   :alt="selectedIngredient.Item.SteamDlcItem.Name"
-              >
+              class="flex items-center gap-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+            >
+              <img
+                v-if="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.header_image"
+                :src="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.header_image"
+                class="w-24 h-12 object-cover rounded"
+                :alt="selectedIngredient.Item.SteamDlcItem.Name"
+              />
               <div>
                 <div class="font-medium group-hover:text-primary">
                   {{ selectedIngredient.Item.SteamDlcItem.Name }}
                 </div>
-                <div v-if="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.price_overview"
-                     class="text-sm text-gray-600 dark:text-gray-400"
+                <div
+                  v-if="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.price_overview"
+                  class="text-sm text-gray-600 dark:text-gray-400"
                 >
-                  {{ dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.price_overview.final_formatted }}
+                  {{
+                    dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.price_overview.final_formatted
+                  }}
                 </div>
               </div>
             </div>
@@ -597,4 +656,4 @@ const fetchDlcData = async (appId: number) => {
 .dark .items-table-row:hover {
   background-color: #1f2937;
 }
-</style> 
+</style>
