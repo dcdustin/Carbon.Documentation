@@ -21,11 +21,11 @@ const error = ref<string | null>(null)
 const filteredConvars = computed(() => {
   if (!convars.value?.length) return []
 
-  let filtered = convars.value.filter(convar => convar && convar.Name)
+  let filtered = convars.value.filter((convar) => convar && convar.Name)
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(convar => {
+    filtered = filtered.filter((convar) => {
       if (!convar) return false
       return (
         (convar.Name && convar.Name.toLowerCase().includes(searchLower)) ||
@@ -56,7 +56,7 @@ const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = text
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -108,7 +108,11 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="URL_METDAT_RUST_CONVARS" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a
+          :href="URL_METDAT_RUST_CONVARS"
+          target="_blank"
+          class="vp-button medium brand flex items-center gap-2"
+        >
           <Database :size="16" />
           Rust ConVar API
           <ExternalLink :size="14" class="opacity-80" />
@@ -132,40 +136,44 @@ onUnmounted(() => {
               @input="event => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search convars..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
         </div>
       </div>
 
       <div v-if="paginatedConvars && paginatedConvars.length">
-
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedConvars.length }} of {{ filteredConvars.length }} convars
           </div>
         </div>
 
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full  ">
+          <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="convar in paginatedConvars" :key="convar.Name" :id="convar.Name" class="items-table-row">
-                <td class="whitespace-normal pb-4">
-                    <span class="font-mono flex items-center gap-2"><VPBadge type="info"
-                                                                             :text="convar.Type" /> {{ convar.Name }}
-                      <button @click="copyToClipboard(convar.Name)"
-                              class="flex items-center py-1.5 text-sm">
+                <tr
+                  v-for="convar in paginatedConvars"
+                  :key="convar.Name"
+                  :id="convar.Name"
+                  class="items-table-row"
+                >
+                  <td class="whitespace-normal pb-4">
+                    <span class="font-mono flex items-center gap-2"
+                      ><VPBadge type="info" :text="convar.Type" /> {{ convar.Name }}
+                      <button @click="copyToClipboard(convar.Name)" class="flex items-center py-1.5 text-sm">
                         <component :is="copiedId === convar.Name ? CheckCircle2 : Copy" :size="14" />
                       </button>
-                      <div class="opacity-75">{{ convar.DefaultValue }}</div> <VPBadge v-if="convar.Saved" type="tip"
-                                                                                       :text="`Saved`" />
+                      <div class="opacity-75">{{ convar.DefaultValue }}</div>
+                      <VPBadge v-if="convar.Saved" type="tip" :text="`Saved`" />
                     </span>
-                  <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                    {{ convar.Help }}
-                  </p>
-                </td>
-              </tr>
+                    <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                      {{ convar.Help }}
+                    </p>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -200,4 +208,4 @@ onUnmounted(() => {
 .dark .items-table-row:hover {
   background-color: #1f2937;
 }
-</style> 
+</style>
