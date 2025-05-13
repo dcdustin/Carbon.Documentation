@@ -4,6 +4,7 @@ import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'luc
 import { getGameData, RUST_CONVARS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchConVars } from '@/api/metadata/rust/convars'
 
 const convars = ref([])
 const copiedId = ref(null)
@@ -66,7 +67,7 @@ const loadConvars = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchConVars()
     convars.value = data
   } catch (err) {
     console.error('Failed to load convar:', err)
