@@ -1,5 +1,5 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import {
   CheckCircle2,
   Clock,
@@ -17,9 +17,7 @@ import {
 } from 'lucide-vue-next'
 import {
   BLUEPRINTS_API_URL,
-  CACHE_VERSION_API_URL,
   CATEGORY_COLORS,
-  getGameData,
   getItemCategoryText,
   getItemRarityText,
   ITEM_IMAGE_SERVER,
@@ -28,14 +26,12 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { useData, useRouter } from 'vitepress'
 import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
+import type { Blueprint } from '@/api/metadata/rust/blueprints'
+import type { Ingredient } from '@/api/metadata/rust/blueprints'
 
-const router = useRouter()
-const { page } = useData()
-
-const blueprints = ref([])
-const copiedId = ref(null)
+const blueprints: Ref<Blueprint[]> = ref([])
+const copiedId: Ref<string | null> = ref(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
@@ -44,22 +40,22 @@ const pageSize = 10
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const imageErrors = ref(new Map())
-const selectedIngredient = ref(null)
+const imageErrors: Ref<Map<number, boolean>> = ref(new Map())
+const selectedIngredient: Ref<Ingredient | null> = ref(null)
 const showIngredientModal = ref(false)
-const dlcData = ref(new Map())
-const error = ref(null)
+const dlcData: Ref<Map<number, any>> = ref(new Map()) // https://store.steampowered.com/api/appdetails?appids=1174370
+const error: Ref<string | null> = ref(null)
 
 const LINK_API = BLUEPRINTS_API_URL
 
-const getItemImageUrl = (shortName) => {
+const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
 }
 
-const handleImageError = (event, itemId) => {
+const handleImageError = (event: Event, itemId: number) => {
   imageErrors.value.set(itemId, true)
-  console.warn(`Failed to load image for item: ${event.target.src}`)
+  console.warn(`Failed to load image for item: ${(event.target as HTMLImageElement)?.src}`)
 }
 
 const categories = computed(() => {
@@ -88,7 +84,7 @@ const filteredBlueprints = computed(() => {
         (bp.Item.DisplayName && bp.Item.DisplayName.toLowerCase().includes(searchLower)) ||
         (bp.Item.ShortName && bp.Item.ShortName.toLowerCase().includes(searchLower)) ||
         (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower)) ||
-        (bp.Item.Id == searchLower)
+        (bp.Item.Id.toString() == searchLower)
       )
     })
   }
@@ -102,8 +98,8 @@ const paginatedBlueprints = computed(() => {
   return filteredBlueprints.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
@@ -111,7 +107,7 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -190,7 +186,7 @@ watch(selectedCategory, () => {
 
 const emit = defineEmits(['showItemModal'])
 
-const showItemModal = async (itemId) => {
+const showItemModal = async (itemId: number) => {
   const ingredient = blueprints.value
     .flatMap(bp => bp.Ingredients || [])
     .find(ing => ing.Item.Id === itemId)
@@ -210,7 +206,7 @@ const closeIngredientModal = () => {
   selectedIngredient.value = null
 }
 
-const fetchDlcData = async (appId) => {
+const fetchDlcData = async (appId: number) => {
   if (dlcData.value.has(appId)) return dlcData.value.get(appId)
 
   try {
@@ -236,15 +232,15 @@ const fetchDlcData = async (appId) => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           Blueprints API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading blueprints...</span>
     </div>
 
@@ -252,11 +248,11 @@ const fetchDlcData = async (appId) => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" :size="20" />
             <input
               type="text"
               v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
+              @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search blueprints..."
               class="w-[400px] px-4 py-2"
             >
@@ -271,7 +267,7 @@ const fetchDlcData = async (appId) => {
               :key="category"
               :value="category"
             >
-              {{ getItemCategoryText(category) }}
+              {{ getItemCategoryText(category as number) }} <!-- I guess -->
             </option>
           </select>
         </div>
@@ -315,7 +311,7 @@ const fetchDlcData = async (appId) => {
                                    class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center z-10">
                                 <div
                                   class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                  <Image size="48" class="text-gray-400" />
+                                  <Image :size="48" class="text-gray-400" />
                                 </div>
                                 <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
                                 <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">
@@ -334,7 +330,7 @@ const fetchDlcData = async (appId) => {
                               <a :href="`/references/blueprints/details?id=${bp.Item.Id}`"
                                  class="hover:text-primary inline-flex items-center gap-2">
                                 {{ bp.Item.DisplayName }}
-                                <ExternalLink size="14" class="opacity-60" />
+                                <ExternalLink :size="14" class="opacity-60" />
                               </a>
                             </h5>
                             <div class="flex items-center gap-2">
@@ -345,7 +341,7 @@ const fetchDlcData = async (appId) => {
                                 <span class="font-mono">{{ bp.Item.ShortName }}</span>
                                 <component :is="copiedId === bp.Item.ShortName ? CheckCircle2 : Copy"
                                            class="ml-2"
-                                           size="14"
+                                           :size="14"
                                 />
                               </button>
                             </div>
@@ -354,10 +350,10 @@ const fetchDlcData = async (appId) => {
                           <!-- Badges -->
                           <div class="flex flex-wrap gap-2 mt-2">
                             <VPBadge :text="getItemCategoryText(bp.Item.Category)" class="opacity-75"
-                                     :style="{ backgroundColor: CATEGORY_COLORS[bp.Item.Category], color: '#fff' }" />
+                                     :style="{ backgroundColor: CATEGORY_COLORS[bp.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
                             <VPBadge v-if="getItemRarityText(bp.Item.Rarity)" class="opacity-75"
                                      :text="getItemRarityText(bp.Item.Rarity)"
-                                     :style="{ backgroundColor: RARITY_COLORS[bp.Item.Rarity], color: '#fff' }" />
+                                     :style="{ backgroundColor: RARITY_COLORS[bp.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
                             <VPBadge v-if="bp.UserCraftable" type="danger" :text="'Craftable'" />
                             <VPBadge v-if="bp.WorkbenchLevelRequired >= 0" type="warning"
                                      :text="`Tier ${bp.WorkbenchLevelRequired}`" />
@@ -375,30 +371,25 @@ const fetchDlcData = async (appId) => {
                           <div class="mt-4 space-y-3">
                             <!-- Time -->
                             <div class="flex items-center gap-2 text-sm">
-                              <Clock size="16" class="text-gray-400" />
+                              <Clock :size="16" class="text-gray-400" />
                               <span>{{ bp.Time }} seconds</span>
                             </div>
 
                             <!-- Workbench -->
                             <div v-if="bp.WorkbenchLevelRequired >= 0" class="flex items-center gap-2 text-sm">
-                              <Wrench size="16" class="text-gray-400" />
+                              <Wrench :size="16" class="text-gray-400" />
                               <span>Requires Workbench Tier {{ bp.WorkbenchLevelRequired }}</span>
-                            </div>
-
-                            <!-- if requires dlc -->
-                            <div v-if="bp.RequiresDLC" class="flex items-center gap-2 text-sm">
-                              <span>Requires DLC: {{ bp.RequiresDLC }}</span>
                             </div>
 
                             <!-- Craft Amount -->
                             <div v-if="bp.CraftAmount > 1" class="flex items-center gap-2 text-sm">
-                              <Scissors size="16" class="text-gray-400" />
+                              <Scissors :size="16" class="text-gray-400" />
                               <span>Crafts {{ bp.CraftAmount }} at once</span>
                             </div>
 
                             <!-- Steam Requirements -->
                             <div v-if="bp.NeedsSteamItem || bp.NeedsSteamDLC" class="flex items-center gap-2 text-sm">
-                              <Lock size="16" class="text-gray-400" />
+                              <Lock :size="16" class="text-gray-400" />
                               <span v-if="bp.NeedsSteamItem">Requires Steam Item</span>
                               <span v-if="bp.NeedsSteamItem && bp.NeedsSteamDLC"> & </span>
                               <span v-if="bp.NeedsSteamDLC">
@@ -418,11 +409,11 @@ const fetchDlcData = async (appId) => {
                               <div class="text-sm font-medium mb-1">Research Details:</div>
                               <div class="space-y-1">
                                 <div v-if="bp.ScrapRequired > 0" class="flex items-center gap-2 text-sm">
-                                  <Lock size="16" class="text-gray-400" />
+                                  <Lock :size="16" class="text-gray-400" />
                                   <span>Research Cost: {{ bp.ScrapRequired }} Scrap</span>
                                 </div>
                                 <div v-if="bp.ScrapFromRecycle > 0" class="flex items-center gap-2 text-sm">
-                                  <Unlock size="16" class="text-gray-400" />
+                                  <Unlock :size="16" class="text-gray-400" />
                                   <span>Recycle Value: {{ bp.ScrapFromRecycle }} Scrap</span>
                                 </div>
                               </div>
@@ -449,7 +440,7 @@ const fetchDlcData = async (appId) => {
                                 >
                                 <div v-if="imageErrors.get(ing.Item.Id)"
                                      class="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700">
-                                  <Image size="16" class="text-gray-400" />
+                                  <Image :size="16" class="text-gray-400" />
                                 </div>
                               </div>
                               <button
@@ -473,12 +464,12 @@ const fetchDlcData = async (appId) => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No blueprints found matching your search</p>
-        <p v-if="blueprints.value && blueprints.value.length === 0" class="mt-2 text-sm">
+        <p v-if="blueprints && blueprints.length === 0" class="mt-2 text-sm">
           Debug: No blueprints loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
@@ -499,7 +490,7 @@ const fetchDlcData = async (appId) => {
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold">{{ selectedIngredient.Item.DisplayName }}</h3>
           <button @click="closeIngredientModal" class="text-gray-500 hover:text-gray-700">
-            <X size="20" />
+            <X :size="20" />
           </button>
         </div>
 
@@ -508,13 +499,13 @@ const fetchDlcData = async (appId) => {
             <div class="relative bg-gray-50 dark:bg-gray-700" style="width:100px; height:100px;">
               <img
                 :src="getItemImageUrl(selectedIngredient.Item.ShortName)"
-                @error="(e) => handleImageError(e, selectedIngredient.Item.Id)"
+                @error="(e) => handleImageError(e, selectedIngredient!.Item.Id)"
                 class="w-full h-full object-contain p-4"
                 :alt="selectedIngredient.Item.DisplayName"
               >
               <div v-if="imageErrors.get(selectedIngredient.Item.Id)"
                    class="absolute inset-0 flex items-center justify-center">
-                <Image size="32" class="text-gray-400" />
+                <Image :size="32" class="text-gray-400" />
               </div>
             </div>
           </div>
@@ -523,26 +514,26 @@ const fetchDlcData = async (appId) => {
             <div class="flex items-center gap-2">
               <span class="font-mono text-sm">{{ selectedIngredient.Item.Id }}</span>
               <button
-                @click="copyToClipboard(selectedIngredient.Item.Id, 'ingredient-id')"
+                @click="copyToClipboard(selectedIngredient!.Item.Id.toString(), 'ingredient-id')"
                 class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy" size="12" />
+                <component :is="copiedId === 'ingredient-id' ? CheckCircle2 : Copy" :size="12" />
               </button>
             </div>
 
             <div class="flex items-center gap-2">
               <span class="font-mono text-sm">{{ selectedIngredient.Item.ShortName }}</span>
               <button
-                @click="copyToClipboard(selectedIngredient.Item.ShortName, 'ingredient-shortname')"
+                @click="copyToClipboard(selectedIngredient!.Item.ShortName, 'ingredient-shortname')"
                 class="flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy" size="12" />
+                <component :is="copiedId === 'ingredient-shortname' ? CheckCircle2 : Copy" :size="12" />
               </button>
             </div>
 
             <div class="flex flex-wrap gap-2">
               <VPBadge :text="getItemCategoryText(selectedIngredient.Item.Category)"
-                       :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category], color: '#fff' }" />
+                       :style="{ backgroundColor: CATEGORY_COLORS[selectedIngredient.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }" />
               <VPBadge :text="getItemRarityText(selectedIngredient.Item.Rarity)"
-                       :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity], color: '#fff' }" />
+                       :style="{ backgroundColor: RARITY_COLORS[selectedIngredient.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }" />
             </div>
 
             <p v-if="selectedIngredient.Item.Description" class="text-sm text-gray-600 dark:text-gray-300">
@@ -553,7 +544,7 @@ const fetchDlcData = async (appId) => {
               <a :href="`/references/items/details?id=${selectedIngredient.Item.Id}`"
                  class="vp-button medium brand flex items-center gap-2">
                 View Full Details
-                <ExternalLink size="14" />
+                <ExternalLink :size="14" />
               </a>
             </div>
           </div>
@@ -562,7 +553,7 @@ const fetchDlcData = async (appId) => {
         <!-- DLC Info -->
         <div v-if="selectedIngredient.Item.SteamDlcItem" class="mt-4 pt-4 border-t">
           <div class="flex items-center gap-2 text-sm font-medium mb-2">
-            <Lock size="16" class="text-gray-400" />
+            <Lock :size="16" class="text-gray-400" />
             <span>Steam DLC Required</span>
           </div>
           <a :href="`https://store.steampowered.com/app/${selectedIngredient.Item.SteamDlcItem.AppId}`"
