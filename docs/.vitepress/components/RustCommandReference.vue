@@ -1,13 +1,13 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { getGameData, RUST_COMMANDS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchCommands } from '@/api/metadata/rust/commands'
+import type { Command } from '@/api/metadata/rust/commands'
+import { URL_METDAT_RUST_COMMANDS } from '@/api/constants'
 
-const commands = ref([])
-const copiedId = ref(null)
+const commands: Ref<Command[]> = ref([])
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
@@ -15,9 +15,7 @@ const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const error = ref(null)
-
-const LINK_API = RUST_COMMANDS_API_URL
+const error = ref<string | null>(null)
 
 const filteredCommands = computed(() => {
   if (!commands.value?.length) return []
@@ -44,23 +42,13 @@ const paginatedCommands = computed(() => {
   return filteredCommands.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
     currentPage.value = 1
   }, 300)
-}
-
-const copyToClipboard = async (text, id = null) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
 }
 
 const loadCommands = async () => {
@@ -109,16 +97,16 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+        <a :href="URL_METDAT_RUST_COMMANDS" target="_blank" class="vp-button medium brand flex items-center gap-2">
+          <Database :size="16" />
           Rust Command API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading commands...</span>
     </div>
 
@@ -126,11 +114,11 @@ onUnmounted(() => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" :size="20" />
             <input
               type="text"
               v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
+              @input="event => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search commands..."
               class="w-[400px] px-4 py-2"
             >
@@ -171,12 +159,12 @@ onUnmounted(() => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No commands found matching your search</p>
-        <p v-if="commands.value && commands.value.length === 0" class="mt-2 text-sm">
+        <p v-if="commands && commands.length === 0" class="mt-2 text-sm">
           Debug: No commands loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
