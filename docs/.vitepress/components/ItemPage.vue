@@ -1,9 +1,8 @@
-<script setup>
-import { onMounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { onMounted, ref, Ref, watch } from 'vue'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
 import {
   GAME_DATA_FOLDER,
-  getGameData,
   getItemCategoryText,
   getItemFlagText,
   getItemRarityText,
@@ -13,12 +12,13 @@ import {
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
+import type { Item } from '@/api/metadata/rust/items'
 
-const item = ref(null)
+const item: Ref<Item | null> = ref(null)
 const isLoading = ref(true)
-const copiedId = ref(null)
+const copiedId = ref<string | number | null>(null)
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -33,24 +33,24 @@ const getItemId = () => {
   return urlParams.get('id')
 }
 
-const getItemImageUrl = (shortName) => {
+const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
 }
 
-const handleImageError = (event) => {
-  event.target.src = MISSING_IMAGE_URL
-  console.warn(`Failed to load image for item: ${event.target.src}`)
+const handleImageError = (event: Event) => {
+  const target = event.target as HTMLImageElement
+  target.src = MISSING_IMAGE_URL
+  console.warn(`Failed to load image for item: ${target.src}`)
 }
 
-const loadItem = async (itemId) => {
+const loadItem = async (itemId: string | number) => {
   try {
     if (!itemId) {
       console.error('No item ID found in URL')
       return
     }
 
-    // const data = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
     const data = await fetchItems()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')
@@ -93,7 +93,7 @@ watch(item, (newItem) => {
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading item...</span>
     </div>
 
@@ -105,24 +105,24 @@ watch(item, (newItem) => {
           <VPBadge type="info" :text="getItemCategoryText(item.Category)" />
           <h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
           <button
-            @click="copyToClipboard(item.Id, item.Id)"
+            @click="copyToClipboard(item.Id.toString(), item.Id)"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.Id }}</span>
-            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14" />
+            <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
           <button
             @click="copyToClipboard(item.ShortName, 'shortname')"
             class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
             <span class="font-mono">{{ item.ShortName }}</span>
-            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" size="14" />
+            <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
 
         </div>
         <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank"
            class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           Items API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
 
@@ -138,7 +138,7 @@ watch(item, (newItem) => {
               :alt="item.DisplayName"
             >
             <div class="absolute inset-0 flex items-center justify-center" v-if="!item.Id">
-              <Tag size="48" class="text-gray-400" />
+              <Tag :size="48" class="text-gray-400" />
             </div>
           </div>
         </div>
@@ -167,7 +167,7 @@ watch(item, (newItem) => {
       <!-- Return to Items -->
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
-          <ArrowLeft size="16" class="opacity-80" />
+          <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/items" class="vp-button medium brand underline">
             Back to Items
           </a>
