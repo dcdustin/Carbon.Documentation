@@ -10,7 +10,8 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchItems, Item } from '@/api/metadata/rust/items'
+import { fetchItems } from '@/api/metadata/rust/items'
+import type { Item } from '@/api/metadata/rust/items'
 
 const items: Ref<Item[]> = ref([])
 const copiedId: Ref<string | number | null> = ref(null)
@@ -24,8 +25,6 @@ const loadingMore = ref(false)
 const hasMore = ref(true)
 const imageErrors: Ref<Map<number, boolean>> = ref(new Map())
 const error: Ref<string | null> = ref(null)
-
-const LINK_API = ITEMS_API_URL
 
 const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
@@ -148,7 +147,6 @@ const loadItems = async () => {
     items.value = []
     isLoading.value = true
     error.value = null
-    // const data = await getGameData(LINK_API)
     const data = await fetchItems()
     items.value = data
 

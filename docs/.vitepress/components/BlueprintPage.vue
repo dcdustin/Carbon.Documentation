@@ -25,7 +25,8 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchBlueprints, Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
+import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
+import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
 
 const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)
@@ -87,7 +88,6 @@ const loadBlueprint = async (blueprintId: string) => {
       return
     }
 
-    // const data = await getGameData(`${GAME_DATA_FOLDER}/blueprints.json`)
     const data = await fetchBlueprints()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')

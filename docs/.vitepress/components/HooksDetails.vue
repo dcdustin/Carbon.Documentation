@@ -4,9 +4,11 @@ import { useData } from 'vitepress'
 import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getSingletonHighlighter } from 'shiki'
-import { getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
-import { fetchHooks, Hook } from '@/api/metadata/carbon/hooks'
+import { getHookFlagsText } from '../shared/constants'
+import { fetchHooks } from '@/api/metadata/carbon/hooks'
+import type { Hook } from '@/api/metadata/carbon/hooks'
 import type { Highlighter } from 'shiki'
+
 const data = useData()
 
 const hook: Ref<Hook | null> = ref(null)
@@ -31,7 +33,6 @@ const loadHookDetails = async () => {
       throw new Error('No hook name provided')
     }
 
-    // const data = await getGameData(HOOKS_API_URL)
     const data = await fetchHooks()
 
     if (!data) {
@@ -41,18 +42,6 @@ const loadHookDetails = async () => {
     let foundHook = null
     let foundCategory = null
 
-    /*     for (const category in data) {
-      if (Array.isArray(data[category])) {
-        const hook = data[category].find(h => {
-          return h.name === hookName || h.fullName === hookName
-        })
-        if (hook) {
-          foundHook = hook
-          foundCategory = category
-          break
-        }
-      }
-    } */
     loop1: for (const [category, hooks] of data) {
       for (const hook of hooks) {
         if (hook.name === hookName) {

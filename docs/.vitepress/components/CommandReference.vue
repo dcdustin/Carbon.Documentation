@@ -4,10 +4,10 @@ import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { COMMANDS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { Command, fetchCommands } from '@/api/metadata/carbon/commands'
+import { fetchCommands } from '@/api/metadata/carbon/commands'
+import type { Command } from '@/api/metadata/carbon/commands'
 
 const commands: Ref<Command[]> = ref([])
-const copiedId: Ref<string | null> = ref(null)
 const isLoading: Ref<boolean> = ref(true)
 const searchQuery: Ref<string> = ref('')
 const debouncedSearchQuery: Ref<string> = ref('')
@@ -53,21 +53,10 @@ const updateDebouncedSearch = (value: string) => {
   }, 300)
 }
 
-const copyToClipboard = async (text: string, id = null) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => (copiedId.value = null), 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
-}
-
 const loadCommands = async () => {
   try {
     isLoading.value = true
     error.value = null
-    // const data = await getGameData(LINK_API)
     const data = await fetchCommands()
     commands.value = data
   } catch (err) {

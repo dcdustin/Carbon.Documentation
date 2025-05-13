@@ -4,7 +4,8 @@ import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'luc
 import { CONVARS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { ConVar, fetchConVars } from '@/api/metadata/carbon/convars'
+import { fetchConVars } from '@/api/metadata/carbon/convars'
+import type { ConVar } from '@/api/metadata/carbon/convars'
 
 const convars: Ref<ConVar[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
@@ -16,8 +17,6 @@ const currentPage: Ref<number> = ref(1)
 const loadingMore: Ref<boolean> = ref(false)
 const hasMore: Ref<boolean> = ref(true)
 const error: Ref<string | null> = ref(null)
-
-const LINK_API = CONVARS_API_URL
 
 const filteredConvars = computed(() => {
   if (!convars.value?.length) return []
@@ -67,7 +66,6 @@ const loadConvars = async () => {
   try {
     isLoading.value = true
     error.value = null
-    // const data = await getGameData(LINK_API)
     const data = await fetchConVars()
     convars.value = data
   } catch (err) {
@@ -113,7 +111,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="CONVARS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           ConVar API
           <ExternalLink :size="14" class="opacity-80" />

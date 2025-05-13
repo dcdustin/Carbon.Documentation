@@ -3,7 +3,8 @@ import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { SWITCHES_API_URL } from '../shared/constants'
 import '../theme/style.css'
-import { Switch, fetchSwitches } from '@/api/metadata/carbon/switches'
+import { fetchSwitches } from '@/api/metadata/carbon/switches'
+import type { Switch } from '@/api/metadata/carbon/switches'
 
 const switches: Ref<Switch[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
@@ -15,8 +16,6 @@ const currentPage: Ref<number> = ref(1)
 const loadingMore: Ref<boolean> = ref(false)
 const hasMore: Ref<boolean> = ref(true)
 const error: Ref<string | null> = ref(null)
-
-const LINK_API = SWITCHES_API_URL
 
 const filteredSwitches = computed(() => {
   if (!switches.value?.length) return []
@@ -50,16 +49,6 @@ const updateDebouncedSearch = (value: string) => {
     debouncedSearchQuery.value = value
     currentPage.value = 1
   }, 300)
-}
-
-const copyToClipboard = async (text: string, id: string | null) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => (copiedId.value = null), 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
 }
 
 const loadSwitches = async () => {
@@ -108,7 +97,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="SWITCHES_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Switches API
           <ExternalLink :size="14" class="opacity-80" />

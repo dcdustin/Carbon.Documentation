@@ -46,8 +46,6 @@ const showIngredientModal = ref(false)
 const dlcData: Ref<Map<number, any>> = ref(new Map()) // https://store.steampowered.com/api/appdetails?appids=1174370
 const error: Ref<string | null> = ref(null)
 
-const LINK_API = BLUEPRINTS_API_URL
-
 const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
@@ -232,7 +230,7 @@ const fetchDlcData = async (appId: number) => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="BLUEPRINTS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Blueprints API
           <ExternalLink :size="14" class="opacity-80" />
