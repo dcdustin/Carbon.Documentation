@@ -29,6 +29,7 @@ import {
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { useData, useRouter } from 'vitepress'
+import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 
 const router = useRouter()
 const { page } = useData()
@@ -124,7 +125,8 @@ const loadBlueprints = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    // const data = await getGameData(LINK_API)
+    const data = await fetchBlueprints()
     blueprints.value = data
   } catch (err) {
     console.error('Failed to load blueprints:', err)
