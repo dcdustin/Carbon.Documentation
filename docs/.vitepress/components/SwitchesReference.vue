@@ -132,36 +132,39 @@ onUnmounted(() => {
               @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search switches..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
         </div>
       </div>
 
       <div v-if="paginatedSwitches && paginatedSwitches.length">
-
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedSwitches.length }} of {{ filteredSwitches.length }} switches
           </div>
         </div>
 
-
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full  ">
+          <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="switchValue in paginatedSwitches" :key="switchValue.Name" :id="switchValue.Name"
-                  class="items-table-row">
-                <td class="whitespace-normal pb-4">
-                  <div class="flex flex-col ">
-                    <h1 class="font-mono">{{ switchValue.Name }}</h1>
-                    <p v-if="switchValue.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                      {{ switchValue.Help }}
-                    </p>
-                  </div>
-                </td>
-              </tr>
+                <tr
+                  v-for="switchValue in paginatedSwitches"
+                  :key="switchValue.Name"
+                  :id="switchValue.Name"
+                  class="items-table-row"
+                >
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex flex-col">
+                      <h1 class="font-mono">{{ switchValue.Name }}</h1>
+                      <p v-if="switchValue.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                        {{ switchValue.Help }}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -196,4 +199,4 @@ onUnmounted(() => {
 .dark .items-table-row:hover {
   background-color: #1f2937;
 }
-</style> 
+</style>
