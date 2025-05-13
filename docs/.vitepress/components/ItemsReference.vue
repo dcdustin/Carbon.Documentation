@@ -12,6 +12,7 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchItems } from '@/api/metadata/rust/items'
 
 const items = ref([])
 const copiedId = ref(null)
@@ -142,7 +143,8 @@ const loadItems = async () => {
     items.value = []
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    // const data = await getGameData(LINK_API)
+    const data = await fetchItems()
     items.value = data
 
     // Handle URL anchor for search
