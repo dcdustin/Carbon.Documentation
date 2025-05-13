@@ -21,16 +21,16 @@ const error = ref<string | null>(null)
 const filteredPrefabs = computed(() => {
   if (!prefabs.value?.length) return []
 
-  let filtered = prefabs.value.filter(prefab => prefab && prefab.Name)
+  let filtered = prefabs.value.filter((prefab) => prefab && prefab.Name)
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(prefab => {
+    filtered = filtered.filter((prefab) => {
       if (!prefab) return false
       return (
         (prefab.Name && prefab.Name.toLowerCase().includes(searchLower)) ||
         (prefab.Path && prefab.Path.toLowerCase().includes(searchLower)) ||
-        (prefab.ID.toString().includes(searchLower))
+        prefab.ID.toString().includes(searchLower)
       )
     })
   }
@@ -57,7 +57,7 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -105,12 +105,18 @@ onUnmounted(() => {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-4">Rust Game Prefab Reference</h1>
-    <p class="mb-8">This section contains a comprehensive list of all prefabs available in the game. Each prefab is
-      listed with its unique ID, components, and file path.</p>
+    <p class="mb-8">
+      This section contains a comprehensive list of all prefabs available in the game. Each prefab is listed
+      with its unique ID, components, and file path.
+    </p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="URL_METDAT_RUST_PREFABS" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a
+          :href="URL_METDAT_RUST_PREFABS"
+          target="_blank"
+          class="vp-button medium brand flex items-center gap-2"
+        >
           <Database :size="16" />
           Prefab API
           <ExternalLink :size="14" class="opacity-80" />
@@ -134,54 +140,59 @@ onUnmounted(() => {
               @input="event => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search prefabs..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
         </div>
       </div>
 
       <div v-if="paginatedPrefabs && paginatedPrefabs.length">
-
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedPrefabs.length }} of {{ filteredPrefabs.length }} prefabs
           </div>
         </div>
 
-
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full  ">
+          <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="prefab in paginatedPrefabs" :key="prefab.ID" :id="prefab.ID.toString()" class="items-table-row">
-                <td class="whitespace-normal pb-4">
-                  <div class="flex flex-col ">
-                    <div class="flex flex-wrap items-center ">
-                      <a :href="`/references/prefabs/details?id=${prefab.ID}`" class="flex-shrink-0">
-                        <VPBadge :id="prefab.ID.toString()" type="tip" text="#" />
-                      </a>
-                      <button
-                        @click="copyToClipboard(prefab.ID.toString(), prefab.ID)"
-                        class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
-                      >
-                        <span class="font-mono">{{ prefab.ID }}</span>
-                        <component :is="copiedId === prefab.ID ? CheckCircle2 : Copy"
-                                   class="ml-2"
-                                   :size="14"
-                        />
-                      </button>
+                <tr
+                  v-for="prefab in paginatedPrefabs"
+                  :key="prefab.ID"
+                  :id="prefab.ID.toString()"
+                  class="items-table-row"
+                >
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex flex-col">
+                      <div class="flex flex-wrap items-center">
+                        <a :href="`/references/prefabs/details?id=${prefab.ID}`" class="flex-shrink-0">
+                          <VPBadge :id="prefab.ID.toString()" type="tip" text="#" />
+                        </a>
+                        <button
+                          @click="copyToClipboard(prefab.ID.toString(), prefab.ID)"
+                          class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
+                        >
+                          <span class="font-mono">{{ prefab.ID }}</span>
+                          <component
+                            :is="copiedId === prefab.ID ? CheckCircle2 : Copy"
+                            class="ml-2"
+                            :size="14"
+                          />
+                        </button>
+                      </div>
+                      <div class="flex flex-wrap gap-1.5">
+                        <template v-for="component in prefab.Components" :key="component">
+                          <VPBadge type="info" :text="component" />
+                        </template>
+                      </div>
+                      <div class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all">
+                        {{ prefab.Path }}
+                      </div>
                     </div>
-                    <div class="flex flex-wrap gap-1.5">
-                      <template v-for="component in prefab.Components" :key="component">
-                        <VPBadge type="info" :text="component" />
-                      </template>
-                    </div>
-                    <div class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all">
-                      {{ prefab.Path }}
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -216,4 +227,4 @@ onUnmounted(() => {
 .dark .items-table-row:hover {
   background-color: #1f2937;
 }
-</style> 
+</style>
