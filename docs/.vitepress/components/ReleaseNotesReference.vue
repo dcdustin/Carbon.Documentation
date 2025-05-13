@@ -1,22 +1,20 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import { Database, ExternalLink, GitPullRequestIcon, Loader2, LucideTextCursorInput } from 'lucide-vue-next'
-import { getGameData, RELEASE_NOTES_API_URL } from '../shared/constants'
 import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
+import { fetchChangelogsCarbon } from '@/api/metadata/carbon/changelogs'
+import type { ChangelogCarbon } from '@/api/metadata/carbon/changelogs'
+import { URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
 
-const releaseNotes = ref([])
-const copiedId = ref(null)
+const releaseNotes: Ref<ChangelogCarbon[]> = ref([])
 const isLoading = ref(true)
-const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
 const pageSize = 50
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const error = ref(null)
-
-const LINK_API = RELEASE_NOTES_API_URL
+const error: Ref<string | null> = ref(null)
 
 const filteredReleaseNotes = computed(() => {
   if (!releaseNotes.value?.length) return []
@@ -24,7 +22,6 @@ const filteredReleaseNotes = computed(() => {
   let filtered = releaseNotes.value.filter(releaseNote => releaseNote && releaseNote.Version)
 
   if (debouncedSearchQuery.value) {
-    const searchLower = debouncedSearchQuery.value.toLowerCase()
     filtered = filtered.filter(releaseNote => {
       if (!releaseNote) return false
       return true
@@ -40,8 +37,8 @@ const paginatedReleaseNotes = computed(() => {
   return filteredReleaseNotes.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
@@ -57,9 +54,9 @@ const moduleLinks = {
   'Vanish Module': '/owners/modules/optional-modules/vanish-module'
 }
 
-const linkifyModules = (text) => {
+const linkifyModules = (text: string) => {
   return text.replace(/\[(.+?)\]/g, (match, moduleName) => {
-    const url = moduleLinks[moduleName]
+    const url = moduleLinks[moduleName as keyof typeof moduleLinks]
     return url ? `[[${moduleName}](${url})]` : match
   })
 }
@@ -68,7 +65,7 @@ const loadReleaseNotes = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchChangelogsCarbon()
     releaseNotes.value = data.map(release => ({
       ...release,
       Changes: release.Changes.map(change => ({
@@ -108,7 +105,7 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-const getChangeType = (val) => {
+const getChangeType = (val: number) => {
   if (val == 0) {
     return 'add'
   } else if (val == 1) {
@@ -157,28 +154,28 @@ const getChangeType = (val) => {
 
     </div>
     <div v-else class="flex justify-center py-4">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
     </div>
     <p class="mb-8"></p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+        <a :href="URL_METDAT_CARB_CHANGELOGS" target="_blank" class="vp-button medium brand flex items-center gap-2">
+          <Database :size="16" />
           Release Notes API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
         <div style="width: 10px;"></div>
         <a v-if="releaseNotes[0]?.CommitUrl" :href="releaseNotes[0]?.CommitUrl" target="_blank"
            class="vp-button medium brand flex items-center gap-2">
-          <GitPullRequestIcon size="16" />
+          <GitPullRequestIcon :size="16" />
           Full Commit Log
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
         <div style="width: 10px;"></div>
         <a href="/tools/changelog-generator"
            class="vp-button medium brand flex items-center gap-2">
-          <LucideTextCursorInput size="16" />
+          <LucideTextCursorInput :size="16" />
           Editor
         </a>
       </div>
@@ -187,7 +184,7 @@ const getChangeType = (val) => {
     <h1 class="text-2xl font-bold mb-4">Change Logs</h1>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading release notes...</span>
     </div>
 
@@ -254,12 +251,12 @@ const getChangeType = (val) => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No release notes found matching your search</p>
-        <p v-if="releaseNotes.value && releaseNotes.value.length === 0" class="mt-2 text-sm">
+        <p v-if="releaseNotes && releaseNotes.length === 0" class="mt-2 text-sm">
           Debug: No release notes loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
