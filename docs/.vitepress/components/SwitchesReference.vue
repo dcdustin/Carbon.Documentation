@@ -3,6 +3,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { CACHE_VERSION_API_URL, getGameData, SWITCHES_API_URL } from '../shared/constants'
 import '../theme/style.css'
+import { fetchSwitches } from '@/api/metadata/carbon/switches'
 
 const switches = ref([])
 const copiedId = ref(null)
@@ -65,7 +66,7 @@ const loadSwitches = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchSwitches()
     switches.value = data
   } catch (err) {
     console.error('Failed to load switches:', err)
