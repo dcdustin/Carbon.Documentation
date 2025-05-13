@@ -1,9 +1,7 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, Ref, watch } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Image, Loader2, Search } from 'lucide-vue-next'
 import {
-  CACHE_VERSION_API_URL,
-  getGameData,
   getItemCategoryText,
   getItemRarityText,
   ITEM_IMAGE_SERVER,
@@ -12,10 +10,10 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchItems } from '@/api/metadata/rust/items'
+import { fetchItems, Item } from '@/api/metadata/rust/items'
 
-const items = ref([])
-const copiedId = ref(null)
+const items: Ref<Item[]> = ref([])
+const copiedId: Ref<string | number | null> = ref(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
@@ -24,23 +22,23 @@ const pageSize = 10
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const imageErrors = ref(new Map())
-const error = ref(null)
+const imageErrors: Ref<Map<number, boolean>> = ref(new Map())
+const error: Ref<string | null> = ref(null)
 
 const LINK_API = ITEMS_API_URL
 
-const getItemImageUrl = (shortName) => {
+const getItemImageUrl = (shortName: string) => {
   if (!shortName) return MISSING_IMAGE_URL
   return `${ITEM_IMAGE_SERVER}/${shortName}.png`
 }
 
-const handleImageError = (event, itemId) => {
+const handleImageError = (event: Event, itemId: number) => {
   imageErrors.value.set(itemId, true)
   console.log(event)
-  console.warn(`Failed to load image for item: ${event.target.src}`)
+  console.warn(`Failed to load image for item: ${(event.target as HTMLImageElement).src}`)
 }
 
-const getFlags = (flags) => {
+const getFlags = (flags: number) => {
   if (!flags) return []
   const flagList = []
   if (flags & 1) flagList.push('No Condition')
@@ -50,7 +48,7 @@ const getFlags = (flags) => {
   return flagList
 }
 
-const getSanitizedAnchor = (text) => {
+const getSanitizedAnchor = (text: string) => {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -59,8 +57,8 @@ const getSanitizedAnchor = (text) => {
 
 const categories = computed(() => {
   if (!items.value?.length) return []
-  const uniqueCategories = [...new Set(items.value.map(item => item?.Category))]
-    .filter(cat => cat !== undefined)
+  const uniqueCategories = [...new Set(items.value.map((item) => item?.Category))]
+    .filter((cat) => cat !== undefined)
     .sort((a, b) => a - b)
   return ['all', ...uniqueCategories]
 })
@@ -68,11 +66,11 @@ const categories = computed(() => {
 const filteredItems = computed(() => {
   if (!items.value?.length) return []
 
-  let filtered = items.value.filter(item => item && item.DisplayName)
+  let filtered = items.value.filter((item) => item && item.DisplayName)
 
   if (selectedCategory.value !== 'all') {
     const categoryNum = parseInt(selectedCategory.value)
-    filtered = filtered.filter(item => item?.Category === categoryNum)
+    filtered = filtered.filter((item) => item?.Category === categoryNum)
   }
 
   if (debouncedSearchQuery.value) {
@@ -83,7 +81,7 @@ const filteredItems = computed(() => {
         (item.DisplayName && item.DisplayName.toLowerCase().includes(searchLower)) ||
         (item.ShortName && item.ShortName.toLowerCase().includes(searchLower)) ||
         (item.Description && item.Description.toLowerCase().includes(searchLower)) ||
-        (item.Id == searchLower)
+        item.Id.toString() == searchLower
       )
     })
   }
@@ -97,8 +95,8 @@ const paginatedItems = computed(() => {
   return filteredItems.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     // Clean up search input to handle special characters
@@ -126,7 +124,7 @@ const handleUrlSearch = () => {
   }
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -219,15 +217,15 @@ onUnmounted(() => {
     <div class="mb-4">
       <div class="flex items-center gap-2">
         <a :href="ITEMS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+          <Database :size="16" />
           Items API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading items...</span>
     </div>
 
@@ -235,11 +233,11 @@ onUnmounted(() => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" :size="20" />
             <input
               type="text"
               v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
+              @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search items..."
               class="w-[400px] px-4 py-2"
             >
@@ -254,7 +252,7 @@ onUnmounted(() => {
               :key="category"
               :value="category"
             >
-              {{ getItemCategoryText(category) }}
+              {{ getItemCategoryText(category as number) }}
             </option>
           </select>
         </div>
@@ -272,7 +270,7 @@ onUnmounted(() => {
           <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="item in paginatedItems" :key="item.Id" :id="item.Id" class="items-table-row">
+              <tr v-for="item in paginatedItems" :key="item.Id" :id="item.Id.toString()" class="items-table-row">
                 <td class="whitespace-normal pb-4">
                   <div class="flex gap-4">
                     <div class="flex-shrink-0">
@@ -289,7 +287,7 @@ onUnmounted(() => {
                           <div v-else
                                class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
                             <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                              <Image size="48" class="text-gray-400" />
+                              <Image :size="48" class="text-gray-400" />
                             </div>
                             <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
                             <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">{{ item.ShortName }}</span>
@@ -303,19 +301,19 @@ onUnmounted(() => {
                           <a :href="`/references/items/details?id=${item.Id}`"
                              class="hover:text-primary inline-flex items-center gap-2">
                             {{ item.DisplayName }}
-                            <ExternalLink size="14" class="opacity-60" />
+                            <ExternalLink :size="14" class="opacity-60" />
                           </a>
                           <div class="flex flex-wrap gap-2 mt-3">
-                            <button v-if="item.Id" @click="copyToClipboard(item.Id, 'id', item.Id)"
+                            <button v-if="item.Id" @click="copyToClipboard(item.Id.toString(), item.Id)"
                                     class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                               <span class="font-mono">ID: {{ item.Id }}</span>
-                              <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" size="14" />
+                              <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" :size="14" />
                             </button>
                             <button v-if="item.ShortName" @click="copyToClipboard(item.ShortName, item.ShortName)"
                                     class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                               <span class="font-mono">{{ item.ShortName }}</span>
                               <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2"
-                                         size="14" />
+                                         :size="14" />
                             </button>
                           </div>
                         </h5>
@@ -347,12 +345,12 @@ onUnmounted(() => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No items found matching your search</p>
-        <p v-if="items.value && items.value.length === 0" class="mt-2 text-sm">
+        <p v-if="items && items.length === 0" class="mt-2 text-sm">
           Debug: No items loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
