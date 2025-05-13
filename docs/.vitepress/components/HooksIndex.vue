@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getHookFlagsText } from '../shared/constants'
@@ -53,11 +53,13 @@ const filteredHooks = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchNumber = Number(searchLower)
     filtered = filtered.filter((hook) => {
       if (!hook) return false
       return (
         (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
-        (hook.descriptions && hook.descriptions.some((desc) => desc.toLowerCase().includes(searchLower)))
+        (hook.descriptions && hook.descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
+        hook.id == searchNumber
       )
     })
   }
@@ -111,11 +113,7 @@ const loadHooks = async () => {
     isLoading.value = true
     error.value = null
 
-    // const data = await getGameData(LINK_API)
-
     const data2 = await fetchHooks()
-
-    // console.log(data2)
 
     if (!data2) {
       throw new Error('No data received from API')
