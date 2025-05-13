@@ -16,7 +16,6 @@ import {
   X,
 } from 'lucide-vue-next'
 import {
-  BLUEPRINTS_API_URL,
   CATEGORY_COLORS,
   getItemCategoryText,
   getItemRarityText,
@@ -29,6 +28,7 @@ import '../theme/style.css'
 import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import type { Blueprint } from '@/api/metadata/rust/blueprints'
 import type { Ingredient } from '@/api/metadata/rust/blueprints'
+import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprints: Ref<Blueprint[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
@@ -230,7 +230,7 @@ const fetchDlcData = async (appId: number) => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="BLUEPRINTS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="URL_METDAT_RUST_BLUEPRINTS" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Blueprints API
           <ExternalLink :size="14" class="opacity-80" />

@@ -2,7 +2,8 @@
 import { computed, nextTick, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import { Database, ExternalLink, Loader2, RefreshCw, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-import { CACHE_VERSION_API_URL, getGameData, getHookFlagsText, HOOKS_API_URL } from '../shared/constants'
+import { getHookFlagsText } from '../shared/constants'
+import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import '../theme/style.css'
 import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import type { Hook } from '@/api/metadata/carbon/hooks'
@@ -22,8 +23,6 @@ const categories = ref<string[]>([])
 const selectedCategory = ref('all')
 const showOxideHooks = ref(true)
 const showCarbonHooks = ref(true)
-
-const LINK_API = HOOKS_API_URL
 
 const getSanitizedAnchor = (text: string) => {
   return text
@@ -239,7 +238,7 @@ watch(
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="URL_METDAT_CARB_HOOKS" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Hooks API
           <ExternalLink :size="14" class="opacity-80" />

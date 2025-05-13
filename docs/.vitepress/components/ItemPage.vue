@@ -2,7 +2,6 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
 import {
-  GAME_DATA_FOLDER,
   getItemCategoryText,
   getItemFlagText,
   getItemRarityText,
@@ -13,6 +12,7 @@ import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
 import type { Item } from '@/api/metadata/rust/items'
+import { URL_METDAT_RUST_ITEMS } from '@/api/constants'
 
 const item: Ref<Item | null> = ref(null)
 const isLoading = ref(true)
@@ -118,7 +118,7 @@ watch(item, (newItem) => {
           </button>
 
         </div>
-        <a :href="`${GAME_DATA_FOLDER}/items.json`" target="_blank"
+        <a :href="`${URL_METDAT_RUST_ITEMS}`" target="_blank"
            class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Items API

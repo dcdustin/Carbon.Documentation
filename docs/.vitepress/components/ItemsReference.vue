@@ -5,13 +5,13 @@ import {
   getItemCategoryText,
   getItemRarityText,
   ITEM_IMAGE_SERVER,
-  ITEMS_API_URL,
   MISSING_IMAGE_URL,
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
 import type { Item } from '@/api/metadata/rust/items'
+import { URL_METDAT_RUST_ITEMS } from '@/api/constants'
 
 const items: Ref<Item[]> = ref([])
 const copiedId: Ref<string | number | null> = ref(null)
@@ -223,7 +223,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="ITEMS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="URL_METDAT_RUST_ITEMS" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Items API
           <ExternalLink :size="14" class="opacity-80" />

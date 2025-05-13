@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { CACHE_VERSION_API_URL, getGameData, PREFABS_API_URL, SpawnType } from '../shared/constants'
+import { getGameData, PREFABS_API_URL, SpawnType } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 

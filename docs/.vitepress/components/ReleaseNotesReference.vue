@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { Database, ExternalLink, GitPullRequestIcon, Loader2, LucideTextCursorInput } from 'lucide-vue-next'
-import { CACHE_VERSION_API_URL, getGameData, RELEASE_NOTES_API_URL } from '../shared/constants'
+import { getGameData, RELEASE_NOTES_API_URL } from '../shared/constants'
 import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
 

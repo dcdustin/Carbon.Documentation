@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { CONVARS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchConVars } from '@/api/metadata/carbon/convars'
 import type { ConVar } from '@/api/metadata/carbon/convars'
+import { URL_METDAT_CARB_CONVARS } from '@/api/constants'
 
 const convars: Ref<ConVar[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
@@ -111,7 +111,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="CONVARS_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="URL_METDAT_CARB_CONVARS" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           ConVar API
           <ExternalLink :size="14" class="opacity-80" />

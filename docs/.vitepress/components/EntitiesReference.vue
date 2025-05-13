@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { ENTITIES_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchEntities } from '@/api/metadata/rust/entities'
 import type { Entity } from '@/api/metadata/rust/entities'
+import { URL_METDAT_RUST_ENTITIES } from '@/api/constants'
 
 const entities: Ref<Entity[]> = ref([])
 const copiedId = ref<string | number | null>(null)
@@ -111,7 +111,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="ENTITIES_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
+        <a :href="URL_METDAT_RUST_ENTITIES" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Entities API
           <ExternalLink :size="14" class="opacity-80" />

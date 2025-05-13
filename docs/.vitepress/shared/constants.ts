@@ -1,86 +1,12 @@
 // API URLs from environment variables
 import { cache } from '../api/cache'
 
-export const HOOKS_API_URL = 'https://api.carbonmod.gg/meta/carbon/hooks.json'
-export const BLUEPRINTS_API_URL = 'https://api.carbonmod.gg/meta/rust/blueprints.json'
-export const ITEMS_API_URL = 'https://api.carbonmod.gg/meta/rust/items.json'
-export const ENTITIES_API_URL = 'https://api.carbonmod.gg/meta/rust/entities.json'
-export const LOOT_TABLES_API_URL = 'https://api.carbonmod.gg/meta/rust/loot-tables.json'
 export const PREFABS_API_URL = 'https://api.carbonmod.gg/meta/rust/prefabs.json'
-export const COMMANDS_API_URL = 'https://api.carbonmod.gg/meta/carbon/commands.json'
 export const RELEASE_NOTES_API_URL = 'https://api.carbonmod.gg/meta/carbon/changelogs.json'
-export const SWITCHES_API_URL = 'https://api.carbonmod.gg/meta/carbon/switches.json'
-export const CONVARS_API_URL = 'https://api.carbonmod.gg/meta/carbon/convars.json'
 export const RUST_CONVARS_API_URL = 'https://api.carbonmod.gg/meta/rust/convars.json'
 export const RUST_COMMANDS_API_URL = 'https://api.carbonmod.gg/meta/rust/commands.json'
 export const ITEM_IMAGE_SERVER = 'https://cdn.carbonmod.gg/items'
 export const MISSING_IMAGE_URL = 'https://cdn.carbonmod.gg/content/missing.jpg'
-export const CACHE_VERSION_API_URL = 'https://carbonmod.gg/version/?id=docs'
-
-// Cache configuration
-const CACHE_TTL = 1000 * 60 * 60 * 24 // 24 hours
-const CACHE_PREFIX = 'carbon_docs_cache_'
-const VERSION_CACHE_KEY = CACHE_PREFIX + 'version'
-
-// Helper functions for localStorage cache
-const getCacheKey = (url: string) => CACHE_PREFIX + btoa(url)
-
-const checkVersion = async () => {
-  try {
-    const response = await fetch(CACHE_VERSION_API_URL)
-    if (!response.ok) return null
-    const version = await response.text()
-    const cachedVersion = localStorage.getItem(VERSION_CACHE_KEY)
-
-    if (cachedVersion !== version) {
-      // Clear all cached data
-      Object.keys(localStorage)
-        .filter(key => key.startsWith(CACHE_PREFIX))
-        .forEach(key => localStorage.removeItem(key))
-      // Store new version
-      localStorage.setItem(VERSION_CACHE_KEY, version)
-      return false
-    }
-    return true
-  } catch (error) {
-    console.warn('Error checking version:', error)
-    return true // Keep cache if version check fails
-  }
-}
-
-/*const getFromCache = async (url: string) => {
-  try {
-    // Check version first
-    const isVersionValid = await checkVersion()
-    if (!isVersionValid) return null
-
-    const key = getCacheKey(url)
-    const cached = localStorage.getItem(key)
-    if (!cached) return null
-
-    const { data, timestamp } = JSON.parse(cached)
-    if (Date.now() - timestamp > CACHE_TTL) {
-      localStorage.removeItem(key)
-      return null
-    }
-    return data
-  } catch (error) {
-    console.warn('Error reading from cache:', error)
-    return null
-  }
-}*/
-
-const setCache = (url: string, data: any) => {
-  try {
-    const key = getCacheKey(url)
-    localStorage.setItem(key, JSON.stringify({
-      data,
-      timestamp: Date.now(),
-    }))
-  } catch (error) {
-    console.warn('Error writing to cache:', error)
-  }
-}
 
 // Legacy constant for backward compatibility
 export const GAME_DATA_FOLDER = 'https://api.carbonmod.gg/meta/rust'
@@ -227,7 +153,3 @@ export const getImage = async (image: string) => {
     return MISSING_IMAGE_URL
   }
 }
-
-
-
-

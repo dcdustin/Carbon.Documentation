@@ -16,7 +16,6 @@ import {
 } from 'lucide-vue-next'
 import {
   CATEGORY_COLORS,
-  GAME_DATA_FOLDER,
   getItemCategoryText,
   getItemRarityText,
   ITEM_IMAGE_SERVER,
@@ -27,6 +26,7 @@ import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
+import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)
@@ -189,7 +189,7 @@ watch(
           </button>
         </div>
         <a
-          :href="`${GAME_DATA_FOLDER}/blueprints.json`"
+          :href="`${URL_METDAT_RUST_BLUEPRINTS}`"
           target="_blank"
           class="vp-button medium brand flex items-center gap-2"
         >
