@@ -22,11 +22,11 @@ const LINK_API = CONVARS_API_URL
 const filteredConvars = computed(() => {
   if (!convars.value?.length) return []
 
-  let filtered = convars.value.filter(convar => convar && convar.Name)
+  let filtered = convars.value.filter((convar) => convar && convar.Name)
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
-    filtered = filtered.filter(convar => {
+    filtered = filtered.filter((convar) => {
       if (!convar) return false
       return (
         (convar.Name && convar.Name.toLowerCase().includes(searchLower)) ||
@@ -57,7 +57,7 @@ const copyToClipboard = async (text: string) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = text
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -106,8 +106,10 @@ onUnmounted(() => {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-4">Carbon ConVar Reference</h1>
-    <p class="mb-8">Here's a full list of all currently available CarbonAuto variables you can use to expand on what
-      Rust already provides.</p>
+    <p class="mb-8">
+      Here's a full list of all currently available CarbonAuto variables you can use to expand on what Rust
+      already provides.
+    </p>
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
@@ -135,43 +137,53 @@ onUnmounted(() => {
               @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search convars..."
               class="w-[400px] px-4 py-2"
-            >
+            />
           </div>
         </div>
       </div>
 
       <div v-if="paginatedConvars && paginatedConvars.length">
-
         <div class="fixed bottom-4 right-4 z-50">
           <div
-            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2">
+            class="text-sm text-gray-500 dark:text-gray-400 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-2"
+          >
             Showing {{ paginatedConvars.length }} of {{ filteredConvars.length }} convars
           </div>
         </div>
 
-
         <div class="overflow-x-auto">
-          <div class="inline-block min-w-full  ">
+          <div class="inline-block min-w-full">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="convar in paginatedConvars" :key="convar.Name" :id="convar.Name" class="items-table-row">
-                <td class="whitespace-normal pb-4">
-                  <div class="flex items-center gap-2">
-                    <h1>{{ convar.DisplayName }}
-                      <VPBadge v-if="convar.ForceModded" type="tip" :text="'Modded'" />
-                    </h1>
-                    <button
-                      @click="copyToClipboard(convar.Name)"
-                      class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0">
-                      <span class="font-mono">{{ convar.Name }}</span>
-                      <component :is="copiedId === convar.Name ? CheckCircle2 : Copy" class="ml-2" :size="14" />
-                    </button>
-                  </div>
-                  <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
-                    {{ convar.Help }}
-                  </p>
-                </td>
-              </tr>
+                <tr
+                  v-for="convar in paginatedConvars"
+                  :key="convar.Name"
+                  :id="convar.Name"
+                  class="items-table-row"
+                >
+                  <td class="whitespace-normal pb-4">
+                    <div class="flex items-center gap-2">
+                      <h1>
+                        {{ convar.DisplayName }}
+                        <VPBadge v-if="convar.ForceModded" type="tip" :text="'Modded'" />
+                      </h1>
+                      <button
+                        @click="copyToClipboard(convar.Name)"
+                        class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
+                      >
+                        <span class="font-mono">{{ convar.Name }}</span>
+                        <component
+                          :is="copiedId === convar.Name ? CheckCircle2 : Copy"
+                          class="ml-2"
+                          :size="14"
+                        />
+                      </button>
+                    </div>
+                    <p v-if="convar.Help" class="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                      {{ convar.Help }}
+                    </p>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -206,4 +218,4 @@ onUnmounted(() => {
 .dark .items-table-row:hover {
   background-color: #1f2937;
 }
-</style> 
+</style>
