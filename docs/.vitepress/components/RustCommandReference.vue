@@ -4,6 +4,7 @@ import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { getGameData, RUST_COMMANDS_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchCommands } from '@/api/metadata/rust/commands'
 
 const commands = ref([])
 const copiedId = ref(null)
@@ -66,7 +67,7 @@ const loadCommands = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchCommands()
     commands.value = data
   } catch (err) {
     console.error('Failed to load commands:', err)
