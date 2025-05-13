@@ -12,6 +12,7 @@ import {
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchItems } from '@/api/metadata/rust/items'
 
 const item = ref(null)
 const isLoading = ref(true)
@@ -49,7 +50,8 @@ const loadItem = async (itemId) => {
       return
     }
 
-    const data = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
+    // const data = await getGameData(`${GAME_DATA_FOLDER}/items.json`)
+    const data = await fetchItems()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')
     }
