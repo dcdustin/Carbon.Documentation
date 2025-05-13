@@ -4,6 +4,7 @@ import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'luc
 import { CACHE_VERSION_API_URL, ENTITIES_API_URL, getGameData, SpawnType } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
+import { fetchEntities } from '@/api/metadata/rust/entities'
 
 const entities = ref([])
 const copiedId = ref(null)
@@ -77,7 +78,7 @@ const loadEntities = async () => {
   try {
     isLoading.value = true
     error.value = null
-    const data = await getGameData(LINK_API)
+    const data = await fetchEntities()
     entities.value = data
   } catch (err) {
     console.error('Failed to load entities:', err)
