@@ -4,14 +4,12 @@ import { CheckCircle2, Copy, Database, ExternalLink, Image, Loader2, Search } fr
 import {
   getItemCategoryText,
   getItemRarityText,
-  ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL,
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
 import type { Item } from '@/api/metadata/rust/items'
-import { URL_METDAT_RUST_ITEMS } from '@/api/constants'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_ITEMS } from '@/api/constants'
 
 const items: Ref<Item[]> = ref([])
 const copiedId: Ref<string | number | null> = ref(null)
@@ -27,8 +25,8 @@ const imageErrors: Ref<Map<number, boolean>> = ref(new Map())
 const error: Ref<string | null> = ref(null)
 
 const getItemImageUrl = (shortName: string) => {
-  if (!shortName) return MISSING_IMAGE_URL
-  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+  if (!shortName) return URL_ASSETS_MISSING
+  return `${URL_ASSETS_ITEMS}/${shortName}.png`
 }
 
 const handleImageError = (event: Event, itemId: number) => {
@@ -74,13 +72,14 @@ const filteredItems = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchNumber = Number(searchLower)
     filtered = filtered.filter((item) => {
       if (!item) return false
       return (
         (item.DisplayName && item.DisplayName.toLowerCase().includes(searchLower)) ||
         (item.ShortName && item.ShortName.toLowerCase().includes(searchLower)) ||
         (item.Description && item.Description.toLowerCase().includes(searchLower)) ||
-        item.Id.toString() == searchLower
+        item.Id == searchNumber
       )
     })
   }

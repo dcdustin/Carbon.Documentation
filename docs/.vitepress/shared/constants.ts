@@ -1,16 +1,3 @@
-// API URLs from environment variables
-import { cache } from '../api/cache'
-
-export const PREFABS_API_URL = 'https://api.carbonmod.gg/meta/rust/prefabs.json'
-export const RELEASE_NOTES_API_URL = 'https://api.carbonmod.gg/meta/carbon/changelogs.json'
-export const RUST_CONVARS_API_URL = 'https://api.carbonmod.gg/meta/rust/convars.json'
-export const RUST_COMMANDS_API_URL = 'https://api.carbonmod.gg/meta/rust/commands.json'
-export const ITEM_IMAGE_SERVER = 'https://cdn.carbonmod.gg/items'
-export const MISSING_IMAGE_URL = 'https://cdn.carbonmod.gg/content/missing.jpg'
-
-// Legacy constant for backward compatibility
-export const GAME_DATA_FOLDER = 'https://api.carbonmod.gg/meta/rust'
-
 export enum ItemFlag {
   NoDropping = 1,
   NotStraightToBelt = 2,
@@ -122,34 +109,3 @@ export const CATEGORY_COLORS = {
   [ItemCategory.Electrical]: 'var(--category-electrical)',
   [ItemCategory.Fun]: 'var(--category-fun)',
 } as const
-
-export const getGameData = async (url: string) => {
-  const cached = await cache.getFromCache(url)
-  if (cached) {
-    return cached
-  }
-
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.status}`)
-  }
-  const data = await response.json()
-
-  cache.saveToCache(url, data)
-
-  return data
-}
-
-// need to use item shortname to get the image ex: https://carbonmod.gg/assets/media/items/hat.wolf.png
-export const getImage = async (image: string) => {
-  try {
-    const response = await fetch(`${ITEM_IMAGE_SERVER}/${image}`)
-    if (!response.ok) {
-      return MISSING_IMAGE_URL
-    }
-    return response.blob()
-  } catch (error) {
-    console.error('Error fetching image:', error)
-    return MISSING_IMAGE_URL
-  }
-}

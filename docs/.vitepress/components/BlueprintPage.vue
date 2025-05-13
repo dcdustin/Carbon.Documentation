@@ -18,15 +18,13 @@ import {
   CATEGORY_COLORS,
   getItemCategoryText,
   getItemRarityText,
-  ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL,
   RARITY_COLORS,
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
-import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)
@@ -42,8 +40,8 @@ const getBlueprintId = () => {
 }
 
 const getItemImageUrl = (shortName: string) => {
-  if (!shortName) return MISSING_IMAGE_URL
-  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+  if (!shortName) return URL_ASSETS_MISSING
+  return `${URL_ASSETS_ITEMS}/${shortName}.png`
 }
 
 const handleImageError = (event: Event) => {
@@ -93,7 +91,9 @@ const loadBlueprint = async (blueprintId: string) => {
       throw new Error('Data is not an array')
     }
 
-    const foundBlueprint = data.find((bp) => bp.Item.Id.toString() === blueprintId)
+    const blueprintIdNumber = Number(blueprintId)
+
+    const foundBlueprint = data.find((bp) => bp.Item.Id === blueprintIdNumber)
     if (foundBlueprint) {
       blueprint.value = foundBlueprint
       imageError.value = false

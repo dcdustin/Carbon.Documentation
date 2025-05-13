@@ -49,7 +49,9 @@ const loadEntity = async (entityId: string) => {
       throw new Error('Data is not an array')
     }
 
-    const foundEntity = data.find((e) => e.ID.toString() === entityId)
+    const entityIdNumber = Number(entityId)
+
+    const foundEntity = data.find((e) => e.ID === entityIdNumber)
     if (foundEntity) {
       entity.value = foundEntity
       imageError.value = false // Reset image error state when loading new entity

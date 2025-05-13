@@ -5,14 +5,12 @@ import {
   getItemCategoryText,
   getItemFlagText,
   getItemRarityText,
-  ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL,
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
 import type { Item } from '@/api/metadata/rust/items'
-import { URL_METDAT_RUST_ITEMS } from '@/api/constants'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_ITEMS } from '@/api/constants'
 
 const item: Ref<Item | null> = ref(null)
 const isLoading = ref(true)
@@ -34,13 +32,13 @@ const getItemId = () => {
 }
 
 const getItemImageUrl = (shortName: string) => {
-  if (!shortName) return MISSING_IMAGE_URL
-  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+  if (!shortName) return URL_ASSETS_MISSING
+  return `${URL_ASSETS_ITEMS}/${shortName}.png`
 }
 
 const handleImageError = (event: Event) => {
   const target = event.target as HTMLImageElement
-  target.src = MISSING_IMAGE_URL
+  target.src = URL_ASSETS_MISSING
   console.warn(`Failed to load image for item: ${target.src}`)
 }
 
@@ -56,7 +54,9 @@ const loadItem = async (itemId: string | number) => {
       throw new Error('Data is not an array')
     }
 
-    const foundItem = data.find(i => i.Id.toString() === itemId)
+    const itemIdNumber = Number(itemId)
+
+    const foundItem = data.find((i) => i.Id === itemIdNumber)
     if (foundItem) {
       item.value = foundItem
     }

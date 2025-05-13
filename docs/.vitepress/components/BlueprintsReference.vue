@@ -19,8 +19,6 @@ import {
   CATEGORY_COLORS,
   getItemCategoryText,
   getItemRarityText,
-  ITEM_IMAGE_SERVER,
-  MISSING_IMAGE_URL,
   RARITY_COLORS,
 } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
@@ -28,7 +26,7 @@ import '../theme/style.css'
 import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import type { Blueprint } from '@/api/metadata/rust/blueprints'
 import type { Ingredient } from '@/api/metadata/rust/blueprints'
-import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprints: Ref<Blueprint[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)
@@ -47,8 +45,8 @@ const dlcData: Ref<Map<number, any>> = ref(new Map()) // https://store.steampowe
 const error: Ref<string | null> = ref(null)
 
 const getItemImageUrl = (shortName: string) => {
-  if (!shortName) return MISSING_IMAGE_URL
-  return `${ITEM_IMAGE_SERVER}/${shortName}.png`
+  if (!shortName) return URL_ASSETS_MISSING
+  return `${URL_ASSETS_ITEMS}/${shortName}.png`
 }
 
 const handleImageError = (event: Event, itemId: number) => {
@@ -76,13 +74,14 @@ const filteredBlueprints = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchNumber = Number(searchLower)
     filtered = filtered.filter((bp) => {
       if (!bp?.Item) return false
       return (
         (bp.Item.DisplayName && bp.Item.DisplayName.toLowerCase().includes(searchLower)) ||
         (bp.Item.ShortName && bp.Item.ShortName.toLowerCase().includes(searchLower)) ||
         (bp.Item.Description && bp.Item.Description.toLowerCase().includes(searchLower)) ||
-        bp.Item.Id.toString() == searchLower
+        bp.Item.Id == searchNumber
       )
     })
   }

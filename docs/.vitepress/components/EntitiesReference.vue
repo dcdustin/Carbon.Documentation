@@ -25,13 +25,14 @@ const filteredEntities = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchNumber = Number(searchLower)
     filtered = filtered.filter(entity => {
       if (!entity) return false
       return (
         (entity.Name && entity.Name.toLowerCase().includes(searchLower)) ||
         (entity.Type && entity.Type.toLowerCase().includes(searchLower)) ||
         (entity.Path && entity.Path.toLowerCase().includes(searchLower)) ||
-        (entity.ID.toString().includes(searchLower))
+        (entity.ID == searchNumber)
       )
     })
   }

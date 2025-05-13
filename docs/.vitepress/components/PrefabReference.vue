@@ -25,12 +25,13 @@ const filteredPrefabs = computed(() => {
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
+    const searchNumber = Number(searchLower)
     filtered = filtered.filter((prefab) => {
       if (!prefab) return false
       return (
         (prefab.Name && prefab.Name.toLowerCase().includes(searchLower)) ||
         (prefab.Path && prefab.Path.toLowerCase().includes(searchLower)) ||
-        prefab.ID.toString().includes(searchLower)
+        prefab.ID == searchNumber
       )
     })
   }
