@@ -1,37 +1,27 @@
-<script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import { CACHE_VERSION_API_URL, ENTITIES_API_URL, getGameData, SpawnType } from '../shared/constants'
+import { ENTITIES_API_URL } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchEntities } from '@/api/metadata/rust/entities'
+import type { Entity } from '@/api/metadata/rust/entities'
 
-const entities = ref([])
-const copiedId = ref(null)
+const entities: Ref<Entity[]> = ref([])
+const copiedId = ref<string | number | null>(null)
 const isLoading = ref(true)
 const searchQuery = ref('')
 const debouncedSearchQuery = ref('')
-const selectedSpawnType = ref('all')
 const pageSize = 20
 const currentPage = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
-const error = ref(null)
-
-const LINK_API = ENTITIES_API_URL
-
-const spawnTypes = computed(() => {
-  return ['all', ...Object.keys(SpawnType).filter(key => isNaN(Number(key)))]
-})
+const error = ref<string | null>(null)
 
 const filteredEntities = computed(() => {
   if (!entities.value?.length) return []
 
   let filtered = entities.value.filter(entity => entity && entity.Name)
-
-  if (selectedSpawnType.value !== 'all') {
-    filtered = filtered.filter(entity => entity?.SpawnType === SpawnType[selectedSpawnType.value])
-  }
 
   if (debouncedSearchQuery.value) {
     const searchLower = debouncedSearchQuery.value.toLowerCase()
@@ -39,8 +29,8 @@ const filteredEntities = computed(() => {
       if (!entity) return false
       return (
         (entity.Name && entity.Name.toLowerCase().includes(searchLower)) ||
-        (entity.PrefabName && entity.PrefabName.toLowerCase().includes(searchLower)) ||
-        (entity.Description && entity.Description.toLowerCase().includes(searchLower)) ||
+        (entity.Type && entity.Type.toLowerCase().includes(searchLower)) ||
+        (entity.Path && entity.Path.toLowerCase().includes(searchLower)) ||
         (entity.ID.toString().includes(searchLower))
       )
     })
@@ -55,8 +45,8 @@ const paginatedEntities = computed(() => {
   return filteredEntities.value.slice(start, end)
 })
 
-let debounceTimeout
-const updateDebouncedSearch = (value) => {
+let debounceTimeout: NodeJS.Timeout
+const updateDebouncedSearch = (value: string) => {
   clearTimeout(debounceTimeout)
   debounceTimeout = setTimeout(() => {
     debouncedSearchQuery.value = value
@@ -64,7 +54,7 @@ const updateDebouncedSearch = (value) => {
   }, 300)
 }
 
-const copyToClipboard = async (text, id = null) => {
+const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
@@ -121,16 +111,16 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a :href="LINK_API" target="_blank" class="vp-button medium brand flex items-center gap-2">
-          <Database size="16" />
+        <a :href="ENTITIES_API_URL" target="_blank" class="vp-button medium brand flex items-center gap-2">
+          <Database :size="16" />
           Entities API
-          <ExternalLink size="14" class="opacity-80" />
+          <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
     </div>
 
     <div v-if="isLoading" class="flex items-center justify-center py-8">
-      <Loader2 class="animate-spin" size="24" />
+      <Loader2 class="animate-spin" :size="24" />
       <span class="ml-2">Loading entities...</span>
     </div>
 
@@ -138,11 +128,11 @@ onUnmounted(() => {
       <div class="filters mb-4">
         <div class="flex items-center gap-4">
           <div class="flex items-center flex-1">
-            <Search class="text-gray-400" size="20" />
+            <Search class="text-gray-400" :size="20" />
             <input
               type="text"
               v-model="searchQuery"
-              @input="updateDebouncedSearch($event.target.value)"
+              @input="event => updateDebouncedSearch((event.target as HTMLInputElement).value)"
               placeholder="Search entities..."
               class="w-[400px] px-4 py-2"
             >
@@ -164,7 +154,7 @@ onUnmounted(() => {
           <div class="inline-block min-w-full  ">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <tbody>
-              <tr v-for="entity in paginatedEntities" :key="entity.ID" :id="entity.ID" class="items-table-row">
+              <tr v-for="entity in paginatedEntities" :key="entity.ID" :id="entity.ID.toString()" class="items-table-row">
                 <td class="whitespace-normal pb-4">
                   <div class="flex flex-col ">
                     <div class="flex flex-wrap items-center ">
@@ -172,13 +162,13 @@ onUnmounted(() => {
                         <VPBadge :id="entity.ID.toString()" type="tip" text="#" />
                       </a>
                       <button
-                        @click="copyToClipboard(entity.ID, entity.ID)"
+                        @click="copyToClipboard(entity.ID.toString(), entity.ID)"
                         class="flex items-center px-3 py-1.5 text-sm rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-shrink-0"
                       >
                         <span class="font-mono">{{ entity.ID }}</span>
                         <component :is="copiedId === entity.ID ? CheckCircle2 : Copy"
                                    class="ml-2"
-                                   size="14"
+                                   :size="14"
                         />
                       </button>
                     </div>
@@ -199,12 +189,12 @@ onUnmounted(() => {
         </div>
 
         <div v-if="loadingMore" class="flex justify-center py-4">
-          <Loader2 class="animate-spin" size="24" />
+          <Loader2 class="animate-spin" :size="24" />
         </div>
       </div>
       <div v-else class="text-center py-8 text-gray-500">
         <p>No entities found matching your search</p>
-        <p v-if="entities.value && entities.value.length === 0" class="mt-2 text-sm">
+        <p v-if="entities && entities.length === 0" class="mt-2 text-sm">
           Debug: No entities loaded. Check console for errors.
         </p>
         <p v-else-if="debouncedSearchQuery" class="mt-2 text-sm">
