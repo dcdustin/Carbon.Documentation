@@ -417,17 +417,17 @@ onUnmounted(() => {
                   </button>
               </div>
               <Transition name="expand">
-                <div v-if="hook.methodSource && highlighter && expandedHookSources.has(hook.fullName)">
+                <div v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)">
                   <div
-                    v-html="highlightCode(hook.methodSource)"
+                    v-html="getExampleCode(hook, true)"
                     class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
                   ></div>
                 </div>
               </Transition>
               <Transition name="expand">
-                <div v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)">
+                <div v-if="hook.methodSource && highlighter && expandedHookSources.has(hook.fullName)">
                   <div
-                    v-html="getExampleCode(hook, true)"
+                    v-html="highlightCode(hook.methodSource)"
                     class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
                   ></div>
                 </div>
