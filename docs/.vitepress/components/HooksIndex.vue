@@ -335,13 +335,16 @@ onUnmounted(() => {
             {{ hooks.length }} total hooks.
           </div>
         </div>
-        <div>
+        <div style="display: inline-grid;gap: 10px;">
           <div v-for="hook in renderedHooks" :key="hook.fullName" :id="getSanitizedAnchor(hook.fullName)">
             <div class="mb-4">
               <div class="flex flex-col gap-1">
                 <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
                   <h5 class="text-lg font-medium">
+                    <a :href="`/references/hooks#${encodeURIComponent(hook.fullName)}`"class="hover:text-primary flex items-center gap-2">
                       <span>{{ hook.fullName }}</span>
+                      <ExternalLink :size="14" class="opacity-60" />
+                    </a>
                   </h5>
                   <div class="flex flex-wrap gap-1.5">
                     <VPBadge v-if="hook.category" type="info" :text="hook.category" title="Category" />
