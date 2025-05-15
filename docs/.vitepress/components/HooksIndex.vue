@@ -300,7 +300,6 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <hr class="my-4 border-zinc-300" />
       <div v-if="filteredHooks && filteredHooks.length">
         <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
           <div
