@@ -105,7 +105,7 @@ const loadHooks = async () => {
 }
 
 function renderMoreHooks() {
-  if (!filteredHooks) {
+  if (!filteredHooks || filteredHooks.value.length < currentPage.value * pageSize) {
     return
   }
 
