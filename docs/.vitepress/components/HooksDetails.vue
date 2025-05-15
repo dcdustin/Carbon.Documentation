@@ -44,7 +44,7 @@ const loadHookDetails = async () => {
 
     loop1: for (const [category, hooks] of data) {
       for (const hook of hooks) {
-        if (hook.name === hookName) {
+        if (hook.name == hookName || hook.fullName == hookName) {
           foundHook = hook
           foundCategory = category
           break loop1
