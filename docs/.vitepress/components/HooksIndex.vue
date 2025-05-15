@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
-import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
+import { Database, ExternalLink, Loader2, Search, CheckCircle2, Copy } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getHookFlagsText } from '@/shared/constants'
 import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
@@ -32,7 +32,8 @@ const debouncedInputSearch = shallowRef('')
 const currentPage = shallowRef(1)
 const pageSize = 25
 
-const expandedHooks = ref<Set<string>>(new Set())
+const expandedHookSources = ref<Set<string>>(new Set())
+const expandedHookExamples = ref<Set<string>>(new Set())
 
 const filteredHooks = computed(() => {
   if (!hooks.value?.length) {
@@ -180,6 +181,31 @@ function highlightCode(code: string, language = 'csharp'): string {
   }
 }
 
+function getExampleCode(hook: Hook, highlighted: boolean): string {
+  const code = `private ${hook.returnTypeName} ${hook.name}(${hook.parametersText})
+{
+    Puts("${hook.name} has been called!");${
+    hook.returnTypeName !== 'void'
+      ? `
+    return (${hook.returnTypeName})default;`
+      : ''
+  }
+}`
+  return highlighted ? highlightCode(code) : code
+}
+
+const copiedId = ref<string | null>(null)
+
+const copyToClipboard = async (text: string, id: string | null) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    copiedId.value = id
+    setTimeout(() => (copiedId.value = null), 2000)
+  } catch (err) {
+    console.error('Failed to copy:', err)
+  }
+}
+
 watch(
   () => window.location.hash,
   (newHash) => {
@@ -315,13 +341,7 @@ onUnmounted(() => {
               <div class="flex flex-col gap-1">
                 <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
                   <h5 class="text-lg font-medium">
-                    <a
-                      :href="`/references/hooks/details?name=${encodeURIComponent(hook.fullName)}`"
-                      class="hover:text-primary flex items-center gap-2"
-                    >
                       <span>{{ hook.fullName }}</span>
-                      <ExternalLink :size="14" class="opacity-60" />
-                    </a>
                   </h5>
                   <div class="flex flex-wrap gap-1.5">
                     <VPBadge v-if="hook.category" type="info" :text="hook.category" title="Category" />
@@ -351,35 +371,67 @@ onUnmounted(() => {
                   <span v-if="hook.returnTypeName == 'void'">No return behavior.</span>
                 </div>
               </div>
-              <div class="mt-1">
+              <div class="mt-1" style="display: flex; gap: 5px">
+                <button
+                  v-if="getExampleCode(hook, false)"
+                  class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  style="align-items: center; flex-direction: row-reverse; display: inline-flex;"
+                  @click="
+                    expandedHookExamples.has(hook.fullName)
+                      ? expandedHookExamples.delete(hook.fullName)
+                      : expandedHookExamples.add(hook.fullName)"
+                >
+                  <span @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)">
+                    <component
+                      :is="copiedId === 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
+                      class="ml-2"
+                      :size="14"
+                    />
+                  </span>
+                  {{ expandedHookExamples.has(hook.fullName) ? 'Hide Example' : 'Show Example' }}
+                </button>
                 <button
                   v-if="hook.methodSource"
                   class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  style="align-items: center; flex-direction: row-reverse; display: inline-flex;"
                   @click="
-                    expandedHooks.has(hook.fullName)
-                      ? expandedHooks.delete(hook.fullName)
-                      : expandedHooks.add(hook.fullName)
-                  "
+                    expandedHookSources.has(hook.fullName)
+                      ? expandedHookSources.delete(hook.fullName)
+                      : expandedHookSources.add(hook.fullName)"
                 >
-                  {{ expandedHooks.has(hook.fullName) ? 'Collapse' : 'Expand' }}
+                  <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
+                    <component
+                      :is="copiedId === 'sourcecode' + hook.fullName ? CheckCircle2 : Copy"
+                      class="ml-2"
+                      :size="14"
+                    />
+                  </span>
+                  {{ expandedHookSources.has(hook.fullName) ? 'Hide Source' : 'Show Source' }}
                 </button>
-                <button
-                  v-else
-                  disabled
-                  class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
-                >
-                  No method source
-                </button>
-
-                <Transition name="expand">
-                  <div v-if="hook.methodSource && highlighter && expandedHooks.has(hook.fullName)">
-                    <div
-                      v-html="highlightCode(hook.methodSource)"
-                      class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
-                    ></div>
-                  </div>
-                </Transition>
+                  <button
+                    v-else
+                    disabled
+                    class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  >
+                    No method source
+                  </button>
               </div>
+              <Transition name="expand">
+                <div v-if="hook.methodSource && highlighter && expandedHookSources.has(hook.fullName)">
+                  <div
+                    v-html="highlightCode(hook.methodSource)"
+                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                  ></div>
+                </div>
+              </Transition>
+              <Transition name="expand">
+                <div v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)">
+                  <div
+                    v-html="getExampleCode(hook, true)"
+                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                  ></div>
+                </div>
+              </Transition>
             </div>
           </div>
         </div>
