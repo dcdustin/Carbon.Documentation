@@ -23,6 +23,8 @@ using Rust;
 using UnityEngine;
 using Defines = Carbon.Core.Defines;
 
+// ReSharper disable InconsistentNaming
+
 namespace Carbon.Plugins;
 
 [Info("CodeGen", "Carbon Community LTD.", "1.0.0")]
@@ -71,12 +73,7 @@ public class CodeGen : CarbonPlugin
 
 	private static void Generate_Items()
 	{
-		var items = new List<Item>();
-
-		foreach (var item in ItemManager.itemList)
-		{
-			items.Add(Item.Parse<Item>(item));
-		}
+		var items = ItemManager.itemList.Select(Item.Parse<Item>).ToList();
 
 		OsEx.File.Create(Path.Combine("carbon", "results", "items.json"), JsonConvert.SerializeObject(items, Formatting.Indented));
 	}
@@ -109,15 +106,15 @@ public class CodeGen : CarbonPlugin
 	{
 		var conVars = new List<object>();
 
-		foreach (var conVar in CarbonAuto.AutoCache)
+		foreach (var (key, value) in CarbonAuto.AutoCache)
 		{
 			conVars.Add(new
 			{
-				Name = conVar.Key,
-				conVar.Value.Variable.DisplayName,
-				conVar.Value.Variable.Help,
-				conVar.Value.Variable.ForceModded,
-				conVar.Value.Variable.Protected,
+				Name = key,
+				value.Variable.DisplayName,
+				value.Variable.Help,
+				value.Variable.ForceModded,
+				value.Variable.Protected,
 			});
 		}
 
@@ -475,7 +472,7 @@ public class CodeGen : CarbonPlugin
 		[JsonProperty] public ItemDefinition.Flag Flags;
 		[JsonProperty] public ItemCategory Category;
 		[JsonProperty] public Rarity Rarity;
-		[JsonProperty] public SteamDlcItem SteamDlcItem;
+		[JsonProperty] public SteamDlcItem? SteamDlcItem;
 
 		public static T Parse<T>(ItemDefinition definition) where T : Item
 		{
@@ -601,7 +598,7 @@ public class CodeGen : CarbonPlugin
 
 	public struct CarbonHook
 	{
-		public static Dictionary<string, int> iterations = new();
+		private static readonly Dictionary<string, int> iterations = new();
 
 		[Flags]
 		public enum HookFlags
@@ -630,14 +627,14 @@ public class CodeGen : CarbonPlugin
 
 		public string targetName => target?.FullName;
 		public string methodName => method?.Name;
-		public string assemblyName => assembly?.GetName().Name;
+		private string assemblyName => assembly?.GetName().Name;
 		public string returnTypeName => GetFriendlyType(returnType?.FullName, "void");
 		public string methodSource;
 
-		[JsonIgnore] public Type target;
-		[JsonIgnore] public MethodInfo method;
-		[JsonIgnore] public Assembly assembly;
-		[JsonIgnore] public Type returnType;
+		[JsonIgnore] private Type target;
+		[JsonIgnore] private MethodInfo method;
+		[JsonIgnore] private Assembly assembly;
+		[JsonIgnore] private Type returnType;
 		[JsonIgnore] public int iteration;
 		[JsonIgnore] public readonly bool IsValid => !string.IsNullOrEmpty(name);
 
@@ -668,8 +665,8 @@ public class CodeGen : CarbonPlugin
 			var enumerable = parameters as Attribute[] ?? parameters.ToArray();
 			var parametersType = enumerable.FirstOrDefault()?.GetType();
 			CarbonHook hook = default;
-			var methodName = patchType?.GetProperty("Method").GetValue(patch) as string;
-			var methodArgs = patchType?.GetProperty("MethodArgs").GetValue(patch) as Type[];
+			var methodName = patchType.GetProperty("Method").GetValue(patch) as string;
+			var methodArgs = patchType.GetProperty("MethodArgs").GetValue(patch) as Type[];
 			hook.name = patchType.GetProperty("Name").GetValue(patch) as string;
 			hook.id = HookStringPool.GetOrAdd(hook.name);
 			hook.fullName = patchType.GetProperty("FullName").GetValue(patch) as string;
