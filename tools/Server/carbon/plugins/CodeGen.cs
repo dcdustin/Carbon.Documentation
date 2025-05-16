@@ -14,11 +14,8 @@ using API.Commands;
 using Carbon.Components;
 using Carbon.Extensions;
 using Carbon.Pooling;
-using HarmonyLib;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Oxide.Core.Plugins;
 using Rust;
 using UnityEngine;
 using Defines = Carbon.Core.Defines;
@@ -473,6 +470,14 @@ public class CodeGen : CarbonPlugin
 		[JsonProperty] public ItemCategory Category;
 		[JsonProperty] public Rarity Rarity;
 		[JsonProperty] public SteamDlcItem? SteamDlcItem;
+		[JsonProperty] public string[] ItemMods;
+		[JsonProperty] public Ser_ItemModDeployable? ItemMod_Deployable;
+		[JsonProperty] public Ser_ItemModEntity? ItemMod_Entity;
+		[JsonProperty] public Ser_ItemModEntityReference? ItemMod_EntityReference;
+		[JsonProperty] public Ser_ItemModRepair? ItemMod_Repair;
+		[JsonProperty] public Ser_ItemModBurnable? ItemMod_Burnable;
+		[JsonProperty] public Ser_ItemModCompostable? ItemMod_Compostable;
+		[JsonProperty] public Ser_ItemModFoodSpoiling? ItemMod_FoodSpoiling;
 
 		public static T Parse<T>(ItemDefinition definition) where T : Item
 		{
@@ -496,7 +501,175 @@ public class CodeGen : CarbonPlugin
 				};
 			}
 
+			var components = definition.GetComponents<MonoBehaviour>().Where(x => x != definition).ToArray();
+			instance.ItemMods = components.Select(x => x.GetType().ToString()).ToArray();
+
+			instance.ItemMod_Burnable = Ser_ItemModBurnable.TryCreate(definition.ItemModBurnable);
+			instance.ItemMod_Compostable = Ser_ItemModCompostable.TryCreate(components.OfType<ItemModCompostable>().FirstOrDefault());
+			instance.ItemMod_Deployable = Ser_ItemModDeployable.TryCreate(components.OfType<ItemModDeployable>().FirstOrDefault());
+			instance.ItemMod_Entity = Ser_ItemModEntity.TryCreate(components.OfType<ItemModEntity>().FirstOrDefault());
+			instance.ItemMod_EntityReference =
+				Ser_ItemModEntityReference.TryCreate(components.OfType<ItemModEntityReference>().FirstOrDefault());
+			instance.ItemMod_FoodSpoiling = Ser_ItemModFoodSpoiling.TryCreate(components.OfType<ItemModFoodSpoiling>().FirstOrDefault());
+			instance.ItemMod_Repair = Ser_ItemModRepair.TryCreate(components.OfType<ItemModRepair>().FirstOrDefault());
+
 			return instance;
+		}
+
+		public record Ser_ItemModBurnable
+		{
+			[JsonProperty] private float fuelAmount;
+			[JsonProperty] private bool hasByProduct;
+			[JsonProperty] private int byproductItemId;
+			[JsonProperty] private string byproductItemShortName;
+			[JsonProperty] private int byproductAmount;
+			[JsonProperty] private float byproductChance;
+
+			public static Ser_ItemModBurnable? TryCreate(ItemModBurnable? mod)
+			{
+				return mod == null ? null : new Ser_ItemModBurnable(mod);
+			}
+
+			public Ser_ItemModBurnable(ItemModBurnable mod)
+			{
+				fuelAmount = mod.fuelAmount;
+				byproductItemId = mod.byproductItem?.itemid ?? 0;
+				byproductItemShortName = mod.byproductItem?.shortname ?? "";
+				byproductAmount = mod.byproductAmount;
+				byproductChance = mod.byproductChance;
+			}
+		}
+
+		public record Ser_ItemModCompostable
+		{
+			[JsonProperty] public float totalFertilizerProduced;
+			[JsonProperty] public float baitValue;
+			[JsonProperty] public int maxBaitStack;
+
+			public static Ser_ItemModCompostable? TryCreate(ItemModCompostable? mod)
+			{
+				return mod == null ? null : new Ser_ItemModCompostable(mod);
+			}
+
+			public Ser_ItemModCompostable(ItemModCompostable mod)
+			{
+				totalFertilizerProduced = mod.TotalFertilizerProduced;
+				baitValue = mod.BaitValue;
+				maxBaitStack = mod.MaxBaitStack;
+			}
+		}
+
+		public record Ser_ItemModDeployable
+		{
+			[JsonProperty] private string resourcePath;
+			[JsonProperty] private uint resourceID;
+
+			public static Ser_ItemModDeployable? TryCreate(ItemModDeployable? mod)
+			{
+				return mod == null ? null : new Ser_ItemModDeployable(mod);
+			}
+
+			public Ser_ItemModDeployable(ItemModDeployable mod)
+			{
+				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				{
+					resourcePath = mod.entityPrefab.resourcePath;
+					resourceID = mod.entityPrefab.resourceID;
+				}
+				else
+				{
+					resourcePath = "";
+					resourceID = 0;
+				}
+			}
+		}
+
+		public record Ser_ItemModEntity
+		{
+			[JsonProperty] private string resourcePath;
+			[JsonProperty] private uint resourceID;
+
+			public static Ser_ItemModEntity? TryCreate(ItemModEntity? mod)
+			{
+				return mod == null ? null : new Ser_ItemModEntity(mod);
+			}
+
+			public Ser_ItemModEntity(ItemModEntity mod)
+			{
+				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				{
+					resourcePath = mod.entityPrefab.resourcePath;
+					resourceID = mod.entityPrefab.resourceID;
+				}
+				else
+				{
+					resourcePath = "";
+					resourceID = 0;
+				}
+			}
+		}
+
+		public record Ser_ItemModEntityReference
+		{
+			[JsonProperty] private string resourcePath;
+			[JsonProperty] private uint resourceID;
+
+			public static Ser_ItemModEntityReference? TryCreate(ItemModEntityReference? mod)
+			{
+				return mod == null ? null : new Ser_ItemModEntityReference(mod);
+			}
+
+			public Ser_ItemModEntityReference(ItemModEntityReference mod)
+			{
+				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				{
+					resourcePath = mod.entityPrefab.resourcePath;
+					resourceID = mod.entityPrefab.resourceID;
+				}
+				else
+				{
+					resourcePath = "";
+					resourceID = 0;
+				}
+			}
+		}
+
+		public record Ser_ItemModFoodSpoiling
+		{
+			[JsonProperty] private float totalSpoilTimeHours;
+			[JsonProperty] private int spoilItemId;
+			[JsonProperty] private string spoilItemShortName;
+
+			public static Ser_ItemModFoodSpoiling? TryCreate(ItemModFoodSpoiling? mod)
+			{
+				return mod == null ? null : new Ser_ItemModFoodSpoiling(mod);
+			}
+
+			public Ser_ItemModFoodSpoiling(ItemModFoodSpoiling mod)
+			{
+				totalSpoilTimeHours = mod.TotalSpoilTimeHours;
+				spoilItemId = mod.SpoilItem?.itemid ?? 0;
+				spoilItemShortName = mod.SpoilItem?.shortname ?? "";
+			}
+		}
+
+		public record Ser_ItemModRepair
+		{
+			[JsonProperty] private float conditionLost;
+			[JsonProperty] private int workbenchLvlRequired;
+			[JsonProperty] private bool canUseRepairBench;
+
+			public static Ser_ItemModRepair? TryCreate(ItemModRepair? mod)
+			{
+				return mod == null ? null : new Ser_ItemModRepair(mod);
+			}
+
+			public Ser_ItemModRepair(ItemModRepair mod)
+			{
+				conditionLost = mod.conditionLost;
+				workbenchLvlRequired = mod.workbenchLvlRequired;
+				canUseRepairBench = mod.canUseRepairBench;
+			}
 		}
 	}
 
