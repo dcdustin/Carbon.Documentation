@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, Ref, watch } from 'vue'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
-import {
-  getItemCategoryText,
-  getItemFlagText,
-  getItemRarityText,
-} from '../shared/constants'
+import { getItemCategoryText, getItemFlagText, getItemRarityText } from '../shared/constants'
 import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
 import { fetchItems } from '@/api/metadata/rust/items'
@@ -20,7 +16,7 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
   try {
     await navigator.clipboard.writeText(text)
     copiedId.value = id
-    setTimeout(() => copiedId.value = null, 2000)
+    setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
     console.error('Failed to copy:', err)
   }
@@ -74,19 +70,26 @@ onMounted(() => {
   }
 })
 
-watch(() => window.location.search, () => {
-  const itemId = getItemId()
-  if (itemId) {
-    isLoading.value = true
-    loadItem(itemId)
+watch(
+  () => window.location.search,
+  () => {
+    const itemId = getItemId()
+    if (itemId) {
+      isLoading.value = true
+      loadItem(itemId)
+    }
   }
-})
+)
 
-watch(item, (newItem) => {
-  if (newItem) {
-    document.title = `${newItem.DisplayName} - Carbon Documentation`
-  }
-}, { immediate: true })
+watch(
+  item,
+  (newItem) => {
+    if (newItem) {
+      document.title = `${newItem.DisplayName} - Carbon Documentation`
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -106,20 +109,24 @@ watch(item, (newItem) => {
           <h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
           <button
             @click="copyToClipboard(item.Id.toString(), item.Id)"
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          >
             <span class="font-mono">{{ item.Id }}</span>
             <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
           <button
             @click="copyToClipboard(item.ShortName, 'shortname')"
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+          >
             <span class="font-mono">{{ item.ShortName }}</span>
             <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
-
         </div>
-        <a :href="`${URL_METDAT_RUST_ITEMS}`" target="_blank"
-           class="vp-button medium brand flex items-center gap-2">
+        <a
+          :href="`${URL_METDAT_RUST_ITEMS}`"
+          target="_blank"
+          class="vp-button medium brand flex items-center gap-2"
+        >
           <Database :size="16" />
           Items API
           <ExternalLink :size="14" class="opacity-80" />
@@ -130,13 +137,13 @@ watch(item, (newItem) => {
       <div class="flex gap-8">
         <!-- Item Image -->
         <div class="flex-shrink-0">
-          <div class="relative bg-gray-50 dark:bg-gray-800" style="width:300px; height:300px;">
+          <div class="relative bg-gray-50 dark:bg-gray-800" style="width: 300px; height: 300px">
             <img
               :src="getItemImageUrl(item.ShortName)"
               @error="handleImageError"
               class="w-full h-full object-contain p-8"
               :alt="item.DisplayName"
-            >
+            />
             <div class="absolute inset-0 flex items-center justify-center" v-if="!item.Id">
               <Tag :size="48" class="text-gray-400" />
             </div>
@@ -145,7 +152,7 @@ watch(item, (newItem) => {
 
         <!-- Item Info -->
         <div class="flex-1 space-y-4">
-          <div class=" dark:bg-gray-700">
+          <div class="dark:bg-gray-700">
             <p class="text-gray-600 dark:text-gray-300">{{ item.Description }}</p>
             <div class="flex flex-wrap gap-1 mt-4">
               <VPBadge v-if="item.Rarity != 0" type="danger" :text="getItemRarityText(item.Rarity)" />
@@ -158,8 +165,7 @@ watch(item, (newItem) => {
           </div>
 
           <div class="space-y-2">
-            <div class="flex items-center gap-2">
-            </div>
+            <div class="flex items-center gap-2"></div>
           </div>
         </div>
       </div>
@@ -168,9 +174,7 @@ watch(item, (newItem) => {
       <div class="flex justify-center mt-8">
         <div class="flex items-center gap-2">
           <ArrowLeft :size="16" class="opacity-80" />
-          <a href="/references/items" class="vp-button medium brand underline">
-            Back to Items
-          </a>
+          <a href="/references/items" class="vp-button medium brand underline"> Back to Items </a>
         </div>
       </div>
     </div>
@@ -179,9 +183,7 @@ watch(item, (newItem) => {
     <div v-else class="text-center py-8">
       <div class="space-y-4">
         <p class="text-gray-500">Item not found</p>
-        <a href="/references/items" class="vp-button medium brand">
-          Back to Items
-        </a>
+        <a href="/references/items" class="vp-button medium brand"> Back to Items </a>
       </div>
     </div>
   </div>
