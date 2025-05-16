@@ -177,6 +177,28 @@ watch(
           <a href="/references/items" class="vp-button medium brand underline"> Back to Items </a>
         </div>
       </div>
+
+      <div class="flex flex-col gap-6" v-if="item.ItemMods.length > 0">
+        <div class="flex flex-col gap-2">
+          <h2 class="text-xl font-bold">Item Mods</h2>
+          <code>{{ item.ItemMods.join(', ') }}</code>
+        </div>
+        <template
+          v-for="([key1, value1], index1) in Object.entries(item).filter(
+            ([key, value]) => key.startsWith('ItemMod_') && value != null
+          )"
+          :key="index1"
+        >
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xl font-bold">{{ key1 }}</h3>
+            <div class="flex flex-col gap-2">
+              <template v-for="([key2, value2], index2) in Object.entries(value1)" :key="index2">
+                <code>{{ key2 }}: {{ value2 }}</code>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
 
     <!-- Item Not Found -->
