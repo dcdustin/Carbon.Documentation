@@ -922,7 +922,7 @@ public class CodeGen : CarbonPlugin
 		public static void LoadResearch()
 		{
 			hooks = JsonConvert.DeserializeObject<List<Hook>>(
-				_client.DownloadString("https://carbonmod.gg/redist/metadata/carbon/hooks_research.json"));
+				_client.DownloadString("https://api.carbonmod.gg/meta/carbon/hooks_research.json"));
 			Console.WriteLine($"Loaded {hooks.Count:n0} researched hooks");
 		}
 
