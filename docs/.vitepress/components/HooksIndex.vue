@@ -35,6 +35,8 @@ const pageSize = 25
 const expandedHookSources = ref<Set<string>>(new Set())
 const expandedHookExamples = ref<Set<string>>(new Set())
 
+const copiedId = shallowRef<string | null>(null)
+
 const filteredHooks = computed(() => {
   if (!hooks.value?.length) {
     return []
@@ -194,8 +196,6 @@ function getExampleCode(hook: Hook, highlighted: boolean): string {
   return highlighted ? highlightCode(code) : code
 }
 
-const copiedId = ref<string | null>(null)
-
 const copyToClipboard = async (text: string, id: string | null) => {
   try {
     await navigator.clipboard.writeText(text)
@@ -335,13 +335,16 @@ onUnmounted(() => {
             {{ hooks.length }} total hooks.
           </div>
         </div>
-        <div style="display: inline-grid;gap: 10px;">
+        <div class="flex flex-col gap-5 mt-4">
           <div v-for="hook in renderedHooks" :key="hook.fullName" :id="getSanitizedAnchor(hook.fullName)">
-            <div class="mb-4">
+            <div>
               <div class="flex flex-col gap-1">
                 <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
                   <h5 class="text-lg font-medium">
-                    <a :href="`/references/hooks#${encodeURIComponent(hook.fullName)}`"class="hover:text-primary flex items-center gap-2">
+                    <a
+                      :href="`/references/hooks#${encodeURIComponent(hook.fullName)}`"
+                      class="flex items-center gap-2"
+                    >
                       <span>{{ hook.fullName }}</span>
                       <ExternalLink :size="14" class="opacity-60" />
                     </a>
@@ -374,17 +377,19 @@ onUnmounted(() => {
                   <span v-if="hook.returnTypeName == 'void'">No return behavior.</span>
                 </div>
               </div>
-              <div class="mt-1" style="display: flex; gap: 5px">
+              <div class="mt-1 flex gap-2">
                 <button
                   v-if="getExampleCode(hook, false)"
-                  class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
-                  style="align-items: center; flex-direction: row-reverse; display: inline-flex;"
+                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
                   @click="
                     expandedHookExamples.has(hook.fullName)
                       ? expandedHookExamples.delete(hook.fullName)
-                      : expandedHookExamples.add(hook.fullName)"
+                      : expandedHookExamples.add(hook.fullName)
+                  "
                 >
-                  <span @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)">
+                  <span
+                    @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)"
+                  >
                     <component
                       :is="copiedId === 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
                       class="ml-2"
@@ -395,12 +400,12 @@ onUnmounted(() => {
                 </button>
                 <button
                   v-if="hook.methodSource"
-                  class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
-                  style="align-items: center; flex-direction: row-reverse; display: inline-flex;"
+                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
                   @click="
                     expandedHookSources.has(hook.fullName)
                       ? expandedHookSources.delete(hook.fullName)
-                      : expandedHookSources.add(hook.fullName)"
+                      : expandedHookSources.add(hook.fullName)
+                  "
                 >
                   <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
                     <component
@@ -411,16 +416,18 @@ onUnmounted(() => {
                   </span>
                   {{ expandedHookSources.has(hook.fullName) ? 'Hide Source' : 'Show Source' }}
                 </button>
-                  <button
-                    v-else
-                    disabled
-                    class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
-                  >
-                    No method source
-                  </button>
+                <button
+                  v-else
+                  disabled
+                  class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                >
+                  No method source
+                </button>
               </div>
               <Transition name="expand">
-                <div v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)">
+                <div
+                  v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)"
+                >
                   <div
                     v-html="getExampleCode(hook, true)"
                     class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
