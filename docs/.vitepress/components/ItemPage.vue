@@ -178,7 +178,7 @@ watch(
         </div>
       </div>
 
-      <div class="flex flex-col gap-6" v-if="item.ItemMods.length > 0">
+      <div class="flex flex-col gap-6" v-if="item.ItemMods">
         <div class="flex flex-col gap-2">
           <h2 class="text-xl font-bold">Item Mods</h2>
           <code>{{ item.ItemMods.join(', ') }}</code>
@@ -190,7 +190,7 @@ watch(
           :key="index1"
         >
           <div class="flex flex-col gap-2">
-            <h3 class="text-xl font-bold">{{ key1 }}</h3>
+            <h2 class="text-xl font-bold">{{ key1 }}</h2>
             <div class="flex flex-col gap-2">
               <template v-for="([key2, value2], index2) in Object.entries(value1)" :key="index2">
                 <code>{{ key2 }}: {{ value2 }}</code>
