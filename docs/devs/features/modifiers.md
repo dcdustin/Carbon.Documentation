@@ -133,6 +133,10 @@ This is an extension to the previously mentioned modifiers, although access desi
   }
   ```
 
+:::danger MORE IMPORTANT STUFF
+Carbon stored data only exists until the entity with that reference dies/gets killed. So once entities get killed, Carbon data is also killed.
+:::
+
 ## How it works
 On server boot, upon detecting and collecting all types that have stored modifiers, Carbon will generate the following new class in the same assembly, for each modified type.
 
