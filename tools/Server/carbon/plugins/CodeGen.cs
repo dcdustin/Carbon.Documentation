@@ -24,6 +24,8 @@ using UnityEngine;
 using Defines = Carbon.Core.Defines;
 
 // ReSharper disable InconsistentNaming
+// ReSharper disable PossibleNullReferenceException
+// ReSharper disable AssignNullToNotNullAttribute
 
 namespace Carbon.Plugins;
 
@@ -313,7 +315,7 @@ public class CodeGen : CarbonPlugin
 					}
 
 					var hook = CarbonHook.Parse(attributes, name.Equals("Carbon.Hooks.Oxide"));
-					if (!hook.IsValid)
+					if (!hook.isValid)
 					{
 						continue;
 					}
@@ -330,9 +332,9 @@ public class CodeGen : CarbonPlugin
 
 		OsEx.File.Create(Path.Combine("carbon", "results", "hooks.json"),
 			JsonConvert.SerializeObject(
-				hooks.Where(x => (!x.category.Equals("_patches", StringComparison.CurrentCultureIgnoreCase) &&
-				                  !x.name.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)) || x.name.Equals("Init") ||
-				                 x.name.Equals("InitLogging")).GroupBy(x => x.category)
+				hooks.Where(x => (!x.Category.Equals("_patches", StringComparison.CurrentCultureIgnoreCase) &&
+				                  !x.Name.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)) || x.Name.Equals("Init") ||
+				                 x.Name.Equals("InitLogging")).GroupBy(x => x.Category)
 					.ToDictionary(key => key.Key, value => value.ToArray()), Formatting.Indented));
 	}
 
@@ -351,7 +353,7 @@ public class CodeGen : CarbonPlugin
 		}
 	}
 
-#region Helpers
+	#region Helpers
 
 	private static async ValueTask DownloadOxideToTemp()
 	{
@@ -459,28 +461,28 @@ public class CodeGen : CarbonPlugin
 		return _builder.ToString();
 	}
 
-#endregion
+	#endregion
 
 	public class Item
 	{
-		[JsonProperty] public long Id;
-		[JsonProperty] public string DisplayName;
-		[JsonProperty] public string ShortName;
-		[JsonProperty] public string Description;
-		[JsonProperty] public int Stack;
-		[JsonProperty] public bool Hidden;
-		[JsonProperty] public ItemDefinition.Flag Flags;
-		[JsonProperty] public ItemCategory Category;
-		[JsonProperty] public Rarity Rarity;
-		[JsonProperty] public SteamDlcItem? SteamDlcItem;
-		[JsonProperty] public string[] ItemMods;
-		[JsonProperty] public Ser_ItemModDeployable? ItemMod_Deployable;
-		[JsonProperty] public Ser_ItemModEntity? ItemMod_Entity;
-		[JsonProperty] public Ser_ItemModEntityReference? ItemMod_EntityReference;
-		[JsonProperty] public Ser_ItemModRepair? ItemMod_Repair;
-		[JsonProperty] public Ser_ItemModBurnable? ItemMod_Burnable;
-		[JsonProperty] public Ser_ItemModCompostable? ItemMod_Compostable;
-		[JsonProperty] public Ser_ItemModFoodSpoiling? ItemMod_FoodSpoiling;
+		public long Id;
+		public string DisplayName;
+		public string ShortName;
+		public string Description;
+		public int Stack;
+		public bool Hidden;
+		public ItemDefinition.Flag Flags;
+		public ItemCategory Category;
+		public Rarity Rarity;
+		public SteamDlcItem SteamDlcItem;
+		public string[] ItemMods;
+		public Ser_ItemModDeployable ItemMod_Deployable;
+		public Ser_ItemModEntity ItemMod_Entity;
+		public Ser_ItemModEntityReference ItemMod_EntityReference;
+		public Ser_ItemModRepair ItemMod_Repair;
+		public Ser_ItemModBurnable ItemMod_Burnable;
+		public Ser_ItemModCompostable ItemMod_Compostable;
+		public Ser_ItemModFoodSpoiling ItemMod_FoodSpoiling;
 
 		public static T Parse<T>(ItemDefinition definition) where T : Item
 		{
@@ -521,165 +523,165 @@ public class CodeGen : CarbonPlugin
 
 		public record Ser_ItemModBurnable
 		{
-			[JsonProperty] private float fuelAmount;
-			[JsonProperty] private bool hasByProduct;
-			[JsonProperty] private int byproductItemId;
-			[JsonProperty] private string byproductItemShortName;
-			[JsonProperty] private int byproductAmount;
-			[JsonProperty] private float byproductChance;
+			public float FuelAmount;
+			public bool HasByProduct;
+			public int ByproductItemId;
+			public string ByproductItemShortName;
+			public int ByproductAmount;
+			public float ByproductChance;
 
-			public static Ser_ItemModBurnable? TryCreate(ItemModBurnable? mod)
+			public static Ser_ItemModBurnable TryCreate(ItemModBurnable mod)
 			{
 				return mod == null ? null : new Ser_ItemModBurnable(mod);
 			}
 
 			public Ser_ItemModBurnable(ItemModBurnable mod)
 			{
-				fuelAmount = mod.fuelAmount;
-				byproductItemId = mod.byproductItem?.itemid ?? 0;
-				byproductItemShortName = mod.byproductItem?.shortname ?? "";
-				byproductAmount = mod.byproductAmount;
-				byproductChance = mod.byproductChance;
+				FuelAmount = mod.fuelAmount;
+				ByproductItemId = mod.byproductItem?.itemid ?? 0;
+				ByproductItemShortName = mod.byproductItem?.shortname ?? "";
+				ByproductAmount = mod.byproductAmount;
+				ByproductChance = mod.byproductChance;
 			}
 		}
 
 		public record Ser_ItemModCompostable
 		{
-			[JsonProperty] public float totalFertilizerProduced;
-			[JsonProperty] public float baitValue;
-			[JsonProperty] public int maxBaitStack;
+			public float TotalFertilizerProduced;
+			public float BaitValue;
+			public int MaxBaitStack;
 
-			public static Ser_ItemModCompostable? TryCreate(ItemModCompostable? mod)
+			public static Ser_ItemModCompostable TryCreate(ItemModCompostable mod)
 			{
 				return mod == null ? null : new Ser_ItemModCompostable(mod);
 			}
 
 			public Ser_ItemModCompostable(ItemModCompostable mod)
 			{
-				totalFertilizerProduced = mod.TotalFertilizerProduced;
-				baitValue = mod.BaitValue;
-				maxBaitStack = mod.MaxBaitStack;
+				TotalFertilizerProduced = mod.TotalFertilizerProduced;
+				BaitValue = mod.BaitValue;
+				MaxBaitStack = mod.MaxBaitStack;
 			}
 		}
 
 		public record Ser_ItemModDeployable
 		{
-			[JsonProperty] private string resourcePath;
-			[JsonProperty] private uint resourceID;
+			public string ResourcePath;
+			public uint ResourceID;
 
-			public static Ser_ItemModDeployable? TryCreate(ItemModDeployable? mod)
+			public static Ser_ItemModDeployable TryCreate(ItemModDeployable mod)
 			{
 				return mod == null ? null : new Ser_ItemModDeployable(mod);
 			}
 
 			public Ser_ItemModDeployable(ItemModDeployable mod)
 			{
-				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				if (mod.entityPrefab != null && !string.IsNullOrEmpty(mod.entityPrefab.guid))
 				{
-					resourcePath = mod.entityPrefab.resourcePath;
-					resourceID = mod.entityPrefab.resourceID;
+					ResourcePath = mod.entityPrefab.resourcePath;
+					ResourceID = mod.entityPrefab.resourceID;
 				}
 				else
 				{
-					resourcePath = "";
-					resourceID = 0;
+					ResourcePath = "";
+					ResourceID = 0;
 				}
 			}
 		}
 
 		public record Ser_ItemModEntity
 		{
-			[JsonProperty] private string resourcePath;
-			[JsonProperty] private uint resourceID;
+			public string ResourcePath;
+			public uint ResourceID;
 
-			public static Ser_ItemModEntity? TryCreate(ItemModEntity? mod)
+			public static Ser_ItemModEntity TryCreate(ItemModEntity mod)
 			{
 				return mod == null ? null : new Ser_ItemModEntity(mod);
 			}
 
 			public Ser_ItemModEntity(ItemModEntity mod)
 			{
-				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				if (mod.entityPrefab != null && !string.IsNullOrEmpty(mod.entityPrefab.guid))
 				{
-					resourcePath = mod.entityPrefab.resourcePath;
-					resourceID = mod.entityPrefab.resourceID;
+					ResourcePath = mod.entityPrefab.resourcePath;
+					ResourceID = mod.entityPrefab.resourceID;
 				}
 				else
 				{
-					resourcePath = "";
-					resourceID = 0;
+					ResourcePath = "";
+					ResourceID = 0;
 				}
 			}
 		}
 
 		public record Ser_ItemModEntityReference
 		{
-			[JsonProperty] private string resourcePath;
-			[JsonProperty] private uint resourceID;
+			public string ResourcePath;
+			public uint ResourceID;
 
-			public static Ser_ItemModEntityReference? TryCreate(ItemModEntityReference? mod)
+			public static Ser_ItemModEntityReference TryCreate(ItemModEntityReference mod)
 			{
 				return mod == null ? null : new Ser_ItemModEntityReference(mod);
 			}
 
 			public Ser_ItemModEntityReference(ItemModEntityReference mod)
 			{
-				if (!string.IsNullOrEmpty(mod.entityPrefab.guid))
+				if (mod.entityPrefab != null && !string.IsNullOrEmpty(mod.entityPrefab.guid))
 				{
-					resourcePath = mod.entityPrefab.resourcePath;
-					resourceID = mod.entityPrefab.resourceID;
+					ResourcePath = mod.entityPrefab.resourcePath;
+					ResourceID = mod.entityPrefab.resourceID;
 				}
 				else
 				{
-					resourcePath = "";
-					resourceID = 0;
+					ResourcePath = "";
+					ResourceID = 0;
 				}
 			}
 		}
 
 		public record Ser_ItemModFoodSpoiling
 		{
-			[JsonProperty] private float totalSpoilTimeHours;
-			[JsonProperty] private int spoilItemId;
-			[JsonProperty] private string spoilItemShortName;
+			public float TotalSpoilTimeHours;
+			public int SpoilItemId;
+			public string SpoilItemShortName;
 
-			public static Ser_ItemModFoodSpoiling? TryCreate(ItemModFoodSpoiling? mod)
+			public static Ser_ItemModFoodSpoiling TryCreate(ItemModFoodSpoiling mod)
 			{
 				return mod == null ? null : new Ser_ItemModFoodSpoiling(mod);
 			}
 
 			public Ser_ItemModFoodSpoiling(ItemModFoodSpoiling mod)
 			{
-				totalSpoilTimeHours = mod.TotalSpoilTimeHours;
-				spoilItemId = mod.SpoilItem?.itemid ?? 0;
-				spoilItemShortName = mod.SpoilItem?.shortname ?? "";
+				TotalSpoilTimeHours = mod.TotalSpoilTimeHours;
+				SpoilItemId = mod.SpoilItem?.itemid ?? 0;
+				SpoilItemShortName = mod.SpoilItem?.shortname ?? "";
 			}
 		}
 
 		public record Ser_ItemModRepair
 		{
-			[JsonProperty] private float conditionLost;
-			[JsonProperty] private int workbenchLvlRequired;
-			[JsonProperty] private bool canUseRepairBench;
+			public float ConditionLost;
+			public int WorkbenchLvlRequired;
+			public bool CanUseRepairBench;
 
-			public static Ser_ItemModRepair? TryCreate(ItemModRepair? mod)
+			public static Ser_ItemModRepair TryCreate(ItemModRepair mod)
 			{
 				return mod == null ? null : new Ser_ItemModRepair(mod);
 			}
 
 			public Ser_ItemModRepair(ItemModRepair mod)
 			{
-				conditionLost = mod.conditionLost;
-				workbenchLvlRequired = mod.workbenchLvlRequired;
-				canUseRepairBench = mod.canUseRepairBench;
+				ConditionLost = mod.conditionLost;
+				WorkbenchLvlRequired = mod.workbenchLvlRequired;
+				CanUseRepairBench = mod.canUseRepairBench;
 			}
 		}
 	}
 
 	public class SteamDlcItem
 	{
-		[JsonProperty] public string Name;
-		[JsonProperty] public int AppId;
+		public string Name;
+		public int AppId;
 	}
 
 	public class Entity : Prefab
@@ -700,75 +702,75 @@ public class CodeGen : CarbonPlugin
 
 	public class Prefab
 	{
-		[JsonProperty] public string Type;
-		[JsonProperty] public string Path;
-		[JsonProperty] public string Name;
-		[JsonProperty] public string[] Components;
-		[JsonProperty] public uint ID;
+		public string Type;
+		public string Path;
+		public string Name;
+		public string[] Components;
+		public uint ID;
 	}
 
 	public class Blueprint
 	{
-		[JsonProperty] public Ingredient[] Ingredients;
-		[JsonProperty] public Item Item;
-		[JsonProperty] public bool UserCraftable;
-		[JsonProperty] public Rarity Rarity;
-		[JsonProperty] public float Time;
-		[JsonProperty] public int CraftAmount;
-		[JsonProperty] public int ScrapRequired;
-		[JsonProperty] public int ScrapFromRecycle;
-		[JsonProperty] public int WorkbenchLevelRequired;
-		[JsonProperty] public Item RequireUnlockedItem;
-		[JsonProperty] public bool NeedsSteamItem;
-		[JsonProperty] public bool NeedsSteamDLC;
+		public Ingredient[] Ingredients;
+		public Item Item;
+		public bool UserCraftable;
+		public Rarity Rarity;
+		public float Time;
+		public int CraftAmount;
+		public int ScrapRequired;
+		public int ScrapFromRecycle;
+		public int WorkbenchLevelRequired;
+		public Item RequireUnlockedItem;
+		public bool NeedsSteamItem;
+		public bool NeedsSteamDLC;
 
 		public class Ingredient
 		{
-			[JsonProperty] public Item Item;
-			[JsonProperty] public float Amount;
+			public Item Item;
+			public float Amount;
 		}
 	}
 
 	public class LootTable : Entity
 	{
-		[JsonProperty] public RangeItem[] Items = [];
-		[JsonProperty] public SpawnSlotItem[] SpawnSlotItems = [];
-		[JsonProperty] public int ScrapAmount;
-		[JsonProperty] public LootContainer.spawnType SpawnType;
+		public RangeItem[] Items = [];
+		public SpawnSlotItem[] SpawnSlotItems = [];
+		public int ScrapAmount;
+		public LootContainer.spawnType SpawnType;
 
 		public class RangeItem : Item
 		{
-			[JsonProperty] public float Amount;
-			[JsonProperty] public float MaxAmount;
+			public float Amount;
+			public float MaxAmount;
 		}
 
 		public class SpawnSlotItem
 		{
-			[JsonProperty] public RangeItem[] Items = [];
-			[JsonProperty] public int NumberToSpawn;
-			[JsonProperty] public float Probability;
+			public RangeItem[] Items = [];
+			public int NumberToSpawn;
+			public float Probability;
 		}
 	}
 
 	public class Changelog
 	{
-		[JsonProperty] public string Date;
-		[JsonProperty] public string Version;
-		[JsonProperty] public Change[] Changes;
+		public string Date;
+		public string Version;
+		public Change[] Changes;
 
 		public class Change
 		{
-			[JsonProperty] public string Message;
-			[JsonProperty] public ChangeTypes Type = ChangeTypes.Added;
+			public string Message;
+			public ChangeTypes Type = ChangeTypes.Added;
 		}
 
 		public enum ChangeTypes
 		{
-			[JsonProperty] Added = 0,
-			[JsonProperty] Updated = 1,
-			[JsonProperty] Removed = 2,
-			[JsonProperty] Fixed = 3,
-			[JsonProperty] Miscellaneous = 4,
+			Added = 0,
+			Updated = 1,
+			Removed = 2,
+			Fixed = 3,
+			Miscellaneous = 4,
 		}
 	}
 
@@ -779,48 +781,47 @@ public class CodeGen : CarbonPlugin
 		[Flags]
 		public enum HookFlags
 		{
-			[JsonProperty] None = 0,
-			[JsonProperty] Static = 1,
-			[JsonProperty] Patch = 2,
-			[JsonProperty] Hidden = 4,
-			[JsonProperty] IgnoreChecksum = 8,
-			[JsonProperty] MetadataOnly = 16,
+			None = 0,
+			Static = 1,
+			Patch = 2,
+			Hidden = 4,
+			IgnoreChecksum = 8,
+			MetadataOnly = 16,
 		}
 
-		[JsonProperty] public uint id;
-		[JsonProperty] public string name;
-		[JsonProperty] public string fullName;
-		[JsonProperty] public string category;
-		[JsonProperty] public Parameter[] parameters;
+		public uint Id;
+		public string Name;
+		public string FullName;
+		public string Category;
+		public Parameter[] Parameters;
 
-		public string parametersText => string.Join(", ",
-			parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
+		public string ParametersText => string.Join(", ", Parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
 
-		[JsonProperty] public HookFlags flags;
-		[JsonProperty] public string[] descriptions;
-		[JsonProperty] public bool carbonCompatible;
-		[JsonProperty] public bool oxideCompatible;
+		public HookFlags Flags;
+		public string[] Descriptions;
+		public bool CarbonCompatible;
+		public bool OxideCompatible;
 
-		public string targetName => target?.FullName;
-		public string methodName => method?.Name;
-		public string assemblyName => assembly?.GetName().Name;
-		public string returnTypeName => GetFriendlyType(returnType?.FullName, "void");
-		public string methodSource;
+		public string TargetName => target?.FullName;
+		public string MethodName => method?.Name;
+		public string AssemblyName => assembly?.GetName().Name;
+		public string ReturnTypeName => GetFriendlyType(returnType?.FullName, "void");
+		public string MethodSource;
 
 		[JsonIgnore] private Type target;
 		[JsonIgnore] private MethodInfo method;
 		[JsonIgnore] private Assembly assembly;
 		[JsonIgnore] private Type returnType;
 		[JsonIgnore] public int iteration;
-		[JsonIgnore] public readonly bool IsValid => !string.IsNullOrEmpty(name);
+		[JsonIgnore] public readonly bool isValid => !string.IsNullOrEmpty(Name);
 
 		public struct Parameter
 		{
-			[JsonProperty] public string name;
+			public string name;
 			public string typeName => type.FullName.Replace("+", ".");
 			public string typeFriendly => GetFriendlyType(type.FullName);
 			[JsonIgnore] public Type type;
-			[JsonProperty] public bool optional;
+			public bool optional;
 		}
 
 		public static CarbonHook Parse(Attribute[] attributes, bool isOxideHooks)
@@ -843,30 +844,30 @@ public class CodeGen : CarbonPlugin
 			CarbonHook hook = default;
 			var methodName = patchType.GetProperty("Method").GetValue(patch) as string;
 			var methodArgs = patchType.GetProperty("MethodArgs").GetValue(patch) as Type[];
-			hook.name = patchType.GetProperty("Name").GetValue(patch) as string;
-			hook.id = HookStringPool.GetOrAdd(hook.name);
-			hook.fullName = patchType.GetProperty("FullName").GetValue(patch) as string;
-			if (iterations.TryGetValue(hook.fullName, out var iteration))
+			hook.Name = patchType.GetProperty("Name").GetValue(patch) as string;
+			hook.Id = HookStringPool.GetOrAdd(hook.Name);
+			hook.FullName = patchType.GetProperty("FullName").GetValue(patch) as string;
+			if (iterations.TryGetValue(hook.FullName, out var iteration))
 			{
-				hook.fullName += $" [{iteration:n0}]";
-				iterations[hook.fullName] = iteration + 1;
+				hook.FullName += $" [{iteration:n0}]";
+				iterations[hook.FullName] = iteration + 1;
 			}
 			else
 			{
-				iterations[hook.fullName] = 1;
+				iterations[hook.FullName] = 1;
 			}
 
 			hook.target = patchType.GetProperty("Target").GetValue(patch) as Type;
 			hook.assembly = hook.target?.Assembly;
 			hook.returnType = returnType?.GetType().GetProperty("Type").GetValue(returnType) as Type;
-			hook.carbonCompatible = true;
-			hook.oxideCompatible = isOxideHooks || isOxideCompatible;
+			hook.CarbonCompatible = true;
+			hook.OxideCompatible = isOxideHooks || isOxideCompatible;
 			if (optionsType != null)
 			{
-				hook.flags = (HookFlags)optionsType.GetType().GetProperty("Value").GetValue(optionsType);
+				hook.Flags = (HookFlags)optionsType.GetType().GetProperty("Value").GetValue(optionsType);
 			}
 
-			hook.parameters = enumerable.Select(x =>
+			hook.Parameters = enumerable.Select(x =>
 			{
 				var name = parametersType.GetProperty("Name").GetValue(x) as string;
 				var type = parametersType.GetProperty("Type").GetValue(x) as Type;
@@ -880,10 +881,10 @@ public class CodeGen : CarbonPlugin
 					name = name, type = type, optional = (bool)parametersType.GetProperty("Optional").GetValue(x),
 				};
 			}).ToArray();
-			var researchedHook = HooksAIResearch.hooks.FirstOrDefault(x => x.hook.Equals(hook.name));
+			var researchedHook = HooksAIResearch.hooks.FirstOrDefault(x => x.hook.Equals(hook.Name));
 			if (!string.IsNullOrEmpty(researchedHook.hook))
 			{
-				hook.descriptions = researchedHook.descriptions;
+				hook.Descriptions = researchedHook.descriptions;
 			}
 
 			if (!string.IsNullOrEmpty(methodName))
@@ -900,13 +901,13 @@ public class CodeGen : CarbonPlugin
 				}
 			}
 
-			hook.category = category?.GetType().GetProperty("Name").GetValue(category) as string ?? "Global";
+			hook.Category = category?.GetType().GetProperty("Name").GetValue(category) as string ?? "Global";
 			if (hook.assembly != null && hook.target != null && hook.method != null)
 			{
 				if (!string.IsNullOrEmpty(hook.assembly.Location))
 				{
-					var oxidePath = Path.Combine(Defines.GetTempFolder(), "RustDedicated_Data", "Managed", $"{hook.assemblyName}.dll");
-					hook.methodSource = SourceCodeBank.Parse(File.Exists(oxidePath) ? oxidePath : hook.assembly.Location)
+					var oxidePath = Path.Combine(Defines.GetTempFolder(), "RustDedicated_Data", "Managed", $"{hook.AssemblyName}.dll");
+					hook.MethodSource = SourceCodeBank.Parse(File.Exists(oxidePath) ? oxidePath : hook.assembly.Location)
 						.ParseMethod(hook.target.FullName, hook.method.Name);
 				}
 			}
