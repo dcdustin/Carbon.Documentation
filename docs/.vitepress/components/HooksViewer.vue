@@ -12,6 +12,7 @@ import OptionSelector from './Hooks/OptionSelector.vue'
 import InfinitePageScroll from './Hooks/InfinitePageScroll.vue'
 import HookCard from './Hooks/HookCard.vue'
 import AsyncState from './Hooks/AsyncState.vue'
+import MiniSearch from 'minisearch'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
@@ -20,6 +21,7 @@ const highlighter = shallowRef<Highlighter | null>(null)
 provide('highlighter', readonly(highlighter))
 
 const hooks = shallowRef<Hook[]>([])
+const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
 const selectedCategory = shallowRef('All')
@@ -30,10 +32,24 @@ const debouncedSearchValue = shallowRef('')
 
 const pageSize = 25
 
+function shouldIncludeHook(hook: Hook) {
+  if (selectedCategory.value && selectedCategory.value !== 'All' && hook.Category != selectedCategory.value) {
+    return false
+  }
+  if (showOxideHooks.value !== showCarbonHooks.value) {
+    return hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
+  } else if (!showOxideHooks.value && !showCarbonHooks.value) {
+    return false
+  }
+  return true
+}
+
 const filteredHooks = computed(() => {
   if (!hooks.value?.length) {
     return []
   }
+
+  const startTime = performance.now()
 
   let filtered = hooks.value
 
@@ -49,22 +65,49 @@ const filteredHooks = computed(() => {
     filtered = []
   }
 
-  // TODO: use minisearch instead
-
-  if (debouncedSearchValue.value) {
-    const searchLower = debouncedSearchValue.value.toLowerCase()
-    const searchNumber = Number(searchLower)
-    filtered = filtered.filter((hook) => {
-      return (
-        (hook.Name && hook.Name.toLowerCase().includes(searchLower)) ||
-        (hook.Descriptions && hook.Descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
-        hook.Id == searchNumber
-      )
-    })
+  if (debouncedSearchValue.value && miniSearch.value) {
+    const results = miniSearch.value.search(debouncedSearchValue.value)
+    const resultIds = new Set(results.map((r) => r.Id))
+    filtered = filtered.filter((hook) => resultIds.has(hook.Id))
   }
+
+  const endTime = performance.now()
+  console.log(`Filtered hooks in ${endTime - startTime}ms`)
 
   return filtered
 })
+
+function getSanitizedAnchor(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+async function tryLoadMiniSearch() {
+  const startTime = performance.now()
+  miniSearch.value = new MiniSearch({
+    idField: 'FullName',
+    fields: ['Id', 'Name', 'FullName', 'Descriptions', 'MethodName', 'TargetName', 'AssemblyName'],
+    storeFields: ['Id'],
+    searchOptions: {
+      boost: {
+        Id: 4,
+        FullName: 3,
+        Name: 2.5,
+        Descriptions: 2,
+        MethodName: 1.4,
+        TargetName: 1.2,
+        AssemblyName: 1,
+      },
+      fuzzy: 0.2,
+      prefix: true,
+    },
+  })
+  miniSearch.value.addAll(hooks.value)
+  const endTime = performance.now()
+  console.log(`Initialized MiniSearch in ${endTime - startTime}ms`)
+}
 
 async function loadHooks() {
   try {
@@ -88,19 +131,14 @@ async function loadHooks() {
 
     categories.value = Array.from(data.keys())
     hooks.value = flatHooks
+
+    await tryLoadMiniSearch()
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
   } finally {
     isLoading.value = false
   }
-}
-
-function getSanitizedAnchor(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
 }
 
 async function tryLoadHighlighter() {
