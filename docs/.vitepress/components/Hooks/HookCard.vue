@@ -106,22 +106,6 @@ function getExampleCode(hook: Hook): string {
 </template>
 
 <style scoped>
-.VPBadge {
-  margin-left: 0;
-  transform: none;
-}
-
-:deep(pre) {
-  background: var(--vp-c-bg-soft) !important;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
-  line-height: 1.5;
-}
-
-:deep(code .line.highlight) {
-  background: var(--vp-c-bg) !important;
-}
-
 .expand-enter-active,
 .expand-leave-active {
   transition: all 0.3s cubic-bezier(0.44, 1.1, 0.91, 0.94);
