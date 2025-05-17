@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, shallowRef } from 'vue'
 import { Database, ExternalLink, Loader2, Search, CheckCircle2, Copy } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { getHookFlagsText } from '@/shared/constants'
@@ -7,12 +7,12 @@ import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import '../theme/style.css'
 import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import type { Hook } from '@/api/metadata/carbon/hooks'
-import { watchDebounced } from '@vueuse/core'
 import { getSingletonHighlighter } from 'shiki'
 import type { Highlighter } from 'shiki'
 import { useData } from 'vitepress'
 import SearchBar from './Hooks/SearchBar.vue'
 import CheckBox from './Hooks/CheckBox.vue'
+import OptionSelector from './Hooks/OptionSelector.vue'
 
 const data = useData()
 
@@ -24,7 +24,7 @@ const highlighter = shallowRef<Highlighter | null>(null)
 const hooks = shallowRef<Hook[]>([])
 
 const categories = shallowRef<string[]>([])
-const selectedCategory = shallowRef('all')
+const selectedCategory = shallowRef('All')
 const showOxideHooks = shallowRef(true)
 const showCarbonHooks = shallowRef(true)
 
@@ -45,7 +45,7 @@ const filteredHooks = computed(() => {
 
   let filtered = hooks.value
 
-  if (selectedCategory.value && selectedCategory.value != 'all') {
+  if (selectedCategory.value && selectedCategory.value != 'All') {
     filtered = filtered.filter((hook) => hook.category == selectedCategory.value)
   }
 
@@ -56,6 +56,8 @@ const filteredHooks = computed(() => {
   } else if (!showOxideHooks.value && !showCarbonHooks.value) {
     filtered = []
   }
+
+  // TODO: use minisearch instead
 
   if (debouncedSearchValue.value) {
     const searchLower = debouncedSearchValue.value.toLowerCase()
@@ -241,16 +243,8 @@ onUnmounted(() => {
           <Search class="text-gray-400" :size="20" />
         </template>
         <template #right>
-          <div class="flex flex-row gap-1">
-            <div class="flex items-center gap-2">
-              <span class="text-sm font-medium">Category:</span>
-              <select v-model="selectedCategory" class="px-3 bg-inherit">
-                <option value="all" class="">All Hooks</option>
-                <option class="" v-for="(category, index) in categories" :key="index" :value="category">
-                  {{ category }}
-                </option>
-              </select>
-            </div>
+          <div class="flex flex-row gap-4">
+            <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
             <div class="flex flex-row items-center gap-2">
               <CheckBox v-model="showOxideHooks">
                 <template #default>
@@ -401,10 +395,6 @@ onUnmounted(() => {
 .VPBadge {
   margin-left: 0;
   transform: none;
-}
-
-option {
-  background-color: var(--vp-c-bg-soft);
 }
 
 :deep(pre) {
