@@ -40,12 +40,12 @@ const filteredHooks = computed(() => {
   let filtered = hooks.value
 
   if (selectedCategory.value && selectedCategory.value != 'All') {
-    filtered = filtered.filter((hook) => hook.category == selectedCategory.value)
+    filtered = filtered.filter((hook) => hook.Category == selectedCategory.value)
   }
 
   if (showOxideHooks.value != showCarbonHooks.value) {
     filtered = filtered.filter(
-      (hook) => hook.oxideCompatible == showOxideHooks.value && hook.oxideCompatible != showCarbonHooks.value
+      (hook) => hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
     )
   } else if (!showOxideHooks.value && !showCarbonHooks.value) {
     filtered = []
@@ -58,9 +58,9 @@ const filteredHooks = computed(() => {
     const searchNumber = Number(searchLower)
     filtered = filtered.filter((hook) => {
       return (
-        (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
-        (hook.descriptions && hook.descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
-        hook.id == searchNumber
+        (hook.Name && hook.Name.toLowerCase().includes(searchLower)) ||
+        (hook.Descriptions && hook.Descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
+        hook.Id == searchNumber
       )
     })
   }
@@ -154,7 +154,7 @@ onMounted(async () => {
       <SearchBar
         v-model="debouncedSearchValue"
         placeholder="Search hooks..."
-        class="mb-4 sticky min-[960px]:top-20 top-16 z-10"
+        class="sticky min-[960px]:top-20 top-16 z-10"
       >
         <template #icon>
           <Search class="text-gray-400" :size="20" />
@@ -188,7 +188,7 @@ onMounted(async () => {
                 {{ hooks.length }} total hooks.
               </div>
             </div>
-            <div v-for="hook in renderedList" :key="hook.fullName" :id="getSanitizedAnchor(hook.fullName)">
+            <div v-for="hook in renderedList" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
               <HookCard :hook="hook" />
             </div>
           </InfinitePageScroll>

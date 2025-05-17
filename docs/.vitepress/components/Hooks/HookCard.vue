@@ -4,8 +4,9 @@ import { getHookFlagsText } from '@/shared/constants'
 import { inject, ShallowRef, shallowRef } from 'vue'
 import type { Highlighter } from 'shiki'
 import { useData } from 'vitepress'
-import { ExternalLink, CheckCircle2, Copy } from 'lucide-vue-next'
+import { ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import ButtonIconCopy from './ButtonIconCopy.vue'
 
 const { hook } = defineProps<{
   hook: Hook
@@ -49,12 +50,12 @@ function getCorrespondingTitleForHookFlag(flag: string): string {
 }
 
 function getExampleCode(hook: Hook, highlight = true): string {
-  const code = `private ${hook.returnTypeName} ${hook.name}(${hook.parametersText})
+  const code = `private ${hook.ReturnTypeName} ${hook.Name}(${hook.ParametersText})
 {
-    Puts("${hook.name} has been called!");${
-    hook.returnTypeName !== 'void'
+    Puts("${hook.Name} has been called!");${
+    hook.ReturnTypeName !== 'void'
       ? `
-    return (${hook.returnTypeName})default;`
+    return (${hook.ReturnTypeName})default;`
       : ''
   }
 }`
@@ -76,23 +77,23 @@ const copyToClipboard = async (text: string, id: string | null) => {
   <div class="flex flex-col gap-1">
     <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
       <h5 class="text-lg font-medium">
-        <a :href="`/references/hooks#${encodeURIComponent(hook.fullName)}`" class="flex items-center gap-2">
-          <span>{{ hook.fullName }}</span>
+        <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2">
+          <span>{{ hook.FullName }}</span>
           <ExternalLink :size="14" class="opacity-60" />
         </a>
       </h5>
       <div class="flex flex-wrap gap-1.5">
-        <VPBadge v-if="hook.category" type="info" :text="hook.category" title="Category" />
-        <template v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
+        <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
+        <template v-for="flag in getHookFlagsText(hook.Flags)" class="text-sm">
           <VPBadge
-            v-if="hook.flags"
+            v-if="hook.Flags"
             type="danger"
             :text="`${flag}`"
             :title="getCorrespondingTitleForHookFlag(flag)"
           />
         </template>
         <VPBadge
-          v-if="hook.oxideCompatible"
+          v-if="hook.OxideCompatible"
           type="tip"
           text="Oxide Compatible"
           title="Indicates that this hook is compatible with Oxide"
@@ -100,11 +101,11 @@ const copyToClipboard = async (text: string, id: string | null) => {
       </div>
     </div>
     <div class="flex flex-col text-sm text-gray-500">
-      <template v-for="(description, index) in hook.descriptions" :key="index">
+      <template v-for="(description, index) in hook.Descriptions" :key="index">
         <span class="font-bold">{{ description }}</span>
       </template>
-      <span v-if="hook.returnTypeName != 'void'">Returning a non-null value cancels default behavior.</span>
-      <span v-if="hook.returnTypeName == 'void'">No return behavior.</span>
+      <span v-if="hook.ReturnTypeName != 'void'">Returning a non-null value cancels default behavior.</span>
+      <span v-if="hook.ReturnTypeName == 'void'">No return behavior.</span>
     </div>
   </div>
   <div class="mt-1 flex gap-2">
@@ -114,19 +115,15 @@ const copyToClipboard = async (text: string, id: string | null) => {
       @click="() => (isExampleExpanded = !isExampleExpanded)"
     >
       {{ isExampleExpanded ? 'Hide Example' : 'Show Example' }}
-      <span @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)">
-        <component :is="copiedId == 'examplecode' + hook.fullName ? CheckCircle2 : Copy" :size="14" />
-      </span>
+      <ButtonIconCopy :getTextToCopy="() => getExampleCode(hook, false)" />
     </button>
     <button
-      v-if="hook.methodSource"
+      v-if="hook.MethodSource"
       class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
       @click="() => (isSourceExpanded = !isSourceExpanded)"
     >
       {{ isSourceExpanded ? 'Hide Source' : 'Show Source' }}
-      <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
-        <component :is="copiedId == 'sourcecode' + hook.fullName ? CheckCircle2 : Copy" :size="14" />
-      </span>
+      <ButtonIconCopy :getTextToCopy="() => hook.MethodSource" />
     </button>
     <button v-else disabled class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800">
       No method source
@@ -141,9 +138,9 @@ const copyToClipboard = async (text: string, id: string | null) => {
     </div>
   </Transition>
   <Transition name="expand">
-    <div v-if="hook.methodSource && highlighter && isSourceExpanded">
+    <div v-if="hook.MethodSource && highlighter && isSourceExpanded">
       <div
-        v-html="highlightCode(hook.methodSource)"
+        v-html="highlightCode(hook.MethodSource)"
         class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
       ></div>
     </div>
