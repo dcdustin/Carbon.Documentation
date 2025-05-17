@@ -198,7 +198,7 @@ function getExampleCode(hook: Hook, highlighted: boolean): string {
 
 const copyToClipboard = async (text: string, id: string | null) => {
   try {
-    await navigator.clipboard.writeText(text)
+    navigator.clipboard.writeText(text)
     copiedId.value = id
     setTimeout(() => (copiedId.value = null), 2000)
   } catch (err) {
@@ -224,7 +224,7 @@ watchDebounced(
 )
 
 onMounted(async () => {
-  await loadHooks()
+  loadHooks()
   try {
     highlighter.value = await getSingletonHighlighter({
       themes: ['github-dark', 'github-light'],
