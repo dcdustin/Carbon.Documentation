@@ -50,6 +50,11 @@ function getExampleCode(hook: Hook): string {
           <ExternalLink :size="14" class="opacity-60" />
         </a>
       </h5>
+      <ButtonIconCopy
+        :getTextToCopy="() => hook.Id.toString()"
+        :title="`Copy hook ID: ${hook.Id}`"
+        class="opacity-60"
+      />
       <div class="flex flex-wrap gap-1.5">
         <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
         <template v-for="flag in getHookFlagsText(hook.Flags)" class="text-sm">
