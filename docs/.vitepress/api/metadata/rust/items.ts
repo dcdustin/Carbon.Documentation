@@ -4,35 +4,35 @@ import { fetchApiCaching } from '@/api/fetch-api'
 // fix naming issues with first letter being uppercase
 
 export interface ItemModFoodSpoiling {
-  totalSpoilTimeHours: number
-  spoilItemId: number
-  spoilItemShortName: string
+  TotalSpoilTimeHours: number
+  SpoilItemId: number
+  SpoilItemShortName: string
 }
 
 export interface ItemModCompostable {
-  totalFertilizerProduced: number
-  baitValue: number
-  maxBaitStack: number
+  TotalFertilizerProduced: number
+  BaitValue: number
+  MaxBaitStack: number
 }
 
 export interface ItemModBurnable {
-  fuelAmount: number
-  hasByProduct: boolean
-  byproductItemId: number
-  byproductItemShortName: string
-  byproductAmount: number
-  byproductChance: number
+  FuelAmount: number
+  HasByProduct: boolean
+  ByproductItemId: number
+  ByproductItemShortName: string
+  ByproductAmount: number
+  ByproductChance: number
 }
 
 export interface ItemModRepair {
-  conditionLost: number
-  workbenchLvlRequired: number
-  canUseRepairBench: boolean
+  ConditionLost: number
+  WorkbenchLvlRequired: number
+  CanUseRepairBench: boolean
 }
 
 export interface ItemModPrefabReference {
-  resourcePath: string
-  resourceID: number
+  ResourcePath: string
+  ResourceID: number
 }
 
 export interface SteamDlcItem {
