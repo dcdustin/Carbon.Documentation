@@ -77,8 +77,16 @@ function getExampleCode(hook: Hook): string {
       <template v-for="(description, index) in hook.Descriptions" :key="index">
         <span class="font-bold">{{ description }}</span>
       </template>
-      <span v-if="hook.ReturnTypeName != 'void'">Returning a non-null value cancels default behavior.</span>
-      <span v-if="hook.ReturnTypeName == 'void'">No return behavior.</span>
+      <span v-if="hook.AssemblyName" class="text-xs">
+        {{ [hook.AssemblyName, hook.TargetName, hook.MethodName].filter(Boolean).join('; ') }}
+      </span>
+      <span>
+        {{
+          hook.ReturnTypeName != 'void'
+            ? 'Returning a non-null value cancels default behavior.'
+            : 'No return behavior.'
+        }}
+      </span>
     </div>
   </div>
   <div class="mt-1 flex gap-2">
