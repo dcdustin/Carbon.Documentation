@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
-import { Loader2, Search } from 'lucide-vue-next'
+import { Search } from 'lucide-vue-next'
 
 import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import type { Hook } from '@/api/metadata/carbon/hooks'
@@ -11,6 +11,7 @@ import CheckBox from './Hooks/CheckBox.vue'
 import OptionSelector from './Hooks/OptionSelector.vue'
 import InfinitePageScroll from './Hooks/InfinitePageScroll.vue'
 import HookCard from './Hooks/HookCard.vue'
+import AsyncState from './Hooks/AsyncState.vue'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
@@ -117,16 +118,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="isLoading" class="flex items-center justify-center py-8 gap-2">
-    <Loader2 class="animate-spin" :size="24" />
-    <span>Loading hooks...</span>
-  </div>
-
-  <div v-else-if="error" class="flex flex-col items-center justify-center py-8 text-center">
-    <div class="text-red-500 mb-4">{{ error }}</div>
-  </div>
-
-  <div v-else>
+  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading hooks...">
     <SearchBar
       v-model="debouncedSearchValue"
       placeholder="Search hooks..."
@@ -179,5 +171,5 @@ onMounted(async () => {
         Debug: Search query "{{ debouncedSearchValue }}" returned no results.
       </p>
     </div>
-  </div>
+  </AsyncState>
 </template>
