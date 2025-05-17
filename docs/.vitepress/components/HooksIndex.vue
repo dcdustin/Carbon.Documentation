@@ -373,7 +373,7 @@ onUnmounted(() => {
               </div>
               <Transition name="expand">
                 <div
-                  v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)"
+                  v-if="highlighter && expandedHookExamples.has(hook.fullName)"
                 >
                   <div
                     v-html="getExampleCode(hook, true)"
