@@ -803,7 +803,7 @@ public class CodeGen : CarbonPlugin
 
 		public string targetName => target?.FullName;
 		public string methodName => method?.Name;
-		private string assemblyName => assembly?.GetName().Name;
+		public string assemblyName => assembly?.GetName().Name;
 		public string returnTypeName => GetFriendlyType(returnType?.FullName, "void");
 		public string methodSource;
 
