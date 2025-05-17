@@ -257,11 +257,7 @@ onUnmounted(() => {
 
     <div class="mb-4">
       <div class="flex items-center gap-2">
-        <a
-          :href="URL_METDAT_CARB_HOOKS"
-          target="_blank"
-          class="vp-button medium brand flex items-center gap-2"
-        >
+        <a :href="URL_METDAT_CARB_HOOKS" target="_blank" class="flex items-center gap-2">
           <Database :size="16" />
           Hooks API
           <ExternalLink :size="14" class="opacity-80" />
@@ -296,7 +292,7 @@ onUnmounted(() => {
           <div class="flex flex-row gap-1">
             <div class="flex items-center gap-2">
               <span class="text-sm font-medium">Category:</span>
-              <select v-model="selectedCategory" class="px-3 py-2 bg-inherit">
+              <select v-model="selectedCategory" class="px-3 bg-inherit">
                 <option value="all" class="">All Hooks</option>
                 <option class="" v-for="(category, index) in categories" :key="index" :value="category">
                   {{ category }}
@@ -391,7 +387,7 @@ onUnmounted(() => {
                     @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)"
                   >
                     <component
-                      :is="copiedId === 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
+                      :is="copiedId == 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
                       class="ml-2"
                       :size="14"
                     />
@@ -409,7 +405,7 @@ onUnmounted(() => {
                 >
                   <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
                     <component
-                      :is="copiedId === 'sourcecode' + hook.fullName ? CheckCircle2 : Copy"
+                      :is="copiedId == 'sourcecode' + hook.fullName ? CheckCircle2 : Copy"
                       class="ml-2"
                       :size="14"
                     />
