@@ -160,7 +160,7 @@ function highlightCode(code: string, language = 'csharp'): string {
   }
 }
 
-function getExampleCode(hook: Hook, highlighted: boolean): string {
+function getExampleCode(hook: Hook, highlight = true): string {
   const code = `private ${hook.returnTypeName} ${hook.name}(${hook.parametersText})
 {
     Puts("${hook.name} has been called!");${
@@ -170,7 +170,7 @@ function getExampleCode(hook: Hook, highlighted: boolean): string {
       : ''
   }
 }`
-  return highlighted ? highlightCode(code) : code
+  return highlight ? highlightCode(code) : code
 }
 
 const copyToClipboard = async (text: string, id: string | null) => {
@@ -203,18 +203,17 @@ onUnmounted(() => {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Carbon Hooks Reference</h1>
-    <p class="mb-4">
-      This section contains a comprehensive list of all hooks available in Carbon. Each hook is listed with
-      its name, category, and compatibility information.
-    </p>
-    <p class="mb-4">
-      By default, if hooks are not <VPBadge type="danger" text="Static" /> or
-      <VPBadge type="danger" text="Patch" />, they're dynamically applied upon plugin subscription, otherwise
-      inactive.
-    </p>
-
-    <div class="mb-4">
+    <div class="flex flex-col gap-4 mb-4">
+      <h1 class="text-2xl font-bold">Carbon Hooks Reference</h1>
+      <p>
+        This section contains a comprehensive list of all hooks available in Carbon. Each hook is listed with
+        its name, category, and compatibility information.
+      </p>
+      <p>
+        By default, if hooks are not <VPBadge type="danger" text="Static" /> or
+        <VPBadge type="danger" text="Patch" />, they're dynamically applied upon plugin subscription,
+        otherwise inactive.
+      </p>
       <div class="flex items-center gap-2">
         <a :href="URL_METDAT_CARB_HOOKS" target="_blank" class="flex items-center gap-2">
           <Database :size="16" />
@@ -224,9 +223,9 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div v-if="isLoading" class="flex items-center justify-center py-8">
+    <div v-if="isLoading" class="flex items-center justify-center py-8 gap-2">
       <Loader2 class="animate-spin" :size="24" />
-      <span class="ml-2">Loading hooks...</span>
+      <span>Loading hooks...</span>
     </div>
 
     <div v-else-if="error" class="flex flex-col items-center justify-center py-8 text-center">
@@ -314,41 +313,39 @@ onUnmounted(() => {
               <div class="mt-1 flex gap-2">
                 <button
                   v-if="getExampleCode(hook, false)"
-                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
                   @click="
                     expandedHookExamples.has(hook.fullName)
                       ? expandedHookExamples.delete(hook.fullName)
                       : expandedHookExamples.add(hook.fullName)
                   "
                 >
+                  {{ expandedHookExamples.has(hook.fullName) ? 'Hide Example' : 'Show Example' }}
                   <span
                     @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)"
                   >
                     <component
                       :is="copiedId == 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
-                      class="ml-2"
                       :size="14"
                     />
                   </span>
-                  {{ expandedHookExamples.has(hook.fullName) ? 'Hide Example' : 'Show Example' }}
                 </button>
                 <button
                   v-if="hook.methodSource"
-                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
                   @click="
                     expandedHookSources.has(hook.fullName)
                       ? expandedHookSources.delete(hook.fullName)
                       : expandedHookSources.add(hook.fullName)
                   "
                 >
+                  {{ expandedHookSources.has(hook.fullName) ? 'Hide Source' : 'Show Source' }}
                   <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
                     <component
                       :is="copiedId == 'sourcecode' + hook.fullName ? CheckCircle2 : Copy"
-                      class="ml-2"
                       :size="14"
                     />
                   </span>
-                  {{ expandedHookSources.has(hook.fullName) ? 'Hide Source' : 'Show Source' }}
                 </button>
                 <button
                   v-else
@@ -361,7 +358,7 @@ onUnmounted(() => {
               <Transition name="expand">
                 <div v-if="highlighter && expandedHookExamples.has(hook.fullName)">
                   <div
-                    v-html="getExampleCode(hook, true)"
+                    v-html="getExampleCode(hook)"
                     class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
                   ></div>
                 </div>
@@ -378,12 +375,12 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <div v-else class="text-center py-8 text-gray-500">
+      <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
         <p>No hooks found matching your search</p>
-        <p v-if="hooks && hooks.length == 0" class="mt-2 text-sm">
+        <p v-if="hooks && hooks.length == 0" class="text-sm">
           Debug: No hooks loaded. Check console for errors.
         </p>
-        <p v-else-if="debouncedSearchValue" class="mt-2 text-sm">
+        <p v-else-if="debouncedSearchValue" class="text-sm">
           Debug: Search query "{{ debouncedSearchValue }}" returned no results.
         </p>
       </div>
