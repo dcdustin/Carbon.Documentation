@@ -377,7 +377,7 @@ onUnmounted(() => {
                 >
                   <div
                     v-html="getExampleCode(hook, true)"
-                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                    class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
                   ></div>
                 </div>
               </Transition>
@@ -385,7 +385,7 @@ onUnmounted(() => {
                 <div v-if="hook.methodSource && highlighter && expandedHookSources.has(hook.fullName)">
                   <div
                     v-html="highlightCode(hook.methodSource)"
-                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                    class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
                   ></div>
                 </div>
               </Transition>
