@@ -66,7 +66,7 @@ const filteredHooks = computed(() => {
   return filtered
 })
 
-const loadHooks = async () => {
+async function loadHooks() {
   try {
     isLoading.value = true
     error.value = null
@@ -78,17 +78,16 @@ const loadHooks = async () => {
     }
 
     const flatHooks: Hook[] = []
-
     data.forEach((hooks) => {
       flatHooks.push(...hooks)
     })
 
-    if (flatHooks.length == 0) {
+    if (!flatHooks) {
       throw new Error('No hooks found in the data')
     }
 
-    hooks.value = flatHooks
     categories.value = Array.from(data.keys())
+    hooks.value = flatHooks
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
@@ -97,15 +96,14 @@ const loadHooks = async () => {
   }
 }
 
-const getSanitizedAnchor = (text: string): string => {
+function getSanitizedAnchor(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
 
-onMounted(async () => {
-  loadHooks()
+async function tryLoadHighlighter() {
   try {
     highlighter.value = await getSingletonHighlighter({
       themes: ['github-dark', 'github-light'],
@@ -114,6 +112,10 @@ onMounted(async () => {
   } catch (err) {
     console.error('Failed to load highlighter:', err)
   }
+}
+
+onMounted(async () => {
+  await Promise.all([loadHooks(), tryLoadHighlighter()])
 })
 </script>
 
