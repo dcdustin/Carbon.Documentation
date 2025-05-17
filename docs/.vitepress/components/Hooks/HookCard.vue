@@ -44,17 +44,19 @@ function getExampleCode(hook: Hook): string {
 <template>
   <div class="flex flex-col gap-1">
     <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
-      <h5 class="text-lg font-medium">
-        <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2">
-          <span>{{ hook.FullName }}</span>
-          <ExternalLink :size="14" class="opacity-60" />
-        </a>
-      </h5>
-      <ButtonIconCopy
-        :getTextToCopy="() => hook.Id.toString()"
-        :title="`Copy hook ID: ${hook.Id}`"
-        class="opacity-60"
-      />
+      <div class="flex items-center gap-2">
+        <h5 class="text-lg font-medium">
+          <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2">
+            <span>{{ hook.FullName }}</span>
+            <ExternalLink :size="14" class="opacity-60" />
+          </a>
+        </h5>
+        <ButtonIconCopy
+          :getTextToCopy="() => hook.Id.toString()"
+          :title="`Copy hook ID: ${hook.Id}`"
+          class="opacity-60"
+        />
+      </div>
       <div class="flex flex-wrap gap-1.5">
         <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
         <template v-for="flag in getHookFlagsText(hook.Flags)" class="text-sm">
