@@ -32,28 +32,27 @@ const debouncedSearchValue = shallowRef('')
 
 const pageSize = 25
 
-function shouldIncludeHook(hook: Hook) {
-  if (selectedCategory.value && selectedCategory.value !== 'All' && hook.Category != selectedCategory.value) {
-    return false
-  }
-  if (showOxideHooks.value !== showCarbonHooks.value) {
-    return hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
-  } else if (!showOxideHooks.value && !showCarbonHooks.value) {
-    return false
-  }
-  return true
-}
-
 const filteredHooks = computed(() => {
   if (!hooks.value?.length) {
     return []
   }
+  if (!showOxideHooks.value && !showCarbonHooks.value) {
+    return []
+  }
 
-  const startTime = performance.now()
+  if (
+    !debouncedSearchValue.value &&
+    selectedCategory.value == 'All' &&
+    showOxideHooks.value == showCarbonHooks.value
+  ) {
+    return hooks.value
+  }
+
+  // const startTime = performance.now()
 
   let filtered = hooks.value
 
-  if (selectedCategory.value && selectedCategory.value != 'All') {
+  if (selectedCategory.value != 'All') {
     filtered = filtered.filter((hook) => hook.Category == selectedCategory.value)
   }
 
@@ -61,18 +60,16 @@ const filteredHooks = computed(() => {
     filtered = filtered.filter(
       (hook) => hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
     )
-  } else if (!showOxideHooks.value && !showCarbonHooks.value) {
-    filtered = []
   }
 
   if (debouncedSearchValue.value && miniSearch.value) {
     const results = miniSearch.value.search(debouncedSearchValue.value)
-    const resultIds = new Set(results.map((r) => r.Id))
-    filtered = filtered.filter((hook) => resultIds.has(hook.Id))
+    const hookMap = new Map(filtered.map((hook) => [hook.FullName, hook]))
+    filtered = results.map((result) => hookMap.get(result.FullName)) as Hook[]
   }
 
-  const endTime = performance.now()
-  console.log(`Filtered hooks in ${endTime - startTime}ms`)
+  // const endTime = performance.now()
+  // console.log(`Filtered hooks in ${endTime - startTime}ms`)
 
   return filtered
 })
@@ -89,7 +86,7 @@ async function tryLoadMiniSearch() {
   miniSearch.value = new MiniSearch({
     idField: 'FullName',
     fields: ['Id', 'Name', 'FullName', 'Descriptions', 'MethodName', 'TargetName', 'AssemblyName'],
-    storeFields: ['Id'],
+    storeFields: ['FullName'],
     searchOptions: {
       boost: {
         Id: 4,
