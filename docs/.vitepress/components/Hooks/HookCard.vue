@@ -109,15 +109,6 @@ function getExampleCode(hook: Hook): string {
     <button v-else disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
       No method source
     </button>
-    <button v-if="hook.TargetName" disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
-      {{ hook.TargetName }}
-    </button>
-    <span v-if="hook.TargetName" class="text-xs px-0 py-1 text-gray-500" style="user-select: none;">
-      in
-    </span>
-    <button v-if="hook.AssemblyName" disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
-      {{ hook.AssemblyName }}
-    </button>
   </div>
   <Transition name="expand">
     <CodeBlock v-if="isExampleExpanded" :code="getExampleCode(hook)" class="mt-2" />
