@@ -12,6 +12,7 @@ import { getSingletonHighlighter } from 'shiki'
 import type { Highlighter } from 'shiki'
 import { useData } from 'vitepress'
 import SearchBar from './Hooks/SearchBar.vue'
+import CheckBox from './Hooks/CheckBox.vue'
 
 const data = useData()
 
@@ -251,24 +252,16 @@ onUnmounted(() => {
               </select>
             </div>
             <div class="flex flex-row items-center gap-2">
-              <div class="flex items-center gap-1">
-                <input
-                  type="checkbox"
-                  id="chkBkFl1"
-                  v-model="showOxideHooks"
-                  class="w-4 h-4 accent-violet-600 focus:ring-2 ring-violet-500"
-                />
-                <label class="text-sm" for="chkBkFl1">Oxide</label>
-              </div>
-              <div class="flex items-center gap-1">
-                <input
-                  type="checkbox"
-                  id="chkBkFl2"
-                  v-model="showCarbonHooks"
-                  class="w-4 h-4 accent-violet-600 focus:ring-2 ring-violet-500"
-                />
-                <label class="text-sm" for="chkBkFl2">Carbon</label>
-              </div>
+              <CheckBox v-model="showOxideHooks">
+                <template #default>
+                  <span class="text-sm">Oxide</span>
+                </template>
+              </CheckBox>
+              <CheckBox v-model="showCarbonHooks">
+                <template #default>
+                  <span class="text-sm">Carbon</span>
+                </template>
+              </CheckBox>
             </div>
           </div>
         </template>
@@ -372,9 +365,7 @@ onUnmounted(() => {
                 </button>
               </div>
               <Transition name="expand">
-                <div
-                  v-if="highlighter && expandedHookExamples.has(hook.fullName)"
-                >
+                <div v-if="highlighter && expandedHookExamples.has(hook.fullName)">
                   <div
                     v-html="getExampleCode(hook, true)"
                     class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
