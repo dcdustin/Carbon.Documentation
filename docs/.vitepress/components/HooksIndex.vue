@@ -45,12 +45,12 @@ const filteredHooks = computed(() => {
   let filtered = hooks.value
 
   if (selectedCategory.value && selectedCategory.value != 'all') {
-    filtered = filtered.filter((hook) => hook.category == selectedCategory.value)
+    filtered = filtered.filter((hook) => hook.Category == selectedCategory.value)
   }
 
   if (showOxideHooks.value != showCarbonHooks.value) {
     filtered = filtered.filter(
-      (hook) => hook.oxideCompatible == showOxideHooks.value && hook.oxideCompatible != showCarbonHooks.value
+      (hook) => hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
     )
   } else if (!showOxideHooks.value && !showCarbonHooks.value) {
     filtered = []
@@ -61,9 +61,9 @@ const filteredHooks = computed(() => {
     const searchNumber = Number(searchLower)
     filtered = filtered.filter((hook) => {
       return (
-        (hook.name && hook.name.toLowerCase().includes(searchLower)) ||
-        (hook.descriptions && hook.descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
-        hook.id == searchNumber
+        (hook.Name && hook.Name.toLowerCase().includes(searchLower)) ||
+        (hook.Descriptions && hook.Descriptions.some((desc) => desc.toLowerCase().includes(searchLower))) ||
+        hook.Id == searchNumber
       )
     })
   }
@@ -184,12 +184,12 @@ function highlightCode(code: string, language = 'csharp'): string {
 }
 
 function getExampleCode(hook: Hook, highlighted: boolean): string {
-  const code = `private ${hook.returnTypeName} ${hook.name}(${hook.parametersText})
+  const code = `private ${hook.ReturnTypeName} ${hook.Name}(${hook.ParametersText})
 {
-    Puts("${hook.name} has been called!");${
-    hook.returnTypeName !== 'void'
+    Puts("${hook.Name} has been called!");${
+    hook.ReturnTypeName !== 'void'
       ? `
-    return (${hook.returnTypeName})default;`
+    return (${hook.ReturnTypeName})default;`
       : ''
   }
 }`
@@ -336,31 +336,31 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="flex flex-col gap-5 mt-4">
-          <div v-for="hook in renderedHooks" :key="hook.fullName" :id="getSanitizedAnchor(hook.fullName)">
+          <div v-for="hook in renderedHooks" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
             <div>
               <div class="flex flex-col gap-1">
                 <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
                   <h5 class="text-lg font-medium">
                     <a
-                      :href="`/references/hooks#${encodeURIComponent(hook.fullName)}`"
+                      :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`"
                       class="flex items-center gap-2"
                     >
-                      <span>{{ hook.fullName }}</span>
+                      <span>{{ hook.FullName }}</span>
                       <ExternalLink :size="14" class="opacity-60" />
                     </a>
                   </h5>
                   <div class="flex flex-wrap gap-1.5">
-                    <VPBadge v-if="hook.category" type="info" :text="hook.category" title="Category" />
-                    <template v-for="flag in getHookFlagsText(hook.flags)" class="text-sm">
+                    <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
+                    <template v-for="flag in getHookFlagsText(hook.Flags)" class="text-sm">
                       <VPBadge
-                        v-if="hook.flags"
+                        v-if="hook.Flags"
                         type="danger"
                         :text="`${flag}`"
                         :title="getCorrespondingTitleForHookFlag(flag)"
                       />
                     </template>
                     <VPBadge
-                      v-if="hook.oxideCompatible"
+                      v-if="hook.OxideCompatible"
                       type="tip"
                       text="Oxide Compatible"
                       title="Indicates that this hook is compatible with Oxide"
@@ -368,53 +368,53 @@ onUnmounted(() => {
                   </div>
                 </div>
                 <div class="flex flex-col text-sm text-gray-500">
-                  <template v-for="(description, index) in hook.descriptions" :key="index">
+                  <template v-for="(description, index) in hook.Descriptions" :key="index">
                     <span class="font-bold">{{ description }}</span>
                   </template>
-                  <span v-if="hook.returnTypeName != 'void'"
+                  <span v-if="hook.ReturnTypeName != 'void'"
                     >Returning a non-null value cancels default behavior.</span
                   >
-                  <span v-if="hook.returnTypeName == 'void'">No return behavior.</span>
+                  <span v-if="hook.ReturnTypeName == 'void'">No return behavior.</span>
                 </div>
               </div>
               <div class="mt-1 flex gap-2">
                 <button
                   v-if="getExampleCode(hook, false)"
-                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
                   @click="
-                    expandedHookExamples.has(hook.fullName)
-                      ? expandedHookExamples.delete(hook.fullName)
-                      : expandedHookExamples.add(hook.fullName)
+                    expandedHookExamples.has(hook.FullName)
+                      ? expandedHookExamples.delete(hook.FullName)
+                      : expandedHookExamples.add(hook.FullName)
                   "
                 >
                   <span
-                    @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.fullName)"
+                    @click.stop="copyToClipboard(getExampleCode(hook, false), 'examplecode' + hook.FullName)"
                   >
                     <component
-                      :is="copiedId === 'examplecode' + hook.fullName ? CheckCircle2 : Copy"
+                      :is="copiedId === 'examplecode' + hook.FullName ? CheckCircle2 : Copy"
                       class="ml-2"
                       :size="14"
                     />
                   </span>
-                  {{ expandedHookExamples.has(hook.fullName) ? 'Hide Example' : 'Show Example' }}
+                  {{ expandedHookExamples.has(hook.FullName) ? 'Hide Example' : 'Show Example' }}
                 </button>
                 <button
-                  v-if="hook.methodSource"
-                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+                  v-if="hook.MethodSource"
+                  class="flex flex-row-reverse items-center text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
                   @click="
-                    expandedHookSources.has(hook.fullName)
-                      ? expandedHookSources.delete(hook.fullName)
-                      : expandedHookSources.add(hook.fullName)
+                    expandedHookSources.has(hook.FullName)
+                      ? expandedHookSources.delete(hook.FullName)
+                      : expandedHookSources.add(hook.FullName)
                   "
                 >
-                  <span @click.stop="copyToClipboard(hook.methodSource, 'sourcecode' + hook.fullName)">
+                  <span @click.stop="copyToClipboard(hook.MethodSource, 'sourcecode' + hook.FullName)">
                     <component
-                      :is="copiedId === 'sourcecode' + hook.fullName ? CheckCircle2 : Copy"
+                      :is="copiedId === 'sourcecode' + hook.FullName ? CheckCircle2 : Copy"
                       class="ml-2"
                       :size="14"
                     />
                   </span>
-                  {{ expandedHookSources.has(hook.fullName) ? 'Hide Source' : 'Show Source' }}
+                  {{ expandedHookSources.has(hook.FullName) ? 'Hide Source' : 'Show Source' }}
                 </button>
                 <button
                   v-else
@@ -423,22 +423,37 @@ onUnmounted(() => {
                 >
                   No method source
                 </button>
+                <button
+                  v-if="hook.TargetName"
+                  disabled
+                  class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
+                >
+                  {{ hook.TargetName }}
+                </button>
+                <span v-if="hook.TargetName" class="text-xs px-0 py-1 text-gray-500">in</span>
+                <button
+                  v-if="hook.AssemblyName"
+                  disabled
+                  class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
+                >
+                  {{ hook.AssemblyName }}
+                </button>
               </div>
               <Transition name="expand">
                 <div
-                  v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.fullName)"
+                  v-if="getExampleCode(hook, false) && highlighter && expandedHookExamples.has(hook.FullName)"
                 >
                   <div
                     v-html="getExampleCode(hook, true)"
-                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 overflow-x-auto p-4"
                   ></div>
                 </div>
               </Transition>
               <Transition name="expand">
-                <div v-if="hook.methodSource && highlighter && expandedHookSources.has(hook.fullName)">
+                <div v-if="hook.MethodSource && highlighter && expandedHookSources.has(hook.FullName)">
                   <div
-                    v-html="highlightCode(hook.methodSource)"
-                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+                    v-html="highlightCode(hook.MethodSource)"
+                    class="mt-2 text-sm bg-gray-100 dark:bg-gray-800 overflow-x-auto p-4"
                   ></div>
                 </div>
               </Transition>
