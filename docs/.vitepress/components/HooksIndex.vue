@@ -11,6 +11,7 @@ import { watchDebounced } from '@vueuse/core'
 import { getSingletonHighlighter } from 'shiki'
 import type { Highlighter } from 'shiki'
 import { useData } from 'vitepress'
+import SearchBar from './Hooks/SearchBar.vue'
 
 const data = useData()
 
@@ -26,8 +27,7 @@ const selectedCategory = shallowRef('all')
 const showOxideHooks = shallowRef(true)
 const showCarbonHooks = shallowRef(true)
 
-const inputSearch = shallowRef('')
-const debouncedInputSearch = shallowRef('')
+const debouncedSearchValue = shallowRef('')
 
 const currentPage = shallowRef(1)
 const pageSize = 25
@@ -56,8 +56,8 @@ const filteredHooks = computed(() => {
     filtered = []
   }
 
-  if (debouncedInputSearch.value) {
-    const searchLower = debouncedInputSearch.value.toLowerCase()
+  if (debouncedSearchValue.value) {
+    const searchLower = debouncedSearchValue.value.toLowerCase()
     const searchNumber = Number(searchLower)
     filtered = filtered.filter((hook) => {
       return (
@@ -128,32 +128,6 @@ const getSanitizedAnchor = (text: string): string => {
     .replace(/^-+|-+$/g, '')
 }
 
-const updateDebouncedSearch = (value: string) => {
-  inputSearch.value = value
-
-  if (value) {
-    const hash = value.toLowerCase().replace(/\s+/g, '-')
-    window.history.replaceState(null, '', `#${hash}`)
-  } else {
-    window.history.replaceState(null, '', window.location.pathname)
-  }
-}
-
-const handleUrlSearch = () => {
-  const hash = window.location.hash.slice(1)
-  if (hash) {
-    const searchTerm = decodeURIComponent(hash)
-      .replace(/^hook-/, '')
-      .replace(/-/g, ' ')
-    const cleanTerm = searchTerm
-      .replace(/[^\x20-\x7E]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-    debouncedInputSearch.value = cleanTerm
-    updateDebouncedSearch(cleanTerm)
-  }
-}
-
 function getCorrespondingTitleForHookFlag(flag: string): string {
   switch (flag) {
     case 'Static':
@@ -206,23 +180,6 @@ const copyToClipboard = async (text: string, id: string | null) => {
   }
 }
 
-watch(
-  () => window.location.hash,
-  (newHash) => {
-    if (newHash) {
-      handleUrlSearch()
-    }
-  }
-)
-
-watchDebounced(
-  inputSearch,
-  () => {
-    debouncedInputSearch.value = inputSearch.value
-  },
-  { debounce: 350, maxWait: 350 * 3 }
-)
-
 onMounted(async () => {
   loadHooks()
   try {
@@ -233,7 +190,6 @@ onMounted(async () => {
   } catch (err) {
     console.error('Failed to load highlighter:', err)
   }
-  handleUrlSearch()
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -275,20 +231,15 @@ onUnmounted(() => {
     </div>
 
     <div v-else>
-      <div
-        class="mb-4 sticky min-[960px]:top-20 top-16 z-10 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-xl"
+      <SearchBar
+        v-model="debouncedSearchValue"
+        placeholder="Search hooks..."
+        class="mb-4 sticky min-[960px]:top-20 top-16 z-10"
       >
-        <div class="flex sm:flex-row flex-col sm:items-center items-start gap-4">
-          <div class="flex items-center flex-1">
-            <Search class="text-gray-400" :size="20" />
-            <input
-              type="text"
-              v-model="inputSearch"
-              @input="(event) => updateDebouncedSearch((event.target as HTMLInputElement)?.value)"
-              placeholder="Search hooks..."
-              class="px-4 py-2 w-full"
-            />
-          </div>
+        <template #icon>
+          <Search class="text-gray-400" :size="20" />
+        </template>
+        <template #right>
           <div class="flex flex-row gap-1">
             <div class="flex items-center gap-2">
               <span class="text-sm font-medium">Category:</span>
@@ -320,8 +271,8 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </template>
+      </SearchBar>
       <div v-if="filteredHooks && filteredHooks.length">
         <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
           <div
@@ -447,8 +398,8 @@ onUnmounted(() => {
         <p v-if="hooks && hooks.length == 0" class="mt-2 text-sm">
           Debug: No hooks loaded. Check console for errors.
         </p>
-        <p v-else-if="debouncedInputSearch" class="mt-2 text-sm">
-          Debug: Search query "{{ debouncedInputSearch }}" returned no results.
+        <p v-else-if="debouncedSearchValue" class="mt-2 text-sm">
+          Debug: Search query "{{ debouncedSearchValue }}" returned no results.
         </p>
       </div>
     </div>
