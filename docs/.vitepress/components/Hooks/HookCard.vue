@@ -1,40 +1,18 @@
 <script setup lang="ts">
 import type { Hook } from '@/api/metadata/carbon/hooks'
 import { getHookFlagsText } from '@/shared/constants'
-import { inject, ShallowRef, shallowRef } from 'vue'
-import type { Highlighter } from 'shiki'
-import { useData } from 'vitepress'
+import { shallowRef } from 'vue'
 import { ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import ButtonIconCopy from './ButtonIconCopy.vue'
+import CodeBlock from './CodeBlock.vue'
 
 const { hook } = defineProps<{
   hook: Hook
 }>()
 
-const highlighter = inject<Readonly<ShallowRef<Highlighter | null>>>('highlighter')
-const data = useData()
-
-const copiedId = shallowRef<string | null>(null)
-
 const isExampleExpanded = shallowRef<boolean>(false)
 const isSourceExpanded = shallowRef<boolean>(false)
-
-function highlightCode(code: string, language = 'csharp'): string {
-  if (!highlighter || !highlighter.value) {
-    return code
-  }
-  const isDark = data.isDark.value
-  try {
-    return highlighter.value.codeToHtml(code, {
-      lang: language,
-      theme: isDark ? 'github-dark' : 'github-light',
-    })
-  } catch (err) {
-    console.error('Failed to highlight code:', err)
-    return code
-  }
-}
 
 function getCorrespondingTitleForHookFlag(flag: string): string {
   switch (flag) {
@@ -49,7 +27,7 @@ function getCorrespondingTitleForHookFlag(flag: string): string {
   }
 }
 
-function getExampleCode(hook: Hook, highlight = true): string {
+function getExampleCode(hook: Hook): string {
   const code = `private ${hook.ReturnTypeName} ${hook.Name}(${hook.ParametersText})
 {
     Puts("${hook.Name} has been called!");${
@@ -59,17 +37,7 @@ function getExampleCode(hook: Hook, highlight = true): string {
       : ''
   }
 }`
-  return highlight ? highlightCode(code) : code
-}
-
-const copyToClipboard = async (text: string, id: string | null) => {
-  try {
-    navigator.clipboard.writeText(text)
-    copiedId.value = id
-    setTimeout(() => (copiedId.value = null), 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
+  return code
 }
 </script>
 
@@ -110,12 +78,12 @@ const copyToClipboard = async (text: string, id: string | null) => {
   </div>
   <div class="mt-1 flex gap-2">
     <button
-      v-if="getExampleCode(hook, false)"
+      v-if="getExampleCode(hook)"
       class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
       @click="() => (isExampleExpanded = !isExampleExpanded)"
     >
       {{ isExampleExpanded ? 'Hide Example' : 'Show Example' }}
-      <ButtonIconCopy :getTextToCopy="() => getExampleCode(hook, false)" />
+      <ButtonIconCopy :getTextToCopy="() => getExampleCode(hook)" />
     </button>
     <button
       v-if="hook.MethodSource"
@@ -130,20 +98,10 @@ const copyToClipboard = async (text: string, id: string | null) => {
     </button>
   </div>
   <Transition name="expand">
-    <div v-if="highlighter && isExampleExpanded">
-      <div
-        v-html="getExampleCode(hook)"
-        class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
-      ></div>
-    </div>
+    <CodeBlock v-if="isExampleExpanded" :code="getExampleCode(hook)" class="mt-2" />
   </Transition>
   <Transition name="expand">
-    <div v-if="hook.MethodSource && highlighter && isSourceExpanded">
-      <div
-        v-html="highlightCode(hook.MethodSource)"
-        class="mt-2 sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
-      ></div>
-    </div>
+    <CodeBlock v-if="hook.MethodSource && isSourceExpanded" :code="hook.MethodSource" class="mt-2" />
   </Transition>
 </template>
 
