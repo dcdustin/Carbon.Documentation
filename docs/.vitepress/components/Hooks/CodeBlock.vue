@@ -31,7 +31,7 @@ function highlightCode(code: string, language: string): string {
   <div
     v-if="code && highlighter"
     v-html="highlightCode(code, language)"
-    class="sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto p-4"
+    class="sm:text-sm text-xs bg-gray-100 dark:bg-gray-800 overflow-x-auto p-4"
   ></div>
 </template>
 

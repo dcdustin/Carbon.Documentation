@@ -92,7 +92,7 @@ function getExampleCode(hook: Hook): string {
   <div class="mt-1 flex gap-2">
     <button
       v-if="getExampleCode(hook)"
-      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
       @click="() => (isExampleExpanded = !isExampleExpanded)"
     >
       {{ isExampleExpanded ? 'Hide Example' : 'Show Example' }}
@@ -100,14 +100,23 @@ function getExampleCode(hook: Hook): string {
     </button>
     <button
       v-if="hook.MethodSource"
-      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800"
       @click="() => (isSourceExpanded = !isSourceExpanded)"
     >
       {{ isSourceExpanded ? 'Hide Source' : 'Show Source' }}
       <ButtonIconCopy :getTextToCopy="() => hook.MethodSource" />
     </button>
-    <button v-else disabled class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800">
+    <button v-else disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
       No method source
+    </button>
+    <button v-if="hook.TargetName" disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
+      {{ hook.TargetName }}
+    </button>
+    <span v-if="hook.TargetName" class="text-xs px-0 py-1 text-gray-500" style="user-select: none;">
+      in
+    </span>
+    <button v-if="hook.AssemblyName" disabled class="text-xs px-2 py-1 text-gray-500 bg-gray-100 dark:bg-gray-800">
+      {{ hook.AssemblyName }}
     </button>
   </div>
   <Transition name="expand">
