@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core'
-import { onMounted, onUnmounted } from 'vue'
+import { useDebounceFn, useUrlSearchParams } from '@vueuse/core'
+import { onMounted, watch } from 'vue'
 
 const debounceTimeout = 350
 
@@ -10,40 +10,46 @@ const { placeholder } = defineProps<{
 
 const debouncedSearchValue = defineModel<string>()
 
-const updateDebouncedSearch = (value: string) => {
-  debouncedSearchValue.value = value
+const params = useUrlSearchParams('history', {
+  removeFalsyValues: true,
+})
 
-  if (value) {
-    const hash = value.toLowerCase().replace(/\s+/g, '-')
-    window.history.replaceState(null, '', `#${encodeURIComponent(hash)}`)
-  } else {
-    window.history.replaceState(null, '', window.location.pathname)
-  }
+function updateDebouncedSearch(value: string) {
+  debouncedSearchValue.value = value
+  params.s = encodeSearchTerm(value)
+}
+
+function encodeSearchTerm(term: string) {
+  return term.trim().replace(/\s+/g, '-')
+}
+
+function decodeSearchTerm(term: string) {
+  return term.replace(/-/g, ' ').trim()
 }
 
 const debounceSearchValue = useDebounceFn(updateDebouncedSearch, debounceTimeout, {
   maxWait: debounceTimeout * 3,
 })
 
-const handleUrlSearch = () => {
-  const hash = decodeURIComponent(window.location.hash.slice(1))
-  if (hash) {
-    const searchTerm = hash.replace(/^hook-/, '').replace(/-/g, ' ')
-    const cleanTerm = searchTerm
-      .replace(/[^\x20-\x7E]/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim()
-    debouncedSearchValue.value = cleanTerm
+function handleUrlSearch(val: string) {
+  const decoded = decodeSearchTerm(val)
+  if (decoded && decoded != debouncedSearchValue.value) {
+    updateDebouncedSearch(decoded)
   }
 }
+watch(
+  () => params.s,
+  (newVal) => {
+    if (newVal) {
+      handleUrlSearch(newVal.toString())
+    }
+  }
+)
 
 onMounted(() => {
-  handleUrlSearch()
-  window.addEventListener('hashchange', handleUrlSearch)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('hashchange', handleUrlSearch)
+  if (params.s) {
+    handleUrlSearch(params.s.toString())
+  }
 })
 </script>
 

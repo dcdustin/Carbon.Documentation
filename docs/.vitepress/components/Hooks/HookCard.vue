@@ -46,10 +46,13 @@ function getExampleCode(hook: Hook): string {
     <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
       <div class="flex items-center gap-2">
         <h5 class="text-lg font-medium">
-          <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2">
+          <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
+          <div class="flex items-center gap-2">
             <span>{{ hook.FullName }}</span>
-            <ExternalLink :size="14" class="opacity-60" />
-          </a>
+            <a :href="`?s=${hook.FullName.trim().replace(/\s+/g, '-')}`" target="_blank">
+              <ExternalLink :size="14" class="opacity-60" />
+            </a>
+          </div>
         </h5>
         <ButtonIconCopy
           :getTextToCopy="() => hook.Id.toString()"
