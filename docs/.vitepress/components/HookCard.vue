@@ -45,14 +45,12 @@ function getExampleCode(hook: Hook): string {
   <div class="flex flex-col gap-1">
     <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
       <div class="flex items-center gap-2">
-        <h5 class="text-lg font-medium">
+        <h5 class="text-lg font-medium flex items-center gap-2">
           <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
-          <div class="flex items-center gap-2">
-            <span>{{ hook.FullName }}</span>
-            <a :href="`?s=${hook.FullName.trim().replace(/\s+/g, '-')}`" target="_blank">
-              <ExternalLink :size="14" class="opacity-60" />
-            </a>
-          </div>
+          <span>{{ hook.FullName }}</span>
+          <a :href="`?s=${hook.FullName.trim().replace(/\s+/g, '-')}`" target="_blank">
+            <ExternalLink :size="14" class="opacity-60" />
+          </a>
         </h5>
         <ButtonIconCopy
           :getTextToCopy="() => hook.Id.toString()"
