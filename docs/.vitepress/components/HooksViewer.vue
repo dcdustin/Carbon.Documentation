@@ -90,6 +90,7 @@ function getSanitizedAnchor(text: string): string {
 function tryLoadMiniSearch() {
   const startTime = performance.now()
 
+  // should be extracted and cached...
   miniSearch.value = new MiniSearch({
     idField: 'FullName',
     fields: ['Name', 'FullName', 'joinedDescriptions', 'MethodName', 'TargetName', 'AssemblyName'],
