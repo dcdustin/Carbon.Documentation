@@ -65,7 +65,7 @@ const filteredHooks = computed(() => {
   if (debouncedSearchValue.value && miniSearch.value) {
     const results = miniSearch.value.search(debouncedSearchValue.value)
     const hookMap = new Map(filtered.map((hook) => [hook.FullName, hook]))
-    filtered = results.map((result) => hookMap.get(result.FullName)) as Hook[]
+    filtered = results.map((result) => hookMap.get(result.FullName)).filter(Boolean) as Hook[]
   }
 
   // const endTime = performance.now()
