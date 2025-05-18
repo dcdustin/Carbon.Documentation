@@ -130,6 +130,13 @@ function tryLoadMiniSearch() {
         processed.push(text.toLowerCase())
       }
 
+      if (fieldName == 'Name') {
+        const uppercase = text.match(/[A-Z]/g)
+        if (uppercase) {
+          processed.push(uppercase.join(''))
+        }
+      }
+
       return [...new Set(processed)]
     },
   })
