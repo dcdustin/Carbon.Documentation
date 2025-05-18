@@ -57,9 +57,15 @@ const filteredHooks = computed(() => {
   }
 
   if (showOxideHooks.value != showCarbonHooks.value) {
-    filtered = filtered.filter(
-      (hook) => hook.OxideCompatible == showOxideHooks.value && hook.OxideCompatible != showCarbonHooks.value
-    )
+    filtered = filtered.filter((hook) => hook.OxideCompatible == showOxideHooks.value)
+  }
+
+  const searchAsNumber = Number(debouncedSearchValue.value)
+  if (!isNaN(searchAsNumber) && searchAsNumber) {
+    const hook = filtered.filter((hook) => hook.Id == searchAsNumber)
+    if (hook.length > 0) {
+      return hook
+    }
   }
 
   if (debouncedSearchValue.value && miniSearch.value) {
@@ -81,27 +87,54 @@ function getSanitizedAnchor(text: string): string {
     .replace(/^-+|-+$/g, '')
 }
 
-async function tryLoadMiniSearch() {
+function tryLoadMiniSearch() {
   const startTime = performance.now()
+
   miniSearch.value = new MiniSearch({
     idField: 'FullName',
-    fields: ['Id', 'Name', 'FullName', 'Descriptions', 'MethodName', 'TargetName', 'AssemblyName'],
+    fields: ['Name', 'FullName', 'joinedDescriptions', 'MethodName', 'TargetName', 'AssemblyName'],
     storeFields: ['FullName'],
     searchOptions: {
+      prefix: true,
       boost: {
-        Id: 4,
-        FullName: 3,
-        Name: 2.5,
-        Descriptions: 2,
-        MethodName: 1.4,
-        TargetName: 1.2,
+        Name: 4,
+        FullName: 3.5,
+        joinedDescriptions: 2.5,
+        MethodName: 1.5,
+        TargetName: 1.3,
         AssemblyName: 1,
       },
-      fuzzy: 0.2,
-      prefix: true,
+      fuzzy: (term) => {
+        if (term == 'Name' || term == 'FullName' || term == 'joinedDescriptions') {
+          return 0.1
+        }
+        return 0.2
+      },
+    },
+    tokenize: (text, fieldName) => {
+      const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}]+/u // from minisearch source
+      const processed = text
+        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+        .toLowerCase()
+        .split(SPACE_OR_PUNCTUATION)
+        .filter((token) => token.length > 1)
+
+      if (
+        fieldName == 'Name' ||
+        fieldName == 'FullName' ||
+        fieldName == 'MethodName' ||
+        fieldName == 'TargetName'
+      ) {
+        processed.push(text.toLowerCase())
+      }
+
+      return [...new Set(processed)]
     },
   })
+
   miniSearch.value.addAll(hooks.value)
+
   const endTime = performance.now()
   console.log(`Initialized MiniSearch in ${endTime - startTime}ms`)
 }
@@ -129,7 +162,7 @@ async function loadHooks() {
     categories.value = Array.from(data.keys())
     hooks.value = flatHooks
 
-    await tryLoadMiniSearch()
+    tryLoadMiniSearch()
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
