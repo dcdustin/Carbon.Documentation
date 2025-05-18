@@ -4,8 +4,8 @@ import { getHookFlagsText } from '@/shared/constants'
 import { shallowRef } from 'vue'
 import { ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-import ButtonIconCopy from './ButtonIconCopy.vue'
-import CodeBlock from './CodeBlock.vue'
+import ButtonIconCopy from './Hooks/ButtonIconCopy.vue'
+import CodeBlock from './Hooks/CodeBlock.vue'
 
 const { hook } = defineProps<{
   hook: Hook

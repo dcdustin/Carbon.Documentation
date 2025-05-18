@@ -10,7 +10,7 @@ import SearchBar from './Hooks/SearchBar.vue'
 import CheckBox from './Hooks/CheckBox.vue'
 import OptionSelector from './Hooks/OptionSelector.vue'
 import InfinitePageScroll from './Hooks/InfinitePageScroll.vue'
-import HookCard from './Hooks/HookCard.vue'
+import HookCard from './HookCard.vue'
 import AsyncState from './Hooks/AsyncState.vue'
 import MiniSearch from 'minisearch'
 
