@@ -5,7 +5,7 @@ description: Up to date list of all pre-built-in Carbon commands
 ---
 
 <script setup>
-    import CommandReference from '@/components/CommandReference.vue'
+    import CarbonCommandsIndex from '@/components/CarbonCommandsIndex.vue'
 </script>
 
-<CommandReference />
+<CarbonCommandsIndex />

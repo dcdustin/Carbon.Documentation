@@ -7,7 +7,6 @@ import CarbonBadge from '../components/CarbonBadge.vue'
 import CarbonButton from '../components/CarbonButton.vue'
 import CarbonChange from '../components/CarbonChange.vue'
 import CarbonIcons from '../components/CarbonIcons.vue'
-import SwitchesReference from '../components/SwitchesReference.vue'
 import './style.css'
 
 export default {
@@ -23,7 +22,6 @@ export default {
     app.component('CarbonBadge', CarbonBadge)
     app.component('CarbonChange', CarbonChange)
     app.component('CarbonIcons', CarbonIcons)
-    app.component('SwitchesReference', SwitchesReference)
     enhanceAppWithTabs(app)
   },
 } satisfies Theme

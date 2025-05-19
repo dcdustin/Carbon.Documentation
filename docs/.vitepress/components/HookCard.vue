@@ -94,9 +94,8 @@ function getExampleCode(hook: Hook): string {
   </div>
   <div class="mt-1 flex gap-2">
     <button
-      v-if="getExampleCode(hook)"
       class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
-      @click="() => (isExampleExpanded = !isExampleExpanded)"
+      @click="isExampleExpanded = !isExampleExpanded"
     >
       {{ isExampleExpanded ? 'Hide Example' : 'Show Example' }}
       <ButtonIconCopy :getTextToCopy="() => getExampleCode(hook)" />

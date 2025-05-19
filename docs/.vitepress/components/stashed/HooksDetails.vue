@@ -7,7 +7,7 @@ import { getSingletonHighlighter } from 'shiki'
 import { useData } from 'vitepress'
 import { VPBadge } from 'vitepress/theme'
 import { computed, onMounted, Ref, ref, watch } from 'vue'
-import { getHookFlagsText } from '../shared/constants'
+import { getHookFlagsText } from '@/shared/constants'
 
 const data = useData()
 
