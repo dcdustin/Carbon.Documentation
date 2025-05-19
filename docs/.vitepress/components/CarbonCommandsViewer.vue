@@ -28,7 +28,7 @@ const filteredCommands = computed(() => {
     return commands.value
   }
 
-  const startTime = performance.now()
+  // const startTime = performance.now()
 
   let filtered = commands.value
 
@@ -38,8 +38,8 @@ const filteredCommands = computed(() => {
     filtered = results.map((result) => commandMap.get(result.Name)).filter(Boolean) as CommandCarbon[]
   }
 
-  const endTime = performance.now()
-  console.log(`Filtered commands in ${endTime - startTime}ms`)
+  // const endTime = performance.now()
+  // console.log(`Filtered commands in ${endTime - startTime}ms`)
 
   return filtered
 })
