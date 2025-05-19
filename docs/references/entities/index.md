@@ -3,5 +3,9 @@ layout: page
 title: Entities Reference
 description: Complete reference for all entities in the game
 ---
-<EntitiesReference />
 
+<script setup>
+    import EntitiesReference from '@/components/EntitiesReference.vue'
+</script>
+
+<EntitiesReference />

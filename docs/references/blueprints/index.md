@@ -4,5 +4,8 @@ title: Blueprints Reference
 description: Complete reference for all blueprints in the game
 ---
 
-<BlueprintsReference />
+<script setup>
+    import BlueprintsReference from '@/components/BlueprintsReference.vue'
+</script>
 
+<BlueprintsReference />

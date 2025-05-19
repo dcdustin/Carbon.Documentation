@@ -6,8 +6,7 @@ aside: false
 ---
 
 <script setup>
-import { useData } from 'vitepress'
-const { page } = useData()
+    import ItemPage from '@/components/ItemPage.vue'
 </script>
 
 <ItemPage />

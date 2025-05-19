@@ -3,5 +3,9 @@ layout: page
 title: Switches Reference
 description: A list of all Carbon switches
 ---
-<SwitchesReference />
 
+<script setup>
+    import SwitchesReference from '@/components/SwitchesReference.vue'
+</script>
+
+<SwitchesReference />
