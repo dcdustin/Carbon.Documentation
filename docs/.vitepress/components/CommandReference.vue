@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import { URL_METDAT_CARB_COMMANDS } from '@/api/constants'
+import type { CommandCarbon } from '@/api/metadata/carbon/commands'
+import { fetchCommandsCarbon } from '@/api/metadata/carbon/commands'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import '../theme/style.css'
-import { fetchCommandsCarbon } from '@/api/metadata/carbon/commands'
-import type { CommandCarbon } from '@/api/metadata/carbon/commands'
-import { URL_METDAT_CARB_COMMANDS } from '@/api/constants'
 
 const commands: Ref<CommandCarbon[]> = ref([])
 const isLoading: Ref<boolean> = ref(true)

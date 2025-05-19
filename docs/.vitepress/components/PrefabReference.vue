@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import { URL_METDAT_RUST_PREFABS } from '@/api/constants'
+import type { Prefab } from '@/api/metadata/rust/prefabs'
+import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import '../theme/style.css'
-import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
-import type { Prefab } from '@/api/metadata/rust/prefabs'
-import { URL_METDAT_RUST_PREFABS } from '@/api/constants'
 
 const prefabs: Ref<Prefab[]> = ref([])
 const copiedId = ref<string | number | null>(null)

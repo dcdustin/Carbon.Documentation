@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, Ref } from 'vue'
+import { URL_ASSETS_ITEMS, URL_METDAT_RUST_PREFABS } from '@/api/constants'
+import type { Prefab } from '@/api/metadata/rust/prefabs'
+import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { onMounted, ref, Ref, watch } from 'vue'
 import '../theme/style.css'
-import { URL_ASSETS_ITEMS, URL_METDAT_RUST_PREFABS } from '@/api/constants'
-import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
-import type { Prefab } from '@/api/metadata/rust/prefabs'
 
 const prefab: Ref<Prefab | null> = ref(null)
 const isLoading = ref(true)

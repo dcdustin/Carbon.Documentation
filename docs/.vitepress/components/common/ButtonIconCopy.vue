@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { useTimeoutFn } from '@vueuse/core'
 import { CheckCircle2, Copy } from 'lucide-vue-next'
 import { shallowRef } from 'vue'
-import { useTimeoutFn } from '@vueuse/core'
 
 const { getTextToCopy } = defineProps<{
   getTextToCopy: () => string

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, Ref, ref, watch } from 'vue'
-import { useData } from 'vitepress'
-import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
-import { VPBadge } from 'vitepress/theme'
-import { getSingletonHighlighter } from 'shiki'
-import { getHookFlagsText } from '../shared/constants'
-import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import type { Hook } from '@/api/metadata/carbon/hooks'
+import { fetchHooks } from '@/api/metadata/carbon/hooks'
+import { ArrowLeft, CheckCircle2, Copy, Loader2 } from 'lucide-vue-next'
 import type { Highlighter } from 'shiki'
+import { getSingletonHighlighter } from 'shiki'
+import { useData } from 'vitepress'
+import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, Ref, ref, watch } from 'vue'
+import { getHookFlagsText } from '../shared/constants'
 
 const data = useData()
 

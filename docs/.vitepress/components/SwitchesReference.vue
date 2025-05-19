@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
-import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
-import '../theme/style.css'
-import { fetchSwitches } from '@/api/metadata/carbon/switches'
-import type { Switch } from '@/api/metadata/carbon/switches'
 import { URL_METDAT_CARB_SWITCHES } from '@/api/constants'
+import type { Switch } from '@/api/metadata/carbon/switches'
+import { fetchSwitches } from '@/api/metadata/carbon/switches'
+import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import '../theme/style.css'
 
 const switches: Ref<Switch[]> = ref([])
 const isLoading: Ref<boolean> = ref(true)

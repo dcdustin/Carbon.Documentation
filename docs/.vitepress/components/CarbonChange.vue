@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import CarbonBadge from './CarbonBadge.vue'
-import MarkdownIt from 'markdown-it'
+import MarkdownIt from 'markdown-it';
+import CarbonBadge from './CarbonBadge.vue';
 
 interface Props {
   variant: 'add' | 'fix' | 'update' | 'misc' | 'remove' | 'date'

@@ -31,6 +31,7 @@ class Cache {
   private flushStorageWrites(): void {
     this.pendingStorageWrites.forEach((value, key) => {
       try {
+        // have to be replaced with something like indexedDB, we already exceed the limit of 2.5~5MB of localStorage
         localStorage.setItem(key, value)
       } catch (e) {
         console.warn('Error saving to localStorage:', e)
@@ -84,6 +85,7 @@ class Cache {
       return itemFromMemory
     }
 
+    // have to be replaced with something like indexedDB, we already exceed the limit of 2.5~5MB of localStorage
     const stringFromStorage = localStorage.getItem(id)
     if (stringFromStorage) {
       try {

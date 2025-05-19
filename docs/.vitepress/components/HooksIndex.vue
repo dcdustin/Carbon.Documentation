@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import { Database, ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-
-import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
 import HooksViewer from './HooksViewer.vue'
 </script>
 

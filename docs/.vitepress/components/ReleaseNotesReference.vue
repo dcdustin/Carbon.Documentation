@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
+import { URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
+import type { ChangelogCarbon } from '@/api/metadata/carbon/changelogs'
+import { fetchChangelogsCarbon } from '@/api/metadata/carbon/changelogs'
 import { Database, ExternalLink, GitPullRequestIcon, Loader2, LucideTextCursorInput } from 'lucide-vue-next'
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
-import { fetchChangelogsCarbon } from '@/api/metadata/carbon/changelogs'
-import type { ChangelogCarbon } from '@/api/metadata/carbon/changelogs'
-import { URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
 
 const releaseNotes: Ref<ChangelogCarbon[]> = ref([])
 const isLoading = ref(true)

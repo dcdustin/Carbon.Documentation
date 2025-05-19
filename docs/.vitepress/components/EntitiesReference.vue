@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
+import { URL_METDAT_RUST_ENTITIES } from '@/api/constants'
+import type { Entity } from '@/api/metadata/rust/entities'
+import { fetchEntities } from '@/api/metadata/rust/entities'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import '../theme/style.css'
-import { fetchEntities } from '@/api/metadata/rust/entities'
-import type { Entity } from '@/api/metadata/rust/entities'
-import { URL_METDAT_RUST_ENTITIES } from '@/api/constants'
 
 const entities: Ref<Entity[]> = ref([])
 const copiedId = ref<string | number | null>(null)

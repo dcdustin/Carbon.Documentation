@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Highlighter } from 'shiki'
-import { inject, ShallowRef } from 'vue'
 import { useData } from 'vitepress'
+import { inject, ShallowRef } from 'vue'
 
 const highlighter = inject<Readonly<ShallowRef<Highlighter | null>>>('highlighter')
 const data = useData()

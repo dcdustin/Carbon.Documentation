@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Database, ExternalLink } from 'lucide-vue-next'
-import { URL_METDAT_RUST_LOOT_TABLES } from '@/api/constants'
+import { URL_METDAT_RUST_LOOT_TABLES } from '@/api/constants';
+import { Database, ExternalLink } from 'lucide-vue-next';
 
 const LINK_API = URL_METDAT_RUST_LOOT_TABLES
 </script>

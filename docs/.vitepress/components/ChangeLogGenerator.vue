@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { ref, Ref, watch } from 'vue'
-import CarbonBadge from './CarbonBadge.vue'
 import { CircleX } from 'lucide-vue-next'
+import { ref, Ref, watch } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
+import CarbonBadge from './CarbonBadge.vue'
 
 class Change {
   private static __idCounter: number = 0
