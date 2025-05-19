@@ -22,7 +22,7 @@ function getBadgeType(commandTypeText: string) {
 <template>
   <div class="flex flex-col gap-1">
     <div class="flex flex-row gap-2 items-center">
-      <h1 class="font-mono">{{ command.Name }}</h1>
+      <h3 class="font-mono">{{ command.Name }}</h3>
       <ButtonIconCopy
         :getTextToCopy="() => command.Name"
         :title="`Copy command name: ${command.Name}`"
