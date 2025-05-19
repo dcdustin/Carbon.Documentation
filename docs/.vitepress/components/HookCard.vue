@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Hook } from '@/api/metadata/carbon/hooks'
-import { getHookFlagsText } from '@/shared/constants'
-import { shallowRef } from 'vue'
-import { ExternalLink } from 'lucide-vue-next'
-import { VPBadge } from 'vitepress/theme'
 import ButtonIconCopy from '@/components/common/ButtonIconCopy.vue'
 import CodeBlock from '@/components/common/CodeBlock.vue'
+import { getHookFlagsText } from '@/shared/constants'
+import { ExternalLink } from 'lucide-vue-next'
+import { VPBadge } from 'vitepress/theme'
+import { shallowRef } from 'vue'
 
 const { hook } = defineProps<{
   hook: Hook

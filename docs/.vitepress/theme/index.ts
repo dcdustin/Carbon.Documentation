@@ -1,14 +1,14 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
 import type { Theme } from 'vitepress'
+import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import DefaultTheme from 'vitepress/theme'
-import './style.css'
-import CarbonButton from '../components/CarbonButton.vue'
+import { h } from 'vue'
 import CarbonBadge from '../components/CarbonBadge.vue'
+import CarbonButton from '../components/CarbonButton.vue'
 import CarbonChange from '../components/CarbonChange.vue'
 import CarbonIcons from '../components/CarbonIcons.vue'
-import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
 import SwitchesReference from '../components/SwitchesReference.vue'
+import './style.css'
 
 export default {
   extends: DefaultTheme,

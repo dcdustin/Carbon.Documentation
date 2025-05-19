@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
-import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
-import { getItemCategoryText, getItemFlagText, getItemRarityText } from '../shared/constants'
-import { VPBadge } from 'vitepress/theme'
-import '../theme/style.css'
-import { fetchItems } from '@/api/metadata/rust/items'
-import type { Item } from '@/api/metadata/rust/items'
 import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_ITEMS } from '@/api/constants'
+import type { Item } from '@/api/metadata/rust/items'
+import { fetchItems } from '@/api/metadata/rust/items'
+import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } from 'lucide-vue-next'
+import { VPBadge } from 'vitepress/theme'
+import { onMounted, ref, Ref, watch } from 'vue'
+import { getItemCategoryText, getItemFlagText, getItemRarityText } from '../shared/constants'
+import '../theme/style.css'
 
 const item: Ref<Item | null> = ref(null)
 const isLoading = ref(true)

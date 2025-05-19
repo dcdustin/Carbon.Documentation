@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, Ref } from 'vue'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
+import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
+import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import {
   CheckCircle2,
   Clock,
@@ -14,17 +16,15 @@ import {
   Wrench,
   X,
 } from 'lucide-vue-next'
+import { VPBadge } from 'vitepress/theme'
+import { onMounted, ref, Ref, watch } from 'vue'
 import {
   CATEGORY_COLORS,
   getItemCategoryText,
   getItemRarityText,
   RARITY_COLORS,
 } from '../shared/constants'
-import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
-import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
-import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)

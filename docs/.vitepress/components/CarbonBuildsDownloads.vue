@@ -1,8 +1,8 @@
 ﻿<script lang="ts" setup>
-import { Ref, ref } from 'vue'
 import { VPBadge } from 'vitepress/theme'
-import CarbonIcons from './CarbonIcons.vue'
+import { Ref, ref } from 'vue'
 import CarbonButton from './CarbonButton.vue'
+import CarbonIcons from './CarbonIcons.vue'
 
 class ReleaseBuild {
   private static __idCounter: number = 0

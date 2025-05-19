@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import { URL_METDAT_CARB_CONVARS } from '@/api/constants'
+import type { ConVarCarbon } from '@/api/metadata/carbon/convars'
+import { fetchConVarsCarbon } from '@/api/metadata/carbon/convars'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import '../theme/style.css'
-import { fetchConVarsCarbon } from '@/api/metadata/carbon/convars'
-import type { ConVarCarbon } from '@/api/metadata/carbon/convars'
-import { URL_METDAT_CARB_CONVARS } from '@/api/constants'
 
 const convars: Ref<ConVarCarbon[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)

@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
-import { Search } from 'lucide-vue-next'
-
-import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import type { Hook } from '@/api/metadata/carbon/hooks'
-import { getSingletonHighlighter } from 'shiki'
-import type { Highlighter } from 'shiki'
-import SearchBar from '@/components/common/SearchBar.vue'
-import CheckBox from '@/components/common/CheckBox.vue'
-import OptionSelector from '@/components/common/OptionSelector.vue'
-import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
-import HookCard from './HookCard.vue'
+import { fetchHooks } from '@/api/metadata/carbon/hooks'
 import AsyncState from '@/components/common/AsyncState.vue'
-import MiniSearch from 'minisearch'
+import CheckBox from '@/components/common/CheckBox.vue'
+import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
+import OptionSelector from '@/components/common/OptionSelector.vue'
+import SearchBar from '@/components/common/SearchBar.vue'
 import { store } from '@/stores/hooks-store'
+import { Search } from 'lucide-vue-next'
+import MiniSearch from 'minisearch'
+import type { Highlighter } from 'shiki'
+import { getSingletonHighlighter } from 'shiki'
+import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
+import HookCard from './HookCard.vue'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)

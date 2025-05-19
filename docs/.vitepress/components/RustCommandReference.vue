@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
+import { URL_METDAT_RUST_COMMANDS } from '@/api/constants'
+import type { CommandRust } from '@/api/metadata/rust/commands'
+import { fetchCommandsRust } from '@/api/metadata/rust/commands'
 import { Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
 import '../theme/style.css'
-import { fetchCommandsRust } from '@/api/metadata/rust/commands'
-import type { CommandRust } from '@/api/metadata/rust/commands'
-import { URL_METDAT_RUST_COMMANDS } from '@/api/constants'
 
 const commands: Ref<CommandRust[]> = ref([])
 const isLoading = ref(true)

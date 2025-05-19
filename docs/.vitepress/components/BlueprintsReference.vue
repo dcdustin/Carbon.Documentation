@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
+import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
+import type { Blueprint, Ingredient } from '@/api/metadata/rust/blueprints'
+import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
 import {
   CheckCircle2,
   Clock,
@@ -15,18 +17,15 @@ import {
   Wrench,
   X,
 } from 'lucide-vue-next'
+import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, Ref, ref, watch } from 'vue'
 import {
   CATEGORY_COLORS,
   getItemCategoryText,
   getItemRarityText,
   RARITY_COLORS,
 } from '../shared/constants'
-import { VPBadge } from 'vitepress/theme'
 import '../theme/style.css'
-import { fetchBlueprints } from '@/api/metadata/rust/blueprints'
-import type { Blueprint } from '@/api/metadata/rust/blueprints'
-import type { Ingredient } from '@/api/metadata/rust/blueprints'
-import { URL_ASSETS_ITEMS, URL_ASSETS_MISSING, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 
 const blueprints: Ref<Blueprint[]> = ref([])
 const copiedId: Ref<string | null> = ref(null)

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
+import { URL_METDAT_RUST_CONVARS } from '@/api/constants'
+import type { ConVarRust } from '@/api/metadata/rust/convars'
+import { fetchConVarsRust } from '@/api/metadata/rust/convars'
 import { CheckCircle2, Copy, Database, ExternalLink, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import { computed, onMounted, onUnmounted, Ref, ref } from 'vue'
 import '../theme/style.css'
-import { fetchConVarsRust } from '@/api/metadata/rust/convars'
-import type { ConVarRust } from '@/api/metadata/rust/convars'
-import { URL_METDAT_RUST_CONVARS } from '@/api/constants'
 
 const convars: Ref<ConVarRust[]> = ref([])
 const copiedId = ref<string | null>(null)

@@ -13,8 +13,8 @@ defineProps<{
     <template v-if="isLoading">
       <slot name="loading">
         <div class="flex items-center justify-center py-8 gap-2">
-            <Loader2 class="animate-spin" :size="24" />
-            <span>{{ loadingText || 'Loading...' }}</span>
+          <Loader2 class="animate-spin" :size="24" />
+          <span>{{ loadingText || 'Loading...' }}</span>
         </div>
       </slot>
     </template>
