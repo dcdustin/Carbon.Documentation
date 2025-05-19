@@ -3,7 +3,9 @@ import type { CommandCarbon } from '@/api/metadata/carbon/commands'
 import { fetchCommandsCarbon } from '@/api/metadata/carbon/commands'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
+import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { store } from '@/stores/carbon-commands-store'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
@@ -15,6 +17,9 @@ const error = shallowRef<string | null>(null)
 const commands = shallowRef<CommandCarbon[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
+const categories = shallowRef<string[]>([])
+const selectedCategory = store.chosenCategory
+
 const debouncedSearchValue = shallowRef('')
 
 const pageSize = 25
@@ -24,13 +29,17 @@ const filteredCommands = computed(() => {
     return []
   }
 
-  if (!debouncedSearchValue.value) {
+  if (!debouncedSearchValue.value && selectedCategory.value == 'All') {
     return commands.value
   }
 
   // const startTime = performance.now()
 
   let filtered = commands.value
+
+  if (selectedCategory.value != 'All') {
+    filtered = filtered.filter((command) => getCommandTypeText(command.AuthLevel) == selectedCategory.value)
+  }
 
   if (debouncedSearchValue.value && miniSearch.value) {
     const results = miniSearch.value.search(debouncedSearchValue.value)
@@ -101,6 +110,10 @@ async function loadCommands() {
 
     commands.value = data
 
+    categories.value = [
+      ...new Set([...new Set(data.map((command) => command.AuthLevel))].map(getCommandTypeText)),
+    ]
+
     tryLoadMiniSearch()
   } catch (err) {
     console.error('Failed to load commands:', err)
@@ -108,6 +121,16 @@ async function loadCommands() {
   } finally {
     isLoading.value = false
   }
+}
+
+function getCommandTypeText(authLevel: number) {
+  if (authLevel <= 0) {
+    return 'User'
+  }
+  if (authLevel == 1) {
+    return 'Moderator'
+  }
+  return 'Admin'
 }
 
 onMounted(async () => {
@@ -125,6 +148,9 @@ onMounted(async () => {
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
+      <template #right>
+        <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
+      </template>
     </SearchBar>
     <div v-if="filteredCommands && filteredCommands.length">
       <div class="flex flex-col gap-5 mt-4">
@@ -138,7 +164,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-for="command in renderedList" :key="command.Name" :id="command.Name">
-            <CommandCard :command="command" />
+            <CommandCard :command="command" :commandTypeText="getCommandTypeText(command.AuthLevel)" />
           </div>
         </InfinitePageScroll>
       </div>
