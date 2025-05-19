@@ -17,8 +17,6 @@ import BlueprintPage from '../components/BlueprintPage.vue'
 import LootTableList from '../components/LootTableList.vue'
 import CarbonIcons from '../components/CarbonIcons.vue'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
-import HooksIndex from '../components/HooksIndex.vue'
-import HooksDetails from '../components/HooksDetails.vue'
 import CommandReference from '../components/CommandReference.vue'
 import ConVarReference from '../components/ConVarReference.vue'
 import SwitchesReference from '../components/SwitchesReference.vue'
@@ -48,8 +46,6 @@ export default {
     app.component('BlueprintPage', BlueprintPage)
     app.component('LootTableList', LootTableList)
     app.component('CarbonIcons', CarbonIcons)
-    app.component('HooksIndex', HooksIndex)
-    app.component('HooksDetails', HooksDetails)
     app.component('CommandReference', CommandReference)
     app.component('ConVarReference', ConVarReference)
     app.component('SwitchesReference', SwitchesReference)
