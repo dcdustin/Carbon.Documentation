@@ -13,6 +13,7 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import HookCard from './HookCard.vue'
 import AsyncState from '@/components/common/AsyncState.vue'
 import MiniSearch from 'minisearch'
+import { store } from '@/stores/hooks-store'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
@@ -24,9 +25,9 @@ const hooks = shallowRef<Hook[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
-const selectedCategory = shallowRef('All')
-const showOxideHooks = shallowRef(true)
-const showCarbonHooks = shallowRef(true)
+const selectedCategory = store.chosenCategory
+const showOxideHooks = store.showOxideHooks
+const showCarbonHooks = store.showCarbonHooks
 
 const debouncedSearchValue = shallowRef('')
 
