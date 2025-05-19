@@ -5,7 +5,7 @@ description: All available CarbonAuto variables, expanding on Rust's possibiliti
 ---
 
 <script setup>
-    import ConVarReference from '@/components/ConVarReference.vue'
+    import CarbonConvarsIndex from '@/components/CarbonConvarsIndex.vue'
 </script>
 
-<ConVarReference />
+<CarbonConvarsIndex />
