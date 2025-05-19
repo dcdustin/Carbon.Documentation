@@ -5,7 +5,7 @@ description: A list of all Carbon switches
 ---
 
 <script setup>
-    import SwitchesReference from '@/components/SwitchesReference.vue'
+    import CarbonSwitchesIndex from '@/components/CarbonSwitchesIndex.vue'
 </script>
 
-<SwitchesReference />
+<CarbonSwitchesIndex />
