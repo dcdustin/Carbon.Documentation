@@ -5,10 +5,7 @@ import { fetchItems } from '@/api/metadata/rust/items'
 import { CheckCircle2, Copy, Database, ExternalLink, Image, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { computed, onMounted, onUnmounted, ref, Ref, watch } from 'vue'
-import {
-  getItemCategoryText,
-  getItemRarityText,
-} from '../shared/constants'
+import { getItemCategoryText, getItemRarityText } from '@/shared/constants'
 import '../theme/style.css'
 
 const items: Ref<Item[]> = ref([])
