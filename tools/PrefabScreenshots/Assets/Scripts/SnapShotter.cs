@@ -20,6 +20,9 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public Vector2 NormalResolution, SideResolution;
 
 	public static Shader StandardShader => Shader.Find("Universal Render Pipeline/Lit");
+	public static readonly int RustMainTexId = Shader.PropertyToID("_MainTex");
+	public static readonly int RustNormalMapId = Shader.PropertyToID("_BumpMap");
+	public static readonly int MainTexId = Shader.PropertyToID("_BaseMap");
 
 	[Header("Auto-Scaling")] public float SizingMultiplier = 1f;
 	public Camera Camera;
@@ -170,12 +173,21 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 	public void SetIndex(int index)
 	{
-		if (Pivot.childCount == 0) return;
+		if (Index == index || Pivot.childCount == 0)
+		{
+			return;
+		}
 
 		Index = index;
 
-		if (index > Pivot.childCount - 1) Index = Pivot.childCount - 1;
-		else if (index < 0) Index = 0;
+		if (index > Pivot.childCount - 1)
+		{
+			Index = Pivot.childCount - 1;
+		}
+		else if (index < 0)
+		{
+			Index = 0;
+		}
 
 		foreach (Transform c in Pivot)
 		{
@@ -209,7 +221,12 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			{
 				foreach (var material in meshRenderer.sharedMaterials)
 				{
+					var rustTex = material.GetTexture(RustMainTexId);
 					material.shader = StandardShader;
+					if (rustTex)
+					{
+						material.mainTexture = rustTex;
+					}
 				}
 			}
 
