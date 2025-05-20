@@ -7,7 +7,7 @@ import BlueprintsViewer from './BlueprintsViewer.vue'
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="flex flex-col gap-4 mb-4">
-      <h1 class="text-2xl font-bold">Rust Game Blueprints Reference</h1>
+      <h1 class="text-2xl font-bold">Rust Blueprints Reference</h1>
       <p>
         This section contains a comprehensive list of all crafting blueprints available in the game. Each
         blueprint shows the item details, crafting requirements, and research costs.

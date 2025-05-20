@@ -214,7 +214,7 @@ onUnmounted(() => {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Rust Game Items Reference</h1>
+    <h1 class="text-2xl font-bold mb-4">Rust Items Reference</h1>
     <p class="mb-8">
       This section contains a comprehensive list of all items available in the game. Each item is listed with
       its unique ID, components, and file path.
