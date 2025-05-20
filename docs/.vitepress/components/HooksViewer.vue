@@ -121,6 +121,10 @@ function tryLoadMiniSearch() {
         .split(SPACE_OR_PUNCTUATION)
         .filter((token) => token.length > 1)
 
+      if (!fieldName) {
+        processed.push(text.toLowerCase())
+      }
+
       if (
         fieldName == 'Name' ||
         fieldName == 'FullName' ||
