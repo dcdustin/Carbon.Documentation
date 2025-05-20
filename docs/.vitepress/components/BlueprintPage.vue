@@ -242,6 +242,7 @@ watch(
               :style="{ backgroundColor: CATEGORY_COLORS[blueprint.Item.Category as keyof typeof CATEGORY_COLORS], color: '#fff' }"
             />
             <VPBadge
+              v-if="blueprint.Item.Rarity != 0"
               :text="getItemRarityText(blueprint.Item.Rarity)"
               class="opacity-75"
               :style="{ backgroundColor: RARITY_COLORS[blueprint.Item.Rarity as keyof typeof RARITY_COLORS], color: '#fff' }"
