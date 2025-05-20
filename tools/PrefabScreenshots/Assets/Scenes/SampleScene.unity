@@ -160,8 +160,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.08627451, g: 0.08627451, b: 0.08627451, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -483,13 +483,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778213605}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.11344119, y: -0.3727586, z: 0.046988882, w: 0.9197686}
+  m_LocalPosition: {x: 0, y: -0.25, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -10, y: -45, z: 10}
 --- !u!114 &778213607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,16 +502,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a67006a921be4baba3af137a838f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResolutionMultiply: 2
-  NormalResolution: {x: 0, y: 0}
-  SideResolution: {x: 0, y: 0}
+  ResolutionMultiply: 1.5
+  NormalResolution: {x: 1366, y: 768}
+  SideResolution: {x: 1366, y: 768}
   SizingMultiplier: 1
-  Camera: {fileID: 0}
+  Camera: {fileID: 330585545}
   CameraScalerOffset: {x: 0, y: 0, z: 0}
-  Index: 0
+  Index: -1
   Pivot: {fileID: 778213606}
-  Volume: {fileID: 0}
-  Layer: {fileID: 0}
+  Volume: {fileID: 330585548}
+  Layer: {fileID: 330585549}
   SilhouetteProfile: {fileID: 11400000, guid: a13e368108745304da0a9ed0fee3ff5e, type: 2}
   Models: []
   Box: {fileID: 0}
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e5d862c4611fa439900bb6887e6e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundlename: 
+  bundlename: D:\Software\Steam\steamapps\common\Rust\Bundles\Bundles
 --- !u!114 &778213609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3b9b661a4bca408ddc9a7b8b669b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldLoader: {fileID: 0}
+  WorldLoader: {fileID: 778213608}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

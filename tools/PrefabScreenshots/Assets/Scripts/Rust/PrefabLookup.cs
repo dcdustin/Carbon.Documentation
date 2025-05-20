@@ -35,7 +35,7 @@ public class PrefabLookup : System.IDisposable
 		scene = SceneManager.GetSceneAt ( SceneManager.sceneCount - 1 );
         Debug.Log ( $"Prewarming prefabs..." );
 
-        asyncOperation.completed += ( operation ) =>
+        asyncOperation.completed += _ =>
 		{
 			foreach ( var go in scene.GetRootGameObjects () )
 			{

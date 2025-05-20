@@ -16,361 +16,377 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class SnapShotter : SingletonComponent<SnapShotter>
 {
-    public float ResolutionMultiply = 2f;
-    public Vector2 NormalResolution, SideResolution;
+	public float ResolutionMultiply = 2f;
+	public Vector2 NormalResolution, SideResolution;
 
-    [Header ( "Auto-Scaling" )]
-    public float SizingMultiplier = 1f;
-    public Camera Camera;
-    public Vector3 CameraScalerOffset;
-    public int Index;
-    public Transform Pivot;
-    public PostProcessVolume Volume;
-    public PostProcessLayer Layer;
-    public PostProcessProfile SilhouetteProfile;
-    public GameObject [] Models;
-    public BoxCollider Box;
-    public Quaternion ZeroRotation;
+	public static Shader StandardShader => Shader.Find("Universal Render Pipeline/Lit");
 
-    internal int _lastCount;
+	[Header("Auto-Scaling")] public float SizingMultiplier = 1f;
+	public Camera Camera;
+	public Vector3 CameraScalerOffset;
+	public int Index;
+	public Transform Pivot;
+	public PostProcessVolume Volume;
+	public PostProcessLayer Layer;
+	public PostProcessProfile SilhouetteProfile;
+	public GameObject[] Models;
+	public BoxCollider Box;
+	public Quaternion ZeroRotation;
 
-    public static string Folder
-    {
-        get
-        {
-            var folder = $"Assets\\Shots";
-            OsEx.Folder.Create ( folder );
-            return folder;
-        }
-    }
+	internal int _lastCount;
 
-    public void Update ()
-    {
-        if ( _lastCount != Pivot.childCount )
-        {
-            Index = Pivot.childCount - 1;
-            RefreshModels ();
-            _lastCount = Pivot.childCount;
-        }
+	public static string Folder
+	{
+		get
+		{
+			var folder = $"Assets\\Shots";
+			OsEx.Folder.Create(folder);
+			return folder;
+		}
+	}
 
-        if ( Models.Length == 0 )
-        {
-            RefreshModels ();
-        }
+	public void Update()
+	{
+		if (_lastCount != Pivot.childCount)
+		{
+			Index = Pivot.childCount - 1;
+			RefreshModels();
+			_lastCount = Pivot.childCount;
+		}
 
-        SetIndex ( Index );
-    }
+		if (Models.Length == 0)
+		{
+			RefreshModels();
+		}
 
-    public void OnAssetsLoaded ( Dictionary<uint, GameObject> assets )
-    {
-        foreach ( var asset in assets )
-        {
-            asset.Value.transform.SetParent ( transform, true );
-            asset.Value.transform.position = transform.position;
-            asset.Value.transform.rotation = Quaternion.Euler ( Vector3.zero );
-        }
+		SetIndex(Index);
+	}
 
-        Models = assets.Select ( x => x.Value ).ToArray ();
-    }
-    public void RefreshModels ()
-    {
-        var models = new List<GameObject> ();
+	public void OnAssetsLoaded(Dictionary<uint, GameObject> assets)
+	{
+		foreach (var asset in assets)
+		{
+			asset.Value.transform.SetParent(transform, true);
+			asset.Value.transform.position = transform.position;
+			asset.Value.transform.rotation = Quaternion.Euler(Vector3.zero);
+		}
 
-        foreach ( Transform child in Pivot )
-        {
-            models.Add ( child.gameObject );
-        }
+		Models = assets.Select(x => x.Value).ToArray();
+	}
 
-        Models = models.ToArray ();
-        models.Clear ();
-    }
-    public void TakeSnapshot ( bool side = false )
-    {
-        var child = GetIndex ( Index );
-        var lastChildPosition = child == null ? Vector3.zero : child.transform.position;
-        var lastChildRotation = child == null ? Vector3.zero : child.rotation.eulerAngles;
-        var lastPivotPosition = Pivot.transform.position;
-        var lastPivotRotation = Pivot.transform.rotation.eulerAngles;
-        var lastCameraRotation = Camera.transform.rotation.eulerAngles;
-        var lastProfile = Volume.profile;
-        var lastAliasing = Layer.antialiasingMode;
+	public void RefreshModels()
+	{
+		var models = new List<GameObject>();
 
-        if ( side )
-        {
-            // Camera.transform.LookAt ( _getCenter ( child ) );
-            Layer.antialiasingMode = PostProcessLayer.Antialiasing.None;
-            Volume.profile = SilhouetteProfile;
-            Pivot.transform.rotation = Quaternion.Euler ( Vector3.zero );
+		foreach (Transform child in Pivot)
+		{
+			models.Add(child.gameObject);
+		}
 
-            if ( child != null )
-            {
-                child.transform.position = Vector3.zero;
-                child.rotation = Quaternion.Euler ( 0f, 90f, 0f );
-            }
-        }
+		Models = models.ToArray();
+		models.Clear();
+	}
 
-        var renderTexture = new RenderTexture ( (int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply), ( int )((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 8 );
-        Camera.targetTexture = renderTexture;
-        Camera.Render ();
+	public void TakeSnapshot(bool side = false)
+	{
+		var child = GetIndex(Index);
+		var lastChildPosition = child == null ? Vector3.zero : child.transform.position;
+		var lastChildRotation = child == null ? Vector3.zero : child.rotation.eulerAngles;
+		var lastPivotPosition = Pivot.transform.position;
+		var lastPivotRotation = Pivot.transform.rotation.eulerAngles;
+		var lastCameraRotation = Camera.transform.rotation.eulerAngles;
+		var lastProfile = Volume.profile;
+		var lastAliasing = Layer.antialiasingMode;
 
-        RenderTexture.active = renderTexture;
+		if (side)
+		{
+			// Camera.transform.LookAt ( _getCenter ( child ) );
+			Layer.antialiasingMode = PostProcessLayer.Antialiasing.None;
+			Volume.profile = SilhouetteProfile;
+			Pivot.transform.rotation = Quaternion.Euler(Vector3.zero);
 
-        var image = new Texture2D ( renderTexture.width, renderTexture.height );
-        image.ReadPixels ( new Rect ( 0, 0, renderTexture.width, renderTexture.height ), 0, 0 );
-        image.Apply ();
+			if (child != null)
+			{
+				child.transform.position = Vector3.zero;
+				child.rotation = Quaternion.Euler(0f, 90f, 0f);
+			}
+		}
 
-        var bytes = image.EncodeToPNG ();
+		var renderTexture =
+			new RenderTexture((int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply),
+				(int)((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 8);
+		Camera.targetTexture = renderTexture;
+		Camera.Render();
 
-        RenderTexture.active = null;
-        Camera.targetTexture = null;
-        DestroyImmediate ( image );
-        DestroyImmediate ( renderTexture );
+		RenderTexture.active = renderTexture;
 
-        try
-        {
-            var name = Pivot.childCount > 0 ? Path.GetFileName ( Pivot.GetChild ( Index ).name ) : "sample";
-            var path = $"{Folder}\\{name.ToLower ()}_icon{( side ? ".side" : "" )}.png";
-            OsEx.File.Create ( path, bytes );
-            DebugEx.Log ( $"Taken icon screenshot: {path} ({ByteEx.Format ( bytes.Length, shortName: true )})" );
-        }
-        catch ( Exception ex )
-        {
-            Debug.LogWarning ( $"{Index} failed / {Pivot.childCount - 1}\n{ex}" );
-        }
+		var image = new Texture2D(renderTexture.width, renderTexture.height);
+		image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+		image.Apply();
 
-        if ( side )
-        {
-            Camera.transform.rotation = Quaternion.Euler ( lastCameraRotation );
-            Layer.antialiasingMode = lastAliasing;
-            Volume.profile = lastProfile;
-            Pivot.transform.position = lastPivotPosition;
-            Pivot.rotation = Quaternion.Euler ( lastPivotRotation );
+		var bytes = image.EncodeToPNG();
 
-            if ( child != null )
-            {
-                child.transform.position = lastChildPosition;
-                child.transform.rotation = Quaternion.Euler ( lastChildRotation );
-            }
-        }
-    }
+		RenderTexture.active = null;
+		Camera.targetTexture = null;
+		DestroyImmediate(image);
+		DestroyImmediate(renderTexture);
 
-    internal Vector3 _getCenter ( Transform obj )
-    {
-        var renderer = obj.GetComponent<Renderer> ();
+		try
+		{
+			var name = Pivot.childCount > 0 ? Path.GetFileName(Pivot.GetChild(Index).name) : "sample";
+			var path = $"{Folder}\\{name.ToLower()}_icon{(side ? ".side" : "")}.png";
+			OsEx.File.Create(path, bytes);
+			DebugEx.Log($"Taken icon screenshot: {path} ({ByteEx.Format(bytes.Length, shortName: true)})");
+		}
+		catch (Exception ex)
+		{
+			Debug.LogWarning($"{Index} failed / {Pivot.childCount - 1}\n{ex}");
+		}
 
-        if ( renderer != null ) return renderer.bounds.center;
+		if (side)
+		{
+			Camera.transform.rotation = Quaternion.Euler(lastCameraRotation);
+			Layer.antialiasingMode = lastAliasing;
+			Volume.profile = lastProfile;
+			Pivot.transform.position = lastPivotPosition;
+			Pivot.rotation = Quaternion.Euler(lastPivotRotation);
 
-        return Vector3.zero;
-    }
+			if (child != null)
+			{
+				child.transform.position = lastChildPosition;
+				child.transform.rotation = Quaternion.Euler(lastChildRotation);
+			}
+		}
+	}
 
-    public void SetIndex ( int index )
-    {
-        if ( Pivot.childCount == 0 ) return;
+	internal Vector3 _getCenter(Transform obj)
+	{
+		var renderer = obj.GetComponent<Renderer>();
 
-        Index = index;
+		if (renderer != null) return renderer.bounds.center;
 
-        if ( index > Pivot.childCount - 1 ) Index = Pivot.childCount - 1;
-        else if ( index < 0 ) Index = 0;
+		return Vector3.zero;
+	}
 
-        foreach ( Transform c in Pivot )
-        {
-            c.gameObject.SetActive ( false );
-        }
+	public void SetIndex(int index)
+	{
+		if (Pivot.childCount == 0) return;
 
-        var child = Pivot.GetChild ( index );
-        child.gameObject.SetActive ( true );
+		Index = index;
 
-        ProcessPrefabMissingMaterials ( child.gameObject );
-        // ScalePrefabToCamera ( child.gameObject );
-        // ScaleObjectsToFitBox ( child.gameObject );
-        CameraDistanceToFit ( child.gameObject );
-    }
-    public Transform GetIndex ( int index )
-    {
-        if ( Pivot.childCount == 0 ) return null;
+		if (index > Pivot.childCount - 1) Index = Pivot.childCount - 1;
+		else if (index < 0) Index = 0;
 
-        return Pivot.GetChild ( index );
-    }
+		foreach (Transform c in Pivot)
+		{
+			c.gameObject.SetActive(false);
+		}
 
-    internal Material [] _blank = new Material [ 0 ];
+		var child = Pivot.GetChild(index);
+		child.gameObject.SetActive(true);
 
-    public void ProcessPrefabMissingMaterials ( GameObject prefab )
-    {
-        foreach ( Transform tr in prefab.transform )
-        {
-            var meshRenderer = tr.GetComponent<MeshRenderer> ();
-            if ( meshRenderer != null &&
-                meshRenderer.materials.Length > 0 &&
-                meshRenderer.materials.Any ( x => x == null || x.name.Contains("Default-Material" )) )
-            {
-                meshRenderer.materials = _blank;
-            }
+		ProcessPrefabMissingMaterials(child.gameObject);
+		// ScalePrefabToCamera ( child.gameObject );
+		// ScaleObjectsToFitBox ( child.gameObject );
+		CameraDistanceToFit(child.gameObject);
+	}
 
-            ProcessPrefabMissingMaterials ( tr.gameObject );
-        }
-    }
-    public void ScalePrefabToCamera ( GameObject prefab )
-    {
-        var filters = Pool.GetList<MeshFilter> ();
+	public Transform GetIndex(int index)
+	{
+		if (Pivot.childCount == 0) return null;
 
-        var initialFilter = prefab.GetComponent<MeshFilter> ();
-        if ( initialFilter != null ) filters.Add ( initialFilter );
-        filters.AddRange ( prefab.GetComponentsInChildren<MeshFilter> () );
+		return Pivot.GetChild(index);
+	}
 
-        var meshBounds = GetTotalBounds ( filters.ToArray () );
+	internal Material[] _blank = new Material [0];
 
-        // Calculate the size of the bounds in world units
-        float meshSize = Mathf.Max ( meshBounds.size.x, meshBounds.size.y, meshBounds.size.z );
+	public void ProcessPrefabMissingMaterials(GameObject prefab)
+	{
+		foreach (Transform tr in prefab.transform)
+		{
+			var meshRenderer = tr.GetComponent<MeshRenderer>();
+			if (meshRenderer != null)
+			{
+				foreach (var material in meshRenderer.sharedMaterials)
+				{
+					material.shader = StandardShader;
+				}
+			}
 
-        // Calculate the distance from the camera to the object
-        Vector3 cameraToObject = prefab.transform.position - Camera.transform.position;
-        float distance = Vector3.Dot ( cameraToObject, Camera.transform.forward );
+			ProcessPrefabMissingMaterials(tr.gameObject);
+		}
+	}
 
-        // Calculate the size of the bounds in pixels
-        float meshSizeInPixels = meshSize * Camera.pixelHeight / ( 2 * distance * Mathf.Tan ( Camera.fieldOfView * 0.5f * Mathf.Deg2Rad ) );
+	public void ScalePrefabToCamera(GameObject prefab)
+	{
+		var filters = Pool.GetList<MeshFilter>();
 
-        // Scale the object to fit the screen
-        prefab.transform.rotation = ZeroRotation;
-        prefab.transform.localScale = Vector3.one * ( meshSizeInPixels / Screen.height );
-    }
-    void ScaleObjectsToFitBox ( GameObject prefab )
-    {
-        var filters = Pool.GetList<MeshFilter> ();
+		var initialFilter = prefab.GetComponent<MeshFilter>();
+		if (initialFilter != null) filters.Add(initialFilter);
+		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
 
-        var initialFilter = prefab.GetComponent<MeshFilter> ();
-        if ( initialFilter != null ) filters.Add ( initialFilter );
-        filters.AddRange ( prefab.GetComponentsInChildren<MeshFilter> () );
+		var meshBounds = GetTotalBounds(filters.ToArray());
 
-        var totalBounds = GetTotalBounds ( filters.ToArray() );
-        Pool.FreeList ( ref filters );
+		// Calculate the size of the bounds in world units
+		float meshSize = Mathf.Max(meshBounds.size.x, meshBounds.size.y, meshBounds.size.z);
 
-        float sizeFactor = Mathf.Max ( totalBounds.size.x / Box.size.x, totalBounds.size.y / Box.size.y, totalBounds.size.z / Box.size.z );
+		// Calculate the distance from the camera to the object
+		Vector3 cameraToObject = prefab.transform.position - Camera.transform.position;
+		float distance = Vector3.Dot(cameraToObject, Camera.transform.forward);
 
-        prefab.transform.rotation = ZeroRotation;
-        prefab.transform.localScale = Vector3.one * sizeFactor;
+		// Calculate the size of the bounds in pixels
+		float meshSizeInPixels = meshSize * Camera.pixelHeight /
+		                         (2 * distance * Mathf.Tan(Camera.fieldOfView * 0.5f * Mathf.Deg2Rad));
 
-        totalBounds = default;
-    }
-    void CameraDistanceToFit(GameObject prefab )
-    {
-        var filters = Pool.GetList<MeshFilter> ();
+		// Scale the object to fit the screen
+		prefab.transform.rotation = ZeroRotation;
+		prefab.transform.localScale = Vector3.one * (meshSizeInPixels / Screen.height);
+	}
 
-        var initialFilter = prefab.GetComponent<MeshFilter> ();
-        if ( initialFilter != null ) filters.Add ( initialFilter );
-        filters.AddRange ( prefab.GetComponentsInChildren<MeshFilter> () );
+	void ScaleObjectsToFitBox(GameObject prefab)
+	{
+		var filters = Pool.GetList<MeshFilter>();
 
-        var totalBounds = GetTotalBounds ( filters.ToArray () );
-        Pool.FreeList ( ref filters );
+		var initialFilter = prefab.GetComponent<MeshFilter>();
+		if (initialFilter != null) filters.Add(initialFilter);
+		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
 
-        var objectHeight = totalBounds.size.y;
-        var distance = objectHeight / ( 2f * Camera.orthographicSize );
-        prefab.transform.rotation = ZeroRotation;
-        prefab.transform.position = transform.position + totalBounds.center;
-        Camera.transform.position = totalBounds.center - distance *Camera.transform.forward;
-    }
-    internal Bounds GetTotalBounds ( MeshFilter [] meshFilters )
-    {
-        if ( meshFilters == null || meshFilters.Length == 0 )
-        {
-            return new Bounds ();
-        }
+		var totalBounds = GetTotalBounds(filters.ToArray());
+		Pool.FreeList(ref filters);
 
-        var totalBounds = meshFilters [ 0 ].mesh.bounds;
+		float sizeFactor = Mathf.Max(totalBounds.size.x / Box.size.x, totalBounds.size.y / Box.size.y,
+			totalBounds.size.z / Box.size.z);
 
-        for ( int i = 1; i < meshFilters.Length; i++ )
-        {
-            var meshBounds = meshFilters [ i ].mesh.bounds;
-            totalBounds.Encapsulate ( meshBounds );
-        }
+		prefab.transform.rotation = ZeroRotation;
+		prefab.transform.localScale = Vector3.one * sizeFactor;
 
-        return totalBounds;
-    }
+		totalBounds = default;
+	}
+
+	void CameraDistanceToFit(GameObject prefab)
+	{
+		var filters = Pool.GetList<MeshFilter>();
+
+		var initialFilter = prefab.GetComponent<MeshFilter>();
+		if (initialFilter != null) filters.Add(initialFilter);
+		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
+
+		var totalBounds = GetTotalBounds(filters.ToArray());
+		Pool.FreeList(ref filters);
+
+		var objectHeight = totalBounds.size.y;
+		var distance = objectHeight / (2f * Camera.orthographicSize);
+		prefab.transform.rotation = ZeroRotation;
+		prefab.transform.position = transform.position + totalBounds.center;
+		Camera.transform.position = totalBounds.center - distance * Camera.transform.forward;
+	}
+
+	internal Bounds GetTotalBounds(MeshFilter[] meshFilters)
+	{
+		if (meshFilters == null || meshFilters.Length == 0)
+		{
+			return new Bounds();
+		}
+
+		var totalBounds = meshFilters[0].mesh.bounds;
+
+		for (int i = 1; i < meshFilters.Length; i++)
+		{
+			var meshBounds = meshFilters[i].mesh.bounds;
+			totalBounds.Encapsulate(meshBounds);
+		}
+
+		return totalBounds;
+	}
 }
 
 #if UNITY_EDITOR
 
-[CustomEditor ( typeof ( SnapShotter ) )]
+[CustomEditor(typeof(SnapShotter))]
 public class SnapShotterEditor : Editor
 {
-    internal SnapShotter _instance => target as SnapShotter;
+	internal SnapShotter _instance => target as SnapShotter;
 
-    public override void OnInspectorGUI ()
-    {
-        base.OnInspectorGUI ();
+	public override void OnInspectorGUI()
+	{
+		base.OnInspectorGUI();
 
-        GUILayout.BeginHorizontal ();
+		GUILayout.BeginHorizontal();
 
-        if ( GUILayout.Button ( "Take Snapshot", GUILayout.Height ( 25 ) ) )
-        {
-            _instance.TakeSnapshot ();
-            AssetDatabase.Refresh ();
-            AssetDatabase.SaveAssets ();
-        }
+		if (GUILayout.Button("Take Snapshot", GUILayout.Height(25)))
+		{
+			_instance.TakeSnapshot();
+			AssetDatabase.Refresh();
+			AssetDatabase.SaveAssets();
+		}
 
-        if ( GUILayout.Button ( "Take Snapshot (Side)", GUILayout.Height ( 25 ) ) )
-        {
-            _instance.TakeSnapshot ( true );
-            AssetDatabase.Refresh ();
-            AssetDatabase.SaveAssets ();
-        }
+		if (GUILayout.Button("Take Snapshot (Side)", GUILayout.Height(25)))
+		{
+			_instance.TakeSnapshot(true);
+			AssetDatabase.Refresh();
+			AssetDatabase.SaveAssets();
+		}
 
-        GUILayout.EndHorizontal ();
+		GUILayout.EndHorizontal();
 
-        GUILayout.BeginHorizontal ();
+		GUILayout.BeginHorizontal();
 
-        if ( GUILayout.Button ( "Take All Snapshots", GUILayout.Height ( 25 ) ) )
-        {
-            _instance.SetIndex ( 0 );
+		if (GUILayout.Button("Take All Snapshots", GUILayout.Height(25)))
+		{
+			_instance.SetIndex(0);
 
-            for ( int i = 0; i < _instance.Pivot.childCount; i++ )
-            {
-                _instance.SetIndex ( i );
-                _instance.TakeSnapshot ();
-            }
-        }
+			for (int i = 0; i < _instance.Pivot.childCount; i++)
+			{
+				_instance.SetIndex(i);
+				_instance.TakeSnapshot();
+			}
+		}
 
-        if ( GUILayout.Button ( "Take All Snapshots (Side)", GUILayout.Height ( 25 ) ) )
-        {
-            _instance.SetIndex ( 0 );
+		if (GUILayout.Button("Take All Snapshots (Side)", GUILayout.Height(25)))
+		{
+			_instance.SetIndex(0);
 
-            for ( int i = 0; i < _instance.Pivot.childCount; i++ )
-            {
-                _instance.SetIndex ( i );
-                _instance.TakeSnapshot ( true );
-            }
-        }
+			for (int i = 0; i < _instance.Pivot.childCount; i++)
+			{
+				_instance.SetIndex(i);
+				_instance.TakeSnapshot(true);
+			}
+		}
 
-        GUILayout.EndHorizontal ();
+		GUILayout.EndHorizontal();
 
 
-        GUILayout.BeginHorizontal ();
+		GUILayout.BeginHorizontal();
 
-        if ( GUILayout.Button ( "First" ) )
-        {
-            _instance.SetIndex ( 0 );
-        }
-        if ( GUILayout.Button ( "Previous" ) )
-        {
-            if ( _instance.Index - 1 < 0 ) _instance.Index = _instance.Pivot.childCount;
-            _instance.SetIndex ( _instance.Index - 1 );
-        }
-        if ( GUILayout.Button ( "Next" ) )
-        {
-            if ( _instance.Index + 1 > _instance.Pivot.childCount - 1 ) _instance.Index = -1;
-            _instance.SetIndex ( _instance.Index + 1 );
-        }
-        if ( GUILayout.Button ( "Last" ) )
-        {
-            _instance.SetIndex ( _instance.Pivot.childCount - 1 );
-        }
+		if (GUILayout.Button("First"))
+		{
+			_instance.SetIndex(0);
+		}
 
-        GUILayout.EndHorizontal ();
+		if (GUILayout.Button("Previous"))
+		{
+			if (_instance.Index - 1 < 0) _instance.Index = _instance.Pivot.childCount;
+			_instance.SetIndex(_instance.Index - 1);
+		}
 
-        // if ( GUILayout.Button ( "Apply Icons", GUILayout.Height ( 25 ) ) )
-        // {
-        //     _instance.ApplyIcons ();
-        // }
-    }
+		if (GUILayout.Button("Next"))
+		{
+			if (_instance.Index + 1 > _instance.Pivot.childCount - 1) _instance.Index = -1;
+			_instance.SetIndex(_instance.Index + 1);
+		}
+
+		if (GUILayout.Button("Last"))
+		{
+			_instance.SetIndex(_instance.Pivot.childCount - 1);
+		}
+
+		GUILayout.EndHorizontal();
+
+		// if ( GUILayout.Button ( "Apply Icons", GUILayout.Height ( 25 ) ) )
+		// {
+		//     _instance.ApplyIcons ();
+		// }
+	}
 }
 
 #endif
