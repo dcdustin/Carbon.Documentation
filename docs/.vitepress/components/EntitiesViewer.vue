@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { fetchItems, type Item } from '@/api/metadata/rust/items'
+import { fetchEntities, type Entity } from '@/api/metadata/rust/entities'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
-import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
-import RustItemCard from '@/components/RustItemCard.vue'
-import { getItemCategoryNumber, getItemCategoryText } from '@/shared/constants'
-import { store } from '@/stores/rust-items-store'
+import EntityCard from '@/components/EntityCard.vue'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
@@ -14,46 +11,38 @@ import { computed, onMounted, shallowRef } from 'vue'
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
 
-const items = shallowRef<Item[]>([])
+const entities = shallowRef<Entity[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
-
-const categories = shallowRef<string[]>([])
-const selectedCategory = store.chosenCategory
 
 const debouncedSearchValue = shallowRef('')
 
-const pageSize = 10
+const pageSize = 20
 
-const filteredItems = computed(() => {
-  if (!items.value?.length) {
+const filteredEntities = computed(() => {
+  if (!entities.value?.length) {
     return []
   }
 
-  if (!debouncedSearchValue.value && selectedCategory.value == 'All') {
-    return items.value
+  if (!debouncedSearchValue.value) {
+    return entities.value
   }
 
   //   const startTime = performance.now()
 
-  let filtered = items.value
-
-  if (selectedCategory.value != 'All') {
-    const categoryNumber = getItemCategoryNumber(selectedCategory.value)
-    filtered = filtered.filter((item) => item.Category == categoryNumber)
-  }
+  let filtered = entities.value
 
   const searchAsNumber = Number(debouncedSearchValue.value)
   if (!isNaN(searchAsNumber) && searchAsNumber) {
-    const item = filtered.filter((item) => item.Id == searchAsNumber)
-    if (item.length > 0) {
-      return item
+    const entity = filtered.filter((entity) => entity.ID == searchAsNumber)
+    if (entity.length > 0) {
+      return entity
     }
   }
 
   if (debouncedSearchValue.value && miniSearch.value) {
     const results = miniSearch.value.search(debouncedSearchValue.value)
-    const itemMap = new Map(filtered.map((item) => [item.Id, item]))
-    filtered = results.map((result) => itemMap.get(result.Id)).filter(Boolean) as Item[]
+    const entityMap = new Map(filtered.map((entity) => [entity.ID, entity]))
+    filtered = results.map((result) => entityMap.get(result.ID)).filter(Boolean) as Entity[]
   }
 
   //   const endTime = performance.now()
@@ -67,36 +56,31 @@ function tryLoadMiniSearch() {
 
   // should be extracted and cached...
   miniSearch.value = new MiniSearch({
-    idField: 'Id',
-    fields: ['ShortName', 'DisplayName', 'Description', 'ItemMods'],
-    storeFields: ['Id'],
+    idField: 'ID',
+    fields: ['Name', 'Path', 'Type', 'Components'],
+    storeFields: ['ID'],
     searchOptions: {
       prefix: true,
       boost: {
-        ShortName: 4,
-        DisplayName: 3,
-        Description: 2,
-        ItemMods: 1,
+        Name: 4,
+        Type: 3,
+        Components: 2,
+        Path: 1,
       },
-      fuzzy: (term) => {
-        if (term == 'ShortName' || term == 'ItemMods') {
-          return 0.1
-        }
-        return 0.2
-      },
+      fuzzy: 0.1,
     },
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}_]+/u // from minisearch source + underscores
       const processed = text
+        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
         .toLowerCase()
         .split(SPACE_OR_PUNCTUATION)
         .filter((token) => token.length > 1)
 
-      if (fieldName == 'ShortName' || fieldName == 'DisplayName' || !fieldName) {
-        processed.push(text.toLowerCase())
-      }
+      processed.push(text.toLowerCase())
 
-      if (fieldName == 'ItemMods') {
+      if (fieldName == 'Components') {
         const split = text.split(',')
         split.forEach((word) => {
           processed.push(word.toLowerCase())
@@ -110,86 +94,75 @@ function tryLoadMiniSearch() {
             }
           })
       }
-
       return [...new Set(processed)]
     },
   })
 
-  miniSearch.value.addAll(items.value)
+  miniSearch.value.addAll(entities.value)
 
   const endTime = performance.now()
   console.log(`Initialized MiniSearch for Rust items in ${endTime - startTime}ms`)
 }
 
-async function loadItems() {
+async function loadEntities() {
   try {
     isLoading.value = true
     error.value = null
 
-    const data = await fetchItems()
+    const data = await fetchEntities()
 
     if (!data) {
       throw new Error('No data received from API')
     }
 
-    items.value = data
-
-    categories.value = [
-      ...[...new Set(data.map((item) => item.Category))]
-        .filter((cat) => cat != 0)
-        .sort((a, b) => a - b)
-        .map(getItemCategoryText),
-    ]
+    entities.value = data
 
     tryLoadMiniSearch()
   } catch (err) {
-    console.error('Failed to load items:', err)
-    error.value = err instanceof Error ? err.message : 'Failed to load items. Please try again later.'
+    console.error('Failed to load entities:', err)
+    error.value = err instanceof Error ? err.message : 'Failed to load entities. Please try again later.'
   } finally {
     isLoading.value = false
   }
 }
 
 onMounted(async () => {
-  loadItems()
+  loadEntities()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading items...">
+  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading entities...">
     <SearchBar
       v-model="debouncedSearchValue"
-      placeholder="Search items..."
+      placeholder="Search entities..."
       class="sticky min-[960px]:top-20 top-16 z-10"
     >
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
-      <template #right>
-        <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
-      </template>
     </SearchBar>
-    <div v-if="filteredItems && filteredItems.length">
+    <div v-if="filteredEntities && filteredEntities.length">
       <div class="flex flex-col gap-6 mt-4">
-        <InfinitePageScroll :list="filteredItems" :pageSize="pageSize" v-slot="{ renderedList }">
+        <InfinitePageScroll :list="filteredEntities" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
             <div
               class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg"
             >
-              Rendering {{ renderedList.length }} of {{ filteredItems.length }} filtered items,
-              {{ items.length }} total items.
+              Rendering {{ renderedList.length }} of {{ filteredEntities.length }} filtered entities,
+              {{ entities.length }} total entities.
             </div>
           </div>
-          <div v-for="item in renderedList" :key="item.Id" :id="item.ShortName">
-            <RustItemCard :item="item" />
+          <div v-for="entity in renderedList" :key="entity.ID" :id="entity.ID.toString()">
+            <EntityCard :entity="entity" />
           </div>
         </InfinitePageScroll>
       </div>
     </div>
     <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
-      <p>No items found matching your search</p>
-      <p v-if="items && items.length == 0" class="text-sm">
-        Debug: No items loaded. Check console for errors.
+      <p>No entities found matching your search</p>
+      <p v-if="entities && entities.length == 0" class="text-sm">
+        Debug: No entities loaded. Check console for errors.
       </p>
       <p v-else-if="debouncedSearchValue" class="text-sm">
         Debug: Search query "{{ debouncedSearchValue }}" returned no results.
