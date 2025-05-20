@@ -1,5 +1,14 @@
+# Tools
+Steam
+Server
+Library
+Temp
+UserSettings
+Logs
+*/PrefabScreenshots/*.csproj
+*/PrefabScreenshots/*.sln
+
+# Docs
 docs/.vitepress/cache
 docs/.vitepress/dist
 node_modules
-Steam
-Server
