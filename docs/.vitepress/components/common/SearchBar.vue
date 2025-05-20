@@ -20,11 +20,11 @@ function updateDebouncedSearch(value: string) {
 }
 
 function encodeSearchTerm(term: string) {
-  return term.trim().replace(/\s+/g, '-')
+  return encodeURIComponent(term.trim().replace(/\s+/g, ' '))
 }
 
 function decodeSearchTerm(term: string) {
-  return term.replace(/-/g, ' ').trim()
+  return decodeURIComponent(term).trim()
 }
 
 const debounceSearchValue = useDebounceFn(updateDebouncedSearch, debounceTimeout, {

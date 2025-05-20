@@ -237,6 +237,12 @@ onMounted(async () => {
           <div v-for="hook in renderedList" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
             <HookCard :hook="hook" />
           </div>
+          <img
+            v-if="renderedList.length == hooks.length && hooks.length > 0"
+            src="https://c.tenor.com/P-8ZvqnS4AwAAAAd"
+            alt="evs"
+            class="w-10 h-10 mx-auto animate-bounce"
+          />
         </InfinitePageScroll>
       </div>
     </div>

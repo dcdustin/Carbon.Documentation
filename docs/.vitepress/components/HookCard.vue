@@ -48,7 +48,7 @@ function getExampleCode(hook: Hook): string {
         <h5 class="text-lg font-medium flex items-center gap-2">
           <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
           <span>{{ hook.FullName }}</span>
-          <a :href="`?s=${hook.FullName.trim().replace(/\s+/g, '-')}`" target="_blank">
+          <a :href="`?s=${hook.FullName}`" target="_blank">
             <ExternalLink :size="14" class="opacity-60" />
           </a>
         </h5>

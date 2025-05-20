@@ -5,7 +5,7 @@ description: Complete reference for all blueprints in the game
 ---
 
 <script setup>
-    import BlueprintsReference from '@/components/BlueprintsReference.vue'
+    import BlueprintsIndex from '@/components/BlueprintsIndex.vue'
 </script>
 
-<BlueprintsReference />
+<BlueprintsIndex />
