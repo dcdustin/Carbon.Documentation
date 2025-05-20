@@ -5,7 +5,7 @@ description: Complete reference for all entities in the game
 ---
 
 <script setup>
-    import EntitiesReference from '@/components/EntitiesReference.vue'
+    import EntitiesIndex from '@/components/EntitiesIndex.vue'
 </script>
 
-<EntitiesReference />
+<EntitiesIndex />
