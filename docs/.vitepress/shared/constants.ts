@@ -64,6 +64,10 @@ export const getItemCategoryText = (category: ItemCategory): string => {
   return ItemCategory[category]
 }
 
+export const getItemCategoryNumber = (category: string): ItemCategory => {
+  return ItemCategory[category as keyof typeof ItemCategory]
+}
+
 export const getItemRarityText = (rarity: ItemRarity): string => {
   return ItemRarity[rarity]
 }

@@ -24,7 +24,7 @@ import {
   getItemCategoryText,
   getItemRarityText,
   RARITY_COLORS,
-} from '../shared/constants'
+} from '@/shared/constants'
 import '../theme/style.css'
 
 const blueprints: Ref<Blueprint[]> = ref([])
