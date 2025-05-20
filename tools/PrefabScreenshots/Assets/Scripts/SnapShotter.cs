@@ -221,6 +221,11 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			{
 				foreach (var material in meshRenderer.sharedMaterials)
 				{
+					if (material == null)
+					{
+						continue;
+					}
+
 					var rustTex = material.GetTexture(RustMainTexId);
 					material.shader = StandardShader;
 					if (rustTex)
