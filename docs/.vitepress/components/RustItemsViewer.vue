@@ -22,7 +22,7 @@ const selectedCategory = store.chosenCategory
 
 const debouncedSearchValue = shallowRef('')
 
-const pageSize = 25
+const pageSize = 10
 
 const filteredItems = computed(() => {
   if (!items.value?.length) {
