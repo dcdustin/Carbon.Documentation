@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { Blueprint, fetchBlueprints } from '@/api/metadata/rust/blueprints'
+import { fetchItems, type Item } from '@/api/metadata/rust/items'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import RustItemCard from '@/components/RustItemCard.vue'
 import { getItemCategoryNumber, getItemCategoryText } from '@/shared/constants'
-import { store } from '@/stores/blueprints-store'
+import { store } from '@/stores/rust-items-store'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
-import BlueprintCard from './BlueprintCard.vue'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
 
-const blueprints = shallowRef<Blueprint[]>([])
+const items = shallowRef<Item[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
@@ -22,42 +22,42 @@ const selectedCategory = store.chosenCategory
 
 const debouncedSearchValue = shallowRef('')
 
-const pageSize = 10
+const pageSize = 25
 
-const filteredBlueprints = computed(() => {
-  if (!blueprints.value?.length) {
+const filteredItems = computed(() => {
+  if (!items.value?.length) {
     return []
   }
 
   if (!debouncedSearchValue.value && selectedCategory.value == 'All') {
-    return blueprints.value
+    return items.value
   }
 
-  // const startTime = performance.now()
+  //   const startTime = performance.now()
 
-  let filtered = blueprints.value
+  let filtered = items.value
 
   if (selectedCategory.value != 'All') {
     const categoryNumber = getItemCategoryNumber(selectedCategory.value)
-    filtered = filtered.filter((blueprint) => blueprint.Item.Category == categoryNumber)
+    filtered = filtered.filter((item) => item.Category == categoryNumber)
   }
 
   const searchAsNumber = Number(debouncedSearchValue.value)
   if (!isNaN(searchAsNumber) && searchAsNumber) {
-    const blueprint = filtered.filter((blueprint) => blueprint.Item.Id == searchAsNumber)
-    if (blueprint.length > 0) {
-      return blueprint
+    const item = filtered.filter((item) => item.Id == searchAsNumber)
+    if (item.length > 0) {
+      return item
     }
   }
 
   if (debouncedSearchValue.value && miniSearch.value) {
     const results = miniSearch.value.search(debouncedSearchValue.value)
-    const blueprintMap = new Map(filtered.map((blueprint) => [blueprint.Item.Id, blueprint]))
-    filtered = results.map((result) => blueprintMap.get(result['Item.Id'])).filter(Boolean) as Blueprint[]
+    const itemMap = new Map(filtered.map((item) => [item.Id, item]))
+    filtered = results.map((result) => itemMap.get(result.Id)).filter(Boolean) as Item[]
   }
 
-  // const endTime = performance.now()
-  // console.log(`Filtered commands in ${endTime - startTime}ms`)
+  //   const endTime = performance.now()
+  //   console.log(`Filtered items in ${endTime - startTime}ms - ${debouncedSearchValue.value}`)
 
   return filtered
 })
@@ -67,18 +67,19 @@ function tryLoadMiniSearch() {
 
   // should be extracted and cached...
   miniSearch.value = new MiniSearch({
-    idField: 'Item.Id',
-    fields: ['Item.ShortName', 'Item.DisplayName', 'Item.Description'],
-    storeFields: ['Item.Id'],
+    idField: 'Id',
+    fields: ['ShortName', 'DisplayName', 'Description', 'ItemMods'],
+    storeFields: ['Id'],
     searchOptions: {
       prefix: true,
       boost: {
-        'Item.ShortName': 3,
-        'Item.DisplayName': 2,
-        'Item.Description': 1,
+        ShortName: 4,
+        DisplayName: 3,
+        Description: 2,
+        ItemMods: 1,
       },
       fuzzy: (term) => {
-        if (term == 'Item.ShortName') {
+        if (term == 'ShortName' || term == 'ItemMods') {
           return 0.1
         }
         return 0.2
@@ -97,74 +98,74 @@ function tryLoadMiniSearch() {
         processed.push(text.toLowerCase())
       }
 
-      if (fieldName == 'Item.ShortName') {
+      if (fieldName == 'ShortName') {
         processed.push(text.toLowerCase())
+      }
+
+      if (fieldName == 'ItemMods') {
+        const split = text.split(',')
+        split.forEach((word) => {
+          processed.push(word.toLowerCase())
+        })
+
+        split
+          .map((mod) => mod.match(/[A-Z]/g)?.join(''))
+          .forEach((mod) => {
+            if (mod) {
+              processed.push(mod)
+            }
+          })
       }
 
       return [...new Set(processed)]
     },
-    extractField: (obj, fieldName) => {
-      switch (fieldName) {
-        case 'Item.Id':
-          return obj.Item.Id
-        case 'Item.ShortName':
-          return obj.Item.ShortName
-        case 'Item.DisplayName':
-          return obj.Item.DisplayName
-        case 'Item.Description':
-          return obj.Item.Description
-        default:
-          return obj[fieldName]
-      }
-    },
   })
 
-  miniSearch.value.addAll(blueprints.value)
+  miniSearch.value.addAll(items.value)
 
   const endTime = performance.now()
-  console.log(`Initialized MiniSearch for blueprints in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for Rust items in ${endTime - startTime}ms`)
 }
 
-async function loadBlueprints() {
+async function loadItems() {
   try {
     isLoading.value = true
     error.value = null
 
-    const data = await fetchBlueprints()
+    const data = await fetchItems()
 
     if (!data) {
       throw new Error('No data received from API')
     }
 
-    blueprints.value = data
+    items.value = data
 
     categories.value = [
-      ...new Set(
-        [...new Set(data.map((blueprint) => blueprint.Item.Category).sort((a, b) => a - b))].map((category) =>
-          getItemCategoryText(category as number)
-        )
-      ),
+      ...[...new Set(data.map((item) => item.Category))]
+        .filter((cat) => cat != 0)
+        .sort((a, b) => a - b)
+        .map(getItemCategoryText),
     ]
 
     tryLoadMiniSearch()
   } catch (err) {
-    console.error('Failed to load blueprints:', err)
-    error.value = err instanceof Error ? err.message : 'Failed to load blueprints. Please try again later.'
+    console.error('Failed to load items:', err)
+    error.value = err instanceof Error ? err.message : 'Failed to load items. Please try again later.'
   } finally {
     isLoading.value = false
   }
 }
 
 onMounted(async () => {
-  loadBlueprints()
+  loadItems()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading blueprints...">
+  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading items...">
     <SearchBar
       v-model="debouncedSearchValue"
-      placeholder="Search blueprints..."
+      placeholder="Search items..."
       class="sticky min-[960px]:top-20 top-16 z-10"
     >
       <template #icon>
@@ -174,27 +175,27 @@ onMounted(async () => {
         <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
       </template>
     </SearchBar>
-    <div v-if="filteredBlueprints && filteredBlueprints.length">
-      <div class="flex flex-col gap-5 mt-4">
-        <InfinitePageScroll :list="filteredBlueprints" :pageSize="pageSize" v-slot="{ renderedList }">
+    <div v-if="filteredItems && filteredItems.length">
+      <div class="flex flex-col gap-6 mt-4">
+        <InfinitePageScroll :list="filteredItems" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
             <div
               class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg"
             >
-              Rendering {{ renderedList.length }} of {{ filteredBlueprints.length }} filtered blueprints,
-              {{ blueprints.length }} total blueprints.
+              Rendering {{ renderedList.length }} of {{ filteredItems.length }} filtered items,
+              {{ items.length }} total items.
             </div>
           </div>
-          <div v-for="blueprint in renderedList" :key="blueprint.Item.Id" :id="blueprint.Item.ShortName">
-            <BlueprintCard :blueprint="blueprint" />
+          <div v-for="item in renderedList" :key="item.Id" :id="item.ShortName">
+            <RustItemCard :item="item" />
           </div>
         </InfinitePageScroll>
       </div>
     </div>
     <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
-      <p>No blueprints found matching your search</p>
-      <p v-if="blueprints && blueprints.length == 0" class="text-sm">
-        Debug: No blueprints loaded. Check console for errors.
+      <p>No items found matching your search</p>
+      <p v-if="items && items.length == 0" class="text-sm">
+        Debug: No items loaded. Check console for errors.
       </p>
       <p v-else-if="debouncedSearchValue" class="text-sm">
         Debug: Search query "{{ debouncedSearchValue }}" returned no results.

@@ -7,7 +7,7 @@ const LINK_API = URL_METDAT_RUST_LOOT_TABLES
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Rust Game Loot Tables Reference</h1>
+    <h1 class="text-2xl font-bold mb-4">Rust Loot Tables Reference</h1>
     <p class="mb-8">
       This section will contain a comprehensive list of all loot tables available in the game. Each loot table
       will show the items that can be found and their drop chances.

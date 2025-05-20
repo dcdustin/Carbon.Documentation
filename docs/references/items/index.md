@@ -5,7 +5,7 @@ description: Complete reference for all items in the game
 ---
 
 <script setup>
-    import ItemsReference from '@/components/ItemsReference.vue'
+    import RustItemsIndex from '@/components/RustItemsIndex.vue'
 </script>
 
-<ItemsReference />
+<RustItemsIndex />

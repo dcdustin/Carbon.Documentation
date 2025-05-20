@@ -220,7 +220,7 @@ const fetchDlcData = async (appId: number) => {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Rust Game Blueprints Reference</h1>
+    <h1 class="text-2xl font-bold mb-4">Rust Blueprints Reference</h1>
     <p class="mb-8">
       This section contains a comprehensive list of all crafting blueprints available in the game. Each
       blueprint shows the item details, crafting requirements, and research costs.

@@ -5,10 +5,7 @@ import { fetchItems } from '@/api/metadata/rust/items'
 import { CheckCircle2, Copy, Database, ExternalLink, Image, Loader2, Search } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { computed, onMounted, onUnmounted, ref, Ref, watch } from 'vue'
-import {
-  getItemCategoryText,
-  getItemRarityText,
-} from '../shared/constants'
+import { getItemCategoryText, getItemRarityText } from '@/shared/constants'
 import '../theme/style.css'
 
 const items: Ref<Item[]> = ref([])
@@ -214,7 +211,7 @@ onUnmounted(() => {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <h1 class="text-2xl font-bold mb-4">Rust Game Items Reference</h1>
+    <h1 class="text-2xl font-bold mb-4">Rust Items Reference</h1>
     <p class="mb-8">
       This section contains a comprehensive list of all items available in the game. Each item is listed with
       its unique ID, components, and file path.
