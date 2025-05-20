@@ -77,17 +77,11 @@ function tryLoadMiniSearch() {
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}_]+/u // from minisearch source + underscores
       const processed = text
-        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
         .toLowerCase()
         .split(SPACE_OR_PUNCTUATION)
         .filter((token) => token.length > 1)
 
-      if (!fieldName) {
-        processed.push(text.toLowerCase())
-      }
-
-      if (fieldName == 'Name') {
+      if (fieldName != 'Help') {
         processed.push(text.toLowerCase())
       }
 
