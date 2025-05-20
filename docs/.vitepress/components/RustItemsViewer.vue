@@ -88,17 +88,11 @@ function tryLoadMiniSearch() {
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}_]+/u // from minisearch source + underscores
       const processed = text
-        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
         .toLowerCase()
         .split(SPACE_OR_PUNCTUATION)
         .filter((token) => token.length > 1)
 
-      if (!fieldName) {
-        processed.push(text.toLowerCase())
-      }
-
-      if (fieldName == 'ShortName') {
+      if (fieldName == 'ShortName' || fieldName == 'DisplayName' || !fieldName) {
         processed.push(text.toLowerCase())
       }
 
@@ -111,7 +105,7 @@ function tryLoadMiniSearch() {
         split
           .map((mod) => mod.match(/[A-Z]/g)?.join(''))
           .forEach((mod) => {
-            if (mod) {
+            if (mod && mod.length > 1) {
               processed.push(mod)
             }
           })
