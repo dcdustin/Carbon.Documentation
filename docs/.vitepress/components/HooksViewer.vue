@@ -93,24 +93,18 @@ function tryLoadMiniSearch() {
   // should be extracted and cached...
   miniSearch.value = new MiniSearch({
     idField: 'FullName',
-    fields: ['Name', 'FullName', 'joinedDescriptions', 'MethodName', 'TargetName', 'AssemblyName'],
+    fields: ['FullName', 'Descriptions', 'MethodName', 'TargetName', 'AssemblyName'],
     storeFields: ['FullName'],
     searchOptions: {
       prefix: true,
       boost: {
-        Name: 4,
         FullName: 3.5,
-        joinedDescriptions: 2.5,
-        MethodName: 1.5,
-        TargetName: 1.3,
-        AssemblyName: 1,
+        MethodName: 2,
+        TargetName: 1.5,
+        AssemblyName: 1.2,
+        Descriptions: 1,
       },
-      fuzzy: (term) => {
-        if (term == 'Name' || term == 'FullName' || term == 'joinedDescriptions') {
-          return 0.1
-        }
-        return 0.2
-      },
+      fuzzy: 0.1,
     },
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}]+/u // from minisearch source
@@ -121,26 +115,18 @@ function tryLoadMiniSearch() {
         .split(SPACE_OR_PUNCTUATION)
         .filter((token) => token.length > 1)
 
-      if (!fieldName) {
+      if (fieldName != 'Descriptions') {
         processed.push(text.toLowerCase())
       }
 
-      if (
-        fieldName == 'Name' ||
-        fieldName == 'FullName' ||
-        fieldName == 'MethodName' ||
-        fieldName == 'TargetName'
-      ) {
-        processed.push(text.toLowerCase())
+      if (fieldName == 'FullName') {
+        const uppercase = text.split(' ').map((word) => word.match(/[A-Z]/g))
+        uppercase.forEach((word) => {
+          if (word && word.length > 1) {
+            processed.push(word.join(''))
+          }
+        })
       }
-
-      if (fieldName == 'Name') {
-        const uppercase = text.match(/[A-Z]/g)
-        if (uppercase) {
-          processed.push(uppercase.join(''))
-        }
-      }
-
       return [...new Set(processed)]
     },
   })
