@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Facepunch;
-using Humanlights;
 using System;
 using Humanlights.Extensions;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine.UI;
 using System.IO;
 using UnityEngine.Rendering.PostProcessing;
 #if UNITY_EDITOR
@@ -23,10 +20,12 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public static readonly int RustMainTexId = Shader.PropertyToID("_MainTex");
 	public static readonly int RustNormalMapId = Shader.PropertyToID("_BumpMap");
 	public static readonly int MainTexId = Shader.PropertyToID("_BaseMap");
+	public static readonly int SurfaceId = Shader.PropertyToID("_Surface");
 
 	[Header("Auto-Scaling")] public float SizingMultiplier = 1f;
 	public Camera Camera;
-	public Vector3 CameraScalerOffset;
+	public Bounds Bounds;
+	public float ScaleOffset = 3f;
 	public int Index;
 	public Transform Pivot;
 	public PostProcessVolume Volume;
@@ -34,8 +33,8 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public PostProcessProfile SilhouetteProfile;
 	public GameObject[] Models;
 	public BoxCollider Box;
-	public Quaternion ZeroRotation;
 
+	internal List<MeshRenderer> _lastRenderers = new();
 	internal int _lastCount;
 
 	public static string Folder
@@ -115,15 +114,19 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			}
 		}
 
-		var renderTexture =
-			new RenderTexture((int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply),
-				(int)((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 8);
+		var renderTexture = new RenderTexture((int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply), (int)((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 24, RenderTextureFormat.ARGB32);
+		renderTexture.useMipMap = false;
+		renderTexture.autoGenerateMips = false;
+		renderTexture.antiAliasing = 1;
+		Camera.clearFlags = CameraClearFlags.SolidColor;
+		Camera.backgroundColor = new Color(0, 0, 0, 0);
 		Camera.targetTexture = renderTexture;
 		Camera.Render();
 
 		RenderTexture.active = renderTexture;
 
 		var image = new Texture2D(renderTexture.width, renderTexture.height);
+		image.alphaIsTransparency = true;
 		image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
 		image.Apply();
 
@@ -194,13 +197,16 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			c.gameObject.SetActive(false);
 		}
 
+		Bounds = default;
+		_lastRenderers.Clear();
+
 		var child = Pivot.GetChild(index);
 		child.gameObject.SetActive(true);
+		child.gameObject.transform.rotation = Quaternion.identity;
+		child.gameObject.transform.localScale = Vector3.one;
 
 		ProcessPrefabMissingMaterials(child.gameObject);
-		// ScalePrefabToCamera ( child.gameObject );
-		// ScaleObjectsToFitBox ( child.gameObject );
-		CameraDistanceToFit(child.gameObject);
+		ScalePrefabToCamera ();
 	}
 
 	public Transform GetIndex(int index)
@@ -210,15 +216,23 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 		return Pivot.GetChild(index);
 	}
 
-	internal Material[] _blank = new Material [0];
-
 	public void ProcessPrefabMissingMaterials(GameObject prefab)
 	{
+		HandleObject(prefab.transform);
+
 		foreach (Transform tr in prefab.transform)
 		{
-			var meshRenderer = tr.GetComponent<MeshRenderer>();
-			if (meshRenderer != null)
+			HandleObject(tr);
+
+			ProcessPrefabMissingMaterials(tr.gameObject);
+		}
+
+		void HandleObject(Transform obj)
+		{
+			var meshRenderer = obj.GetComponent<MeshRenderer>();
+			if (meshRenderer != null && meshRenderer.enabled)
 			{
+				Bounds.Encapsulate(meshRenderer.bounds);
 				foreach (var material in meshRenderer.sharedMaterials)
 				{
 					if (material == null)
@@ -228,97 +242,39 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 					var rustTex = material.GetTexture(RustMainTexId);
 					material.shader = StandardShader;
+					material.SetInt(SurfaceId, 1);
 					if (rustTex)
 					{
 						material.mainTexture = rustTex;
 					}
 				}
+				_lastRenderers.Add(meshRenderer);
 			}
-
-			ProcessPrefabMissingMaterials(tr.gameObject);
 		}
 	}
 
-	public void ScalePrefabToCamera(GameObject prefab)
+	public void ScalePrefabToCamera()
 	{
-		var filters = Pool.GetList<MeshFilter>();
+		Camera.orthographic = true;
+		Camera.orthographicSize = Mathf.Max(Bounds.extents.y, Bounds.extents.x / Camera.aspect) + ScaleOffset;
 
-		var initialFilter = prefab.GetComponent<MeshFilter>();
-		if (initialFilter != null) filters.Add(initialFilter);
-		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
-
-		var meshBounds = GetTotalBounds(filters.ToArray());
-
-		// Calculate the size of the bounds in world units
-		float meshSize = Mathf.Max(meshBounds.size.x, meshBounds.size.y, meshBounds.size.z);
-
-		// Calculate the distance from the camera to the object
-		Vector3 cameraToObject = prefab.transform.position - Camera.transform.position;
-		float distance = Vector3.Dot(cameraToObject, Camera.transform.forward);
-
-		// Calculate the size of the bounds in pixels
-		float meshSizeInPixels = meshSize * Camera.pixelHeight /
-		                         (2 * distance * Mathf.Tan(Camera.fieldOfView * 0.5f * Mathf.Deg2Rad));
-
-		// Scale the object to fit the screen
-		prefab.transform.rotation = ZeroRotation;
-		prefab.transform.localScale = Vector3.one * (meshSizeInPixels / Screen.height);
+		Vector3 center = Bounds.center;
+		float radius = Bounds.extents.magnitude;
+		float fov = Camera.fieldOfView * Mathf.Deg2Rad;
+		float distance = radius / Mathf.Sin(fov / 2f);
+		Camera.transform.position = center - Camera.transform.forward * distance;
 	}
 
-	void ScaleObjectsToFitBox(GameObject prefab)
+	public void OnDrawGizmos()
 	{
-		var filters = Pool.GetList<MeshFilter>();
-
-		var initialFilter = prefab.GetComponent<MeshFilter>();
-		if (initialFilter != null) filters.Add(initialFilter);
-		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
-
-		var totalBounds = GetTotalBounds(filters.ToArray());
-		Pool.FreeList(ref filters);
-
-		float sizeFactor = Mathf.Max(totalBounds.size.x / Box.size.x, totalBounds.size.y / Box.size.y,
-			totalBounds.size.z / Box.size.z);
-
-		prefab.transform.rotation = ZeroRotation;
-		prefab.transform.localScale = Vector3.one * sizeFactor;
-
-		totalBounds = default;
-	}
-
-	void CameraDistanceToFit(GameObject prefab)
-	{
-		var filters = Pool.GetList<MeshFilter>();
-
-		var initialFilter = prefab.GetComponent<MeshFilter>();
-		if (initialFilter != null) filters.Add(initialFilter);
-		filters.AddRange(prefab.GetComponentsInChildren<MeshFilter>());
-
-		var totalBounds = GetTotalBounds(filters.ToArray());
-		Pool.FreeList(ref filters);
-
-		var objectHeight = totalBounds.size.y;
-		var distance = objectHeight / (2f * Camera.orthographicSize);
-		prefab.transform.rotation = ZeroRotation;
-		prefab.transform.position = transform.position + totalBounds.center;
-		Camera.transform.position = totalBounds.center - distance * Camera.transform.forward;
-	}
-
-	internal Bounds GetTotalBounds(MeshFilter[] meshFilters)
-	{
-		if (meshFilters == null || meshFilters.Length == 0)
+		foreach (var renderer in _lastRenderers)
 		{
-			return new Bounds();
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireCube(renderer.bounds.center, renderer.bounds.size);
 		}
 
-		var totalBounds = meshFilters[0].mesh.bounds;
-
-		for (int i = 1; i < meshFilters.Length; i++)
-		{
-			var meshBounds = meshFilters[i].mesh.bounds;
-			totalBounds.Encapsulate(meshBounds);
-		}
-
-		return totalBounds;
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireCube(Bounds.center, Bounds.size);
 	}
 }
 
