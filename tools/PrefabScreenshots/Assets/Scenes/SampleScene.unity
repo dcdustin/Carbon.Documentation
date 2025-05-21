@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResolutionMultiply: 1.5
-  NormalResolution: {x: 512, y: 512}
-  SideResolution: {x: 512, y: 512}
+  NormalResolution: {x: 512, y: 312}
+  SideResolution: {x: 512, y: 312}
   SizingMultiplier: 1
   Camera: {fileID: 1872711448}
   Bounds:
