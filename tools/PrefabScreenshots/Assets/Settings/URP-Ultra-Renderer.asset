@@ -84,7 +84,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_DefaultStencilState:
-    overrideStencilState: 0
+    overrideStencilState: 1
     stencilReference: 0
     stencilCompareFunction: 8
     passOperation: 2
@@ -92,7 +92,7 @@ MonoBehaviour:
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 2
-  m_DepthPrimingMode: 1
-  m_CopyDepthMode: 1
+  m_DepthPrimingMode: 2
+  m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 1
   m_IntermediateTextureMode: 1

@@ -5,6 +5,7 @@ using System;
 using Humanlights.Extensions;
 using System.Linq;
 using System.IO;
+using Facepunch.Extend;
 using UnityEngine.Rendering.PostProcessing;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -17,10 +18,18 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public Vector2 NormalResolution, SideResolution;
 
 	public static Shader StandardShader => Shader.Find("Universal Render Pipeline/Lit");
+	public static Shader FlareShader => Shader.Find("FX/Flare");
 	public static readonly int RustMainTexId = Shader.PropertyToID("_MainTex");
-	public static readonly int RustNormalMapId = Shader.PropertyToID("_BumpMap");
+	public static readonly int RustBaseColorMapId = Shader.PropertyToID("_BaseColorMap");
 	public static readonly int MainTexId = Shader.PropertyToID("_BaseMap");
 	public static readonly int SurfaceId = Shader.PropertyToID("_Surface");
+	public static readonly int DstBlendId = Shader.PropertyToID("_DstBlend");
+	public static readonly int DstBlendAlphaId = Shader.PropertyToID("_DstBlendAlpha");
+	public static readonly int SrcBlendId = Shader.PropertyToID("_SrcBlend");
+	public static readonly int ZWriteId = Shader.PropertyToID("_ZWrite");
+	public static readonly int BlendId = Shader.PropertyToID("_Blend");
+	public static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
+	public static readonly int PreserveSpecularId = Shader.PropertyToID("_BlendModePreserveSpecular");
 
 	[Header("Auto-Scaling")] public float SizingMultiplier = 1f;
 	public Camera Camera;
@@ -89,6 +98,19 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 		models.Clear();
 	}
 
+	public bool IsFullyTransparent(Texture2D texture)
+	{
+		var pixels = texture.GetPixels32();
+
+		for (int i = 0; i < pixels.Length; i++)
+		{
+			if (pixels[i].a != 0)
+				return false;
+		}
+
+		return true;
+	}
+
 	public void TakeSnapshot(bool side = false)
 	{
 		var child = GetIndex(Index);
@@ -134,20 +156,28 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 		RenderTexture.active = null;
 		Camera.targetTexture = null;
-		DestroyImmediate(image);
-		DestroyImmediate(renderTexture);
 
 		try
 		{
 			var name = Pivot.childCount > 0 ? Path.GetFileName(Pivot.GetChild(Index).name) : "sample";
 			var path = $"{Folder}\\{name.ToLower()}_icon{(side ? ".side" : "")}.png";
-			OsEx.File.Create(path, bytes);
-			DebugEx.Log($"Taken icon screenshot: {path} ({ByteEx.Format(bytes.Length, shortName: true)})");
+			if (!IsFullyTransparent(image))
+			{
+				OsEx.File.Create(path, bytes);
+				DebugEx.Log($"Taken icon screenshot: {path} ({ByteEx.Format(bytes.Length, shortName: true)})");
+			}
+			else
+			{
+				DebugEx.Log($"Icon is blank: {path}");
+			}
 		}
 		catch (Exception ex)
 		{
 			Debug.LogWarning($"{Index} failed / {Pivot.childCount - 1}\n{ex}");
 		}
+
+		DestroyImmediate(image);
+		DestroyImmediate(renderTexture);
 
 		if (side)
 		{
@@ -233,16 +263,53 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			if (meshRenderer != null && meshRenderer.enabled)
 			{
 				Bounds.Encapsulate(meshRenderer.bounds);
-				foreach (var material in meshRenderer.sharedMaterials)
+				for(int i = 0; i < meshRenderer.sharedMaterials.Length; i++)
 				{
+					var material = meshRenderer.sharedMaterials[i];
 					if (material == null)
+					{
+						obj.SetActive(false);
+						continue;
+					}
+
+					if (material.shader == StandardShader || material.shader == FlareShader)
 					{
 						continue;
 					}
 
-					var rustTex = material.GetTexture(RustMainTexId);
-					material.shader = StandardShader;
-					material.SetInt(SurfaceId, 1);
+					var rustTex = material.GetTexture(RustMainTexId) ?? material.GetTexture(RustBaseColorMapId) ?? material.GetTexture(MainTexId);
+					var currentShaderName = material.shader.name;
+
+					var isFoliage = currentShaderName.Contains("foliage", StringComparison.CurrentCultureIgnoreCase);
+					var isFlare = currentShaderName.Contains("fx", StringComparison.CurrentCultureIgnoreCase) || currentShaderName.Contains("flare", StringComparison.CurrentCultureIgnoreCase);
+					var isTransparent = isFoliage || isFlare || material.renderQueue > 2000;
+
+					if (isFlare)
+					{
+						obj.SetActive(false);
+						material.shader = FlareShader;
+					}
+					else
+					{
+						material.shader = StandardShader;
+					}
+
+					if (isTransparent)
+					{
+						material.SetOverrideTag("RenderType", "Transparent");
+						material.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+						material.SetFloat(SurfaceId, 1);
+						material.SetFloat(BlendId, 0);
+						material.SetFloat(PreserveSpecularId, 0);
+						material.SetFloat(DstBlendId, 10);
+						material.SetFloat(DstBlendAlphaId, 10);
+						material.SetFloat(SrcBlendId, 5);
+						material.SetFloat(ZWriteId, 0);
+						material.renderQueue = 3000;
+					}
+
+					material.SetColor(EmissionColorId, Color.clear);
+
 					if (rustTex)
 					{
 						material.mainTexture = rustTex;
@@ -261,7 +328,7 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 		Vector3 center = Bounds.center;
 		float radius = Bounds.extents.magnitude;
 		float fov = Camera.fieldOfView * Mathf.Deg2Rad;
-		float distance = radius / Mathf.Sin(fov / 2f);
+		float distance = (radius / Mathf.Sin(fov / 2f)) - ScaleOffset;
 		Camera.transform.position = center - Camera.transform.forward * distance;
 	}
 
