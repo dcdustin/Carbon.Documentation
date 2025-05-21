@@ -7,7 +7,7 @@ public class WorldLoader : MonoBehaviour
 	public string bundlename = string.Empty;
     internal string filename = string.Empty;
 	internal string result = string.Empty;
-	
+
 	public WorldSerialization world;
 	public PrefabLookup prefabs;
 
@@ -170,7 +170,7 @@ public class WorldLoader : MonoBehaviour
 
 			if (!prefabGameObject) continue;
 
-			var instanceGameObject = GameObject.Instantiate(prefabGameObject, prefab.position, prefab.rotation);
+			var instanceGameObject = Instantiate(prefabGameObject, prefab.position, prefab.rotation);
 
 			if (!instanceGameObject) continue;
 

@@ -159,8 +159,8 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 		try
 		{
-			var name = Pivot.childCount > 0 ? Path.GetFileName(Pivot.GetChild(Index).name) : "sample";
-			var path = $"{Folder}\\{name.ToLower()}_icon{(side ? ".side" : "")}.png";
+			var name = Pivot.childCount > 0 ? Processor.Instance.WorldLoader.prefabs.GetRustUID(Pivot.GetChild(Index).name).ToString() : "sample";
+			var path = $"{Folder}\\{name}_icon{(side ? ".side" : "")}.png";
 			if (!IsFullyTransparent(image))
 			{
 				OsEx.File.Create(path, bytes);

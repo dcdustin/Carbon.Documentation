@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,73 +20,75 @@ public class PrefabLookup : System.IDisposable
 		get { return scene.isLoaded; }
 	}
 
-	public PrefabLookup ( string bundlename )
+	public PrefabLookup(string bundlename)
 	{
-		Debug.Log ( $"Loading Rust root bundle: {bundlename}" );
+		Debug.Log($"Loading Rust root bundle: {bundlename}");
 
-		backend = new AssetBundleBackend ( bundlename );
+		backend = new AssetBundleBackend(bundlename);
 
-        Debug.Log ( $" Found {backend.bundles.Count:n0} bundles..." );
-        Debug.Log ( $" Found {backend.bundles.Sum(x => x.Value.GetAllAssetNames().Length):n0} assets..." );
+		Debug.Log($" Found {backend.bundles.Count:n0} bundles...");
+		Debug.Log($" Found {backend.bundles.Sum(x => x.Value.GetAllAssetNames().Length):n0} assets...");
 
-        manifest = backend.Load<GameManifest> ( manifestPath );
+		manifest = backend.Load<GameManifest>(manifestPath);
 
-		var asyncOperation = SceneManager.LoadSceneAsync ( scenePath, LoadSceneMode.Additive );
+		var asyncOperation = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
 
-		scene = SceneManager.GetSceneAt ( SceneManager.sceneCount - 1 );
-        Debug.Log ( $"Prewarming prefabs..." );
+		scene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+		Debug.Log($"Prewarming prefabs...");
 
-        asyncOperation.completed += _ =>
+		asyncOperation.completed += _ =>
 		{
-			foreach ( var go in scene.GetRootGameObjects () )
+			foreach (var go in scene.GetRootGameObjects())
 			{
-				var hash = manifest.pooledStrings.FirstOrDefault ( x => x.str == go.name ).hash;
+				var hash = manifest.pooledStrings.FirstOrDefault(x => x.str == go.name).hash;
 
-                if (!prefabs.ContainsKey( hash ) ) prefabs.Add ( hash, go );
+				if (!prefabs.ContainsKey(hash)) prefabs.Add(hash, go);
 			}
 
-            Debug.Log ( $"Prewarming complete.");
+			Debug.Log($"Prewarming complete.");
 
-            SnapShotter.Instance.OnAssetsLoaded ( prefabs );
+			SnapShotter.Instance.OnAssetsLoaded(prefabs);
 		};
 	}
 
 
-    public void Dispose ()
+	public void Dispose()
 	{
-		if ( !isLoaded )
+		if (!isLoaded)
 		{
-			throw new System.Exception ( "Cannot unload assets before fully loaded!" );
+			throw new System.Exception("Cannot unload assets before fully loaded!");
 		}
 
-		backend.Dispose ();
+		backend.Dispose();
 		backend = null;
 
-		SceneManager.UnloadSceneAsync ( scene );
+		SceneManager.UnloadSceneAsync(scene);
 
-		Debug.Log ( $"Disposed Rust's asset bundles. Clean-up complete." );
+		Debug.Log($"Disposed Rust's asset bundles. Clean-up complete.");
 	}
 
-	public GameObject this [ uint uid ]
+	public GameObject this[uint uid]
 	{
 		get
 		{
 			GameObject res = null;
 
-			prefabs.TryGetValue ( uid, out res );
+			prefabs.TryGetValue(uid, out res);
 
 			return res;
 		}
 	}
-	public GameObject this [ string name ]
+
+	public GameObject this[string name]
 	{
 		get
 		{
-			return backend.Load<GameObject> ( name );
+			return backend.Load<GameObject>(name);
 		}
 	}
-	public uint GetRustUID ( string name )
+
+	public uint GetRustUID(string name)
 	{
-		return manifest.pooledStrings.FirstOrDefault ( x => x.str == name ).hash;
+		return manifest.pooledStrings.FirstOrDefault(x => x.str.Equals(name, StringComparison.CurrentCultureIgnoreCase)).hash;
 	}
 }
