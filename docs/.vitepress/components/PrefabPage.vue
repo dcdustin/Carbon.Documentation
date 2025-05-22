@@ -14,6 +14,13 @@ const isSide = ref(false);
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
 
+function fn() {
+   isSide.value = !isSide.value
+   tms = setTimeout(fn, 3000)
+}
+
+var tms = setTimeout(fn, 3000)
+
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
@@ -133,10 +140,10 @@ watch(
               <img
                 :src="URL_ASSETS_PREFABS + '/' + prefab.ID + (isSide ? '.side' : '') + '.png'"
                 @error="handleImageError"
-                class="w-full h-full object-contain p-1"
+                class="w-full h-full object-contain p-0"
                 :alt="prefab.Path.split('/').pop()"
-              />             
-              <button @click="isSide = !isSide"><VPBadge type="info" :text="isSide ? 'MAIN' : 'SIDE'"/></button>
+              />
+              <img src="/misc/border-edge.webp" class="absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
             </template>
             <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
