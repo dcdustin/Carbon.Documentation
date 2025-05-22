@@ -3,17 +3,20 @@ using UnityEngine;
 public class Processor : MonoBehaviour
 {
 	public static Processor Instance;
-	public WorldLoader WorldLoader;
+
+	public string bundleName;
+
+	public PrefabLookup prefabs;
 
 	public void Start()
 	{
 		Instance = this;
-		WorldLoader.prefabs = new PrefabLookup(WorldLoader.bundlename);
+		prefabs = new PrefabLookup(bundleName);
 	}
 
 	[ContextMenu("Load Assets")]
 	public void DoLoad()
 	{
-		WorldLoader.prefabs = new PrefabLookup(WorldLoader.bundlename);
+		Start();
 	}
 }

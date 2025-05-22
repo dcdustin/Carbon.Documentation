@@ -1,23 +1,22 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 public class PrefabLookup : System.IDisposable
 {
 	private AssetBundleBackend backend;
-	private Scene scene;
 
-	private Dictionary<uint, GameObject> prefabs = new();
+	public List<uint> prefabsList = new();
 
 	internal const string manifestPath = "assets/manifest.asset";
-	internal const string scenePath = "Assets/Modding/Prefabs.unity";
 	internal GameManifest manifest;
 
-	public bool isLoaded
+	public static uint ManifestHash(string str)
 	{
-		get { return scene.isLoaded; }
+		return string.IsNullOrEmpty(str) ? 0 : BitConverter.ToUInt32(new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(str)), 0);
 	}
 
 	public PrefabLookup(string bundlename)
@@ -31,52 +30,68 @@ public class PrefabLookup : System.IDisposable
 
 		manifest = backend.Load<GameManifest>(manifestPath);
 
-		var asyncOperation = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
-
-		scene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
 		Debug.Log($"Prewarming prefabs...");
 
-		asyncOperation.completed += _ =>
+		for (int i = 0; i < manifest.pooledStrings.Length; i++)
 		{
-			foreach (var go in scene.GetRootGameObjects())
-			{
-				var hash = manifest.pooledStrings.FirstOrDefault(x => x.str == go.name).hash;
+			HashLookup.Global.Add(manifest.pooledStrings[i].str);
+		}
 
-				if (!prefabs.ContainsKey(hash)) prefabs.Add(hash, go);
+		for (int i = 0; i < manifest.entities.Length; i++)
+		{
+			HashLookup.Global.Add(manifest.entities[i]);
+		}
+
+		foreach (var bundle in backend.bundles.Values)
+		{
+			if (bundle.isStreamedSceneAssetBundle)
+			{
+				continue;
 			}
 
-			Debug.Log($"Prewarming complete.");
-
-			SnapShotter.Instance.OnAssetsLoaded(prefabs);
-		};
+			var assets = bundle.GetAllAssetNames();
+			foreach (var asset in assets)
+			{
+				var id = HashLookup.Global.Add(asset);
+				if (asset.EndsWith(".prefab", StringComparison.CurrentCultureIgnoreCase))
+				{
+					prefabsList.Add(id);
+				}
+			}
+		}
 	}
 
+	public GameObject GetAsset(uint asset)
+	{
+		foreach (var bundle in backend.bundles.Values)
+		{
+			if (bundle.isStreamedSceneAssetBundle)
+			{
+				continue;
+			}
+
+			var assetName = HashLookup.Global[asset];
+			if(string.IsNullOrEmpty(assetName))
+			{
+				continue;
+			}
+			Debug.Log($"Getting asset {assetName}[{asset}]...");
+			if (bundle.LoadAsset<GameObject>(assetName) is GameObject go)
+			{
+				return go;
+			}
+		}
+
+		Debug.LogError($"Asset not found: {HashLookup.Global[asset]}[{asset}]");
+		return null;
+	}
 
 	public void Dispose()
 	{
-		if (!isLoaded)
-		{
-			throw new System.Exception("Cannot unload assets before fully loaded!");
-		}
-
 		backend.Dispose();
 		backend = null;
 
-		SceneManager.UnloadSceneAsync(scene);
-
 		Debug.Log($"Disposed Rust's asset bundles. Clean-up complete.");
-	}
-
-	public GameObject this[uint uid]
-	{
-		get
-		{
-			GameObject res = null;
-
-			prefabs.TryGetValue(uid, out res);
-
-			return res;
-		}
 	}
 
 	public GameObject this[string name]

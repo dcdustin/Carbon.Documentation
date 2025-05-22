@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Facepunch;
 using System;
+using System.Diagnostics;
 using Humanlights.Extensions;
 using System.Linq;
-using System.IO;
-using Facepunch.Extend;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine.Rendering.PostProcessing;
+using Debug = UnityEngine.Debug;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -18,6 +20,7 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public Vector2 NormalResolution, SideResolution;
 
 	public static Shader StandardShader => Shader.Find("Universal Render Pipeline/Lit");
+	public static Shader ParticleShader => Shader.Find("Universal Render Pipeline/Particles/Simple Lit");
 	public static Shader FlareShader => Shader.Find("FX/Flare");
 	public static readonly int RustMainTexId = Shader.PropertyToID("_MainTex");
 	public static readonly int RustBaseColorMapId = Shader.PropertyToID("_BaseColorMap");
@@ -31,7 +34,6 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
 	public static readonly int PreserveSpecularId = Shader.PropertyToID("_BlendModePreserveSpecular");
 
-	[Header("Auto-Scaling")] public float SizingMultiplier = 1f;
 	public Camera Camera;
 	public Bounds Bounds;
 	public float ScaleOffset = 3f;
@@ -39,18 +41,16 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 	public Transform Pivot;
 	public PostProcessVolume Volume;
 	public PostProcessLayer Layer;
-	public PostProcessProfile SilhouetteProfile;
-	public GameObject[] Models;
-	public BoxCollider Box;
+	public Transform Model;
+	public GameObject ModelRef;
 
 	internal List<MeshRenderer> _lastRenderers = new();
-	internal int _lastCount;
 
 	public static string Folder
 	{
 		get
 		{
-			var folder = $"Assets\\Shots";
+			var folder = "Shots";
 			OsEx.Folder.Create(folder);
 			return folder;
 		}
@@ -58,44 +58,33 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 	public void Update()
 	{
-		if (_lastCount != Pivot.childCount)
+		if (Processor.Instance == null || Processor.Instance.prefabs == null)
 		{
-			Index = Pivot.childCount - 1;
-			RefreshModels();
-			_lastCount = Pivot.childCount;
-		}
-
-		if (Models.Length == 0)
-		{
-			RefreshModels();
+			return;
 		}
 
 		SetIndex(Index);
 	}
 
-	public void OnAssetsLoaded(Dictionary<uint, GameObject> assets)
+	public void RefreshModel()
 	{
-		foreach (var asset in assets)
+		if (Model != null)
 		{
-			asset.Value.transform.SetParent(transform, true);
-			asset.Value.transform.position = transform.position;
-			asset.Value.transform.rotation = Quaternion.Euler(Vector3.zero);
+			Destroy(Model.gameObject);
+			DestroyImmediate(ModelRef, true);
+			Model = null;
+			ModelRef = null;
 		}
 
-		Models = assets.Select(x => x.Value).ToArray();
-	}
-
-	public void RefreshModels()
-	{
-		var models = new List<GameObject>();
-
-		foreach (Transform child in Pivot)
+		var id = Processor.Instance.prefabs.prefabsList[Index];
+		if (Processor.Instance.prefabs.GetAsset(id) is GameObject go)
 		{
-			models.Add(child.gameObject);
+			ModelRef = go;
+			Model = Instantiate(go).transform;
+			Model.SetParent(Pivot);
+			Model.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+			Model.name = HashLookup.Global[id];
 		}
-
-		Models = models.ToArray();
-		models.Clear();
 	}
 
 	public bool IsFullyTransparent(Texture2D texture)
@@ -124,9 +113,6 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 		if (side)
 		{
-			// Camera.transform.LookAt ( _getCenter ( child ) );
-			Layer.antialiasingMode = PostProcessLayer.Antialiasing.None;
-			Volume.profile = SilhouetteProfile;
 			Pivot.transform.rotation = Quaternion.Euler(Vector3.zero);
 
 			if (child != null)
@@ -136,10 +122,12 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			}
 		}
 
-		var renderTexture = new RenderTexture((int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply), (int)((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 24, RenderTextureFormat.ARGB32);
-		renderTexture.useMipMap = false;
-		renderTexture.autoGenerateMips = false;
-		renderTexture.antiAliasing = 1;
+		var renderTexture = new RenderTexture((int)((side ? SideResolution.x : NormalResolution.x) * ResolutionMultiply), (int)((side ? SideResolution.y : NormalResolution.y) * ResolutionMultiply), 24, RenderTextureFormat.ARGB32)
+		{
+			useMipMap = false,
+			autoGenerateMips = false,
+			antiAliasing = 1
+		};
 		Camera.clearFlags = CameraClearFlags.SolidColor;
 		Camera.backgroundColor = new Color(0, 0, 0, 0);
 		Camera.targetTexture = renderTexture;
@@ -159,8 +147,8 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 		try
 		{
-			var name = Pivot.childCount > 0 ? Processor.Instance.WorldLoader.prefabs.GetRustUID(Pivot.GetChild(Index).name).ToString() : "sample";
-			var path = $"{Folder}\\{name}_icon{(side ? ".side" : "")}.png";
+			var name = Pivot.childCount > 0 ? PrefabLookup.ManifestHash(Model.name).ToString() : "sample";
+			var path = $"{Folder}\\{name}{(side ? ".side" : "")}.png";
 			if (!IsFullyTransparent(image))
 			{
 				OsEx.File.Create(path, bytes);
@@ -195,27 +183,21 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 		}
 	}
 
-	internal Vector3 _getCenter(Transform obj)
-	{
-		var renderer = obj.GetComponent<Renderer>();
-
-		if (renderer != null) return renderer.bounds.center;
-
-		return Vector3.zero;
-	}
-
 	public void SetIndex(int index)
 	{
-		if (Index == index || Pivot.childCount == 0)
+		if (Index == index)
 		{
 			return;
 		}
 
+		RefreshModel();
+
 		Index = index;
 
-		if (index > Pivot.childCount - 1)
+		var count = Processor.Instance.prefabs.prefabsList.Count;
+		if (index > count - 1)
 		{
-			Index = Pivot.childCount - 1;
+			Index = count - 1;
 		}
 		else if (index < 0)
 		{
@@ -230,20 +212,21 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 		Bounds = default;
 		_lastRenderers.Clear();
 
-		var child = Pivot.GetChild(index);
-		child.gameObject.SetActive(true);
-		child.gameObject.transform.rotation = Quaternion.identity;
-		child.gameObject.transform.localScale = Vector3.one;
+		if (Model != null)
+		{
+			Model.gameObject.SetActive(true);
+			Model.gameObject.transform.rotation = Quaternion.identity;
+			Model.gameObject.transform.localScale = Vector3.one;
 
-		ProcessPrefabMissingMaterials(child.gameObject);
-		ScalePrefabToCamera ();
+			ProcessPrefabMissingMaterials(Model.gameObject);
+			ScalePrefabToCamera ();
+		}
 	}
 
 	public Transform GetIndex(int index)
 	{
-		if (Pivot.childCount == 0) return null;
-
-		return Pivot.GetChild(index);
+		SetIndex(index);
+		return Model;
 	}
 
 	public void ProcessPrefabMissingMaterials(GameObject prefab)
@@ -259,6 +242,12 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 
 		void HandleObject(Transform obj)
 		{
+			if (obj.name.Contains("hlod", StringComparison.CurrentCultureIgnoreCase))
+			{
+				obj.SetActive(false);
+				return;
+			}
+
 			var meshRenderer = obj.GetComponent<MeshRenderer>();
 			if (meshRenderer != null && meshRenderer.enabled)
 			{
@@ -283,7 +272,12 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 					var isFoliage = currentShaderName.Contains("foliage", StringComparison.CurrentCultureIgnoreCase);
 					var isFlare = currentShaderName.Contains("fx", StringComparison.CurrentCultureIgnoreCase) || currentShaderName.Contains("flare", StringComparison.CurrentCultureIgnoreCase);
 					var isTransparent = isFoliage || isFlare || material.renderQueue > 2000;
+					var isParticle = currentShaderName.Contains("particle", StringComparison.CurrentCultureIgnoreCase);
 
+					if (isParticle)
+					{
+						material.shader = ParticleShader;
+					}
 					if (isFlare)
 					{
 						obj.SetActive(false);
@@ -380,7 +374,7 @@ public class SnapShotterEditor : Editor
 		{
 			_instance.SetIndex(0);
 
-			for (int i = 0; i < _instance.Pivot.childCount; i++)
+			for (int i = 0; i < Processor.Instance.prefabs.prefabsList.Count; i++)
 			{
 				_instance.SetIndex(i);
 				_instance.TakeSnapshot();
@@ -391,7 +385,7 @@ public class SnapShotterEditor : Editor
 		{
 			_instance.SetIndex(0);
 
-			for (int i = 0; i < _instance.Pivot.childCount; i++)
+			for (int i = 0; i < Processor.Instance.prefabs.prefabsList.Count; i++)
 			{
 				_instance.SetIndex(i);
 				_instance.TakeSnapshot(true);
@@ -410,19 +404,17 @@ public class SnapShotterEditor : Editor
 
 		if (GUILayout.Button("Previous"))
 		{
-			if (_instance.Index - 1 < 0) _instance.Index = _instance.Pivot.childCount;
 			_instance.SetIndex(_instance.Index - 1);
 		}
 
 		if (GUILayout.Button("Next"))
 		{
-			if (_instance.Index + 1 > _instance.Pivot.childCount - 1) _instance.Index = -1;
 			_instance.SetIndex(_instance.Index + 1);
 		}
 
 		if (GUILayout.Button("Last"))
 		{
-			_instance.SetIndex(_instance.Pivot.childCount - 1);
+			_instance.SetIndex(Processor.Instance.prefabs.prefabsList.Count - 1);
 		}
 
 		GUILayout.EndHorizontal();

@@ -250,7 +250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 778213606}
   - component: {fileID: 778213609}
-  - component: {fileID: 778213608}
   - component: {fileID: 778213607}
   m_Layer: 0
   m_Name: Generator
@@ -286,35 +285,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a67006a921be4baba3af137a838f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResolutionMultiply: 1.5
-  NormalResolution: {x: 512, y: 312}
-  SideResolution: {x: 512, y: 312}
-  SizingMultiplier: 1
+  ResolutionMultiply: 1
+  NormalResolution: {x: 512, y: 512}
+  SideResolution: {x: 512, y: 512}
   Camera: {fileID: 1872711448}
   Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-  ScaleOffset: 1.75
+  ScaleOffset: 1
   Index: 0
   Pivot: {fileID: 778213606}
   Volume: {fileID: 1872711447}
   Layer: {fileID: 1872711445}
-  SilhouetteProfile: {fileID: 11400000, guid: a13e368108745304da0a9ed0fee3ff5e, type: 2}
   Models: []
-  Box: {fileID: 0}
---- !u!114 &778213608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778213605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7e5d862c4611fa439900bb6887e6e5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bundlename: D:\Software\Steam\steamapps\common\Rust\Bundles\Bundles
 --- !u!114 &778213609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3b9b661a4bca408ddc9a7b8b669b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldLoader: {fileID: 778213608}
+  bundleName: D:\Software\Steam\steamapps\common\Rust\Bundles\Bundles
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +504,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0
   far clip plane: 1000
   field of view: 30
   orthographic: 1
@@ -565,7 +548,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
-  m_Antialiasing: 3
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0

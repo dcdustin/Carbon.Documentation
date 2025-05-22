@@ -1,43 +1,55 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 public class HashLookup
 {
-	private Dictionary<uint, string> uid2str = new Dictionary<uint, string>();
-	private Dictionary<string, uint> str2uid = new Dictionary<string, uint>();
+	public static HashLookup Global = new();
 
-	public HashLookup(string text)
+	private Dictionary<uint, string> uid2str = new();
+	private Dictionary<string, uint> str2uid = new();
+
+	public static uint ManifestHash(string str)
 	{
-		using (var reader = new StringReader(text))
+		return string.IsNullOrEmpty(str) ? 0 : BitConverter.ToUInt32(new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(str)), 0);
+	}
+
+	public uint Add(string str)
+	{
+		if (str2uid.TryGetValue(str, out var uid))
 		{
-			string line;
-			while ((line = reader.ReadLine()) != null)
-			{
-				var parts = line.Split(',');
-
-				if (parts.Length != 3) continue;
-
-				// 0: Unity GUID
-				// 1: Rust UID
-				// 2: Asset path
-
-				var uid = uint.Parse(parts[1]);
-				var str = parts[2];
-
-				uid2str.Add(uid, str);
-				str2uid.Add(str, uid);
-			}
+			return uid;
 		}
+		uid = str2uid[str] = ManifestHash(str);
+		uid2str[uid] = str;
+		return uid;
 	}
 
 	public string this[uint uid]
 	{
-		get { return uid2str[uid]; }
+		get
+		{
+			if (!uid2str.ContainsKey(uid))
+			{
+				return null;
+			}
+
+			return uid2str[uid];
+		}
 	}
 
 	public uint this[string str]
 	{
-		get { return str2uid[str]; }
+		get
+		{
+			if (str2uid.TryGetValue(str, out var uid))
+			{
+				return uid;
+			}
+			var val = str2uid[str] = ManifestHash(str);
+			uid2str[val] = str;
+			return val;
+		}
 	}
 }
