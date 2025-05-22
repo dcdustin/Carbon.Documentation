@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { URL_ASSETS_ITEMS, URL_METDAT_RUST_ENTITIES } from '@/api/constants'
+import { URL_ASSETS_PREFABS, URL_METDAT_RUST_ENTITIES } from '@/api/constants'
 import type { Entity } from '@/api/metadata/rust/entities'
 import { fetchEntities } from '@/api/metadata/rust/entities'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
@@ -9,8 +9,16 @@ import '../theme/style.css'
 
 const entity: Ref<Entity | null> = ref(null)
 const isLoading = ref(true)
+const isSide = ref(false);
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
+
+function fn() {
+   isSide.value = !isSide.value
+   tms = setTimeout(fn, 3000)
+}
+
+var tms = setTimeout(fn, 3000)
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -25,11 +33,6 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
 const getEntityId = () => {
   const urlParams = new URLSearchParams(window.location.search)
   return urlParams.get('id')
-}
-
-const getEntityImageUrl = (id: number) => {
-  if (!id) return null
-  return `${URL_ASSETS_ITEMS}/${id}.png`
 }
 
 const handleImageError = (event: Event) => {
@@ -132,13 +135,14 @@ watch(
         <!-- Entity Image -->
         <div class="flex-shrink-0">
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width: 300px; height: 300px">
-            <template v-if="!imageError && getEntityImageUrl(entity.ID)">
+            <template v-if="!imageError">
               <img
-                :src="getEntityImageUrl(entity.ID)!"
+                :src="URL_ASSETS_PREFABS + '/' + entity.ID + (isSide ? '.side' : '') + '.png'"
                 @error="handleImageError"
-                class="w-full h-full object-contain p-8"
+                class="w-full h-full object-contain p-0"
                 :alt="entity.Path.split('/').pop()"
-              />
+              />           
+              <img src="/misc/border-edge.webp" class="absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
             </template>
             <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">

@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import { URL_ASSETS_ITEMS, URL_METDAT_RUST_PREFABS } from '@/api/constants'
+import { URL_ASSETS_ITEMS, URL_ASSETS_PREFABS, URL_METDAT_RUST_PREFABS } from '@/api/constants'
 import type { Prefab } from '@/api/metadata/rust/prefabs'
 import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, ref, Ref, watch } from 'vue'
 import '../theme/style.css'
+import { text } from 'node:stream/consumers'
 
 const prefab: Ref<Prefab | null> = ref(null)
 const isLoading = ref(true)
+const isSide = ref(false);
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
+
+function fn() {
+   isSide.value = !isSide.value
+   tms = setTimeout(fn, 3000)
+}
+
+var tms = setTimeout(fn, 3000)
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -25,11 +34,6 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
 const getPrefabId = () => {
   const urlParams = new URLSearchParams(window.location.search)
   return urlParams.get('id')
-}
-
-const getPrefabImageUrl = (id: number) => {
-  if (!id) return null
-  return `${URL_ASSETS_ITEMS}/${id}.png`
 }
 
 const handleImageError = (event: Event) => {
@@ -132,13 +136,14 @@ watch(
         <!-- Prefab Image -->
         <div class="flex-shrink-0">
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width: 300px; height: 300px">
-            <template v-if="!imageError && getPrefabImageUrl(prefab.ID)">
+            <template v-if="!imageError">
               <img
-                :src="getPrefabImageUrl(prefab.ID)!"
+                :src="URL_ASSETS_PREFABS + '/' + prefab.ID + (isSide ? '.side' : '') + '.png'"
                 @error="handleImageError"
-                class="w-full h-full object-contain p-8"
+                class="w-full h-full object-contain p-0"
                 :alt="prefab.Path.split('/').pop()"
               />
+              <img src="/misc/border-edge.webp" class="absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
             </template>
             <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
