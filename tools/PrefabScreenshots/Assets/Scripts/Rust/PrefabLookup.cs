@@ -75,14 +75,11 @@ public class PrefabLookup : System.IDisposable
 			{
 				continue;
 			}
-			Debug.Log($"Getting asset {assetName}[{asset}]...");
 			if (bundle.LoadAsset<GameObject>(assetName) is GameObject go)
 			{
 				return go;
 			}
 		}
-
-		Debug.LogError($"Asset not found: {HashLookup.Global[asset]}[{asset}]");
 		return null;
 	}
 

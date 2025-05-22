@@ -152,11 +152,6 @@ public class SnapShotter : SingletonComponent<SnapShotter>
 			if (!IsFullyTransparent(image))
 			{
 				OsEx.File.Create(path, bytes);
-				DebugEx.Log($"Taken icon screenshot: {path} ({ByteEx.Format(bytes.Length, shortName: true)})");
-			}
-			else
-			{
-				DebugEx.Log($"Icon is blank: {path}");
 			}
 		}
 		catch (Exception ex)
