@@ -13,13 +13,6 @@ const isSide = ref(false);
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
 
-function fn() {
-   isSide.value = !isSide.value
-   tms = setTimeout(fn, 3000)
-}
-
-var tms = setTimeout(fn, 3000)
-
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
     await navigator.clipboard.writeText(text)
