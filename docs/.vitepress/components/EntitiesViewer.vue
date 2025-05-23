@@ -101,7 +101,7 @@ function tryLoadMiniSearch() {
   miniSearch.value.addAll(entities.value)
 
   const endTime = performance.now()
-  console.log(`Initialized MiniSearch for Rust items in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for Rust entities in ${endTime - startTime}ms`)
 }
 
 async function loadEntities() {
