@@ -5,7 +5,7 @@ description: All available Rust console variables.
 ---
 
 <script setup>
-    import RustConVarReference from '@/components/RustConVarReference.vue'
+    import RustConvarsIndex from '@/components/RustConvarsIndex.vue'
 </script>
 
-<RustConVarReference />
+<RustConvarsIndex />
