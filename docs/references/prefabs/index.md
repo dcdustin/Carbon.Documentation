@@ -5,7 +5,7 @@ description: Complete reference for all prefabs in the game
 ---
 
 <script setup>
-    import PrefabReference from '@/components/PrefabReference.vue'
+    import PrefabsIndex from '@/components/PrefabsIndex.vue'
 </script>
 
-<PrefabReference />
+<PrefabsIndex />
