@@ -4,7 +4,7 @@ import type { Prefab } from '@/api/metadata/rust/prefabs'
 import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
-import { onMounted, ref, Ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, Ref, watch } from 'vue'
 import '../theme/style.css'
 import { text } from 'node:stream/consumers'
 
@@ -13,6 +13,9 @@ const isLoading = ref(true)
 const isSide = ref(false);
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
+
+const timerDelay = 4000
+let timerSwitch: NodeJS.Timeout = null!
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -60,11 +63,21 @@ const loadPrefab = async (prefabId: string) => {
   }
 }
 
+function switchSidesTimer() {
+  isSide.value = !isSide.value
+  timerSwitch = setTimeout(switchSidesTimer, timerDelay)
+}
+
 onMounted(() => {
   const prefabId = getPrefabId()
   if (prefabId) {
     loadPrefab(prefabId)
   }
+  timerSwitch = setTimeout(switchSidesTimer, timerDelay)
+})
+
+onUnmounted(() => {
+  clearTimeout(timerSwitch)
 })
 
 // Watch for URL changes
