@@ -5,7 +5,7 @@ description: Up to date list of all pre-built-in Rust commands.
 ---
 
 <script setup>
-    import RustCommandReference from '@/components/RustCommandReference.vue'
+    import RustCommandsIndex from '@/components/RustCommandsIndex.vue'
 </script>
 
-<RustCommandReference />
+<RustCommandsIndex />
