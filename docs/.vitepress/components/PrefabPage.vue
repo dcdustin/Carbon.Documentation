@@ -149,7 +149,8 @@ watch(
                 class="w-full h-full object-contain p-0"
                 :alt="prefab.Path.split('/').pop()"
               />
-              <img src="/misc/border-edge.webp" class="absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
+              <img src="/misc/border-edge.webp" class="dark-only absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
+              <img src="/misc/border-edge-light.webp" class="light-only absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
             </template>
             <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
               <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
