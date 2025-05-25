@@ -1,4 +1,8 @@
-import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from '../api/constants'
+import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from '@/api/constants'
+
+function isClientSide(): boolean {
+  return typeof window !== 'undefined'
+}
 
 interface CacheItem<T> {
   versionId: string
@@ -6,13 +10,96 @@ interface CacheItem<T> {
   data: T
 }
 
+interface IStorageAsync {
+  setItem<T>(key: string, value: CacheItem<T>): Promise<void>
+  getItem<T>(key: string): Promise<CacheItem<T> | null>
+  removeItem(key: string): Promise<void>
+}
+
+class DummyStorage implements IStorageAsync {
+  async setItem<T>(key: string, value: CacheItem<T>): Promise<void> {
+    return Promise.resolve()
+  }
+
+  async getItem<T>(key: string): Promise<CacheItem<T> | null> {
+    return Promise.resolve(null)
+  }
+
+  async removeItem(key: string): Promise<void> {
+    return Promise.resolve()
+  }
+}
+
+class IndexedDBStorage implements IStorageAsync {
+  private dbPromise: Promise<IDBDatabase>
+  private objStoreName: string = 'cache'
+
+  constructor(dbName: string, version: number) {
+    this.dbPromise = new Promise((resolve, reject) => {
+      const request = indexedDB.open(dbName, version)
+
+      request.onupgradeneeded = () => {
+        const db = request.result
+        if (!db.objectStoreNames.contains(this.objStoreName)) {
+          const store = db.createObjectStore(this.objStoreName)
+        }
+      }
+
+      request.onsuccess = () => {
+        const db = request.result
+        db.onversionchange = () => {
+          db.close()
+          console.warn('Database is outdated, please reload the page.')
+        }
+        resolve(db)
+      }
+      request.onerror = () => reject(request.error)
+    })
+  }
+
+  async setItem<T>(key: string, value: CacheItem<T>): Promise<void> {
+    const db = await this.dbPromise
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(this.objStoreName, 'readwrite')
+      tx.objectStore(this.objStoreName).put(value, key)
+      tx.oncomplete = () => resolve()
+      tx.onerror = () => reject(tx.error)
+    })
+  }
+
+  async getItem<T>(key: string): Promise<CacheItem<T> | null> {
+    const db = await this.dbPromise
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(this.objStoreName)
+      const request = tx.objectStore(this.objStoreName).get(key)
+      request.onsuccess = () => resolve(request.result || null)
+      request.onerror = () => reject(request.error)
+    })
+  }
+
+  async removeItem(key: string): Promise<void> {
+    const db = await this.dbPromise
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(this.objStoreName, 'readwrite')
+      tx.objectStore(this.objStoreName).delete(key)
+      tx.oncomplete = () => resolve()
+      tx.onerror = () => reject(tx.error)
+    })
+  }
+}
+
 class Cache {
   private cacheMap: Map<string, CacheItem<unknown>> = new Map()
   private lastTimeFetchedCache: number = 0
   private currentCacheVersion: string = ''
   private versionFetchPromise: Promise<void> | null = null
-  private pendingStorageWrites: Map<string, string> = new Map()
+  private pendingStorageWrites: Map<string, CacheItem<unknown>> = new Map()
   private storageWriteTimeout: NodeJS.Timeout | null = null
+  private storage: IStorageAsync
+
+  constructor(storage: IStorageAsync) {
+    this.storage = storage
+  }
 
   private encodeUrl(url: string): string {
     return 'CST2_' + btoa(encodeURIComponent(url))
@@ -28,15 +115,17 @@ class Cache {
     }, 1000)
   }
 
-  private flushStorageWrites(): void {
-    this.pendingStorageWrites.forEach((value, key) => {
-      try {
-        // have to be replaced with something like indexedDB, we already exceed the limit of 2.5~5MB of localStorage
-        localStorage.setItem(key, value)
-      } catch (e) {
-        console.warn('Error saving to localStorage:', e)
-      }
-    })
+  private async flushStorageWrites(): Promise<void> {
+    // should utilize batching of indexedDB, not THAT
+    await Promise.all(
+      Array.from(this.pendingStorageWrites.entries()).map(async ([key, value]) => {
+        try {
+          await this.storage.setItem(key, value)
+        } catch (e) {
+          console.warn('Error saving to storage:', e)
+        }
+      })
+    )
     this.pendingStorageWrites.clear()
     this.storageWriteTimeout = null
   }
@@ -79,25 +168,23 @@ class Cache {
     )
   }
 
-  private getFromMemOrStorage<T>(id: string): CacheItem<T> | null {
+  private async getFromMemOrStorage<T>(id: string): Promise<CacheItem<T> | null> {
     const itemFromMemory = this.cacheMap.get(id) as CacheItem<T>
     if (itemFromMemory) {
       return itemFromMemory
     }
 
-    // have to be replaced with something like indexedDB, we already exceed the limit of 2.5~5MB of localStorage
-    const stringFromStorage = localStorage.getItem(id)
-    if (stringFromStorage) {
+    const itemFromStorage = await this.storage.getItem<T>(id)
+    if (itemFromStorage) {
       try {
-        const parsed = JSON.parse(stringFromStorage) as CacheItem<T>
-        if (this.validateCacheItem(parsed)) {
-          this.cacheMap.set(id, parsed)
-          return parsed
+        if (this.validateCacheItem(itemFromStorage)) {
+          this.cacheMap.set(id, itemFromStorage)
+          return itemFromStorage
         }
       } catch (e) {
         console.warn('Error parsing item from storage:', e)
       }
-      localStorage.removeItem(id)
+      this.storage.removeItem(id)
     }
 
     return null
@@ -125,24 +212,23 @@ class Cache {
 
     this.cacheMap.set(id, cacheItem)
 
-    this.pendingStorageWrites.set(id, JSON.stringify(cacheItem))
+    this.pendingStorageWrites.set(id, cacheItem)
     this.scheduleStorageWrite()
   }
 
   public async getFromCache<T>(url: string): Promise<T | null> {
     await this.tryUpdateCacheVersion()
-
     const id = this.encodeUrl(url)
-    const cacheItem = this.getFromMemOrStorage<T>(id)
+    const cacheItem = await this.getFromMemOrStorage<T>(id)
 
     if (cacheItem && this.isCacheItemValid(cacheItem)) {
       return cacheItem.data
     }
 
     this.cacheMap.delete(id)
-    localStorage.removeItem(id)
+    this.storage.removeItem(id)
     return null
   }
 }
 
-export const cache = new Cache()
+export const cache = new Cache(isClientSide() ? new IndexedDBStorage('docsCache', 1) : new DummyStorage())
