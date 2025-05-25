@@ -17,15 +17,15 @@ interface IStorageAsync {
 }
 
 class DummyStorage implements IStorageAsync {
-  async setItem<T>(key: string, value: CacheItem<T>): Promise<void> {
+  async setItem(): Promise<void> {
     return Promise.resolve()
   }
 
-  async getItem<T>(key: string): Promise<CacheItem<T> | null> {
+  async getItem<T>(): Promise<CacheItem<T> | null> {
     return Promise.resolve(null)
   }
 
-  async removeItem(key: string): Promise<void> {
+  async removeItem(): Promise<void> {
     return Promise.resolve()
   }
 }
@@ -41,7 +41,7 @@ class IndexedDBStorage implements IStorageAsync {
       request.onupgradeneeded = () => {
         const db = request.result
         if (!db.objectStoreNames.contains(this.objStoreName)) {
-          const store = db.createObjectStore(this.objStoreName)
+          db.createObjectStore(this.objStoreName)
         }
       }
 
