@@ -95,6 +95,7 @@ class Cache {
   private versionFetchPromise: Promise<void> | null = null
   private pendingStorageWrites: Map<string, CacheItem<unknown>> = new Map()
   private storageWriteTimeout: NodeJS.Timeout | null = null
+  private isDoneCleaningUpOldEntries: boolean = false
   private storage: IStorageAsync
 
   constructor(storage: IStorageAsync) {
@@ -202,6 +203,29 @@ class Cache {
     )
   }
 
+  private cleanUpOldEntries(): void {
+    if (this.isDoneCleaningUpOldEntries || !isClientSide()) {
+      return
+    }
+    try {
+      const arr: string[] = []
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i)
+        if (key && (key.startsWith('CST2_') || key.startsWith('carbon_docs_cache_'))) {
+          arr.push(key)
+        }
+      }
+
+      arr.forEach((key) => {
+        localStorage.removeItem(key)
+      })
+    } catch (e) {
+      console.warn('Error cleaning up old entries:', e)
+    }
+
+    this.isDoneCleaningUpOldEntries = true
+  }
+
   public saveToCache<T>(url: string, data: T): void {
     const id = this.encodeUrl(url)
     const cacheItem: CacheItem<T> = {
@@ -218,7 +242,9 @@ class Cache {
 
   public async getFromCache<T>(url: string): Promise<T | null> {
     await this.tryUpdateCacheVersion()
+
     const id = this.encodeUrl(url)
+    this.cleanUpOldEntries()
     const cacheItem = await this.getFromMemOrStorage<T>(id)
 
     if (cacheItem && this.isCacheItemValid(cacheItem)) {
