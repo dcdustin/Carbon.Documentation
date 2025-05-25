@@ -1,8 +1,5 @@
 import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from '@/api/constants'
-
-function isClientSide(): boolean {
-  return typeof window !== 'undefined'
-}
+import { isClientSide } from '@/shared/utils'
 
 interface CacheItem<T> {
   versionId: string
