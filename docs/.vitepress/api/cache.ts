@@ -102,10 +102,6 @@ class Cache {
     this.storage = storage
   }
 
-  private encodeUrl(url: string): string {
-    return 'CST2_' + btoa(encodeURIComponent(url))
-  }
-
   private scheduleStorageWrite(): void {
     if (this.storageWriteTimeout) {
       clearTimeout(this.storageWriteTimeout)
@@ -227,7 +223,7 @@ class Cache {
   }
 
   public saveToCache<T>(url: string, data: T): void {
-    const id = this.encodeUrl(url)
+    const id = url
     const cacheItem: CacheItem<T> = {
       data,
       timestampCreated: Date.now(),
@@ -243,7 +239,7 @@ class Cache {
   public async getFromCache<T>(url: string): Promise<T | null> {
     await this.tryUpdateCacheVersion()
 
-    const id = this.encodeUrl(url)
+    const id = url
     this.cleanUpOldEntries()
     const cacheItem = await this.getFromMemOrStorage<T>(id)
 
