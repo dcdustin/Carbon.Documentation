@@ -9,21 +9,26 @@ interface CacheItem<T> {
 
 interface IStorageAsync {
   setItem<T>(key: string, value: CacheItem<T>): Promise<void>
+  setItemsBatched<T>(items: [key: string, value: CacheItem<T>][]): Promise<void>
   getItem<T>(key: string): Promise<CacheItem<T> | null>
   removeItem(key: string): Promise<void>
 }
 
 class DummyStorage implements IStorageAsync {
   async setItem(): Promise<void> {
-    return Promise.resolve()
+    return
+  }
+
+  async setItemsBatched(): Promise<void> {
+    return
   }
 
   async getItem<T>(): Promise<CacheItem<T> | null> {
-    return Promise.resolve(null)
+    return null
   }
 
   async removeItem(): Promise<void> {
-    return Promise.resolve()
+    return
   }
 }
 
@@ -64,6 +69,18 @@ class IndexedDBStorage implements IStorageAsync {
     })
   }
 
+  async setItemsBatched<T>(items: [key: string, value: CacheItem<T>][]): Promise<void> {
+    const db = await this.dbPromise
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(this.objStoreName, 'readwrite')
+      items.forEach(([key, value]) => {
+        tx.objectStore(this.objStoreName).put(value, key)
+      })
+      tx.oncomplete = () => resolve()
+      tx.onerror = () => reject(tx.error)
+    })
+  }
+
   async getItem<T>(key: string): Promise<CacheItem<T> | null> {
     const db = await this.dbPromise
     return new Promise((resolve, reject) => {
@@ -87,13 +104,16 @@ class IndexedDBStorage implements IStorageAsync {
 
 class Cache {
   private cacheMap: Map<string, CacheItem<unknown>> = new Map()
-  private lastTimeFetchedCache: number = 0
-  private currentCacheVersion: string = ''
-  private versionFetchPromise: Promise<void> | null = null
+
+  private storage: IStorageAsync
   private pendingStorageWrites: Map<string, CacheItem<unknown>> = new Map()
   private storageWriteTimeout: ReturnType<typeof setTimeout> | null = null
+
+  private versionFetchPromise: Promise<void> | null = null
+  private lastTimeFetchedCacheVersion: number = 0
+  private currentCacheVersion: string = ''
+
   private isDoneCleaningUpOldEntries: boolean = false
-  private storage: IStorageAsync
 
   constructor(storage: IStorageAsync) {
     this.storage = storage
@@ -110,22 +130,13 @@ class Cache {
   }
 
   private async flushStorageWrites(): Promise<void> {
-    // should utilize batching of indexedDB, not THAT
-    await Promise.all(
-      Array.from(this.pendingStorageWrites.entries()).map(async ([key, value]) => {
-        try {
-          await this.storage.setItem(key, value)
-        } catch (e) {
-          console.warn('Error saving to storage:', e)
-        }
-      })
-    )
+    await this.storage.setItemsBatched(Array.from(this.pendingStorageWrites.entries()))
     this.pendingStorageWrites.clear()
     this.storageWriteTimeout = null
   }
 
   private async tryUpdateCacheVersion(): Promise<void> {
-    if (Date.now() - this.lastTimeFetchedCache <= CACHE_TIME_VERSION_FETCH_DELAY) {
+    if (Date.now() - this.lastTimeFetchedCacheVersion <= CACHE_TIME_VERSION_FETCH_DELAY) {
       return
     }
 
@@ -145,7 +156,7 @@ class Cache {
         }
 
         this.currentCacheVersion = await resp.text()
-        this.lastTimeFetchedCache = Date.now()
+        this.lastTimeFetchedCacheVersion = Date.now()
       } catch (e) {
         console.warn(`Error fetching ${URL_VERSION_DOCS}:`, e)
       } finally {
@@ -214,9 +225,9 @@ class Cache {
       })
     } catch (e) {
       console.warn('Error cleaning up old entries:', e)
+    } finally {
+      this.isDoneCleaningUpOldEntries = true
     }
-
-    this.isDoneCleaningUpOldEntries = true
   }
 
   public saveToCache<T>(url: string, data: T): void {
@@ -236,8 +247,9 @@ class Cache {
   public async getFromCache<T>(url: string): Promise<T | null> {
     await this.tryUpdateCacheVersion()
 
-    const id = url
     this.cleanUpOldEntries()
+
+    const id = url
     const cacheItem = await this.getFromMemOrStorage<T>(id)
 
     if (cacheItem && this.isCacheItemValid(cacheItem)) {
