@@ -94,7 +94,7 @@ class Cache {
   private currentCacheVersion: string = ''
   private versionFetchPromise: Promise<void> | null = null
   private pendingStorageWrites: Map<string, CacheItem<unknown>> = new Map()
-  private storageWriteTimeout: NodeJS.Timeout | null = null
+  private storageWriteTimeout: ReturnType<typeof setTimeout> | null = null
   private isDoneCleaningUpOldEntries: boolean = false
   private storage: IStorageAsync
 
