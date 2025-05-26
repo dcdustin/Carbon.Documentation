@@ -7,12 +7,6 @@ export { data }
 export default defineLoader({
   async load(): Promise<Hook[]> {
     const hooks = await fetchHooks()
-    return (
-      hooks
-        .values()
-        .flatMap((hooks) => hooks)
-        .take(25)
-        .toArray() ?? []
-    )
+    return hooks.values().next().value?.slice(0, 20) ?? []
   },
 })
