@@ -179,6 +179,13 @@ export default defineConfig({
         },
         {
           text: 'References', items: references,
+        },
+        {
+          text: 'Tools',
+          collapsed: false,
+          items: [
+            { text: 'Web RCon', link: '/tools/rcon' },
+          ],
         }
       ],
     },
