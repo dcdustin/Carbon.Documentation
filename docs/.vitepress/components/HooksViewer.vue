@@ -6,6 +6,7 @@ import CheckBox from '@/components/common/CheckBox.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { data as initialHooks } from '@/data-loaders/hooks.data'
 import { store } from '@/stores/hooks-store'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
@@ -14,13 +15,13 @@ import { getSingletonHighlighter } from 'shiki'
 import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
 import HookCard from './HookCard.vue'
 
-const isLoading = shallowRef(true)
+const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
 
 const highlighter = shallowRef<Highlighter | null>(null)
 provide('highlighter', readonly(highlighter))
 
-const hooks = shallowRef<Hook[]>([])
+const hooks = shallowRef<Hook[]>(initialHooks)
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
@@ -139,7 +140,6 @@ function tryLoadMiniSearch() {
 
 async function loadHooks() {
   try {
-    isLoading.value = true
     error.value = null
 
     const data = await fetchHooks()
@@ -160,12 +160,12 @@ async function loadHooks() {
     categories.value = Array.from(data.keys())
     hooks.value = flatHooks
 
+    isFetchedRestData.value = true
+
     tryLoadMiniSearch()
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
-  } finally {
-    isLoading.value = false
   }
 }
 
@@ -186,7 +186,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading hooks...">
+  <AsyncState :isLoading="false" :error="error" loadingText="Loading hooks...">
     <SearchBar
       v-model="debouncedSearchValue"
       placeholder="Search hooks..."
@@ -228,8 +228,8 @@ onMounted(async () => {
             <HookCard :hook="hook" />
           </div>
           <img
-            v-if="renderedList.length == hooks.length && hooks.length > 0"
-            src="https://c.tenor.com/P-8ZvqnS4AwAAAAd"
+            v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
+            src="/misc/cat-d.gif"
             alt="evs"
             class="w-10 h-10 mx-auto animate-bounce"
           />

@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from '@/api/constants'
-import { isClientSide } from '@/shared/utils'
+import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from './constants'
+import { isClientSide } from '../shared/utils'
 
 interface CacheItem<T> {
   versionId: string
