@@ -19,5 +19,5 @@ export const URL_ASSETS_PREFABS = 'https://cdn.carbonmod.gg/prefabs'
 export const URL_ASSETS_MISSING = 'https://cdn.carbonmod.gg/content/missing.jpg'
 export const URL_VERSION_DOCS = 'https://api.carbonmod.gg/version/?id=docs'
 
-export const CACHE_TIME_VERSION_FETCH_DELAY = 1000 * 40
-export const CACHE_TIME_ITEM_TTL = 1000 * 60 * 60 * 24
+export const CACHE_TIME_VERSION_FETCH_DELAY = 1000 * 80
+export const CACHE_TIME_ITEM_TTL = 1000 * 60 * 60 * 36
