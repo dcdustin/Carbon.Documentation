@@ -229,7 +229,7 @@ onMounted(async () => {
           </div>
           <img
             v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
-            src="https://c.tenor.com/P-8ZvqnS4AwAAAAd"
+            src="/misc/cat-d.gif"
             alt="evs"
             class="w-10 h-10 mx-auto animate-bounce"
           />
