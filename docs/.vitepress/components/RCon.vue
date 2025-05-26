@@ -1,14 +1,5 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import MarkdownIt from 'markdown-it';
-
-const md = new MarkdownIt({
-  html: true,
-  xhtmlOut: true,
-  linkify: true,
-  typographer: false,
-  breaks: true
-})
 
 const address = ref('localhost:123')
 const password = ref('')
@@ -64,7 +55,7 @@ function sendCommand() {
     }
     ws.value.send(JSON.stringify(packet))
   }
-  log.value.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + command.value)
+  log.value.push('<span style="color: var(--category-misc); user-select: none;"><strong>></strong></span> ' + command.value)
   command.value = ''
   logContainer.value.offsetHeight
   logContainer.value.scrollTop = logContainer.value.scrollHeight
@@ -114,6 +105,26 @@ enum LogType {
         v-model="command"
         @keyup.enter="sendCommand"
       />
+      <button @click="sendCommand" class="send-button"><span style="user-select: none">Send</span></button>
     </div>
   </div>
+
+
 </template>
+
+<style scoped>
+.send-button {
+  font-family: monospace;
+  color: var(--category-misc);
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color, color;
+}
+
+.send-button:hover {
+  background-color: var(--category-misc);
+  color: white;
+}
+</style>
