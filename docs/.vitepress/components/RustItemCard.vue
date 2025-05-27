@@ -33,6 +33,7 @@ function getFlags(flags: number) {
         <div class="relative aspect-square overflow-hidden" style="width: 150px; height: 150px">
           <img
             class="w-full h-full object-contain p-4"
+            :onerror="`this.src='${URL_ASSETS_MISSING}'`"
             :src="getItemImageUrl(item.ShortName)"
             :alt="item.DisplayName"
           />
