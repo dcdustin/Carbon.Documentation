@@ -551,3 +551,83 @@ body::after {
     grid-template-columns: repeat(auto-fit, minmax(134px, 1fr)) !important;
   }
 }
+
+.rcon-send-button {
+  font-family: monospace;
+  color: var(--category-misc);
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color, color;
+}
+
+.rcon-send-button:hover {
+  background-color: var(--category-misc);
+  color: white;
+}
+
+.rcon-server-list {
+  display: flex;
+  gap: 10px;
+  overflow: scroll;
+  flex-flow: wrap;
+  scrollbar-width: none;
+}
+
+.rcon-server-settings {
+  background-color: var(--vp-code-copy-code-bg);
+  padding: 15px;
+  display: flex;
+  gap: 1rem;
+}
+
+.rcon-server-settings-input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.rcon-server-settings-input-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.rcon-server-settings-custom-input {
+  background-color: #1a1a1a;
+  color: white;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 5px 7px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.rcon-server-settings-custom-input:focus {
+  border-color: #888;
+}
+
+.rcon-server-button {
+  background-color: var(--vp-code-copy-code-bg);
+  padding: 7.5px 15px;
+  align-items: flex-start;
+  text-align: left;
+  display: ruby;
+  transition-duration: 0s;
+  border-bottom: 2px solid transparent;
+}
+
+.rcon-server-button:hover {
+  background-color: var(--docsearch-text-color);
+}
+
+.rcon-server-button.toggled {
+  background-color: var(--vp-button-alt-bg);
+  border-bottom: 2px solid #ffffff29;
+}
