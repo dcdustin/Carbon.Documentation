@@ -136,7 +136,6 @@ async function loadItems() {
 
     categories.value = [
       ...[...new Set(data.map((item) => item.Category))]
-        .filter((cat) => cat != 0)
         .sort((a, b) => a - b)
         .map(getItemCategoryText),
     ]
