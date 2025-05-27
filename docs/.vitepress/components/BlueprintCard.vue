@@ -13,7 +13,7 @@ const { blueprint } = defineProps<{
 
 const selectedIngredient: Ref<Ingredient | null> = ref(null)
 const showIngredientModal = ref(false)
-const dlcData: Ref<Map<number, any>> = ref(new Map()) // https://store.steampowered.com/api/appdetails?appids=1174370
+const dlcData: Ref<Map<number, unknown>> = ref(new Map()) // https://store.steampowered.com/api/appdetails?appids=1174370
 
 function getItemImageUrl(shortName: string) {
   if (!shortName) return URL_ASSETS_MISSING
@@ -56,18 +56,6 @@ async function fetchDlcData(appId: number) {
 </script>
 
 <template>
-  <!--     <div class="flex flex-row gap-2 items-center">
-      <h3 class="font-mono">{{ command.Name }}</h3>
-      <ButtonIconCopy
-        :getTextToCopy="() => command.Name"
-        :title="`Copy command name: ${command.Name}`"
-        class="opacity-60"
-      />
-      <VPBadge :type="getBadgeType(commandTypeText)" :text="commandTypeText" />
-    </div>
-    <span v-if="command.Help" class="text-sm text-gray-600 dark:text-gray-400">
-      {{ command.Help }}
-    </span> -->
   <div class="whitespace-normal py-4">
     <div class="flex gap-8">
       <!-- Left Column: Blueprint Details -->
@@ -85,6 +73,7 @@ async function fetchDlcData(appId: number) {
                   :src="getItemImageUrl(blueprint.Item.ShortName)"
                   class="w-full h-full object-contain p-4 relative z-10"
                   :alt="blueprint.Item.DisplayName"
+                  :onerror="`this.src='${URL_ASSETS_MISSING}'`"
                 />
               </div>
             </a>
@@ -222,6 +211,7 @@ async function fetchDlcData(appId: number) {
                     :src="getItemImageUrl(ing.Item.ShortName)"
                     class="w-full h-full object-contain"
                     :alt="ing.Item.DisplayName"
+                    :onerror="`this.src='${URL_ASSETS_MISSING}'`"
                   />
                 </div>
                 <button class="text-sm hover:text-primary" @click="showItemModal(ing.Item.Id)">
@@ -256,6 +246,7 @@ async function fetchDlcData(appId: number) {
               :src="getItemImageUrl(selectedIngredient.Item.ShortName)"
               class="w-full h-full object-contain p-4"
               :alt="selectedIngredient.Item.DisplayName"
+              :onerror="`this.src='${URL_ASSETS_MISSING}'`"
             />
           </div>
         </div>
@@ -326,6 +317,7 @@ async function fetchDlcData(appId: number) {
               :src="dlcData.get(selectedIngredient.Item.SteamDlcItem.AppId)?.header_image"
               class="w-24 h-12 object-cover rounded"
               :alt="selectedIngredient.Item.SteamDlcItem.Name"
+              :onerror="`this.src='${URL_ASSETS_MISSING}'`"
             />
             <div>
               <div class="font-medium group-hover:text-primary">
