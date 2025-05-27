@@ -25,6 +25,7 @@ import HooksViewer from './HooksViewer.vue'
           <ExternalLink :size="14" class="opacity-80" />
         </a>
       </div>
+      <p class="text-sm text-gray-500 dark:text-gray-400">This page is state of the art - has some features that are not implemented in other API pages (yet)</p>
     </div>
     <HooksViewer />
   </div>
