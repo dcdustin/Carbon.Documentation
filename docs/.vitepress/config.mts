@@ -182,9 +182,9 @@ export default defineConfig({
         },
         {
           text: 'Tools',
-          collapsed: false,
           items: [
-            { text: 'Web RCon', link: '/tools/rcon' },
+            { text: 'Web RCon', link: '/tools/rcon/' },
+            { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
           ],
         }
       ],
