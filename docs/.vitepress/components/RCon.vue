@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const command = ref('')
@@ -8,16 +8,20 @@ let timerSwitch: ReturnType<typeof setTimeout> = null!
 
 async function tryFocusLogs() {
   await nextTick()
-  logContainer.value.scrollTop = logContainer.value.scrollHeight
+  if(logContainer.value?.scrollHeight) {
+    logContainer.value.scrollTop = logContainer.value.scrollHeight
+  }
+  save()
 }
 
 class Server {
   Address = ''
   Password = ''
-  UserConnected = false
   Socket: WebSocket | null = null
   Logs: string[] = []
+  AutoConnect = false
   IsConnected = false
+  UserConnected = false
   ServerInfo: object | null = null
   CarbonInfo: object | null = null
   HeaderImage = ''
@@ -127,6 +131,19 @@ class Server {
 
     return true;
   }
+
+  toggleAutoConnect() {
+    this.AutoConnect = !this.AutoConnect
+    save()
+  }
+
+  clearLogs() {
+    const confirmDelete = window.confirm(`Are you sure you want to clear all logs for "${this.Address}"?`)
+    if (confirmDelete) {
+      this.Logs = []
+      save()
+    }
+  }
 }
 
 const servers = ref<Server[]>([])
@@ -182,8 +199,17 @@ function load() {
     (JSON.parse(value) as Server[]).forEach(server => {
       const localServer = createServer(server.Address, server.Password)
       localServer.Logs = server.Logs
+      localServer.AutoConnect = server.AutoConnect
       addServer(localServer)
     });
+
+    setTimeout(() => {
+      servers.value.forEach(server => {
+        if(server.AutoConnect) {
+          server.connect()
+        }
+      });
+    }, 250)
   }
 }
 
@@ -265,6 +291,9 @@ enum LogType {
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
           <X :size="20"/> Delete
         </button>
+        <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
+          <RotateCcw :size="20"/> Auto-Connect
+        </button>
       </div>
     </div>
 
@@ -322,6 +351,7 @@ enum LogType {
         v-model="command"
         @keyup.enter="selectedServer?.sendCommand(command, 1)"
       />
+      <button @click="selectedServer?.clearLogs()" class="rcon-send-button"><span style="user-select: none">Clear</span></button>
       <button @click="selectedServer?.sendCommand(command, 1)" class="rcon-send-button"><span style="user-select: none">Send</span></button>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none;">
