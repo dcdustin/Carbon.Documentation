@@ -16,6 +16,7 @@ function tryFocusLogs() {
 class Server {
   Address = 'localhost:28606'
   Password = ''
+  UserConnected = false
   Socket: WebSocket | null = null
   Logs: string[] = []
   IsConnected = false
@@ -23,6 +24,7 @@ class Server {
   CarbonInfo: object | null = null
 
   connect() {
+    this.UserConnected = true
     if(this.Socket != null) {
       this.Socket.close()
       this.Socket.onclose(new CloseEvent('close', {
@@ -30,6 +32,7 @@ class Server {
         code: 1000,
         reason: 'Manual close',
       }))
+      this.UserConnected = false
       return;
     }
 
@@ -149,7 +152,11 @@ onMounted(() => {
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
     servers.value.forEach(server => {
+      if(!server.Password || !server.UserConnected) {
+        return;
+      }
       if(!server.IsConnected) {
+        server.connect()
         return;
       }
       server.sendCommand('serverinfo', 2)
