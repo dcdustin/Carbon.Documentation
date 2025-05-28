@@ -7,8 +7,10 @@ const logContainer = ref()
 let timerSwitch: NodeJS.Timeout = null!
 
 function tryFocusLogs() {
-  logContainer.value.offsetHeight
-  logContainer.value.scrollTop = logContainer.value.scrollHeight
+  setTimeout(() => {
+    logContainer.value.offsetHeight
+    logContainer.value.scrollTop = logContainer.value.scrollHeight
+  }, 10)
 }
 
 class Server {
@@ -35,7 +37,7 @@ class Server {
 
     this.Socket.onopen = () => {
       this.IsConnected = true
-      this.Logs.push('Connected to ' + this.Address + ' successfully..')
+      this.Logs.push('Connected to ' + this.Address + ' successfully')
       tryFocusLogs()
 
       this.sendCommand('serverinfo', 2)
