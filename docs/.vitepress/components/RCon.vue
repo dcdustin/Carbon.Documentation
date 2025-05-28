@@ -22,6 +22,8 @@ class Server {
   IsConnected = false
   ServerInfo: object | null = null
   CarbonInfo: object | null = null
+  HeaderImage = ''
+  Description = ''
 
   connect() {
     this.UserConnected = true
@@ -45,12 +47,16 @@ class Server {
 
       this.sendCommand('serverinfo', 2)
       this.sendCommand('c.version', 3)
+      this.sendCommand('server.headerimage', 4)
+      this.sendCommand('server.description', 5)
     }
     this.Socket.onclose = () => {
       this.IsConnected = false
       this.Logs.push('Disconnected.')
       this.ServerInfo = null
       this.CarbonInfo = null
+      this.HeaderImage = ''
+      this.Description = ''
       this.Socket = null
       tryFocusLogs()
     }
@@ -113,6 +119,12 @@ class Server {
       case 3: // carboninfo
         this.CarbonInfo = data  
         break;
+      case 4: // headerimage
+        this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
+        break;
+      case 5: // description
+        this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
+        break;
     }
 
     return true;
@@ -160,6 +172,7 @@ onMounted(() => {
         return;
       }
       server.sendCommand('serverinfo', 2)
+      server.sendCommand('server.description', 5)
     });
   }
 
@@ -228,6 +241,20 @@ enum LogType {
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
+      <div class="rcon-server-settings-input-group">
+        <label class="rcon-server-settings-input-label" style="user-select: none;">Host</label>
+        <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
+      </div>
+      <div class="rcon-server-settings-input-group">
+        <label class="rcon-server-settings-input-label" style="user-select: none;">Description</label>
+        <div type="text" class="rcon-server-settings-custom-input transparent" style="white-space: break-spaces;" v-html="selectedServer.Description"></div>
+      </div>
+      <div style="display: flex;">
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Header</label>
+          <img :src="selectedServer.HeaderImage" width="300"/>
+        </div>
+      </div>
       <div style="display: flex;">
         <div class="rcon-server-settings-input-group">
           <label class="rcon-server-settings-input-label" style="user-select: none;">Players</label>
