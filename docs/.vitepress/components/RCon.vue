@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X, RotateCcw } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const command = ref('')
@@ -20,6 +20,7 @@ class Server {
   Socket: WebSocket | null = null
   Logs: string[] = []
   AutoConnect = false
+  Secure = true
   IsConnected = false
   UserConnected = false
   ServerInfo: object | null = null
@@ -41,7 +42,7 @@ class Server {
       return;
     }
 
-    this.Socket = new WebSocket('ws://' + this.Address + '/' + this.Password)
+    this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
 
     this.Socket.onopen = () => {
       this.IsConnected = true
@@ -137,6 +138,11 @@ class Server {
     save()
   }
 
+  toggleSecure() {
+    this.Secure = !this.Secure
+    save()
+  }
+
   clearLogs() {
     const confirmDelete = window.confirm(`Are you sure you want to clear all logs for "${this.Address}"?`)
     if (confirmDelete) {
@@ -200,6 +206,7 @@ function load() {
       const localServer = createServer(server.Address, server.Password)
       localServer.Logs = server.Logs
       localServer.AutoConnect = server.AutoConnect
+      localServer.Secure = server.Secure
       addServer(localServer)
     });
 
@@ -290,6 +297,9 @@ enum LogType {
         </button>
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
           <X :size="20"/> Delete
+        </button>
+        <button class="rcon-server-button" @click="selectedServer.toggleSecure()" :class="['rcon-server-button', { toggled: selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
+          <Shield :size="20"/> Secure
         </button>
         <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
