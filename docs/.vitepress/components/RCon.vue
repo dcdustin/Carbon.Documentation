@@ -190,7 +190,7 @@ enum LogType {
   <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
     <div class="rcon-server-list">
       <button v-for="server in servers" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
-        <Dot :style="'color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
+        <Dot size="45px" :style="'margin: -10px; color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
         <div style="display: grid;">
           <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
@@ -211,7 +211,7 @@ enum LogType {
         <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" placeholder="••••••••••" />
       </div>
       <div style="display: flex;">
-        <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
+        <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
           <Wifi size="20px"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
