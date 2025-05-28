@@ -1,20 +1,18 @@
 <script lang="ts" setup>
 import { Plus, Dot, Wifi, X } from 'lucide-vue-next'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const command = ref('')
-const logContainer = ref()
-let timerSwitch: NodeJS.Timeout = null!
+const logContainer = ref<HTMLDivElement>(null!)
+let timerSwitch: ReturnType<typeof setTimeout> = null!
 
-function tryFocusLogs() {
-  setTimeout(() => {
-    logContainer.value.offsetHeight
-    logContainer.value.scrollTop = logContainer.value.scrollHeight
-  }, 10)
+async function tryFocusLogs() {
+  await nextTick()
+  logContainer.value.scrollTop = logContainer.value.scrollHeight
 }
 
 class Server {
-  Address = 'localhost:28606'
+  Address = ''
   Password = ''
   UserConnected = false
   Socket: WebSocket | null = null
@@ -29,11 +27,11 @@ class Server {
     this.UserConnected = true
     if(this.Socket != null) {
       this.Socket.close()
-      this.Socket.onclose(new CloseEvent('close', {
+/*       this.Socket.onclose(new CloseEvent('close', {
         wasClean: true,
         code: 1000,
         reason: 'Manual close',
-      }))
+      })) */
       this.UserConnected = false
       return;
     }
@@ -68,21 +66,20 @@ class Server {
       const resp: CommandResponse = JSON.parse(event.data)
 
       try {
-        var isJson = false
-        var jsonData = null
+        let isJson = false
+        let jsonData = null
 
         try {
           jsonData = JSON.parse(resp.Message)
           isJson = true
-        } catch { }
+        } catch { /* empty */ }
 
         if(this.onIdentifiedCommand(resp.Identifier, jsonData ?? resp)) {
           return;
         }
-      } catch { }
+      } catch { /* empty */ }
 
       this.Logs.push(resp.Message)
-      command.value = command.value
       tryFocusLogs()
     }
   }
@@ -209,14 +206,14 @@ enum LogType {
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
     <div class="rcon-server-list">
-      <button v-for="server in servers" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
-        <Dot size="45px" :style="'margin: -10px; color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
+      <button v-for="server in servers" :key="server.Address" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
+        <Dot :size="45" :style="'margin: -10px; color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
         <div style="display: grid;">
           <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="servers.push(createServer('', ''))">
+      <button class="rcon-server-button" @click="servers.push(createServer('localhost:24247', '1jEIXkbSQty3'))">
         <Plus/>
       </button>
     </div>
@@ -228,14 +225,14 @@ enum LogType {
       </div>
       <div class="rcon-server-settings-input-group">
         <label class="rcon-server-settings-input-label" style="user-select: none;">Password</label>
-        <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" placeholder="••••••••••" />
+        <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" />
       </div>
       <div style="display: flex;">
         <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
-          <Wifi size="20px"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
+          <Wifi :size="20"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
-          <X size="20px"/> Delete
+          <X :size="20"/> Delete
         </button>
       </div>
     </div>
@@ -288,7 +285,8 @@ enum LogType {
     <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px;">
       <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none;">> </div>
       <input
-        style="font-family: monospace; color: var(--docsearch-muted-color); width: -webkit-fill-available;"
+        style="font-family: monospace; color: var(--docsearch-muted-color);"
+        class="w-full"
         spellcheck="false"
         v-model="command"
         @keyup.enter="selectedServer?.sendCommand(command, 1)"
