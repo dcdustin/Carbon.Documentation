@@ -5,6 +5,10 @@ import { VPBadge } from 'vitepress/theme'
 const { prefab } = defineProps<{
   prefab: Prefab
 }>()
+
+const emit = defineEmits<{
+  (e: 'search-append', component: string): void
+}>()
 </script>
 
 <template>
@@ -23,7 +27,9 @@ const { prefab } = defineProps<{
       </div>
       <div class="flex items-center flex-wrap gap-1.5">
         <template v-for="component in prefab.Components" :key="component">
-          <VPBadge type="info" :text="component" />
+          <button class="hover:opacity-80 transition-opacity" @click="emit('search-append', component)">
+            <VPBadge type="info" :text="component" />
+          </button>
         </template>
       </div>
       <span class="font-mono text-sm text-gray-600 dark:text-gray-400">

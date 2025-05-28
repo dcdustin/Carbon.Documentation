@@ -2,10 +2,11 @@
 import { fetchPrefabs, type Prefab } from '@/api/metadata/rust/prefabs'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
+import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import PrefabCard from '@/components/PrefabCard.vue'
 import { Search } from 'lucide-vue-next'
-import MiniSearch from 'minisearch'
+import MiniSearch, { CombinationOperator, SearchOptions } from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 
 const isLoading = shallowRef(true)
@@ -14,9 +15,14 @@ const error = shallowRef<string | null>(null)
 const prefabs = shallowRef<Prefab[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
+const selectedSearchType = shallowRef<CombinationOperator>('OR')
 const debouncedSearchValue = shallowRef('')
 
 const pageSize = 20
+
+function appendSearch(component: string) {
+  debouncedSearchValue.value = `${debouncedSearchValue.value.trim()} ${component}`.trim()
+}
 
 const filteredPrefabs = computed(() => {
   if (!prefabs.value?.length) {
@@ -27,7 +33,7 @@ const filteredPrefabs = computed(() => {
     return prefabs.value
   }
 
-  //   const startTime = performance.now()
+  // const startTime = performance.now()
 
   let filtered = prefabs.value
 
@@ -40,13 +46,35 @@ const filteredPrefabs = computed(() => {
   }
 
   if (debouncedSearchValue.value && miniSearch.value) {
-    const results = miniSearch.value.search(debouncedSearchValue.value)
+    const searchOptions: SearchOptions = { combineWith: selectedSearchType.value }
+    if (selectedSearchType.value == 'AND') {
+      searchOptions.tokenize = (text: string) => {
+        const SPACES = /[\n\r\s]+/u
+        const PARENTHESES = /(\(.+\))/g
+
+        const tokens: string[] = []
+        const matches = text.match(PARENTHESES)
+        if (matches) {
+          matches.forEach((match) => {
+            tokens.push(match.slice(1, -1))
+          })
+        }
+
+        const textWithoutParentheses = text.replace(PARENTHESES, '')
+        tokens.push(...textWithoutParentheses.split(SPACES))
+        const result = [...new Set(tokens.filter((token) => token.length > 1))]
+        console.log(result)
+        return result
+      }
+      searchOptions.fuzzy = 0
+    }
+    const results = miniSearch.value.search(debouncedSearchValue.value, searchOptions)
     const prefabMap = new Map(filtered.map((prefab) => [prefab.ID, prefab]))
     filtered = results.map((result) => prefabMap.get(result.ID)).filter(Boolean) as Prefab[]
   }
 
-  //   const endTime = performance.now()
-  //   console.log(`Filtered items in ${endTime - startTime}ms - ${debouncedSearchValue.value}`)
+  // const endTime = performance.now()
+  // console.log(`Filtered items in ${endTime - startTime}ms - ${debouncedSearchValue.value}`)
 
   return filtered
 })
@@ -140,6 +168,9 @@ onMounted(async () => {
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
+      <template #right>
+        <OptionSelector v-model="selectedSearchType" :options="['OR', 'AND']" label="" />
+      </template>
     </SearchBar>
     <div v-if="filteredPrefabs && filteredPrefabs.length">
       <div class="flex flex-col gap-6 mt-4">
@@ -153,7 +184,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-for="prefab in renderedList" :key="prefab.ID" :id="prefab.ID.toString()">
-            <PrefabCard :prefab="prefab" />
+            <PrefabCard :prefab="prefab" @search-append="appendSearch" />
           </div>
         </InfinitePageScroll>
       </div>

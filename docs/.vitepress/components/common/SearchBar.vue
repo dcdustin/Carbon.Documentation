@@ -16,7 +16,6 @@ const params = useUrlSearchParams('history', {
 
 function updateDebouncedSearch(value: string) {
   debouncedSearchValue.value = value
-  params.s = encodeSearchTerm(value)
 }
 
 function encodeSearchTerm(term: string) {
@@ -24,7 +23,7 @@ function encodeSearchTerm(term: string) {
 }
 
 function decodeSearchTerm(term: string) {
-  return decodeURIComponent(term).trim()
+  return decodeURIComponent(term.trim())
 }
 
 const debounceSearchValue = useDebounceFn(updateDebouncedSearch, debounceTimeout, {
@@ -37,14 +36,12 @@ function handleUrlSearch(val: string) {
     updateDebouncedSearch(decoded)
   }
 }
-watch(
-  () => params.s,
-  (newVal) => {
-    if (newVal) {
-      handleUrlSearch(newVal.toString())
-    }
+
+watch(debouncedSearchValue, (newVal) => {
+  if (newVal != undefined) {
+    params.s = encodeSearchTerm(newVal)
   }
-)
+})
 
 onMounted(() => {
   if (params.s) {
