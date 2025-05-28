@@ -1,11 +1,13 @@
 ---
-title: RCon
-description: Our web RCon implementation for rust servers
 layout: page
+title: RCon
+description: Our Web RCon implementation for rust servers
 ---
 
-<script lang="ts" setup>
+<script setup lang="ts">
     import RCon from '@/components/RCon.vue'
 </script>
 
-<RCon></RCon>
+<ClientOnly>
+    <RCon></RCon>
+</ClientOnly>
