@@ -63,7 +63,6 @@ const filteredPrefabs = computed(() => {
         const textWithoutParentheses = text.replace(PARENTHESES, '')
         tokens.push(...textWithoutParentheses.split(SPACES))
         const result = [...new Set(tokens.filter((token) => token.length > 1))]
-        console.log(result)
         return result
       }
       searchOptions.fuzzy = 0
