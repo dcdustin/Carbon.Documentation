@@ -24,6 +24,7 @@ class Server {
   Description = ''
 
   connect() {
+    save()
     this.UserConnected = true
     if(this.Socket != null) {
       this.Socket.close()
@@ -140,6 +141,7 @@ function createServer(address: string, password: string = '') {
 
 function addServer(server: Server) {
   servers.value.push(server)
+  save()
 }
 
 function deleteServer(server: Server) { 
@@ -150,11 +152,39 @@ function deleteServer(server: Server) {
       selectedServer.value = null
     }
   }
+  save()
 }
 
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
   tryFocusLogs()
+}
+
+function save() {
+  localStorage.setItem('rcon-servers', JSON.stringify(servers.value, (key, value) => {
+    switch(key) {
+      case 'Socket':
+      case 'UserConnected':
+      case 'IsConnected':
+      case 'ServerInfo':
+      case 'CarbonInfo':
+      case 'HeaderImage':
+      case 'Description':
+        return undefined
+    }
+    return value
+  }))
+}
+
+function load() {
+  const value = localStorage.getItem('rcon-servers')
+  if(value) {
+    (JSON.parse(value) as Server[]).forEach(server => {
+      const localServer = createServer(server.Address, server.Password)
+      localServer.Logs = server.Logs
+      addServer(localServer)
+    });
+  }
 }
 
 onMounted(() => {
@@ -174,6 +204,7 @@ onMounted(() => {
   }
 
   timerSwitch = setTimeout(timerCallback, 10000)
+  load()
 })
 
 onUnmounted(() => {
@@ -213,7 +244,7 @@ enum LogType {
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="servers.push(createServer('localhost:24247', ''))">
+      <button class="rcon-server-button" @click="addServer(createServer('', ''))">
         <Plus/>
       </button>
     </div>
