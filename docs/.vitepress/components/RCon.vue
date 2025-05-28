@@ -31,7 +31,7 @@ class Server {
         wasClean: true,
         code: 1000,
         reason: 'Manual close',
-      })) */
+      }))
       this.UserConnected = false
       return;
     }
