@@ -213,7 +213,7 @@ enum LogType {
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="servers.push(createServer('localhost:24247', '1jEIXkbSQty3'))">
+      <button class="rcon-server-button" @click="servers.push(createServer('localhost:24247', ''))">
         <Plus/>
       </button>
     </div>
