@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { Plus, Dot, Wifi, X } from 'lucide-vue-next'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const command = ref('')
 const logContainer = ref()
+let timerSwitch: NodeJS.Timeout = null!
 
 function tryFocusLogs() {
   logContainer.value.offsetHeight
@@ -13,19 +14,22 @@ function tryFocusLogs() {
 class Server {
   Address = 'localhost:28606'
   Password = ''
-  Hostname = 'My Server'
   Socket: WebSocket | null = null
   Logs: string[] = []
   IsConnected = false
+  ServerInfo: object | null = null
+  CarbonInfo: object | null = null
 
   connect() {
     if(this.Socket != null) {
       this.Socket.close()
-      this.Socket = null;
-      this.IsConnected = false;
+      this.Socket.onclose(new CloseEvent('close', {
+        wasClean: true,
+        code: 1000,
+        reason: 'Manual close',
+      }))
       return;
     }
-    
 
     this.Socket = new WebSocket('ws://' + this.Address + '/' + this.Password)
 
@@ -33,10 +37,16 @@ class Server {
       this.IsConnected = true
       this.Logs.push('Connected to ' + this.Address + ' successfully..')
       tryFocusLogs()
+
+      this.sendCommand('serverinfo', 2)
+      this.sendCommand('c.version', 3)
     }
     this.Socket.onclose = () => {
       this.IsConnected = false
       this.Logs.push('Disconnected.')
+      this.Socket = null
+      this.ServerInfo = null
+      this.CarbonInfo = null
       tryFocusLogs()
     }
     this.Socket.onerror = (e) => {
@@ -45,39 +55,72 @@ class Server {
     }
     this.Socket.onmessage = (event) => {
       const resp: CommandResponse = JSON.parse(event.data)
+
+      try {
+        var isJson = false
+        var jsonData = null
+
+        try {
+          jsonData = JSON.parse(resp.Message)
+          isJson = true
+        } catch { }
+
+        if(this.onIdentifiedCommand(resp.Identifier, jsonData ?? resp)) {
+          return;
+        }
+      } catch { }
+
       this.Logs.push(resp.Message)
       command.value = command.value
       tryFocusLogs()
     }
   }
 
-  sendCommand() {
-    if(!command.value) {
+  sendCommand(input: string, id: number = 1) {
+    if(!input) {
       return;
     }
 
     if (this.Socket && this.IsConnected) {
       const packet: CommandSend = {
-        Name: 'RttstRs',
-        Message: command.value,
-        Identifier: 1,
+        Message: input,
+        Identifier: id,
       }
       this.Socket.send(JSON.stringify(packet))
     }
-    this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong> ' + command.value + '</span>')
-    command.value = ''
+    
+    if(input == command.value) {
+      this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
+      command.value = ''
+    }
+    
     tryFocusLogs()
+  }
+
+  onIdentifiedCommand(id: number, data: object) {
+    switch(id) {
+      case 0: // Rust output
+      case 1: // User input
+        return false;
+      case 2: // serverinfo
+        this.ServerInfo = data  
+        break;
+      case 3: // carboninfo
+        this.CarbonInfo = data  
+        break;
+    }
+
+    return true;
   }
 }
 
 const servers = ref<Server[]>([])
 const selectedServer = ref()
 
-function createServer(address: string, password: string = '', hostname: string = '') {
+function createServer(address: string, password: string = '') {
   const server = new Server()
   server.Address = address
   server.Password = password
-  server.Hostname = hostname
   return server
 }
 
@@ -97,13 +140,29 @@ function deleteServer(server: Server) {
 
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
+  tryFocusLogs()
 }
 
 onMounted(() => {
+  const timerCallback = () => {
+    timerSwitch = setTimeout(timerCallback, 10000)
+    servers.value.forEach(server => {
+      if(!server.IsConnected) {
+        return;
+      }
+      server.sendCommand('serverinfo', 2)
+      server.sendCommand('c.version', 3)
+    });
+  }
+
+  timerSwitch = setTimeout(timerCallback, 10000)
+})
+
+onUnmounted(() => {
+  clearTimeout(timerSwitch)
 })
 
 interface CommandSend {
-  Name: string
   Message: string
   Identifier: number
 }
@@ -132,32 +191,58 @@ enum LogType {
       <button v-for="server in servers" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
         <Dot :style="'color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
         <div style="display: grid;">
-          <p><strong>{{ server.Hostname }}</strong></p>
+          <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="servers.push(createServer('', '', 'New Server'))">
+      <button class="rcon-server-button" @click="servers.push(createServer('', ''))">
         <Plus/>
       </button>
     </div>
 
-    <div style="margin: 15px;"></div>
-    <div v-if="selectedServer" class="rcon-server-settings">
+    <div v-if="selectedServer" class="rcon-server-settings" style="margin-top: 15px;">
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label">Address</label>
+        <label class="rcon-server-settings-input-label" style="user-select: none;">Address</label>
         <input v-model="selectedServer.Address" type="text" class="rcon-server-settings-custom-input" placeholder="localhost:28507" />
       </div>
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label">Password</label>
+        <label class="rcon-server-settings-input-label" style="user-select: none;">Password</label>
         <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" placeholder="••••••••••" />
       </div>
-      <div style="display: inline-grid;">
-        <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (selectedServer?.IsConnected ? 'var(--c-carbon-release-fix);' : 'var(--category-ammunition);') + 'font-size: small;'">
+      <div style="display: flex;">
+        <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
           <Wifi size="20px"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
-        <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--category-common); font-size: small;">
+        <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
           <X size="20px"/> Delete
         </button>
+      </div>
+    </div>
+
+    <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
+      <div style="display: flex;">
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Players</label>
+          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued, {{ selectedServer.ServerInfo.Joining }} joining</p>
+        </div>
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Entities</label>
+          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
+        </div>
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Map</label>
+          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
+        </div>
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Version</label>
+          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="rcon-server-settings-input-group">
+          <label class="rcon-server-settings-input-label" style="user-select: none;">Carbon</label>
+          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}</p>
+        </div>
       </div>
     </div>
 
@@ -171,9 +256,9 @@ enum LogType {
         style="font-family: monospace; color: var(--docsearch-muted-color); width: -webkit-fill-available;"
         spellcheck="false"
         v-model="command"
-        @keyup.enter="selectedServer?.sendCommand"
+        @keyup.enter="selectedServer?.sendCommand(command, 1)"
       />
-      <button @click="selectedServer?.sendCommand" class="rcon-send-button"><span style="user-select: none">Send</span></button>
+      <button @click="selectedServer?.sendCommand(command, 1)" class="rcon-send-button"><span style="user-select: none">Send</span></button>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none;">
       <p>No server selected</p>
