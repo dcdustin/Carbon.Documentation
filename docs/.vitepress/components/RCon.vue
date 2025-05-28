@@ -27,7 +27,7 @@ class Server {
     this.UserConnected = true
     if(this.Socket != null) {
       this.Socket.close()
-/*       this.Socket.onclose(new CloseEvent('close', {
+      this.Socket.onclose(new CloseEvent('close', {
         wasClean: true,
         code: 1000,
         reason: 'Manual close',
