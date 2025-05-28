@@ -179,6 +179,13 @@ export default defineConfig({
         },
         {
           text: 'References', items: references,
+        },
+        {
+          text: 'Tools',
+          items: [
+            { text: 'Web RCon', link: '/tools/rcon/' },
+            { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
+          ],
         }
       ],
     },

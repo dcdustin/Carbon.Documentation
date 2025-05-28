@@ -173,7 +173,7 @@ const getChangeType = (val: number) => {
           <ExternalLink :size="14" class="opacity-80" />
         </a>
         <div style="width: 10px;"></div>
-        <a href="/tools/changelog-generator"
+        <a href="/tools/changelog-generator/"
            class="vp-button medium brand flex items-center gap-2">
           <LucideTextCursorInput :size="16" />
           Editor
