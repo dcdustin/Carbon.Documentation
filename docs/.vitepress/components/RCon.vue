@@ -24,13 +24,12 @@ class Server {
 
   connect() {
     if(this.Socket != null) {
+      this.Socket.close()
       this.Socket.onclose(new CloseEvent('close', {
         wasClean: true,
         code: 1000,
         reason: 'Manual close',
       }))
-      this.Socket.close()
-      this.Socket = null
       return;
     }
 
@@ -49,6 +48,7 @@ class Server {
       this.Logs.push('Disconnected.')
       this.ServerInfo = null
       this.CarbonInfo = null
+      this.Socket = null
       tryFocusLogs()
     }
     this.Socket.onerror = (e) => {
