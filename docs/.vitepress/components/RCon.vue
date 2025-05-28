@@ -153,7 +153,6 @@ onMounted(() => {
         return;
       }
       server.sendCommand('serverinfo', 2)
-      server.sendCommand('c.version', 3)
     });
   }
 
