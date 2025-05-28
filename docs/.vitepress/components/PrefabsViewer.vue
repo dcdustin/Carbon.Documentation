@@ -51,6 +51,10 @@ const filteredPrefabs = computed(() => {
   return filtered
 })
 
+function appendSearch(component: string) {
+  debouncedSearchValue.value = `${debouncedSearchValue.value} ${component}`.trim()
+}
+
 function tryLoadMiniSearch() {
   const startTime = performance.now()
 
@@ -153,7 +157,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-for="prefab in renderedList" :key="prefab.ID" :id="prefab.ID.toString()">
-            <PrefabCard :prefab="prefab" />
+            <PrefabCard :prefab="prefab" @search-append="appendSearch" />
           </div>
         </InfinitePageScroll>
       </div>

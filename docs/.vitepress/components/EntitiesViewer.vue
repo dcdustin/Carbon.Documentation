@@ -18,6 +18,10 @@ const debouncedSearchValue = shallowRef('')
 
 const pageSize = 20
 
+function appendSearch(component: string) {
+  debouncedSearchValue.value = `${debouncedSearchValue.value} ${component}`.trim()
+}
+
 const filteredEntities = computed(() => {
   if (!entities.value?.length) {
     return []
@@ -154,7 +158,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-for="entity in renderedList" :key="entity.ID" :id="entity.ID.toString()">
-            <EntityCard :entity="entity" />
+            <EntityCard :entity="entity" @search-append="appendSearch" />
           </div>
         </InfinitePageScroll>
       </div>
