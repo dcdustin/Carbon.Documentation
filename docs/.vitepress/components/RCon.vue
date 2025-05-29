@@ -292,11 +292,11 @@ enum LogType {
 
     <div v-if="selectedServer" class="rcon-server-settings" style="margin-top: 15px;">
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Address</label>
+        <span class="rcon-server-settings-input-label" style="user-select: none;">Address</span>
         <input v-model="selectedServer.Address" type="text" class="rcon-server-settings-custom-input" placeholder="localhost:28507" />
       </div>
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Password</label>
+        <span class="rcon-server-settings-input-label" style="user-select: none;">Password</span>
         <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" />
       </div>
       <div style="display: flex;">
@@ -317,40 +317,40 @@ enum LogType {
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Host</label>
+        <span class="rcon-server-settings-input-label" style="user-select: none;">Host</span>
         <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
       </div>
       <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Description</label>
+        <span class="rcon-server-settings-input-label" style="user-select: none;">Description</span>
         <div type="text" class="rcon-server-settings-custom-input transparent" style="white-space: break-spaces;" v-html="selectedServer.Description"></div>
       </div>
       <div style="display: flex;">
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Header</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Header</span>
           <img :src="selectedServer.HeaderImage" width="300"/>
         </div>
       </div>
       <div style="display: flex;">
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Players</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Players</span>
           <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued, {{ selectedServer.ServerInfo.Joining }} joining</p>
         </div>
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Entities</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Entities</span>
           <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
         </div>
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Map</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Map</span>
           <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
         </div>
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Version</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Version</span>
           <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
         </div>
       </div>
       <div style="display: flex;">
         <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Carbon</label>
+          <span class="rcon-server-settings-input-label" style="user-select: none;">Carbon</span>
           <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}</p>
         </div>
       </div>
