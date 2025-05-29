@@ -188,7 +188,16 @@ function deleteServer(server: Server) {
 
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
+  localStorage.setItem('rcon-lastserver', server.Address)
   tryFocusLogs()
+}
+
+function findServer(address: string) : Server {
+  return servers.value.find(server => { 
+    if(server.Address == address) {
+      return server
+    }
+  }) as Server
 }
 
 function save() {
@@ -225,6 +234,10 @@ function load() {
         }
       });
     }, 250)
+  }
+  const lastSelectedServer = localStorage.getItem('rcon-lastserver')
+  if(lastSelectedServer) {
+    selectServer(findServer(lastSelectedServer))
   }
 }
 
