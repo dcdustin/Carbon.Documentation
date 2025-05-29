@@ -8,7 +8,7 @@ let timerSwitch: ReturnType<typeof setTimeout> = null!
 
 async function tryFocusLogs() {
   await nextTick()
-  if(logContainer.value?.scrollHeight) {
+  if (logContainer.value?.scrollHeight) {
     logContainer.value.scrollTop = logContainer.value.scrollHeight
   }
   save()
@@ -32,15 +32,17 @@ class Server {
   connect() {
     save()
     this.UserConnected = true
-    if(this.Socket != null) {
+    if (this.Socket != null) {
       this.Socket.close()
-      this.Socket.onclose(new CloseEvent('close', {
-        wasClean: true,
-        code: 1000,
-        reason: 'Manual close',
-      }))
+      this.Socket.onclose(
+        new CloseEvent('close', {
+          wasClean: true,
+          code: 1000,
+          reason: 'Manual close',
+        })
+      )
       this.UserConnected = false
-      return;
+      return
     }
 
     this.Socket = new WebSocket((this.Secure || enforceSecure() ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
@@ -82,12 +84,16 @@ class Server {
         try {
           jsonData = JSON.parse(resp.Message)
           isJson = true
-        } catch { /* empty */ }
-
-        if(this.onIdentifiedCommand(resp.Identifier, jsonData ?? resp)) {
-          return;
+        } catch {
+          /* empty */
         }
-      } catch { /* empty */ }
+
+        if (this.onIdentifiedCommand(resp.Identifier, jsonData ?? resp)) {
+          return
+        }
+      } catch {
+        /* empty */
+      }
 
       this.Logs.push(resp.Message)
       tryFocusLogs()
@@ -95,8 +101,8 @@ class Server {
   }
 
   sendCommand(input: string, id: number = 1) {
-    if(!input) {
-      return;
+    if (!input) {
+      return
     }
 
     if (this.Socket && this.IsConnected) {
@@ -106,35 +112,35 @@ class Server {
       }
       this.Socket.send(JSON.stringify(packet))
     }
-    
-    if(input == command.value) {
+
+    if (input == command.value) {
       this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
       command.value = ''
     }
-    
+
     tryFocusLogs()
   }
 
   onIdentifiedCommand(id: number, data: object) {
-    switch(id) {
+    switch (id) {
       case 0: // Rust output
       case 1: // User input
-        return false;
+        return false
       case 2: // serverinfo
-        this.ServerInfo = data  
-        break;
+        this.ServerInfo = data
+        break
       case 3: // carboninfo
-        this.CarbonInfo = data  
-        break;
+        this.CarbonInfo = data
+        break
       case 4: // headerimage
         this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
-        break;
+        break
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
-        break;
+        break
     }
 
-    return true;
+    return true
   }
 
   toggleAutoConnect() {
@@ -159,7 +165,7 @@ class Server {
 const servers = ref<Server[]>([])
 const selectedServer = ref()
 
-function enforceSecure() : boolean {
+function enforceSecure(): boolean {
   return location.protocol == 'https:'
 }
 
@@ -174,16 +180,16 @@ function addServer(server: Server, shouldSelect: boolean = false) {
   servers.value.push(server)
   save()
 
-  if(shouldSelect) {
+  if (shouldSelect) {
     selectServer(server)
   }
 }
 
-function deleteServer(server: Server) { 
+function deleteServer(server: Server) {
   const confirmDelete = window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
   if (confirmDelete) {
     servers.value.splice(servers.value.indexOf(server), 1)
-    if(selectedServer.value == server) {
+    if (selectedServer.value == server) {
       selectedServer.value = null
     }
   }
@@ -196,69 +202,72 @@ function selectServer(server: Server) {
   tryFocusLogs()
 }
 
-function findServer(address: string) : Server {
-  return servers.value.find(server => { 
-    if(server.Address == address) {
+function findServer(address: string): Server {
+  return servers.value.find((server) => {
+    if (server.Address == address) {
       return server
     }
   }) as Server
 }
 
 function save() {
-  localStorage.setItem('rcon-servers', JSON.stringify(servers.value, (key, value) => {
-    switch(key) {
-      case 'Socket':
-      case 'UserConnected':
-      case 'IsConnected':
-      case 'ServerInfo':
-      case 'CarbonInfo':
-      case 'HeaderImage':
-      case 'Description':
-        return undefined
-    }
-    return value
-  }))
+  localStorage.setItem(
+    'rcon-servers',
+    JSON.stringify(servers.value, (key, value) => {
+      switch (key) {
+        case 'Socket':
+        case 'UserConnected':
+        case 'IsConnected':
+        case 'ServerInfo':
+        case 'CarbonInfo':
+        case 'HeaderImage':
+        case 'Description':
+          return undefined
+      }
+      return value
+    })
+  )
 }
 
 function load() {
   const value = localStorage.getItem('rcon-servers')
-  if(value) {
-    (JSON.parse(value) as Server[]).forEach(server => {
+  if (value) {
+    ;(JSON.parse(value) as Server[]).forEach((server) => {
       const localServer = createServer(server.Address, server.Password)
       localServer.Logs = server.Logs
       localServer.AutoConnect = server.AutoConnect
       localServer.Secure = server.Secure
       addServer(localServer)
-    });
+    })
 
     setTimeout(() => {
-      servers.value.forEach(server => {
-        if(server.AutoConnect) {
+      servers.value.forEach((server) => {
+        if (server.AutoConnect) {
           server.connect()
         }
-      });
+      })
     }, 250)
   }
   const lastSelectedServer = localStorage.getItem('rcon-lastserver')
-  if(lastSelectedServer) {
+  if (lastSelectedServer) {
     selectServer(findServer(lastSelectedServer))
   }
 }
 
-onMounted(() => {  
+onMounted(() => {
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
-    servers.value.forEach(server => {
-      if(!server.Password || !server.UserConnected) {
-        return;
+    servers.value.forEach((server) => {
+      if (!server.Password || !server.UserConnected) {
+        return
       }
-      if(!server.IsConnected) {
+      if (!server.IsConnected) {
         server.connect()
-        return;
+        return
       }
       server.sendCommand('serverinfo', 2)
       server.sendCommand('server.description', 5)
-    });
+    })
   }
 
   timerSwitch = setTimeout(timerCallback, 10000)
@@ -294,119 +303,155 @@ enum LogType {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
-    <div class="rcon-server-list">
-      <button v-for="server in servers" :key="server.Address" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
-        <Dot :size="45" :style="'margin: -10px; color: ' + (server.IsConnecting ? 'yellow' : server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
-        <div style="display: grid;">
-          <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
-          <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
+    <div class="r-list">
+      <button v-for="server in servers" :key="server.Address" :class="['r-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
+        <Dot
+          :size="45"
+          :style="'margin: -10px; color: ' + (server.IsConnecting ? 'yellow' : server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"
+        />
+        <div style="display: grid">
+          <p>
+            <strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong>
+          </p>
+          <p style="font-size: 12px; color: var(--vp-badge-info-text)">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="addServer(createServer('', ''), true)">
-        <Plus/>
+      <button class="r-button" @click="addServer(createServer('', ''), true)">
+        <Plus />
       </button>
     </div>
 
-    <div v-if="selectedServer" class="rcon-server-settings" style="margin-top: 15px;">
-      <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Address</label>
-        <input v-model="selectedServer.Address" type="text" class="rcon-server-settings-custom-input" placeholder="localhost:28507" />
+    <div v-if="selectedServer" class="r-settings" style="margin-top: 15px">
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none">Address</span>
+        <input v-model="selectedServer.Address" type="text" class="r-settings-custom-input" placeholder="localhost:28507" />
       </div>
-      <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Password</label>
-        <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" />
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none">Password</span>
+        <input v-model="selectedServer.Password" type="password" class="r-settings-custom-input" />
       </div>
-      <div style="display: flex;">
-        <button class="rcon-server-button" :disabled="selectedServer.IsConnecting" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
-          <Wifi :size="20"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
+      <div style="display: flex">
+        <button
+          class="r-button"
+          :disabled="selectedServer.IsConnecting"
+          @click="selectedServer.connect()"
+          :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'"
+        >
+          <Wifi :size="20" /> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
-        <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
-          <X :size="20"/> Delete
+        <button class="r-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small">
+          <X :size="20" /> Delete
         </button>
-        <button class="rcon-server-button" @click="selectedServer.toggleSecure()" :disabled="enforceSecure()" :class="['rcon-server-button', { toggled: enforceSecure() || selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
-          <Shield :size="20"/> {{ enforceSecure() ? 'Enforced' : '' }} Secure
+        <button
+          class="r-button"
+          @click="selectedServer.toggleSecure()"
+          :class="['r-button', { toggled: selectedServer.Secure }]"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
+          <Shield :size="20" /> Secure
         </button>
-        <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
-          <RotateCcw :size="20"/> Auto-Connect
+        <button
+          class="r-button"
+          @click="selectedServer.toggleAutoConnect()"
+          :class="['r-button', { toggled: selectedServer.AutoConnect }]"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
+          <RotateCcw :size="20" /> Auto-Connect
         </button>
-        <a class="rcon-server-button" href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue" target="_blank" style="color: var(--docsearch-footer-background); font-size: small;">
-          <CodeXml :size="20"/> Source <ExternalLink :size="13"/>
+        <a
+          class="r-button"
+          href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue"
+          target="_blank"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
+          <CodeXml :size="20" /> Source <ExternalLink :size="13" />
         </a>
       </div>
     </div>
-    
-    <div v-if="enforceSecure()" class="rcon-server-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
-      <p style="text-align: center;">
-        You're currently using Carbon Documentation in HTTPS mode. <br>
-        To use RCon without the SSL certificate requirement, update the URL to use <code><span style="color: var(--category-favourite); font-weight: bolder;">http</span>://</code> instead of <code>https</code>.
+
+    <div v-if="enforceSecure()" class="r-settings" style="margin-top: 15px; font-size: small; opacity: 75%">
+      <p style="text-align: center">
+        You're currently using Carbon Documentation in HTTPS mode. <br />
+        To use RCon without the SSL certificate requirement, update the URL to use
+        <code><span style="color: var(--category-favourite); font-weight: bolder">http</span>://</code> instead of <code>https</code>.
       </p>
     </div>
 
-    <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
-      <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Host</label>
-        <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
+    <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none">Host</span>
+        <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
       </div>
-      <div class="rcon-server-settings-input-group">
-        <label class="rcon-server-settings-input-label" style="user-select: none;">Description</label>
-        <div type="text" class="rcon-server-settings-custom-input transparent" style="white-space: break-spaces;" v-html="selectedServer.Description"></div>
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none">Description</span>
+        <div type="text" class="r-settings-custom-input transparent" style="white-space: break-spaces" v-html="selectedServer.Description"></div>
       </div>
-      <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Header</label>
-          <img v-if="selectedServer.HeaderImage" :src="selectedServer.HeaderImage" width="300"/>
-        </div>
-      </div>
-      <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Players</label>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued, {{ selectedServer.ServerInfo.Joining }} joining</p>
-        </div>
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Entities</label>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
-        </div>
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Map</label>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
-        </div>
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Version</label>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+      <div style="display: flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Header</span>
+          <img :src="selectedServer.HeaderImage" width="300" />
         </div>
       </div>
-      <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <label class="rcon-server-settings-input-label" style="user-select: none;">Carbon</label>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}</p>
+      <div style="display: flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Players</span>
+          <p type="text" class="r-settings-custom-input transparent">
+            {{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued,
+            {{ selectedServer.ServerInfo.Joining }} joining
+          </p>
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Entities</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Map</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Version</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+        </div>
+      </div>
+      <div style="display: flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Carbon</span>
+          <p type="text" class="r-settings-custom-input transparent">
+            {{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}
+          </p>
         </div>
       </div>
     </div>
 
     <div style="height: 15px"></div>
-    <div v-if="selectedServer" ref="logContainer" class="p-4 rounded text-sm font-mono " style="overflow: auto;  align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none;">
-      <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap;"></p>
+    <div
+      v-if="selectedServer"
+      ref="logContainer"
+      class="p-4 rounded text-sm font-mono"
+      style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
+    >
+      <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
     </div>
-    <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px;">
-      <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none;">> </div>
+    <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
+      <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
       <input
-        style="font-family: monospace; color: var(--docsearch-muted-color);"
+        style="font-family: monospace; color: var(--docsearch-muted-color)"
         class="w-full"
         spellcheck="false"
         v-model="command"
         @keyup.enter="selectedServer?.sendCommand(command, 1)"
       />
-      <button @click="selectedServer?.clearLogs()" class="rcon-send-button"><span style="user-select: none">Clear</span></button>
-      <button @click="selectedServer?.sendCommand(command, 1)" class="rcon-send-button"><span style="user-select: none">Send</span></button>
+      <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
+      <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
     </div>
-    <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none;">
+    <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">
       <p>No server selected</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.rcon-send-button {
+.r-send-button {
   font-family: monospace;
   color: var(--category-misc);
   background-color: transparent;
@@ -416,12 +461,12 @@ enum LogType {
   transition: background-color, color;
 }
 
-.rcon-send-button:hover {
+.r-send-button:hover {
   background-color: var(--category-misc);
   color: white;
 }
 
-.rcon-server-list {
+.r-list {
   display: flex;
   gap: 10px;
   overflow: scroll;
@@ -429,21 +474,21 @@ enum LogType {
   scrollbar-width: none;
 }
 
-.rcon-server-settings {
+.r-settings {
   background-color: var(--vp-code-copy-code-bg);
   padding: 15px;
   gap: 1rem;
   font-family: monospace;
 }
 
-.rcon-server-settings-input-group {
+.r-settings-input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
   flex: 1;
 }
 
-.rcon-server-settings-input-label {
+.r-settings-input-label {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: #aaa;
@@ -452,7 +497,7 @@ enum LogType {
   letter-spacing: 0.05em;
 }
 
-.rcon-server-settings-custom-input {
+.r-settings-custom-input {
   background-color: #1a1a1a;
   color: white;
   border-bottom: 1px solid #444;
@@ -463,17 +508,17 @@ enum LogType {
   transition: border-color 0.2s ease-in-out;
 }
 
-.rcon-server-settings-custom-input.transparent {
+.r-settings-custom-input.transparent {
   font-size: small;
   border-radius: 0px;
   background-color: transparent !important;
 }
 
-.rcon-server-settings-custom-input:focus {
+.r-settings-custom-input:focus {
   border-color: #888;
 }
 
-.rcon-server-button {
+.r-button {
   opacity: 50%;
   background-color: var(--vp-code-copy-code-bg);
   padding: 7.5px 15px;
@@ -484,12 +529,12 @@ enum LogType {
   border-bottom: 2px solid transparent;
 }
 
-.rcon-server-button:hover {
+.r-button:hover {
   opacity: 75%;
   background-color: var(--docsearch-text-color);
 }
 
-.rcon-server-button.toggled {
+.r-button.toggled {
   opacity: 100%;
   background-color: var(--vp-button-alt-bg);
   border-bottom: 2px solid #ffffff29;
