@@ -6,7 +6,6 @@ import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 }
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, onUnmounted, ref, Ref, watch } from 'vue'
 import '../theme/style.css'
-import { text } from 'node:stream/consumers'
 
 const prefab: Ref<Prefab | null> = ref(null)
 const isLoading = ref(true)
