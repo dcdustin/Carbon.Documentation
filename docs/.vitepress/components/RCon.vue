@@ -504,7 +504,7 @@ enum LogType {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubtab == 1">
+      <div v-else-if="selectedSubtab == 1" style="overflow: auto;">
         <table tabindex="0" class="vp-doc table" style="">
           <thead>
             <tr>
@@ -516,8 +516,8 @@ enum LogType {
             </tr>
           </thead>
           <tr v-for="player in selectedServer.PlayerInfo">
-            <td class="vp-doc td" style="display: flex;">
-               <img :src="flags[player.Address]" class="size-4"/> <span class="ml-2 text-xs text-slate-400"> {{ player.Ping }}ms</span>
+            <td class="vp-doc td">
+              <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="flags[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
             </td>
             <td class="vp-doc td">
               <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[{{ player.SteamID }}]</span>
