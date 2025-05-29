@@ -277,81 +277,81 @@ enum LogType {
 
 <template>
   <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
-    <div class="rcon-server-list">
-      <button v-for="server in servers" :key="server.Address" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
+    <div class="r-list">
+      <button v-for="server in servers" :key="server.Address" :class="['r-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
         <Dot :size="45" :style="'margin: -10px; color: ' + (server.IsConnecting ? 'yellow' : server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
         <div style="display: grid;">
           <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="addServer(createServer('', ''), true)">
+      <button class="r-button" @click="addServer(createServer('', ''), true)">
         <Plus/>
       </button>
     </div>
 
-    <div v-if="selectedServer" class="rcon-server-settings" style="margin-top: 15px;">
-      <div class="rcon-server-settings-input-group">
-        <span class="rcon-server-settings-input-label" style="user-select: none;">Address</span>
-        <input v-model="selectedServer.Address" type="text" class="rcon-server-settings-custom-input" placeholder="localhost:28507" />
+    <div v-if="selectedServer" class="r-settings" style="margin-top: 15px;">
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none;">Address</span>
+        <input v-model="selectedServer.Address" type="text" class="r-settings-custom-input" placeholder="localhost:28507" />
       </div>
-      <div class="rcon-server-settings-input-group">
-        <span class="rcon-server-settings-input-label" style="user-select: none;">Password</span>
-        <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" />
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none;">Password</span>
+        <input v-model="selectedServer.Password" type="password" class="r-settings-custom-input" />
       </div>
       <div style="display: flex;">
-        <button class="rcon-server-button" :disabled="selectedServer.IsConnecting" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
+        <button class="r-button" :disabled="selectedServer.IsConnecting" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
           <Wifi :size="20"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
-        <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
+        <button class="r-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
           <X :size="20"/> Delete
         </button>
-        <button class="rcon-server-button" @click="selectedServer.toggleSecure()" :class="['rcon-server-button', { toggled: selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
+        <button class="r-button" @click="selectedServer.toggleSecure()" :class="['r-button', { toggled: selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <Shield :size="20"/> Secure
         </button>
-        <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
+        <button class="r-button" @click="selectedServer.toggleAutoConnect()" :class="['r-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
         </button>
       </div>
     </div>
 
-    <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
-      <div class="rcon-server-settings-input-group">
-        <span class="rcon-server-settings-input-label" style="user-select: none;">Host</span>
-        <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
+    <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="r-settings">
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none;">Host</span>
+        <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
       </div>
-      <div class="rcon-server-settings-input-group">
-        <span class="rcon-server-settings-input-label" style="user-select: none;">Description</span>
-        <div type="text" class="rcon-server-settings-custom-input transparent" style="white-space: break-spaces;" v-html="selectedServer.Description"></div>
+      <div class="r-settings-input-group">
+        <span class="r-settings-input-label" style="user-select: none;">Description</span>
+        <div type="text" class="r-settings-custom-input transparent" style="white-space: break-spaces;" v-html="selectedServer.Description"></div>
       </div>
       <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Header</span>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Header</span>
           <img :src="selectedServer.HeaderImage" width="300"/>
         </div>
       </div>
       <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Players</span>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued, {{ selectedServer.ServerInfo.Joining }} joining</p>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Players</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued, {{ selectedServer.ServerInfo.Joining }} joining</p>
         </div>
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Entities</span>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Entities</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
         </div>
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Map</span>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Map</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
         </div>
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Version</span>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Version</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
         </div>
       </div>
       <div style="display: flex;">
-        <div class="rcon-server-settings-input-group">
-          <span class="rcon-server-settings-input-label" style="user-select: none;">Carbon</span>
-          <p type="text" class="rcon-server-settings-custom-input transparent">{{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}</p>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none;">Carbon</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}</p>
         </div>
       </div>
     </div>
@@ -369,8 +369,8 @@ enum LogType {
         v-model="command"
         @keyup.enter="selectedServer?.sendCommand(command, 1)"
       />
-      <button @click="selectedServer?.clearLogs()" class="rcon-send-button"><span style="user-select: none">Clear</span></button>
-      <button @click="selectedServer?.sendCommand(command, 1)" class="rcon-send-button"><span style="user-select: none">Send</span></button>
+      <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
+      <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none;">
       <p>No server selected</p>
@@ -379,7 +379,7 @@ enum LogType {
 </template>
 
 <style scoped>
-.rcon-send-button {
+.r-send-button {
   font-family: monospace;
   color: var(--category-misc);
   background-color: transparent;
@@ -389,12 +389,12 @@ enum LogType {
   transition: background-color, color;
 }
 
-.rcon-send-button:hover {
+.r-send-button:hover {
   background-color: var(--category-misc);
   color: white;
 }
 
-.rcon-server-list {
+.r-list {
   display: flex;
   gap: 10px;
   overflow: scroll;
@@ -402,21 +402,21 @@ enum LogType {
   scrollbar-width: none;
 }
 
-.rcon-server-settings {
+.r-settings {
   background-color: var(--vp-code-copy-code-bg);
   padding: 15px;
   gap: 1rem;
   font-family: monospace;
 }
 
-.rcon-server-settings-input-group {
+.r-settings-input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
   flex: 1;
 }
 
-.rcon-server-settings-input-label {
+.r-settings-input-label {
   font-size: 0.75rem;
   text-transform: uppercase;
   color: #aaa;
@@ -425,7 +425,7 @@ enum LogType {
   letter-spacing: 0.05em;
 }
 
-.rcon-server-settings-custom-input {
+.r-settings-custom-input {
   background-color: #1a1a1a;
   color: white;
   border-bottom: 1px solid #444;
@@ -436,17 +436,17 @@ enum LogType {
   transition: border-color 0.2s ease-in-out;
 }
 
-.rcon-server-settings-custom-input.transparent {
+.r-settings-custom-input.transparent {
   font-size: small;
   border-radius: 0px;
   background-color: transparent !important;
 }
 
-.rcon-server-settings-custom-input:focus {
+.r-settings-custom-input:focus {
   border-color: #888;
 }
 
-.rcon-server-button {
+.r-button {
   opacity: 50%;
   background-color: var(--vp-code-copy-code-bg);
   padding: 7.5px 15px;
@@ -457,12 +457,12 @@ enum LogType {
   border-bottom: 2px solid transparent;
 }
 
-.rcon-server-button:hover {
+.r-button:hover {
   opacity: 75%;
   background-color: var(--docsearch-text-color);
 }
 
-.rcon-server-button.toggled {
+.r-button.toggled {
   opacity: 100%;
   background-color: var(--vp-button-alt-bg);
   border-bottom: 2px solid #ffffff29;
