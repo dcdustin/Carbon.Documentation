@@ -5,6 +5,8 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 const selectedSubtab = ref(0)
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
+const flags = ref<{ [key: string]: string }>({})
+
 let timerSwitch: ReturnType<typeof setTimeout> = null!
 
 async function tryFocusLogs() {
@@ -24,6 +26,24 @@ function isValidUrl(urlStr: string) : boolean {
   }
 }
 
+async function fetchGeolocation(ip: string) {
+  const url = `https://ipwho.is/${ip.split(':')[0]}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`IPAPI responded with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    if(flags) {
+      flags.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
+    }
+  } catch (error) {
+    console.error(`Error fetching geolocation for IP ${ip}:`, error);
+  }
+}
+
 class Server {
   Address = ''
   Password = ''
@@ -37,6 +57,7 @@ class Server {
   UserConnected = false
   ServerInfo: object | null = null
   CarbonInfo: object | null = null
+  PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
 
@@ -65,6 +86,7 @@ class Server {
       tryFocusLogs()
 
       this.sendCommand('serverinfo', 2)
+      this.sendCommand('playerlist', 6)
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
@@ -74,6 +96,7 @@ class Server {
       this.IsConnected = false
       this.ServerInfo = null
       this.CarbonInfo = null
+      this.PlayerInfo = null
       this.HeaderImage = ''
       this.Description = ''
       this.Socket = null
@@ -130,7 +153,7 @@ class Server {
     tryFocusLogs()
   }
 
-  onIdentifiedCommand(id: number, data: object) {
+  async onIdentifiedCommand(id: number, data: object) {
     switch (id) {
       case 0: // Rust output
       case 1: // User input
@@ -138,6 +161,15 @@ class Server {
       case 2: // serverinfo
         this.ServerInfo = data
         this.CachedHostname = this.ServerInfo.Hostname
+        break
+      case 6: // playerinfo
+        this.PlayerInfo = data
+        this.PlayerInfo.forEach(player => {
+          if(!(player.Address in flags.value)) {
+            fetchGeolocation(player.Address)
+          }
+        });
+
         break
       case 3: // carboninfo
         this.CarbonInfo = data
@@ -233,6 +265,7 @@ function save() {
         case 'IsConnected':
         case 'ServerInfo':
         case 'CarbonInfo':
+        case 'PlayerInfo':
         case 'HeaderImage':
         case 'Description':
           return undefined
@@ -280,6 +313,7 @@ onMounted(() => {
         return
       }
       server.sendCommand('serverinfo', 2)
+      server.sendCommand('playerlist', 6)
       server.sendCommand('server.description', 5)
     })
   }
@@ -456,6 +490,35 @@ enum LogType {
             </p>
           </div>
         </div>
+      </div>
+      <div v-else-if="selectedSubtab == 1">
+        <table tabindex="0" class="vp-doc table" style="">
+          <thead>
+            <tr>
+              <th class="vp-doc th"></th>
+              <th class="vp-doc th">Player</th>
+              <th class="vp-doc th text-center">Ping</th>
+              <th class="vp-doc th text-center">Health</th>
+              <th class="vp-doc th"></th>
+            </tr>
+          </thead>
+          <tr v-for="player in selectedServer.PlayerInfo">
+            <td class="vp-doc td">
+              <img :src="flags[player.Address]" class="size-2/3"/>
+            </td>
+            <td class="vp-doc td">
+              <strong>{{player.DisplayName}}</strong>
+            </td>
+            <td><div style="opacity: 50%; font-size: smaller">{{ player.Ping }}</div></td>
+            <td style="position: relative;">
+              <div :style="'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #41642da6; width: ' + player.Health + '%'"></div>
+              <div style="opacity: 50%; font-size: smaller">{{ player.Health.toFixed(1) }}</div>
+            </td>
+            <td class="vp-doc td">
+              <a :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">Steam Profile</a>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
