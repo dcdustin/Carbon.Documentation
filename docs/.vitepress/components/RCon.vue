@@ -20,8 +20,9 @@ class Server {
   Socket: WebSocket | null = null
   Logs: string[] = []
   AutoConnect = false
-  Secure = true
+  Secure = false
   IsConnected = false
+  IsConnecting = false
   UserConnected = false
   ServerInfo: object | null = null
   CarbonInfo: object | null = null
@@ -43,8 +44,10 @@ class Server {
     }
 
     this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
+    this.IsConnecting = true
 
     this.Socket.onopen = () => {
+      this.IsConnecting = false
       this.IsConnected = true
       this.Logs.push('Connected to ' + this.Address + ' successfully')
       tryFocusLogs()
@@ -55,6 +58,7 @@ class Server {
       this.sendCommand('server.description', 5)
     }
     this.Socket.onclose = () => {
+      this.IsConnecting = false
       this.IsConnected = false
       this.Logs.push('Disconnected.')
       this.ServerInfo = null
@@ -220,7 +224,7 @@ function load() {
   }
 }
 
-onMounted(() => {
+onMounted(() => {  
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
     servers.value.forEach(server => {
@@ -271,7 +275,7 @@ enum LogType {
   <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
     <div class="rcon-server-list">
       <button v-for="server in servers" :key="server.Address" :class="['rcon-server-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
-        <Dot :size="45" :style="'margin: -10px; color: ' + (server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
+        <Dot :size="45" :style="'margin: -10px; color: ' + (server.IsConnecting ? 'yellow' : server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"/>
         <div style="display: grid;">
           <p><strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong></p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
@@ -292,7 +296,7 @@ enum LogType {
         <input v-model="selectedServer.Password" type="password" class="rcon-server-settings-custom-input" />
       </div>
       <div style="display: flex;">
-        <button class="rcon-server-button" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
+        <button class="rcon-server-button" :disabled="selectedServer.IsConnecting" @click="selectedServer.connect()" :style="'color: ' + (!selectedServer?.IsConnected ? 'var(--docsearch-footer-background);' : 'var(--c-carbon-3);') + 'font-size: small;'">
           <Wifi :size="20"/> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
