@@ -43,7 +43,7 @@ class Server {
       return;
     }
 
-    this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
+    this.Socket = new WebSocket((this.Secure || enforceSecure() ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
     this.IsConnecting = true
 
     this.Socket.onopen = () => {
@@ -158,6 +158,10 @@ class Server {
 
 const servers = ref<Server[]>([])
 const selectedServer = ref()
+
+function enforceSecure() : boolean {
+  return location.protocol == 'https:'
+}
 
 function createServer(address: string, password: string = '') {
   const server = new Server()
@@ -319,13 +323,19 @@ enum LogType {
         <button class="rcon-server-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small;">
           <X :size="20"/> Delete
         </button>
-        <button class="rcon-server-button" @click="selectedServer.toggleSecure()" :class="['rcon-server-button', { toggled: selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
-          <Shield :size="20"/> Secure
+        <button class="rcon-server-button" @click="selectedServer.toggleSecure()" :disabled="enforceSecure()" :class="['rcon-server-button', { toggled: enforceSecure() || selectedServer.Secure }]" style="color: var(--docsearch-footer-background); font-size: small;">
+          <Shield :size="20"/> {{ enforceSecure() ? 'Enforced' : '' }} Secure
         </button>
         <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
         </button>
       </div>
+    </div>
+    
+    <div v-if="enforceSecure()" class="rcon-server-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
+      <p style="text-align: center;">
+        You're currently using Carbon Documentation in HTTPS mode. To use RCon without the SSL certificate requirement, <a href="http://docs.carbonmod.gg/tools/rcon" style="color: var(--category-favourite); font-weight: bolder;">head over here</a>.
+      </p>
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="rcon-server-settings">
@@ -340,7 +350,7 @@ enum LogType {
       <div style="display: flex;">
         <div class="rcon-server-settings-input-group">
           <label class="rcon-server-settings-input-label" style="user-select: none;">Header</label>
-          <img :src="selectedServer.HeaderImage" width="300"/>
+          <img v-if="selectedServer.HeaderImage" :src="selectedServer.HeaderImage" width="300"/>
         </div>
       </div>
       <div style="display: flex;">
