@@ -166,9 +166,13 @@ function createServer(address: string, password: string = '') {
   return server
 }
 
-function addServer(server: Server) {
+function addServer(server: Server, shouldSelect: boolean = false) {
   servers.value.push(server)
   save()
+
+  if(shouldSelect) {
+    selectServer(server)
+  }
 }
 
 function deleteServer(server: Server) { 
@@ -281,7 +285,7 @@ enum LogType {
           <p style="font-size: 12px; color: var(--vp-badge-info-text);">{{ server.Address }}</p>
         </div>
       </button>
-      <button class="rcon-server-button" @click="addServer(createServer('', ''))">
+      <button class="rcon-server-button" @click="addServer(createServer('', ''), true)">
         <Plus/>
       </button>
     </div>
