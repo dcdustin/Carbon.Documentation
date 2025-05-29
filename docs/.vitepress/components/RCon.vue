@@ -334,7 +334,8 @@ enum LogType {
     
     <div v-if="enforceSecure()" class="rcon-server-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
       <p style="text-align: center;">
-        You're currently using Carbon Documentation in HTTPS mode. To use RCon without the SSL certificate requirement, <a href="http://docs.carbonmod.gg/tools/rcon" style="color: var(--category-favourite); font-weight: bolder;">head over here</a>.
+        You're currently using Carbon Documentation in HTTPS mode. <br>
+        To use RCon without the SSL certificate requirement, update the URL to use <code><span style="color: var(--category-favourite); font-weight: bolder;">http</span>://</code> instead of <code>https</code>.
       </p>
     </div>
 
