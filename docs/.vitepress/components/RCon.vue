@@ -329,13 +329,13 @@ enum LogType {
         <button class="r-button" @click="selectedServer.toggleAutoConnect()" :class="['r-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
         </button>
-        <a class="rcon-server-button" href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue" target="_blank" style="color: var(--docsearch-footer-background); font-size: small;">
+        <a class="r-button" href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue" target="_blank" style="color: var(--docsearch-footer-background); font-size: small;">
           <CodeXml :size="20"/> Source <ExternalLink :size="13"/>
         </a>
       </div>
     </div>
 
-    <div v-if="enforceSecure()" class="rcon-server-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
+    <div v-if="enforceSecure()" class="r-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
       <p style="text-align: center;">
         You're currently using Carbon Documentation in HTTPS mode. <br>
         To use RCon without the SSL certificate requirement, update the URL to use <code><span style="color: var(--category-favourite); font-weight: bolder;">http</span>://</code> instead of <code>https</code>.
