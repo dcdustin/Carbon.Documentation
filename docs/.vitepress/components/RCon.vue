@@ -153,7 +153,7 @@ class Server {
     tryFocusLogs()
   }
 
-  async onIdentifiedCommand(id: number, data: object) {
+  onIdentifiedCommand(id: number, data: object) {
     switch (id) {
       case 0: // Rust output
       case 1: // User input
