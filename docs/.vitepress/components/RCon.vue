@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X, RotateCcw, Shield } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const command = ref('')
@@ -329,6 +329,9 @@ enum LogType {
         <button class="rcon-server-button" @click="selectedServer.toggleAutoConnect()" :class="['rcon-server-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
         </button>
+        <a class="rcon-server-button" href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue" target="_blank" style="color: var(--docsearch-footer-background); font-size: small;">
+          <CodeXml :size="20"/> Source <ExternalLink :size="13"/>
+        </a>
       </div>
     </div>
     
