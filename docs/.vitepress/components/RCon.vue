@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X, RotateCcw, Shield } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const command = ref('')
@@ -43,7 +43,7 @@ class Server {
       return;
     }
 
-    this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
+    this.Socket = new WebSocket((this.Secure || enforceSecure() ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
     this.IsConnecting = true
 
     this.Socket.onopen = () => {
@@ -106,12 +106,12 @@ class Server {
       }
       this.Socket.send(JSON.stringify(packet))
     }
-    
+
     if(input == command.value) {
       this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
       command.value = ''
     }
-    
+
     tryFocusLogs()
   }
 
@@ -121,10 +121,10 @@ class Server {
       case 1: // User input
         return false;
       case 2: // serverinfo
-        this.ServerInfo = data  
+        this.ServerInfo = data
         break;
       case 3: // carboninfo
-        this.CarbonInfo = data  
+        this.CarbonInfo = data
         break;
       case 4: // headerimage
         this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
@@ -159,6 +159,10 @@ class Server {
 const servers = ref<Server[]>([])
 const selectedServer = ref()
 
+function enforceSecure() : boolean {
+  return location.protocol == 'https:'
+}
+
 function createServer(address: string, password: string = '') {
   const server = new Server()
   server.Address = address
@@ -175,7 +179,7 @@ function addServer(server: Server, shouldSelect: boolean = false) {
   }
 }
 
-function deleteServer(server: Server) { 
+function deleteServer(server: Server) {
   const confirmDelete = window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
   if (confirmDelete) {
     servers.value.splice(servers.value.indexOf(server), 1)
@@ -188,7 +192,16 @@ function deleteServer(server: Server) {
 
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
+  localStorage.setItem('rcon-lastserver', server.Address)
   tryFocusLogs()
+}
+
+function findServer(address: string) : Server {
+  return servers.value.find(server => {
+    if(server.Address == address) {
+      return server
+    }
+  }) as Server
 }
 
 function save() {
@@ -226,9 +239,13 @@ function load() {
       });
     }, 250)
   }
+  const lastSelectedServer = localStorage.getItem('rcon-lastserver')
+  if(lastSelectedServer) {
+    selectServer(findServer(lastSelectedServer))
+  }
 }
 
-onMounted(() => {  
+onMounted(() => {
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
     servers.value.forEach(server => {
@@ -312,7 +329,17 @@ enum LogType {
         <button class="r-button" @click="selectedServer.toggleAutoConnect()" :class="['r-button', { toggled: selectedServer.AutoConnect }]" style="color: var(--docsearch-footer-background); font-size: small;">
           <RotateCcw :size="20"/> Auto-Connect
         </button>
+        <a class="rcon-server-button" href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue" target="_blank" style="color: var(--docsearch-footer-background); font-size: small;">
+          <CodeXml :size="20"/> Source <ExternalLink :size="13"/>
+        </a>
       </div>
+    </div>
+
+    <div v-if="enforceSecure()" class="rcon-server-settings" style="margin-top: 15px; font-size: small; opacity: 75%;">
+      <p style="text-align: center;">
+        You're currently using Carbon Documentation in HTTPS mode. <br>
+        To use RCon without the SSL certificate requirement, update the URL to use <code><span style="color: var(--category-favourite); font-weight: bolder;">http</span>://</code> instead of <code>https</code>.
+      </p>
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow;" class="r-settings">
