@@ -2,6 +2,7 @@
 import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
+const selectedSubtab = ref(0)
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
 let timerSwitch: ReturnType<typeof setTimeout> = null!
@@ -391,48 +392,69 @@ enum LogType {
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
-      <div class="r-settings-input-group">
-        <span class="r-settings-input-label" style="user-select: none">Host</span>
-        <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
+      <div class="mb-5" style="display: flex">
+        <button
+          class="r-button"
+          @click="selectedSubtab = 0"
+          :class="['r-button', { toggled: selectedSubtab == 0 }]"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
+          Info
+        </button>
+        <button
+          class="r-button"
+          @click="selectedSubtab = 1"
+          :class="['r-button', { toggled: selectedSubtab == 1 }]"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
+          Players
+        </button>
       </div>
-      <div class="r-settings-input-group">
-        <span class="r-settings-input-label" style="user-select: none">Description</span>
-        <div type="text" class="r-settings-custom-input transparent" style="white-space: break-spaces" v-html="selectedServer.Description"></div>
-      </div>
-      <div style="display: flex">
+
+      <div v-if="selectedSubtab == 0">
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Header</span>
-          <img v-if="selectedServer.HeaderImage" :src="selectedServer.HeaderImage" width="300" />
-          <p v-else class="text-xs text-slate-400">No header available</p>
-        </div>
-      </div>
-      <div style="display: flex">
-        <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Players</span>
-          <p type="text" class="r-settings-custom-input transparent">
-            {{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued,
-            {{ selectedServer.ServerInfo.Joining }} joining
-          </p>
+          <span class="r-settings-input-label" style="user-select: none">Host</span>
+          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
         </div>
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Entities</span>
-          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
+          <span class="r-settings-input-label" style="user-select: none">Description</span>
+          <div type="text" class="r-settings-custom-input transparent" style="white-space: break-spaces" v-html="selectedServer.Description"></div>
         </div>
-        <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Map</span>
-          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
+        <div style="display: flex">
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Header</span>
+            <img v-if="selectedServer.HeaderImage" :src="selectedServer.HeaderImage" width="300" />
+            <p v-else class="text-xs text-slate-400">No header available</p>
+          </div>
         </div>
-        <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Version</span>
-          <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+        <div style="display: flex">
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Players</span>
+            <p type="text" class="r-settings-custom-input transparent">
+              {{ selectedServer.ServerInfo.Players }} / {{ selectedServer.ServerInfo.MaxPlayers }} — {{ selectedServer.ServerInfo.Queued }} queued,
+              {{ selectedServer.ServerInfo.Joining }} joining
+            </p>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Entities</span>
+            <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.EntityCount.toLocaleString() }}</p>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Map</span>
+            <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Map }}</p>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Version</span>
+            <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Protocol }}</p>
+          </div>
         </div>
-      </div>
-      <div style="display: flex">
-        <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Carbon</span>
-          <p type="text" class="r-settings-custom-input transparent">
-            {{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}
-          </p>
+        <div style="display: flex">
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Carbon</span>
+            <p type="text" class="r-settings-custom-input transparent">
+              {{ selectedServer.CarbonInfo == null ? 'Not found' : selectedServer.CarbonInfo.Message.split(' ').slice(0, 2).join(' ') }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
