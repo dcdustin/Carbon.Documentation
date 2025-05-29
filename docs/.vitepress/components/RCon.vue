@@ -14,6 +14,15 @@ async function tryFocusLogs() {
   save()
 }
 
+function isValidUrl(urlStr: string) : boolean {
+  try {
+    const url = new URL(urlStr);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
+}
+
 class Server {
   Address = ''
   Password = ''
@@ -21,6 +30,7 @@ class Server {
   Logs: string[] = []
   AutoConnect = false
   Secure = false
+  CachedHostname = ''
   IsConnected = false
   IsConnecting = false
   UserConnected = false
@@ -51,7 +61,6 @@ class Server {
     this.Socket.onopen = () => {
       this.IsConnecting = false
       this.IsConnected = true
-      this.Logs.push('Connected to ' + this.Address + ' successfully')
       tryFocusLogs()
 
       this.sendCommand('serverinfo', 2)
@@ -62,7 +71,6 @@ class Server {
     this.Socket.onclose = () => {
       this.IsConnecting = false
       this.IsConnected = false
-      this.Logs.push('Disconnected.')
       this.ServerInfo = null
       this.CarbonInfo = null
       this.HeaderImage = ''
@@ -128,12 +136,16 @@ class Server {
         return false
       case 2: // serverinfo
         this.ServerInfo = data
+        this.CachedHostname = this.ServerInfo.Hostname
         break
       case 3: // carboninfo
         this.CarbonInfo = data
         break
       case 4: // headerimage
         this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
+        if(!isValidUrl(this.HeaderImage)) {
+          this.HeaderImage = ''
+        }
         break
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
@@ -237,6 +249,7 @@ function load() {
       localServer.Logs = server.Logs
       localServer.AutoConnect = server.AutoConnect
       localServer.Secure = server.Secure
+      localServer.CachedHostname = server.CachedHostname
       addServer(localServer)
     })
 
@@ -311,7 +324,7 @@ enum LogType {
         />
         <div style="display: grid">
           <p>
-            <strong>{{ server.ServerInfo == null ? 'New Server' : server.ServerInfo.Hostname }}</strong>
+            <strong>{{ !server.CachedHostname ? 'Undefined' : server.CachedHostname }}</strong>
           </p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text)">{{ server.Address }}</p>
         </div>
@@ -389,7 +402,8 @@ enum LogType {
       <div style="display: flex">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Header</span>
-          <img :src="selectedServer.HeaderImage" width="300" />
+          <img v-if="selectedServer.HeaderImage" :src="selectedServer.HeaderImage" width="300" />
+          <p v-else class="text-xs text-slate-400">No header available</p>
         </div>
       </div>
       <div style="display: flex">
