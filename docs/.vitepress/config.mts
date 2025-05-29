@@ -43,7 +43,7 @@ async function fetchItems() {
 export default defineConfig({
   title: 'Carbon',
   description: 'A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.',
-  base: '/.',
+  base: '/',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { property: 'og:image', content: '/carbon-bg.webp' }],
