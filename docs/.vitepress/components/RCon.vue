@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const selectedSubtab = ref(0)
 const selectedInventory = ref(0)
 const mainSlots = ref<Slot[]>([])
 const beltSlots = ref<Slot[]>([])
+const wearSlots = ref<Slot[]>([])
+const toolSlots = ref<Slot[]>([])
 const draggedSlot = ref<Slot | null>()
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
@@ -37,16 +39,18 @@ function clearInventory() {
   beltSlots.value.forEach(slot => {
     slot.clear()
   });
+  wearSlots.value.forEach(slot => {
+    slot.clear()
+  });
 }
 
 function handleDragStart(slot: Slot) {
-  console.log('dragging ' + slot.Position)
   draggedSlot.value = slot
 }
 
-function handleDrop(slot: Slot) {
-  let str = `c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`
-  selectedServer.value.sendCommand(str)
+async function handleDrop(slot: Slot) {
+  selectedServer.value.sendCommand(`c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  await nextTick()
   selectedServer.value.fetchInventory(selectedInventory.value)
   draggedSlot.value = null
 }
@@ -113,11 +117,14 @@ class Slot {
   clear() {
     this.ItemId = 0
     this.ShortName = ''
+    this.MaxCondition = 0
+    this.Condition = 0
+    this.ConditionNormalized = 0
     this.HasCondition = false
     this.Amount = 0
   }
   hasItem() {
-    return this.ShortName != null && this.ShortName != ''
+    return this.ShortName != ''
   }
 }
 
@@ -271,26 +278,43 @@ class Server {
       case 100: // c.rcondocs_inv
         clearInventory()
         data.Main.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
           const slot = mainSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId 
           slot.Amount = item.Amount
           slot.Condition = item.Condition
           slot.MaxCondition = item.MaxCondition
           slot.ConditionNormalized = item.ConditionNormalized
           slot.HasCondition = item.HasCondition
-          slot.ShortName = item.ShortName
-          slot.ItemId = item.ItemId
-          slot.Container = 0
         });
         data.Belt.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
           const slot = beltSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId  
           slot.Amount = item.Amount
           slot.Condition = item.Condition
           slot.MaxCondition = item.MaxCondition
           slot.ConditionNormalized = item.ConditionNormalized
           slot.HasCondition = item.HasCondition
+        });
+        data.Wear.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
+          const slot = wearSlots.value[item.Position]
           slot.ShortName = item.ShortName
           slot.ItemId = item.ItemId
-          slot.Container = 1
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
         });
         break
     }
@@ -449,6 +473,22 @@ onMounted(() => {
     slot.Container = 1
     beltSlots.value.push(slot)
   }
+  for (let i = 0; i < 7; i++) {
+    const slot = new Slot()
+    slot.Position = i
+    slot.Container = 2
+    wearSlots.value.push(slot)
+  }
+
+  const dropSlot = new Slot()
+  dropSlot.Position = 0
+  dropSlot.Container = 3
+  toolSlots.value.push(dropSlot)
+
+  const trashSlot = new Slot()
+  dropSlot.Position = 1
+  trashSlot.Container = 4
+  toolSlots.value.push(trashSlot)
 })
 
 onUnmounted(() => {
@@ -680,19 +720,33 @@ enum LogType {
           <X :size="20" />
         </button>
       </div>
-      <div class="font-bold">INVENTORY</div>
-      <div class="inventory-grid">
-        <div v-for="(slot, index) in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
-          <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-          <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+      <div class="items-center" style="justify-items: center;">      
+        <div class="inventory-grid">
+          <div v-for="slot in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
         </div>
-      </div>
-      <div class="inventory-grid mt-5">
-        <div v-for="(slot, index) in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
-          <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-          <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+        <div class="inventory-grid-clothing mt-5">
+          <div v-for="slot in wearSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
+        </div>
+        <div class="inventory-grid mt-5">
+          <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
+        </div>
+        <div class="inventory-grid-tools mt-5">
+          <div v-for="slot in toolSlots" :key="slot.Position" class="slot opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
+            <span v-if="slot.Container == 3" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
+            <span v-if="slot.Container == 4" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
+          </div>
         </div>
       </div>
     </div>
@@ -703,6 +757,17 @@ enum LogType {
 .inventory-grid {
   display: grid;
   grid-template-columns: repeat(6, 64px);
+  grid-gap: 6px;
+}
+
+.inventory-grid-clothing {
+  display: grid;
+  grid-template-columns: repeat(7, 64px);
+  grid-gap: 6px;
+}
+.inventory-grid-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 64px);
   grid-gap: 6px;
 }
 
