@@ -46,6 +46,14 @@ async function fetchGeolocation(ip: string) {
   }
 }
 
+function selectSubTab(index: number) {
+  selectedSubtab.value = index
+
+  if(index == 0) {
+    tryFocusLogs()
+  }
+}
+
 function showInventory(playerId: number) {
   selectedInventory.value = playerId
 }
@@ -121,6 +129,7 @@ class Server {
 
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
+      this.sendCommand('console.tail', 7)
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
@@ -202,7 +211,12 @@ class Server {
             fetchGeolocation(player.Address)
           }
         });
-
+        break
+      case 7: // console.tail
+        data.forEach(log => {
+          this.appendLog(log.Message as string)
+        });
+        tryFocusLogs()
         break
       case 3: // carboninfo
         this.CarbonInfo = data
@@ -233,9 +247,6 @@ class Server {
 
   appendLog(log: string) {
     this.Logs.push(log)
-    if (this.Logs.length > 100) {
-      this.Logs.shift();
-    }
   }
 
   clearLogs() {
@@ -308,6 +319,7 @@ function save() {
         case 'PlayerInfo':
         case 'HeaderImage':
         case 'Description':
+        case 'Logs':
           return undefined
       }
       return value
@@ -320,7 +332,6 @@ function load() {
   if (value) {
     ;(JSON.parse(value) as Server[]).forEach((server) => {
       const localServer = createServer(server.Address, server.Password)
-      localServer.Logs = server.Logs
       localServer.AutoConnect = server.AutoConnect
       localServer.Secure = server.Secure
       localServer.CachedHostname = server.CachedHostname
@@ -476,25 +487,40 @@ enum LogType {
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
       <div class="mb-5" style="display: flex">
-        <button
-          class="r-button"
-          @click="selectedSubtab = 0"
-          :class="['r-button', { toggled: selectedSubtab == 0 }]"
-          style="color: var(--docsearch-footer-background); font-size: small"
-        >
+        <button class="r-button" @click="selectSubTab(0)" :class="['r-button', { toggled: selectedSubtab == 0 }]" style="color: var(--docsearch-footer-background); font-size: small">
+          Console
+        </button>
+        <button class="r-button" @click="selectSubTab(1)" :class="['r-button', { toggled: selectedSubtab == 1 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Info
         </button>
-        <button
-          class="r-button"
-          @click="selectedSubtab = 1"
-          :class="['r-button', { toggled: selectedSubtab == 1 }]"
-          style="color: var(--docsearch-footer-background); font-size: small"
-        >
+        <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubtab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Players
         </button>
       </div>
 
       <div v-if="selectedSubtab == 0">
+        <div
+          v-if="selectedServer"
+          ref="logContainer"
+          class="p-4 rounded text-sm font-mono"
+          style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
+        >
+          <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
+        </div>
+        <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
+          <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
+          <input
+            style="font-family: monospace; color: var(--docsearch-muted-color)"
+            class="w-full"
+            spellcheck="false"
+            v-model="command"
+            @keyup.enter="selectedServer?.sendCommand(command, 1)"
+          />
+          <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
+          <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
+        </div>
+      </div>
+      <div v-else-if="selectedSubtab == 1">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Host</span>
           <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
@@ -540,7 +566,7 @@ enum LogType {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubtab == 1" style="overflow: auto;">
+      <div v-else-if="selectedSubtab == 2" style="overflow: auto;">
         <table tabindex="0" class="vp-doc table" style="">
           <thead>
             <tr>
@@ -572,28 +598,6 @@ enum LogType {
           </tr>
         </table>
       </div>
-    </div>
-
-    <div style="height: 15px"></div>
-    <div
-      v-if="selectedServer"
-      ref="logContainer"
-      class="p-4 rounded text-sm font-mono"
-      style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
-    >
-      <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
-    </div>
-    <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
-      <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
-      <input
-        style="font-family: monospace; color: var(--docsearch-muted-color)"
-        class="w-full"
-        spellcheck="false"
-        v-model="command"
-        @keyup.enter="selectedServer?.sendCommand(command, 1)"
-      />
-      <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
-      <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">
       <p>No server selected</p>
