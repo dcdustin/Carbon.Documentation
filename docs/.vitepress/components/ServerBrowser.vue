@@ -53,37 +53,35 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container mx-auto p-14">
-    <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
-      <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky min-[960px]:top-20 top-16 z-10">
-        <template #icon>
-          <Search class="text-gray-400" :size="20" />
-        </template>
-        <template #right>
-          <div></div>
-        </template>
-      </SearchBar>
-      <div v-if="filteredServers && filteredServers.length">
-        <div class="flex flex-col gap-5 mt-4">
-          <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
-            <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-              <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-                Rendering {{ renderedList.length }} of {{ filteredServers.length }} servers, {{ filteredServers.length }} total servers.
-              </div>
+  <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky min-[960px]:top-20 top-16 z-10">
+      <template #icon>
+        <Search class="text-gray-400" :size="20" />
+      </template>
+      <template #right>
+        <div></div>
+      </template>
+    </SearchBar>
+    <div v-if="filteredServers && filteredServers.length">
+      <div class="flex flex-col gap-5 mt-4">
+        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
+          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
+            <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} servers, {{ filteredServers.length }} total servers.
             </div>
-            <div v-for="server in renderedList" :key="server.ip + server.port">
-              <ServerBrowserCard :server="server" />
-            </div>
-          </InfinitePageScroll>
-        </div>
+          </div>
+          <div v-for="server in renderedList" :key="server.ip + server.port">
+            <ServerBrowserCard :server="server" />
+          </div>
+        </InfinitePageScroll>
       </div>
-      <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
-        <p>No servers found matching your search</p>
-        <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
-        <!-- <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ searchValue }}" returned no results.</p> -->
-      </div>
-    </AsyncState>
-  </div>
+    </div>
+    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+      <p>No servers found matching your search</p>
+      <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
+      <!-- <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ searchValue }}" returned no results.</p> -->
+    </div>
+  </AsyncState>
 </template>
 
 <style scoped></style>

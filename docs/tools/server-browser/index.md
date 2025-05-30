@@ -5,7 +5,7 @@ description: Our Web Server Browser List Implementation v2000 Super Cool
 ---
 
 <script setup lang="ts">
-    import ServerBrowser from '@/components/ServerBrowser.vue'
+    import ServerBrowserIndex from '@/components/ServerBrowserIndex.vue'
 </script>
 
-<ServerBrowser></ServerBrowser>
+<ServerBrowserIndex></ServerBrowserIndex>
