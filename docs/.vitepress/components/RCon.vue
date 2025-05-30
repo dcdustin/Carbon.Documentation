@@ -1,17 +1,24 @@
 <script lang="ts" setup>
-import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const selectedSubtab = ref(0)
+const selectedInventory = ref(0)
+const mainSlots = ref<Slot[]>([])
+const beltSlots = ref<Slot[]>([])
+const wearSlots = ref<Slot[]>([])
+const toolSlots = ref<Slot[]>([])
+const draggedSlot = ref<Slot | null>()
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
 const flags = ref<{ [key: string]: string }>({})
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
+let timerInvRefresh: ReturnType<typeof setTimeout> = null!
 
-async function tryFocusLogs() {
+async function tryFocusLogs(autoScroll: boolean = false) {
   await nextTick()
-  if (logContainer.value?.scrollHeight) {
+  if (logContainer.value?.scrollHeight && (autoScroll || logContainer.value.scrollHeight - logContainer.value?.scrollTop < 2000)) {
     logContainer.value.scrollTop = logContainer.value.scrollHeight
   }
   save()
@@ -24,6 +31,28 @@ function isValidUrl(urlStr: string) : boolean {
   } catch (_) {
     return false;
   }
+}
+
+function clearInventory() {
+  mainSlots.value.forEach(slot => {
+    slot.clear()
+  });
+  beltSlots.value.forEach(slot => {
+    slot.clear()
+  });
+  wearSlots.value.forEach(slot => {
+    slot.clear()
+  });
+}
+
+function handleDrag(slot: Slot) {
+  draggedSlot.value = slot
+}
+
+function handleDrop(slot: Slot) {
+  selectedServer.value.sendCommand(`c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  selectedServer.value.fetchInventory(selectedInventory.value)
+  draggedSlot.value = null
 }
 
 async function fetchGeolocation(ip: string) {
@@ -39,9 +68,33 @@ async function fetchGeolocation(ip: string) {
     if(flags) {
       flags.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
     }
-  } catch (error) {
-    console.error(`Error fetching geolocation for IP ${ip}:`, error);
+  } catch {
+
   }
+}
+
+function selectSubTab(index: number) {
+  selectedSubtab.value = index
+
+  if(index == 0) {
+    tryFocusLogs(true)
+  }
+}
+
+function showInventory(playerId: number) {
+  selectedInventory.value = playerId
+  selectedServer.value.fetchInventory(playerId)
+
+  const looper = () => {
+    timerInvRefresh = setTimeout(looper, 1000)
+    selectedServer.value.fetchInventory(playerId)
+  }
+  timerInvRefresh = setTimeout(looper, 1000)
+}
+
+function hideInventory() {
+  selectedInventory.value = 0
+  clearTimeout(timerInvRefresh)
 }
 
 function formatDuration(seconds: number) {
@@ -55,6 +108,31 @@ function formatDuration(seconds: number) {
   if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
 
   return parts.join(' ')
+}
+
+class Slot {
+  Position: number = 0
+  ItemId: number = 0
+  ShortName: string = ''
+  MaxCondition: number = 0
+  Condition: number = 0
+  ConditionNormalized: number = 0
+  HasCondition: boolean = false
+  Amount: number = 0
+  Container: number = 0
+
+  clear() {
+    this.ItemId = 0
+    this.ShortName = ''
+    this.MaxCondition = 0
+    this.Condition = 0
+    this.ConditionNormalized = 0
+    this.HasCondition = false
+    this.Amount = 0
+  }
+  hasItem() {
+    return this.ShortName != ''
+  }
 }
 
 class Server {
@@ -96,10 +174,10 @@ class Server {
     this.Socket.onopen = () => {
       this.IsConnecting = false
       this.IsConnected = true
-      tryFocusLogs()
 
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
+      this.sendCommand('console.tail', 7)
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
@@ -116,8 +194,7 @@ class Server {
       tryFocusLogs()
     }
     this.Socket.onerror = (e) => {
-      this.Logs.push('Error: ' + e)
-      tryFocusLogs()
+      this.UserConnected = false
     }
     this.Socket.onmessage = (event) => {
       const resp: CommandResponse = JSON.parse(event.data)
@@ -140,9 +217,13 @@ class Server {
         /* empty */
       }
 
-      this.Logs.push(resp.Message)
+      this.appendLog(resp.Message)
       tryFocusLogs()
     }
+  }
+
+  fetchInventory(playerId: number) {
+    this.sendCommand('c.rcondocs_inv ' + playerId, 100)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -159,11 +240,11 @@ class Server {
     }
 
     if (input == command.value) {
-      this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
+      this.appendLog('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
       command.value = ''
     }
 
-    tryFocusLogs()
+    tryFocusLogs(false)
   }
 
   onIdentifiedCommand(id: number, data: object) {
@@ -182,7 +263,12 @@ class Server {
             fetchGeolocation(player.Address)
           }
         });
-
+        break
+      case 7: // console.tail
+        data.forEach(log => {
+          this.appendLog(log.Message as string)
+        });
+        tryFocusLogs(true)
         break
       case 3: // carboninfo
         this.CarbonInfo = data
@@ -195,6 +281,48 @@ class Server {
         break
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
+        break
+      case 100: // c.rcondocs_inv
+        clearInventory()
+        data.Main.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
+          const slot = mainSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId 
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        });
+        data.Belt.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
+          const slot = beltSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId  
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        });
+        data.Wear.forEach(item => {
+          if(item.Position == -1) {
+            return
+          }
+          const slot = wearSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        });
         break
     }
 
@@ -209,6 +337,10 @@ class Server {
   toggleSecure() {
     this.Secure = !this.Secure
     save()
+  }
+
+  appendLog(log: string) {
+    this.Logs.push(log)
   }
 
   clearLogs() {
@@ -257,7 +389,7 @@ function deleteServer(server: Server) {
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
-  tryFocusLogs()
+  tryFocusLogs(true)
 }
 
 function findServer(address: string): Server {
@@ -281,6 +413,7 @@ function save() {
         case 'PlayerInfo':
         case 'HeaderImage':
         case 'Description':
+        case 'Logs':
           return undefined
       }
       return value
@@ -293,7 +426,6 @@ function load() {
   if (value) {
     ;(JSON.parse(value) as Server[]).forEach((server) => {
       const localServer = createServer(server.Address, server.Password)
-      localServer.Logs = server.Logs
       localServer.AutoConnect = server.AutoConnect
       localServer.Secure = server.Secure
       localServer.CachedHostname = server.CachedHostname
@@ -333,6 +465,37 @@ onMounted(() => {
 
   timerSwitch = setTimeout(timerCallback, 10000)
   load()
+
+  beltSlots.value = []
+  mainSlots.value = []
+  for (let i = 0; i < 24; i++) {
+    const slot = new Slot()
+    slot.Position = i
+    slot.Container = 0
+    mainSlots.value.push(slot)
+  }
+  for (let i = 0; i < 6; i++) {
+    const slot = new Slot()
+    slot.Position = i
+    slot.Container = 1
+    beltSlots.value.push(slot)
+  }
+  for (let i = 0; i < 7; i++) {
+    const slot = new Slot()
+    slot.Position = i
+    slot.Container = 2
+    wearSlots.value.push(slot)
+  }
+
+  const dropSlot = new Slot()
+  dropSlot.Position = 0
+  dropSlot.Container = 3
+  toolSlots.value.push(dropSlot)
+
+  const trashSlot = new Slot()
+  dropSlot.Position = 1
+  trashSlot.Container = 4
+  toolSlots.value.push(trashSlot)
 })
 
 onUnmounted(() => {
@@ -440,25 +603,40 @@ enum LogType {
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
       <div class="mb-5" style="display: flex">
-        <button
-          class="r-button"
-          @click="selectedSubtab = 0"
-          :class="['r-button', { toggled: selectedSubtab == 0 }]"
-          style="color: var(--docsearch-footer-background); font-size: small"
-        >
+        <button class="r-button" @click="selectSubTab(0)" :class="['r-button', { toggled: selectedSubtab == 0 }]" style="color: var(--docsearch-footer-background); font-size: small">
+          Console
+        </button>
+        <button class="r-button" @click="selectSubTab(1)" :class="['r-button', { toggled: selectedSubtab == 1 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Info
         </button>
-        <button
-          class="r-button"
-          @click="selectedSubtab = 1"
-          :class="['r-button', { toggled: selectedSubtab == 1 }]"
-          style="color: var(--docsearch-footer-background); font-size: small"
-        >
-          Players
+        <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubtab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
+          Players ({{ selectedServer?.PlayerInfo?.length }})
         </button>
       </div>
 
       <div v-if="selectedSubtab == 0">
+        <div
+          v-if="selectedServer"
+          ref="logContainer"
+          class="p-4 rounded text-sm font-mono"
+          style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
+        >
+          <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
+        </div>
+        <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
+          <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
+          <input
+            style="font-family: monospace; color: var(--docsearch-muted-color)"
+            class="w-full"
+            spellcheck="false"
+            v-model="command"
+            @keyup.enter="selectedServer?.sendCommand(command, 1)"
+          />
+          <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
+          <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
+        </div>
+      </div>
+      <div v-else-if="selectedSubtab == 1">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Host</span>
           <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
@@ -504,7 +682,7 @@ enum LogType {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubtab == 1" style="overflow: auto;">
+      <div v-else-if="selectedSubtab == 2" style="overflow: auto;">
         <table tabindex="0" class="vp-doc table" style="">
           <thead>
             <tr>
@@ -520,7 +698,7 @@ enum LogType {
               <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="flags[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
             </td>
             <td class="vp-doc td">
-              <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[{{ player.SteamID }}]</span>
+              <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[<a style="color: inherit; display: inline-flex;" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">{{ player.SteamID }} <ExternalLink class="mx-1" :size="12"/> </a>]</span>
             </td>
             <td style="position: relative;">
               <div :style="'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #41642da6; width: ' + player.Health + '%'"></div>
@@ -530,42 +708,133 @@ enum LogType {
               <span class="text-xs text-slate-400">{{ formatDuration(player.ConnectedSeconds) }}</span>
             </td>
             <td class="vp-doc td">
-              <a :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">Steam Profile</a>
+              <button class="r-send-button" @click="showInventory(player.SteamID)">Inventory</button>
             </td>
           </tr>
         </table>
       </div>
     </div>
-
-    <div style="height: 15px"></div>
-    <div
-      v-if="selectedServer"
-      ref="logContainer"
-      class="p-4 rounded text-sm font-mono"
-      style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
-    >
-      <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
-    </div>
-    <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
-      <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
-      <input
-        style="font-family: monospace; color: var(--docsearch-muted-color)"
-        class="w-full"
-        spellcheck="false"
-        v-model="command"
-        @keyup.enter="selectedServer?.sendCommand(command, 1)"
-      />
-      <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
-      <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
-    </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">
       <p>No server selected</p>
+    </div>
+  </div>
+
+  <div v-if="selectedInventory" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold"></h3>
+        <button @click="hideInventory()" class="text-gray-500 hover:text-gray-700">
+          <X :size="20" />
+        </button>
+      </div>
+      <div class="items-center" style="justify-items: center;">      
+        <div class="inventory-grid">
+          <div v-for="slot in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
+        </div>
+        <div class="inventory-grid-clothing mt-5">
+          <div v-for="slot in wearSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
+        </div>
+        <div class="inventory-grid mt-5">
+          <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+          </div>
+        </div>
+        <div class="inventory-grid-tools mt-5">
+          <div v-for="slot in toolSlots" :key="slot.Position" class="slot-tool opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
+            <span v-if="slot.Container == 3" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
+            <span v-if="slot.Container == 4" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 64px);
+  grid-gap: 6px;
+}
+
+.inventory-grid-clothing {
+  display: grid;
+  grid-template-columns: repeat(7, 64px);
+  grid-gap: 6px;
+}
+.inventory-grid-tools {
+  display: grid;
+  grid-template-columns: repeat(2, 64px);
+  grid-gap: 6px;
+}
+
+.slot {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #555;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slot-tool {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #555;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slot-tool:hover {
+  opacity: 100%;
+}
+
+.slot-img {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.slot-amount {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 12px;
+  padding: 0 2px;
+  user-select: none;
+}
+
+.slot-condition {
+  background-color: #5d8b30;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  padding: 0 2px;
+  user-select: none;
+}
+
 .r-send-button {
+  text-decoration: auto;
   font-family: monospace;
   color: var(--category-misc);
   background-color: transparent;
