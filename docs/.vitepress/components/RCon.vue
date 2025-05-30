@@ -46,10 +46,8 @@ function handleDragStart(slot: Slot) {
 
 function handleDrop(slot: Slot) {
   let str = `c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`
-  console.log(str)
   selectedServer.value.sendCommand(str)
   selectedServer.value.fetchInventory(selectedInventory.value)
-  console.log('dropped on ' + slot.Position)
   draggedSlot.value = null
 }
 
