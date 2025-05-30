@@ -38,7 +38,7 @@ export default defineConfig({
     ['meta', { property: 'og:url', content: 'https://docs.carbonmod.gg' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
   ],
-  ignoreDeadLinks: true,
+  ignoreDeadLinks: false,
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {

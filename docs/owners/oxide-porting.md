@@ -76,7 +76,7 @@ would be found in the Managed folder of an Oxide server.
 They don't work, this is Carbon. It might be difficult to get used to it, but all our commands are prefixed with c.*.
 Although you may create aliases which reflect commands.
 
-Look for `alias` in the Commands page. [Read more here.](../references/commands)
+Look for `alias` in the Commands page. [Read more here.](../references/commands/)
 :::
 
 ## Successful Transfer

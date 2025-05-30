@@ -30,7 +30,7 @@ For documentation purposes, it's important to properly describe what the hook do
 flags.
 
 The attributes below are used by the documentation code-generation system, with outputs used
-[here](../references/hooks).
+[here](../references/hooks/).
 
 :::tabs
 == [MetadataAttribute.Info]

@@ -31,7 +31,7 @@ the game, plugins, and more - efficiently.
 * **Extension assemblies**
   :::
 
-Search for `c.profile` in the [Commands reference](../../references/commands) index for an up-to-date list of profiler
+Search for `c.profile` in the [Commands reference](../../references/commands/) index for an up-to-date list of profiler
 commands
 
 ## Config
