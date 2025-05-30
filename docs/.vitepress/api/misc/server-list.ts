@@ -3,10 +3,10 @@ import { fetchApiCaching } from '../fetch-api'
 
 export interface Server {
   hostname: string
-  map: string
+  map: string | null
   players: number
   maxplayers: number
-  tags: string
+  tags: string | null
   ip: string
   port: number
   query_port: number
