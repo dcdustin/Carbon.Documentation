@@ -582,7 +582,7 @@ enum LogType {
               <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="flags[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
             </td>
             <td class="vp-doc td">
-              <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[{{ player.SteamID }}]</span>
+              <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[<a style="color: inherit; display: inline-flex;" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">{{ player.SteamID }} <ExternalLink class="mx-1" :size="12"/> </a>]</span>
             </td>
             <td style="position: relative;">
               <div :style="'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #41642da6; width: ' + player.Health + '%'"></div>
@@ -592,7 +592,6 @@ enum LogType {
               <span class="text-xs text-slate-400">{{ formatDuration(player.ConnectedSeconds) }}</span>
             </td>
             <td class="vp-doc td">
-              <a class="r-send-button no-underline" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">Steam Profile</a> 
               <button class="r-send-button" @click="showInventory(player.SteamID)">Inventory</button>
             </td>
           </tr>
