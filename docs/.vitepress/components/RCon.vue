@@ -5,6 +5,7 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 const selectedSubtab = ref(0)
 const selectedInventory = ref(0)
 const mainSlots = ref<Slot[]>([])
+const beltSlots = ref<Slot[]>([])
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
 const flags = ref<{ [key: string]: string }>({})
@@ -28,6 +29,15 @@ function isValidUrl(urlStr: string) : boolean {
   }
 }
 
+function clearInventory() {
+  mainSlots.value.forEach(slot => {
+    slot.clear()
+  });
+  beltSlots.value.forEach(slot => {
+    slot.clear()
+  });
+}
+
 async function fetchGeolocation(ip: string) {
   const url = `https://ipwho.is/${ip.split(':')[0]}`;
 
@@ -41,8 +51,8 @@ async function fetchGeolocation(ip: string) {
     if(flags) {
       flags.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
     }
-  } catch (error) {
-    console.error(`Error fetching geolocation for IP ${ip}:`, error);
+  } catch {
+
   }
 }
 
@@ -56,6 +66,7 @@ function selectSubTab(index: number) {
 
 function showInventory(playerId: number) {
   selectedInventory.value = playerId
+  selectedServer.value.fetchInventory(playerId)
 }
 
 function hideInventory() {
@@ -77,10 +88,20 @@ function formatDuration(seconds: number) {
 
 class Slot {
   Id: number = 0
+  ItemId: number = 0
   ShortName: string = ''
+  MaxCondition: number = 0
   Condition: number = 0
+  ConditionNormalized: number = 0
+  HasCondition: boolean = false
   Amount: number = 0
 
+  clear() {
+    this.ItemId = 0
+    this.ShortName = ''
+    this.HasCondition = false
+    this.Amount = 0
+  }
   hasItem() {
     return this.ShortName != null && this.ShortName != ''
   }
@@ -174,6 +195,11 @@ class Server {
     }
   }
 
+  fetchInventory(playerId: number) {
+    clearInventory()
+    this.sendCommand('c.rcondocs_inv ' + playerId, 100)
+  }
+
   sendCommand(input: string, id: number = 1) {
     if (!input) {
       return
@@ -229,6 +255,29 @@ class Server {
         break
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
+        break
+      case 100: // c.rcondocs_inv
+        clearInventory()
+        data.Main.forEach(item => {
+          const slot = mainSlots.value[item.Position]
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+        });
+        data.Belt.forEach(item => {
+          const slot = beltSlots.value[item.Position]
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+        });
         break
     }
 
@@ -372,14 +421,18 @@ onMounted(() => {
   timerSwitch = setTimeout(timerCallback, 10000)
   load()
 
+  beltSlots.value = []
+  mainSlots.value = []
   for (let i = 0; i < 24; i++) {
     const slot = new Slot()
     slot.Id = i
     mainSlots.value.push(slot)
   }
-
-  mainSlots.value[4].ShortName = 'riflebody'
-  mainSlots.value[4].Amount = 42
+  for (let i = 0; i < 6; i++) {
+    const slot = new Slot()
+    slot.Id = i
+    beltSlots.value.push(slot)
+  }
 })
 
 onUnmounted(() => {
@@ -494,7 +547,7 @@ enum LogType {
           Info
         </button>
         <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubtab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
-          Players ({{ selectedServer?.PlayerInfo.length }})
+          Players ({{ selectedServer?.PlayerInfo?.length }})
         </button>
       </div>
 
@@ -611,10 +664,19 @@ enum LogType {
           <X :size="20" />
         </button>
       </div>
+      <div class="font-bold">INVENTORY</div>
       <div class="inventory-grid">
-        <div v-for="slot in mainSlots" :key="slot.ShortName" class="slot">
+        <div v-for="slot in mainSlots" :key="slot.Position" class="slot">
           <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"/>
-          <span v-if="slot.Amount > 1" class="slot-amount">{{ slot.Amount }}</span>
+          <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+          <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+        </div>
+      </div>
+      <div class="inventory-grid mt-5">
+        <div v-for="slot in beltSlots" :key="slot.Position" class="slot">
+          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"/>
+          <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
+          <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
         </div>
       </div>
     </div>
@@ -653,6 +715,15 @@ enum LogType {
   position: absolute;
   bottom: 2px;
   right: 4px;
+  font-size: 12px;
+  padding: 0 2px;
+}
+
+.slot-condition {
+  background-color: #5d8b30;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   font-size: 12px;
   padding: 0 2px;
 }
