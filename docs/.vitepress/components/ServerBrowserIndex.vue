@@ -8,6 +8,7 @@ import ServerBrowser from './ServerBrowser.vue'
   <div class="max-w-screen-lg mx-auto px-4 py-8">
     <div class="flex flex-col gap-4 mb-4">
       <h1 class="text-2xl font-bold">Carbon Server Browser</h1>
+      <p>Browse and find Rust servers</p>
       <div class="flex items-center gap-2">
         <a :href="URL_SERVER_LIST" target="_blank" class="flex items-center gap-2">
           <Database :size="16" />
