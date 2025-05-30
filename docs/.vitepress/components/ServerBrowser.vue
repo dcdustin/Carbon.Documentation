@@ -25,6 +25,16 @@ const filteredServers = computed(() => {
 
   let filtered = serverList.value?.Servers
 
+  if (debouncedSearchValue.value) {
+    const searchLower = debouncedSearchValue.value.toLowerCase()
+    filtered = filtered.filter(
+      (server) =>
+        server.hostname.toLowerCase().includes(searchLower) ||
+        server.map?.toLowerCase().includes(searchLower) ||
+        server.tags?.toLowerCase().includes(searchLower)
+    )
+  }
+
   return filtered
 })
 
@@ -63,16 +73,17 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
-      <div class="flex flex-col gap-5 mt-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-4">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
             <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} servers, {{ filteredServers.length }} total servers.
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} servers
             </div>
           </div>
-          <div v-for="server in renderedList" :key="server.ip + server.port">
+          <!-- TODO: switch to virtual list -->
+          <template v-for="server in renderedList" :key="server.ip + server.port">
             <ServerBrowserCard :server="server" />
-          </div>
+          </template>
         </InfinitePageScroll>
       </div>
     </div>
@@ -83,5 +94,3 @@ onMounted(async () => {
     </div>
   </AsyncState>
 </template>
-
-<style scoped></style>
