@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
-import { URL_METDAT_CARB_HOOKS, URL_METDAT_RUST_BLUEPRINTS, URL_METDAT_RUST_ITEMS } from './api/constants'
 
 const references = [
   {
@@ -28,17 +27,6 @@ const references = [
     ],
   },
 ]
-
-async function fetchItems() {
-  try {
-    const response = await fetch(URL_METDAT_RUST_ITEMS)
-    const items = await response.json()
-    return items
-  } catch (error) {
-    console.error('Failed to fetch items for search indexing:', error)
-    return []
-  }
-}
 
 export default defineConfig({
   title: 'Carbon',
@@ -217,54 +205,6 @@ export default defineConfig({
               text: 2,
             },
           },
-        },
-        _render: async (src, env, md) => {
-          const html = await md.render(src, env)
-
-          if (env.relativePath === 'references/items/index.md') {
-            try {
-              const items = await fetchItems()
-              const itemContent = items.map(item => `# [*Item*] ${item.DisplayName}
-
-${item.Description || ''}`).join('\n\n---\n\n')
-
-              return html + '\n\n' + await md.render(itemContent)
-            } catch (error) {
-              console.error('Error processing items for search:', error)
-              return html
-            }
-          }
-
-          if (env.relativePath === 'references/hooks/index.md') {
-            try {
-              const response = await fetch(URL_METDAT_CARB_HOOKS)
-              const data = await response.json()
-              const hookContent = Object.entries(data as Record<string, any[]>)
-                .flatMap(([category, hooks]) =>
-                  hooks.map((hook: any) => `# [*Hook*] ${hook.name || ''}`)).join('\n\n---\n\n')
-
-              return html + '\n\n' + await md.render(hookContent)
-            } catch (error) {
-              console.error('Error processing hooks for search:', error)
-              return html
-            }
-          }
-
-          if (env.relativePath === 'references/blueprints/index.md') {
-            try {
-              const response = await fetch(URL_METDAT_RUST_BLUEPRINTS)
-              const blueprints = await response.json()
-              const blueprintContent = blueprints.map((blueprint: any) => `# [*Blueprint*] ${blueprint.Item.DisplayName || ''} {#${blueprint.Item.ShortName}}
-
-${blueprint.Item.Description || ''}`).join('\n\n---\n\n')
-              return html + '\n\n' + await md.render(blueprintContent)
-            } catch (error) {
-              console.error('Error processing blueprints for search:', error)
-              return html
-            }
-          }
-
-          return html
         },
       },
     },
