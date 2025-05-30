@@ -86,6 +86,11 @@ function showInventory(playerId: number) {
   selectedServer.value.fetchInventory(playerId)
 
   const looper = () => {
+    if(!selectedServer.value.PlayerInfo.find(player => player.SteamID == playerId)) {
+      hideInventory()
+      return
+    }
+
     timerInvRefresh = setTimeout(looper, 1000)
     selectedServer.value.fetchInventory(playerId)
   }
