@@ -232,16 +232,12 @@ export default defineConfig({
         output: {
           manualChunks: (id) => {
             if (id.includes('node_modules')) {
-              if (id.includes('@vueuse')) return 'vueuse'
-              if (id.includes('markdown-it')) return 'markdown'
-              if (id.includes('lucide-vue-next')) return 'icons'
-              if (
-                id.includes('class-variance-authority') ||
-                id.includes('clsx') ||
-                id.includes('tailwind-merge') ||
-                id.includes('tailwindcss-animate')
-              )
-                return 'ui'
+              if (id.includes('node_modules/@vueuse/')) return 'vueuse'
+              if (id.includes('node_modules/markdown-it/')) return 'markdown'
+              if (id.includes('node_modules/lucide-vue-next/')) return 'icons'
+              if (id.includes('node_modules/vue-draggable-plus/')) return 'draggable'
+              if (id.includes('node_modules/minisearch/')) return 'search'
+              if (id.includes('node_modules/shiki/')) return 'shiki'
             }
           },
         },
