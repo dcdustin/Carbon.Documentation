@@ -3,6 +3,8 @@ import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink } from 'lu
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const selectedSubtab = ref(0)
+const selectedInventory = ref(0)
+const mainSlots = ref<Slot[]>([])
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
 const flags = ref<{ [key: string]: string }>({})
@@ -44,6 +46,14 @@ async function fetchGeolocation(ip: string) {
   }
 }
 
+function showInventory(playerId: number) {
+  selectedInventory.value = playerId
+}
+
+function hideInventory() {
+  selectedInventory.value = 0
+}
+
 function formatDuration(seconds: number) {
   const hrs = Math.floor(seconds / 3600)
   const mins = Math.floor((seconds % 3600) / 60)
@@ -55,6 +65,17 @@ function formatDuration(seconds: number) {
   if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
 
   return parts.join(' ')
+}
+
+class Slot {
+  Id: number = 0
+  ShortName: string = ''
+  Condition: number = 0
+  Amount: number = 0
+
+  hasItem() {
+    return this.ShortName != null && this.ShortName != ''
+  }
 }
 
 class Server {
@@ -116,8 +137,7 @@ class Server {
       tryFocusLogs()
     }
     this.Socket.onerror = (e) => {
-      this.Logs.push('Error: ' + e)
-      tryFocusLogs()
+      this.UserConnected = false
     }
     this.Socket.onmessage = (event) => {
       const resp: CommandResponse = JSON.parse(event.data)
@@ -333,6 +353,15 @@ onMounted(() => {
 
   timerSwitch = setTimeout(timerCallback, 10000)
   load()
+
+  for (let i = 0; i < 24; i++) {
+    const slot = new Slot()
+    slot.Id = i
+    mainSlots.value.push(slot)
+  }
+
+  mainSlots.value[4].ShortName = 'riflebody'
+  mainSlots.value[4].Amount = 42
 })
 
 onUnmounted(() => {
@@ -530,7 +559,8 @@ enum LogType {
               <span class="text-xs text-slate-400">{{ formatDuration(player.ConnectedSeconds) }}</span>
             </td>
             <td class="vp-doc td">
-              <a :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">Steam Profile</a>
+              <a class="r-send-button no-underline" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">Steam Profile</a> 
+              <button class="r-send-button" @click="showInventory(player.SteamID)">Inventory</button>
             </td>
           </tr>
         </table>
@@ -562,10 +592,63 @@ enum LogType {
       <p>No server selected</p>
     </div>
   </div>
+
+  <div v-if="selectedInventory" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
+    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold"></h3>
+        <button @click="hideInventory()" class="text-gray-500 hover:text-gray-700">
+          <X :size="20" />
+        </button>
+      </div>
+      <div class="inventory-grid">
+        <div v-for="slot in mainSlots" :key="slot.ShortName" class="slot">
+          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"/>
+          <span v-if="slot.Amount > 1" class="slot-amount">{{ slot.Amount }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 64px);
+  grid-gap: 6px;
+}
+
+.slot {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #555;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slot-img {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.slot-amount {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 12px;
+  padding: 0 2px;
+}
+
 .r-send-button {
+  text-decoration: auto;
   font-family: monospace;
   color: var(--category-misc);
   background-color: transparent;
