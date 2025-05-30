@@ -173,6 +173,7 @@ export default defineConfig({
           items: [
             { text: 'Web RCon', link: '/tools/rcon/' },
             { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
+            { text: 'Server Browser', link: '/tools/server-browser/' },
           ],
         }
       ],
