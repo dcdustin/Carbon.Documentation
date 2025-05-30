@@ -6,6 +6,7 @@ const selectedSubtab = ref(0)
 const selectedInventory = ref(0)
 const mainSlots = ref<Slot[]>([])
 const beltSlots = ref<Slot[]>([])
+const draggedSlot = ref<Slot | null>()
 const command = ref('')
 const logContainer = ref<HTMLDivElement>(null!)
 const flags = ref<{ [key: string]: string }>({})
@@ -36,6 +37,20 @@ function clearInventory() {
   beltSlots.value.forEach(slot => {
     slot.clear()
   });
+}
+
+function handleDragStart(slot: Slot) {
+  console.log('dragging ' + slot.Position)
+  draggedSlot.value = slot
+}
+
+function handleDrop(slot: Slot) {
+  let str = `c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`
+  console.log(str)
+  selectedServer.value.sendCommand(str)
+  selectedServer.value.fetchInventory(selectedInventory.value)
+  console.log('dropped on ' + slot.Position)
+  draggedSlot.value = null
 }
 
 async function fetchGeolocation(ip: string) {
@@ -87,7 +102,7 @@ function formatDuration(seconds: number) {
 }
 
 class Slot {
-  Id: number = 0
+  Position: number = 0
   ItemId: number = 0
   ShortName: string = ''
   MaxCondition: number = 0
@@ -95,6 +110,7 @@ class Slot {
   ConditionNormalized: number = 0
   HasCondition: boolean = false
   Amount: number = 0
+  Container: number = 0
 
   clear() {
     this.ItemId = 0
@@ -195,7 +211,6 @@ class Server {
   }
 
   fetchInventory(playerId: number) {
-    clearInventory()
     this.sendCommand('c.rcondocs_inv ' + playerId, 100)
   }
 
@@ -266,6 +281,7 @@ class Server {
           slot.HasCondition = item.HasCondition
           slot.ShortName = item.ShortName
           slot.ItemId = item.ItemId
+          slot.Container = 0
         });
         data.Belt.forEach(item => {
           const slot = beltSlots.value[item.Position]
@@ -276,6 +292,7 @@ class Server {
           slot.HasCondition = item.HasCondition
           slot.ShortName = item.ShortName
           slot.ItemId = item.ItemId
+          slot.Container = 1
         });
         break
     }
@@ -424,12 +441,14 @@ onMounted(() => {
   mainSlots.value = []
   for (let i = 0; i < 24; i++) {
     const slot = new Slot()
-    slot.Id = i
+    slot.Position = i
+    slot.Container = 0
     mainSlots.value.push(slot)
   }
   for (let i = 0; i < 6; i++) {
     const slot = new Slot()
-    slot.Id = i
+    slot.Position = i
+    slot.Container = 1
     beltSlots.value.push(slot)
   }
 })
@@ -665,15 +684,15 @@ enum LogType {
       </div>
       <div class="font-bold">INVENTORY</div>
       <div class="inventory-grid">
-        <div v-for="slot in mainSlots" :key="slot.Position" class="slot">
-          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"/>
+        <div v-for="(slot, index) in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
           <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
           <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
         </div>
       </div>
       <div class="inventory-grid mt-5">
-        <div v-for="slot in beltSlots" :key="slot.Position" class="slot">
-          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"/>
+        <div v-for="(slot, index) in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+          <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
           <span v-if="slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
           <div v-if="slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
         </div>
@@ -716,6 +735,7 @@ enum LogType {
   right: 4px;
   font-size: 12px;
   padding: 0 2px;
+  user-select: none;
 }
 
 .slot-condition {
@@ -725,6 +745,7 @@ enum LogType {
   left: 0;
   font-size: 12px;
   padding: 0 2px;
+  user-select: none;
 }
 
 .r-send-button {
