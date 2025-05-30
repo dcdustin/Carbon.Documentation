@@ -77,7 +77,7 @@ onMounted(async () => {
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
             <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} servers
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverList?.Servers.length }} total servers.
             </div>
           </div>
           <!-- TODO: switch to virtual list -->
