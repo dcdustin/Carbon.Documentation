@@ -494,7 +494,7 @@ enum LogType {
           Info
         </button>
         <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubtab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
-          Players
+          Players ({{ selectedServer?.PlayerInfo.length }})
         </button>
       </div>
 
