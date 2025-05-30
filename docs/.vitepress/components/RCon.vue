@@ -50,7 +50,7 @@ function handleDrag(slot: Slot) {
 }
 
 function handleDrop(slot: Slot) {
-  selectedServer.value.sendCommand(`c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  selectedServer.value.sendCommand(`c.rcondocs.move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
   selectedServer.value.fetchInventory(selectedInventory.value)
   draggedSlot.value = null
 }
@@ -223,7 +223,7 @@ class Server {
   }
 
   fetchInventory(playerId: number) {
-    this.sendCommand('c.rcondocs_inv ' + playerId, 100)
+    this.sendCommand('c.rcondocs.inv ' + playerId, 100)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -282,7 +282,7 @@ class Server {
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
-      case 100: // c.rcondocs_inv
+      case 100: // c.rcondocs.inv
         clearInventory()
         data.Main.forEach(item => {
           if(item.Position == -1) {
