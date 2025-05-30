@@ -160,7 +160,7 @@ class Server {
         /* empty */
       }
 
-      this.Logs.push(resp.Message)
+      this.appendLog(resp.Message)
       tryFocusLogs()
     }
   }
@@ -179,7 +179,7 @@ class Server {
     }
 
     if (input == command.value) {
-      this.Logs.push('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
+      this.appendLog('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
       command.value = ''
     }
 
@@ -229,6 +229,13 @@ class Server {
   toggleSecure() {
     this.Secure = !this.Secure
     save()
+  }
+
+  appendLog(log: string) {
+    this.Logs.push(log)
+    if (this.Logs.length > 100) {
+      this.Logs.shift();
+    }
   }
 
   clearLogs() {
