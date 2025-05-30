@@ -28,6 +28,12 @@ const references = [
   },
 ]
 
+const tools = [
+  { text: 'Web RCon', link: '/tools/rcon/' },
+  { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
+  { text: 'Server Browser', link: '/tools/server-browser/' },
+]
+
 export default defineConfig({
   title: 'Carbon',
   description: 'A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.',
@@ -62,6 +68,7 @@ export default defineConfig({
       { text: 'Developers', link: '/devs/local-server-hosting' },
       { text: 'References', items: references },
       { text: 'Release Notes', link: '/references/release-notes/' },
+      { text: 'Tools', items: tools },
     ],
 
     sidebar: {
@@ -170,11 +177,7 @@ export default defineConfig({
         },
         {
           text: 'Tools',
-          items: [
-            { text: 'Web RCon', link: '/tools/rcon/' },
-            { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
-            { text: 'Server Browser', link: '/tools/server-browser/' },
-          ],
+          items: tools,
         }
       ],
     },
