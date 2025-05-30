@@ -14,6 +14,7 @@ const logContainer = ref<HTMLDivElement>(null!)
 const flags = ref<{ [key: string]: string }>({})
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
+let timerInvRefresh: ReturnType<typeof setTimeout> = null!
 
 async function tryFocusLogs(autoScroll: boolean = false) {
   await nextTick()
@@ -44,13 +45,12 @@ function clearInventory() {
   });
 }
 
-function handleDragStart(slot: Slot) {
+function handleDrag(slot: Slot) {
   draggedSlot.value = slot
 }
 
-async function handleDrop(slot: Slot) {
+function handleDrop(slot: Slot) {
   selectedServer.value.sendCommand(`c.rcondocs_move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
-  await nextTick()
   selectedServer.value.fetchInventory(selectedInventory.value)
   draggedSlot.value = null
 }
@@ -84,10 +84,17 @@ function selectSubTab(index: number) {
 function showInventory(playerId: number) {
   selectedInventory.value = playerId
   selectedServer.value.fetchInventory(playerId)
+
+  const looper = () => {
+    timerInvRefresh = setTimeout(looper, 1000)
+    selectedServer.value.fetchInventory(playerId)
+  }
+  timerInvRefresh = setTimeout(looper, 1000)
 }
 
 function hideInventory() {
   selectedInventory.value = 0
+  clearTimeout(timerInvRefresh)
 }
 
 function formatDuration(seconds: number) {
@@ -723,27 +730,27 @@ enum LogType {
       <div class="items-center" style="justify-items: center;">      
         <div class="inventory-grid">
           <div v-for="slot in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid-clothing mt-5">
           <div v-for="slot in wearSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid mt-5">
           <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDragStart(slot)"/>
+            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid-tools mt-5">
-          <div v-for="slot in toolSlots" :key="slot.Position" class="slot opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
+          <div v-for="slot in toolSlots" :key="slot.Position" class="slot-tool opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
             <span v-if="slot.Container == 3" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
             <span v-if="slot.Container == 4" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
           </div>
@@ -780,6 +787,21 @@ enum LogType {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.slot-tool {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #555;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slot-tool:hover {
+  opacity: 100%;
 }
 
 .slot-img {
