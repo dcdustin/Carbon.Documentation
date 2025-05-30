@@ -30,8 +30,8 @@ const references = [
 
 const tools = [
   { text: 'Web RCon', link: '/tools/rcon/' },
-  { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
   { text: 'Server Browser', link: '/tools/server-browser/' },
+  { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
 ]
 
 export default defineConfig({
