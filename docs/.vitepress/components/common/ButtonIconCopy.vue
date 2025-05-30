@@ -3,8 +3,9 @@ import { useTimeoutFn } from '@vueuse/core'
 import { CheckCircle2, Copy } from 'lucide-vue-next'
 import { shallowRef } from 'vue'
 
-const { getTextToCopy } = defineProps<{
+const { getTextToCopy, size = 14 } = defineProps<{
   getTextToCopy: () => string
+  size?: number
 }>()
 
 const isCopiedRecently = shallowRef(false)
@@ -35,12 +36,7 @@ function handleCopy() {
 </script>
 
 <template>
-  <button
-    title="Copy to clipboard"
-    @click.stop="handleCopy"
-    @keydown.enter.prevent="handleCopy"
-    @keydown.space.prevent="handleCopy"
-  >
-    <component :is="isCopiedRecently ? CheckCircle2 : Copy" :size="14" />
+  <button title="Copy to clipboard" @click.stop="handleCopy" @keydown.enter.prevent="handleCopy" @keydown.space.prevent="handleCopy">
+    <component :is="isCopiedRecently ? CheckCircle2 : Copy" :size="size" />
   </button>
 </template>
