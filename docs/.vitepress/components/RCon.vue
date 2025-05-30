@@ -5,6 +5,7 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 const selectedSubtab = ref(0)
 const selectedInventory = ref(0)
 const selectedCommandIndex = ref(0)
+const selectedSlot = ref(0)
 const mainSlots = ref<Slot[]>([])
 const beltSlots = ref<Slot[]>([])
 const wearSlots = ref<Slot[]>([])
@@ -335,6 +336,7 @@ class Server {
           slot.ConditionNormalized = item.ConditionNormalized
           slot.HasCondition = item.HasCondition
         });
+        selectedSlot.value = data.ActiveSlot
         break
     }
 
@@ -784,6 +786,7 @@ enum LogType {
         </div>
         <div class="inventory-grid mt-5">
           <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
+            <div v-if="selectedSlot == slot.Position" class="slot-active"></div>
             <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
@@ -844,10 +847,22 @@ enum LogType {
   opacity: 100%;
 }
 
+.slot-active {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  position: absolute;
+  background-color: #1b5c8b;
+}
+
 .slot-img {
   width: 80%;
   height: 80%;
   display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
   object-fit: contain;
