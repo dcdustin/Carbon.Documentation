@@ -36,6 +36,7 @@ function isValidUrl(urlStr: string) : boolean {
 }
 
 function clearInventory() {
+  selectedSlot.value = -1
   mainSlots.value.forEach(slot => {
     slot.clear()
   });
@@ -84,6 +85,7 @@ function selectSubTab(index: number) {
 }
 
 function showInventory(playerId: number) {
+  clearInventory()
   selectedInventory.value = playerId
   selectedServer.value.fetchInventory(playerId)
 
@@ -297,46 +299,50 @@ class Server {
         break
       case 100: // c.rcondocs.inv
         clearInventory()
-        data.Main.forEach(item => {
-          if(item.Position == -1) {
-            return
-          }
-          const slot = mainSlots.value[item.Position]
-          slot.ShortName = item.ShortName
-          slot.ItemId = item.ItemId 
-          slot.Amount = item.Amount
-          slot.Condition = item.Condition
-          slot.MaxCondition = item.MaxCondition
-          slot.ConditionNormalized = item.ConditionNormalized
-          slot.HasCondition = item.HasCondition
-        });
-        data.Belt.forEach(item => {
-          if(item.Position == -1) {
-            return
-          }
-          const slot = beltSlots.value[item.Position]
-          slot.ShortName = item.ShortName
-          slot.ItemId = item.ItemId  
-          slot.Amount = item.Amount
-          slot.Condition = item.Condition
-          slot.MaxCondition = item.MaxCondition
-          slot.ConditionNormalized = item.ConditionNormalized
-          slot.HasCondition = item.HasCondition
-        });
-        data.Wear.forEach(item => {
-          if(item.Position == -1) {
-            return
-          }
-          const slot = wearSlots.value[item.Position]
-          slot.ShortName = item.ShortName
-          slot.ItemId = item.ItemId
-          slot.Amount = item.Amount
-          slot.Condition = item.Condition
-          slot.MaxCondition = item.MaxCondition
-          slot.ConditionNormalized = item.ConditionNormalized
-          slot.HasCondition = item.HasCondition
-        });
-        selectedSlot.value = data.ActiveSlot
+        try {
+          selectedSlot.value = data.ActiveSlot
+          data.Main.forEach(item => {
+            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
+              return
+            }
+            const slot = mainSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId 
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Belt.forEach(item => {
+            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
+              return
+            }
+            const slot = beltSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId  
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Wear.forEach(item => {
+            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
+              return
+            }
+            const slot = wearSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+        } catch (e) {
+          console.error(e)
+        }
         break
     }
 
@@ -824,8 +830,7 @@ enum LogType {
 .slot {
   width: 64px;
   height: 64px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid #555;
+  background-color: rgba(255, 255, 255, 0.075);
   position: relative;
   display: flex;
   justify-content: center;
@@ -835,8 +840,7 @@ enum LogType {
 .slot-tool {
   width: 64px;
   height: 64px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid #555;
+  background-color: rgba(255, 255, 255, 0.075);
   position: relative;
   display: flex;
   justify-content: center;
