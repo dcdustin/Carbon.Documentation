@@ -14,6 +14,8 @@ export const URL_METDAT_RUST_ITEMS = 'https://api.carbonmod.gg/meta/rust/items.j
 export const URL_METDAT_RUST_LOOT_TABLES = 'https://api.carbonmod.gg/meta/rust/loot-tables.json'
 export const URL_METDAT_RUST_PREFABS = 'https://api.carbonmod.gg/meta/rust/prefabs.json'
 
+export const URL_SERVER_LIST = 'https://api.carbonmod.gg/serverlist/'
+
 export const URL_ASSETS_ITEMS = 'https://cdn.carbonmod.gg/items'
 export const URL_ASSETS_PREFABS = 'https://cdn.carbonmod.gg/prefabs'
 export const URL_ASSETS_MISSING = 'https://cdn.carbonmod.gg/content/missing.jpg'
