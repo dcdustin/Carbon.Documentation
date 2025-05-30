@@ -12,9 +12,10 @@ const flags = ref<{ [key: string]: string }>({})
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
 
-async function tryFocusLogs() {
+async function tryFocusLogs(autoScroll: boolean = false) {
   await nextTick()
-  if (logContainer.value?.scrollHeight) {
+  console.log(logContainer.value?.scrollHeight - logContainer.value?.scrollTop)
+  if (logContainer.value?.scrollHeight && (autoScroll || logContainer.value.scrollHeight - logContainer.value?.scrollTop < 2000)) {
     logContainer.value.scrollTop = logContainer.value.scrollHeight
   }
   save()
@@ -60,7 +61,7 @@ function selectSubTab(index: number) {
   selectedSubtab.value = index
 
   if(index == 0) {
-    tryFocusLogs()
+    tryFocusLogs(true)
   }
 }
 
@@ -146,7 +147,6 @@ class Server {
     this.Socket.onopen = () => {
       this.IsConnecting = false
       this.IsConnected = true
-      tryFocusLogs()
 
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
@@ -218,7 +218,7 @@ class Server {
       command.value = ''
     }
 
-    tryFocusLogs()
+    tryFocusLogs(false)
   }
 
   onIdentifiedCommand(id: number, data: object) {
@@ -242,7 +242,7 @@ class Server {
         data.forEach(log => {
           this.appendLog(log.Message as string)
         });
-        tryFocusLogs()
+        tryFocusLogs(true)
         break
       case 3: // carboninfo
         this.CarbonInfo = data
@@ -344,7 +344,7 @@ function deleteServer(server: Server) {
 function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
-  tryFocusLogs()
+  tryFocusLogs(true)
 }
 
 function findServer(address: string): Server {
