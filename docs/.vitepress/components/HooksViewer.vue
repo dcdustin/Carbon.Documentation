@@ -11,7 +11,7 @@ import { store } from '@/stores/hooks-store'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import type { Highlighter } from 'shiki'
-import { getSingletonHighlighter } from 'shiki' // for some reason vite or shiki bundling all languages and themes directly to hooks page, so if you explicitly load this page via url - it will load all languages and themes (there are a ton of em). They being cached but still takes some time to process. You can verify that by opening dev tools and checking head (if you loaded page explicitly).
+import { getSingletonHighlighter } from 'shiki'
 import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
 import HookCard from './HookCard.vue'
 
