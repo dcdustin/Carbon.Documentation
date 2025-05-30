@@ -10,8 +10,8 @@ const { server } = defineProps<{
   <div class="flex flex-col gap-2">
     <div class="flex flex-row gap-2">
       <div class="flex flex-col gap-2">
-        <p>{{ server.hostname }}</p>
-        <p>{{ server.map }}</p>
+        <span>{{ server.hostname }}</span>
+        <span>{{ server.map }}</span>
       </div>
     </div>
   </div>

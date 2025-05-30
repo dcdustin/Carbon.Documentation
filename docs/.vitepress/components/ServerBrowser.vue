@@ -79,7 +79,7 @@ onMounted(async () => {
     <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
       <p>No servers found matching your search</p>
       <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
-      <!-- <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ searchValue }}" returned no results.</p> -->
+      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
   </AsyncState>
 </template>
