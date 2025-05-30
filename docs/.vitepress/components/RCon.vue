@@ -4,6 +4,7 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const selectedSubtab = ref(0)
 const selectedInventory = ref(0)
+const selectedCommandIndex = ref(0)
 const mainSlots = ref<Slot[]>([])
 const beltSlots = ref<Slot[]>([])
 const wearSlots = ref<Slot[]>([])
@@ -145,6 +146,7 @@ class Server {
   Password = ''
   Socket: WebSocket | null = null
   Logs: string[] = []
+  CommandHistory: string[] = []
   AutoConnect = false
   Secure = false
   CachedHostname = ''
@@ -247,6 +249,11 @@ class Server {
     if (input == command.value) {
       this.appendLog('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
       command.value = ''
+      selectedCommandIndex.value = 0
+
+      if(this.CommandHistory.length == 0 || this.CommandHistory[this.CommandHistory.length -1] != input) {
+        this.CommandHistory.unshift(input)
+      }
     }
 
     tryFocusLogs(false)
@@ -348,10 +355,34 @@ class Server {
     this.Logs.push(log)
   }
 
+  selectHistory(up: boolean) {
+    if(up) {
+      selectedCommandIndex.value++
+    } else {
+      selectedCommandIndex.value--
+    }
+    
+    if(selectedCommandIndex.value > this.CommandHistory.length - 1) {
+      selectedCommandIndex.value = -1
+    } else if(selectedCommandIndex.value < -1) {
+      selectedCommandIndex.value = this.CommandHistory.length - 1
+    }
+
+    if(selectedCommandIndex.value == -1) {
+      command.value = ''
+      return
+    }
+
+    if(this.CommandHistory.length > 0) {
+      command.value = this.CommandHistory[selectedCommandIndex.value]
+    }
+  }
+
   clearLogs() {
     const confirmDelete = window.confirm(`Are you sure you want to clear all logs for "${this.Address}"?`)
     if (confirmDelete) {
       this.Logs = []
+      this.CommandHistory = []
       save()
     }
   }
@@ -392,6 +423,7 @@ function deleteServer(server: Server) {
 }
 
 function selectServer(server: Server) {
+  selectedCommandIndex.value = 0
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
   tryFocusLogs(true)
@@ -434,6 +466,7 @@ function load() {
       localServer.AutoConnect = server.AutoConnect
       localServer.Secure = server.Secure
       localServer.CachedHostname = server.CachedHostname
+      localServer.CommandHistory = server.CommandHistory ?? []
       addServer(localServer)
     })
 
@@ -635,6 +668,8 @@ enum LogType {
             class="w-full"
             spellcheck="false"
             v-model="command"
+            @keydown.up.prevent="selectedServer?.selectHistory(true)"
+            @keydown.down.prevent="selectedServer?.selectHistory(false)"
             @keyup.enter="selectedServer?.sendCommand(command, 1)"
           />
           <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
