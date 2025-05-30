@@ -14,7 +14,6 @@ let timerSwitch: ReturnType<typeof setTimeout> = null!
 
 async function tryFocusLogs(autoScroll: boolean = false) {
   await nextTick()
-  console.log(logContainer.value?.scrollHeight - logContainer.value?.scrollTop)
   if (logContainer.value?.scrollHeight && (autoScroll || logContainer.value.scrollHeight - logContainer.value?.scrollTop < 2000)) {
     logContainer.value.scrollTop = logContainer.value.scrollHeight
   }
