@@ -60,13 +60,18 @@ public class MyPlugin : CarbonPlugin
 {
 	private void OnServerInitialized()
 	{
-        foreach(var player in BasePlayer.allPlayerList)
-        {
-            player.Tags ??= new();
-            Puts($"{player} {(player.IsSkibidi ? "is" : "isn't")} skibidi.");
-            BasePlayer.DuckCounter++;
-        }
+		foreach(var player in BasePlayer.allPlayerList)
+		{
+// This compilation symbol is injected into the plugin when modifiers with the 
+// same file name as the plugin has been patched at boot time
+#if MODIFIERS_PATCHED
+			player.Tags ??= new();
+			Puts($"{player} {(player.IsSkibidi ? "is" : "isn't")} skibidi.");
+			BasePlayer.DuckCounter++;
+#endif
+		}
 
+		// Compilation fails if the modifiers haven't been patched
 		Puts($"Counted {BasePlayer.DuckCounter:n0} ducks.");
 	}
 }
