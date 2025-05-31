@@ -103,6 +103,14 @@ const compressedTagToMod = new Map([
   ['y', 'Carbon'],
 ])
 
+function epochToDate(epoch: number): string {
+  const date = new Date(epoch * 1000)
+  return `${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} ${date
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
+}
+
 const processedTags = computed(() => {
   const tags = server.tags?.split(',') || []
   const result = {
@@ -138,18 +146,25 @@ const processedTags = computed(() => {
       continue
     }
 
+    if (trimmedTag.startsWith('born')) {
+      const epoch = parseInt(trimmedTag.slice(4))
+      if (!isNaN(epoch) && epoch > 0) {
+        result.displayTags.push(`WIPED: ${epochToDate(epoch)}`)
+        continue
+      }
+    }
+
     if (
-      !tag.startsWith('mp') &&
-      !tag.startsWith('cp') &&
-      !tag.startsWith('pt') &&
-      !tag.startsWith('qp') &&
-      !tag.startsWith('$r') &&
-      !tag.startsWith('born') &&
-      !tag.startsWith('gm') &&
-      !tag.startsWith('cs') &&
-      !tag.startsWith('jp') &&
-      !tag.startsWith('h') &&
-      !tag.startsWith('stok')
+      !trimmedTag.startsWith('mp') &&
+      !trimmedTag.startsWith('cp') &&
+      !trimmedTag.startsWith('pt') &&
+      !trimmedTag.startsWith('qp') &&
+      !trimmedTag.startsWith('$r') &&
+      !trimmedTag.startsWith('gm') &&
+      !trimmedTag.startsWith('cs') &&
+      !trimmedTag.startsWith('jp') &&
+      !trimmedTag.startsWith('h') &&
+      !trimmedTag.startsWith('stok')
     ) {
       result.displayTags.push(trimmedTag)
     }
@@ -165,25 +180,6 @@ const processedTags = computed(() => {
     region,
   }
 })
-
-function sanitizeText(text: string): string {
-  return text.replace(/[<>"'&]/g, (char) => {
-    switch (char) {
-      case '<':
-        return '&lt;'
-      case '>':
-        return '&gt;'
-      case '"':
-        return '&quot;'
-      case "'":
-        return '&#39;'
-      case '&':
-        return '&amp;'
-      default:
-        return char
-    }
-  })
-}
 </script>
 
 <template>
@@ -191,7 +187,7 @@ function sanitizeText(text: string): string {
     <div class="p-3 flex flex-col h-full gap-2">
       <div class="flex justify-between items-start">
         <h3 class="font-semibold text-gray-200 text-xs leading-tight pr-2 line-clamp-4">
-          {{ sanitizeText(server.hostname) }}
+          {{ server.hostname }}
         </h3>
         <div class="tabular-nums bg-zinc-800/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
