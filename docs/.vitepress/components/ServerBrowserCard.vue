@@ -32,8 +32,12 @@ const COLOR_STOPS: ColorStops = {
 const interpolateColor = computed(() => {
   const percentage = playerPercentage.value
 
+  if (percentage <= 0) {
+    return ''
+  }
+
   if (percentage > 100) {
-    return 'rgb(220, 38, 38)' // Red 600 - Cannot Join
+    return 'rgb(239, 68, 68)'
   }
 
   let lower = 0
@@ -57,13 +61,6 @@ const interpolateColor = computed(() => {
   const b = Math.round(lowerColor.b + (upperColor.b - lowerColor.b) * adjustedPercentage)
 
   return `rgb(${r}, ${g}, ${b})`
-})
-
-const statusColor = computed(() => {
-  return {
-    '--status-color': interpolateColor.value,
-    'dynamic-status': true,
-  }
 })
 
 interface TagGroup {
@@ -197,7 +194,7 @@ function sanitizeText(text: string): string {
         <h3 class="font-semibold text-gray-200 text-xs leading-tight pr-2 line-clamp-4">
           {{ sanitizeText(server.hostname) }}
         </h3>
-        <div :class="['tabular-nums bg-zinc-800 px-2 py-1 rounded text-xs font-medium', statusColor]">
+        <div class="tabular-nums bg-zinc-800 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
         </div>
       </div>
@@ -208,7 +205,7 @@ function sanitizeText(text: string): string {
       </div>
 
       <div class="w-full bg-zinc-800 rounded-full h-1">
-        <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: statusColor['--status-color'] }"></div>
+        <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: interpolateColor }"></div>
       </div>
 
       <div class="flex flex-wrap gap-1 overflow-x-auto">
