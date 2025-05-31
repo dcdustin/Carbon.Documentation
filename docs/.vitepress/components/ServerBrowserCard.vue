@@ -64,7 +64,6 @@ const interpolateColor = computed(() => {
 })
 
 interface TagGroup {
-  title: string
   tags: string[]
   type: 'region' | 'wipe' | 'difficulty' | 'feature' | 'mod'
 }
@@ -111,10 +110,10 @@ const processedTags = computed(() => {
     displayTags: [] as string[],
   }
 
-  const wipeGroup: TagGroup = { title: 'Wipe Schedule', tags: [], type: 'wipe' }
-  const difficultyGroup: TagGroup = { title: 'Difficulty', tags: [], type: 'difficulty' }
-  const featureGroup: TagGroup = { title: 'Features', tags: [], type: 'feature' }
-  const modGroup: TagGroup = { title: 'Mods', tags: [], type: 'mod' }
+  const wipeGroup: TagGroup = { tags: [], type: 'wipe' }
+  const difficultyGroup: TagGroup = { tags: [], type: 'difficulty' }
+  const featureGroup: TagGroup = { tags: [], type: 'feature' }
+  const modGroup: TagGroup = { tags: [], type: 'mod' }
   let region = ''
 
   for (const tag of tags) {
@@ -188,13 +187,13 @@ function sanitizeText(text: string): string {
 </script>
 
 <template>
-  <div class="server-card bg-zinc-900 rounded-lg overflow-hidden">
+  <div class="server-card bg-zinc-900 rounded-lg">
     <div class="p-3 flex flex-col h-full gap-2">
       <div class="flex justify-between items-start">
         <h3 class="font-semibold text-gray-200 text-xs leading-tight pr-2 line-clamp-4">
           {{ sanitizeText(server.hostname) }}
         </h3>
-        <div class="tabular-nums bg-zinc-800 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
+        <div class="tabular-nums bg-zinc-800/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
         </div>
       </div>
@@ -208,12 +207,12 @@ function sanitizeText(text: string): string {
         <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: interpolateColor }"></div>
       </div>
 
-      <div class="flex flex-wrap gap-1 overflow-x-auto">
+      <div class="flex flex-wrap gap-x-1.5 gap-y-1">
         <span v-if="processedTags.region" class="tag tag-region">
           {{ processedTags.region }}
         </span>
 
-        <template v-for="group in processedTags.groups" :key="group.title">
+        <template v-for="group in processedTags.groups" :key="group.type">
           <span v-for="tag in group.tags" :key="tag" :class="['tag', `tag-${group.type}`]">
             {{ tag }}
           </span>
