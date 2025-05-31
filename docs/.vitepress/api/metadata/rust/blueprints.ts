@@ -1,4 +1,4 @@
-import { URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
 import { Item } from './items'
 
@@ -28,7 +28,7 @@ export type BlueprintsData = Blueprint[]
 export async function fetchBlueprints() {
   const url = URL_METDAT_RUST_BLUEPRINTS
 
-  const data = await fetchApiCaching<BlueprintsData>(url)
+  const data = await fetchApiCaching<BlueprintsData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

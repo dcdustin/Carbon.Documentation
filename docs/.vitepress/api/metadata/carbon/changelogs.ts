@@ -1,4 +1,4 @@
-import { URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
 
 // fix naming issues with first letter being uppercase
@@ -21,7 +21,7 @@ export type ChangelogsCarbonData = ChangelogCarbon[]
 export async function fetchChangelogsCarbon() {
   const url = URL_METDAT_CARB_CHANGELOGS
 
-  const data = await fetchApiCaching<ChangelogsCarbonData>(url)
+  const data = await fetchApiCaching<ChangelogsCarbonData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

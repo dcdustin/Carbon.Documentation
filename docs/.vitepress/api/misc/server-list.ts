@@ -1,4 +1,4 @@
-import { URL_SERVER_LIST } from '../constants'
+import { CACHE_TIME_ITEM_TTL, URL_SERVER_LIST } from '../constants'
 import { fetchApiCaching } from '../fetch-api'
 
 export interface Server {
@@ -21,7 +21,7 @@ export interface ServerList {
 export async function fetchServerList() {
   const url = URL_SERVER_LIST
 
-  const data = await fetchApiCaching<ServerList>(url)
+  const data = await fetchApiCaching<ServerList>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }
