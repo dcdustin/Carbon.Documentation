@@ -138,7 +138,7 @@ onMounted(async () => {
             </div>
           </div>
           <!-- TODO: switch to virtual list -->
-          <template v-for="server in renderedList" :key="server.ip + server.port">
+          <template v-for="server in renderedList" :key="server.id">
             <ServerBrowserCard :server="server" />
           </template>
         </InfinitePageScroll>
