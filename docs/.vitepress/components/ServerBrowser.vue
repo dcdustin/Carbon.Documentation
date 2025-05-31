@@ -3,13 +3,13 @@ import { fetchServerList, ServerList } from '@/api/misc/server-list'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
-import { data as initialServerList } from '@/data-loaders/server-browser.data'
+import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser'
 import { Search } from 'lucide-vue-next'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
 
-const serverList = shallowRef<ServerList | null>(initialServerList)
+const serverListData = shallowRef<ServerList | null>(initialData)
 
 const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
@@ -19,20 +19,19 @@ const debouncedSearchValue = store.searchValue
 const pageSize = 25
 
 const filteredServers = computed(() => {
-  if (!serverList.value?.Servers.length) {
+  if (!serverListData.value || !serverListData.value.Servers.length) {
     return []
   }
 
-  let filtered = serverList.value?.Servers
+  let filtered = serverListData.value?.Servers
 
   if (debouncedSearchValue.value) {
-    const searchLower = debouncedSearchValue.value.toLowerCase()
-    filtered = filtered.filter(
-      (server) =>
-        server.hostname.toLowerCase().includes(searchLower) ||
-        server.map?.toLowerCase().includes(searchLower) ||
-        server.tags?.toLowerCase().includes(searchLower)
-    )
+    // const miniSearch =
+    // if (miniSearch) {
+    //   const results = miniSearch.search(debouncedSearchValue.value)
+    //   const serverMap = new Map(filtered.map((server) => [server.id, server]))
+    //   filtered = results.map((result) => serverMap.get(result.id)).filter(Boolean) as Server[]
+    // }
   }
 
   return filtered
@@ -48,7 +47,7 @@ async function loadServers() {
       throw new Error('No data received from API')
     }
 
-    serverList.value = data
+    serverListData.value = data
 
     isFetchedRestData.value = true
   } catch (err) {
@@ -77,7 +76,7 @@ onMounted(async () => {
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
             <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverList?.Servers.length }} total servers.
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverListData?.Servers.length }} total servers.
             </div>
           </div>
           <!-- TODO: switch to virtual list -->

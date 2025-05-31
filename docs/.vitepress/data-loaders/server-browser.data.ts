@@ -6,8 +6,10 @@ export { data }
 
 export default defineLoader({
   async load(): Promise<ServerList> {
-    const serverList = await fetchServerList()
-    serverList.Servers = serverList.Servers.slice(0, 100)
-    return serverList
+    const data = await fetchServerList()
+
+    data.Servers = data.Servers.slice(0, 100)
+
+    return data
   },
 })
