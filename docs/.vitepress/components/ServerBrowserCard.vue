@@ -26,14 +26,18 @@ const COLOR_STOPS: ColorStops = {
   0: { r: 16, g: 185, b: 129 }, // Emerald 500 - Empty
   60: { r: 16, g: 185, b: 129 }, // Emerald 500 - Still Green
   90: { r: 245, g: 158, b: 11 }, // Amber 500  - Getting Full
-  100: { r: 245, g: 158, b: 11 }, // Amber 500  - Full but can join
+  100: { r: 245, g: 82, b: 11 }, // Amber 500  - Full but can join
 }
 
 const interpolateColor = computed(() => {
   const percentage = playerPercentage.value
 
-  if (percentage > 100) {
-    return 'rgb(220, 38, 38)' // Red 600 - Cannot Join
+  if (percentage <= 0) {
+    return ''
+  }
+
+  if (percentage >= 100) {
+    return 'rgb(239, 68, 68)'
   }
 
   let lower = 0
@@ -59,15 +63,7 @@ const interpolateColor = computed(() => {
   return `rgb(${r}, ${g}, ${b})`
 })
 
-const statusColor = computed(() => {
-  return {
-    '--status-color': interpolateColor.value,
-    'dynamic-status': true,
-  }
-})
-
 interface TagGroup {
-  title: string
   tags: string[]
   type: 'region' | 'wipe' | 'difficulty' | 'feature' | 'mod'
 }
@@ -107,6 +103,14 @@ const compressedTagToMod = new Map([
   ['y', 'Carbon'],
 ])
 
+function epochToDate(epoch: number): string {
+  const date = new Date(epoch * 1000)
+  return `${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} ${date
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
+}
+
 const processedTags = computed(() => {
   const tags = server.tags?.split(',') || []
   const result = {
@@ -114,10 +118,10 @@ const processedTags = computed(() => {
     displayTags: [] as string[],
   }
 
-  const wipeGroup: TagGroup = { title: 'Wipe Schedule', tags: [], type: 'wipe' }
-  const difficultyGroup: TagGroup = { title: 'Difficulty', tags: [], type: 'difficulty' }
-  const featureGroup: TagGroup = { title: 'Features', tags: [], type: 'feature' }
-  const modGroup: TagGroup = { title: 'Mods', tags: [], type: 'mod' }
+  const wipeGroup: TagGroup = { tags: [], type: 'wipe' }
+  const difficultyGroup: TagGroup = { tags: [], type: 'difficulty' }
+  const featureGroup: TagGroup = { tags: [], type: 'feature' }
+  const modGroup: TagGroup = { tags: [], type: 'mod' }
   let region = ''
 
   for (const tag of tags) {
@@ -142,18 +146,25 @@ const processedTags = computed(() => {
       continue
     }
 
+    if (trimmedTag.startsWith('born')) {
+      const epoch = parseInt(trimmedTag.slice(4))
+      if (!isNaN(epoch) && epoch > 0) {
+        result.displayTags.push(`WIPED: ${epochToDate(epoch)}`)
+        continue
+      }
+    }
+
     if (
-      !tag.startsWith('mp') &&
-      !tag.startsWith('cp') &&
-      !tag.startsWith('pt') &&
-      !tag.startsWith('qp') &&
-      !tag.startsWith('$r') &&
-      !tag.startsWith('born') &&
-      !tag.startsWith('gm') &&
-      !tag.startsWith('cs') &&
-      !tag.startsWith('jp') &&
-      !tag.startsWith('h') &&
-      !tag.startsWith('stok')
+      !trimmedTag.startsWith('mp') &&
+      !trimmedTag.startsWith('cp') &&
+      !trimmedTag.startsWith('pt') &&
+      !trimmedTag.startsWith('qp') &&
+      !trimmedTag.startsWith('$r') &&
+      !trimmedTag.startsWith('gm') &&
+      !trimmedTag.startsWith('cs') &&
+      !trimmedTag.startsWith('jp') &&
+      !trimmedTag.startsWith('h') &&
+      !trimmedTag.startsWith('stok')
     ) {
       result.displayTags.push(trimmedTag)
     }
@@ -169,35 +180,16 @@ const processedTags = computed(() => {
     region,
   }
 })
-
-function sanitizeText(text: string): string {
-  return text.replace(/[<>"'&]/g, (char) => {
-    switch (char) {
-      case '<':
-        return '&lt;'
-      case '>':
-        return '&gt;'
-      case '"':
-        return '&quot;'
-      case "'":
-        return '&#39;'
-      case '&':
-        return '&amp;'
-      default:
-        return char
-    }
-  })
-}
 </script>
 
 <template>
-  <div class="server-card bg-zinc-900 rounded-lg overflow-hidden">
+  <div class="server-card bg-zinc-900 rounded-lg">
     <div class="p-3 flex flex-col h-full gap-2">
       <div class="flex justify-between items-start">
         <h3 class="font-semibold text-gray-200 text-xs leading-tight pr-2 line-clamp-4">
-          {{ sanitizeText(server.hostname) }}
+          {{ server.hostname }}
         </h3>
-        <div :class="['tabular-nums bg-zinc-800 px-2 py-1 rounded text-xs font-medium', statusColor]">
+        <div class="tabular-nums bg-zinc-800/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
         </div>
       </div>
@@ -208,15 +200,15 @@ function sanitizeText(text: string): string {
       </div>
 
       <div class="w-full bg-zinc-800 rounded-full h-1">
-        <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: statusColor['--status-color'] }"></div>
+        <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: interpolateColor }"></div>
       </div>
 
-      <div class="flex flex-wrap gap-1 overflow-x-auto">
+      <div class="flex flex-wrap gap-x-1.5 gap-y-1">
         <span v-if="processedTags.region" class="tag tag-region">
           {{ processedTags.region }}
         </span>
 
-        <template v-for="group in processedTags.groups" :key="group.title">
+        <template v-for="group in processedTags.groups" :key="group.type">
           <span v-for="tag in group.tags" :key="tag" :class="['tag', `tag-${group.type}`]">
             {{ tag }}
           </span>

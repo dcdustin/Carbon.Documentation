@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from './constants'
 import { isClientSide } from '../shared/utils'
+import { CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from './constants'
 
 interface CacheItem<T> {
   versionId: string
@@ -167,16 +167,17 @@ class Cache {
     return this.versionFetchPromise
   }
 
-  private isCacheItemValid<T>(item: CacheItem<T>): boolean {
-    return (
-      item.versionId === this.currentCacheVersion && Date.now() - item.timestampCreated <= CACHE_TIME_ITEM_TTL
-    )
+  private isCacheItemValid<T>(item: CacheItem<T>, itemTtl: number): boolean {
+    return item.versionId === this.currentCacheVersion && Date.now() - item.timestampCreated <= itemTtl
   }
 
-  private async getFromMemOrStorage<T>(id: string): Promise<CacheItem<T> | null> {
+  private async getFromMemOrStorage<T>(id: string, itemTtl: number): Promise<CacheItem<T> | null> {
     const itemFromMemory = this.cacheMap.get(id) as CacheItem<T>
     if (itemFromMemory) {
-      return itemFromMemory
+      if (this.isCacheItemValid(itemFromMemory, itemTtl)) {
+        return itemFromMemory
+      }
+      this.cacheMap.delete(id)
     }
 
     const itemFromStorage = await this.storage.getItem<T>(id)
@@ -244,15 +245,15 @@ class Cache {
     this.scheduleStorageWrite()
   }
 
-  public async getFromCache<T>(url: string): Promise<T | null> {
+  public async getFromCache<T>(url: string, itemTtl: number): Promise<T | null> {
     await this.tryUpdateCacheVersion()
 
     this.cleanUpOldEntries()
 
     const id = url
-    const cacheItem = await this.getFromMemOrStorage<T>(id)
+    const cacheItem = await this.getFromMemOrStorage<T>(id, itemTtl)
 
-    if (cacheItem && this.isCacheItemValid(cacheItem)) {
+    if (cacheItem && this.isCacheItemValid(cacheItem, itemTtl)) {
       return cacheItem.data
     }
 

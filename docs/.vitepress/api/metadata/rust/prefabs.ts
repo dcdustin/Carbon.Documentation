@@ -1,4 +1,4 @@
-import { URL_METDAT_RUST_PREFABS } from '@/api/constants'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_PREFABS } from '@/api/constants'
 import { fetchApiCaching } from '@/api/fetch-api'
 
 // fix naming issues with first letter being uppercase
@@ -16,7 +16,7 @@ export type PrefabsData = Prefab[]
 export async function fetchPrefabs() {
   const url = URL_METDAT_RUST_PREFABS
 
-  const data = await fetchApiCaching<PrefabsData>(url)
+  const data = await fetchApiCaching<PrefabsData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

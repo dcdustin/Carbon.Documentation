@@ -1,10 +1,7 @@
 import { cache } from './cache'
 
-export async function fetchApiCaching<T, K = unknown>(
-  url: string,
-  callbackFormatDataFromRemote?: (data: K) => T
-): Promise<T> {
-  const cached = (await cache.getFromCache(url)) as T | null
+export async function fetchApiCaching<T, K = unknown>(url: string, itemTtl: number, callbackFormatDataFromRemote?: (data: K) => T): Promise<T> {
+  const cached = (await cache.getFromCache(url, itemTtl)) as T | null
   if (cached) {
     return cached
   }
