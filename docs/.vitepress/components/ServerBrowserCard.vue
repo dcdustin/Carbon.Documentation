@@ -26,7 +26,7 @@ const COLOR_STOPS: ColorStops = {
   0: { r: 16, g: 185, b: 129 }, // Emerald 500 - Empty
   60: { r: 16, g: 185, b: 129 }, // Emerald 500 - Still Green
   90: { r: 245, g: 158, b: 11 }, // Amber 500  - Getting Full
-  100: { r: 245, g: 158, b: 11 }, // Amber 500  - Full but can join
+  100: { r: 245, g: 82, b: 11 }, // Amber 500  - Full but can join
 }
 
 const interpolateColor = computed(() => {
@@ -36,7 +36,7 @@ const interpolateColor = computed(() => {
     return ''
   }
 
-  if (percentage > 100) {
+  if (percentage >= 100) {
     return 'rgb(239, 68, 68)'
   }
 
