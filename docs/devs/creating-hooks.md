@@ -109,7 +109,7 @@ identifiers as they're way faster to process.
 
 > The hook IDs are generated the same way Rust uses with `StringPool` to get numeric identifiers out of string values.
 
-You can generate your own hook identifier, put the hook name here: <code><input value="MyHook" class="w-28" placeholder="MyHook" @keyup.enter="getHookId(hookInput)"></input></code><br>
+To generate your own hook identifier, put the hook name here: <code><input value="MyHook" class="w-28" placeholder="MyHook" @keyup.enter="getHookId(hookInput)"></input></code><br>
 <span class="text-xs text-slate-400">Your hook call will look like this:</span> <code>HookCaller.CallStaticHook({{hookInputResult}}, /\*params\*/);</code>
 
 :::
