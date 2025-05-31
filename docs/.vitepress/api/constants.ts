@@ -23,4 +23,4 @@ export const URL_VERSION_DOCS = 'https://api.carbonmod.gg/version/?id=docs'
 
 export const CACHE_TIME_VERSION_FETCH_DELAY = 1000 * 80
 export const CACHE_TIME_ITEM_TTL = 1000 * 60 * 60 * 36
-export const CACHE_TIME_SERVER_LIST_TTL = 1000 * 10
+export const CACHE_TIME_SERVER_LIST_TTL = 1000 * 30
