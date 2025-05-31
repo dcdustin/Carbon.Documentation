@@ -6,10 +6,14 @@ type: page
 ---
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const hookInput = ref('MyHook')
-const hookInputResult = ref('1446138974')
+const hookInputResult = ref('...')
+
+onMounted(async () => {
+    await getHookId(hookInput.value)
+})
 
 async function getHookId(input: string) {
     hookInputResult.value = '...'
