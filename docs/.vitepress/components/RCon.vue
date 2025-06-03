@@ -103,8 +103,10 @@ function showInventory(playerId: number) {
 }
 
 function hideInventory() {
-  selectedPlayer.value = 0
-  clearTimeout(timerInvRefresh)
+  if(selectedPlayer.value != 0) {
+    selectedPlayer.value = 0
+    clearTimeout(timerInvRefresh)
+  }
 }
 
 function formatDuration(seconds: number) {
@@ -202,6 +204,7 @@ class Server {
       this.HeaderImage = ''
       this.Description = ''
       this.Socket = null
+      hideInventory()
       tryFocusLogs()
     }
     this.Socket.onerror = (e) => {
