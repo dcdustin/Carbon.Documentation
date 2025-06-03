@@ -96,9 +96,15 @@ const compressedTagToFeature = new Map([
   ['c', 'Creative'],
   ['e', 'Minigame'],
   ['d', 'Combat Training'],
+  ['i', 'Battlefield'],
+  ['j', 'Battle Royale'],
+  ['k', 'Build Server'],
+  ['t', 'Tutorial'],
+  ['q', 'Premium'],
 ])
 
 const compressedTagToMod = new Map([
+  ['z', 'Modded'],
   ['o', 'Oxide'],
   ['y', 'Carbon'],
 ])
@@ -112,7 +118,7 @@ function epochToDate(epoch: number): string {
 }
 
 const processedTags = computed(() => {
-  const tags = server.tags?.split(',') || []
+  const tags = new Set(server.tags?.split(',').map((tag) => tag.trim()) || [])
   const result = {
     groups: [] as TagGroup[],
     displayTags: [] as string[],
@@ -125,15 +131,13 @@ const processedTags = computed(() => {
   let region = ''
 
   for (const tag of tags) {
-    const trimmedTag = tag.trim()
-
-    if (tagToRegion.has(trimmedTag)) {
-      region = tagToRegion.get(trimmedTag) || ''
+    if (tagToRegion.has(tag)) {
+      region = tagToRegion.get(tag) || ''
       continue
     }
 
-    if (trimmedTag.startsWith('^')) {
-      const compressedTag = trimmedTag.slice(1)
+    if (tag.startsWith('^')) {
+      const compressedTag = tag.slice(1)
       if (compressedTagToWipe.has(compressedTag)) {
         wipeGroup.tags.push(compressedTagToWipe.get(compressedTag) || '')
       } else if (compressedTagToDifficulty.has(compressedTag)) {
@@ -146,8 +150,8 @@ const processedTags = computed(() => {
       continue
     }
 
-    if (trimmedTag.startsWith('born')) {
-      const epoch = parseInt(trimmedTag.slice(4))
+    if (tag.startsWith('born')) {
+      const epoch = parseInt(tag.slice(4))
       if (!isNaN(epoch) && epoch > 0) {
         result.displayTags.push(`WIPED: ${epochToDate(epoch)}`)
         continue
@@ -155,18 +159,18 @@ const processedTags = computed(() => {
     }
 
     if (
-      !trimmedTag.startsWith('mp') &&
-      !trimmedTag.startsWith('cp') &&
-      !trimmedTag.startsWith('pt') &&
-      !trimmedTag.startsWith('qp') &&
-      !trimmedTag.startsWith('$r') &&
-      !trimmedTag.startsWith('gm') &&
-      !trimmedTag.startsWith('cs') &&
-      !trimmedTag.startsWith('jp') &&
-      !trimmedTag.startsWith('h') &&
-      !trimmedTag.startsWith('stok')
+      !tag.startsWith('mp') &&
+      !tag.startsWith('cp') &&
+      !tag.startsWith('pt') &&
+      !tag.startsWith('qp') &&
+      !tag.startsWith('$r') &&
+      !tag.startsWith('gm') &&
+      !tag.startsWith('cs') &&
+      !tag.startsWith('jp') &&
+      !tag.startsWith('h') &&
+      !tag.startsWith('stok')
     ) {
-      result.displayTags.push(trimmedTag)
+      result.displayTags.push(tag)
     }
   }
 
