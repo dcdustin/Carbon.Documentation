@@ -3,7 +3,7 @@ import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFr
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 const selectedSubtab = ref(0)
-const selectedInventory = ref(0)
+const selectedPlayer = ref(0)
 const selectedCommandIndex = ref(0)
 const selectedSlot = ref(0)
 const mainSlots = ref<Slot[]>([])
@@ -53,8 +53,9 @@ function handleDrag(slot: Slot) {
 }
 
 function handleDrop(slot: Slot) {
-  selectedServer.value.sendCommand(`c.rcondocs.move ${selectedInventory.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
-  selectedServer.value.fetchInventory(selectedInventory.value)
+  // MoveInventoryItem
+  selectedServer.value.sendCommand(`c.webrcon.rpc 3553623853 ${selectedPlayer.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  selectedServer.value.fetchInventory(selectedPlayer.value)
   draggedSlot.value = null
 }
 
@@ -86,7 +87,7 @@ function selectSubTab(index: number) {
 
 function showInventory(playerId: number) {
   clearInventory()
-  selectedInventory.value = playerId
+  selectedPlayer.value = playerId
   selectedServer.value.fetchInventory(playerId)
 
   const looper = () => {
@@ -102,7 +103,7 @@ function showInventory(playerId: number) {
 }
 
 function hideInventory() {
-  selectedInventory.value = 0
+  selectedPlayer.value = 0
   clearTimeout(timerInvRefresh)
 }
 
@@ -233,7 +234,7 @@ class Server {
   }
 
   fetchInventory(playerId: number) {
-    this.sendCommand('c.rcondocs.inv ' + playerId, 100)
+    this.sendCommand(`c.webrcon.rpc 1739174796 ${playerId}`, 100)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -297,7 +298,7 @@ class Server {
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
-      case 100: // c.rcondocs.inv
+      case 100: // c.webrcon.rpc SendPlayerInventory
         clearInventory()
         try {
           selectedSlot.value = data.ActiveSlot
@@ -535,12 +536,12 @@ onMounted(() => {
 
   const dropSlot = new Slot()
   dropSlot.Position = 0
-  dropSlot.Container = 3
+  dropSlot.Container = 10
   toolSlots.value.push(dropSlot)
 
   const trashSlot = new Slot()
   dropSlot.Position = 1
-  trashSlot.Container = 4
+  trashSlot.Container = 11
   toolSlots.value.push(trashSlot)
 })
 
@@ -767,7 +768,7 @@ enum LogType {
     </div>
   </div>
 
-  <div v-if="selectedInventory" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
+  <div v-if="selectedPlayer" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
     <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
       <div class="flex items-center justify-between mb-4">
         <h3 class="text-xl font-bold"></h3>
@@ -800,8 +801,8 @@ enum LogType {
         </div>
         <div class="inventory-grid-tools mt-5">
           <div v-for="slot in toolSlots" :key="slot.Position" class="slot-tool opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
-            <span v-if="slot.Container == 3" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
-            <span v-if="slot.Container == 4" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
+            <span v-if="slot.Container == 10" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
+            <span v-if="slot.Container == 11" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
           </div>
         </div>
       </div>
