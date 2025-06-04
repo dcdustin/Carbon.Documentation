@@ -18,8 +18,7 @@ const features = [
 # Oxide Porting
 ![Oxide Porting](/misc/oxide-to-carbon.webp)
 
-An in-depth understanding of the necessary changes that are done when you're willing to transfer your Oxide server to
-Carbon.
+An in-depth understanding of the necessary changes that are done when you're transferring your Oxide server over to Carbon.
 
 <table tabindex="0">
   <thead>
