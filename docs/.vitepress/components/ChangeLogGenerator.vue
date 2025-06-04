@@ -220,6 +220,7 @@ watch(currentDatePickerValue, (newDate) => {
     date.setMinutes(currentDate.getMinutes())
   } catch (e) {}
   changeLog.value.Date = prettyIsoDate(date.toISOString())
+  save()
 })
 
 const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
