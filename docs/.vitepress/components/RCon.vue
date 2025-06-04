@@ -477,6 +477,7 @@ function save() {
         case 'HeaderImage':
         case 'Description':
         case 'Logs':
+        case 'Rpcs':
           return undefined
       }
       return value
