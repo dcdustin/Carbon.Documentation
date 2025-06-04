@@ -253,7 +253,7 @@ onMounted(() => {
     changeLog.value = new ChangeLog(
     cg['Date'],
     cg['Version'],
-    cg['Commit'], cg['Sections'].map(section => new ChangeLogSection(section['Title'], Number(section['TypeId']), section['Changes'].map(change => new Change(change['Message'], change['Authors'])))))
+    cg['CommitUrl'], cg['Sections'].map(section => new ChangeLogSection(section['Title'], Number(section['TypeId']), section['Changes'].map(change => new Change(change['Message'], change['Authors'])))))
   }
 })
 </script>
