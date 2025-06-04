@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { CircleX } from 'lucide-vue-next'
-import { ref, Ref, watch } from 'vue'
+import { ref, Ref, watch, onMounted } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import CarbonBadge from './CarbonBadge.vue'
 
@@ -101,6 +101,7 @@ function addChange(section: ChangeLogSection, event: Event) {
 
   input1.value = ''
   input2.value = ''
+  save()
 }
 
 function removeChange(section: ChangeLogSection, change: Change) {
@@ -222,6 +223,39 @@ watch(currentDatePickerValue, (newDate) => {
 })
 
 const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
+
+function save() {
+  localStorage.setItem('docs-changelog-latest', JSON.stringify(changeLog.value))
+}
+
+function clear() {
+  const confirmDelete = window.confirm(`Are you sure you want to clear?`)
+  if (confirmDelete) {
+    changeLog.value = new ChangeLog(
+    '',
+    '',
+    'https://github.com/CarbonCommunity/Carbon/commit/',
+    [
+      new ChangeLogSection('Add', 0, []),
+      new ChangeLogSection('Update', 1, []),
+      new ChangeLogSection('Remove', 2, []),
+      new ChangeLogSection('Fix', 3, []),
+      new ChangeLogSection('Misc', 4, []),
+    ])
+    save()
+  }
+}
+
+onMounted(() => {
+  const lastChangelog = localStorage.getItem('docs-changelog-latest')
+  if(lastChangelog) {
+    const cg = JSON.parse(lastChangelog)
+    changeLog.value = new ChangeLog(
+    cg['Date'],
+    cg['Version'],
+    cg['Commit'], cg['Sections'].map(section => new ChangeLogSection(section['Title'], Number(section['TypeId']), section['Changes'].map(change => new Change(change['Message'], change['Authors'])))))
+  }
+})
 </script>
 
 <template>
@@ -229,20 +263,22 @@ const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
     <div class="flex flex-col gap-4">
       <h1 class="text-2xl font-bold">Change Log Generator</h1>
       <div>
-        <input type="date" v-model="currentDatePickerValue" />
+        <input type="date" @change="save()" v-model="currentDatePickerValue" />
       </div>
       <input
         v-model="changeLog.Date"
         type="text"
+        @change="save()"
         placeholder="Date ( 2025-05-12 11:40 UTC+0 ) BETTER BE UTC"
       />
-      <input v-model="changeLog.Version" type="text" placeholder="Semantic Version ( 2.0.185 )" />
+      <input v-model="changeLog.Version" type="text" @change="save()" placeholder="Semantic Version ( 2.0.185 )" />
       <input
         class="underline"
         v-model="changeLog.CommitUrl"
         type="text"
         placeholder="Commit URL ( Ctrl + Click to open in new tab )"
         title="Commit URL ( Ctrl + Click to open in new tab )"
+        @change="save()"
         @click="(event: MouseEvent) => openCommitUrl(event)"
       />
       <VueDraggable
@@ -275,11 +311,12 @@ const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
                     }}</CarbonBadge>
                   </div>
                   <div class="flex flex-col text-sm w-full">
-                    <input placeholder="Message" v-model="change.Message" type="text" />
+                    <input placeholder="Message" @change="save()" v-model="change.Message" type="text" />
                     <input
                       placeholder="Authors"
                       class="text-xs text-blue-300"
                       :value="change.Authors"
+                      @change="save()"
                       @input="event => change.Authors = (event.target as HTMLInputElement)?.value.trim().split(',').map(author => author.trim())"
                       type="text"
                     />
@@ -292,12 +329,14 @@ const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
                 type="text"
                 placeholder="Add a new change message"
                 class="text-sm"
+                @change="save()"
                 @focus="focusChangeInput(section)"
               />
               <input
                 type="text"
                 placeholder="Author1,Author2"
                 class="text-sm"
+                @change="save()"
                 v-show="currentlyFocusedChangeLogSection === section"
               />
               <button class="hidden" type="submit"></button>
@@ -305,6 +344,8 @@ const currentlyFocusedChangeLogSection = ref<ChangeLogSection | null>(null)
           </div>
         </div>
       </VueDraggable>
+      <button class="btn btn-primary" @click="save">Save</button>
+      <button class="btn btn-primary" @click="clear">Clear</button>
       <button class="btn btn-primary" @click="exportToJsonToClipboard">JSON to clipboard</button>
       <button class="btn btn-primary" @click="exportToJsonToFile">JSON to file</button>
       <button class="btn btn-primary" @click="setJsonFromUserClipboard">Import from JSON clipboard</button>
