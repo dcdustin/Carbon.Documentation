@@ -54,7 +54,7 @@ function handleDrag(slot: Slot) {
 
 function handleDrop(slot: Slot) {
   // MoveInventoryItem
-  selectedServer.value.sendCommand(`c.webrcon.rpc 3553623853 ${selectedPlayer.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  selectedServer.value.sendRpc('3553623853', selectedPlayer.value, draggedSlot.value?.Container, draggedSlot.value?.Position, slot.Container, slot.Position)
   selectedServer.value.fetchInventory(selectedPlayer.value)
   draggedSlot.value = null
 }
@@ -79,6 +79,8 @@ async function fetchGeolocation(ip: string) {
 
 function selectSubTab(index: number) {
   selectedSubtab.value = index
+  localStorage.setItem('rcon-subtab', index.toString())
+  save() 
 
   if(index == 0) {
     tryFocusLogs(true)
@@ -164,6 +166,70 @@ class Server {
   PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
+  Rpcs: Record<string, (...args: any[]) => void> = {};
+
+  registerRpcs() {
+    this.Rpcs = {}
+
+    // MoveInventoryItem
+    this.Rpcs["3553623853"] = data => {
+      
+    }
+
+    // SendPlayerInventory
+    this.Rpcs["1739174796"] = data => {
+        clearInventory()
+        try {
+          selectedSlot.value = data.Value.ActiveSlot
+          data.Value.Main.forEach(item => {
+            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
+              return
+            }
+            const slot = mainSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId 
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Value.Belt.forEach(item => {
+            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
+              return
+            }
+            const slot = beltSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId  
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Value.Wear.forEach(item => {
+            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
+              return
+            }
+            const slot = wearSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+        } catch (e) {
+          console.error(e)
+        }
+    }
+
+    // TestCall
+    this.Rpcs['951948318'] = data => {
+      console.log(data)
+    }
+  }
 
   connect() {
     save()
@@ -188,12 +254,14 @@ class Server {
       this.IsConnecting = false
       this.IsConnected = true
 
+      this.registerRpcs();
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
       this.sendCommand('console.tail', 7)
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
+      this.sendRpc('951948318', 'Ping sentence!')
     }
     this.Socket.onclose = () => {
       this.IsConnecting = false
@@ -237,7 +305,8 @@ class Server {
   }
 
   fetchInventory(playerId: number) {
-    this.sendCommand(`c.webrcon.rpc 1739174796 ${playerId}`, 100)
+    // SendPlayerInventory
+    this.sendRpc('1739174796', playerId)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -264,6 +333,14 @@ class Server {
     }
 
     tryFocusLogs(false)
+  }
+
+  sendRpc(id: string, ...args: any[]) {
+    for (let i = 0; i < args.length; i++) {
+      var arg = args[i]
+      args[i] = `"${arg}"` 
+    }
+    this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
   }
 
   onIdentifiedCommand(id: number, data: object) {
@@ -301,52 +378,10 @@ class Server {
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
-      case 100: // c.webrcon.rpc SendPlayerInventory
-        clearInventory()
-        try {
-          selectedSlot.value = data.ActiveSlot
-          data.Main.forEach(item => {
-            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
-              return
-            }
-            const slot = mainSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId 
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Belt.forEach(item => {
-            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
-              return
-            }
-            const slot = beltSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId  
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Wear.forEach(item => {
-            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
-              return
-            }
-            const slot = wearSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-        } catch (e) {
-          console.error(e)
-        }
+      case 100: // c.webrcon.rpc
+          if (data.RpcId in this.Rpcs) {
+            this.Rpcs[data.RpcId](data);
+          }
         break
     }
 
@@ -435,6 +470,10 @@ function deleteServer(server: Server) {
 }
 
 function selectServer(server: Server) {
+  if (!server) {
+    console.log('Tried selecting a non-existent server')
+    return
+  }
   selectedCommandIndex.value = 0
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
@@ -463,6 +502,7 @@ function save() {
         case 'HeaderImage':
         case 'Description':
         case 'Logs':
+        case 'Rpcs':
           return undefined
       }
       return value
@@ -471,28 +511,36 @@ function save() {
 }
 
 function load() {
-  const value = localStorage.getItem('rcon-servers')
-  if (value) {
-    ;(JSON.parse(value) as Server[]).forEach((server) => {
-      const localServer = createServer(server.Address, server.Password)
-      localServer.AutoConnect = server.AutoConnect
-      localServer.Secure = server.Secure
-      localServer.CachedHostname = server.CachedHostname
-      localServer.CommandHistory = server.CommandHistory ?? []
-      addServer(localServer)
-    })
-
-    setTimeout(() => {
-      servers.value.forEach((server) => {
-        if (server.AutoConnect) {
-          server.connect()
-        }
+  try {
+    const value = localStorage.getItem('rcon-servers')
+    if (value) {
+      ;(JSON.parse(value) as Server[]).forEach((server) => {
+        const localServer = createServer(server.Address, server.Password)
+        localServer.AutoConnect = server.AutoConnect
+        localServer.Secure = server.Secure
+        localServer.CachedHostname = server.CachedHostname
+        localServer.CommandHistory = server.CommandHistory ?? []
+        addServer(localServer)
       })
-    }, 250)
-  }
-  const lastSelectedServer = localStorage.getItem('rcon-lastserver')
-  if (lastSelectedServer) {
-    selectServer(findServer(lastSelectedServer))
+
+      setTimeout(() => {
+        servers.value.forEach((server) => {
+          if (server.AutoConnect) {
+            server.connect()
+          }
+        })
+      }, 250)
+    }
+    const lastSelectedServer = localStorage.getItem('rcon-lastserver')
+    if (lastSelectedServer) {
+      selectServer(findServer(lastSelectedServer))
+    }
+    const subtab = localStorage.getItem('rcon-subtab')
+    if (subtab) {
+      selectSubTab(Number(subtab))
+    }
+  } catch (ex) {
+    console.error(ex)
   }
 }
 
@@ -543,7 +591,7 @@ onMounted(() => {
   toolSlots.value.push(dropSlot)
 
   const trashSlot = new Slot()
-  dropSlot.Position = 1
+  trashSlot.Position = 1
   trashSlot.Container = 11
   toolSlots.value.push(trashSlot)
 })
