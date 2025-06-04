@@ -54,7 +54,7 @@ function handleDrag(slot: Slot) {
 
 function handleDrop(slot: Slot) {
   // MoveInventoryItem
-  selectedServer.value.sendCommand(`c.webrcon.rpc 3553623853 ${selectedPlayer.value} ${draggedSlot.value?.Container} ${draggedSlot.value?.Position} ${slot.Container} ${slot.Position}`)
+  selectedServer.value.sendRpc('3553623853', selectedPlayer.value, draggedSlot.value?.Container, draggedSlot.value?.Position, slot.Container, slot.Position)
   selectedServer.value.fetchInventory(selectedPlayer.value)
   draggedSlot.value = null
 }
@@ -168,10 +168,14 @@ class Server {
 
   registerRpcs() {
     this.Rpcs = {}
-    this.Rpcs["MoveInventoryItem"] = (data) => {
+
+    // MoveInventoryItem
+    this.Rpcs["3553623853"] = data => {
       
     }
-    this.Rpcs["SendPlayerInventory"] = (data) => {
+
+    // SendPlayerInventory
+    this.Rpcs["1739174796"] = data => {
         clearInventory()
         try {
           selectedSlot.value = data.Value.ActiveSlot
@@ -293,7 +297,8 @@ class Server {
   }
 
   fetchInventory(playerId: number) {
-    this.sendCommand(`c.webrcon.rpc 1739174796 ${playerId}`, 100)
+    // SendPlayerInventory
+    this.sendRpc('1739174796', playerId)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -320,6 +325,14 @@ class Server {
     }
 
     tryFocusLogs(false)
+  }
+
+  sendRpc(id: string, ...args: any[]) {
+    for (let i = 0; i < args.length; i++) {
+      var arg = args[i]
+      args[i] = `"${arg}"` 
+    }
+    this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
   }
 
   onIdentifiedCommand(id: number, data: object) {
@@ -359,7 +372,7 @@ class Server {
         break
       case 100: // c.webrcon.rpc
           if (data.RpcId in this.Rpcs) {
-            this.Rpcs[data.RpcId]();
+            this.Rpcs[data.RpcId](data);
           }
         break
     }
