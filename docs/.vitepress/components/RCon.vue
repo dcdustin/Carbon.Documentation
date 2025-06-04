@@ -79,6 +79,8 @@ async function fetchGeolocation(ip: string) {
 
 function selectSubTab(index: number) {
   selectedSubtab.value = index
+  localStorage.setItem('rcon-subtab', index.toString())
+  save() 
 
   if(index == 0) {
     tryFocusLogs(true)
@@ -462,6 +464,10 @@ function deleteServer(server: Server) {
 }
 
 function selectServer(server: Server) {
+  if (!server) {
+    console.log('Tried selecting a non-existent server')
+    return
+  }
   selectedCommandIndex.value = 0
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
@@ -499,28 +505,36 @@ function save() {
 }
 
 function load() {
-  const value = localStorage.getItem('rcon-servers')
-  if (value) {
-    ;(JSON.parse(value) as Server[]).forEach((server) => {
-      const localServer = createServer(server.Address, server.Password)
-      localServer.AutoConnect = server.AutoConnect
-      localServer.Secure = server.Secure
-      localServer.CachedHostname = server.CachedHostname
-      localServer.CommandHistory = server.CommandHistory ?? []
-      addServer(localServer)
-    })
-
-    setTimeout(() => {
-      servers.value.forEach((server) => {
-        if (server.AutoConnect) {
-          server.connect()
-        }
+  try {
+    const value = localStorage.getItem('rcon-servers')
+    if (value) {
+      ;(JSON.parse(value) as Server[]).forEach((server) => {
+        const localServer = createServer(server.Address, server.Password)
+        localServer.AutoConnect = server.AutoConnect
+        localServer.Secure = server.Secure
+        localServer.CachedHostname = server.CachedHostname
+        localServer.CommandHistory = server.CommandHistory ?? []
+        addServer(localServer)
       })
-    }, 250)
-  }
-  const lastSelectedServer = localStorage.getItem('rcon-lastserver')
-  if (lastSelectedServer) {
-    selectServer(findServer(lastSelectedServer))
+
+      setTimeout(() => {
+        servers.value.forEach((server) => {
+          if (server.AutoConnect) {
+            server.connect()
+          }
+        })
+      }, 250)
+    }
+    const lastSelectedServer = localStorage.getItem('rcon-lastserver')
+    if (lastSelectedServer) {
+      selectServer(findServer(lastSelectedServer))
+    }
+    const subtab = localStorage.getItem('rcon-subtab')
+    if (subtab) {
+      selectSubTab(Number(subtab))
+    }
+  } catch (ex) {
+    console.error(ex)
   }
 }
 
