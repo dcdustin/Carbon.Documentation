@@ -1,6 +1,6 @@
 ---
 title: Oxide Porting
-description: An in-depth understanding of the necessary changes that are done when you're willing to transfer your Oxide server to Carbon.
+description: An in-depth understanding of the necessary changes that are done when you're transferring your Oxide server over to Carbon.
 ---
 
 <script setup>
