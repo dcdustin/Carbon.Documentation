@@ -164,6 +164,61 @@ class Server {
   PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
+  Rpcs: Record<string, (...args: any[]) => void> = {};
+
+  registerRpcs() {
+    this.Rpcs = {}
+    this.Rpcs["MoveInventoryItem"] = (data) => {
+      
+    }
+    this.Rpcs["SendPlayerInventory"] = (data) => {
+        clearInventory()
+        try {
+          selectedSlot.value = data.Value.ActiveSlot
+          data.Value.Main.forEach(item => {
+            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
+              return
+            }
+            const slot = mainSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId 
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Value.Belt.forEach(item => {
+            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
+              return
+            }
+            const slot = beltSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId  
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+          data.Value.Wear.forEach(item => {
+            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
+              return
+            }
+            const slot = wearSlots.value[item.Position]
+            slot.ShortName = item.ShortName
+            slot.ItemId = item.ItemId
+            slot.Amount = item.Amount
+            slot.Condition = item.Condition
+            slot.MaxCondition = item.MaxCondition
+            slot.ConditionNormalized = item.ConditionNormalized
+            slot.HasCondition = item.HasCondition
+          });
+        } catch (e) {
+          console.error(e)
+        }
+    }
+  }
 
   connect() {
     save()
@@ -188,6 +243,7 @@ class Server {
       this.IsConnecting = false
       this.IsConnected = true
 
+      this.registerRpcs();
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
       this.sendCommand('console.tail', 7)
@@ -301,52 +357,10 @@ class Server {
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
-      case 100: // c.webrcon.rpc SendPlayerInventory
-        clearInventory()
-        try {
-          selectedSlot.value = data.ActiveSlot
-          data.Main.forEach(item => {
-            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
-              return
-            }
-            const slot = mainSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId 
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Belt.forEach(item => {
-            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
-              return
-            }
-            const slot = beltSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId  
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Wear.forEach(item => {
-            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
-              return
-            }
-            const slot = wearSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-        } catch (e) {
-          console.error(e)
-        }
+      case 100: // c.webrcon.rpc
+          if (data.RpcId in this.Rpcs) {
+            this.Rpcs[data.RpcId]();
+          }
         break
     }
 
