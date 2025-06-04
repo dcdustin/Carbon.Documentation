@@ -206,7 +206,7 @@ const getChangeType = (val: number) => {
                   class="items-table-row">
                 <td class="whitespace-normal">
                   <CarbonChange :variant="getChangeType(change.Type)"
-                                :text="change.Message + (change.Authors != null ? `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')" />
+                                :text="change.Message + (change.Authors != null && change.Authors.length > 0 ? `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')" />
                 </td>
               </tr>
               </tbody>
@@ -236,7 +236,7 @@ const getChangeType = (val: number) => {
                         class="items-table-row">
                       <td class="whitespace-normal">
                         <CarbonChange :variant="getChangeType(change.Type)"
-                                      :text="change.Message + (change.Authors != null ? `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')" />
+                                      :text="change.Message + (change.Authors != null && change.Authors.length > 0 ?  `<br><p style='font-size: 12px;'>Authors: ` + change.Authors.map(x => `<a style='color: var(--c-carbon-1);' target='_blank' href='https://github.com/${x}'/>@` + x + ` </a> `).join(', ') + '</p>' : '')" />
                       </td>
                     </tr>
                     </tbody>
