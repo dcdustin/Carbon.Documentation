@@ -224,6 +224,11 @@ class Server {
           console.error(e)
         }
     }
+
+    // TestCall
+    this.Rpcs['951948318'] = data => {
+      console.log(data)
+    }
   }
 
   connect() {
@@ -256,6 +261,7 @@ class Server {
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
+      this.sendRpc('951948318', 'Ping sentence!')
     }
     this.Socket.onclose = () => {
       this.IsConnecting = false
@@ -585,7 +591,7 @@ onMounted(() => {
   toolSlots.value.push(dropSlot)
 
   const trashSlot = new Slot()
-  dropSlot.Position = 1
+  trashSlot.Position = 1
   trashSlot.Container = 11
   toolSlots.value.push(trashSlot)
 })
