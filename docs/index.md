@@ -43,7 +43,41 @@ features:
 
 <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
+import { onMounted } from 'vue'
 
+onMounted(() => {
+  const rnd = Math.random()
+  if (rnd > 1.1169 / 100) {
+    return
+  }
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  )
+
+  const replacements = {
+    'c#': '👀#',
+    'carbon': 'Yarbon',
+    'oxide': 'Rexide',
+    'rust': 'Rust🦀',
+    'best': 'beast',
+    'modding': 'Modden',
+    'framework': 'Fremwerk',
+    'codefling': 'coolfling'
+  }
+
+  const pattern = new RegExp(Object.keys(replacements).join('|'), 'gi')
+  
+  let node
+  while (node = walker.nextNode()) {
+    node.textContent = node.textContent.replace(pattern, match => {
+      const key = match.toLowerCase()
+      return replacements[key]
+    })
+  }
+})
 const mainMembers = [
   {
     avatar: '/team/Raul.webp',
