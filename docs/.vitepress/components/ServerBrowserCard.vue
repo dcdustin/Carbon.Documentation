@@ -187,23 +187,23 @@ const processedTags = computed(() => {
 </script>
 
 <template>
-  <div class="server-card bg-zinc-900 rounded-lg">
+  <div class="server-card dark:bg-zinc-900 bg-zinc-100 rounded-lg">
     <div class="p-3 flex flex-col h-full gap-2">
-      <div class="flex justify-between items-start">
-        <h3 class="font-semibold text-gray-200 text-xs leading-tight pr-2 line-clamp-4">
+      <div class="flex items-start justify-between">
+        <h3 class="font-semibold dark:text-gray-200 text-gray-800 text-xs leading-tight pr-2 line-clamp-4">
           {{ server.hostname }}
         </h3>
-        <div class="tabular-nums bg-zinc-800/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
+        <div class="tabular-nums dark:bg-zinc-800/70 bg-zinc-200/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
         </div>
       </div>
 
-      <div class="flex items-center text-xs text-gray-500 gap-1">
+      <div class="flex items-center gap-1 text-xs text-gray-500">
         <MapIcon :size="14" />
         <span class="truncate text-[0.7rem]">{{ server.map || 'Unknown Map' }}</span>
       </div>
 
-      <div class="w-full bg-zinc-800 rounded-full h-1">
+      <div class="w-full dark:bg-zinc-800 bg-zinc-100 rounded-full h-1">
         <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: interpolateColor }"></div>
       </div>
 
@@ -223,7 +223,7 @@ const processedTags = computed(() => {
         </span>
       </div>
 
-      <div class="flex flex-row flex-wrap justify-between items-center text-[0.7rem] mt-auto">
+      <div class="mt-auto flex flex-row flex-wrap items-center justify-between text-[0.7rem]">
         <div class="text-gray-500 font-mono truncate flex items-center gap-1">
           <span>{{ server.ip }}:{{ server.port }}</span>
           <ButtonIconCopy :getTextToCopy="() => `${server.ip}:${server.port}`" :size="12" :title="'Copy server address: ' + server.ip + ':' + server.port" />
@@ -247,11 +247,11 @@ const processedTags = computed(() => {
 }
 
 .tag {
-  @apply text-[0.65rem] px-1.5 py-0.5 rounded-md bg-white/5 border border-white/[0.07];
+  @apply text-[0.65rem] px-1.5 py-0.5 rounded-md dark:bg-white/5 bg-black/5 border dark:border-white/[0.07] border-black/[0.07];
 }
 
 .tag:hover {
-  @apply bg-white/10;
+  @apply dark:bg-white/10 bg-black/10;
 }
 
 .tag-region {
