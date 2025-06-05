@@ -733,8 +733,8 @@ public class CodeGen : CarbonPlugin
 
 	public class LootTable : Entity
 	{
-		public RangeItem[] Items = [];
-		public SpawnSlotItem[] SpawnSlotItems = [];
+		public RangeItem[] Items;
+		public SpawnSlotItem[] SpawnSlotItems;
 		public int ScrapAmount;
 		public LootContainer.spawnType SpawnType;
 
@@ -746,7 +746,7 @@ public class CodeGen : CarbonPlugin
 
 		public class SpawnSlotItem
 		{
-			public RangeItem[] Items = [];
+			public RangeItem[] Items;
 			public int NumberToSpawn;
 			public float Probability;
 		}

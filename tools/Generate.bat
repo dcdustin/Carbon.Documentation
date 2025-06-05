@@ -13,7 +13,7 @@ if "%TAG%" EQU "production" (
 )
 
 if "%2" EQU "" (
-	set BRANCH=public
+	set BRANCH=release
 ) else (
 	set BRANCH=%2
 )
@@ -80,6 +80,6 @@ RustDedicated.exe -nographics -batchmode -logs -silent-crashes ^
                   -aimanager.nav_disable 1 ^
                   +server.seed 123123 ^
                   +server.worldsize 1500 ^
-                  -logfile "generator_log.txt" ^
+                  -logfile 2>&1
 			 
 exit /b 0
