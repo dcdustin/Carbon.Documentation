@@ -187,13 +187,13 @@ const processedTags = computed(() => {
 </script>
 
 <template>
-  <div class="server-card dark:bg-zinc-900 bg-zinc-100 rounded-lg">
-    <div class="p-3 flex flex-col h-full gap-2">
+  <div class="server-card rounded-lg bg-zinc-100 dark:bg-zinc-900">
+    <div class="flex h-full flex-col gap-2 p-3">
       <div class="flex items-start justify-between">
-        <h3 class="font-semibold dark:text-gray-200 text-gray-800 text-xs leading-tight pr-2 line-clamp-4">
+        <h3 class="line-clamp-4 pr-2 text-xs font-semibold leading-tight text-gray-800 dark:text-gray-200">
           {{ server.hostname }}
         </h3>
-        <div class="tabular-nums dark:bg-zinc-800/70 bg-zinc-200/70 px-2 py-1 rounded text-xs font-medium" :style="{ color: interpolateColor }">
+        <div class="rounded bg-zinc-200/70 px-2 py-1 text-xs font-medium tabular-nums dark:bg-zinc-800/70" :style="{ color: interpolateColor }">
           {{ server.players }}<span class="text-gray-500">/{{ server.maxplayers }}</span>
         </div>
       </div>
@@ -203,7 +203,7 @@ const processedTags = computed(() => {
         <span class="truncate text-[0.7rem]">{{ server.map || 'Unknown Map' }}</span>
       </div>
 
-      <div class="w-full dark:bg-zinc-800 bg-zinc-100 rounded-full h-1">
+      <div class="h-1 w-full rounded-full bg-zinc-100 dark:bg-zinc-800">
         <div class="h-full rounded-full" :style="{ width: Math.min(playerPercentage, 100) + '%', backgroundColor: interpolateColor }"></div>
       </div>
 
@@ -224,11 +224,11 @@ const processedTags = computed(() => {
       </div>
 
       <div class="mt-auto flex flex-row flex-wrap items-center justify-between text-[0.7rem]">
-        <div class="text-gray-500 font-mono truncate flex items-center gap-1">
+        <div class="flex items-center gap-1 truncate font-mono text-gray-500">
           <span>{{ server.ip }}:{{ server.port }}</span>
           <ButtonIconCopy :getTextToCopy="() => `${server.ip}:${server.port}`" :size="12" :title="'Copy server address: ' + server.ip + ':' + server.port" />
         </div>
-        <div class="text-gray-600 whitespace-nowrap">Query: {{ server.query_port }}</div>
+        <div class="whitespace-nowrap text-gray-600">Query: {{ server.query_port }}</div>
       </div>
     </div>
   </div>
@@ -247,30 +247,30 @@ const processedTags = computed(() => {
 }
 
 .tag {
-  @apply text-[0.65rem] px-1.5 py-0.5 rounded-md dark:bg-white/5 bg-black/5 border dark:border-white/[0.07] border-black/[0.07];
+  @apply rounded-md border border-black/[0.07] bg-black/5 px-1.5 py-0.5 text-[0.65rem] dark:border-white/[0.07] dark:bg-white/5;
 }
 
 .tag:hover {
-  @apply dark:bg-white/10 bg-black/10;
+  @apply bg-black/10 dark:bg-white/10;
 }
 
 .tag-region {
-  @apply bg-blue-500/10 border-blue-500/20 text-blue-400;
+  @apply border-blue-500/20 bg-blue-500/10 text-blue-400;
 }
 
 .tag-wipe {
-  @apply bg-green-500/10 border-green-500/20 text-green-400;
+  @apply border-green-500/20 bg-green-500/10 text-green-400;
 }
 
 .tag-difficulty {
-  @apply bg-yellow-500/10 border-yellow-500/20 text-yellow-400;
+  @apply border-yellow-500/20 bg-yellow-500/10 text-yellow-400;
 }
 
 .tag-feature {
-  @apply bg-purple-500/10 border-purple-500/20 text-purple-400;
+  @apply border-purple-500/20 bg-purple-500/10 text-purple-400;
 }
 
 .tag-mod {
-  @apply bg-red-500/10 border-red-500/20 text-red-400;
+  @apply border-red-500/20 bg-red-500/10 text-red-400;
 }
 </style>
