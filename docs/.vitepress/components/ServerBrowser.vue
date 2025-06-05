@@ -132,22 +132,33 @@ onMounted(async () => {
 
 <template>
   <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky min-[960px]:top-20 top-16 z-10">
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
       <template #right>
         <div class="flex flex-row gap-4">
-          <OptionSelectorMany v-model="chosenCompressedTags" :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))" label="Tags (inclusive)" />
-          <OptionSelector v-model="chosenRegionTag" :option-key-values="[{ key: 'All', value: 'All' }, ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))]" label="Region:" />
+          <OptionSelectorMany
+            v-model="chosenCompressedTags"
+            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+            label="Tags (inclusive)"
+          />
+          <OptionSelector
+            v-model="chosenRegionTag"
+            :option-key-values="[
+              { key: 'All', value: 'All' },
+              ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
+            ]"
+            label="Region:"
+          />
         </div>
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-            <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
+            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
               Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverListData?.Servers.length }} total servers.
             </div>
           </div>
@@ -158,7 +169,7 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
       <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
