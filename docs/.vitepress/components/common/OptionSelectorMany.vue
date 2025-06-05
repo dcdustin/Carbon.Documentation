@@ -3,8 +3,14 @@ import { onClickOutside, useEventListener } from '@vueuse/core'
 import { ChevronDown } from 'lucide-vue-next'
 import { computed, ref, watch } from 'vue'
 
-const { options, label } = defineProps<{
-  options: string[]
+type OptionKeyValue = {
+  key: string
+  value: string
+}
+
+const { options, optionKeyValues, label } = defineProps<{
+  options?: string[]
+  optionKeyValues?: OptionKeyValue[]
   label: string
 }>()
 
@@ -12,9 +18,16 @@ const model = defineModel<string[]>({ default: [] })
 const isOpen = ref(false)
 const dropdownRef = ref()
 
+const effectiveOptions = computed(() => {
+  if (optionKeyValues) {
+    return optionKeyValues
+  }
+  return options?.map((opt) => ({ key: opt, value: opt })) ?? []
+})
+
 const displayText = computed(() => {
   if (model.value.length === 0) return 'Select options...'
-  return model.value.join(', ')
+  return model.value.map((key) => effectiveOptions.value.find((opt) => opt.key === key)?.value ?? key).join(', ')
 })
 
 onClickOutside(dropdownRef, () => {
@@ -32,12 +45,12 @@ useEventListener(
   { passive: true }
 )
 
-const toggleOption = (option: string) => {
-  const index = model.value.indexOf(option)
+const toggleOption = (key: string) => {
+  const index = model.value.indexOf(key)
   if (index === -1) {
-    model.value = [...model.value, option]
+    model.value = [...model.value, key]
   } else {
-    model.value = model.value.filter((item) => item !== option)
+    model.value = model.value.filter((item) => item !== key)
   }
 }
 
@@ -52,7 +65,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
 watch(
   () => model.value.length,
   (newLength) => {
-    if (newLength === options.length) {
+    if (newLength === effectiveOptions.value.length) {
       isOpen.value = false
     }
   }
@@ -87,17 +100,17 @@ watch(
       >
         <div class="py-1">
           <label
-            v-for="(option, index) in options"
-            :key="index"
+            v-for="option in effectiveOptions"
+            :key="option.key"
             class="flex cursor-pointer items-center px-3 py-2 transition-colors duration-150 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <input
               type="checkbox"
-              :checked="model.includes(option)"
-              @change="toggleOption(option)"
+              :checked="model.includes(option.key)"
+              @change="toggleOption(option.key)"
               class="h-4 w-4 cursor-pointer rounded border-gray-300 text-violet-600 transition-colors duration-150 focus:ring-2 focus:ring-violet-500"
             />
-            <span class="ml-3 text-sm">{{ option }}</span>
+            <span class="ml-3 text-sm">{{ option.value }}</span>
           </label>
         </div>
       </div>
