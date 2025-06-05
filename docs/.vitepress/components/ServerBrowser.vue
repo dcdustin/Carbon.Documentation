@@ -31,6 +31,10 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
+  if (!isFetchedRestData.value) {
+    return filtered
+  }
+
   if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
     filtered = filtered.filter((server) => {
       return server.tags_set.has(chosenRegionTag.value)
