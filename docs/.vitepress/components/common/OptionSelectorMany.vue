@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { ChevronDown } from 'lucide-vue-next'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 type OptionKeyValue = {
   key: string
@@ -34,16 +34,18 @@ onClickOutside(dropdownRef, () => {
   isOpen.value = false
 })
 
-useEventListener(
-  document,
-  'scroll',
-  (e) => {
-    if (!dropdownRef.value?.contains(e.target)) {
-      isOpen.value = false
-    }
-  },
-  { passive: true }
-)
+onMounted(() => {
+  useEventListener(
+    document,
+    'scroll',
+    (e) => {
+      if (!dropdownRef.value?.contains(e.target)) {
+        isOpen.value = false
+      }
+    },
+    { passive: true }
+  )
+})
 
 const toggleOption = (key: string) => {
   const index = model.value.indexOf(key)
