@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { fetchServerList, Server, ServerList } from '@/api/misc/server-list'
+import { CompressedTag, fetchServerList, RegionTag, Server, ServerList } from '@/api/misc/server-list'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
@@ -9,6 +9,8 @@ import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
+import OptionSelector from './common/OptionSelector.vue'
+import OptionSelectorMany from './common/OptionSelectorMany.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const miniSearch = shallowRef<MiniSearch | null>(null)
@@ -17,6 +19,8 @@ const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
 
 const debouncedSearchValue = store.searchValue
+const chosenCompressedTags = store.chosenCompressedTags
+const chosenRegionTag = store.chosenRegionTags
 
 const pageSize = 25
 
@@ -27,16 +31,23 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
+  if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+    filtered = filtered.filter((server) => {
+      return server.tags_set.has(chosenRegionTag.value)
+    })
+  }
+
+  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0) {
+    filtered = filtered.filter((server) => {
+      return chosenCompressedTags.value.every((tag) => server.tags_set.has(tag))
+    })
+  }
+
   if (debouncedSearchValue.value) {
     if (miniSearch.value) {
       const results = miniSearch.value.search(debouncedSearchValue.value)
       const serverMap = new Map(filtered.map((server) => [server.id, server]))
       filtered = results.map((result) => serverMap.get(result.id)).filter(Boolean) as Server[]
-    } else {
-      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
-      filtered = filtered.filter((server) => {
-        return server.hostname.toLowerCase().includes(lowerCaseSearchValue)
-      })
     }
   }
 
@@ -121,19 +132,33 @@ onMounted(async () => {
 
 <template>
   <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky min-[960px]:top-20 top-16 z-10">
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
       <template #right>
-        <div></div>
+        <div class="flex flex-row gap-4">
+          <OptionSelectorMany
+            v-model="chosenCompressedTags"
+            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+            label="Tags (inclusive)"
+          />
+          <OptionSelector
+            v-model="chosenRegionTag"
+            :option-key-values="[
+              { key: 'All', value: 'All' },
+              ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
+            ]"
+            label="Region:"
+          />
+        </div>
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-            <div class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg">
+          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
+            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
               Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverListData?.Servers.length }} total servers.
             </div>
           </div>
@@ -144,7 +169,7 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
       <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
