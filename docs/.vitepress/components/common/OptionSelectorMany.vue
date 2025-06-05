@@ -118,8 +118,7 @@ watch(
   </div>
 </template>
 
-<style>
-/* Custom checkbox styles */
+<style scoped>
 input[type='checkbox'] {
   @apply transition-all duration-150;
 }
@@ -134,30 +133,5 @@ input[type='checkbox']:checked {
 
 .dark input[type='checkbox']:checked {
   @apply border-violet-500 bg-violet-500;
-}
-
-/* Scrollbar styles */
-.dark *::-webkit-scrollbar {
-  @apply w-2;
-}
-
-.dark *::-webkit-scrollbar-track {
-  @apply bg-gray-800;
-}
-
-.dark *::-webkit-scrollbar-thumb {
-  @apply rounded bg-gray-600 hover:bg-gray-500;
-}
-
-*::-webkit-scrollbar {
-  @apply w-2;
-}
-
-*::-webkit-scrollbar-track {
-  @apply bg-gray-100;
-}
-
-*::-webkit-scrollbar-thumb {
-  @apply rounded bg-gray-300 hover:bg-gray-400;
 }
 </style>
