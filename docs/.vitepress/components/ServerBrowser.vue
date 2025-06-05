@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { fetchServerList, Server, ServerList } from '@/api/misc/server-list'
+import { CompressedTag, fetchServerList, RegionTag, Server, ServerList } from '@/api/misc/server-list'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
@@ -9,6 +9,8 @@ import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
+import OptionSelector from './common/OptionSelector.vue'
+import OptionSelectorMany from './common/OptionSelectorMany.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const miniSearch = shallowRef<MiniSearch | null>(null)
@@ -17,6 +19,8 @@ const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
 
 const debouncedSearchValue = store.searchValue
+const chosenCompressedTags = store.chosenCompressedTags
+const chosenRegionTag = store.chosenRegionTags
 
 const pageSize = 25
 
@@ -27,16 +31,23 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
+  if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+    filtered = filtered.filter((server) => {
+      return server.tags_set.has(chosenRegionTag.value)
+    })
+  }
+
+  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0) {
+    filtered = filtered.filter((server) => {
+      return chosenCompressedTags.value.every((tag) => server.tags_set.has(tag))
+    })
+  }
+
   if (debouncedSearchValue.value) {
     if (miniSearch.value) {
       const results = miniSearch.value.search(debouncedSearchValue.value)
       const serverMap = new Map(filtered.map((server) => [server.id, server]))
       filtered = results.map((result) => serverMap.get(result.id)).filter(Boolean) as Server[]
-    } else {
-      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
-      filtered = filtered.filter((server) => {
-        return server.hostname.toLowerCase().includes(lowerCaseSearchValue)
-      })
     }
   }
 
@@ -126,7 +137,10 @@ onMounted(async () => {
         <Search class="text-gray-400" :size="20" />
       </template>
       <template #right>
-        <div></div>
+        <div class="flex flex-row gap-4">
+          <OptionSelectorMany v-model="chosenCompressedTags" :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))" label="Tags (inclusive)" />
+          <OptionSelector v-model="chosenRegionTag" :option-key-values="[{ key: 'All', value: 'All' }, ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))]" label="Region:" />
+        </div>
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
