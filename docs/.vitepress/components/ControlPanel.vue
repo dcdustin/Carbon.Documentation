@@ -1,30 +1,12 @@
 <script lang="ts" setup>
+import { consoleContainer, command } from './ControlPanel.Console.vue'
+import { addServer, createServer, deleteServer, selectServer, geoFlagCache, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad.vue'
+import { Slot, activeSlot, activeInventory, showInventory, hideInventory, handleDrag, handleDrop, mainSlots, beltSlots, wearSlots, toolSlots, draggedSlot } from './ControlPanel.Inventory.vue'
 import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
-const selectedSubtab = ref(0)
-const selectedPlayer = ref(0)
-const selectedCommandIndex = ref(0)
-const selectedSlot = ref(0)
-const mainSlots = ref<Slot[]>([])
-const beltSlots = ref<Slot[]>([])
-const wearSlots = ref<Slot[]>([])
-const toolSlots = ref<Slot[]>([])
-const draggedSlot = ref<Slot | null>()
-const command = ref('')
-const logContainer = ref<HTMLDivElement>(null!)
-const flags = ref<{ [key: string]: string }>({})
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
-let timerInvRefresh: ReturnType<typeof setTimeout> = null!
-
-async function tryFocusLogs(autoScroll: boolean = false) {
-  await nextTick()
-  if (logContainer.value?.scrollHeight && (autoScroll || logContainer.value.scrollHeight - logContainer.value?.scrollTop < 2000)) {
-    logContainer.value.scrollTop = logContainer.value.scrollHeight
-  }
-  save()
-}
 
 function isValidUrl(urlStr: string) : boolean {
   try {
@@ -32,82 +14,6 @@ function isValidUrl(urlStr: string) : boolean {
     return url.protocol === "http:" || url.protocol === "https:";
   } catch (_) {
     return false;
-  }
-}
-
-function clearInventory() {
-  selectedSlot.value = -1
-  mainSlots.value.forEach(slot => {
-    slot.clear()
-  });
-  beltSlots.value.forEach(slot => {
-    slot.clear()
-  });
-  wearSlots.value.forEach(slot => {
-    slot.clear()
-  });
-}
-
-function handleDrag(slot: Slot) {
-  draggedSlot.value = slot
-}
-
-function handleDrop(slot: Slot) {
-  // MoveInventoryItem
-  selectedServer.value.sendRpc('3553623853', selectedPlayer.value, draggedSlot.value?.Container, draggedSlot.value?.Position, slot.Container, slot.Position)
-  selectedServer.value.fetchInventory(selectedPlayer.value)
-  draggedSlot.value = null
-}
-
-async function fetchGeolocation(ip: string) {
-  const url = `https://ipwho.is/${ip.split(':')[0]}`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`IPAPI responded with status ${response.status}`);
-    }
-
-    const data = await response.json();
-    if(flags) {
-      flags.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
-    }
-  } catch {
-
-  }
-}
-
-function selectSubTab(index: number) {
-  selectedSubtab.value = index
-  localStorage.setItem('rcon-subtab', index.toString())
-  save() 
-
-  if(index == 0) {
-    tryFocusLogs(true)
-  }
-}
-
-function showInventory(playerId: number) {
-  clearInventory()
-  selectedPlayer.value = playerId
-  selectedServer.value.fetchInventory(playerId)
-
-  const looper = () => {
-    if(!selectedServer.value.PlayerInfo.find(player => player.SteamID == playerId)) {
-      hideInventory()
-      return
-    }
-
-    timerInvRefresh = setTimeout(looper, 1000)
-    selectedServer.value.fetchInventory(playerId)
-  }
-  timerInvRefresh = setTimeout(looper, 1000)
-}
-
-function hideInventory() {
-  if(selectedPlayer.value != 0) {
-    selectedPlayer.value = 0
-    clearTimeout(timerInvRefresh)
   }
 }
 
@@ -122,426 +28,6 @@ function formatDuration(seconds: number) {
   if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
 
   return parts.join(' ')
-}
-
-class Slot {
-  Position: number = 0
-  ItemId: number = 0
-  ShortName: string = ''
-  MaxCondition: number = 0
-  Condition: number = 0
-  ConditionNormalized: number = 0
-  HasCondition: boolean = false
-  Amount: number = 0
-  Container: number = 0
-
-  clear() {
-    this.ItemId = 0
-    this.ShortName = ''
-    this.MaxCondition = 0
-    this.Condition = 0
-    this.ConditionNormalized = 0
-    this.HasCondition = false
-    this.Amount = 0
-  }
-  hasItem() {
-    return this.ShortName != ''
-  }
-}
-
-class Server {
-  Address = ''
-  Password = ''
-  Socket: WebSocket | null = null
-  Logs: string[] = []
-  CommandHistory: string[] = []
-  AutoConnect = false
-  Secure = false
-  CachedHostname = ''
-  IsConnected = false
-  IsConnecting = false
-  UserConnected = false
-  ServerInfo: object | null = null
-  CarbonInfo: object | null = null
-  PlayerInfo: object | null = null
-  HeaderImage = ''
-  Description = ''
-  Rpcs: Record<string, (...args: any[]) => void> = {};
-
-  registerRpcs() {
-    this.Rpcs = {}
-
-    // MoveInventoryItem
-    this.Rpcs["3553623853"] = data => {
-      
-    }
-
-    // SendPlayerInventory
-    this.Rpcs["1739174796"] = data => {
-        clearInventory()
-        try {
-          selectedSlot.value = data.Value.ActiveSlot
-          data.Value.Main.forEach(item => {
-            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
-              return
-            }
-            const slot = mainSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId 
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Value.Belt.forEach(item => {
-            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
-              return
-            }
-            const slot = beltSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId  
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Value.Wear.forEach(item => {
-            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
-              return
-            }
-            const slot = wearSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-        } catch (e) {
-          console.error(e)
-        }
-    }
-
-    // TestCall
-    this.Rpcs['951948318'] = data => {
-      console.log(data)
-    }
-  }
-
-  connect() {
-    save()
-    this.UserConnected = true
-    if (this.Socket != null) {
-      this.Socket.close()
-      this.Socket.onclose(
-        new CloseEvent('close', {
-          wasClean: true,
-          code: 1000,
-          reason: 'Manual close',
-        })
-      )
-      this.UserConnected = false
-      return
-    }
-
-    this.Socket = new WebSocket((this.Secure || enforceSecure() ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
-    this.IsConnecting = true
-
-    this.Socket.onopen = () => {
-      this.IsConnecting = false
-      this.IsConnected = true
-
-      this.registerRpcs();
-      this.sendCommand('serverinfo', 2)
-      this.sendCommand('playerlist', 6)
-      this.sendCommand('console.tail', 7)
-      this.sendCommand('c.version', 3)
-      this.sendCommand('server.headerimage', 4)
-      this.sendCommand('server.description', 5)
-      this.sendRpc('951948318', 'Ping sentence!')
-    }
-    this.Socket.onclose = () => {
-      this.IsConnecting = false
-      this.IsConnected = false
-      this.ServerInfo = null
-      this.CarbonInfo = null
-      this.PlayerInfo = null
-      this.HeaderImage = ''
-      this.Description = ''
-      this.Socket = null
-      hideInventory()
-      tryFocusLogs()
-    }
-    this.Socket.onerror = (e) => {
-      this.UserConnected = false
-    }
-    this.Socket.onmessage = (event) => {
-      const resp: CommandResponse = JSON.parse(event.data)
-
-      try {
-        let isJson = false
-        let jsonData = null
-
-        try {
-          jsonData = JSON.parse(resp.Message)
-          isJson = true
-        } catch {
-          /* empty */
-        }
-
-        if (this.onIdentifiedCommand(resp.Identifier, jsonData ?? resp)) {
-          return
-        }
-      } catch {
-        /* empty */
-      }
-
-      this.appendLog(resp.Message)
-      tryFocusLogs()
-    }
-  }
-
-  fetchInventory(playerId: number) {
-    // SendPlayerInventory
-    this.sendRpc('1739174796', playerId)
-  }
-
-  sendCommand(input: string, id: number = 1) {
-    if (!input) {
-      return
-    }
-
-    if (this.Socket && this.IsConnected) {
-      const packet: CommandSend = {
-        Message: input,
-        Identifier: id,
-      }
-      this.Socket.send(JSON.stringify(packet))
-    }
-
-    if (input == command.value) {
-      this.appendLog('<span style="color: var(--category-misc);"><strong>></strong></span> ' + input)
-      command.value = ''
-      selectedCommandIndex.value = 0
-
-      if(this.CommandHistory.length == 0 || this.CommandHistory[this.CommandHistory.length -1] != input) {
-        this.CommandHistory.unshift(input)
-      }
-    }
-
-    tryFocusLogs(false)
-  }
-
-  sendRpc(id: string, ...args: any[]) {
-    for (let i = 0; i < args.length; i++) {
-      var arg = args[i]
-      args[i] = `"${arg}"` 
-    }
-    this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
-  }
-
-  onIdentifiedCommand(id: number, data: object) {
-    switch (id) {
-      case 0: // Rust output
-      case 1: // User input
-        return false
-      case 2: // serverinfo
-        this.ServerInfo = data
-        this.CachedHostname = this.ServerInfo.Hostname
-        break
-      case 6: // playerinfo
-        this.PlayerInfo = data
-        this.PlayerInfo.forEach(player => {
-          if(!(player.Address in flags.value)) {
-            fetchGeolocation(player.Address)
-          }
-        });
-        break
-      case 7: // console.tail
-        data.forEach(log => {
-          this.appendLog(log.Message as string)
-        });
-        tryFocusLogs(true)
-        break
-      case 3: // carboninfo
-        this.CarbonInfo = data
-        break
-      case 4: // headerimage
-        this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
-        if(!isValidUrl(this.HeaderImage)) {
-          this.HeaderImage = ''
-        }
-        break
-      case 5: // description
-        this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
-        break
-      case 100: // c.webrcon.rpc
-          if (data.RpcId in this.Rpcs) {
-            this.Rpcs[data.RpcId](data);
-          }
-        break
-    }
-
-    return true
-  }
-
-  toggleAutoConnect() {
-    this.AutoConnect = !this.AutoConnect
-    save()
-  }
-
-  toggleSecure() {
-    this.Secure = !this.Secure
-    save()
-  }
-
-  appendLog(log: string) {
-    this.Logs.push(log)
-  }
-
-  selectHistory(up: boolean) {
-    if(up) {
-      selectedCommandIndex.value++
-    } else {
-      selectedCommandIndex.value--
-    }
-    
-    if(selectedCommandIndex.value > this.CommandHistory.length - 1) {
-      selectedCommandIndex.value = -1
-    } else if(selectedCommandIndex.value < -1) {
-      selectedCommandIndex.value = this.CommandHistory.length - 1
-    }
-
-    if(selectedCommandIndex.value == -1) {
-      command.value = ''
-      return
-    }
-
-    if(this.CommandHistory.length > 0) {
-      command.value = this.CommandHistory[selectedCommandIndex.value]
-    }
-  }
-
-  clearLogs() {
-    const confirmDelete = window.confirm(`Are you sure you want to clear all logs for "${this.Address}"?`)
-    if (confirmDelete) {
-      this.Logs = []
-      this.CommandHistory = []
-      save()
-    }
-  }
-}
-
-const servers = ref<Server[]>([])
-const selectedServer = ref()
-
-function enforceSecure(): boolean {
-  return location.protocol == 'https:'
-}
-
-function createServer(address: string, password: string = '') {
-  const server = new Server()
-  server.Address = address
-  server.Password = password
-  return server
-}
-
-function addServer(server: Server, shouldSelect: boolean = false) {
-  servers.value.push(server)
-  save()
-
-  if (shouldSelect) {
-    selectServer(server)
-  }
-}
-
-function deleteServer(server: Server) {
-  const confirmDelete = window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
-  if (confirmDelete) {
-    servers.value.splice(servers.value.indexOf(server), 1)
-    if (selectedServer.value == server) {
-      selectedServer.value = null
-    }
-  }
-  save()
-}
-
-function selectServer(server: Server) {
-  if (!server) {
-    console.log('Tried selecting a non-existent server')
-    return
-  }
-  selectedCommandIndex.value = 0
-  selectedServer.value = selectedServer.value == server ? null : server
-  localStorage.setItem('rcon-lastserver', server.Address)
-  tryFocusLogs(true)
-}
-
-function findServer(address: string): Server {
-  return servers.value.find((server) => {
-    if (server.Address == address) {
-      return server
-    }
-  }) as Server
-}
-
-function save() {
-  localStorage.setItem(
-    'rcon-servers',
-    JSON.stringify(servers.value, (key, value) => {
-      switch (key) {
-        case 'Socket':
-        case 'UserConnected':
-        case 'IsConnected':
-        case 'ServerInfo':
-        case 'CarbonInfo':
-        case 'PlayerInfo':
-        case 'HeaderImage':
-        case 'Description':
-        case 'Logs':
-        case 'Rpcs':
-          return undefined
-      }
-      return value
-    })
-  )
-}
-
-function load() {
-  try {
-    const value = localStorage.getItem('rcon-servers')
-    if (value) {
-      ;(JSON.parse(value) as Server[]).forEach((server) => {
-        const localServer = createServer(server.Address, server.Password)
-        localServer.AutoConnect = server.AutoConnect
-        localServer.Secure = server.Secure
-        localServer.CachedHostname = server.CachedHostname
-        localServer.CommandHistory = server.CommandHistory ?? []
-        addServer(localServer)
-      })
-
-      setTimeout(() => {
-        servers.value.forEach((server) => {
-          if (server.AutoConnect) {
-            server.connect()
-          }
-        })
-      }, 250)
-    }
-    const lastSelectedServer = localStorage.getItem('rcon-lastserver')
-    if (lastSelectedServer) {
-      selectServer(findServer(lastSelectedServer))
-    }
-    const subtab = localStorage.getItem('rcon-subtab')
-    if (subtab) {
-      selectSubTab(Number(subtab))
-    }
-  } catch (ex) {
-    console.error(ex)
-  }
 }
 
 onMounted(() => {
@@ -701,21 +187,21 @@ enum LogType {
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
       <div class="mb-5" style="display: flex">
-        <button class="r-button" @click="selectSubTab(0)" :class="['r-button', { toggled: selectedSubtab == 0 }]" style="color: var(--docsearch-footer-background); font-size: small">
+        <button class="r-button" @click="selectSubTab(0)" :class="['r-button', { toggled: selectedSubTab == 0 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Console
         </button>
-        <button class="r-button" @click="selectSubTab(1)" :class="['r-button', { toggled: selectedSubtab == 1 }]" style="color: var(--docsearch-footer-background); font-size: small">
+        <button class="r-button" @click="selectSubTab(1)" :class="['r-button', { toggled: selectedSubTab == 1 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Info
         </button>
-        <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubtab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
+        <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubTab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
           Players ({{ selectedServer?.PlayerInfo?.length }})
         </button>
       </div>
 
-      <div v-if="selectedSubtab == 0">
+      <div v-if="selectedSubTab == 0">
         <div
           v-if="selectedServer"
-          ref="logContainer"
+          ref="consoleContainer"
           class="p-4 rounded text-sm font-mono"
           style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
         >
@@ -736,7 +222,7 @@ enum LogType {
           <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
         </div>
       </div>
-      <div v-else-if="selectedSubtab == 1">
+      <div v-else-if="selectedSubTab == 1">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Host</span>
           <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
@@ -782,7 +268,7 @@ enum LogType {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubtab == 2" style="overflow: auto;">
+      <div v-else-if="selectedSubTab == 2" style="overflow: auto;">
         <table tabindex="0" class="vp-doc table" style="">
           <thead>
             <tr>
@@ -795,7 +281,7 @@ enum LogType {
           </thead>
           <tr v-for="player in selectedServer.PlayerInfo">
             <td class="vp-doc td">
-              <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="flags[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
+              <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="geoFlagCache[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
             </td>
             <td class="vp-doc td">
               <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[<a style="color: inherit; display: inline-flex;" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">{{ player.SteamID }} <ExternalLink class="mx-1" :size="12"/> </a>]</span>
@@ -819,7 +305,7 @@ enum LogType {
     </div>
   </div>
 
-  <div v-if="selectedPlayer" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
+  <div v-if="activeInventory" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
     <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
       <div class="flex items-center justify-between mb-4">
         <h3 class="text-xl font-bold"></h3>
@@ -844,7 +330,7 @@ enum LogType {
         </div>
         <div class="inventory-grid mt-5">
           <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <div v-if="selectedSlot == slot.Position" class="slot-active"></div>
+            <div v-if="activeSlot == slot.Position" class="slot-active"></div>
             <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
