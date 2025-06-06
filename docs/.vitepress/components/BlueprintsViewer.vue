@@ -18,9 +18,9 @@ const blueprints = shallowRef<Blueprint[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
-const selectedCategory = store.chosenCategory
 
-const debouncedSearchValue = shallowRef('')
+const selectedCategory = store.chosenCategory
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 10
 
