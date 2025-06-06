@@ -28,15 +28,16 @@ function getCorrespondingTitleForHookFlag(flag: string): string {
 }
 
 function getExampleCode(hook: Hook): string {
-  const code = `private ${hook.ReturnTypeName} ${hook.Name}(${hook.ParametersText})
-{
-    Puts("${hook.Name} has been called!");${
-      hook.ReturnTypeName !== 'void'
-        ? `
-    return (${hook.ReturnTypeName})default;`
-        : ''
-    }
-}`
+  const isVoid = hook.ReturnTypeName == 'void'
+  const lines = [
+    !isVoid ? `// Change return type to void if you don't plan to override default behavior` : null,
+    `private ${isVoid ? 'void' : 'object'} ${hook.Name}(${hook.ParametersText})`,
+    '{',
+    `    Puts("${hook.Name} has been called!");`,
+    !isVoid ? `    return null; // type: ${hook.ReturnTypeName} ; return non-null to override default behavior` : null,
+    '}',
+  ]
+  const code = lines.filter((line) => line != null).join('\n')
   return code
 }
 </script>
@@ -67,7 +68,7 @@ function getExampleCode(hook: Hook): string {
         <span class="font-bold">{{ description }}</span>
       </template>
       <span v-if="hook.AssemblyName" class="text-xs">
-        {{ [hook.AssemblyName, hook.TargetName, hook.MethodName].filter(Boolean).join('; ') }}
+        {{ [hook.AssemblyName, hook.TargetName].filter(Boolean).join('; ') }}
       </span>
       <span>
         {{ hook.ReturnTypeName != 'void' ? 'Returning a non-null value cancels default behavior.' : 'No return behavior.' }}
