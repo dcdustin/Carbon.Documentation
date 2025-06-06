@@ -19,8 +19,7 @@ const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const isShowForcesModded = store.isShowForcesModded
 const isShowRegularOnes = store.isShowRegularOnes
-
-const debouncedSearchValue = shallowRef('')
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 25
 
