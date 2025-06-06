@@ -36,6 +36,10 @@ This is the download list for all official files redistributed with Carbon:
 More detailed instructions can be found in the [Installing Carbon](./installing-carbon.md) section.
 :::
 
+:::danger Minimal Build
+[Here](/owners/features/minimal) you can find more about **Minimal** build
+:::
+
 ## Downloads
 
 <script lang="ts" setup>
