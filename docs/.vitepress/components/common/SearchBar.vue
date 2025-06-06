@@ -37,16 +37,21 @@ function handleUrlSearch(val: string) {
   }
 }
 
-watch(debouncedSearchValue, (newVal) => {
-  if (newVal != undefined) {
-    params.s = encodeSearchTerm(newVal)
+function updateParams(val: string) {
+  if (val != undefined) {
+    params.s = encodeSearchTerm(val)
   }
+}
+
+watch(debouncedSearchValue, (newVal) => {
+  updateParams(newVal)
 })
 
 onMounted(() => {
   if (params.s) {
     handleUrlSearch(params.s.toString())
   }
+  updateParams(debouncedSearchValue.value)
 })
 </script>
 
