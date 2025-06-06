@@ -7,6 +7,7 @@ import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import CarbonSwitchCard from './CarbonSwitchCard.vue'
+import { store } from '@/stores/carbon-switches-store'
 
 const isLoading = shallowRef(true)
 const error = shallowRef<string | null>(null)
@@ -14,7 +15,7 @@ const error = shallowRef<string | null>(null)
 const switches = shallowRef<Switch[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
-const debouncedSearchValue = shallowRef('')
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 25
 
