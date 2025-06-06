@@ -60,9 +60,8 @@ function getExampleCode(hook: Hook): string {
       </div>
       <div class="flex flex-wrap gap-1.5">
         <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
-        <template v-for="flag in getHookFlagsText(hook.Flags)" class="text-sm">
+        <template v-for="flag in getHookFlagsText(hook.Flags)" :key="flag" >
           <VPBadge
-            v-if="hook.Flags"
             type="danger"
             :text="`${flag}`"
             :title="getCorrespondingTitleForHookFlag(flag)"
