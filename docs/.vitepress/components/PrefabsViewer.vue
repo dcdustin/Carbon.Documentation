@@ -5,8 +5,9 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import PrefabCard from '@/components/PrefabCard.vue'
+import { store } from '@/stores/prefabs-store'
 import { Search } from 'lucide-vue-next'
-import MiniSearch, { CombinationOperator, SearchOptions } from 'minisearch'
+import MiniSearch, { SearchOptions } from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 
 const isLoading = shallowRef(true)
@@ -15,8 +16,8 @@ const error = shallowRef<string | null>(null)
 const prefabs = shallowRef<Prefab[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
-const selectedSearchType = shallowRef<CombinationOperator>('OR')
-const debouncedSearchValue = shallowRef('')
+const selectedSearchType = store.searchType
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 20
 
