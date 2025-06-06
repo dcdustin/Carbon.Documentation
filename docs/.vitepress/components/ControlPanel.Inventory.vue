@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ref } from 'vue'
-import selectedServer from './ControlPanel.vue'
+import { selectedServer } from './ControlPanel.SaveLoad.vue'
 
 export const activeSlot = ref(0)
 export const activeInventory = ref(0)
@@ -73,6 +73,7 @@ export function hideInventory() {
     clearTimeout(timerInvRefresh)
   }
 }
+
 export function handleDrag(slot: Slot) {
   draggedSlot.value = slot
 }

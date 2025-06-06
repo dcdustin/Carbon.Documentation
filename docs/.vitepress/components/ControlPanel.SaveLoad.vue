@@ -1,7 +1,7 @@
 <script lang="ts">
 
 import { tryFocusLogs, command, commandIndex } from './ControlPanel.Console.vue'
-import { clearInventory, hideInventory, activeSlot } from './ControlPanel.Inventory.vue'
+import { clearInventory, hideInventory, activeSlot, mainSlots, beltSlots, wearSlots, toolSlots } from './ControlPanel.Inventory.vue'
 import { ref } from 'vue'
 
 export const selectedServer = ref()
@@ -348,7 +348,8 @@ export class Server {
       case 6: // playerinfo
         this.PlayerInfo = data
         this.PlayerInfo.forEach(player => {
-          if(!(player.Address in flags.value)) {
+          if(!(player.Address in geoFlagCache.value)) {
+            
             fetchGeolocation(player.Address)
           }
         });
