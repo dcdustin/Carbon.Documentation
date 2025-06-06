@@ -4,6 +4,7 @@ import { fetchConVarsRust } from '@/api/metadata/rust/convars'
 import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { store } from '@/stores/rust-convars-store'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
@@ -15,7 +16,7 @@ const error = shallowRef<string | null>(null)
 const convars = shallowRef<ConVarRust[]>([])
 const miniSearch = shallowRef<MiniSearch | null>(null)
 
-const debouncedSearchValue = shallowRef('')
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 25
 
