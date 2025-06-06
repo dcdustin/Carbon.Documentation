@@ -19,8 +19,7 @@ const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const categories = shallowRef<string[]>([])
 const selectedCategory = store.chosenCategory
-
-const debouncedSearchValue = shallowRef('')
+const debouncedSearchValue = store.searchValue
 
 const pageSize = 25
 
@@ -108,9 +107,7 @@ async function loadCommands() {
 
     commands.value = data
 
-    categories.value = [
-      ...new Set([...new Set(data.map((command) => command.AuthLevel))].map(getCommandTypeText)),
-    ]
+    categories.value = [...new Set([...new Set(data.map((command) => command.AuthLevel))].map(getCommandTypeText))]
 
     tryLoadMiniSearch()
   } catch (err) {
@@ -138,11 +135,7 @@ onMounted(async () => {
 
 <template>
   <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading commands...">
-    <SearchBar
-      v-model="debouncedSearchValue"
-      placeholder="Search commands..."
-      class="sticky min-[960px]:top-20 top-16 z-10"
-    >
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search commands..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
@@ -151,14 +144,11 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredCommands && filteredCommands.length">
-      <div class="flex flex-col gap-5 mt-4">
+      <div class="mt-4 flex flex-col gap-5">
         <InfinitePageScroll :list="filteredCommands" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-            <div
-              class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg"
-            >
-              Rendering {{ renderedList.length }} of {{ filteredCommands.length }} filtered commands,
-              {{ commands.length }} total commands.
+          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
+            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
+              Rendering {{ renderedList.length }} of {{ filteredCommands.length }} filtered commands, {{ commands.length }} total commands.
             </div>
           </div>
           <div v-for="command in renderedList" :key="command.Name" :id="command.Name">
@@ -167,14 +157,10 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No commands found matching your search</p>
-      <p v-if="commands && commands.length == 0" class="text-sm">
-        Debug: No commands loaded. Check console for errors.
-      </p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">
-        Debug: Search query "{{ debouncedSearchValue }}" returned no results.
-      </p>
+      <p v-if="commands && commands.length == 0" class="text-sm">Debug: No commands loaded. Check console for errors.</p>
+      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
   </AsyncState>
 </template>

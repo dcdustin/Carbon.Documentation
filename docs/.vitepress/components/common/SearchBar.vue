@@ -37,23 +37,28 @@ function handleUrlSearch(val: string) {
   }
 }
 
-watch(debouncedSearchValue, (newVal) => {
-  if (newVal != undefined) {
-    params.s = encodeSearchTerm(newVal)
+function updateParams(val: string | undefined) {
+  if (val != undefined) {
+    params.s = encodeSearchTerm(val)
   }
+}
+
+watch(debouncedSearchValue, (newVal) => {
+  updateParams(newVal)
 })
 
 onMounted(() => {
   if (params.s) {
     handleUrlSearch(params.s.toString())
   }
+  updateParams(debouncedSearchValue.value)
 })
 </script>
 
 <template>
-  <div class="bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-4 rounded-xl">
-    <div class="flex sm:flex-row flex-col sm:items-center items-start gap-4">
-      <div class="flex items-center flex-1 gap-4">
+  <div class="rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40">
+    <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+      <div class="flex flex-1 items-center gap-4">
         <slot name="icon" />
         <input
           class="w-full"
