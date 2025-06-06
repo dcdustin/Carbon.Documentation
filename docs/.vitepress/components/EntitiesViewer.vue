@@ -161,11 +161,7 @@ onMounted(async () => {
 
 <template>
   <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading entities...">
-    <SearchBar
-      v-model="debouncedSearchValue"
-      placeholder="Search entities..."
-      class="sticky min-[960px]:top-20 top-16 z-10"
-    >
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search entities..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
@@ -174,14 +170,11 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredEntities && filteredEntities.length">
-      <div class="flex flex-col gap-6 mt-4">
+      <div class="mt-4 flex flex-col gap-6">
         <InfinitePageScroll :list="filteredEntities" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-            <div
-              class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg"
-            >
-              Rendering {{ renderedList.length }} of {{ filteredEntities.length }} filtered entities,
-              {{ entities.length }} total entities.
+          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
+            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
+              Rendering {{ renderedList.length }} of {{ filteredEntities.length }} filtered entities, {{ entities.length }} total entities.
             </div>
           </div>
           <div v-for="entity in renderedList" :key="entity.ID" :id="entity.ID.toString()">
@@ -190,14 +183,10 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No entities found matching your search</p>
-      <p v-if="entities && entities.length == 0" class="text-sm">
-        Debug: No entities loaded. Check console for errors.
-      </p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">
-        Debug: Search query "{{ debouncedSearchValue }}" returned no results.
-      </p>
+      <p v-if="entities && entities.length == 0" class="text-sm">Debug: No entities loaded. Check console for errors.</p>
+      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
   </AsyncState>
 </template>
