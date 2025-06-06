@@ -9,7 +9,7 @@ hero:
     - theme: brand
       text: Get Carbon
       icon: github
-      link: https://github.com/CarbonCommunity/Carbon/releases/latest
+      link: /owners/getting-started#releases
     - theme: alt
       text: Owner Docs
       link: /owners/getting-started
