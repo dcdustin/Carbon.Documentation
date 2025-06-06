@@ -31,11 +31,11 @@ function getExampleCode(hook: Hook): string {
   const code = `private ${hook.ReturnTypeName} ${hook.Name}(${hook.ParametersText})
 {
     Puts("${hook.Name} has been called!");${
-    hook.ReturnTypeName !== 'void'
-      ? `
+      hook.ReturnTypeName !== 'void'
+        ? `
     return (${hook.ReturnTypeName})default;`
-      : ''
-  }
+        : ''
+    }
 }`
   return code
 }
@@ -43,36 +43,23 @@ function getExampleCode(hook: Hook): string {
 
 <template>
   <div class="flex flex-col gap-1">
-    <div class="flex sm:flex-row flex-col sm:items-center items-start gap-2">
+    <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
       <div class="flex items-center gap-2">
-        <h5 class="text-lg font-medium flex items-center gap-2">
+        <h5 class="flex items-center gap-2 text-lg font-medium">
           <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
           <span>{{ hook.FullName }}</span>
           <a :href="`?s=${hook.FullName}`" target="_blank">
             <ExternalLink :size="14" class="opacity-60" />
           </a>
         </h5>
-        <ButtonIconCopy
-          :getTextToCopy="() => hook.Id.toString()"
-          :title="`Copy hook ID: ${hook.Id}`"
-          class="opacity-60"
-        />
+        <ButtonIconCopy :getTextToCopy="() => hook.Id.toString()" :title="`Copy hook ID: ${hook.Id}`" class="opacity-60" />
       </div>
       <div class="flex flex-wrap gap-1.5">
         <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
-        <template v-for="flag in getHookFlagsText(hook.Flags)" :key="flag" >
-          <VPBadge
-            type="danger"
-            :text="`${flag}`"
-            :title="getCorrespondingTitleForHookFlag(flag)"
-          />
+        <template v-for="flag in getHookFlagsText(hook.Flags)" :key="flag">
+          <VPBadge type="danger" :text="`${flag}`" :title="getCorrespondingTitleForHookFlag(flag)" />
         </template>
-        <VPBadge
-          v-if="hook.OxideCompatible"
-          type="tip"
-          text="Oxide Compatible"
-          title="Indicates that this hook is compatible with Oxide"
-        />
+        <VPBadge v-if="hook.OxideCompatible" type="tip" text="Oxide Compatible" title="Indicates that this hook is compatible with Oxide" />
       </div>
     </div>
     <div class="flex flex-col text-sm text-gray-500">
@@ -83,17 +70,13 @@ function getExampleCode(hook: Hook): string {
         {{ [hook.AssemblyName, hook.TargetName, hook.MethodName].filter(Boolean).join('; ') }}
       </span>
       <span>
-        {{
-          hook.ReturnTypeName != 'void'
-            ? 'Returning a non-null value cancels default behavior.'
-            : 'No return behavior.'
-        }}
+        {{ hook.ReturnTypeName != 'void' ? 'Returning a non-null value cancels default behavior.' : 'No return behavior.' }}
       </span>
     </div>
   </div>
   <div class="mt-1 flex gap-2">
     <button
-      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+      class="flex items-center gap-2 rounded-lg bg-gray-100 px-2 py-1 text-xs text-gray-500 dark:bg-gray-800"
       @click="isExampleExpanded = !isExampleExpanded"
     >
       {{ isExampleExpanded ? 'Hide Example' : 'Show Example' }}
@@ -101,15 +84,13 @@ function getExampleCode(hook: Hook): string {
     </button>
     <button
       v-if="hook.MethodSource"
-      class="flex gap-2 items-center text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800"
+      class="flex items-center gap-2 rounded-lg bg-gray-100 px-2 py-1 text-xs text-gray-500 dark:bg-gray-800"
       @click="() => (isSourceExpanded = !isSourceExpanded)"
     >
       {{ isSourceExpanded ? 'Hide Source' : 'Show Source' }}
       <ButtonIconCopy :getTextToCopy="() => hook.MethodSource" />
     </button>
-    <button v-else disabled class="text-xs px-2 py-1 text-gray-500 rounded-lg bg-gray-100 dark:bg-gray-800">
-      No method source
-    </button>
+    <button v-else disabled class="rounded-lg bg-gray-100 px-2 py-1 text-xs text-gray-500 dark:bg-gray-800">No method source</button>
   </div>
   <Transition name="expand">
     <CodeBlock v-if="isExampleExpanded" :code="getExampleCode(hook)" class="mt-2" />
