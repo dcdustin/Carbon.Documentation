@@ -37,7 +37,7 @@ function handleUrlSearch(val: string) {
   }
 }
 
-function updateParams(val: string) {
+function updateParams(val: string | undefined) {
   if (val != undefined) {
     params.s = encodeSearchTerm(val)
   }
