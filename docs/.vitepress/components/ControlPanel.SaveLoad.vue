@@ -159,18 +159,18 @@ export class Server {
   PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
-  Rpcs: Record<string, (...args: any[]) => void> = {};
+  Rpcs: Record<number, (...args: any[]) => void> = {};
 
   registerRpcs() {
     this.Rpcs = {}
 
     // MoveInventoryItem
-    this.Rpcs["3553623853"] = data => {
+    this.Rpcs[3553623853] = data => {
       
     }
 
     // SendPlayerInventory
-    this.Rpcs["1739174796"] = data => {
+    this.Rpcs[1739174796] = data => {
         clearInventory()
         try {
           activeSlot.value = data.Value.ActiveSlot
@@ -219,7 +219,7 @@ export class Server {
     }
 
     // TestCall
-    this.Rpcs['951948318'] = data => {
+    this.Rpcs[951948318] = data => {
       console.log(data)
     }
   }
@@ -373,9 +373,10 @@ export class Server {
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
       case 100: // c.webrcon.rpc
-          if (data.RpcId in this.Rpcs) {
-            this.Rpcs[data.RpcId](data);
-          }
+        const rpcId = Number(data.RpcId)
+        if (rpcId in this.Rpcs) {
+          this.Rpcs[rpcId](data);
+        }
         break
     }
 
