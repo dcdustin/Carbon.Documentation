@@ -73,7 +73,67 @@ function tryLoadMiniSearch() {
         map: 1,
       },
       fuzzy: 0.069,
+      boostDocument: (_, _2, storedFields) => {
+        // Handle missing/empty servers: 61.6% of servers are empty -> demote
+        if (!storedFields?.players || storedFields.players === 0) {
+          return 0.9 // Demote empty servers but keep them searchable
+        }
+
+        const players = storedFields.players as number
+
+        /* Player Distribution Insights (from diagnostic data):
+           totalServers: 13063
+           emptyServers: 8046 (61.6%)
+           Key percentiles:
+             p75: 2 players    (75% of servers have ≤2 players)
+             p90: 13 players   (90% have ≤13 players)
+             p95: 47 players   (95% have ≤47 players)
+             p99: 254 players  (99% have ≤254 players)
+             max: 1062 players
+           Design Philosophy:
+             1. Different population tiers need distinct scaling:
+               - Low-pop: Gentle boost to avoid over-ranking common servers
+               - Mid-pop: Balanced boost for discoverability
+               - High-pop: Significant boost for quality recognition
+             2. Use exponential scaling (players^exponent) for natural curve:
+               - Lower exponent = flatter curve (for high populations)
+               - Higher exponent = steeper curve (for low populations)
+             3. Tier thresholds based on actual distribution percentiles
+             4. Optimize for computation efficiency (no chained conditionals)
+        */
+
+        // ELITE SERVERS (p99+ ≥250 players - top 1%)
+        // - Exponent 0.28 creates gradual curve for very high populations
+        // - Multiplier 0.82 provides strong baseline recognition
+        // - Matches diagnostic data showing high-population clusters
+        if (players >= 250) {
+          return 1.0 + players ** 0.28 * 0.82
+        }
+
+        // POPULAR SERVERS (p95+ ≥47 players - top 5%)
+        // - Exponent 0.35 balances growth recognition
+        // - Multiplier 0.68 calibrated for 47-250 player range
+        // - Avoids over-boosting while maintaining quality signal
+        if (players >= 47) {
+          return 1.0 + players ** 0.35 * 0.68
+        }
+
+        // ACTIVE SERVERS (p90+ ≥13 players - top 10%)
+        // - Exponent 0.42 provides steeper initial curve
+        // - Multiplier 0.55 prevents over-emphasis of low-mid pop
+        // - Recognizes servers above empty/low-pop majority
+        if (players >= 13) {
+          return 1.0 + players ** 0.42 * 0.55
+        }
+
+        // LOW-POPULATION SERVERS (1-12 players)
+        // - Exponent 0.5 (square root) for gentlest curve
+        // - Multiplier 0.48 provides baseline visibility
+        // - Avoids drowning out text relevance for common servers
+        return 1.0 + players ** 0.5 * 0.48
+      },
     },
+    storeFields: ['players'],
     extractField: (document, fieldName) => {
       if (fieldName == 'ip_port') {
         return `${document.ip}:${document.port}`
