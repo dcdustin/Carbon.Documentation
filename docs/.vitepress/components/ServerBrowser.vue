@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { CompressedTag, fetchServerList, RegionTag, Server, ServerList } from '@/api/misc/server-list'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
-import { Search } from 'lucide-vue-next'
+import { Loader2 } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
@@ -22,7 +21,8 @@ const debouncedSearchValue = store.searchValue
 const chosenCompressedTags = store.chosenCompressedTags
 const chosenRegionTag = store.chosenRegionTags
 
-const pageSize = 25
+const initialPageSize = 25
+const pageSize = 50
 
 const filteredServers = computed(() => {
   if (!serverListData.value || !serverListData.value.Servers.length) {
@@ -73,7 +73,67 @@ function tryLoadMiniSearch() {
         map: 1,
       },
       fuzzy: 0.069,
+      boostDocument: (_, _2, storedFields) => {
+        // Handle missing/empty servers: 61.6% of servers are empty -> demote
+        if (!storedFields?.players || storedFields.players === 0) {
+          return 0.9 // Demote empty servers but keep them searchable
+        }
+
+        const players = storedFields.players as number
+
+        /* Player Distribution Insights (from diagnostic data):
+           totalServers: 13063
+           emptyServers: 8046 (61.6%)
+           Key percentiles:
+             p75: 2 players    (75% of servers have ≤2 players)
+             p90: 13 players   (90% have ≤13 players)
+             p95: 47 players   (95% have ≤47 players)
+             p99: 254 players  (99% have ≤254 players)
+             max: 1062 players
+           Design Philosophy:
+             1. Different population tiers need distinct scaling:
+               - Low-pop: Gentle boost to avoid over-ranking common servers
+               - Mid-pop: Balanced boost for discoverability
+               - High-pop: Significant boost for quality recognition
+             2. Use exponential scaling (players^exponent) for natural curve:
+               - Lower exponent = flatter curve (for high populations)
+               - Higher exponent = steeper curve (for low populations)
+             3. Tier thresholds based on actual distribution percentiles
+             4. Optimize for computation efficiency (no chained conditionals)
+        */
+
+        // ELITE SERVERS (p99+ ≥250 players - top 1%)
+        // - Exponent 0.28 creates gradual curve for very high populations
+        // - Multiplier 0.82 provides strong baseline recognition
+        // - Matches diagnostic data showing high-population clusters
+        if (players >= 250) {
+          return 1.0 + players ** 0.28 * 0.82
+        }
+
+        // POPULAR SERVERS (p95+ ≥47 players - top 5%)
+        // - Exponent 0.35 balances growth recognition
+        // - Multiplier 0.68 calibrated for 47-250 player range
+        // - Avoids over-boosting while maintaining quality signal
+        if (players >= 47) {
+          return 1.0 + players ** 0.35 * 0.68
+        }
+
+        // ACTIVE SERVERS (p90+ ≥13 players - top 10%)
+        // - Exponent 0.42 provides steeper initial curve
+        // - Multiplier 0.55 prevents over-emphasis of low-mid pop
+        // - Recognizes servers above empty/low-pop majority
+        if (players >= 13) {
+          return 1.0 + players ** 0.42 * 0.55
+        }
+
+        // LOW-POPULATION SERVERS (1-12 players)
+        // - Exponent 0.5 (square root) for gentlest curve
+        // - Multiplier 0.48 provides baseline visibility
+        // - Avoids drowning out text relevance for common servers
+        return 1.0 + players ** 0.5 * 0.48
+      },
     },
+    storeFields: ['players'],
     extractField: (document, fieldName) => {
       if (fieldName == 'ip_port') {
         return `${document.ip}:${document.port}`
@@ -135,13 +195,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
+  <div v-if="error" class="flex flex-col items-center justify-center py-8 text-center">
+    <div class="mb-4 text-red-500">{{ error }}</div>
+  </div>
+  <template v-else>
     <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
       <template #right>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col gap-4 sm:flex-row">
           <OptionSelectorMany
             v-model="chosenCompressedTags"
             :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
@@ -159,24 +219,32 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
-      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
+      <div class="mt-4">
+        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverListData?.Servers.length }} total servers.
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers,
+              {{ isFetchedRestData ? serverListData?.Servers.length : '' }} <Loader2 v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
+              total servers
             </div>
           </div>
           <!-- TODO: switch to virtual list -->
-          <template v-for="server in renderedList" :key="server.id">
-            <ServerBrowserCard :server="server" />
-          </template>
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+            <template v-for="server in renderedList" :key="server.id">
+              <ServerBrowserCard :server="server" />
+            </template>
+          </div>
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
+    <div v-else-if="isFetchedRestData" class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
       <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
-  </AsyncState>
+    <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2 py-8">
+      <Loader2 class="animate-spin" :size="24" />
+      <span>Loading em...</span>
+    </div>
+  </template>
 </template>
