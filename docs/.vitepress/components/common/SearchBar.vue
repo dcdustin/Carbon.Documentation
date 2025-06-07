@@ -58,7 +58,7 @@ onMounted(() => {
 
 <template>
   <div class="rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40">
-    <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+    <div class="flex min-h-8 flex-col items-start gap-4 sm:flex-row sm:items-center">
       <div class="flex flex-1 items-center gap-4">
         <slot name="icon">
           <Search class="text-gray-400" :size="20" />
