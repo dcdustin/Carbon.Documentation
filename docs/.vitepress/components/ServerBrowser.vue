@@ -31,13 +31,13 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
-  if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+  if (chosenRegionTag.value && chosenRegionTag.value != 'All' && isFetchedRestData.value) {
     filtered = filtered.filter((server) => {
       return server.tags_set.has(chosenRegionTag.value)
     })
   }
 
-  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0) {
+  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0 && isFetchedRestData.value) {
     filtered = filtered.filter((server) => {
       return chosenCompressedTags.value.every((tag) => server.tags_set.has(tag))
     })
