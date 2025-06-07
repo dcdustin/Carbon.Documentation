@@ -222,7 +222,9 @@ onMounted(async () => {
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers, {{ serverListData?.Servers.length }} total servers.
+              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers,
+              {{ isFetchedRestData ? serverListData?.Servers.length : '' }} <Loader2 v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
+              total servers
             </div>
           </div>
           <!-- TODO: switch to virtual list -->
