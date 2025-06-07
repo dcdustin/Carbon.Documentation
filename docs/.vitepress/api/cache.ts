@@ -126,7 +126,7 @@ class Cache {
 
     this.storageWriteTimeout = setTimeout(() => {
       this.flushStorageWrites()
-    }, 1000)
+    }, 50)
   }
 
   private async flushStorageWrites(): Promise<void> {
