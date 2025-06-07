@@ -1,9 +1,10 @@
 <script setup lang="ts" generic="T">
 import { onMounted, onUnmounted, ref, Ref, shallowRef, watch } from 'vue'
 
-const { list, pageSize } = defineProps<{
+const { list, pageSize, initialPageSize } = defineProps<{
   list: T[]
   pageSize: number
+  initialPageSize?: number
 }>()
 
 const currentPage = shallowRef(1)
@@ -22,7 +23,7 @@ function renderMore() {
 }
 
 function rerenderList() {
-  renderedList.value = list.slice(0, currentPage.value * pageSize)
+  renderedList.value = list.slice(0, currentPage.value * (initialPageSize ?? pageSize))
 }
 
 watch(

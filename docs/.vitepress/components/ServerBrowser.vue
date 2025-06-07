@@ -21,7 +21,8 @@ const debouncedSearchValue = store.searchValue
 const chosenCompressedTags = store.chosenCompressedTags
 const chosenRegionTag = store.chosenRegionTags
 
-const pageSize = 25
+const initialPageSize = 25
+const pageSize = 50
 
 const filteredServers = computed(() => {
   if (!serverListData.value || !serverListData.value.Servers.length) {
@@ -219,7 +220,7 @@ onMounted(async () => {
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
       <div class="mt-4">
-        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
+        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
               Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers,
