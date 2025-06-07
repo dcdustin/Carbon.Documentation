@@ -197,11 +197,8 @@ onMounted(async () => {
 <template>
   <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
     <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
       <template #right>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col sm:flex-row gap-4">
           <OptionSelectorMany
             v-model="chosenCompressedTags"
             :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
