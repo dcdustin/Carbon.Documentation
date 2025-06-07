@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { CompressedTag, fetchServerList, RegionTag, Server, ServerList } from '@/api/misc/server-list'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
+import { Loader2 } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
@@ -194,7 +194,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
+  <div v-if="error" class="flex flex-col items-center justify-center py-8 text-center">
+    <div class="mb-4 text-red-500">{{ error }}</div>
+  </div>
+  <template v-else>
     <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #right>
         <div class="flex flex-col gap-4 sm:flex-row">
@@ -231,10 +234,14 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
+    <div v-else-if="isFetchedRestData" class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
       <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
-  </AsyncState>
+    <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2 py-8">
+      <Loader2 class="animate-spin" :size="24" />
+      <span>Loading em...</span>
+    </div>
+  </template>
 </template>
