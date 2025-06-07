@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDebounceFn, useUrlSearchParams } from '@vueuse/core'
+import { Search } from 'lucide-vue-next'
 import { onMounted, watch } from 'vue'
 
 const debounceTimeout = 350
@@ -59,7 +60,9 @@ onMounted(() => {
   <div class="rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40">
     <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
       <div class="flex flex-1 items-center gap-4">
-        <slot name="icon" />
+        <slot name="icon">
+          <Search class="text-gray-400" :size="20" />
+        </slot>
         <input
           class="w-full"
           :placeholder="placeholder ?? 'Search for...'"
