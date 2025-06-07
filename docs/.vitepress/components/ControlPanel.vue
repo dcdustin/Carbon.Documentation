@@ -1,35 +1,26 @@
 <script lang="ts" setup>
-import { consoleContainer, command } from './ControlPanel.Console.vue'
-import { addServer, createServer, deleteServer, selectServer, geoFlagCache, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad.vue'
+import ConsoleTab from './ControlPanel.Tabs.Console.vue'
+import PlayersTab from './ControlPanel.Tabs.Players.vue'
+import { Server, addServer, createServer, deleteServer, selectServer, geoFlagCache, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad.vue'
 import { Slot, activeSlot, activeInventory, showInventory, hideInventory, handleDrag, handleDrop, mainSlots, beltSlots, wearSlots, toolSlots, draggedSlot } from './ControlPanel.Inventory.vue'
 import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
 import { onMounted, onUnmounted } from 'vue'
 
-
 let timerSwitch: ReturnType<typeof setTimeout> = null!
 
-function isValidUrl(urlStr: string) : boolean {
-  try {
-    const url = new URL(urlStr);
-    return url.protocol === "http:" || url.protocol === "https:";
-  } catch (_) {
-    return false;
-  }
-}
-
-function formatDuration(seconds: number) {
-  const hrs = Math.floor(seconds / 3600)
-  const mins = Math.floor((seconds % 3600) / 60)
-  const secs = Math.floor(seconds % 60)
-
-  const parts = []
-  if (hrs > 0) parts.push(`${hrs}h`)
-  if (mins > 0) parts.push(`${mins}m`)
-  if (secs > 0 || parts.length === 0) parts.push(`${secs}s`)
-
-  return parts.join(' ')
-}
-
+const subTabs = [{
+  Name: 'Console',
+  Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.',
+  Content: `<ConsoleTab />`
+}, {
+  Name: 'Information',
+  Description: 'Useful info about the server activity and various other options.'
+}, {
+  Name: 'Players',
+  Description: 'A list of players or something like that.',
+  ExtraData: (selectedServer: Server) => `(${selectedServer?.PlayerInfo?.length})`
+}]
+ 
 onMounted(() => {
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
@@ -186,41 +177,20 @@ enum LogType {
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
-      <div class="mb-5" style="display: flex">
-        <button class="r-button" @click="selectSubTab(0)" :class="['r-button', { toggled: selectedSubTab == 0 }]" style="color: var(--docsearch-footer-background); font-size: small">
-          Console
-        </button>
-        <button class="r-button" @click="selectSubTab(1)" :class="['r-button', { toggled: selectedSubTab == 1 }]" style="color: var(--docsearch-footer-background); font-size: small">
-          Info
-        </button>
-        <button class="r-button" @click="selectSubTab(2)" :class="['r-button', { toggled: selectedSubTab == 2 }]" style="color: var(--docsearch-footer-background); font-size: small">
-          Players ({{ selectedServer?.PlayerInfo?.length }})
+      <div class="mb-5 flex">
+        <button v-for="(tab, index) in subTabs" class="r-button" @click="selectSubTab(index)" :class="['r-button', { toggled: selectedSubTab == index }]" style="color: var(--docsearch-footer-background); font-size: small">
+          {{ tab.Name }} {{ tab.ExtraData != null ? tab.ExtraData(selectedServer) : null }}
         </button>
       </div>
 
+      <div v-for="(tab, index) in subTabs">
+        <div v-if="selectedSubTab == index" class="text-slate-500 text-xs m-4">
+          <span >{{ tab.Description }}</span>
+        </div>
+      </div>
+
       <div v-if="selectedSubTab == 0">
-        <div
-          v-if="selectedServer"
-          ref="consoleContainer"
-          class="p-4 rounded text-sm font-mono"
-          style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
-        >
-          <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
-        </div>
-        <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
-          <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
-          <input
-            style="font-family: monospace; color: var(--docsearch-muted-color)"
-            class="w-full"
-            spellcheck="false"
-            v-model="command"
-            @keydown.up.prevent="selectedServer?.selectHistory(true)"
-            @keydown.down.prevent="selectedServer?.selectHistory(false)"
-            @keyup.enter="selectedServer?.sendCommand(command, 1)"
-          />
-          <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
-          <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
-        </div>
+        <ConsoleTab />
       </div>
       <div v-else-if="selectedSubTab == 1">
         <div class="r-settings-input-group">
@@ -269,35 +239,7 @@ enum LogType {
         </div>
       </div>
       <div v-else-if="selectedSubTab == 2" style="overflow: auto;">
-        <table tabindex="0" class="vp-doc table" style="">
-          <thead>
-            <tr>
-              <th class="vp-doc th"></th>
-              <th class="vp-doc th">Player</th>
-              <th class="vp-doc th text-center">Health</th>
-              <th class="vp-doc th">Connected</th>
-              <th class="vp-doc th"></th>
-            </tr>
-          </thead>
-          <tr v-for="player in selectedServer.PlayerInfo">
-            <td class="vp-doc td">
-              <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="geoFlagCache[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
-            </td>
-            <td class="vp-doc td">
-              <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[<a style="color: inherit; display: inline-flex;" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">{{ player.SteamID }} <ExternalLink class="mx-1" :size="12"/> </a>]</span>
-            </td>
-            <td style="position: relative;">
-              <div :style="'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #41642da6; width: ' + player.Health + '%'"></div>
-              <div style="opacity: 50%; font-size: smaller">{{ player.Health.toFixed(1) }}</div>
-            </td>
-            <td class="vp-doc td">
-              <span class="text-xs text-slate-400">{{ formatDuration(player.ConnectedSeconds) }}</span>
-            </td>
-            <td class="vp-doc td">
-              <button class="r-send-button" @click="showInventory(player.SteamID)">Inventory</button>
-            </td>
-          </tr>
-        </table>
+        <PlayersTab />
       </div>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">

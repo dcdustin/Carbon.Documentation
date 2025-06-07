@@ -46,6 +46,15 @@ export function addServer(server: Server, shouldSelect: boolean = false) {
   }
 }
 
+export function isValidUrl(urlStr: string) : boolean {
+  try {
+    const url = new URL(urlStr);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch (_) {
+    return false;
+  }
+}
+
 export function deleteServer(server: Server) {
   const confirmDelete = window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
   if (confirmDelete) {
