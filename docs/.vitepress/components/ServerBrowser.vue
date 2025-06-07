@@ -5,7 +5,6 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
-import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
@@ -198,7 +197,7 @@ onMounted(async () => {
   <AsyncState :isLoading="false" :error="error" loadingText="Loading servers...">
     <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #right>
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div class="flex flex-col gap-4 sm:flex-row">
           <OptionSelectorMany
             v-model="chosenCompressedTags"
             :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
@@ -216,7 +215,7 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredServers && filteredServers.length">
-      <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+      <div class="mt-4">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
@@ -224,9 +223,11 @@ onMounted(async () => {
             </div>
           </div>
           <!-- TODO: switch to virtual list -->
-          <template v-for="server in renderedList" :key="server.id">
-            <ServerBrowserCard :server="server" />
-          </template>
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+            <template v-for="server in renderedList" :key="server.id">
+              <ServerBrowserCard :server="server" />
+            </template>
+          </div>
         </InfinitePageScroll>
       </div>
     </div>
