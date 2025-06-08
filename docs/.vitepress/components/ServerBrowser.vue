@@ -31,24 +31,28 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
-  if (!isFetchedRestData.value) {
-    return filtered
-  }
-
-  if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+  if (chosenRegionTag.value && chosenRegionTag.value != 'All' && isFetchedRestData.value) {
     filtered = filtered.filter((server) => {
       return server.tags_set.has(chosenRegionTag.value)
     })
   }
 
-  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0) {
+  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0 && isFetchedRestData.value) {
     filtered = filtered.filter((server) => {
       return chosenCompressedTags.value.every((tag) => server.tags_set.has(tag))
     })
   }
 
   if (debouncedSearchValue.value) {
-    if (miniSearch.value) {
+    if (!miniSearch.value) {
+      filtered = filtered.filter(
+        (server) =>
+          server.hostname.toLowerCase().includes(debouncedSearchValue.value.toLowerCase()) ||
+          server.ip.includes(debouncedSearchValue.value) ||
+          server.map?.toLowerCase().includes(debouncedSearchValue.value.toLowerCase()) ||
+          server.tags?.toLowerCase().includes(debouncedSearchValue.value.toLowerCase())
+      )
+    } else {
       const results = miniSearch.value.search(debouncedSearchValue.value)
       const serverMap = new Map(filtered.map((server) => [server.id, server]))
       filtered = results.map((result) => serverMap.get(result.id)).filter(Boolean) as Server[]
@@ -174,10 +178,6 @@ async function loadServers() {
 
     const data = await fetchServerList()
 
-    if (!data) {
-      throw new Error('No data received from API')
-    }
-
     serverListData.value = data
 
     isFetchedRestData.value = true
@@ -239,7 +239,7 @@ onMounted(async () => {
     </div>
     <div v-else-if="isFetchedRestData" class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
-      <p v-if="filteredServers && filteredServers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
+      <p v-if="!serverListData?.Servers || serverListData.Servers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
     <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2 py-8">
