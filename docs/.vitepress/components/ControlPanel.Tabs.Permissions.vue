@@ -4,10 +4,8 @@ import { selectedServer } from './ControlPanel.SaveLoad.vue'
 
 const selectedGroup = ref('')
 const selectedHookable = ref()
-const permInfo = ref()
 const groupInfo = ref()
 const groupPermInfo = ref<string[]>()
-const pluginInfo = ref()
 
 onMounted(() => {
   if(!selectedServer.value) {
@@ -16,9 +14,7 @@ onMounted(() => {
 
   // GetPermissionsMetadata
   selectedServer.value.Rpcs[1317317511] = data => {
-    groupInfo.value = data.Value.Groups
-    pluginInfo.value = data.Value.Plugins
-    permInfo.value = data.Value.Permissions
+    groupInfo.value = data.Value
   }
   // GetGroupPermissions
   selectedServer.value.Rpcs[631493895] = data => {
@@ -56,7 +52,7 @@ function togglePermission(value: string) {
           <th class="vp-doc th">Groups</th>
         </tr>
       </thead>
-      <tr v-for="group in groupInfo">
+      <tr v-for="group in groupInfo?.Groups">
         <td class="vp-doc td">
           <button class="r-send-button" :class="'r-send-button ' + (group == selectedGroup ? 'toggled' : null)" @click="selectGroup(group, false)"><span class="text-neutral-400">{{group}}</span></button> 
         </td>
@@ -68,9 +64,17 @@ function togglePermission(value: string) {
           <th class="vp-doc th">Plugins</th>
         </tr>
       </thead>
-      <tr v-for="plugin in pluginInfo">
+      <tr v-for="plugin in groupInfo?.Plugins">
         <td class="vp-doc td">
           <button class="r-send-button" :class="'r-send-button ' + (plugin == selectedHookable ? 'toggled' : null)" @click="selectHookable(plugin)"><span class="text-neutral-400">{{ plugin.Plugin.Name }}</span></button> 
+        </td>
+      </tr>
+      <tr>
+        <th class="vp-doc th">Modules</th>
+      </tr>
+      <tr v-for="module in groupInfo?.Modules">
+        <td class="vp-doc td">
+          <button class="r-send-button" :class="'r-send-button ' + (module == selectedHookable ? 'toggled' : null)" @click="selectHookable(module)"><span class="text-neutral-400">{{ module.Module.Name }}</span></button> 
         </td>
       </tr>
     </table>

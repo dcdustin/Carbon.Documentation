@@ -41,6 +41,8 @@ import { selectedServer } from './ControlPanel.SaveLoad.vue'
   transition: background-color, color;
   border-color: transparent;
   border: transparent 1px;
+  transition-duration: .5s;
+  transition-timing-function: cubic-bezier(0, 1, 0, 0)
 }
 
 .r-send-button.toggled {

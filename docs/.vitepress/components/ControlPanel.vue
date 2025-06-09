@@ -133,7 +133,7 @@ enum LogType {
         <span class="r-settings-input-label" style="user-select: none">Password</span>
         <input v-model="selectedServer.Password" type="password" class="r-settings-custom-input" />
       </div>
-      <div style="display: flex">
+      <div class="flex">
         <button
           class="r-button"
           :disabled="selectedServer.IsConnecting"
