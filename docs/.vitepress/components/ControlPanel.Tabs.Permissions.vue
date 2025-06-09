@@ -45,7 +45,7 @@ function togglePermission(value: string) {
 </script>
 
 <template>
-  <div class="table-stack">
+  <div class="table-stack text-center">
     <table>
       <thead>
         <tr>
@@ -70,7 +70,7 @@ function togglePermission(value: string) {
         </td>
       </tr>
       <tr>
-        <th class="vp-doc th">Modules</th>
+        <th class="vp-doc th pt-5">Modules</th>
       </tr>
       <tr v-for="module in groupInfo?.Modules">
         <td class="vp-doc td">
@@ -93,7 +93,7 @@ function togglePermission(value: string) {
         </td>
       </tr>
       <tr v-for="permission in selectedHookable.Permissions">
-        <td class="vp-doc td">
+        <td class="vp-doc td content-center">
           <button :class="'r-send-button ' + (groupHasPermission(permission) ? 'toggled' : null)" @click="togglePermission(permission)"><span class="text-neutral-400">{{ permission }}</span></button> 
         </td>
       </tr>
