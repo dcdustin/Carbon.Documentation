@@ -39,7 +39,7 @@ function groupHasPermission(value: string) : boolean {
   return groupPermInfo.value.includes(value)
 }
 function togglePermission(value: string) {
-  selectedServer.value.sendRpc(3261363143, selectedGroup.value, value)
+  selectedServer.value.sendRpc(3261363143, selectedGroup.value, value, selectedHookable.value.Plugin?.Name ?? selectedHookable.value.Module?.Name)
   selectGroup(selectedGroup.value)
 }
 </script>
@@ -84,6 +84,14 @@ function togglePermission(value: string) {
           <th class="vp-doc th">Permissions</th>
         </tr>
       </thead>
+      <tr>
+        <td>
+          <span>
+            <button class="r-send-button" @click="togglePermission('grantall')"><span class="text-neutral-400">Grant All</span></button>   
+            <button class="r-send-button" @click="togglePermission('revokeall')"><span class="text-neutral-400">Revoke All</span></button>   
+          </span>   
+        </td>
+      </tr>
       <tr v-for="permission in selectedHookable.Permissions">
         <td class="vp-doc td">
           <button :class="'r-send-button ' + (groupHasPermission(permission) ? 'toggled' : null)" @click="togglePermission(permission)"><span class="text-neutral-400">{{ permission }}</span></button> 
