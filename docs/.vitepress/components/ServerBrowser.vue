@@ -71,8 +71,8 @@ function tryLoadMiniSearch() {
     searchOptions: {
       prefix: true,
       boost: {
-        ip_port: 4,
-        hostname: 3,
+        ip_port: 6,
+        hostname: 4,
         tags: 2,
         map: 1,
       },
@@ -80,7 +80,7 @@ function tryLoadMiniSearch() {
       boostDocument: (_, _2, storedFields) => {
         // Handle missing/empty servers: 61.6% of servers are empty -> demote
         if (!storedFields?.players || storedFields.players === 0) {
-          return 0.9 // Demote empty servers but keep them searchable
+          return 0.85 // Demote empty servers but keep them searchable
         }
 
         const players = storedFields.players as number
@@ -150,19 +150,37 @@ function tryLoadMiniSearch() {
         return [text, ...text.split(':')]
       }
       if (fieldName == 'tags') {
-        return text.split(',').map((tag) => tag.trim())
+        return text.split(',').map((tag) => tag.trim().toLowerCase())
       }
 
-      const processed = text
-        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-        .toLowerCase()
-        .split(SPACE_OR_PUNCTUATION)
-        .filter((token) => token.length > 1)
+      const processed: Set<string> = new Set()
+      const tokens = text.split(SPACE_OR_PUNCTUATION)
+      tokens.forEach((token) => {
+        if (token.length <= 1) {
+          return
+        }
 
-      processed.push(text.toLowerCase())
+        const lowerToken = token.toLowerCase()
+        processed.add(lowerToken)
 
-      return [...new Set(processed)]
+        if (!/[A-Z]/.test(token)) {
+          return
+        }
+
+        const modified = token.replace(/([a-z\d]{2})([A-Z])|([A-Z])([A-Z][a-z])/g, (_, g1, g2, g3, g4) => (g1 ? `${g1} ${g2}` : `${g3} ${g4}`))
+
+        if (modified) {
+          modified.split(' ').forEach((t) => {
+            if (t.length > 1 && t.toLowerCase() != lowerToken) {
+              processed.add(t.toLowerCase())
+            }
+          })
+        }
+      })
+
+      processed.add(text.toLowerCase())
+
+      return Array.from(processed)
     },
   })
 
