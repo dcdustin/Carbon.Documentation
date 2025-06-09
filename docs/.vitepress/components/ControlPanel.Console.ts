@@ -1,6 +1,5 @@
-<script lang="ts">
 import { ref, nextTick } from 'vue'
-import { save } from './ControlPanel.SaveLoad.vue'
+import { save } from './ControlPanel.SaveLoad'
 
 export const consoleContainer = ref<HTMLDivElement>(null!)
 export const command = ref('')
@@ -13,4 +12,3 @@ export async function tryFocusLogs(autoScroll: boolean = false) {
   }
   save()
 }
-</script>

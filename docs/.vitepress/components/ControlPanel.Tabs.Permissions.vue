@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { selectedServer } from './ControlPanel.SaveLoad.vue'
+import { selectedServer } from './ControlPanel.SaveLoad'
 
 const selectedGroup = ref('')
 const selectedHookable = ref()

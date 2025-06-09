@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { consoleContainer, command } from './ControlPanel.Console.vue'
-import { selectedServer } from './ControlPanel.SaveLoad.vue'
+import { consoleContainer, command } from './ControlPanel.Console'
+import { selectedServer } from './ControlPanel.SaveLoad'
 </script>
 
 <template>

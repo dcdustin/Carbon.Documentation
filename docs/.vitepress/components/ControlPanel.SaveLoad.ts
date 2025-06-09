@@ -1,7 +1,5 @@
-<script lang="ts">
-
-import { tryFocusLogs, command, commandIndex } from './ControlPanel.Console.vue'
-import { clearInventory, hideInventory, activeSlot, mainSlots, beltSlots, wearSlots, toolSlots } from './ControlPanel.Inventory.vue'
+import { tryFocusLogs, command, commandIndex } from './ControlPanel.Console'
+import { clearInventory, hideInventory, activeSlot, mainSlots, beltSlots, wearSlots, toolSlots } from './ControlPanel.Inventory'
 import { ref } from 'vue'
 
 export const selectedServer = ref()
@@ -446,4 +444,3 @@ export class Server {
     }
   }
 }
-</script>

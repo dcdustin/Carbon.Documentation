@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad.vue'
-import { showInventory } from './ControlPanel.Inventory.vue'
+import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad'
+import { showInventory } from './ControlPanel.Inventory'
 
 function formatDuration(seconds: number) {
   const hrs = Math.floor(seconds / 3600)

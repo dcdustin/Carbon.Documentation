@@ -1,6 +1,5 @@
-<script lang="ts">
 import { ref } from 'vue'
-import { selectedServer } from './ControlPanel.SaveLoad.vue'
+import { selectedServer } from './ControlPanel.SaveLoad'
 
 export const activeSlot = ref(0)
 export const activeInventory = ref(0)
@@ -84,4 +83,3 @@ export function handleDrop(slot: Slot) {
   selectedServer.value.fetchInventory(activeInventory.value)
   draggedSlot.value = null
 }
-</script>
