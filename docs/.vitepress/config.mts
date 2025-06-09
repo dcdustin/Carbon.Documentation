@@ -29,7 +29,7 @@ const references = [
 ]
 
 const tools = [
-  { text: 'Web RCon', link: '/tools/rcon/' },
+  { text: 'Control Panel', link: '/tools/control-panel/' },
   { text: 'Server Browser', link: '/tools/server-browser/' },
   { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
 ]
