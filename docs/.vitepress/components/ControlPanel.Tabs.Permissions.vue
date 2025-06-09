@@ -39,6 +39,15 @@ function groupHasPermission(value: string) : boolean {
   return groupPermInfo.value.includes(value)
 }
 function togglePermission(value: string) {
+  if(value == 'grantall' || value == 'revokeall') { 
+    const confirm = window.confirm(`Are you sure?`)
+    if (confirm) {
+      selectedServer.value.sendRpc(3261363143, selectedGroup.value, value, selectedHookable.value.Plugin?.Name ?? selectedHookable.value.Module?.Name)
+      selectGroup(selectedGroup.value)
+    } 
+    return
+  }
+
   selectedServer.value.sendRpc(3261363143, selectedGroup.value, value, selectedHookable.value.Plugin?.Name ?? selectedHookable.value.Module?.Name)
   selectGroup(selectedGroup.value)
 }
