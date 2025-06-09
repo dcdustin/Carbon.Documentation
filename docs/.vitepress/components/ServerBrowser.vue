@@ -31,6 +31,21 @@ const filteredServers = computed(() => {
 
   let filtered = serverListData.value.Servers
 
+  if (debouncedSearchValue.value && debouncedSearchValue.value.includes('.')) {
+    const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){1,4}\.?$/
+    const trimmed = debouncedSearchValue.value.trim()
+    if (trimmed.includes(':')) {
+      const [ip, port] = trimmed.split(':')
+      const portNumber = parseInt(port)
+      if (!isNaN(portNumber) && portNumber > 0 && portNumber < 65536 && ipRegex.test(ip)) {
+        return filtered.filter((server) => server.ip.startsWith(ip) && server.port.toString().startsWith(port))
+      }
+    }
+    if (ipRegex.test(trimmed)) {
+      return filtered.filter((server) => server.ip.startsWith(trimmed))
+    }
+  }
+
   if (chosenRegionTag.value && chosenRegionTag.value != 'All' && isFetchedRestData.value) {
     filtered = filtered.filter((server) => {
       return server.tags_set.has(chosenRegionTag.value)
@@ -67,20 +82,19 @@ function tryLoadMiniSearch() {
 
   miniSearch.value = new MiniSearch({
     idField: 'id',
-    fields: ['ip_port', 'hostname', 'tags', 'map'],
+    fields: ['hostname', 'tags', 'map'],
     searchOptions: {
       prefix: true,
       boost: {
-        ip_port: 4,
-        hostname: 3,
+        hostname: 4,
         tags: 2,
         map: 1,
       },
       fuzzy: 0.069,
       boostDocument: (_, _2, storedFields) => {
         // Handle missing/empty servers: 61.6% of servers are empty -> demote
-        if (!storedFields?.players || storedFields.players === 0) {
-          return 0.9 // Demote empty servers but keep them searchable
+        if (!storedFields?.players || storedFields.players == 0) {
+          return 0.85 // Demote empty servers but keep them searchable
         }
 
         const players = storedFields.players as number
@@ -138,31 +152,40 @@ function tryLoadMiniSearch() {
       },
     },
     storeFields: ['players'],
-    extractField: (document, fieldName) => {
-      if (fieldName == 'ip_port') {
-        return `${document.ip}:${document.port}`
-      }
-      return document[fieldName as keyof Server] as string
-    },
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}|]+/u // from minisearch source + pipes
-      if (fieldName == 'ip_port') {
-        return [text, ...text.split(':')]
-      }
       if (fieldName == 'tags') {
-        return text.split(',').map((tag) => tag.trim())
+        return text.split(',').map((tag) => tag.trim().toLowerCase())
       }
 
-      const processed = text
-        .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-        .toLowerCase()
-        .split(SPACE_OR_PUNCTUATION)
-        .filter((token) => token.length > 1)
+      const processed: Set<string> = new Set()
+      const tokens = text.split(SPACE_OR_PUNCTUATION)
+      tokens.forEach((token) => {
+        if (token.length <= 1) {
+          return
+        }
 
-      processed.push(text.toLowerCase())
+        const lowerToken = token.toLowerCase()
+        processed.add(lowerToken)
 
-      return [...new Set(processed)]
+        if (!/[A-Z]/.test(token)) {
+          return
+        }
+
+        const modified = token.replace(/([a-z\d]{2})([A-Z])|([A-Z])([A-Z][a-z])/g, (_, g1, g2, g3, g4) => (g1 ? `${g1} ${g2}` : `${g3} ${g4}`))
+
+        if (modified) {
+          modified.split(' ').forEach((t) => {
+            if (t.length > 1) {
+              processed.add(t.toLowerCase())
+            }
+          })
+        }
+      })
+
+      processed.add(text.toLowerCase())
+
+      return Array.from(processed)
     },
   })
 
