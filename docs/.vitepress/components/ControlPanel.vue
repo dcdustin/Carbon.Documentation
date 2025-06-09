@@ -372,22 +372,6 @@ enum LogType {
   user-select: none;
 }
 
-.r-send-button {
-  text-decoration: auto;
-  font-family: monospace;
-  color: var(--category-misc);
-  background-color: transparent;
-  padding: 6px 12px;
-  border-radius: 0px;
-  cursor: pointer;
-  transition: background-color, color;
-}
-
-.r-send-button:hover {
-  background-color: var(--category-misc);
-  color: white;
-}
-
 .r-list {
   display: flex;
   gap: 10px;

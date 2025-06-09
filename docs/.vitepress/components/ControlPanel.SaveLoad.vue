@@ -170,6 +170,23 @@ export class Server {
   Description = ''
   Rpcs: Record<number, (...args: any[]) => void> = {};
 
+  clear() {
+    this.IsConnecting = false
+    this.IsConnected = false
+    this.ServerInfo = null
+    this.CarbonInfo = null
+    this.PlayerInfo = null
+    this.HeaderImage = ''
+    this.Description = ''
+    this.Socket = null
+
+    if(selectedServer.value == this) 
+    {
+      hideInventory()
+      tryFocusLogs()
+    }
+  }
+
   registerRpcs() {
     this.Rpcs = {}
 
@@ -266,16 +283,7 @@ export class Server {
       this.sendRpc('951948318', 'Ping sentence!')
     }
     this.Socket.onclose = () => {
-      this.IsConnecting = false
-      this.IsConnected = false
-      this.ServerInfo = null
-      this.CarbonInfo = null
-      this.PlayerInfo = null
-      this.HeaderImage = ''
-      this.Description = ''
-      this.Socket = null
-      hideInventory()
-      tryFocusLogs()
+      clear()
     }
     this.Socket.onerror = (e) => {
       this.UserConnected = false
