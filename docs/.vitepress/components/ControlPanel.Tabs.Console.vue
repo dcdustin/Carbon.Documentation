@@ -46,8 +46,9 @@ import { selectedServer } from './ControlPanel.SaveLoad.vue'
 }
 
 .r-send-button.toggled {
-  border-color: var(--category-misc);
-  border: dashed 1px;
+  font-weight: bolder;
+  text-decoration: underline;
+  text-underline-position: under;
 }
 
 .r-send-button:hover {
