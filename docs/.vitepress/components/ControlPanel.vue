@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import ConsoleTab from './ControlPanel.Tabs.Console.vue'
 import PlayersTab from './ControlPanel.Tabs.Players.vue'
+import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
 import { Server, addServer, createServer, deleteServer, selectServer, geoFlagCache, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad.vue'
 import { Slot, activeSlot, activeInventory, showInventory, hideInventory, handleDrag, handleDrop, mainSlots, beltSlots, wearSlots, toolSlots, draggedSlot } from './ControlPanel.Inventory.vue'
 import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
@@ -19,6 +20,9 @@ const subTabs = [{
   Name: 'Players',
   Description: 'A list of players or something like that.',
   ExtraData: (selectedServer: Server) => `(${selectedServer?.PlayerInfo?.length})`
+}, {
+  Name: 'Permissions',
+  Description: 'Good ol\' permissions.'
 }]
  
 onMounted(() => {
@@ -240,6 +244,9 @@ enum LogType {
       </div>
       <div v-else-if="selectedSubTab == 2" style="overflow: auto;">
         <PlayersTab />
+      </div>
+      <div v-else-if="selectedSubTab == 3" style="overflow: auto;">
+        <PermissionsTab />
       </div>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">

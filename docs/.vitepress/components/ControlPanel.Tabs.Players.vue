@@ -17,7 +17,7 @@ function formatDuration(seconds: number) {
 </script>
 
 <template>
-  <table tabindex="0" class="vp-doc table" style="">
+  <table tabindex="0" class="vp-doc table">
     <thead>
       <tr>
         <th class="vp-doc th"></th>

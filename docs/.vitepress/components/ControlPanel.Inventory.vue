@@ -80,7 +80,7 @@ export function handleDrag(slot: Slot) {
 
 export function handleDrop(slot: Slot) {
   // MoveInventoryItem
-  selectedServer.value.sendRpc('3553623853', activeInventory.value, draggedSlot.value?.Container, draggedSlot.value?.Position, slot.Container, slot.Position)
+  selectedServer.value.sendRpc(3553623853, activeInventory.value, draggedSlot.value?.Container, draggedSlot.value?.Position, slot.Container, slot.Position)
   selectedServer.value.fetchInventory(activeInventory.value)
   draggedSlot.value = null
 }

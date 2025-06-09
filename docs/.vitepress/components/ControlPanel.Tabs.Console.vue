@@ -39,6 +39,13 @@ import { selectedServer } from './ControlPanel.SaveLoad.vue'
   border-radius: 0px;
   cursor: pointer;
   transition: background-color, color;
+  border-color: transparent;
+  border: transparent 1px;
+}
+
+.r-send-button.toggled {
+  border-color: var(--category-misc);
+  border: dashed 1px;
 }
 
 .r-send-button:hover {

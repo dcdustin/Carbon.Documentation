@@ -280,7 +280,7 @@ export class Server {
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
-      this.sendRpc('951948318', 'Ping sentence!')
+      this.sendRpc(951948318, 'Ping sentence!')
     }
     this.Socket.onclose = () => {
       clear()
@@ -316,7 +316,7 @@ export class Server {
 
   fetchInventory(playerId: number) {
     // SendPlayerInventory
-    this.sendRpc('1739174796', playerId)
+    this.sendRpc(1739174796, playerId)
   }
 
   sendCommand(input: string, id: number = 1) {
@@ -345,7 +345,7 @@ export class Server {
     tryFocusLogs(false)
   }
 
-  sendRpc(id: string, ...args: any[]) {
+  sendRpc(id: number, ...args: any[]) {
     for (let i = 0; i < args.length; i++) {
       var arg = args[i]
       args[i] = `"${arg}"` 
