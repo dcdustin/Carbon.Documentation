@@ -1,14 +1,13 @@
 ---
-title: Linux Hosting
+title: Linux GSM
 description: Carbon now ships with LinuxGSM and can be installed and updated using the included one-liner install scripts!
-slug: linux-hosting
+slug: linux-gsm
 ---
 
-# 🐧 Linux Hosting
+# 🐧 Linux Game Server Managers
 ![LinuxGSM](/misc/linuxgsm.webp)
 
 ## Setup
-
 
 Carbon now ships with [`LinuxGSM`](https://linuxgsm.com) and can be installed and updated using the included one-liner install scripts!
 

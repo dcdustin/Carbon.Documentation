@@ -125,7 +125,7 @@ export default defineConfig({
               text: 'Hosting',
               collapsed: true,
               items: [
-                { text: 'Linux Hosting', link: '/owners/linux-hosting' },
+                { text: 'Linux GSM', link: '/owners/linux-gsm' },
               ],
             },
             { text: 'Oxide Porting', link: '/owners/oxide-porting' },
