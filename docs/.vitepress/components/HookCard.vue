@@ -48,8 +48,9 @@ function getExampleCode(hook: Hook): string {
       <div class="flex items-center gap-2">
         <h5 class="flex items-center gap-2 text-lg font-medium">
           <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
-          <a :href="`?s=${hook.FullName}`" target="_blank" class="contents">
-            <span>{{ hook.FullName }}</span> <ExternalLink :size="14" class="opacity-60" />
+          <span>{{ hook.FullName }}</span>
+          <a :href="`?s=${hook.FullName}`" target="_blank">
+            <ExternalLink :size="14" class="opacity-60" />
           </a>
         </h5>
         <ButtonIconCopy :getTextToCopy="() => hook.Id.toString()" :title="`Copy hook ID: ${hook.Id}`" class="opacity-60" />
