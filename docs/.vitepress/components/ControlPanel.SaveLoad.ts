@@ -281,7 +281,7 @@ export class Server {
       this.sendRpc(951948318, 'Ping sentence!')
     }
     this.Socket.onclose = () => {
-      clear()
+      this.clear()
     }
     this.Socket.onerror = (e) => {
       this.UserConnected = false
