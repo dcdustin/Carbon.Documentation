@@ -52,8 +52,7 @@ function getExampleCode(hook: Hook): string {
             <span>{{ hook.FullName }}</span> <ExternalLink :size="14" class="opacity-60" />
           </a>
         </h5>
-        <ButtonIconCopy :getTextToCopy="() => hook.Name" :title="`Copy hook name: ${hook.Name}`" text="name" class="opacity-60" />
-        <ButtonIconCopy :getTextToCopy="() => hook.Id.toString()" :title="`Copy hook ID: ${hook.Id}`" text="id" class="opacity-60" />
+        <ButtonIconCopy :getTextToCopy="() => hook.Id.toString()" :title="`Copy hook ID: ${hook.Id}`" class="opacity-60" />
       </div>
       <div class="flex flex-wrap gap-1.5">
         <VPBadge v-if="hook.Category" type="info" :text="hook.Category" title="Category" />
