@@ -53,6 +53,7 @@ export enum CompressedTag {
 export interface Server extends ServerApi {
   id: number
   tags_set: Set<RegionTag | CompressedTag | string>
+  rust_version: number | typeof NaN
 }
 
 export interface ServerList {
@@ -65,11 +66,18 @@ export async function fetchServerList() {
   const url = URL_SERVER_LIST
 
   const data = await fetchApiCaching<ServerList, ServerListApi>(url, CACHE_TIME_SERVER_LIST_TTL, (data) => {
-    const serverList: Server[] = data.Servers.map((server, index) => ({
-      ...server,
-      id: index,
-      tags_set: new Set(server.tags?.split(',') || []),
-    }))
+    const serverList: Server[] = data.Servers.map((server, index) => {
+      const tags = server.tags?.split(',') || []
+      const tagsSet = new Set(tags)
+      const rustVersionStr = tags.find((tag) => tag.startsWith('v'))?.slice(1)
+
+      return {
+        ...server,
+        id: index,
+        tags_set: tagsSet,
+        rust_version: rustVersionStr ? parseInt(rustVersionStr) : 0,
+      }
+    })
     const serverListData: ServerList = { ...data, Servers: serverList }
     return serverListData
   })
