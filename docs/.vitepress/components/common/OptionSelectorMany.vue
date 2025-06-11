@@ -1,22 +1,22 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends string | number">
 import { onClickOutside, useEventListener } from '@vueuse/core'
 import { ChevronDown } from 'lucide-vue-next'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, shallowRef, useTemplateRef } from 'vue'
 
 type OptionKeyValue = {
-  key: string
+  key: T
   value: string
 }
 
 const { options, optionKeyValues, label } = defineProps<{
-  options?: string[]
-  optionKeyValues?: OptionKeyValue[]
-  label: string
+  readonly options?: readonly T[]
+  readonly optionKeyValues?: readonly OptionKeyValue[]
+  readonly label: string
 }>()
 
-const model = defineModel<string[]>({ default: [] })
-const isOpen = ref(false)
-const dropdownRef = ref()
+const model = defineModel<T[]>({ default: [] })
+const isOpen = shallowRef(false)
+const dropdownRef = useTemplateRef<HTMLDivElement>('dropdownRef')
 
 const effectiveOptions = computed(() => {
   if (optionKeyValues) {
@@ -26,8 +26,13 @@ const effectiveOptions = computed(() => {
 })
 
 const displayText = computed(() => {
-  if (model.value.length === 0) return 'Select options...'
-  return model.value.map((key) => effectiveOptions.value.find((opt) => opt.key === key)?.value ?? key).join(', ')
+  if (effectiveOptions.value.length == 0) {
+    return 'No options available...'
+  }
+  if (model.value.length == 0) {
+    return 'Select options...'
+  }
+  return model.value.map((key) => effectiveOptions.value.find((opt) => opt.key == key)?.value ?? key).join(', ')
 })
 
 onClickOutside(dropdownRef, () => {
@@ -39,7 +44,7 @@ onMounted(() => {
     document,
     'scroll',
     (e) => {
-      if (!dropdownRef.value?.contains(e.target)) {
+      if (!dropdownRef.value?.contains(e.target as Node)) {
         isOpen.value = false
       }
     },
@@ -47,31 +52,22 @@ onMounted(() => {
   )
 })
 
-const toggleOption = (key: string) => {
+function toggleOption(key: T) {
   const index = model.value.indexOf(key)
-  if (index === -1) {
-    model.value = [...model.value, key]
+  if (index == -1) {
+    model.value.push(key)
   } else {
-    model.value = model.value.filter((item) => item !== key)
+    model.value.splice(index, 1)
   }
 }
 
-const handleKeyDown = (e: KeyboardEvent) => {
-  if (e.key === 'Escape') {
+function handleKeyDown(e: KeyboardEvent) {
+  if (e.key == 'Escape') {
     isOpen.value = false
-  } else if (e.key === 'Enter' || e.key === ' ') {
+  } else if (e.key == 'Enter' || e.key == ' ') {
     isOpen.value = !isOpen.value
   }
 }
-
-watch(
-  () => model.value.length,
-  (newLength) => {
-    if (newLength === effectiveOptions.value.length) {
-      isOpen.value = false
-    }
-  }
-)
 </script>
 
 <template>
@@ -81,9 +77,10 @@ watch(
       <button
         @click="isOpen = !isOpen"
         @keydown="handleKeyDown"
-        class="flex w-48 cursor-pointer items-center rounded-md bg-inherit px-3 py-1.5 text-sm ring-[1.5px] ring-gray-500 transition-all duration-200 ease-in-out hover:ring-violet-400 focus:ring-2 focus:ring-violet-500 dark:text-gray-100 dark:ring-gray-600 dark:hover:ring-violet-400"
+        :disabled="effectiveOptions.length == 0"
+        class="flex w-48 cursor-pointer items-center rounded-md bg-inherit px-3 py-1.5 text-sm ring-[1.5px] ring-gray-500 transition-all duration-200 ease-in-out hover:ring-violet-400 focus:ring-2 focus:ring-violet-500 disabled:cursor-not-allowed disabled:opacity-50 dark:text-gray-100 dark:ring-gray-600 dark:hover:ring-violet-400"
       >
-        <span class="flex-1 truncate text-left" :class="{ 'text-gray-500 dark:text-gray-400': model.length === 0 }">{{ displayText }}</span>
+        <span class="flex-1 truncate text-left" :class="{ 'text-gray-500 dark:text-gray-400': model.length == 0 }">{{ displayText }}</span>
         <ChevronDown class="ml-2 h-4 w-4 shrink-0 transition-transform duration-200" :class="{ 'rotate-180': isOpen }" />
       </button>
     </div>
