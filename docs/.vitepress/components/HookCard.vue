@@ -15,12 +15,6 @@ const { hook, isCtrlPressed } = defineProps<{
 const isExampleExpanded = shallowRef<boolean>(false)
 const isSourceExpanded = shallowRef<boolean>(false)
 
-function handleClick(e: MouseEvent) {
-  if (e.ctrlKey) {
-    window.open(`?s=${hook.FullName}`, '_blank')
-  }
-}
-
 function getCorrespondingTitleForHookFlag(flag: string): string {
   switch (flag) {
     case 'Static':
@@ -54,11 +48,11 @@ function getExampleCode(hook: Hook): string {
     <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
       <div class="flex items-center gap-2">
         <h5 class="flex items-center gap-2 text-lg font-medium">
-          <span
-            :class="[isCtrlPressed ? 'cursor-pointer text-purple-400 underline' : '', 'transition-colors duration-100']"
-            @click="handleClick"
+          <a
+            :href="isCtrlPressed ? `?s=${hook.FullName}` : undefined"
+            :class="['transition-colors duration-100', isCtrlPressed ? 'text-purple-400 underline' : '']"
             title="Hold CTRL for quick open"
-            >{{ hook.FullName }}</span
+            >{{ hook.FullName }}</a
           >
           <a :href="`?s=${hook.FullName}`" target="_blank">
             <ExternalLink :size="14" class="opacity-60" />
