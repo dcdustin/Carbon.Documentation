@@ -7,12 +7,19 @@ import { ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { shallowRef } from 'vue'
 
-const { hook } = defineProps<{
+const { hook, isCtrlPressed } = defineProps<{
   hook: Hook
+  isCtrlPressed: boolean
 }>()
 
 const isExampleExpanded = shallowRef<boolean>(false)
 const isSourceExpanded = shallowRef<boolean>(false)
+
+function handleClick(e: MouseEvent) {
+  if (e.ctrlKey) {
+    window.open(`?s=${hook.FullName}`, '_blank')
+  }
+}
 
 function getCorrespondingTitleForHookFlag(flag: string): string {
   switch (flag) {
@@ -47,8 +54,12 @@ function getExampleCode(hook: Hook): string {
     <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
       <div class="flex items-center gap-2">
         <h5 class="flex items-center gap-2 text-lg font-medium">
-          <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
-          <span>{{ hook.FullName }}</span>
+          <span
+            :class="[isCtrlPressed ? 'cursor-pointer text-purple-400 underline' : '', 'transition-colors duration-100']"
+            @click="handleClick"
+            title="Hold CTRL for quick open"
+            >{{ hook.FullName }}</span
+          >
           <a :href="`?s=${hook.FullName}`" target="_blank">
             <ExternalLink :size="14" class="opacity-60" />
           </a>

@@ -8,6 +8,7 @@ import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialHooks } from '@/data-loaders/hooks.data'
 import { store } from '@/stores/hooks-store'
+import { useKeyModifier } from '@vueuse/core'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import type { Highlighter } from 'shiki'
@@ -30,6 +31,7 @@ const selectedCategory = store.chosenCategory
 const showOxideHooks = store.showOxideHooks
 const showCarbonHooks = store.showCarbonHooks
 const debouncedSearchValue = store.searchValue
+const isCtrlPressed = useKeyModifier<boolean>('Control', { initial: false })
 
 const pageSize = 25
 
@@ -225,7 +227,7 @@ onMounted(async () => {
             </div>
           </div>
           <div v-for="hook in renderedList" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
-            <HookCard :hook="hook" />
+            <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" />
           </div>
           <img
             v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
