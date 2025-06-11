@@ -4,5 +4,9 @@ import { ref, shallowRef } from 'vue'
 export const store = {
   searchValue: shallowRef(''),
   chosenRegionTags: shallowRef<RegionTag | 'All'>('All'),
-  chosenCompressedTags: ref<CompressedTag[]>([]),
+  chosenCompressedTagsOr: ref<CompressedTag[]>([]),
+  chosenCompressedTagsAnd: ref<CompressedTag[]>([]),
+  playersRangeMin: ref(0),
+  playersRangeMax: ref(-1),
+  chosenRustVersions: ref<number[]>([]),
 }

@@ -13,13 +13,18 @@ import OptionSelectorMany from './common/OptionSelectorMany.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const miniSearch = shallowRef<MiniSearch | null>(null)
+const rustVersions = shallowRef<number[]>([])
 
 const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
 
 const debouncedSearchValue = store.searchValue
-const chosenCompressedTags = store.chosenCompressedTags
+const chosenCompressedTagsAnd = store.chosenCompressedTagsAnd
+const chosenCompressedTagsOr = store.chosenCompressedTagsOr
 const chosenRegionTag = store.chosenRegionTags
+const playersRangeMin = store.playersRangeMin
+const playersRangeMax = store.playersRangeMax
+const chosenRustVersions = store.chosenRustVersions
 
 const initialPageSize = 25
 const pageSize = 50
@@ -45,25 +50,44 @@ const filteredServers = computed(() => {
       return filtered.filter((server) => server.ip.startsWith(trimmed))
     }
   }
+  if (isFetchedRestData.value) {
+    if (chosenRustVersions.value.length > 0) {
+      filtered = filtered.filter((server) => {
+        return chosenRustVersions.value.includes(server.rust_version)
+      })
+    }
 
-  if (chosenRegionTag.value && chosenRegionTag.value != 'All' && isFetchedRestData.value) {
-    filtered = filtered.filter((server) => {
-      return server.tags_set.has(chosenRegionTag.value)
-    })
+    if (playersRangeMin.value > 0 || playersRangeMax.value > -1) {
+      const minValid = playersRangeMin.value > 0 && playersRangeMin.value
+      const maxValid = playersRangeMax.value > -1 && (playersRangeMax.value == 0 || playersRangeMax.value)
+      filtered = filtered.filter((server) => {
+        return (!minValid || server.players >= playersRangeMin.value) && (!maxValid || server.players <= playersRangeMax.value)
+      })
+    }
+
+    if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+      filtered = filtered.filter((server) => {
+        return server.tags_set.has(chosenRegionTag.value)
+      })
+    }
+
+    if (chosenCompressedTagsAnd.value.length && chosenCompressedTagsAnd.value.length > 0) {
+      filtered = filtered.filter((server) => {
+        return chosenCompressedTagsAnd.value.every((tag) => server.tags_set.has(tag))
+      })
+    }
+
+    if (chosenCompressedTagsOr.value.length && chosenCompressedTagsOr.value.length > 0) {
+      filtered = filtered.filter((server) => {
+        return chosenCompressedTagsOr.value.some((tag) => server.tags_set.has(tag))
+      })
+    }
   }
-
-  if (chosenCompressedTags.value.length && chosenCompressedTags.value.length > 0 && isFetchedRestData.value) {
-    filtered = filtered.filter((server) => {
-      return chosenCompressedTags.value.every((tag) => server.tags_set.has(tag))
-    })
-  }
-
   if (debouncedSearchValue.value) {
     if (!miniSearch.value) {
       filtered = filtered.filter(
         (server) =>
           server.hostname.toLowerCase().includes(debouncedSearchValue.value.toLowerCase()) ||
-          server.ip.includes(debouncedSearchValue.value) ||
           server.map?.toLowerCase().includes(debouncedSearchValue.value.toLowerCase()) ||
           server.tags?.toLowerCase().includes(debouncedSearchValue.value.toLowerCase())
       )
@@ -206,6 +230,7 @@ async function loadServers() {
     isFetchedRestData.value = true
 
     tryLoadMiniSearch()
+    rustVersions.value = Array.from(new Set(data.Servers.map((s) => s.rust_version))).toSorted((a, b) => b - a)
   } catch (err) {
     console.error('Failed to load servers:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load servers. Please try again later.'
@@ -226,9 +251,9 @@ onMounted(async () => {
       <template #right>
         <div class="flex flex-col gap-4 sm:flex-row">
           <OptionSelectorMany
-            v-model="chosenCompressedTags"
+            v-model="chosenCompressedTagsAnd"
             :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-            label="Tags (inclusive)"
+            label="Tags (and)"
           />
           <OptionSelector
             v-model="chosenRegionTag"
@@ -241,6 +266,20 @@ onMounted(async () => {
         </div>
       </template>
     </SearchBar>
+    <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
+      <OptionSelectorMany
+        v-model="chosenCompressedTagsOr"
+        :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+        label="Tags (or)"
+      />
+      <OptionSelectorMany v-model="chosenRustVersions" :options="rustVersions" label="Rust version" />
+      <div class="flex items-center gap-2 [&>input]:w-10 [&>input]:rounded-md [&>input]:text-center [&>input]:ring-1 [&>input]:ring-gray-500">
+        <span>Players</span>
+        <input type="number" title="Min" v-model="playersRangeMin" />
+        <span>to</span>
+        <input type="number" title="Max" v-model="playersRangeMax" />
+      </div>
+    </div>
     <div v-if="filteredServers && filteredServers.length">
       <div class="mt-4">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
