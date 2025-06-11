@@ -50,7 +50,20 @@ function getExampleCode(hook: Hook): string {
         <h5 class="flex items-center gap-2 text-lg font-medium">
           <a
             :href="isCtrlPressed ? `?s=${hook.FullName}` : undefined"
-            :class="['transition-colors duration-100', isCtrlPressed ? 'text-purple-400 underline' : '']"
+            :class="[
+              'relative transform transition-all duration-200 ease-in-out',
+              'bg-gradient-to-r from-violet-500 via-fuchsia-500 to-purple-500 bg-clip-text',
+              'after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full',
+              'after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:via-fuchsia-500 after:to-purple-500',
+              'after:origin-left after:transition-transform after:duration-200 after:ease-in-out',
+              isCtrlPressed
+                ? [
+                    'font-semibold text-transparent hover:text-transparent',
+                    'hover:text-gray-600 dark:hover:text-gray-300',
+                    'after:scale-x-100 hover:scale-[1.02]',
+                  ]
+                : ['after:scale-x-0'],
+            ]"
             title="Hold CTRL for quick open"
             >{{ hook.FullName }}</a
           >
