@@ -7,8 +7,9 @@ import { ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { shallowRef } from 'vue'
 
-const { hook } = defineProps<{
+const { hook, isCtrlPressed } = defineProps<{
   hook: Hook
+  isCtrlPressed: boolean
 }>()
 
 const isExampleExpanded = shallowRef<boolean>(false)
@@ -47,8 +48,25 @@ function getExampleCode(hook: Hook): string {
     <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
       <div class="flex items-center gap-2">
         <h5 class="flex items-center gap-2 text-lg font-medium">
-          <!-- <a :href="`/references/hooks#${encodeURIComponent(hook.FullName)}`" class="flex items-center gap-2"> -->
-          <span>{{ hook.FullName }}</span>
+          <a
+            :href="isCtrlPressed ? `?s=${hook.FullName}` : undefined"
+            :class="[
+              'relative transform transition-all duration-200 ease-in-out',
+              'bg-gradient-to-r from-violet-500 via-fuchsia-500 to-purple-500 bg-clip-text',
+              'after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full',
+              'after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:via-fuchsia-500 after:to-purple-500',
+              'after:origin-left after:transition-transform after:duration-200 after:ease-in-out',
+              isCtrlPressed
+                ? [
+                    'font-semibold text-transparent hover:text-transparent',
+                    'hover:text-gray-600 dark:hover:text-gray-300',
+                    'after:scale-x-100 hover:scale-[1.02]',
+                  ]
+                : ['after:scale-x-0'],
+            ]"
+            title="Hold CTRL for quick open"
+            >{{ hook.FullName }}</a
+          >
           <a :href="`?s=${hook.FullName}`" target="_blank">
             <ExternalLink :size="14" class="opacity-60" />
           </a>

@@ -8,6 +8,7 @@ import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialHooks } from '@/data-loaders/hooks.data'
 import { store } from '@/stores/hooks-store'
+import { useKeyModifier } from '@vueuse/core'
 import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import type { Highlighter } from 'shiki'
@@ -30,6 +31,7 @@ const selectedCategory = store.chosenCategory
 const showOxideHooks = store.showOxideHooks
 const showCarbonHooks = store.showCarbonHooks
 const debouncedSearchValue = store.searchValue
+const isCtrlPressed = useKeyModifier<boolean>('Control', { initial: false })
 
 const pageSize = 25
 
@@ -41,11 +43,7 @@ const filteredHooks = computed(() => {
     return []
   }
 
-  if (
-    !debouncedSearchValue.value &&
-    selectedCategory.value == 'All' &&
-    showOxideHooks.value == showCarbonHooks.value
-  ) {
+  if (!debouncedSearchValue.value && selectedCategory.value == 'All' && showOxideHooks.value == showCarbonHooks.value) {
     return hooks.value
   }
 
@@ -187,11 +185,7 @@ onMounted(async () => {
 
 <template>
   <AsyncState :isLoading="false" :error="error" loadingText="Loading hooks...">
-    <SearchBar
-      v-model="debouncedSearchValue"
-      placeholder="Search hooks..."
-      class="sticky min-[960px]:top-20 top-16 z-10"
-    >
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search hooks..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
         <Search class="text-gray-400" :size="20" />
       </template>
@@ -214,36 +208,29 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredHooks && filteredHooks.length">
-      <div class="flex flex-col gap-5 mt-4">
+      <div class="mt-4 flex flex-col gap-5">
         <InfinitePageScroll :list="filteredHooks" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 sm:right-4 sm:left-auto left-1/2 z-10">
-            <div
-              class="text-sm text-gray-500 bg-zinc-100/40 dark:bg-gray-800/40 backdrop-blur-sm px-4 py-2 rounded-lg"
-            >
-              Rendering {{ renderedList.length }} of {{ filteredHooks.length }} filtered hooks,
-              {{ hooks.length }} total hooks.
+          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
+            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
+              Rendering {{ renderedList.length }} of {{ filteredHooks.length }} filtered hooks, {{ hooks.length }} total hooks.
             </div>
           </div>
           <div v-for="hook in renderedList" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
-            <HookCard :hook="hook" />
+            <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" />
           </div>
           <img
             v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
             src="/misc/cat-d.gif"
             alt="evs"
-            class="w-10 h-10 mx-auto animate-bounce"
+            class="mx-auto h-10 w-10 animate-bounce"
           />
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="py-8 flex flex-col items-center justify-center gap-2">
+    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No hooks found matching your search</p>
-      <p v-if="hooks && hooks.length == 0" class="text-sm">
-        Debug: No hooks loaded. Check console for errors.
-      </p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">
-        Debug: Search query "{{ debouncedSearchValue }}" returned no results.
-      </p>
+      <p v-if="hooks && hooks.length == 0" class="text-sm">Debug: No hooks loaded. Check console for errors.</p>
+      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
   </AsyncState>
 </template>
