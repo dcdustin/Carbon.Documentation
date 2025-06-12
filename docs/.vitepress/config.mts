@@ -34,21 +34,31 @@ const tools = [
   { text: 'Changelog Generator', link: '/tools/changelog-generator/' },
 ]
 
+const siteDescription = 'A fully up-to-date documentation of all things: Carbon, Rust references and somewhat Oxide.'
+
 export default defineConfig({
   title: 'Carbon',
-  description: 'A fully up-to-date documentation of all things Carbon, Rust index and somewhat Oxide.',
+  description: siteDescription,
   base: '/',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+    ['meta', { property: 'og:title', content: 'Carbon Documentation' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:description', content: siteDescription }],
     ['meta', { property: 'og:image', content: '/carbon-bg.webp' }],
-    ['meta', { property: 'og:url', content: 'https://docs.carbonmod.gg' }],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { property: 'og:image:width', content: '200' }],
+    ['meta', { property: 'og:image:height', content: '200' }],
+    ['meta', { property: 'og:url', content: 'https://carbonmod.gg' }],
+    ['meta', { name: 'twitter:title', content: 'Carbon Documentation' }],
+    ['meta', { name: 'twitter:description', content: siteDescription }],
+    ['meta', { name: 'twitter:image', content: '/carbon-bg.webp' }],
   ],
   ignoreDeadLinks: false,
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
-    hostname: 'https://docs.carbonmod.gg',
+    hostname: 'https://carbonmod.gg',
   },
   lang: 'en-US',
   markdown: {
