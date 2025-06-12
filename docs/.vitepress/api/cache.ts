@@ -136,6 +136,10 @@ class Cache {
   }
 
   private async tryUpdateCacheVersion(): Promise<void> {
+    if (!isClientSide()) {
+      return
+    }
+
     if (Date.now() - this.lastTimeFetchedCacheVersion <= CACHE_TIME_VERSION_FETCH_DELAY) {
       return
     }
