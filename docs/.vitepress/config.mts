@@ -47,7 +47,7 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Carbon Documentation' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:description', content: siteDescription }],
-    ['meta', { property: 'og:image', content: '/carbon-bg.webp' }],
+    ['meta', { property: 'og:image', content: '/carbon-bg-sq.webp' }],
     ['meta', { property: 'og:image:width', content: '80' }],
     ['meta', { property: 'og:image:height', content: '80' }],
     ['meta', { property: 'og:url', content: 'https://carbonmod.gg' }],
