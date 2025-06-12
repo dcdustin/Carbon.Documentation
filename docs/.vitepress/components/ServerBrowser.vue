@@ -101,10 +101,10 @@ const filteredServers = computed(() => {
   return filtered
 })
 
-function tryLoadMiniSearch() {
+async function tryLoadMiniSearch() {
   const startTime = performance.now()
 
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'id',
     fields: ['hostname', 'tags', 'map'],
     searchOptions: {
@@ -213,10 +213,12 @@ function tryLoadMiniSearch() {
     },
   })
 
-  miniSearch.value.addAll(serverListData.value?.Servers ?? [])
+  await minisearch.addAllAsync(serverListData.value?.Servers ?? [], { chunkSize: 5000 }) // currently the most optimal chunk size
 
   const endTime = performance.now()
   console.log(`Initialized MiniSearch for server list in ${endTime - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
 async function loadServers() {
@@ -229,7 +231,6 @@ async function loadServers() {
 
     isFetchedRestData.value = true
 
-    tryLoadMiniSearch()
     rustVersions.value = Array.from(new Set(data.Servers.map((s) => s.rust_version))).toSorted((a, b) => b - a)
   } catch (err) {
     console.error('Failed to load servers:', err)
@@ -239,6 +240,7 @@ async function loadServers() {
 
 onMounted(async () => {
   await loadServers()
+  await tryLoadMiniSearch()
 })
 </script>
 
@@ -299,14 +301,20 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else-if="isFetchedRestData" class="flex flex-col items-center justify-center gap-2 py-8">
+    <div v-else-if="isFetchedRestData && miniSearch" class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No servers found matching your search</p>
       <p v-if="!serverListData?.Servers || serverListData.Servers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
-    <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2 py-8">
-      <Loader2 class="animate-spin" :size="24" />
-      <span>Loading em...</span>
+    <div class="mt-8 flex flex-col gap-8 font-semibold">
+      <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
+        <Loader2 class="animate-spin" :size="24" />
+        <span>Loading em...</span>
+      </div>
+      <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
+        <Loader2 class="animate-spin" :size="24" />
+        <span>Loading minisearch...</span>
+      </div>
     </div>
   </template>
 </template>
