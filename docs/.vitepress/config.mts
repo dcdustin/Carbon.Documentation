@@ -44,6 +44,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     ['meta', { property: 'og:title', content: 'Carbon Documentation' }],
+    ['meta', { property: 'og:site_name', content: 'Carbon Documentation' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:description', content: siteDescription }],
     ['meta', { property: 'og:image', content: '/carbon-bg.webp' }],
