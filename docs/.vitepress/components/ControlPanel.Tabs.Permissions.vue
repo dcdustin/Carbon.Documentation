@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { selectedServer } from './ControlPanel.SaveLoad'
+import { Loader2 } from 'lucide-vue-next'
 
 onMounted(() => {
   refreshPermissions()
@@ -79,6 +80,7 @@ export function refreshPermissions() {
           <button class="r-send-button" :class="'r-send-button ' + (group == selectedGroup ? 'toggled' : null)" @click="selectGroup(group, false)"><span class="text-neutral-400">{{group}}</span></button> 
         </td>
       </tr>
+        <Loader2 v-if="groupInfo == null || groupInfo?.Groups.length == 0" class="animate-spin flex text-xs text-slate-500" :size="20" />
     </table>
     <table v-if="selectedGroup">
       <thead>
