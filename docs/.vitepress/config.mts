@@ -53,7 +53,7 @@ export default defineConfig({
     ['meta', { property: 'og:url', content: 'https://carbonmod.gg' }],
     ['meta', { name: 'twitter:title', content: 'Carbon Documentation' }],
     ['meta', { name: 'twitter:description', content: siteDescription }],
-    ['meta', { name: 'twitter:image', content: '/carbon-bg.webp' }],
+    ['meta', { name: 'twitter:image', content: '/carbon-bg-sq.webp' }],
   ],
   ignoreDeadLinks: false,
   cleanUrls: true,
