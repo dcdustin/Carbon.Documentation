@@ -1,5 +1,6 @@
 import { tryFocusLogs, command, commandIndex } from './ControlPanel.Console'
 import { clearInventory, hideInventory, activeSlot, mainSlots, beltSlots, wearSlots, toolSlots } from './ControlPanel.Inventory'
+import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 import { ref } from 'vue'
 
 export const selectedServer = ref()
@@ -48,6 +49,15 @@ export function addServer(server: Server, shouldSelect: boolean = false) {
   }
 }
 
+export function hasServer(address: string, password: string) : boolean {
+  servers.value.forEach((server: Server) => {
+    if(server.Address == address && server.Password == password) { 
+      return true
+    }
+  });
+  return false
+}
+
 export function isValidUrl(urlStr: string) : boolean {
   try {
     const url = new URL(urlStr);
@@ -76,6 +86,7 @@ export function selectServer(server: Server) {
   commandIndex.value = 0
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
+  refreshPermissions()
   tryFocusLogs(true)
 }
 
@@ -124,6 +135,9 @@ export function load() {
     const value = localStorage.getItem('rcon-servers')
     if (value) {
       ;(JSON.parse(value) as Server[]).forEach((server) => {
+        if(hasServer(server.Address, server.Password)) {
+          return
+        }
         const localServer = createServer(server.Address, server.Password)
         localServer.AutoConnect = server.AutoConnect
         localServer.Secure = server.Secure

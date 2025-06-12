@@ -2,28 +2,11 @@
 import { ref, onMounted } from 'vue'
 import { selectedServer } from './ControlPanel.SaveLoad'
 
-const selectedGroup = ref('')
-const selectedHookable = ref()
-const groupInfo = ref()
-const groupPermInfo = ref<string[]>()
-
 onMounted(() => {
-  if(!selectedServer.value) {
-    return
-  }
-
-  // GetPermissionsMetadata
-  selectedServer.value.Rpcs[1317317511] = data => {
-    groupInfo.value = data.Value
-  }
-  // GetGroupPermissions
-  selectedServer.value.Rpcs[631493895] = data => {
-    groupPermInfo.value = data.Value.Permissions
-  }
-  selectedServer.value.sendRpc(1317317511)
+  refreshPermissions()
 })
 
-function selectGroup(value: string, forceSelect: boolean = true) {
+function selectGroup(value: string | null, forceSelect: boolean = true) {
   if(!forceSelect && selectedGroup.value == value) {
     selectedGroup.value = null
     selectHookable(null)
@@ -32,10 +15,13 @@ function selectGroup(value: string, forceSelect: boolean = true) {
   selectedGroup.value = value
   selectedServer.value.sendRpc(631493895, value)
 }
-function selectHookable(value: string) {
+function selectHookable(value: string | null) {
   selectedHookable.value = value
 }
 function groupHasPermission(value: string) : boolean {
+  if(groupPermInfo.value == null) {
+    return false
+  }
   return groupPermInfo.value.includes(value)
 }
 function togglePermission(value: string) {
@@ -50,6 +36,33 @@ function togglePermission(value: string) {
 
   selectedServer.value.sendRpc(3261363143, selectedGroup.value, value, selectedHookable.value.Plugin?.Name ?? selectedHookable.value.Module?.Name)
   selectGroup(selectedGroup.value)
+}
+</script>
+
+<script lang="ts">
+const groupInfo = ref()
+const groupPermInfo = ref<string[]>()
+const selectedGroup = ref<string | null>('')
+const selectedHookable = ref()
+
+export function refreshPermissions() {
+  if(!selectedServer.value) {
+    return
+  }
+
+  selectedGroup.value = null
+  selectedHookable.value = null
+  groupInfo.value = null
+  
+  // GetPermissionsMetadata
+  selectedServer.value.Rpcs[1317317511] = (data: any) => {
+    groupInfo.value = data.Value
+  }
+  // GetGroupPermissions
+  selectedServer.value.Rpcs[631493895] = (data: any) => {
+    groupPermInfo.value = data.Value.Permissions
+  }
+  selectedServer.value.sendRpc(1317317511)
 }
 </script>
 
