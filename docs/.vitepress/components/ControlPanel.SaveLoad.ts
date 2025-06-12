@@ -9,6 +9,10 @@ export const servers = ref<Server[]>([])
 export const geoFlagCache = ref<{ [key: string]: string }>({})
 
 export async function fetchGeolocation(ip: string) {
+  if(ip == "127.0.0.1") {
+    return
+  }
+
   const url = `https://ipwho.is/${ip.split(':')[0]}`;
 
   try {
