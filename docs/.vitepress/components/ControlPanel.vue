@@ -105,7 +105,7 @@ enum LogType {
 </script>
 
 <template>
-  <div class="max-w-screen-lg mx-auto px-4 py-8 space-y-0">
+  <div class="md:container mx-auto px-4 lg:px-6 xl:px-8 2xl:px-20 py-8 space-y-0">
     <div class="r-list">
       <button v-for="server in servers" :key="server.Address" :class="['r-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
         <Dot
