@@ -264,7 +264,7 @@ export class Server {
       return
     }
 
-    this.Socket = new WebSocket((this.Secure || enforceSecure() ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
+    this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
     this.IsConnecting = true
 
     this.Socket.onopen = () => {
