@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad'
 import { showInventory } from './ControlPanel.Inventory'
+import { ExternalLink } from 'lucide-vue-next'
 
 function formatDuration(seconds: number) {
   const hrs = Math.floor(seconds / 3600)
