@@ -123,7 +123,21 @@ class VersionManager {
 
     const fetchPromise = (async () => {
       try {
-        const response = await fetch(url, { cache: 'no-cache', signal: AbortSignal.timeout(3000) })
+        let abortController: AbortController | null = null
+        let timeoutId: ReturnType<typeof setTimeout> | undefined
+
+        // Use AbortController where available to implement a 3-second timeout
+        if (typeof AbortController !== 'undefined') {
+          abortController = new AbortController()
+          timeoutId = setTimeout(() => abortController?.abort(), 3_000)
+        }
+
+        const response = await fetch(url, {
+          cache: 'no-cache',
+          signal: abortController?.signal,
+        })
+
+        if (timeoutId) clearTimeout(timeoutId)
         if (!response.ok) {
           throw new Error(`Failed to fetch version: ${response.status} ${response.statusText}`)
         }
@@ -166,6 +180,17 @@ class Cache {
     this.storage = storage
     this.versionManager = versionManager
     this.cleanUpOldEntries()
+
+    // Ensure we don't lose writes if the user navigates away before the debounce timer fires
+    if (isClientSide()) {
+      // pagehide is preferred over beforeunload because it also fires on bfcache
+      window.addEventListener('pagehide', () => {
+        if (this.pendingStorageWrites.size > 0) {
+          // Fire-and-forget – we cannot await during page unload
+          this.flushStorageWrites()
+        }
+      })
+    }
   }
 
   private scheduleStorageWrite(): void {
@@ -177,11 +202,20 @@ class Cache {
 
   private async flushStorageWrites(): Promise<void> {
     if (this.pendingStorageWrites.size === 0) {
+      this.storageWriteTimeout = null
       return
     }
-    await this.storage.setItemsBatched(Array.from(this.pendingStorageWrites.entries()))
-    this.pendingStorageWrites.clear()
+
+    const batch = this.pendingStorageWrites
+    this.pendingStorageWrites = new Map()
     this.storageWriteTimeout = null
+
+    try {
+      await this.storage.setItemsBatched(Array.from(batch.entries()))
+    } catch (err) {
+      console.warn('Failed to write cache batch, will retry later', err)
+      batch.forEach((value, key) => this.pendingStorageWrites.set(key, value))
+    }
   }
 
   private isCacheItemValid<T>(item: CacheItem<T>, itemTtl: number, currentVersionId: string): boolean {
@@ -267,6 +301,17 @@ class Cache {
   }
 }
 
-const storage = isClientSide() ? new IndexedDBStorage('docsCache', 1) : new DummyStorage()
+let storage: IStorageAsync
+if (isClientSide() && typeof indexedDB !== 'undefined') {
+  try {
+    storage = new IndexedDBStorage('docsCache', 1)
+  } catch (err) {
+    console.warn('Failed to initialise IndexedDB, falling back to in-memory storage', err)
+    storage = new DummyStorage()
+  }
+} else {
+  storage = new DummyStorage()
+}
+
 const versionManager = new VersionManager()
 export const cache = new Cache(storage, versionManager)
