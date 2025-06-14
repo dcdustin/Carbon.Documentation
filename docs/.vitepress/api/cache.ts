@@ -164,7 +164,7 @@ class VersionManager {
   }
 }
 
-interface CacheOptions {
+export interface CacheOptions {
   versionUrl?: string
 }
 
