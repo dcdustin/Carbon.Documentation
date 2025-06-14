@@ -106,7 +106,11 @@ class VersionManager {
   private versions = new Map<string, { versionId: string; timestamp: number }>()
   private pendingFetches = new Map<string, Promise<string>>()
 
-  public async getVersion(url: string = URL_VERSION_DOCS): Promise<string> {
+  public async getVersion(url: string | undefined): Promise<string> {
+    if (!url) {
+      return 'no-url'
+    }
+
     if (!isClientSide()) {
       return 'ssr'
     }
