@@ -1,5 +1,5 @@
-import { IStorageAsync } from '@/shared/i-storage'
-import { SimpleIndexDB } from '@/shared/simple-index-db'
+import { IStorageAsync } from '../shared/i-storage'
+import { SimpleIndexDB } from '../shared/simple-index-db'
 import { isClientSide } from '../shared/utils'
 import { CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from './constants'
 
