@@ -73,8 +73,9 @@ class IndexedDBStorage implements IStorageAsync {
     const db = await this.dbPromise
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.objStoreName, 'readwrite')
+      const store = tx.objectStore(this.objStoreName)
       items.forEach(([key, value]) => {
-        tx.objectStore(this.objStoreName).put(value, key)
+        store.put(value, key)
       })
       tx.oncomplete = () => resolve()
       tx.onerror = () => reject(tx.error)
@@ -261,8 +262,9 @@ class Cache {
     }
   }
 
-  public async saveToCache<T>(id: string, data: T, options?: CacheOptions): Promise<void> {
-    const versionUrl = options?.versionUrl ?? DEFAULT_CACHE_OPTIONS.versionUrl
+  public async saveToCache<T>(id: string, data: T, options: CacheOptions = {}): Promise<void> {
+    const mergedOptions = { ...DEFAULT_CACHE_OPTIONS, ...options }
+    const { versionUrl } = mergedOptions
     const versionId = await this.versionManager.getVersion(versionUrl)
 
     const cacheItem: CacheItem<T> = {
@@ -276,8 +278,9 @@ class Cache {
     this.scheduleStorageWrite()
   }
 
-  public async getFromCache<T>(id: string, itemTtl: number, options?: CacheOptions): Promise<T | null> {
-    const versionUrl = options?.versionUrl ?? DEFAULT_CACHE_OPTIONS.versionUrl
+  public async getFromCache<T>(id: string, itemTtl: number, options: CacheOptions = {}): Promise<T | null> {
+    const mergedOptions = { ...DEFAULT_CACHE_OPTIONS, ...options }
+    const { versionUrl } = mergedOptions
     const currentVersionId = await this.versionManager.getVersion(versionUrl)
 
     const itemFromMemory = this.cacheMap.get(id) as CacheItem<T> | undefined
