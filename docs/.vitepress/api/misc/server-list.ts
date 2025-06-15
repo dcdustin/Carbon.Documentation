@@ -1,3 +1,4 @@
+import { CacheOptions } from '../cache'
 import { CACHE_TIME_SERVER_LIST_TTL, URL_SERVER_LIST } from '../constants'
 import { fetchApiCaching } from '../fetch-api'
 
@@ -65,22 +66,31 @@ export interface ServerList {
 export async function fetchServerList() {
   const url = URL_SERVER_LIST
 
-  const data = await fetchApiCaching<ServerList, ServerListApi>(url, CACHE_TIME_SERVER_LIST_TTL, (data) => {
-    const serverList: Server[] = data.Servers.map((server, index) => {
-      const tags = server.tags?.split(',') || []
-      const tagsSet = new Set(tags)
-      const rustVersionStr = tags.find((tag) => tag.startsWith('v'))?.slice(1)
+  const options: CacheOptions = {
+    versionUrl: '',
+  }
 
-      return {
-        ...server,
-        id: index,
-        tags_set: tagsSet,
-        rust_version: rustVersionStr ? parseInt(rustVersionStr) : 0,
-      }
-    })
-    const serverListData: ServerList = { ...data, Servers: serverList }
-    return serverListData
-  })
+  const data = await fetchApiCaching<ServerList, ServerListApi>(
+    url,
+    CACHE_TIME_SERVER_LIST_TTL,
+    (data) => {
+      const serverList: Server[] = data.Servers.map((server, index) => {
+        const tags = server.tags?.split(',') || []
+        const tagsSet = new Set(tags)
+        const rustVersionStr = tags.find((tag) => tag.startsWith('v'))?.slice(1)
+
+        return {
+          ...server,
+          id: index,
+          tags_set: tagsSet,
+          rust_version: rustVersionStr ? parseInt(rustVersionStr) : 0,
+        }
+      })
+      const serverListData: ServerList = { ...data, Servers: serverList }
+      return serverListData
+    },
+    options
+  )
 
   return data
 }

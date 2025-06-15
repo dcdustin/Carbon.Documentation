@@ -73,8 +73,9 @@ class IndexedDBStorage implements IStorageAsync {
     const db = await this.dbPromise
     return new Promise((resolve, reject) => {
       const tx = db.transaction(this.objStoreName, 'readwrite')
+      const store = tx.objectStore(this.objStoreName)
       items.forEach(([key, value]) => {
-        tx.objectStore(this.objStoreName).put(value, key)
+        store.put(value, key)
       })
       tx.oncomplete = () => resolve()
       tx.onerror = () => reject(tx.error)
@@ -102,108 +103,137 @@ class IndexedDBStorage implements IStorageAsync {
   }
 }
 
+class VersionManager {
+  private versions = new Map<string, { versionId: string; timestamp: number }>()
+  private pendingFetches = new Map<string, Promise<string>>()
+
+  public async getVersion(url: string | undefined): Promise<string> {
+    if (!url) {
+      return 'no-url'
+    }
+
+    if (!isClientSide()) {
+      return 'ssr'
+    }
+
+    const cached = this.versions.get(url)
+    if (cached && Date.now() - cached.timestamp < CACHE_TIME_VERSION_FETCH_DELAY) {
+      return cached.versionId
+    }
+
+    const pending = this.pendingFetches.get(url)
+    if (pending) {
+      return pending
+    }
+
+    const fetchPromise = (async () => {
+      try {
+        let abortController: AbortController | null = null
+        let timeoutId: ReturnType<typeof setTimeout> | undefined
+
+        // Use AbortController where available to implement a 3-second timeout
+        if (typeof AbortController !== 'undefined') {
+          abortController = new AbortController()
+          timeoutId = setTimeout(() => abortController?.abort(), 3_000)
+        }
+
+        const response = await fetch(url, {
+          cache: 'no-cache',
+          signal: abortController?.signal,
+        })
+
+        if (timeoutId) clearTimeout(timeoutId)
+        if (!response.ok) {
+          throw new Error(`Failed to fetch version: ${response.status} ${response.statusText}`)
+        }
+        const versionId = await response.text()
+        this.versions.set(url, { versionId, timestamp: Date.now() })
+        return versionId
+      } catch (error) {
+        console.warn(`Error fetching version from ${url}:`, error)
+        if (cached) {
+          return cached.versionId // Return stale version on error
+        }
+        throw error // Rethrow if no cached version is available
+      } finally {
+        this.pendingFetches.delete(url)
+      }
+    })()
+
+    this.pendingFetches.set(url, fetchPromise)
+    return fetchPromise
+  }
+}
+
+export interface CacheOptions {
+  versionUrl?: string
+}
+
+const DEFAULT_CACHE_OPTIONS: CacheOptions = {
+  versionUrl: URL_VERSION_DOCS,
+}
+
 class Cache {
-  private cacheMap: Map<string, CacheItem<unknown>> = new Map()
-
+  private cacheMap = new Map<string, CacheItem<unknown>>()
   private storage: IStorageAsync
-  private pendingStorageWrites: Map<string, CacheItem<unknown>> = new Map()
+  private versionManager: VersionManager
+  private pendingStorageWrites = new Map<string, CacheItem<unknown>>()
   private storageWriteTimeout: ReturnType<typeof setTimeout> | null = null
+  private isDoneCleaningUpOldEntries = false
 
-  private versionFetchPromise: Promise<void> | null = null
-  private lastTimeFetchedCacheVersion: number = 0
-  private currentCacheVersion: string = ''
-
-  private isDoneCleaningUpOldEntries: boolean = false
-
-  constructor(storage: IStorageAsync) {
+  constructor(storage: IStorageAsync, versionManager: VersionManager) {
     this.storage = storage
+    this.versionManager = versionManager
+    this.cleanUpOldEntries()
+
+    // Ensure we don't lose writes if the user navigates away before the debounce timer fires
+    if (isClientSide()) {
+      // pagehide is preferred over beforeunload because it also fires on bfcache
+      window.addEventListener('pagehide', () => {
+        if (this.pendingStorageWrites.size > 0) {
+          // Fire-and-forget – we cannot await during page unload
+          this.flushStorageWrites()
+        }
+      })
+    }
   }
 
   private scheduleStorageWrite(): void {
     if (this.storageWriteTimeout) {
       clearTimeout(this.storageWriteTimeout)
     }
-
-    this.storageWriteTimeout = setTimeout(() => {
-      this.flushStorageWrites()
-    }, 50)
+    this.storageWriteTimeout = setTimeout(() => this.flushStorageWrites(), 230)
   }
 
   private async flushStorageWrites(): Promise<void> {
-    await this.storage.setItemsBatched(Array.from(this.pendingStorageWrites.entries()))
-    this.pendingStorageWrites.clear()
+    if (this.pendingStorageWrites.size === 0) {
+      this.storageWriteTimeout = null
+      return
+    }
+
+    const batch = this.pendingStorageWrites
+    this.pendingStorageWrites = new Map()
     this.storageWriteTimeout = null
+
+    try {
+      await this.storage.setItemsBatched(Array.from(batch.entries()))
+    } catch (err) {
+      console.warn('Failed to write cache batch, will retry later', err)
+      batch.forEach((value, key) => this.pendingStorageWrites.set(key, value))
+    }
   }
 
-  private async tryUpdateCacheVersion(): Promise<void> {
-    if (!isClientSide()) {
-      return
-    }
-
-    if (Date.now() - this.lastTimeFetchedCacheVersion <= CACHE_TIME_VERSION_FETCH_DELAY) {
-      return
-    }
-
-    if (this.versionFetchPromise) {
-      return this.versionFetchPromise
-    }
-
-    this.versionFetchPromise = (async () => {
-      try {
-        const resp = await fetch(URL_VERSION_DOCS, {
-          cache: 'no-cache',
-          signal: AbortSignal.timeout(3000),
-        })
-
-        if (!resp.ok) {
-          throw new Error(`Failed to fetch version: ${resp.status} ${resp.statusText}`)
-        }
-
-        this.currentCacheVersion = await resp.text()
-        this.lastTimeFetchedCacheVersion = Date.now()
-      } catch (e) {
-        console.warn(`Error fetching ${URL_VERSION_DOCS}:`, e)
-      } finally {
-        this.versionFetchPromise = null
-      }
-    })()
-
-    return this.versionFetchPromise
-  }
-
-  private isCacheItemValid<T>(item: CacheItem<T>, itemTtl: number): boolean {
-    return item.versionId === this.currentCacheVersion && Date.now() - item.timestampCreated <= itemTtl
-  }
-
-  private async getFromMemOrStorage<T>(id: string, itemTtl: number): Promise<CacheItem<T> | null> {
-    const itemFromMemory = this.cacheMap.get(id) as CacheItem<T>
-    if (itemFromMemory) {
-      if (this.isCacheItemValid(itemFromMemory, itemTtl)) {
-        return itemFromMemory
-      }
-      this.cacheMap.delete(id)
-    }
-
-    const itemFromStorage = await this.storage.getItem<T>(id)
-    if (itemFromStorage) {
-      try {
-        if (this.validateCacheItem(itemFromStorage)) {
-          this.cacheMap.set(id, itemFromStorage)
-          return itemFromStorage
-        }
-      } catch (e) {
-        console.warn('Error parsing item from storage:', e)
-      }
-      this.storage.removeItem(id)
-    }
-
-    return null
+  private isCacheItemValid<T>(item: CacheItem<T>, itemTtl: number, currentVersionId: string): boolean {
+    return item.versionId === currentVersionId && Date.now() - item.timestampCreated <= itemTtl
   }
 
   private validateCacheItem<T>(item: unknown): item is CacheItem<T> {
+    const isObject = typeof item === 'object' && item !== null
+    if (!isObject) {
+      return false
+    }
+
     return (
-      typeof item === 'object' &&
-      item !== null &&
       'versionId' in item &&
       'timestampCreated' in item &&
       'data' in item &&
@@ -217,54 +247,78 @@ class Cache {
       return
     }
     try {
-      const arr: string[] = []
+      const keysToRemove: string[] = []
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i)
         if (key && (key.startsWith('CST2_') || key.startsWith('carbon_docs_cache_'))) {
-          arr.push(key)
+          keysToRemove.push(key)
         }
       }
-
-      arr.forEach((key) => {
-        localStorage.removeItem(key)
-      })
-    } catch (e) {
-      console.warn('Error cleaning up old entries:', e)
+      keysToRemove.forEach((key) => localStorage.removeItem(key))
+    } catch (error) {
+      console.warn('Error cleaning up old cache entries:', error)
     } finally {
       this.isDoneCleaningUpOldEntries = true
     }
   }
 
-  public saveToCache<T>(url: string, data: T): void {
-    const id = url
+  public async saveToCache<T>(id: string, data: T, options: CacheOptions = {}): Promise<void> {
+    const mergedOptions = { ...DEFAULT_CACHE_OPTIONS, ...options }
+    const { versionUrl } = mergedOptions
+    const versionId = await this.versionManager.getVersion(versionUrl)
+
     const cacheItem: CacheItem<T> = {
       data,
       timestampCreated: Date.now(),
-      versionId: this.currentCacheVersion,
+      versionId,
     }
 
     this.cacheMap.set(id, cacheItem)
-
     this.pendingStorageWrites.set(id, cacheItem)
     this.scheduleStorageWrite()
   }
 
-  public async getFromCache<T>(url: string, itemTtl: number): Promise<T | null> {
-    await this.tryUpdateCacheVersion()
+  public async getFromCache<T>(id: string, itemTtl: number, options: CacheOptions = {}): Promise<T | null> {
+    const mergedOptions = { ...DEFAULT_CACHE_OPTIONS, ...options }
+    const { versionUrl } = mergedOptions
+    const currentVersionId = await this.versionManager.getVersion(versionUrl)
 
-    this.cleanUpOldEntries()
+    const itemFromMemory = this.cacheMap.get(id) as CacheItem<T> | undefined
+    if (itemFromMemory && this.isCacheItemValid(itemFromMemory, itemTtl, currentVersionId)) {
+      return itemFromMemory.data
+    }
 
-    const id = url
-    const cacheItem = await this.getFromMemOrStorage<T>(id, itemTtl)
+    const itemFromStorage = await this.storage.getItem<T>(id)
+    if (itemFromStorage) {
+      if (!this.validateCacheItem(itemFromStorage)) {
+        console.warn('Invalid item in storage:', itemFromStorage)
+        await this.storage.removeItem(id)
+        return null
+      }
 
-    if (cacheItem && this.isCacheItemValid(cacheItem, itemTtl)) {
-      return cacheItem.data
+      this.cacheMap.set(id, itemFromStorage)
+      if (this.isCacheItemValid(itemFromStorage, itemTtl, currentVersionId)) {
+        return itemFromStorage.data
+      }
     }
 
     this.cacheMap.delete(id)
-    this.storage.removeItem(id)
+    this.storage.removeItem(id).catch((err) => console.warn(`Failed to remove item ${id}`, err))
     return null
   }
 }
 
-export const cache = new Cache(isClientSide() ? new IndexedDBStorage('docsCache', 1) : new DummyStorage())
+let storage: IStorageAsync
+if (isClientSide() && typeof indexedDB !== 'undefined') {
+  try {
+    storage = new IndexedDBStorage('docsCache', 1)
+  } catch (err) {
+    console.warn('Failed to initialize IndexedDB, falling back to in-memory storage', err)
+    storage = new DummyStorage()
+  }
+} else {
+  storage = new DummyStorage()
+}
+
+const versionManager = new VersionManager()
+export const cache = new Cache(storage, versionManager)

@@ -1,7 +1,12 @@
-import { cache } from './cache'
+import { CacheOptions, cache } from './cache'
 
-export async function fetchApiCaching<T, K = unknown>(url: string, itemTtl: number, callbackFormatDataFromRemote?: (data: K) => T): Promise<T> {
-  const cached = (await cache.getFromCache(url, itemTtl)) as T | null
+export async function fetchApiCaching<T, K = unknown>(
+  url: string,
+  itemTtl: number,
+  callbackFormatDataFromRemote?: (data: K) => T,
+  options?: CacheOptions
+): Promise<T> {
+  const cached = (await cache.getFromCache(url, itemTtl, options)) as T | null
   if (cached) {
     return cached
   }
@@ -11,7 +16,7 @@ export async function fetchApiCaching<T, K = unknown>(url: string, itemTtl: numb
     if (callbackFormatDataFromRemote) {
       data = callbackFormatDataFromRemote(data)
     }
-    cache.saveToCache(url, data)
+    cache.saveToCache(url, data, options)
     return data
   } catch (error) {
     console.error('Error fetching data from', url, error)
