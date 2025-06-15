@@ -1,3 +1,5 @@
+import { IStorageAsync } from '@/shared/i-storage'
+import { SimpleIndexDB } from '@/shared/simple-index-db'
 import { isClientSide } from '../shared/utils'
 import { CACHE_TIME_VERSION_FETCH_DELAY, URL_VERSION_DOCS } from './constants'
 
@@ -5,13 +7,6 @@ interface CacheItem<T> {
   versionId: string
   timestampCreated: number
   data: T
-}
-
-interface IStorageAsync {
-  setItem<T>(key: string, value: CacheItem<T>): Promise<void>
-  setItemsBatched<T>(items: [key: string, value: CacheItem<T>][]): Promise<void>
-  getItem<T>(key: string): Promise<CacheItem<T> | null>
-  removeItem(key: string): Promise<void>
 }
 
 class DummyStorage implements IStorageAsync {
@@ -23,83 +18,12 @@ class DummyStorage implements IStorageAsync {
     return
   }
 
-  async getItem<T>(): Promise<CacheItem<T> | null> {
+  async getItem<T>(): Promise<T | null> {
     return null
   }
 
   async removeItem(): Promise<void> {
     return
-  }
-}
-
-class IndexedDBStorage implements IStorageAsync {
-  private dbPromise: Promise<IDBDatabase>
-  private objStoreName: string = 'cache'
-
-  constructor(dbName: string, version: number) {
-    this.dbPromise = new Promise((resolve, reject) => {
-      const request = indexedDB.open(dbName, version)
-
-      request.onupgradeneeded = () => {
-        const db = request.result
-        if (!db.objectStoreNames.contains(this.objStoreName)) {
-          db.createObjectStore(this.objStoreName)
-        }
-      }
-
-      request.onsuccess = () => {
-        const db = request.result
-        db.onversionchange = () => {
-          db.close()
-          console.warn('Database is outdated, please reload the page.')
-        }
-        resolve(db)
-      }
-      request.onerror = () => reject(request.error)
-    })
-  }
-
-  async setItem<T>(key: string, value: CacheItem<T>): Promise<void> {
-    const db = await this.dbPromise
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(this.objStoreName, 'readwrite')
-      tx.objectStore(this.objStoreName).put(value, key)
-      tx.oncomplete = () => resolve()
-      tx.onerror = () => reject(tx.error)
-    })
-  }
-
-  async setItemsBatched<T>(items: [key: string, value: CacheItem<T>][]): Promise<void> {
-    const db = await this.dbPromise
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(this.objStoreName, 'readwrite')
-      const store = tx.objectStore(this.objStoreName)
-      items.forEach(([key, value]) => {
-        store.put(value, key)
-      })
-      tx.oncomplete = () => resolve()
-      tx.onerror = () => reject(tx.error)
-    })
-  }
-
-  async getItem<T>(key: string): Promise<CacheItem<T> | null> {
-    const db = await this.dbPromise
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(this.objStoreName)
-      const request = tx.objectStore(this.objStoreName).get(key)
-      request.onsuccess = () => resolve(request.result || null)
-      request.onerror = () => reject(request.error)
-    })
-  }
-
-  async removeItem(key: string): Promise<void> {
-    const db = await this.dbPromise
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(this.objStoreName, 'readwrite')
-      tx.objectStore(this.objStoreName).delete(key)
-      tx.oncomplete = () => resolve()
-      tx.onerror = () => reject(tx.error)
-    })
   }
 }
 
@@ -288,7 +212,7 @@ class Cache {
       return itemFromMemory.data
     }
 
-    const itemFromStorage = await this.storage.getItem<T>(id)
+    const itemFromStorage = await this.storage.getItem<CacheItem<T>>(id)
     if (itemFromStorage) {
       if (!this.validateCacheItem(itemFromStorage)) {
         console.warn('Invalid item in storage:', itemFromStorage)
@@ -311,7 +235,7 @@ class Cache {
 let storage: IStorageAsync
 if (isClientSide() && typeof indexedDB !== 'undefined') {
   try {
-    storage = new IndexedDBStorage('docsCache', 1)
+    storage = new SimpleIndexDB('docsCache', 1)
   } catch (err) {
     console.warn('Failed to initialize IndexedDB, falling back to in-memory storage', err)
     storage = new DummyStorage()
