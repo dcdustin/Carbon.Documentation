@@ -310,7 +310,7 @@ if (isClientSide() && typeof indexedDB !== 'undefined') {
   try {
     storage = new IndexedDBStorage('docsCache', 1)
   } catch (err) {
-    console.warn('Failed to initialise IndexedDB, falling back to in-memory storage', err)
+    console.warn('Failed to initialize IndexedDB, falling back to in-memory storage', err)
     storage = new DummyStorage()
   }
 } else {
