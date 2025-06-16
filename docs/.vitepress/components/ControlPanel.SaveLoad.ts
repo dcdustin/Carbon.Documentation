@@ -108,10 +108,8 @@ export function selectSubTab(index: number) {
   }
 }
 
-export function save() {
-  localStorage.setItem(
-    'rcon-servers',
-    JSON.stringify(servers.value, (key, value) => {
+function exportToJson() : string {
+  return JSON.stringify(servers.value, (key, value) => {
       switch (key) {
         case 'Socket':
         case 'UserConnected':
@@ -127,14 +125,28 @@ export function save() {
       }
       return value
     })
-  )
 }
 
-export function load() {
+export function exportSave() {
+  const confirm = window.confirm(`Are you sure you wanna copy servers to clipboard?`)
+  if (confirm) {
+    navigator.clipboard.writeText(exportToJson())
+  }
+}
+
+export function importSave() {
+  const confirm = window.confirm(`Are you sure you wanna import and append the servers from the clipboard?`)
+  if (confirm) {
+    navigator.clipboard.readText().then((text) => {
+      importFromJson(text)
+    })
+  }
+}
+
+function importFromJson(data: string) {
   try {
-    const value = localStorage.getItem('rcon-servers')
-    if (value) {
-      ;(JSON.parse(value) as Server[]).forEach((server) => {
+    if (data) {
+      ;(JSON.parse(data) as Server[]).forEach((server) => {
         if(hasServer(server.Address, server.Password)) {
           return
         }
@@ -154,16 +166,28 @@ export function load() {
         })
       }, 250)
     }
-    const lastSelectedServer = localStorage.getItem('rcon-lastserver')
-    if (lastSelectedServer) {
-      selectServer(findServer(lastSelectedServer))
-    }
-    const subtab = localStorage.getItem('rcon-subtab')
-    if (subtab) {
-      selectSubTab(Number(subtab))
-    }
   } catch (ex) {
     console.error(ex)
+  }
+}
+
+export function save() {
+  localStorage.setItem(
+    'rcon-servers',
+    exportToJson()
+  )
+}
+
+export function load() {
+  importFromJson(localStorage.getItem('rcon-servers') as string)
+
+  const lastSelectedServer = localStorage.getItem('rcon-lastserver')
+  if (lastSelectedServer) {
+    selectServer(findServer(lastSelectedServer))
+  }
+  const subtab = localStorage.getItem('rcon-subtab')
+  if (subtab) {
+    selectSubTab(Number(subtab))
   }
 }
 
@@ -216,7 +240,7 @@ export class Server {
         clearInventory()
         try {
           activeSlot.value = data.Value.ActiveSlot
-          data.Value.Main.forEach(item => {
+          data.Value.Main.forEach((item: any) => {
             if(item.Position == -1 || item.Position >= mainSlots.value.length) {
               return
             }
@@ -229,7 +253,7 @@ export class Server {
             slot.ConditionNormalized = item.ConditionNormalized
             slot.HasCondition = item.HasCondition
           });
-          data.Value.Belt.forEach(item => {
+          data.Value.Belt.forEach((item: any) => {
             if(item.Position == -1 || item.Position >= beltSlots.value.length) {
               return
             }
@@ -242,7 +266,7 @@ export class Server {
             slot.ConditionNormalized = item.ConditionNormalized
             slot.HasCondition = item.HasCondition
           });
-          data.Value.Wear.forEach(item => {
+          data.Value.Wear.forEach((item: any) => {
             if(item.Position == -1 || item.Position >= wearSlots.value.length) {
               return
             }

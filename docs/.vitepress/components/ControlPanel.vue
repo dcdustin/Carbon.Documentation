@@ -2,9 +2,9 @@
 import ConsoleTab from './ControlPanel.Tabs.Console.vue'
 import PlayersTab from './ControlPanel.Tabs.Players.vue'
 import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
-import { Server, addServer, createServer, deleteServer, selectServer, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad'
+import { Server, exportSave, importSave, addServer, createServer, deleteServer, selectServer, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad'
 import { Slot, activeSlot, activeInventory, showInventory, hideInventory, handleDrag, handleDrop, mainSlots, beltSlots, wearSlots, toolSlots, draggedSlot } from './ControlPanel.Inventory'
-import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
+import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2, Save, HardDriveDownload } from 'lucide-vue-next'
 import { onMounted, onUnmounted } from 'vue'
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
@@ -112,7 +112,7 @@ enum LogType {
           :size="45"
           :style="'margin: -10px; color: ' + (server.IsConnecting ? 'yellow' : server.IsConnected ? 'green' : 'red') + '; filter: blur(1.5px);'"
         />
-        <div style="display: grid">
+        <div class="grid">
           <p>
             <strong>{{ !server.CachedHostname ? 'Undefined' : server.CachedHostname }}</strong>
           </p>
@@ -122,6 +122,14 @@ enum LogType {
       <button class="r-button" @click="addServer(createServer('', ''), true)">
         <Plus />
       </button>
+      <div class="grid gap-y-0 text-xs">
+        <button class="r-button" @click="importSave()">
+          <HardDriveDownload :size="14" /> Import Clipboard
+        </button>
+        <button class="r-button" @click="exportSave()">
+          <Save :size="14" /> Export Clipboard
+        </button>
+      </div>
     </div>
 
     <div v-if="selectedServer" class="r-settings" style="margin-top: 15px">
