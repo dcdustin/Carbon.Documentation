@@ -171,7 +171,7 @@ enum LogType {
         </button>
         <a
           class="r-button"
-          href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/RCon.vue"
+          href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/ControlPanel.vue"
           target="_blank"
           style="color: var(--docsearch-footer-background); font-size: small"
         >
