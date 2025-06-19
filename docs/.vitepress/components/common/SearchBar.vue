@@ -103,7 +103,7 @@ onMounted(() => {
         @click="toggleExpand()"
       >
         <span class="inline-flex items-center gap-1">
-          {{ isExpanded ? 'Show less' : 'Show more' }}
+          {{ isExpanded ? 'Show less' : '' }}
           <ChevronDown class="transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" :size="16" />
         </span>
       </button>
