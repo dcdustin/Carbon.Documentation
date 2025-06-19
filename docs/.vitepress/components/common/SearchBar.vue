@@ -97,12 +97,12 @@ onMounted(() => {
       </div>
     </Transition>
 
-    <div v-if="isExpandable" class="absolute bottom-0 left-0 right-0 flex -translate-y-1/2 transform justify-center">
+    <div v-if="isExpandable" class="absolute bottom-0 left-0 right-0 flex -translate-y-1/2 transform justify-end sm:justify-center">
       <button
         class="rounded-full px-2 text-xs text-gray-500 transition-all duration-200 hover:bg-white/10 hover:text-gray-900 dark:text-gray-500 dark:hover:bg-gray-700/30 dark:hover:text-gray-300"
         @click="toggleExpand()"
       >
-        <span class="inline-flex items-center gap-1">
+        <span class="flex items-center gap-1">
           {{ isExpanded ? 'Show less' : '' }}
           <ChevronDown class="transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" :size="16" />
         </span>
