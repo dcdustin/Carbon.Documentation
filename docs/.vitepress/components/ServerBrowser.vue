@@ -249,26 +249,21 @@ onMounted(async () => {
     <div class="mb-4 text-red-500">{{ error }}</div>
   </div>
   <template v-else>
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #right>
-        <div class="flex flex-col gap-4 sm:flex-row">
-          <OptionSelectorMany
-            v-model="chosenCompressedTagsAnd"
-            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-            label="Tags (and)"
-          />
-          <OptionSelector
-            v-model="chosenRegionTag"
-            :option-key-values="[
-              { key: 'All', value: 'All' },
-              ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
-            ]"
-            label="Region:"
-          />
-        </div>
-      </template>
-    </SearchBar>
+    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20"> </SearchBar>
     <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
+      <OptionSelectorMany
+        v-model="chosenCompressedTagsAnd"
+        :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+        label="Tags (and)"
+      />
+      <OptionSelector
+        v-model="chosenRegionTag"
+        :option-key-values="[
+          { key: 'All', value: 'All' },
+          ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
+        ]"
+        label="Region:"
+      />
       <OptionSelectorMany
         v-model="chosenCompressedTagsOr"
         :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
