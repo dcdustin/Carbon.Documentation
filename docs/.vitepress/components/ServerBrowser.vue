@@ -249,34 +249,44 @@ onMounted(async () => {
     <div class="mb-4 text-red-500">{{ error }}</div>
   </div>
   <template v-else>
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search servers..." class="sticky top-16 z-10 min-[960px]:top-20"> </SearchBar>
-    <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
-      <OptionSelectorMany
-        v-model="chosenCompressedTagsAnd"
-        :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-        label="Tags (and)"
-      />
-      <OptionSelector
-        v-model="chosenRegionTag"
-        :option-key-values="[
-          { key: 'All', value: 'All' },
-          ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
-        ]"
-        label="Region:"
-      />
-      <OptionSelectorMany
-        v-model="chosenCompressedTagsOr"
-        :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-        label="Tags (or)"
-      />
-      <OptionSelectorMany v-model="chosenRustVersions" :options="rustVersions" label="Rust version" />
-      <div class="flex items-center gap-2 [&>input]:w-10 [&>input]:rounded-md [&>input]:text-center [&>input]:ring-1 [&>input]:ring-gray-500">
-        <span>Players</span>
-        <input type="number" title="Min" v-model="playersRangeMin" />
-        <span>to</span>
-        <input type="number" title="Max" v-model="playersRangeMax" />
-      </div>
-    </div>
+    <SearchBar
+      v-model="debouncedSearchValue"
+      placeholder="Search servers..."
+      class="sticky top-16 z-10 min-[960px]:top-20"
+      :isExpandable="true"
+      :initialExpanded="true"
+    >
+      <template #expandable>
+        <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
+          <OptionSelectorMany
+            v-model="chosenCompressedTagsAnd"
+            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+            label="Tags (and)"
+          />
+          <OptionSelector
+            v-model="chosenRegionTag"
+            :option-key-values="[
+              { key: 'All', value: 'All' },
+              ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
+            ]"
+            label="Region:"
+          />
+          <OptionSelectorMany
+            v-model="chosenCompressedTagsOr"
+            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+            label="Tags (or)"
+          />
+          <OptionSelectorMany v-model="chosenRustVersions" :options="rustVersions" label="Rust version" />
+          <div class="flex items-center gap-2 [&>input]:w-10 [&>input]:rounded-md [&>input]:text-center [&>input]:ring-1 [&>input]:ring-gray-500">
+            <span>Players</span>
+            <input type="number" title="Min" v-model="playersRangeMin" />
+            <span>to</span>
+            <input type="number" title="Max" v-model="playersRangeMax" />
+          </div>
+        </div>
+      </template>
+    </SearchBar>
+
     <div v-if="filteredServers && filteredServers.length">
       <div class="mt-4">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
