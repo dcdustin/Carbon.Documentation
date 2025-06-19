@@ -1,9 +1,5 @@
 <template>
-  <component
-    v-if="icon"
-    :is="getIconComponent as any"
-    class="carbon-icons"
-  />
+  <component v-if="icon" :is="getIconComponent as any" class="carbon-icons" />
 </template>
 
 <script setup lang="ts">

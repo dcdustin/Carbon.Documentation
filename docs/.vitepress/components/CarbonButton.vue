@@ -2,7 +2,7 @@
   <a :href="href" :target="isExternal ? '_blank' : undefined" class="carbon-button">
     <component v-if="icon" :is="getIconComponent as any" class="carbon-button-icon" size="18" />
     {{ text }}
-    <component v-if="isExternal" :is='getNamedIconComponent("externallink") as any' class="carbon-button-icon" size="14" />
+    <component v-if="isExternal" :is="getNamedIconComponent('externallink') as any" class="carbon-button-icon" size="14" />
   </a>
 </template>
 
@@ -33,7 +33,6 @@ const props = defineProps({
 const isExternal = computed(() => {
   return props.external === true || props.external === 'true'
 })
-
 </script>
 
 <style scoped>
