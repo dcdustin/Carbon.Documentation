@@ -1,7 +1,7 @@
 <template>
   <component
     v-if="icon"
-    :is="getIconComponent"
+    :is="getIconComponent as any"
     class="carbon-icons"
   />
 </template>
@@ -17,10 +17,10 @@ const props = defineProps({
   },
 })
 
-const getNamedIconComponent = (iconName) => {
+const getNamedIconComponent = (iconName: string | undefined) => {
   iconName = iconName?.toLowerCase()
-  const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName)
-  return matchedKey ? icons[matchedKey] : undefined
+  const matchedKey = Object.keys(icons).find((key) => key.toString().toLowerCase() === iconName)
+  return matchedKey ? icons[matchedKey as keyof typeof icons] : undefined
 }
 const getIconComponent = computed(() => getNamedIconComponent(props.icon))
 </script>
