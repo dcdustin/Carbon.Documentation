@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import { useDebounceFn, useUrlSearchParams } from '@vueuse/core'
-import { Search } from 'lucide-vue-next'
-import { onMounted, watch } from 'vue'
+import { ChevronDown, Search } from 'lucide-vue-next'
+import { onMounted, ref, watch } from 'vue'
 
 const debounceTimeout = 350
 
-const { placeholder } = defineProps<{
+const { placeholder, isExpandable, initialExpanded } = defineProps<{
   placeholder?: string
+  isExpandable?: boolean
+  initialExpanded?: boolean
 }>()
+
+const isExpanded = ref<boolean>(initialExpanded ?? false)
+
+function toggleExpand() {
+  if (isExpandable) {
+    isExpanded.value = !isExpanded.value
+  }
+}
 
 const debouncedSearchValue = defineModel<string>()
 
@@ -57,7 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40">
+  <div class="relative rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40" :class="{ 'pb-4': isExpandable }">
     <div class="flex min-h-8 flex-col items-start gap-4 sm:flex-row sm:items-center">
       <div class="flex flex-1 items-center gap-4">
         <slot name="icon">
@@ -73,5 +83,37 @@ onMounted(() => {
       </div>
       <slot name="right" />
     </div>
+
+    <Transition
+      enter-active-class="transition-all duration-200 ease-out"
+      enter-from-class="opacity-0 -translate-y-4"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition-all duration-200 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-4"
+    >
+      <div v-if="isExpandable && isExpanded" class="mt-4">
+        <slot name="expandable" />
+      </div>
+    </Transition>
+
+    <div v-if="isExpandable" class="absolute bottom-0 left-0 right-0 flex -translate-y-1/2 transform justify-end sm:justify-center">
+      <button
+        class="rounded-full px-2 text-xs text-gray-500 transition-all duration-200 hover:bg-white/10 hover:text-gray-900 dark:text-gray-500 dark:hover:bg-gray-700/30 dark:hover:text-gray-300"
+        @click="toggleExpand()"
+      >
+        <span class="flex items-center gap-1">
+          {{ isExpanded ? 'Show less' : '' }}
+          <ChevronDown class="transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" :size="16" />
+        </span>
+      </button>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  overflow: hidden;
+}
+</style>

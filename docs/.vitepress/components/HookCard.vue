@@ -45,7 +45,7 @@ function getExampleCode(hook: Hook): string {
 
 <template>
   <div class="flex flex-col gap-1">
-    <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
+    <div class="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-2">
       <div class="flex items-center gap-2">
         <h5 class="flex items-center gap-2 text-lg font-medium">
           <a
