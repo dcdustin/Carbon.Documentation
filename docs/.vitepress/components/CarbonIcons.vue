@@ -6,7 +6,7 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import * as icons from 'lucide-vue-next'
 import { computed } from 'vue'
 
