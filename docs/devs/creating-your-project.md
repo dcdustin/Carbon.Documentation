@@ -1,4 +1,4 @@
-# <CarbonIcons icon="database" />  Creating Your Project
+# <CarbonIcons icon="database" /> Creating Your Project
 
 This section will guide you through creating your project and linking it to a local development server.
 
@@ -122,5 +122,12 @@ To apply the changes, close and reopen your IDE.
 Once you've completed these steps, your development environment will be fully set up, and you’ll have everything needed
 to start creating plugins for Carbon.
 
-🎉 Happy Coding! 🚀  
-<CarbonIcons icon="snail" /> Snail for good luck!
+🎉 Happy Coding! 🚀
+
+<p>
+  <CarbonIcons icon="snail" /> Snail for good luck!
+</p>
+
+<p>
+  <CarbonIcons icon="bed" /> bed
+</p>
