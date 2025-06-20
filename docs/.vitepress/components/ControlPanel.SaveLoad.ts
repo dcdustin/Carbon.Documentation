@@ -70,9 +70,10 @@ export function isValidUrl(urlStr: string): boolean {
 export function deleteServer(server: Server, e: MouseEvent) {
   const confirmDelete = e.shiftKey || window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
   if (confirmDelete) {
-    servers.value.splice(servers.value.indexOf(server), 1)
+    const index = servers.value.indexOf(server)
+    servers.value.splice(index, 1)
     if (selectedServer.value == server) {
-      selectedServer.value = null
+      selectedServer.value = index > 0 ? servers.value[index - 1] : null
     }
   }
   save()
