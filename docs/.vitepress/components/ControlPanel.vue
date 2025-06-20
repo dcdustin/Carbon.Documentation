@@ -180,11 +180,14 @@ enum LogType {
       </div>
     </div>
 
-    <div v-if="enforceSecure()" class="r-settings" style="margin-top: 15px; font-size: small; opacity: 75%">
+    <div v-if="enforceSecure()" class="r-settings text-xs" style="margin-top: 15px; opacity: 75%">
       <p style="text-align: center">
-        You're currently using Carbon Documentation in HTTPS mode. <br />
+        You're currently using Control Panel in HTTPS mode.
+        <br />
         To use RCon without the SSL certificate requirement, update the URL to use
         <code><span style="color: var(--category-favourite); font-weight: bolder">http</span>://</code> instead of <code>https</code>.
+        <br />
+        This is only necessary if you want to connect to the remote server. If you're using it to connect to your local server (127.0.0.1, localhost, etc.) - you can ignore this.
       </p>
     </div>
 
