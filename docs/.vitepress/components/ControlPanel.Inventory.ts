@@ -38,15 +38,15 @@ export class Slot {
 
 export function clearInventory() {
   activeSlot.value = -1
-  mainSlots.value.forEach(slot => {
+  mainSlots.value.forEach((slot) => {
     slot.clear()
-  });
-  beltSlots.value.forEach(slot => {
+  })
+  beltSlots.value.forEach((slot) => {
     slot.clear()
-  });
-  wearSlots.value.forEach(slot => {
+  })
+  wearSlots.value.forEach((slot) => {
     slot.clear()
-  });
+  })
 }
 
 export function showInventory(playerId: number) {
@@ -55,7 +55,7 @@ export function showInventory(playerId: number) {
   selectedServer.value.fetchInventory(playerId)
 
   const looper = () => {
-    if(!selectedServer.value.PlayerInfo.find(player => player.SteamID == playerId)) {
+    if (!selectedServer.value.PlayerInfo.find((player) => player.SteamID == playerId)) {
       hideInventory()
       return
     }
@@ -67,7 +67,7 @@ export function showInventory(playerId: number) {
 }
 
 export function hideInventory() {
-  if(activeInventory.value != 0) {
+  if (activeInventory.value != 0) {
     activeInventory.value = 0
     clearTimeout(timerInvRefresh)
   }

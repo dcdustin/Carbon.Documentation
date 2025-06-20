@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad'
-import { showInventory } from './ControlPanel.Inventory'
 import { ExternalLink } from 'lucide-vue-next'
+import { showInventory } from './ControlPanel.Inventory'
+import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad'
 
 function formatDuration(seconds: number) {
   const hrs = Math.floor(seconds / 3600)
@@ -30,12 +30,19 @@ function formatDuration(seconds: number) {
     </thead>
     <tr v-for="player in selectedServer.PlayerInfo">
       <td class="vp-doc td">
-        <span style="display: flex; gap: 5px;" class="ml-2 text-xs text-slate-400"><img :src="geoFlagCache[player.Address]" class="size-4"/> {{ player.Ping }}ms</span>
+        <span style="display: flex; gap: 5px" class="ml-2 text-xs text-slate-400"
+          ><img :src="geoFlagCache[player.Address]" class="size-4" /> {{ player.Ping }}ms</span
+        >
       </td>
       <td class="vp-doc td">
-        <strong>{{player.DisplayName}}</strong> <span class="text-xs text-slate-400">[<a style="color: inherit; display: inline-flex;" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank">{{ player.SteamID }} <ExternalLink class="mx-1" :size="12"/> </a>]</span>
+        <strong>{{ player.DisplayName }}</strong>
+        <span class="text-xs text-slate-400"
+          >[<a style="color: inherit; display: inline-flex" :href="'http://steamcommunity.com/profiles/' + player.SteamID" target="_blank"
+            >{{ player.SteamID }} <ExternalLink class="mx-1" :size="12" /> </a
+          >]</span
+        >
       </td>
-      <td style="position: relative;">
+      <td style="position: relative">
         <div :style="'position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #41642da6; width: ' + player.Health + '%'"></div>
         <div style="opacity: 50%; font-size: smaller">{{ player.Health.toFixed(1) }}</div>
       </td>

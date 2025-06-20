@@ -1,4 +1,4 @@
-import { ref, nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 import { save } from './ControlPanel.SaveLoad'
 
 export const consoleContainer = ref<HTMLDivElement>(null!)
