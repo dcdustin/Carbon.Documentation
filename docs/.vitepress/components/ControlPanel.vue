@@ -7,9 +7,9 @@ import {
   addServer,
   createServer,
   deleteServer,
-  isUsingHttps,
   exportSave,
   importSave,
+  isUsingHttps,
   load,
   selectServer,
   selectSubTab,
@@ -168,7 +168,7 @@ enum LogType {
         >
           <Wifi :size="20" /> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
-        <button class="r-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small">
+        <button class="r-button" @click="(e) => deleteServer(selectedServer, e)" style="color: var(--docsearch-footer-background); font-size: small">
           <X :size="20" /> Delete
         </button>
         <button

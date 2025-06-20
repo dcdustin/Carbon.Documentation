@@ -67,8 +67,8 @@ export function isValidUrl(urlStr: string) : boolean {
   }
 }
 
-export function deleteServer(server: Server) {
-  const confirmDelete = window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
+export function deleteServer(server: Server, e: MouseEvent) {
+  const confirmDelete = e.shiftKey || window.confirm(`Are you sure you want to delete server "${server.Address}"?`)
   if (confirmDelete) {
     servers.value.splice(servers.value.indexOf(server), 1)
     if (selectedServer.value == server) {
