@@ -111,7 +111,7 @@ onUnmounted(() => {
         />
         <div class="grid">
           <p>
-            <strong>{{ !server.CachedHostname ? 'Undefined' : server.CachedHostname }}</strong>
+            <strong>{{ !server.CachedHostname ? 'Unknown' : server.CachedHostname }}</strong>
           </p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text)">{{ server.Address }}</p>
         </div>
