@@ -9,6 +9,28 @@ export const servers = ref<Server[]>([])
 
 export const geoFlagCache = ref<{ [key: string]: string }>({})
 
+interface CommandSend {
+  Message: string
+  Identifier: number
+}
+
+interface CommandResponse {
+  Message: string
+  Identifier: number
+  Type: LogType
+  Stacktrace: string
+}
+
+enum LogType {
+  Generic = 0,
+  Error = 1,
+  Warning = 2,
+  Chat = 3,
+  Report = 4,
+  ClientPerf = 5,
+  Subscription = 6,
+}
+
 export async function fetchGeolocation(ip: string) {
   if (ip == '127.0.0.1') {
     return
@@ -23,10 +45,12 @@ export async function fetchGeolocation(ip: string) {
     }
 
     const data = await response.json()
-    if (geoFlagCache) {
+    if (geoFlagCache.value) {
       geoFlagCache.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
     }
-  } catch {}
+  } catch {
+    /* empty */
+  }
 }
 
 export function isUsingHttps(): boolean {
@@ -62,7 +86,7 @@ export function isValidUrl(urlStr: string): boolean {
   try {
     const url = new URL(urlStr)
     return url.protocol === 'http:' || url.protocol === 'https:'
-  } catch (_) {
+  } catch {
     return false
   }
 }
@@ -206,7 +230,7 @@ export class Server {
   PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
-  Rpcs: Record<number, (...args: any[]) => void> = {}
+  Rpcs: Record<number, (...args: unknown[]) => void> = {}
 
   clear() {
     this.IsConnecting = false
@@ -228,10 +252,10 @@ export class Server {
     this.Rpcs = {}
 
     // MoveInventoryItem
-    this.Rpcs[3553623853] = (data) => {}
+    this.Rpcs[3553623853] = () => {}
 
     // SendPlayerInventory
-    this.Rpcs[1739174796] = (data) => {
+    this.Rpcs[1739174796] = (data: any) => {
       clearInventory()
       try {
         activeSlot.value = data.Value.ActiveSlot
@@ -290,7 +314,7 @@ export class Server {
     this.UserConnected = true
     if (this.Socket != null) {
       this.Socket.close()
-      this.Socket.onclose(
+      this.Socket.onclose?.(
         new CloseEvent('close', {
           wasClean: true,
           code: 1000,
@@ -320,7 +344,7 @@ export class Server {
     this.Socket.onclose = () => {
       this.clear()
     }
-    this.Socket.onerror = (e) => {
+    this.Socket.onerror = () => {
       this.UserConnected = false
     }
     this.Socket.onmessage = (event) => {
@@ -380,9 +404,9 @@ export class Server {
     tryFocusLogs(false)
   }
 
-  sendRpc(id: number, ...args: any[]) {
+  sendRpc(id: number, ...args: unknown[]) {
     for (let i = 0; i < args.length; i++) {
-      var arg = args[i]
+      const arg = args[i]
       args[i] = `"${arg}"`
     }
     this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
@@ -423,12 +447,14 @@ export class Server {
       case 5: // description
         this.Description = data.Message.toString().split(' ').slice(1, 1000).join(' ').replace(/['"]/g, '')
         break
-      case 100: // c.webrcon.rpc
+      case 100: {
+        // c.webrcon.rpc
         const rpcId = Number(data.RpcId)
         if (rpcId in this.Rpcs) {
           this.Rpcs[rpcId](data)
         }
         break
+      }
     }
 
     return true

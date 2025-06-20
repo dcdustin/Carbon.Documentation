@@ -28,7 +28,7 @@ function formatDuration(seconds: number) {
         <th class="vp-doc th"></th>
       </tr>
     </thead>
-    <tr v-for="player in selectedServer.PlayerInfo">
+    <tr v-for="player in selectedServer.PlayerInfo" :key="player.SteamID">
       <td class="vp-doc td">
         <span style="display: flex; gap: 5px" class="ml-2 text-xs text-slate-400"
           ><img :src="geoFlagCache[player.Address]" class="size-4" /> {{ player.Ping }}ms</span

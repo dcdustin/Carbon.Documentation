@@ -99,31 +99,6 @@ onMounted(() => {
 onUnmounted(() => {
   clearTimeout(timerSwitch)
 })
-/* 
-interface CommandSend {
-  Message: string
-  Identifier: number
-}
- */
-/* 
-interface CommandResponse {
-  Message: string
-  Identifier: number
-  Type: LogType
-  Stacktrace: string
-}
- */
-/* 
-enum LogType {
-  Generic = 0,
-  Error = 1,
-  Warning = 2,
-  Chat = 3,
-  Report = 4,
-  ClientPerf = 5,
-  Subscription = 6,
-}
- */
 </script>
 
 <template>

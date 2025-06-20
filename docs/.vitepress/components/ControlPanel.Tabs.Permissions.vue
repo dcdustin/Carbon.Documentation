@@ -75,7 +75,7 @@ export function refreshPermissions() {
           <th class="vp-doc th">Groups</th>
         </tr>
       </thead>
-      <tr v-for="group in groupInfo?.Groups">
+      <tr v-for="group in groupInfo?.Groups" :key="group">
         <td class="vp-doc td">
           <button class="r-send-button" :class="'r-send-button ' + (group == selectedGroup ? 'toggled' : null)" @click="selectGroup(group, false)">
             <span class="text-neutral-400">{{ group }}</span>
@@ -90,7 +90,7 @@ export function refreshPermissions() {
           <th class="vp-doc th">Plugins</th>
         </tr>
       </thead>
-      <tr v-for="plugin in groupInfo?.Plugins">
+      <tr v-for="plugin in groupInfo?.Plugins" :key="plugin.Plugin.Name">
         <td class="vp-doc td">
           <button class="r-send-button" :class="'r-send-button ' + (plugin == selectedHookable ? 'toggled' : null)" @click="selectHookable(plugin)">
             <span class="text-neutral-400">{{ plugin.Plugin.Name }}</span>
@@ -100,7 +100,7 @@ export function refreshPermissions() {
       <tr>
         <th class="vp-doc th pt-5">Modules</th>
       </tr>
-      <tr v-for="module in groupInfo?.Modules">
+      <tr v-for="module in groupInfo?.Modules" :key="module.Module.Name">
         <td class="vp-doc td">
           <button class="r-send-button" :class="'r-send-button ' + (module == selectedHookable ? 'toggled' : null)" @click="selectHookable(module)">
             <span class="text-neutral-400">{{ module.Module.Name }}</span>
@@ -122,7 +122,7 @@ export function refreshPermissions() {
           </span>
         </td>
       </tr>
-      <tr v-for="permission in selectedHookable.Permissions">
+      <tr v-for="permission in selectedHookable.Permissions" :key="permission">
         <td class="vp-doc td content-center">
           <button :class="'r-send-button ' + (groupHasPermission(permission) ? 'toggled' : null)" @click="togglePermission(permission)">
             <span class="text-neutral-400">{{ permission }}</span>
