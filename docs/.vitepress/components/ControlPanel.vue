@@ -1,30 +1,49 @@
 <script lang="ts" setup>
-import ConsoleTab from './ControlPanel.Tabs.Console.vue'
-import PlayersTab from './ControlPanel.Tabs.Players.vue'
-import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
-import { Server, exportSave, importSave, addServer, createServer, deleteServer, selectServer, load, servers, selectedServer, selectedSubTab, enforceSecure, selectSubTab } from './ControlPanel.SaveLoad'
-import { Slot, activeSlot, activeInventory, showInventory, hideInventory, handleDrag, handleDrop, mainSlots, beltSlots, wearSlots, toolSlots, draggedSlot } from './ControlPanel.Inventory'
-import { Plus, Dot, Wifi, X, RotateCcw, Shield, CodeXml, ExternalLink, ArrowUpFromDot, Trash2, Save, HardDriveDownload } from 'lucide-vue-next'
+import { ArrowUpFromDot, CodeXml, Dot, ExternalLink, HardDriveDownload, Plus, RotateCcw, Save, Shield, Trash2, Wifi, X } from 'lucide-vue-next'
 import { onMounted, onUnmounted } from 'vue'
+import { Slot, activeInventory, activeSlot, beltSlots, handleDrag, handleDrop, hideInventory, mainSlots, toolSlots, wearSlots } from './ControlPanel.Inventory'
+import {
+  Server,
+  addServer,
+  createServer,
+  deleteServer,
+  exportSave,
+  importSave,
+  isUsingHttps,
+  load,
+  selectServer,
+  selectSubTab,
+  selectedServer,
+  selectedSubTab,
+  servers,
+} from './ControlPanel.SaveLoad'
+import ConsoleTab from './ControlPanel.Tabs.Console.vue'
+import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
+import PlayersTab from './ControlPanel.Tabs.Players.vue'
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
 
-const subTabs = [{
-  Name: 'Console',
-  Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.',
-  Content: `<ConsoleTab />`
-}, {
-  Name: 'Information',
-  Description: 'Useful info about the server activity and various other options.'
-}, {
-  Name: 'Players',
-  Description: 'A list of players or something like that.',
-  ExtraData: (selectedServer: Server) => `(${selectedServer?.PlayerInfo?.length})`
-}, {
-  Name: 'Permissions',
-  Description: 'Good ol\' permissions.'
-}]
- 
+const subTabs = [
+  {
+    Name: 'Console',
+    Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.',
+    Content: `<ConsoleTab />`,
+  },
+  {
+    Name: 'Information',
+    Description: 'Useful info about the server activity and various other options.',
+  },
+  {
+    Name: 'Players',
+    Description: 'A list of players or something like that.',
+    ExtraData: (selectedServer: Server) => `(${selectedServer?.PlayerInfo?.length})`,
+  },
+  {
+    Name: 'Permissions',
+    Description: "Good ol' permissions.",
+  },
+]
+
 onMounted(() => {
   const timerCallback = () => {
     timerSwitch = setTimeout(timerCallback, 10000)
@@ -80,32 +99,10 @@ onMounted(() => {
 onUnmounted(() => {
   clearTimeout(timerSwitch)
 })
-
-interface CommandSend {
-  Message: string
-  Identifier: number
-}
-
-interface CommandResponse {
-  Message: string
-  Identifier: number
-  Type: LogType
-  Stacktrace: string
-}
-
-enum LogType {
-  Generic = 0,
-  Error = 1,
-  Warning = 2,
-  Chat = 3,
-  Report = 4,
-  ClientPerf = 5,
-  Subscription = 6,
-}
 </script>
 
 <template>
-  <div class="md:container mx-auto px-4 lg:px-6 xl:px-8 2xl:px-20 py-8 space-y-0">
+  <div class="mx-auto space-y-0 px-4 py-8 md:container lg:px-6 xl:px-8 2xl:px-20">
     <div class="r-list">
       <button v-for="server in servers" :key="server.Address" :class="['r-button', { toggled: server == selectedServer }]" @click="selectServer(server)">
         <Dot
@@ -114,7 +111,7 @@ enum LogType {
         />
         <div class="grid">
           <p>
-            <strong>{{ !server.CachedHostname ? 'Undefined' : server.CachedHostname }}</strong>
+            <strong>{{ !server.CachedHostname ? 'Unknown' : server.CachedHostname }}</strong>
           </p>
           <p style="font-size: 12px; color: var(--vp-badge-info-text)">{{ server.Address }}</p>
         </div>
@@ -123,12 +120,8 @@ enum LogType {
         <Plus />
       </button>
       <div class="grid gap-y-0 text-xs">
-        <button class="r-button" @click="importSave()">
-          <HardDriveDownload :size="14" /> Import Clipboard
-        </button>
-        <button class="r-button" @click="exportSave()">
-          <Save :size="14" /> Export Clipboard
-        </button>
+        <button class="r-button" @click="importSave()"><HardDriveDownload :size="14" /> Import Clipboard</button>
+        <button class="r-button" @click="exportSave()"><Save :size="14" /> Export Clipboard</button>
       </div>
     </div>
 
@@ -150,7 +143,7 @@ enum LogType {
         >
           <Wifi :size="20" /> {{ selectedServer?.IsConnected ? 'Disconnect' : 'Connect' }}
         </button>
-        <button class="r-button" @click="deleteServer(selectedServer)" style="color: var(--docsearch-footer-background); font-size: small">
+        <button class="r-button" @click="(e) => deleteServer(selectedServer, e)" style="color: var(--docsearch-footer-background); font-size: small">
           <X :size="20" /> Delete
         </button>
         <button
@@ -180,24 +173,35 @@ enum LogType {
       </div>
     </div>
 
-    <div v-if="enforceSecure()" class="r-settings" style="margin-top: 15px; font-size: small; opacity: 75%">
+    <div v-if="isUsingHttps()" class="r-settings text-xs" style="margin-top: 15px; opacity: 75%">
       <p style="text-align: center">
-        You're currently using Carbon Documentation in HTTPS mode. <br />
+        You're currently using Control Panel in HTTPS mode.
+        <br />
         To use RCon without the SSL certificate requirement, update the URL to use
         <code><span style="color: var(--category-favourite); font-weight: bolder">http</span>://</code> instead of <code>https</code>.
+        <br />
+        This is only necessary if you want to connect to the remote server. If you're using it to connect to your local server (127.0.0.1, localhost, etc.) -
+        you can ignore this.
       </p>
     </div>
 
     <div v-if="selectedServer && selectedServer.ServerInfo" style="margin-top: 15px; display: flow" class="r-settings">
       <div class="mb-5 flex">
-        <button v-for="(tab, index) in subTabs" class="r-button" @click="selectSubTab(index)" :class="['r-button', { toggled: selectedSubTab == index }]" style="color: var(--docsearch-footer-background); font-size: small">
+        <button
+          v-for="(tab, index) in subTabs"
+          :key="index"
+          class="r-button"
+          @click="selectSubTab(index)"
+          :class="['r-button', { toggled: selectedSubTab == index }]"
+          style="color: var(--docsearch-footer-background); font-size: small"
+        >
           {{ tab.Name }} {{ tab.ExtraData != null ? tab.ExtraData(selectedServer) : null }}
         </button>
       </div>
 
-      <div v-for="(tab, index) in subTabs">
-        <div v-if="selectedSubTab == index" class="text-slate-500 text-xs m-4">
-          <span >{{ tab.Description }}</span>
+      <div v-for="(tab, index) in subTabs" :key="index">
+        <div v-if="selectedSubTab == index" class="m-4 text-xs text-slate-500">
+          <span>{{ tab.Description }}</span>
         </div>
       </div>
 
@@ -250,10 +254,10 @@ enum LogType {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubTab == 2" style="overflow: auto;">
+      <div v-else-if="selectedSubTab == 2" style="overflow: auto">
         <PlayersTab />
       </div>
-      <div v-else-if="selectedSubTab == 3" style="overflow: auto;">
+      <div v-else-if="selectedSubTab == 3" style="overflow: auto">
         <PermissionsTab />
       </div>
     </div>
@@ -262,41 +266,65 @@ enum LogType {
     </div>
   </div>
 
-  <div v-if="activeInventory" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click="hideInventory()">
-    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-lg w-full mx-4" @click.stop>
-      <div class="flex items-center justify-between mb-4">
+  <div v-if="activeInventory" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click="hideInventory()">
+    <div class="mx-4 w-full max-w-lg rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
+      <div class="mb-4 flex items-center justify-between">
         <h3 class="text-xl font-bold"></h3>
         <button @click="hideInventory()" class="text-gray-500 hover:text-gray-700">
           <X :size="20" />
         </button>
       </div>
-      <div class="items-center" style="justify-items: center;">      
+      <div class="items-center" style="justify-items: center">
         <div class="inventory-grid">
           <div v-for="slot in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <img
+              v-if="slot.hasItem()"
+              class="slot-img"
+              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
+              draggable="true"
+              @dragstart="handleDrag(slot)"
+            />
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid-clothing mt-5">
           <div v-for="slot in wearSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <img
+              v-if="slot.hasItem()"
+              class="slot-img"
+              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
+              draggable="true"
+              @dragstart="handleDrag(slot)"
+            />
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid mt-5">
           <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
             <div v-if="activeSlot == slot.Position" class="slot-active"></div>
-            <img v-if="slot.hasItem()" class="slot-img" :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`" draggable="true" @dragstart="handleDrag(slot)"/>
+            <img
+              v-if="slot.hasItem()"
+              class="slot-img"
+              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
+              draggable="true"
+              @dragstart="handleDrag(slot)"
+            />
             <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + (slot.ConditionNormalized * 100) + '%;'"></div>
+            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
           </div>
         </div>
         <div class="inventory-grid-tools mt-5">
-          <div v-for="slot in toolSlots" :key="slot.Position" class="slot-tool opacity-50 items-center justify-center " @dragover.prevent @drop="handleDrop(slot)">
-            <span v-if="slot.Container == 10" class="opacity-50 select-none justify-items-center text-xs"><ArrowUpFromDot /> Drop</span>
-            <span v-if="slot.Container == 11" class="opacity-50 select-none justify-items-center text-xs"><Trash2 /> Discard</span>
+          <div
+            v-for="slot in toolSlots"
+            :key="slot.Position"
+            class="slot-tool items-center justify-center opacity-50"
+            @dragover.prevent
+            @drop="handleDrop(slot)"
+          >
+            <span v-if="slot.Container == 10" class="select-none justify-items-center text-xs opacity-50"><ArrowUpFromDot /> Drop</span>
+            <span v-if="slot.Container == 11" class="select-none justify-items-center text-xs opacity-50"><Trash2 /> Discard</span>
           </div>
         </div>
       </div>
@@ -368,7 +396,7 @@ enum LogType {
 }
 
 .slot-amount {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   position: absolute;
   bottom: 2px;
   right: 4px;

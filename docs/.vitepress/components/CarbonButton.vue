@@ -1,19 +1,19 @@
 <template>
-  <a :href="href" :target="isExternal ? '_blank' : null" class="carbon-button">
-    <component v-if="icon" :is="getIconComponent" class="carbon-button-icon" size="18" />
+  <a :href="href" :target="isExternal ? '_blank' : undefined" class="carbon-button">
+    <component v-if="icon" :is="getIconComponent as any" class="carbon-button-icon" size="18" />
     {{ text }}
-    <component v-if="isExternal" :is='getNamedIconComponent("externallink")' class="carbon-button-icon" size="14" />
+    <component v-if="isExternal" :is="getNamedIconComponent('externallink') as any" class="carbon-button-icon" size="14" />
   </a>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import * as icons from 'lucide-vue-next'
 import { computed } from 'vue'
 
-const getNamedIconComponent = (iconName) => {
+const getNamedIconComponent = (iconName: string | undefined) => {
   iconName = iconName?.toLowerCase()
-  const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName)
-  return matchedKey ? icons[matchedKey] : undefined
+  const matchedKey = Object.keys(icons).find((key) => key.toString().toLowerCase() === iconName)
+  return matchedKey ? icons[matchedKey as keyof typeof icons] : undefined
 }
 const getIconComponent = computed(() => getNamedIconComponent(props.icon))
 
@@ -33,7 +33,6 @@ const props = defineProps({
 const isExternal = computed(() => {
   return props.external === true || props.external === 'true'
 })
-
 </script>
 
 <style scoped>

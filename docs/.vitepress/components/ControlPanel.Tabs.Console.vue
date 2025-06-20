@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { consoleContainer, command } from './ControlPanel.Console'
+import { command, consoleContainer } from './ControlPanel.Console'
 import { selectedServer } from './ControlPanel.SaveLoad'
 </script>
 
@@ -7,7 +7,7 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   <div
     v-if="selectedServer"
     ref="consoleContainer"
-    class="p-4 rounded text-sm font-mono"
+    class="rounded p-4 font-mono text-sm"
     style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
   >
     <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
@@ -29,7 +29,6 @@ import { selectedServer } from './ControlPanel.SaveLoad'
 </template>
 
 <style>
-
 .r-send-button {
   text-decoration: auto;
   font-family: monospace;
@@ -41,8 +40,8 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   transition: background-color, color;
   border-color: transparent;
   border: transparent 1px;
-  transition-duration: .5s;
-  transition-timing-function: cubic-bezier(0, 1, 0, 0)
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0, 0);
 }
 
 .r-send-button.toggled {

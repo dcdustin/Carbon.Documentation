@@ -1,12 +1,8 @@
 <template>
-  <component
-    v-if="icon"
-    :is="getIconComponent"
-    class="carbon-icons"
-  />
+  <component v-if="icon" :is="getIconComponent as any" class="carbon-icons" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import * as icons from 'lucide-vue-next'
 import { computed } from 'vue'
 
@@ -17,10 +13,10 @@ const props = defineProps({
   },
 })
 
-const getNamedIconComponent = (iconName) => {
+const getNamedIconComponent = (iconName: string | undefined) => {
   iconName = iconName?.toLowerCase()
-  const matchedKey = Object.keys(icons).find(key => key.toString().toLowerCase() === iconName)
-  return matchedKey ? icons[matchedKey] : undefined
+  const matchedKey = Object.keys(icons).find((key) => key.toString().toLowerCase() === iconName)
+  return matchedKey ? icons[matchedKey as keyof typeof icons] : undefined
 }
 const getIconComponent = computed(() => getNamedIconComponent(props.icon))
 </script>
