@@ -7,7 +7,7 @@ import {
   addServer,
   createServer,
   deleteServer,
-  enforceSecure,
+  isUsingHttps,
   exportSave,
   importSave,
   load,
@@ -198,7 +198,7 @@ enum LogType {
       </div>
     </div>
 
-    <div v-if="enforceSecure()" class="r-settings text-xs" style="margin-top: 15px; opacity: 75%">
+    <div v-if="isUsingHttps()" class="r-settings text-xs" style="margin-top: 15px; opacity: 75%">
       <p style="text-align: center">
         You're currently using Control Panel in HTTPS mode.
         <br />

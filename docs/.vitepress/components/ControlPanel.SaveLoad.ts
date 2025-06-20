@@ -29,7 +29,7 @@ export async function fetchGeolocation(ip: string) {
   } catch { }
 }
 
-export function enforceSecure(): boolean {
+export function isUsingHttps(): boolean {
   return location.protocol == 'https:'
 }
 
