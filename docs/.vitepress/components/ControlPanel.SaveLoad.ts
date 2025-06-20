@@ -1,7 +1,7 @@
-import { tryFocusLogs, command, commandIndex } from './ControlPanel.Console'
-import { clearInventory, hideInventory, activeSlot, mainSlots, beltSlots, wearSlots, toolSlots } from './ControlPanel.Inventory'
-import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 import { ref } from 'vue'
+import { command, commandIndex, tryFocusLogs } from './ControlPanel.Console'
+import { activeSlot, beltSlots, clearInventory, hideInventory, mainSlots, wearSlots } from './ControlPanel.Inventory'
+import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 
 export const selectedServer = ref()
 export const selectedSubTab = ref(0)
@@ -10,23 +10,23 @@ export const servers = ref<Server[]>([])
 export const geoFlagCache = ref<{ [key: string]: string }>({})
 
 export async function fetchGeolocation(ip: string) {
-  if(ip == "127.0.0.1") {
+  if (ip == '127.0.0.1') {
     return
   }
 
-  const url = `https://ipwho.is/${ip.split(':')[0]}`;
+  const url = `https://ipwho.is/${ip.split(':')[0]}`
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url)
     if (!response.ok) {
-      throw new Error(`IPAPI responded with status ${response.status}`);
+      throw new Error(`IPAPI responded with status ${response.status}`)
     }
 
-    const data = await response.json();
-    if(geoFlagCache) {
+    const data = await response.json()
+    if (geoFlagCache) {
       geoFlagCache.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
     }
-  } catch { }
+  } catch {}
 }
 
 export function isUsingHttps(): boolean {
@@ -49,21 +49,21 @@ export function addServer(server: Server, shouldSelect: boolean = false) {
   }
 }
 
-export function hasServer(address: string, password: string) : boolean {
+export function hasServer(address: string, password: string): boolean {
   servers.value.forEach((server: Server) => {
-    if(server.Address == address && server.Password == password) { 
+    if (server.Address == address && server.Password == password) {
       return true
     }
-  });
+  })
   return false
 }
 
-export function isValidUrl(urlStr: string) : boolean {
+export function isValidUrl(urlStr: string): boolean {
   try {
-    const url = new URL(urlStr);
-    return url.protocol === "http:" || url.protocol === "https:";
+    const url = new URL(urlStr)
+    return url.protocol === 'http:' || url.protocol === 'https:'
   } catch (_) {
-    return false;
+    return false
   }
 }
 
@@ -91,7 +91,7 @@ export function selectServer(server: Server) {
 }
 
 export function findServer(address: string): Server {
-  return servers.value.find(sv => {
+  return servers.value.find((sv) => {
     if (sv.Address == address) {
       return sv
     }
@@ -101,30 +101,30 @@ export function findServer(address: string): Server {
 export function selectSubTab(index: number) {
   selectedSubTab.value = index
   localStorage.setItem('rcon-subtab', index.toString())
-  save() 
+  save()
 
-  if(index == 0) {
+  if (index == 0) {
     tryFocusLogs(true)
   }
 }
 
-function exportToJson() : string {
+function exportToJson(): string {
   return JSON.stringify(servers.value, (key, value) => {
-      switch (key) {
-        case 'Socket':
-        case 'UserConnected':
-        case 'IsConnected':
-        case 'ServerInfo':
-        case 'CarbonInfo':
-        case 'PlayerInfo':
-        case 'HeaderImage':
-        case 'Description':
-        case 'Logs':
-        case 'Rpcs':
-          return undefined
-      }
-      return value
-    })
+    switch (key) {
+      case 'Socket':
+      case 'UserConnected':
+      case 'IsConnected':
+      case 'ServerInfo':
+      case 'CarbonInfo':
+      case 'PlayerInfo':
+      case 'HeaderImage':
+      case 'Description':
+      case 'Logs':
+      case 'Rpcs':
+        return undefined
+    }
+    return value
+  })
 }
 
 export function exportSave() {
@@ -147,7 +147,7 @@ function importFromJson(data: string) {
   try {
     if (data) {
       ;(JSON.parse(data) as Server[]).forEach((server) => {
-        if(hasServer(server.Address, server.Password)) {
+        if (hasServer(server.Address, server.Password)) {
           return
         }
         const localServer = createServer(server.Address, server.Password)
@@ -172,10 +172,7 @@ function importFromJson(data: string) {
 }
 
 export function save() {
-  localStorage.setItem(
-    'rcon-servers',
-    exportToJson()
-  )
+  localStorage.setItem('rcon-servers', exportToJson())
 }
 
 export function load() {
@@ -208,7 +205,7 @@ export class Server {
   PlayerInfo: object | null = null
   HeaderImage = ''
   Description = ''
-  Rpcs: Record<number, (...args: any[]) => void> = {};
+  Rpcs: Record<number, (...args: any[]) => void> = {}
 
   clear() {
     this.IsConnecting = false
@@ -220,8 +217,7 @@ export class Server {
     this.Description = ''
     this.Socket = null
 
-    if(selectedServer.value == this) 
-    {
+    if (selectedServer.value == this) {
       hideInventory()
       tryFocusLogs()
     }
@@ -231,61 +227,59 @@ export class Server {
     this.Rpcs = {}
 
     // MoveInventoryItem
-    this.Rpcs[3553623853] = data => {
-      
-    }
+    this.Rpcs[3553623853] = (data) => {}
 
     // SendPlayerInventory
-    this.Rpcs[1739174796] = data => {
-        clearInventory()
-        try {
-          activeSlot.value = data.Value.ActiveSlot
-          data.Value.Main.forEach((item: any) => {
-            if(item.Position == -1 || item.Position >= mainSlots.value.length) {
-              return
-            }
-            const slot = mainSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId 
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Value.Belt.forEach((item: any) => {
-            if(item.Position == -1 || item.Position >= beltSlots.value.length) {
-              return
-            }
-            const slot = beltSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId  
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-          data.Value.Wear.forEach((item: any) => {
-            if(item.Position == -1 || item.Position >= wearSlots.value.length) {
-              return
-            }
-            const slot = wearSlots.value[item.Position]
-            slot.ShortName = item.ShortName
-            slot.ItemId = item.ItemId
-            slot.Amount = item.Amount
-            slot.Condition = item.Condition
-            slot.MaxCondition = item.MaxCondition
-            slot.ConditionNormalized = item.ConditionNormalized
-            slot.HasCondition = item.HasCondition
-          });
-        } catch (e) {
-          console.error(e)
-        }
+    this.Rpcs[1739174796] = (data) => {
+      clearInventory()
+      try {
+        activeSlot.value = data.Value.ActiveSlot
+        data.Value.Main.forEach((item: any) => {
+          if (item.Position == -1 || item.Position >= mainSlots.value.length) {
+            return
+          }
+          const slot = mainSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        })
+        data.Value.Belt.forEach((item: any) => {
+          if (item.Position == -1 || item.Position >= beltSlots.value.length) {
+            return
+          }
+          const slot = beltSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        })
+        data.Value.Wear.forEach((item: any) => {
+          if (item.Position == -1 || item.Position >= wearSlots.value.length) {
+            return
+          }
+          const slot = wearSlots.value[item.Position]
+          slot.ShortName = item.ShortName
+          slot.ItemId = item.ItemId
+          slot.Amount = item.Amount
+          slot.Condition = item.Condition
+          slot.MaxCondition = item.MaxCondition
+          slot.ConditionNormalized = item.ConditionNormalized
+          slot.HasCondition = item.HasCondition
+        })
+      } catch (e) {
+        console.error(e)
+      }
     }
 
     // TestCall
-    this.Rpcs[951948318] = data => {
+    this.Rpcs[951948318] = (data) => {
       console.log(data)
     }
   }
@@ -313,7 +307,7 @@ export class Server {
       this.IsConnecting = false
       this.IsConnected = true
 
-      this.registerRpcs();
+      this.registerRpcs()
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
       this.sendCommand('console.tail', 7)
@@ -377,7 +371,7 @@ export class Server {
       command.value = ''
       commandIndex.value = 0
 
-      if(this.CommandHistory.length == 0 || this.CommandHistory[this.CommandHistory.length -1] != input) {
+      if (this.CommandHistory.length == 0 || this.CommandHistory[this.CommandHistory.length - 1] != input) {
         this.CommandHistory.unshift(input)
       }
     }
@@ -388,7 +382,7 @@ export class Server {
   sendRpc(id: number, ...args: any[]) {
     for (let i = 0; i < args.length; i++) {
       var arg = args[i]
-      args[i] = `"${arg}"` 
+      args[i] = `"${arg}"`
     }
     this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
   }
@@ -404,17 +398,16 @@ export class Server {
         break
       case 6: // playerinfo
         this.PlayerInfo = data
-        this.PlayerInfo.forEach(player => {
-          if(!(player.Address in geoFlagCache.value)) {
-            
+        this.PlayerInfo.forEach((player) => {
+          if (!(player.Address in geoFlagCache.value)) {
             fetchGeolocation(player.Address)
           }
-        });
+        })
         break
       case 7: // console.tail
-        data.forEach(log => {
+        data.forEach((log) => {
           this.appendLog(log.Message as string)
-        });
+        })
         tryFocusLogs(true)
         break
       case 3: // carboninfo
@@ -422,7 +415,7 @@ export class Server {
         break
       case 4: // headerimage
         this.HeaderImage = data.Message.toString().split(' ').slice(1, 2).join(' ').replace(/['"]/g, '')
-        if(!isValidUrl(this.HeaderImage)) {
+        if (!isValidUrl(this.HeaderImage)) {
           this.HeaderImage = ''
         }
         break
@@ -432,7 +425,7 @@ export class Server {
       case 100: // c.webrcon.rpc
         const rpcId = Number(data.RpcId)
         if (rpcId in this.Rpcs) {
-          this.Rpcs[rpcId](data);
+          this.Rpcs[rpcId](data)
         }
         break
     }
@@ -455,24 +448,24 @@ export class Server {
   }
 
   selectHistory(up: boolean) {
-    if(up) {
+    if (up) {
       commandIndex.value++
     } else {
       commandIndex.value--
     }
-    
-    if(commandIndex.value > this.CommandHistory.length - 1) {
+
+    if (commandIndex.value > this.CommandHistory.length - 1) {
       commandIndex.value = -1
-    } else if(commandIndex.value < -1) {
+    } else if (commandIndex.value < -1) {
       commandIndex.value = this.CommandHistory.length - 1
     }
 
-    if(commandIndex.value == -1) {
+    if (commandIndex.value == -1) {
       command.value = ''
       return
     }
 
-    if(this.CommandHistory.length > 0) {
+    if (this.CommandHistory.length > 0) {
       command.value = this.CommandHistory[commandIndex.value]
     }
   }
