@@ -99,19 +99,21 @@ onMounted(() => {
 onUnmounted(() => {
   clearTimeout(timerSwitch)
 })
-
+/* 
 interface CommandSend {
   Message: string
   Identifier: number
 }
-
+ */
+/* 
 interface CommandResponse {
   Message: string
   Identifier: number
   Type: LogType
   Stacktrace: string
 }
-
+ */
+/* 
 enum LogType {
   Generic = 0,
   Error = 1,
@@ -121,6 +123,7 @@ enum LogType {
   ClientPerf = 5,
   Subscription = 6,
 }
+ */
 </script>
 
 <template>
@@ -211,6 +214,7 @@ enum LogType {
       <div class="mb-5 flex">
         <button
           v-for="(tab, index) in subTabs"
+          :key="index"
           class="r-button"
           @click="selectSubTab(index)"
           :class="['r-button', { toggled: selectedSubTab == index }]"
@@ -220,7 +224,7 @@ enum LogType {
         </button>
       </div>
 
-      <div v-for="(tab, index) in subTabs">
+      <div v-for="(tab, index) in subTabs" :key="index">
         <div v-if="selectedSubTab == index" class="m-4 text-xs text-slate-500">
           <span>{{ tab.Description }}</span>
         </div>
