@@ -276,7 +276,7 @@ onMounted(async () => {
           <OptionSelectorMany
             v-model="chosenRegionTags"
             :option-key-values="Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))"
-            label="Region:"
+            label="Region"
           />
           <OptionSelectorMany
             v-model="chosenCompressedTagsOr"
