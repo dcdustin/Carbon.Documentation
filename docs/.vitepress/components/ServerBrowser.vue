@@ -8,7 +8,6 @@ import { Loader2, Search, SearchSlash } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
-import OptionSelector from './common/OptionSelector.vue'
 import OptionSelectorMany from './common/OptionSelectorMany.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
@@ -22,7 +21,7 @@ const debouncedSearchValue = store.searchValue
 const useBasicSearch = store.useBasicSearch
 const chosenCompressedTagsAnd = store.chosenCompressedTagsAnd
 const chosenCompressedTagsOr = store.chosenCompressedTagsOr
-const chosenRegionTag = store.chosenRegionTags
+const chosenRegionTags = store.chosenRegionTags
 const playersRangeMin = store.playersRangeMin
 const playersRangeMax = store.playersRangeMax
 const chosenRustVersions = store.chosenRustVersions
@@ -66,9 +65,9 @@ const filteredServers = computed(() => {
       })
     }
 
-    if (chosenRegionTag.value && chosenRegionTag.value != 'All') {
+    if (chosenRegionTags.value && chosenRegionTags.value.length > 0) {
       filtered = filtered.filter((server) => {
-        return server.tags_set.has(chosenRegionTag.value)
+        return chosenRegionTags.value.some((tag) => server.tags_set.has(tag))
       })
     }
 
@@ -274,12 +273,9 @@ onMounted(async () => {
             :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
             label="Tags (and)"
           />
-          <OptionSelector
-            v-model="chosenRegionTag"
-            :option-key-values="[
-              { key: 'All', value: 'All' },
-              ...Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag })),
-            ]"
+          <OptionSelectorMany
+            v-model="chosenRegionTags"
+            :option-key-values="Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))"
             label="Region:"
           />
           <OptionSelectorMany
