@@ -8,14 +8,14 @@ export interface Hook {
   Category: string
   Parameters: Parameter[]
   Flags: number
-  Descriptions: string[]
+  Descriptions: string[] | null
   CarbonCompatible: boolean
   OxideCompatible: boolean
   MethodSource: string
   ParametersText: string
-  TargetName: string
-  MethodName: string
-  AssemblyName: string
+  TargetName: string | null
+  MethodName: string | null
+  AssemblyName: string | null
   ReturnTypeName: string
 }
 
