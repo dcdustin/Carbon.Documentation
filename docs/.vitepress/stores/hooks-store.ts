@@ -5,4 +5,5 @@ export const store = {
   showOxideHooks: shallowRef(true),
   showCarbonHooks: shallowRef(true),
   searchValue: shallowRef(''),
+  useBasicSearch: shallowRef(false),
 }

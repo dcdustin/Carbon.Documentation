@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Hook } from '@/api/metadata/carbon/hooks'
 import { fetchHooks } from '@/api/metadata/carbon/hooks'
-import AsyncState from '@/components/common/AsyncState.vue'
 import CheckBox from '@/components/common/CheckBox.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
@@ -9,7 +8,7 @@ import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialHooks } from '@/data-loaders/hooks.data'
 import { store } from '@/stores/hooks-store'
 import { useKeyModifier } from '@vueuse/core'
-import { Search } from 'lucide-vue-next'
+import { Loader2, Search, SearchSlash } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import type { Highlighter } from 'shiki'
 import { getSingletonHighlighter } from 'shiki'
@@ -31,6 +30,8 @@ const selectedCategory = store.chosenCategory
 const showOxideHooks = store.showOxideHooks
 const showCarbonHooks = store.showCarbonHooks
 const debouncedSearchValue = store.searchValue
+const useBasicSearch = store.useBasicSearch
+
 const isCtrlPressed = useKeyModifier<boolean>('Control', { initial: false })
 
 const pageSize = 25
@@ -46,8 +47,6 @@ const filteredHooks = computed(() => {
   if (!debouncedSearchValue.value && selectedCategory.value == 'All' && showOxideHooks.value == showCarbonHooks.value) {
     return hooks.value
   }
-
-  // const startTime = performance.now()
 
   let filtered = hooks.value
 
@@ -67,14 +66,23 @@ const filteredHooks = computed(() => {
     }
   }
 
-  if (debouncedSearchValue.value && miniSearch.value) {
-    const results = miniSearch.value.search(debouncedSearchValue.value)
-    const hookMap = new Map(filtered.map((hook) => [hook.FullName, hook]))
-    filtered = results.map((result) => hookMap.get(result.FullName)).filter(Boolean) as Hook[]
+  if (debouncedSearchValue.value) {
+    if (!miniSearch.value || useBasicSearch.value) {
+      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
+      filtered = filtered.filter(
+        (hook) =>
+          hook.FullName.toLowerCase().includes(lowerCaseSearchValue) ||
+          hook.Descriptions?.flatMap((description) => description.toLowerCase()).includes(lowerCaseSearchValue) ||
+          hook.MethodName?.toLowerCase().includes(lowerCaseSearchValue) ||
+          hook.TargetName?.toLowerCase().includes(lowerCaseSearchValue) ||
+          hook.AssemblyName?.toLowerCase().includes(lowerCaseSearchValue)
+      )
+    } else {
+      const results = miniSearch.value.search(debouncedSearchValue.value)
+      const hookMap = new Map(filtered.map((hook) => [hook.FullName, hook]))
+      filtered = results.map((result) => hookMap.get(result.FullName)).filter(Boolean) as Hook[]
+    }
   }
-
-  // const endTime = performance.now()
-  // console.log(`Filtered hooks in ${endTime - startTime}ms`)
 
   return filtered
 })
@@ -138,8 +146,6 @@ function tryLoadMiniSearch() {
 
 async function loadHooks() {
   try {
-    error.value = null
-
     const data = await fetchHooks()
 
     if (!data) {
@@ -159,8 +165,6 @@ async function loadHooks() {
     hooks.value = flatHooks
 
     isFetchedRestData.value = true
-
-    tryLoadMiniSearch()
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
@@ -180,14 +184,25 @@ async function tryLoadHighlighter() {
 
 onMounted(async () => {
   await Promise.all([loadHooks(), tryLoadHighlighter()])
+  tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="false" :error="error" loadingText="Loading hooks...">
+  <div v-if="error" class="flex flex-col items-center justify-center py-8 text-center">
+    <div class="mb-4 text-red-500">{{ error }}</div>
+  </div>
+  <template v-else>
     <SearchBar v-model="debouncedSearchValue" placeholder="Search hooks..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
-        <Search class="text-gray-400" :size="20" />
+        <button
+          @click="useBasicSearch = !useBasicSearch"
+          :title="useBasicSearch ? 'Switch to mini search (fuzzy)' : 'Switch to basic search (finds exact match, case-insensitive)'"
+          class="text-gray-400 transition-all duration-200 hover:text-gray-700 dark:hover:text-gray-200"
+          :class="{ '-rotate-90': useBasicSearch }"
+        >
+          <component :is="!useBasicSearch ? Search : SearchSlash" :size="20" />
+        </button>
       </template>
       <template #right>
         <div class="flex flex-row gap-4">
@@ -208,15 +223,19 @@ onMounted(async () => {
       </template>
     </SearchBar>
     <div v-if="filteredHooks && filteredHooks.length">
-      <div class="mt-4 flex flex-col gap-5">
+      <div class="mt-4">
         <InfinitePageScroll :list="filteredHooks" :pageSize="pageSize" v-slot="{ renderedList }">
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredHooks.length }} filtered hooks, {{ hooks.length }} total hooks.
+              Rendering {{ renderedList.length }} of {{ filteredHooks.length }} filtered hooks, {{ isFetchedRestData ? hooks.length : '' }}
+              <Loader2 v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
+              total hooks
             </div>
           </div>
-          <div v-for="hook in renderedList" :key="hook.FullName" :id="getSanitizedAnchor(hook.FullName)">
-            <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" />
+          <div class="flex flex-col gap-5">
+            <template v-for="hook in renderedList" :key="hook.FullName">
+              <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" :id="getSanitizedAnchor(hook.FullName)" />
+            </template>
           </div>
           <img
             v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
@@ -227,10 +246,20 @@ onMounted(async () => {
         </InfinitePageScroll>
       </div>
     </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
+    <div v-else-if="isFetchedRestData && miniSearch" class="flex flex-col items-center justify-center gap-2 py-8">
       <p>No hooks found matching your search</p>
-      <p v-if="hooks && hooks.length == 0" class="text-sm">Debug: No hooks loaded. Check console for errors.</p>
+      <p v-if="!hooks || hooks.length == 0" class="text-sm">Debug: No hooks loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
-  </AsyncState>
+    <div class="mt-8 flex flex-col gap-8 font-semibold">
+      <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
+        <Loader2 class="animate-spin" :size="24" />
+        <span>Loading em...</span>
+      </div>
+      <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
+        <Loader2 class="animate-spin" :size="24" />
+        <span>Loading minisearch...</span>
+      </div>
+    </div>
+  </template>
 </template>

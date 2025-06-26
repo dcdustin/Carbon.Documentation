@@ -223,8 +223,6 @@ async function tryLoadMiniSearch() {
 
 async function loadServers() {
   try {
-    error.value = null
-
     const data = await fetchServerList()
 
     serverListData.value = data
