@@ -275,7 +275,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .r-list {
   display: flex;
   gap: 10px;

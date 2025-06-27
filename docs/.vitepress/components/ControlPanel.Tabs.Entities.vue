@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X } from 'lucide-vue-next'
+import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save } from 'lucide-vue-next'
 import { ref } from 'vue'
-import { selectedServer } from './ControlPanel.SaveLoad'
-import { selectedEntity, stopEditingEntity, onSearch, editEntity, killEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
+import { selectedEntity, stopEditingEntity, onSearch, editEntity, killEntity, saveEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
 
@@ -72,13 +71,57 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
     </tr>
   </table>
 
-  <div v-if="selectedEntity" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click="stopEditingEntity()">
-    <div class="mx-4 w-full max-w-lg rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
+  <div v-if="selectedEntity" class="fixed inset-0 z-0 flex items-center justify-center bg-black/50" @click="stopEditingEntity()">
+    <div class="mx-4 w-full max-w-fit rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
       <div class="mb-4 flex items-center justify-between">
         <h3 class="text-xl font-bold"></h3>
         <button @click="stopEditingEntity()" class="text-gray-500 hover:text-gray-700">
           <X :size="20" />
         </button>
+      </div>
+      
+      <p class="text-xs text-neutral-500">{{ selectedEntity.Type }} [{{ selectedEntity.NetId }}]</p>
+      <p class="text-lg mb-5">{{ selectedEntity.ShortName }}</p>
+
+      <div class="flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Position</span>
+          <input type="text" class="r-settings-custom-input" :value="`${selectedEntity.Position.x.toLocaleString()} ${selectedEntity.Position.y.toLocaleString()} ${selectedEntity.Position.z.toLocaleString()}`" />
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Rotation</span>
+          <input type="text" class="r-settings-custom-input" :value="`${selectedEntity.Rotation.x.toLocaleString()} ${selectedEntity.Rotation.y.toLocaleString()} ${selectedEntity.Rotation.z.toLocaleString()}`" />
+        </div>
+      </div>
+      <div class="flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Parent</span>
+          <button v-if="selectedEntity.Parent" class="r-settings-custom-input" @click="editEntity(selectedEntity.Parent.NetId)"><span class="text-xs"><button @click="killEntity(selectedEntity.Parent.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button> {{ selectedEntity.Parent.ShortName }} <span class="text-neutral-500">{{ selectedEntity.Parent.NetId }}</span></span></button>
+          <div v-if="!selectedEntity.Parent" class="text-xs text-neutral-400">N/A</div>
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Children</span>
+          <button v-if="selectedEntity.Children.length > 0" v-for="child in selectedEntity.Children" class="r-settings-custom-input" @click="editEntity(child.NetId)"><span class="text-xs"><button @click="killEntity(child.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button> {{ child.ShortName }} <span class="text-neutral-500">{{ child.NetId }}</span></span></button>
+          <div v-if="selectedEntity.Children.length == 0" class="text-xs text-neutral-400">N/A</div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Owner</span>
+          <input type="text" class="r-settings-custom-input" :value="selectedEntity.Owner" />
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Skin</span>
+          <input type="text" class="r-settings-custom-input" :value="selectedEntity.Skin" />
+        </div>
+        <div class="r-settings-input-group">
+          <span class="r-settings-input-label" style="user-select: none">Flags<button><Pencil :size="12" class="mx-1"/></button></span>
+          <input readonly type="text" class="r-settings-custom-input" :value="selectedEntity.Flags" />
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button class="r-send-button" @click="saveEntity(selectedEntity.NetId)"><span class="text-neutral-400"><Save :size="17"/></span></button>
+        <button class="r-send-button" @click="killEntity(selectedEntity.NetId)"><span class="text-red-500"><Trash2 :size="17"/></span></button>
       </div>
     </div>
   </div>

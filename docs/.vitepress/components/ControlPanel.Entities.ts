@@ -22,21 +22,37 @@ export function onSearch() {
 }
 
 export function editEntity(netId: number) {
-  isSearching.value = true
+  if(netId == 0) {
+    return
+  }
 
   // EntityDetails
   selectedServer.value.Rpcs[2650739934] = (data: any) => {
-    isSearching.value = false
     selectedEntity.value = data.Value
   }
   selectedServer.value.sendRpc(2650739934, netId)
 }
 
 export function killEntity(netId: number) {
+  if(netId == 0) {
+    return
+  }
+
+  if(selectedEntity.value.NetId == netId) {
+    selectedEntity.value = null
+  }
+
   // EntityKill
   selectedServer.value.sendRpc(223927051, netId)
   searchInput.value = currentSearch.value
   onSearch()
+}
+
+export function saveEntity(netId: number) {
+  if(netId == 0) {
+    return
+  }
+  
 }
 
 export function stopEditingEntity() {
