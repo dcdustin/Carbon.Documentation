@@ -20,6 +20,7 @@ import {
 import ConsoleTab from './ControlPanel.Tabs.Console.vue'
 import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
 import PlayersTab from './ControlPanel.Tabs.Players.vue'
+import EntitiesTab from './ControlPanel.Tabs.Entities.vue'
 
 let timerSwitch: ReturnType<typeof setTimeout> = null!
 
@@ -263,6 +264,9 @@ onUnmounted(() => {
       </div>
       <div v-else-if="selectedSubTab == 3" style="overflow: auto">
         <PermissionsTab />
+      </div>
+      <div v-else-if="selectedSubTab == 4" style="overflow: auto">
+        <EntitiesTab />
       </div>
     </div>
     <div v-if="!selectedServer" style="color: var(--category-misc); font-size: small; text-align: center; user-select: none">
