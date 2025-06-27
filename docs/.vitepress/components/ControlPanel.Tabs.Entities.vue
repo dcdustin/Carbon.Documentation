@@ -1,35 +1,10 @@
 <script lang="ts" setup>
-import { Loader2, Pencil, Trash2, CheckCircle2, Copy } from 'lucide-vue-next'
+import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { selectedServer } from './ControlPanel.SaveLoad'
+import { selectedEntity, stopEditingEntity, onSearch, editEntity, killEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
 
-const searchMaxCount = ref<number>(50)
-
-const isSearching = ref<boolean>(false)
-const searchInput = ref<string>('')
-const searchedData = ref<any | null>(null)
-const currentSearch = ref<string>('')
 const copiedId = ref<string | number | null>(null)
-
-function onSearch() {
-  currentSearch.value = searchInput.value
-  searchInput.value = ''
-  isSearching.value = true
-
-  // SearchEntities
-  selectedServer.value.Rpcs[1120335884] = (data: any) => {
-    isSearching.value = false
-    searchedData.value = data.Value
-  }
-  selectedServer.value.sendRpc(1120335884, searchMaxCount.value, currentSearch.value)
-}
-
-function entityKill(netId: number) {
-  // EntityKill
-  selectedServer.value.sendRpc(223927051, netId)
-  searchInput.value = currentSearch.value
-  onSearch()
-}
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -61,8 +36,8 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
     </thead>
     <tr style="border: 1px;" v-for="entity in searchedData">
       <td class="vp-doc td r-table-row">
-        <button class="r-send-button" @click=""><span class="text-neutral-400"><Pencil :size="17"/></span></button>
-        <button class="r-send-button" @click="entityKill(entity.NetId)"><span class="text-red-500"><Trash2 :size="17"/></span></button>
+        <button class="r-send-button" @click="editEntity(entity.NetId)"><span class="text-neutral-400"><Pencil :size="17"/></span></button>
+        <button class="r-send-button" @click="killEntity(entity.NetId)"><span class="text-red-500"><Trash2 :size="17"/></span></button>
       </td> 
       <td class="vp-doc td r-table-row">
         <span class="flex">
@@ -96,6 +71,17 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
       </td>
     </tr>
   </table>
+
+  <div v-if="selectedEntity" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click="stopEditingEntity()">
+    <div class="mx-4 w-full max-w-lg rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-xl font-bold"></h3>
+        <button @click="stopEditingEntity()" class="text-gray-500 hover:text-gray-700">
+          <X :size="20" />
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>

@@ -17,6 +17,7 @@ import {
   selectedSubTab,
   servers,
 } from './ControlPanel.SaveLoad'
+import { selectedEntity, stopEditingEntity } from './ControlPanel.Entities'
 import ConsoleTab from './ControlPanel.Tabs.Console.vue'
 import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
 import PlayersTab from './ControlPanel.Tabs.Players.vue'
@@ -27,12 +28,11 @@ let timerSwitch: ReturnType<typeof setTimeout> = null!
 const subTabs = [
   {
     Name: 'Console',
-    Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.',
-    Content: `<ConsoleTab />`,
+    Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.'
   },
   {
     Name: 'Information',
-    Description: 'Useful info about the server activity and various other options.',
+    Description: 'Useful info about the server activity and various other options.'
   },
   {
     Name: 'Players',
@@ -41,11 +41,11 @@ const subTabs = [
   },
   {
     Name: 'Permissions',
-    Description: "Good ol' permissions.",
+    Description: "Good ol' permissions."
   },
   {
     Name: 'Entities',
-    Description: "Search and inspect any entities on the server.",
+    Description: "Search and inspect any entities on the server."
   }
 ]
 
@@ -273,156 +273,9 @@ onUnmounted(() => {
       <p>No server selected</p>
     </div>
   </div>
-
-  <div v-if="activeInventory" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @click="hideInventory()">
-    <div class="mx-4 w-full max-w-lg rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
-      <div class="mb-4 flex items-center justify-between">
-        <h3 class="text-xl font-bold"></h3>
-        <button @click="hideInventory()" class="text-gray-500 hover:text-gray-700">
-          <X :size="20" />
-        </button>
-      </div>
-      <div class="items-center" style="justify-items: center">
-        <div class="inventory-grid">
-          <div v-for="slot in mainSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img
-              v-if="slot.hasItem()"
-              class="slot-img"
-              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
-              draggable="true"
-              @dragstart="handleDrag(slot)"
-            />
-            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
-          </div>
-        </div>
-        <div class="inventory-grid-clothing mt-5">
-          <div v-for="slot in wearSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <img
-              v-if="slot.hasItem()"
-              class="slot-img"
-              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
-              draggable="true"
-              @dragstart="handleDrag(slot)"
-            />
-            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
-          </div>
-        </div>
-        <div class="inventory-grid mt-5">
-          <div v-for="slot in beltSlots" :key="slot.Position" class="slot" @dragover.prevent @drop="handleDrop(slot)">
-            <div v-if="activeSlot == slot.Position" class="slot-active"></div>
-            <img
-              v-if="slot.hasItem()"
-              class="slot-img"
-              :src="`https://cdn.carbonmod.gg/items/${slot.ShortName}.png`"
-              draggable="true"
-              @dragstart="handleDrag(slot)"
-            />
-            <span v-if="slot.hasItem() && slot.Amount > 1" class="slot-amount">x{{ slot.Amount }}</span>
-            <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
-          </div>
-        </div>
-        <div class="inventory-grid-tools mt-5">
-          <div
-            v-for="slot in toolSlots"
-            :key="slot.Position"
-            class="slot-tool items-center justify-center opacity-50"
-            @dragover.prevent
-            @drop="handleDrop(slot)"
-          >
-            <span v-if="slot.Container == 10" class="select-none justify-items-center text-xs opacity-50"><ArrowUpFromDot /> Drop</span>
-            <span v-if="slot.Container == 11" class="select-none justify-items-center text-xs opacity-50"><Trash2 /> Discard</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped>
-.inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 64px);
-  grid-gap: 6px;
-}
-
-.inventory-grid-clothing {
-  display: grid;
-  grid-template-columns: repeat(7, 64px);
-  grid-gap: 6px;
-}
-.inventory-grid-tools {
-  display: grid;
-  grid-template-columns: repeat(2, 64px);
-  grid-gap: 6px;
-}
-
-.slot {
-  width: 64px;
-  height: 64px;
-  background-color: rgba(255, 255, 255, 0.075);
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slot-tool {
-  width: 64px;
-  height: 64px;
-  background-color: rgba(255, 255, 255, 0.075);
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slot-tool:hover {
-  opacity: 100%;
-}
-
-.slot-active {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  object-fit: contain;
-  position: absolute;
-  background-color: #1b5c8b;
-}
-
-.slot-img {
-  width: 80%;
-  height: 80%;
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  object-fit: contain;
-}
-
-.slot-amount {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  position: absolute;
-  bottom: 2px;
-  right: 4px;
-  font-size: 12px;
-  padding: 0 2px;
-  user-select: none;
-}
-
-.slot-condition {
-  background-color: #5d8b30;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  font-size: 12px;
-  padding: 0 2px;
-  user-select: none;
-}
-
 .r-list {
   display: flex;
   gap: 10px;
