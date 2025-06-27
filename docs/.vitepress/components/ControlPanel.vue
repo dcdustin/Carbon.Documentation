@@ -42,6 +42,10 @@ const subTabs = [
     Name: 'Permissions',
     Description: "Good ol' permissions.",
   },
+  {
+    Name: 'Entities',
+    Description: "Search and inspect any entities on the server.",
+  }
 ]
 
 onMounted(() => {
