@@ -36,7 +36,7 @@ export async function fetchGeolocation(ip: string) {
     return
   }
 
-  const url = `https://ipwho.is/${ip.split(':')[0]}`
+  const url = `https://api.iplocation.net/?ip=${ip.split(':')[0]}`
 
   try {
     const response = await fetch(url)
@@ -45,11 +45,11 @@ export async function fetchGeolocation(ip: string) {
     }
 
     const data = await response.json()
-    if (geoFlagCache.value) {
-      geoFlagCache.value[ip] = `https://flagcdn.com/32x24/${data.country_code.toString().toLowerCase()}.png`
+    if (geoFlagCache.value && !(ip in geoFlagCache.value)) {
+      geoFlagCache.value[ip] = `https://flagcdn.com/32x24/${data.country_code2.toString().toLowerCase()}.png`
     }
-  } catch {
-    /* empty */
+  } catch(ex) {
+    console.log(ex)
   }
 }
 
