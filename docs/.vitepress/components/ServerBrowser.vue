@@ -4,7 +4,7 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
-import { Loader2 } from 'lucide-vue-next'
+import { LoaderCircle } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
@@ -300,7 +300,7 @@ onMounted(async () => {
           <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
             <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
               Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers,
-              {{ isFetchedRestData ? serverListData?.Servers.length : '' }} <Loader2 v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
+              {{ isFetchedRestData ? serverListData?.Servers.length : '' }} <LoaderCircle v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
               total servers
             </div>
           </div>
@@ -318,15 +318,22 @@ onMounted(async () => {
       <p v-if="!serverListData?.Servers || serverListData.Servers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
       <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
     </div>
-    <div class="mt-8 flex flex-col gap-8 font-semibold">
-      <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
-        <Loader2 class="animate-spin" :size="24" />
-        <span>Loading em...</span>
-      </div>
-      <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
-        <Loader2 class="animate-spin" :size="24" />
-        <span>Loading minisearch...</span>
-      </div>
+    <div class="mt-8 flex flex-col gap-8 font-normal">
+      <TransitionGroup :css="false" name="transitionList">
+        <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
+          <LoaderCircle class="animate-spin" :size="24" />
+          <span>Loading em...</span>
+        </div>
+        <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
+          <LoaderCircle class="animate-spin" :size="24" />
+          <span>Loading miniSearch...</span>
+        </div>
+      </TransitionGroup>
     </div>
   </template>
 </template>
+<style scoped>
+.transitionList-move {
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+</style>
