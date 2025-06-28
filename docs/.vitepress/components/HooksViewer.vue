@@ -112,7 +112,7 @@ function tryLoadMiniSearch() {
       fuzzy: 0.1,
     },
     tokenize: (text, fieldName) => {
-      // should be refactored in the future
+      // TODO: should be refactored in the future
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}]+/u // from minisearch source
       const processed = text
         .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
@@ -200,6 +200,7 @@ onMounted(async () => {
         </template>
         <template #right>
           <div class="flex flex-row gap-4">
+            <!-- TODO: to multipe options -->
             <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
             <div class="flex flex-row items-center gap-2">
               <CheckBox v-model="showOxideHooks">
