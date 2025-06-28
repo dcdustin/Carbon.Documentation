@@ -11,7 +11,6 @@ import ServerBrowserCard from './ServerBrowserCard.vue'
 import OptionSelectorMany from './common/OptionSelectorMany.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
-const miniSearch = shallowRef<MiniSearch | null>(null)
 const rustVersions = shallowRef<number[]>([])
 
 const isFetchedRestData = shallowRef(false)
@@ -19,6 +18,7 @@ const isDataFromCache = shallowRef<boolean | null>(null)
 const error = shallowRef<string | null>(null)
 
 const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
 const useBasicSearch = store.useBasicSearch
 const chosenCompressedTagsAnd = store.chosenCompressedTagsAnd
 const chosenCompressedTagsOr = store.chosenCompressedTagsOr
@@ -103,6 +103,11 @@ const filteredServers = computed(() => {
 })
 
 async function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    console.log('Using previous MiniSearch')
+    return
+  }
+
   const startTime = performance.now()
 
   const minisearch = new MiniSearch({

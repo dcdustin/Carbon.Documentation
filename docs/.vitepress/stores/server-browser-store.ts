@@ -1,8 +1,10 @@
 import { CompressedTag, RegionTag } from '@/api/misc/server-list'
+import MiniSearch from 'minisearch'
 import { ref, shallowRef } from 'vue'
 
 export const store = {
   searchValue: shallowRef(''),
+  miniSearch: shallowRef<MiniSearch | null>(null),
   useBasicSearch: ref<boolean>(false),
   chosenRegionTags: ref<RegionTag[]>([]),
   chosenCompressedTagsOr: ref<CompressedTag[]>([]),
