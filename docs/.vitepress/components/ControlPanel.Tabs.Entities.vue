@@ -80,6 +80,10 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
         </button>
       </div>
       
+      <div>
+        <img class="w-36" :src="'https://cdn.carbonmod.gg/prefabs/' + selectedEntity.Id + '.side.png'" />
+      </div>
+
       <p class="text-xs text-neutral-500">{{ selectedEntity.Type }} [{{ selectedEntity.NetId }}]</p>
       <p class="text-lg mb-5">{{ selectedEntity.ShortName }}</p>
 
