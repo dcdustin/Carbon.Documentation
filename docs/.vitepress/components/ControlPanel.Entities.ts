@@ -17,6 +17,7 @@ export function onSearch() {
   selectedServer.value.Rpcs[1120335884] = (data: any) => {
     isSearching.value = false
     searchedData.value = data.Value
+    editEntity(selectedEntity.value == null ? 0 : selectedEntity.value.NetId)
   }
   selectedServer.value.sendRpc(1120335884, searchMaxCount.value, currentSearch.value)
 }
@@ -38,7 +39,7 @@ export function killEntity(netId: number) {
     return
   }
 
-  if(selectedEntity.value.NetId == netId) {
+  if(selectedEntity.value != null && selectedEntity.value.NetId == netId) {
     selectedEntity.value = null
   }
 
@@ -52,7 +53,9 @@ export function saveEntity(netId: number) {
   if(netId == 0) {
     return
   }
-  
+
+  // EntitySave
+  selectedServer.value.sendRpc(4230705942, `"${JSON.stringify(selectedEntity.value)}"`)
 }
 
 export function stopEditingEntity() {

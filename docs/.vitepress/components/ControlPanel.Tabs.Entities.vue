@@ -41,9 +41,9 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
       <td class="vp-doc td r-table-row">
         <span class="flex">
           <button
-              @click="copyToClipboard(entity.NetId, entity.Position.x + entity.Position.y + entity.Position.z + 1)"
+              @click="copyToClipboard(entity.NetId, entity.PosX + entity.PosY + entity.PosZ + 1)"
               class="flex items-center pr-2 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-            <component :is="copiedId === entity.Position.x + entity.Position.y + entity.Position.z + 1 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
+            <component :is="copiedId === entity.PosX + entity.PosY + entity.PosZ + 1 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
           {{ entity.NetId }}
         </span>
@@ -51,9 +51,9 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
       <td class="vp-doc td r-table-row">
         <span class="flex">
           <button
-              @click="copyToClipboard(entity.Name, entity.Position.x + entity.Position.y + entity.Position.z + 2)"
+              @click="copyToClipboard(entity.Name, entity.PosX + entity.PosY + entity.PosZ + 2)"
               class="flex items-center pr-2 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-            <component :is="copiedId === entity.Position.x + entity.Position.y + entity.Position.z + 2 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
+            <component :is="copiedId === entity.PosX + entity.PosY + entity.PosZ + 2 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
           {{ entity.Name }}
         </span>
@@ -61,11 +61,11 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
       <td class="vp-doc td r-table-row">
         <span class="flex">
           <button
-              @click="copyToClipboard(`${entity.Position.x} ${entity.Position.y} ${entity.Position.z}`, entity.Position.x + entity.Position.y + entity.Position.z + 3)"
+              @click="copyToClipboard(`${entity.PosX} ${entity.PosY} ${entity.PosZ}`, entity.PosX + entity.PosY + entity.PosZ + 3)"
               class="flex items-center pr-2 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-            <component :is="copiedId === entity.Position.x + entity.Position.y + entity.Position.z + 3 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
+            <component :is="copiedId === entity.PosX + entity.PosY + entity.PosZ + 3 ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
-          {{ entity.Position.x.toLocaleString() }} {{ entity.Position.y.toLocaleString() }} {{ entity.Position.z.toLocaleString() }} 
+          {{ entity.PosX.toLocaleString() }} {{ entity.PosY.toLocaleString() }} {{ entity.PosZ.toLocaleString() }} 
         </span>
       </td>
     </tr>
@@ -86,33 +86,41 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
       <div class="flex">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Position</span>
-          <input type="text" class="r-settings-custom-input" :value="`${selectedEntity.Position.x.toLocaleString()} ${selectedEntity.Position.y.toLocaleString()} ${selectedEntity.Position.z.toLocaleString()}`" />
+          <div class="flex">
+            <input type="text" class="r-settings-custom-input w-24" title="X coordinate" v-model="selectedEntity.PosX" />
+            <input type="text" class="r-settings-custom-input w-24" title="Y coordinate" v-model="selectedEntity.PosY" />
+            <input type="text" class="r-settings-custom-input w-24" title="Z coordinate" v-model="selectedEntity.PosZ" />
+          </div>
         </div>
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Rotation</span>
-          <input type="text" class="r-settings-custom-input" :value="`${selectedEntity.Rotation.x.toLocaleString()} ${selectedEntity.Rotation.y.toLocaleString()} ${selectedEntity.Rotation.z.toLocaleString()}`" />
+          <div class="flex">
+            <input type="text" class="r-settings-custom-input w-24" title="X coordinate" v-model="selectedEntity.RotX" />
+            <input type="text" class="r-settings-custom-input w-24" title="Y coordinate" v-model="selectedEntity.RotY" />
+            <input type="text" class="r-settings-custom-input w-24" title="Z coordinate" v-model="selectedEntity.RotZ" />
+          </div>
         </div>
       </div>
       <div class="flex">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Parent</span>
-          <button v-if="selectedEntity.Parent" class="r-settings-custom-input" @click="editEntity(selectedEntity.Parent.NetId)"><span class="text-xs"><button @click="killEntity(selectedEntity.Parent.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button> {{ selectedEntity.Parent.ShortName }} <span class="text-neutral-500">{{ selectedEntity.Parent.NetId }}</span></span></button>
+          <span v-if="selectedEntity.Parent"><button @click="killEntity(selectedEntity.Parent.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(selectedEntity.Parent.NetId)"><span class="text-xs"> {{ selectedEntity.Parent.ShortName }} <span class="text-neutral-500">{{ selectedEntity.Parent.NetId }}</span></span></button></span>
           <div v-if="!selectedEntity.Parent" class="text-xs text-neutral-400">N/A</div>
         </div>
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Children</span>
-          <button v-if="selectedEntity.Children.length > 0" v-for="child in selectedEntity.Children" class="r-settings-custom-input" @click="editEntity(child.NetId)"><span class="text-xs"><button @click="killEntity(child.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button> {{ child.ShortName }} <span class="text-neutral-500">{{ child.NetId }}</span></span></button>
+          <span v-if="selectedEntity.Children.length > 0" v-for="child in selectedEntity.Children"><button @click="killEntity(child.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(child.NetId)"><span class="text-xs"> {{ child.ShortName }} <span class="text-neutral-500">{{ child.NetId }}</span></span></button></span>
           <div v-if="selectedEntity.Children.length == 0" class="text-xs text-neutral-400">N/A</div>
         </div>
       </div>
       <div class="flex">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Owner</span>
-          <input type="text" class="r-settings-custom-input" :value="selectedEntity.Owner" />
+          <input v-model="selectedEntity.Owner" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Skin</span>
-          <input type="text" class="r-settings-custom-input" :value="selectedEntity.Skin" />
+          <input v-model="selectedEntity.Skin" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Flags<button><Pencil :size="12" class="mx-1"/></button></span>
