@@ -34,7 +34,7 @@ const { error, filteredList, list, searchVal, isFetchedRestData, miniSearch } = 
         </div>
         <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
           <LoaderCircle class="animate-spin" :size="24" />
-          <span>Loading miniSearch...</span>
+          <span>Loading minisearch...</span>
         </div>
       </TransitionGroup>
     </div>
