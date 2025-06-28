@@ -26,7 +26,7 @@ export async function fetchChangelogsCarbon() {
     versionUrl: '',
   }
 
-  const data = await fetchApiCaching<ChangelogsCarbonData>(url, CACHE_TIME_CHANGELOGS_TTL, undefined, options)
+  const { data } = await fetchApiCaching<ChangelogsCarbonData>(url, CACHE_TIME_CHANGELOGS_TTL, undefined, options)
 
   return data
 }

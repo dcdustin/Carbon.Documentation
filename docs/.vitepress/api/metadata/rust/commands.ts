@@ -15,7 +15,7 @@ export type CommandsRustData = CommandRust[]
 export async function fetchCommandsRust() {
   const url = URL_METDAT_RUST_COMMANDS
 
-  const data = await fetchApiCaching<CommandsRustData>(url, CACHE_TIME_ITEM_TTL)
+  const { data } = await fetchApiCaching<CommandsRustData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

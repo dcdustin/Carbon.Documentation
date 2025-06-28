@@ -12,7 +12,7 @@ export type SwitchesData = Switch[]
 export async function fetchSwitches() {
   const url = URL_METDAT_CARB_SWITCHES
 
-  const data = await fetchApiCaching<SwitchesData>(url, CACHE_TIME_ITEM_TTL)
+  const { data } = await fetchApiCaching<SwitchesData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

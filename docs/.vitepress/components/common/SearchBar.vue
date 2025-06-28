@@ -104,7 +104,7 @@ onMounted(() => {
       >
         <span class="flex items-center gap-1">
           {{ isExpanded ? 'Show less' : '' }}
-          <ChevronDown class="transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" :size="16" />
+          <ChevronDown class="transition-transform duration-300" :class="{ '-rotate-180': isExpanded }" :size="16" />
         </span>
       </button>
     </div>

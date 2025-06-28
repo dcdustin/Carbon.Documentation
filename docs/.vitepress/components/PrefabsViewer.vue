@@ -11,13 +11,14 @@ import MiniSearch, { SearchOptions } from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 
 const isLoading = shallowRef(true)
+const isDataFromCache = shallowRef<boolean | null>(null)
 const error = shallowRef<string | null>(null)
 
 const prefabs = shallowRef<Prefab[]>([])
-const miniSearch = shallowRef<MiniSearch | null>(null)
 
 const selectedSearchType = store.searchType
 const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
 
 const pageSize = 20
 
@@ -80,6 +81,10 @@ const filteredPrefabs = computed(() => {
 })
 
 function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    return
+  }
+
   const startTime = performance.now()
 
   // should be extracted and cached...
@@ -136,7 +141,7 @@ async function loadPrefabs() {
     isLoading.value = true
     error.value = null
 
-    const data = await fetchPrefabs()
+    const { data, isFromCache } = await fetchPrefabs()
 
     if (!data) {
       throw new Error('No data received from API')
@@ -144,7 +149,7 @@ async function loadPrefabs() {
 
     prefabs.value = data
 
-    tryLoadMiniSearch()
+    isDataFromCache.value = isFromCache
   } catch (err) {
     console.error('Failed to load prefabs:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load prefabs. Please try again later.'
@@ -154,7 +159,8 @@ async function loadPrefabs() {
 }
 
 onMounted(async () => {
-  loadPrefabs()
+  await loadPrefabs()
+  tryLoadMiniSearch()
 })
 </script>
 

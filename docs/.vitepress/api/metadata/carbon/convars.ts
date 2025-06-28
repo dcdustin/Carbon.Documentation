@@ -15,7 +15,7 @@ export type ConVarsCarbonData = ConVarCarbon[]
 export async function fetchConVarsCarbon() {
   const url = URL_METDAT_CARB_CONVARS
 
-  const data = await fetchApiCaching<ConVarsCarbonData>(url, CACHE_TIME_ITEM_TTL)
+  const { data } = await fetchApiCaching<ConVarsCarbonData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }
