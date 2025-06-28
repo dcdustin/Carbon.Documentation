@@ -4,20 +4,20 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
-import { LoaderCircle } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
 import OptionSelectorMany from './common/OptionSelectorMany.vue'
 import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
-import ApiPageInfo from './common/ApiPageInfo.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const rustVersions = shallowRef<number[]>([])
 
 const isFetchedRestData = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
-const error = shallowRef<string | null>(null)
+const error = shallowRef<string>('')
 
 const debouncedSearchValue = store.searchValue
 const miniSearch = store.miniSearch
@@ -253,87 +253,69 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="error" class="flex flex-col items-center justify-center py-8 text-center">
-    <div class="mb-4 text-red-500">{{ error }}</div>
-  </div>
-  <template v-else>
-    <SearchBar
-      v-model="debouncedSearchValue"
-      placeholder="Search servers..."
-      class="sticky top-16 z-10 min-[960px]:top-20"
-      :isExpandable="true"
-      :initialExpanded="true"
-    >
-      <template #icon>
-        <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
-      </template>
-      <template #expandable>
-        <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
-          <OptionSelectorMany
-            v-model="chosenCompressedTagsAnd"
-            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-            label="Tags (and)"
-          />
-          <OptionSelectorMany
-            v-model="chosenRegionTags"
-            :option-key-values="Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))"
-            label="Region"
-          />
-          <OptionSelectorMany
-            v-model="chosenCompressedTagsOr"
-            :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
-            label="Tags (or)"
-          />
-          <OptionSelectorMany v-model="chosenRustVersions" :options="rustVersions" label="Rust version" />
-          <div class="flex items-center gap-2 [&>input]:w-10 [&>input]:rounded-md [&>input]:text-center [&>input]:ring-1 [&>input]:ring-gray-500">
-            <span>Players</span>
-            <input type="number" title="Min" v-model="playersRangeMin" />
-            <span>to</span>
-            <input type="number" title="Max" v-model="playersRangeMax" />
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredServers"
+    :list="serverListData?.Servers"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRestData"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar
+        v-model="debouncedSearchValue"
+        placeholder="Search servers..."
+        class="sticky top-16 z-10 min-[960px]:top-20"
+        :isExpandable="true"
+        :initialExpanded="true"
+      >
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #expandable>
+          <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
+            <OptionSelectorMany
+              v-model="chosenCompressedTagsAnd"
+              :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+              label="Tags (and)"
+            />
+            <OptionSelectorMany
+              v-model="chosenRegionTags"
+              :option-key-values="Object.keys(RegionTag).map((tag) => ({ key: RegionTag[tag as keyof typeof RegionTag], value: tag }))"
+              label="Region"
+            />
+            <OptionSelectorMany
+              v-model="chosenCompressedTagsOr"
+              :option-key-values="Object.keys(CompressedTag).map((tag) => ({ key: CompressedTag[tag as keyof typeof CompressedTag], value: tag }))"
+              label="Tags (or)"
+            />
+            <OptionSelectorMany v-model="chosenRustVersions" :options="rustVersions" label="Rust version" />
+            <div class="flex items-center gap-2 [&>input]:w-10 [&>input]:rounded-md [&>input]:text-center [&>input]:ring-1 [&>input]:ring-gray-500">
+              <span>Players</span>
+              <input type="number" title="Min" v-model="playersRangeMin" />
+              <span>to</span>
+              <input type="number" title="Max" v-model="playersRangeMax" />
+            </div>
           </div>
-        </div>
-      </template>
-    </SearchBar>
+        </template>
+      </SearchBar>
+    </template>
 
-    <div v-if="filteredServers && filteredServers.length">
-      <div class="mt-4">
-        <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
-          <ApiPageInfo
-            :rendered-lenght="renderedList.length"
-            :filtered-lenght="filteredServers.length"
-            :total-lenght="serverListData?.Servers.length ?? -1"
-            :is-fetched-rest-data="isFetchedRestData"
-          />
-          <!-- TODO: switch to virtual list -->
-          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-            <template v-for="server in renderedList" :key="server.id">
-              <ServerBrowserCard :server="server" />
-            </template>
-          </div>
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else-if="isFetchedRestData && miniSearch" class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No servers found matching your search</p>
-      <p v-if="!serverListData?.Servers || serverListData.Servers.length == 0" class="text-sm">Debug: No servers loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-    <div class="mt-8 flex flex-col gap-8 font-normal">
-      <TransitionGroup :css="false" name="transitionList">
-        <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
-          <LoaderCircle class="animate-spin" :size="24" />
-          <span>Loading em...</span>
+    <template #list>
+      <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredServers.length"
+          :total-lenght="serverListData?.Servers.length ?? -1"
+          :is-fetched-rest-data="isFetchedRestData"
+        />
+        <!-- TODO: switch to virtual list -->
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <template v-for="server in renderedList" :key="server.id">
+            <ServerBrowserCard :server="server" />
+          </template>
         </div>
-        <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
-          <LoaderCircle class="animate-spin" :size="24" />
-          <span>Loading miniSearch...</span>
-        </div>
-      </TransitionGroup>
-    </div>
-  </template>
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>
-<style scoped>
-.transitionList-move {
-  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-</style>
