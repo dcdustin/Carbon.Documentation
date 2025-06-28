@@ -14,6 +14,7 @@ import type { Highlighter } from 'shiki'
 import { getSingletonHighlighter } from 'shiki'
 import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
 import HookCard from './HookCard.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
 const isFetchedRestData = shallowRef(false)
 const error = shallowRef<string | null>(null)
@@ -195,14 +196,7 @@ onMounted(async () => {
   <template v-else>
     <SearchBar v-model="debouncedSearchValue" placeholder="Search hooks..." class="sticky top-16 z-10 min-[960px]:top-20">
       <template #icon>
-        <button
-          @click="useBasicSearch = !useBasicSearch"
-          :title="useBasicSearch ? 'Switch to mini search (fuzzy)' : 'Switch to basic search (finds exact match, case-insensitive)'"
-          class="text-gray-400 transition-all duration-200 hover:text-gray-700 dark:hover:text-gray-200"
-          :class="{ '-rotate-90': useBasicSearch }"
-        >
-          <component :is="!useBasicSearch ? Search : SearchSlash" :size="20" />
-        </button>
+        <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
       </template>
       <template #right>
         <div class="flex flex-row gap-4">

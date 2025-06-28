@@ -4,11 +4,12 @@ import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialData } from '@/data-loaders/server-browser.data'
 import { store } from '@/stores/server-browser-store'
-import { Loader2, Search, SearchSlash } from 'lucide-vue-next'
+import { Loader2 } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
 import OptionSelectorMany from './common/OptionSelectorMany.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const rustVersions = shallowRef<number[]>([])
@@ -263,14 +264,7 @@ onMounted(async () => {
       :initialExpanded="true"
     >
       <template #icon>
-        <button
-          @click="useBasicSearch = !useBasicSearch"
-          :title="useBasicSearch ? 'Switch to mini search (fuzzy)' : 'Switch to basic search (finds exact match, case-insensitive)'"
-          class="text-gray-400 transition-all duration-200 hover:text-gray-700 dark:hover:text-gray-200"
-          :class="{ '-rotate-90': useBasicSearch }"
-        >
-          <component :is="!useBasicSearch ? Search : SearchSlash" :size="20" />
-        </button>
+        <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
       </template>
       <template #expandable>
         <div class="mt-4 flex flex-col flex-wrap justify-between gap-4 px-2 sm:flex-row">
