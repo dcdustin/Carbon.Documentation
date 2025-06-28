@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { URL_METDAT_CARB_HOOKS } from '@/api/constants'
-import { Database, ExternalLink } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
+import ApiIndex from './common/ApiIndex.vue'
+import ApiLinkToApi from './common/ApiLinkToApi.vue'
 import HooksViewer from './HooksViewer.vue'
 </script>
 
 <template>
-  <div class="mx-auto max-w-screen-lg px-4 py-8">
+  <ApiIndex>
     <div class="mb-4 flex flex-col gap-4">
       <h1 class="text-2xl font-bold">Carbon Hooks Reference</h1>
       <p>
@@ -16,21 +17,8 @@ import HooksViewer from './HooksViewer.vue'
         By default, if hooks are not <VPBadge type="danger" text="Static" /> or <VPBadge type="danger" text="Patch" />, they're dynamically applied upon plugin
         subscription, otherwise inactive.
       </p>
-      <div class="flex items-center gap-2">
-        <a :href="URL_METDAT_CARB_HOOKS" target="_blank" class="flex items-center gap-2">
-          <Database :size="16" />
-          Hooks API
-          <ExternalLink :size="14" class="opacity-80" />
-        </a>
-      </div>
+      <ApiLinkToApi text="Hooks API" :url="URL_METDAT_CARB_HOOKS" />
     </div>
     <HooksViewer />
-  </div>
+  </ApiIndex>
 </template>
-
-<style scoped>
-:deep(.VPBadge) {
-  margin-left: 0;
-  transform: none;
-}
-</style>

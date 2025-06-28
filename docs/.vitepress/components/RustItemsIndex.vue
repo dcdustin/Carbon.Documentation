@@ -1,32 +1,17 @@
 <script setup lang="ts">
 import { URL_METDAT_RUST_ITEMS } from '@/api/constants'
-import { Database, ExternalLink } from 'lucide-vue-next'
 import RustItemsViewer from './RustItemsViewer.vue'
+import ApiIndex from './common/ApiIndex.vue'
+import ApiLinkToApi from './common/ApiLinkToApi.vue'
 </script>
 
 <template>
-  <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <div class="flex flex-col gap-4 mb-4">
+  <ApiIndex>
+    <div class="mb-4 flex flex-col gap-4">
       <h1 class="text-2xl font-bold">Rust Items Reference</h1>
-      <p>
-        This section contains a comprehensive list of all items available in the game. Each item is listed
-        with its unique ID, components, and file path.
-      </p>
-      <div class="flex items-center gap-2">
-        <a :href="URL_METDAT_RUST_ITEMS" target="_blank" class="flex items-center gap-2">
-          <Database :size="16" />
-          Rust Items API
-          <ExternalLink :size="14" class="opacity-80" />
-        </a>
-      </div>
+      <p>This section contains a comprehensive list of all items available in the game. Each item is listed with its unique ID, components, and file path.</p>
+      <ApiLinkToApi text="Rust Items API" :url="URL_METDAT_RUST_ITEMS" />
     </div>
     <RustItemsViewer />
-  </div>
+  </ApiIndex>
 </template>
-
-<style scoped>
-:deep(.VPBadge) {
-  margin-left: 0;
-  transform: none;
-}
-</style>
