@@ -82,7 +82,6 @@ const filteredPrefabs = computed(() => {
 
 function tryLoadMiniSearch() {
   if (miniSearch.value && isDataFromCache.value) {
-    console.log('Using previous MiniSearch')
     return
   }
 

@@ -14,7 +14,7 @@ import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const rustVersions = shallowRef<number[]>([])
-const items = computed(() => serverListData.value?.Servers)
+const list = computed(() => serverListData.value?.Servers)
 
 const isFetchedRest = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
@@ -34,11 +34,11 @@ const initialPageSize = 25
 const pageSize = 50
 
 const filteredList = computed(() => {
-  if (!items.value || !items.value.length) {
+  if (!list.value || !list.value.length) {
     return []
   }
 
-  let filtered = items.value
+  let filtered = list.value
 
   if (debouncedSearchValue.value && debouncedSearchValue.value.includes('.')) {
     const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){1,4}\.?$/
@@ -107,7 +107,6 @@ const filteredList = computed(() => {
 
 async function tryLoadMiniSearch() {
   if (miniSearch.value && isDataFromCache.value) {
-    console.log('Using previous MiniSearch')
     return
   }
 
@@ -222,7 +221,7 @@ async function tryLoadMiniSearch() {
     },
   })
 
-  await minisearch.addAllAsync(items.value ?? [], { chunkSize: 5000 }) // currently the most optimal chunk size
+  await minisearch.addAllAsync(list.value ?? [], { chunkSize: 5000 }) // currently the most optimal chunk size
 
   const endTime = performance.now()
   console.log(`Initialized MiniSearch for server list in ${endTime - startTime}ms`)
@@ -257,7 +256,7 @@ onMounted(async () => {
   <ApiPageStateHandler
     :error
     :filtered-list="filteredList"
-    :list="items"
+    :list="list"
     :search-val="debouncedSearchValue"
     :is-fetched-rest-data="isFetchedRest"
     :mini-search="miniSearch"
@@ -307,7 +306,7 @@ onMounted(async () => {
         <ApiPageInfo
           :rendered-lenght="renderedList.length"
           :filtered-lenght="filteredList.length"
-          :total-lenght="items?.length ?? -1"
+          :total-lenght="list?.length ?? -1"
           :is-fetched-rest-data="isFetchedRest"
         />
         <!-- TODO: switch to virtual list -->
