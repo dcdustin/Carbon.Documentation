@@ -14,8 +14,9 @@ import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const rustVersions = shallowRef<number[]>([])
+const items = computed(() => serverListData.value?.Servers)
 
-const isFetchedRestData = shallowRef(false)
+const isFetchedRest = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
 const error = shallowRef<string>('')
 
@@ -32,12 +33,12 @@ const chosenRustVersions = store.chosenRustVersions
 const initialPageSize = 25
 const pageSize = 50
 
-const filteredServers = computed(() => {
-  if (!serverListData.value || !serverListData.value.Servers.length) {
+const filteredList = computed(() => {
+  if (!items.value || !items.value.length) {
     return []
   }
 
-  let filtered = serverListData.value.Servers
+  let filtered = items.value
 
   if (debouncedSearchValue.value && debouncedSearchValue.value.includes('.')) {
     const ipRegex = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){1,4}\.?$/
@@ -53,7 +54,7 @@ const filteredServers = computed(() => {
       return filtered.filter((server) => server.ip.startsWith(trimmed))
     }
   }
-  if (isFetchedRestData.value) {
+  if (isFetchedRest.value) {
     if (chosenRustVersions.value.length > 0) {
       filtered = filtered.filter((server) => {
         return chosenRustVersions.value.includes(server.rust_version)
@@ -221,7 +222,7 @@ async function tryLoadMiniSearch() {
     },
   })
 
-  await minisearch.addAllAsync(serverListData.value?.Servers ?? [], { chunkSize: 5000 }) // currently the most optimal chunk size
+  await minisearch.addAllAsync(items.value ?? [], { chunkSize: 5000 }) // currently the most optimal chunk size
 
   const endTime = performance.now()
   console.log(`Initialized MiniSearch for server list in ${endTime - startTime}ms`)
@@ -229,13 +230,13 @@ async function tryLoadMiniSearch() {
   miniSearch.value = minisearch
 }
 
-async function loadServers() {
+async function loadItems() {
   try {
     const { data, isFromCache } = await fetchServerList()
 
     serverListData.value = data
 
-    isFetchedRestData.value = true
+    isFetchedRest.value = true
 
     isDataFromCache.value = isFromCache
 
@@ -247,7 +248,7 @@ async function loadServers() {
 }
 
 onMounted(async () => {
-  await loadServers()
+  await loadItems()
   await tryLoadMiniSearch()
 })
 </script>
@@ -255,10 +256,10 @@ onMounted(async () => {
 <template>
   <ApiPageStateHandler
     :error
-    :filtered-list="filteredServers"
-    :list="serverListData?.Servers"
+    :filtered-list="filteredList"
+    :list="items"
     :search-val="debouncedSearchValue"
-    :is-fetched-rest-data="isFetchedRestData"
+    :is-fetched-rest-data="isFetchedRest"
     :mini-search="miniSearch"
   >
     <template #top>
@@ -302,12 +303,12 @@ onMounted(async () => {
     </template>
 
     <template #list>
-      <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
         <ApiPageInfo
           :rendered-lenght="renderedList.length"
-          :filtered-lenght="filteredServers.length"
-          :total-lenght="serverListData?.Servers.length ?? -1"
-          :is-fetched-rest-data="isFetchedRestData"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="items?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
         />
         <!-- TODO: switch to virtual list -->
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
