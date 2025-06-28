@@ -70,7 +70,7 @@ export async function fetchServerList() {
     versionUrl: '',
   }
 
-  const data = await fetchApiCaching<ServerList, ServerListApi>(
+  const { data } = await fetchApiCaching<ServerList, ServerListApi>(
     url,
     CACHE_TIME_SERVER_LIST_TTL,
     (data) => {

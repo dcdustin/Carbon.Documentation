@@ -28,7 +28,7 @@ export type BlueprintsData = Blueprint[]
 export async function fetchBlueprints() {
   const url = URL_METDAT_RUST_BLUEPRINTS
 
-  const data = await fetchApiCaching<BlueprintsData>(url, CACHE_TIME_ITEM_TTL)
+  const { data } = await fetchApiCaching<BlueprintsData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }

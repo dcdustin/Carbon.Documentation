@@ -16,7 +16,7 @@ export type EntitiesData = Entity[]
 export async function fetchEntities() {
   const url = URL_METDAT_RUST_ENTITIES
 
-  const data = await fetchApiCaching<EntitiesData>(url, CACHE_TIME_ITEM_TTL)
+  const { data } = await fetchApiCaching<EntitiesData>(url, CACHE_TIME_ITEM_TTL)
 
   return data
 }
