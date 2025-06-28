@@ -1,7 +1,23 @@
 <script lang="ts" setup>
 import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
-import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, isShiftPressed, onSearch, editEntity, killEntity, saveEntity, empowerPlayer, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
+import { selectedEntity,
+  stopEditingEntity,
+  refreshIcon, 
+  isSide, 
+  iconUrl, 
+  isShiftPressed, 
+  onSearch, 
+  editEntity, 
+  killEntity, 
+  saveEntity, 
+  empowerPlayer, 
+  isSearching, 
+  searchMaxCount, 
+  searchInput, 
+  searchedData, 
+  currentSearch
+} from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
 

@@ -2,6 +2,7 @@ import { ref } from 'vue'
 import { command, commandIndex, tryFocusLogs } from './ControlPanel.Console'
 import { activeSlot, beltSlots, clearInventory, hideInventory, mainSlots, wearSlots } from './ControlPanel.Inventory'
 import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
+import { resetEntities } from './ControlPanel.Entities'
 
 export const selectedServer = ref()
 export const selectedSubTab = ref(0)
@@ -112,6 +113,7 @@ export function selectServer(server: Server) {
   selectedServer.value = selectedServer.value == server ? null : server
   localStorage.setItem('rcon-lastserver', server.Address)
   refreshPermissions()
+  resetEntities()
   tryFocusLogs(true)
 }
 

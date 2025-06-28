@@ -12,6 +12,16 @@ export const iconUrl = ref<string>('')
 export const isSide = ref<boolean>(false)
 export const isShiftPressed = useKeyModifier<boolean>('Shift', { initial: false })
 
+export function resetEntities() {
+  isSearching.value = false
+  searchedData.value = null
+  searchInput.value = ''
+  searchedData.value = null
+  currentSearch.value = ''
+  iconUrl.value = ''
+  isSide.value = false
+}
+
 export function onSearch() {
   currentSearch.value = searchInput.value
   searchInput.value = ''
