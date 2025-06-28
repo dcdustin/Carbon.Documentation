@@ -16,7 +16,7 @@ export type PrefabsData = Prefab[]
 export async function fetchPrefabs() {
   const url = URL_METDAT_RUST_PREFABS
 
-  const { data } = await fetchApiCaching<PrefabsData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<PrefabsData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }

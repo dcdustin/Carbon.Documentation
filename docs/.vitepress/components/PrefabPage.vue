@@ -9,7 +9,7 @@ import '../theme/style.css'
 
 const prefab: Ref<Prefab | null> = ref(null)
 const isLoading = ref(true)
-const isSide = ref(false);
+const isSide = ref(false)
 const copiedId = ref<string | number | null>(null)
 const imageError = ref(false)
 
@@ -45,7 +45,7 @@ const loadPrefab = async (prefabId: string) => {
 
     const prefabIdNumber = Number(prefabId)
 
-    const data = await fetchPrefabs()
+    const { data } = await fetchPrefabs()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')
     }
@@ -104,7 +104,7 @@ watch(
 </script>
 
 <template>
-  <div class="max-w-screen-lg mx-auto px-4 py-8">
+  <div class="mx-auto max-w-screen-lg px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
       <Loader2 class="animate-spin" :size="24" />
@@ -119,17 +119,13 @@ watch(
           <h1 class="text-2xl font-bold">{{ prefab.Path.split('/').pop() }}</h1>
           <button
             @click="copyToClipboard(prefab.ID.toString(), prefab.ID)"
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            class="flex items-center bg-gray-100 px-3 py-1.5 text-sm transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             <span class="font-mono">{{ prefab.ID }}</span>
             <component :is="copiedId === prefab.ID ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
         </div>
-        <a
-          :href="URL_METDAT_RUST_PREFABS"
-          target="_blank"
-          class="vp-button medium brand flex items-center gap-2"
-        >
+        <a :href="URL_METDAT_RUST_PREFABS" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Prefabs API
           <ExternalLink :size="14" class="opacity-80" />
@@ -145,18 +141,18 @@ watch(
               <img
                 :src="URL_ASSETS_PREFABS + '/' + prefab.ID + (isSide ? '.side' : '') + '.png'"
                 @error="handleImageError"
-                class="w-full h-full object-contain p-0"
+                class="h-full w-full object-contain p-0"
                 :alt="prefab.Path.split('/').pop()"
               />
-              <img src="/misc/border-edge.webp" class="dark-only absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
-              <img src="/misc/border-edge-light.webp" class="light-only absolute inset-0 w-full h-full object-contain pointer-events-none" alt="Overlay">
+              <img src="/misc/border-edge.webp" class="dark-only pointer-events-none absolute inset-0 h-full w-full object-contain" alt="Overlay" />
+              <img src="/misc/border-edge-light.webp" class="light-only pointer-events-none absolute inset-0 h-full w-full object-contain" alt="Overlay" />
             </template>
             <div v-else class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-              <div class="w-16 h-16 mb-4 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <div class="mb-4 flex h-16 w-16 items-center justify-center bg-gray-200 dark:bg-gray-700">
                 <Image :size="48" class="text-gray-400" />
               </div>
               <span class="text-sm text-gray-500 dark:text-gray-400">No image available</span>
-              <span class="text-xs text-gray-400 dark:text-gray-500 mt-1">ID: {{ prefab.ID }}</span>
+              <span class="mt-1 text-xs text-gray-400 dark:text-gray-500">ID: {{ prefab.ID }}</span>
             </div>
           </div>
         </div>
@@ -174,14 +170,12 @@ watch(
           <div class="space-y-2">
             <h2 class="text-xl font-semibold">Path:</h2>
             <div class="flex items-center gap-2">
-              <div
-                class="font-mono text-sm text-gray-600 dark:text-gray-400 break-all p-3 bg-gray-50 dark:bg-gray-800 flex-1"
-              >
+              <div class="flex-1 break-all bg-gray-50 p-3 font-mono text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-400">
                 {{ prefab.Path }}
               </div>
               <button
                 @click="copyToClipboard(prefab.Path, 'path')"
-                class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                class="flex items-center bg-gray-100 px-3 py-1.5 text-sm transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
               >
                 <component :is="copiedId === 'path' ? CheckCircle2 : Copy" :size="14" />
               </button>
@@ -191,7 +185,7 @@ watch(
       </div>
 
       <!-- Return to Prefabs -->
-      <div class="flex justify-center mt-8">
+      <div class="mt-8 flex justify-center">
         <div class="flex items-center gap-2">
           <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/prefabs" class="vp-button medium brand underline"> Back to Prefabs </a>
@@ -200,10 +194,10 @@ watch(
     </div>
 
     <!-- Prefab Not Found -->
-    <div v-else class="text-center py-8">
+    <div v-else class="py-8 text-center">
       <div class="space-y-4">
         <p class="text-gray-500">Prefab not found</p>
-        <div class="flex items-center gap-2 justify-center">
+        <div class="flex items-center justify-center gap-2">
           <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/prefabs" class="vp-button medium brand underline"> Back to Prefabs </a>
         </div>
