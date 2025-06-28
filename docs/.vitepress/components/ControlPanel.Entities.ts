@@ -55,11 +55,10 @@ export function killEntity(netId: number) {
     return
   }
 
-  if(selectedEntity.value != null && selectedEntity.value.NetId == netId) {
-    selectedEntity.value = null
-  }
-
   if(isShiftPressed.value || window.confirm(`Are you sure you destroy that entity?`)) {
+    if(selectedEntity.value != null && selectedEntity.value.NetId == netId) {
+      selectedEntity.value = null
+    }
     // EntityKill
     selectedServer.value.sendRpc(223927051, netId)
     searchInput.value = currentSearch.value

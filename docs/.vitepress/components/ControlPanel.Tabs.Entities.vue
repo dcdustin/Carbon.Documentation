@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot } from 'lucide-vue-next'
+import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot, ExternalLink } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
 import { selectedEntity,
   stopEditingEntity,
@@ -145,7 +145,7 @@ onMounted(() => {
       </div>
       <div class="flex">
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Owner</span>
+            <a :href="selectedEntity.Owner != 0 ? 'http://steamcommunity.com/profiles/' + selectedEntity.Owner : ''" target="_blank" class="r-settings-input-label flex select-none">Owner<ExternalLink :size="12" class="mx-1"/></a>
           <input v-model="selectedEntity.Owner" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
@@ -174,7 +174,17 @@ onMounted(() => {
       </div>
       <div v-if="selectedEntity.PlayerEntity">
         <strong>Player Entity</strong>
-        <div class="flex mt-3">
+        <div class="flex">
+          <div class="r-settings-input-group mt-3">
+            <span class="r-settings-input-label" style="user-select: none">Display Name</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.DisplayName" /></span>
+          </div>
+          <div class="r-settings-input-group mt-3">
+            <a :href="'http://steamcommunity.com/profiles/' + selectedEntity.PlayerEntity.UserId" target="_blank" class="r-settings-input-label flex" style="user-select: none">Steam ID <ExternalLink :size="12" class="mx-1"/></a>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.UserId" /></span>
+          </div>
+        </div>
+        <div class="flex">
           <div class="r-settings-input-group">
             <span class="r-settings-input-label" style="user-select: none">Hunger</span>
             <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Hunger" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxHunger" /></span>
