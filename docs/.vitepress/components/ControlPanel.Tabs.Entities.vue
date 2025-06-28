@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save } from 'lucide-vue-next'
+import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
 import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, onSearch, editEntity, killEntity, saveEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
 
@@ -31,7 +31,7 @@ onMounted(() => {
   <div class="r-settings-input-group">
     <input v-model="searchInput" type="text" class="r-settings-custom-input" @keyup.enter="onSearch" placeholder="Search entity (name, type, netID)..." />
     <div v-if="currentSearch && searchedData" class="m-4 text-xs text-red-800">
-      <span>Searched '{{ currentSearch }}' and found {{ searchedData.length }} out of {{ searchMaxCount }} max. entities</span>
+      <span>Searched '{{ currentSearch }}' and found {{ searchedData.length }} out of {{ searchMaxCount }} max. entities <button @click="() => { searchInput = currentSearch; onSearch() }"><span class="text-neutral-400"><RefreshCcw :size="13"/></span></button></span>
     </div>
   </div>
   <Loader2 v-if="isSearching" class="flex animate-spin text-xs text-slate-500" :size="20" />
