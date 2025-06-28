@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
-import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, onSearch, editEntity, killEntity, saveEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
+import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, isShiftPressed, onSearch, editEntity, killEntity, saveEntity, empowerPlayer, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
 
@@ -29,7 +29,7 @@ onMounted(() => {
 
 <template>
   <div class="r-settings-input-group">
-    <input v-model="searchInput" type="text" class="r-settings-custom-input" @keyup.enter="onSearch" placeholder="Search entity (name, type, netID)..." />
+    <input v-model="searchInput" type="text" class="r-settings-custom-input" @keyup.enter="onSearch" placeholder="Search entity (name, type, netID) or a range of entities at a location (eg. '<x> <y> <z>:50[:filter]')..." />
     <div v-if="currentSearch && searchedData" class="m-4 text-xs text-red-800">
       <span>Searched '{{ currentSearch }}' and found {{ searchedData.length }} out of {{ searchMaxCount }} max. entities <button @click="() => { searchInput = currentSearch; onSearch() }"><span class="text-neutral-400"><RefreshCcw :size="13"/></span></button></span>
     </div>
@@ -47,7 +47,7 @@ onMounted(() => {
     <tr style="border: 1px;" v-for="entity in searchedData">
       <td class="vp-doc td r-table-row">
         <button class="r-send-button" @click="editEntity(entity.NetId)"><span class="text-neutral-400"><Pencil :size="17"/></span></button>
-        <button class="r-send-button" @click="killEntity(entity.NetId)"><span class="text-red-500"><Trash2 :size="17"/></span></button>
+        <button class="r-send-button" @click="killEntity(entity.NetId)"><span :class="'text-' + (isShiftPressed ? 'red' : 'neutral') + '-400 flex'"><Trash2 :size="17"/></span></button>
       </td> 
       <td class="vp-doc td r-table-row">
         <span class="flex">
@@ -81,7 +81,6 @@ onMounted(() => {
       </td>
     </tr>
   </table>
-
   <div v-if="selectedEntity" class="fixed inset-0 z-0 flex items-center justify-center bg-black/50" @click="stopEditingEntity()">
     <div class="mx-4 w-full max-w-fit rounded-lg bg-white p-6 dark:bg-gray-800" @click.stop>
       <div class="mb-4 flex items-center justify-between">
@@ -119,12 +118,12 @@ onMounted(() => {
       <div class="flex">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Parent</span>
-          <span v-if="selectedEntity.Parent"><button @click="killEntity(selectedEntity.Parent.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(selectedEntity.Parent.NetId)"><span class="text-xs"> {{ selectedEntity.Parent.ShortName }} <span class="text-neutral-500">{{ selectedEntity.Parent.NetId }}</span></span></button></span>
+          <span v-if="selectedEntity.Parent"><button @click="killEntity(selectedEntity.Parent.NetId)"><span :class="'text-' + (isShiftPressed ? 'red' : 'neutral') + '-400 flex'"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(selectedEntity.Parent.NetId)"><span class="text-xs"> {{ selectedEntity.Parent.ShortName }} <span class="text-neutral-500">{{ selectedEntity.Parent.NetId }}</span></span></button></span>
           <div v-if="!selectedEntity.Parent" class="text-xs text-neutral-400">N/A</div>
         </div>
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Children</span>
-          <span v-if="selectedEntity.Children.length > 0" v-for="child in selectedEntity.Children"><button @click="killEntity(child.NetId)"><span class="text-red-500"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(child.NetId)"><span class="text-xs"> {{ child.ShortName }} <span class="text-neutral-500">{{ child.NetId }}</span></span></button></span>
+          <span v-if="selectedEntity.Children.length > 0" v-for="child in selectedEntity.Children"><button @click="killEntity(child.NetId)"><span :class="'text-' + (isShiftPressed ? 'red' : 'neutral') + '-400 flex'"><Trash2 :size="15"/></span></button><button class="self-start" @click="editEntity(child.NetId)"><span class="text-xs"> {{ child.ShortName }} <span class="text-neutral-500">{{ child.NetId }}</span></span></button></span>
           <div v-if="selectedEntity.Children.length == 0" class="text-xs text-neutral-400">N/A</div>
         </div>
       </div>
@@ -142,9 +141,46 @@ onMounted(() => {
           <input readonly type="text" class="r-settings-custom-input" :value="selectedEntity.Flags" />
         </div>
       </div>
+      <div v-if="selectedEntity.CombatEntity">
+        <strong>Combat Entity</strong>
+        <div class="flex mt-3">
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Health</span>
+            <input type="text" class="r-settings-custom-input" v-model="selectedEntity.CombatEntity.Health" />
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Max. Health</span>
+            <input type="text" class="r-settings-custom-input" v-model="selectedEntity.CombatEntity.MaxHealth" />
+          </div>
+          <button class="r-send-button" @click="selectedEntity.CombatEntity.Health = selectedEntity.CombatEntity.MaxHealth; saveEntity()"><span class="text-green-400">HEAL</span></button>
+          <button class="r-send-button" @click="selectedEntity.CombatEntity.Health -= selectedEntity.CombatEntity.MaxHealth / 10; saveEntity()"><span class="text-red-400">HURT</span></button>
+        </div>
+      </div>
+      <div v-if="selectedEntity.PlayerEntity">
+        <strong>Player Entity</strong>
+        <div class="flex mt-3">
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Hunger</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Hunger" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxHunger" /></span>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Thirst</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Thirst" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxThirst" /></span>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Rads</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Rads" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxRads" /></span>
+          </div>
+          <div class="r-settings-input-group">
+            <span class="r-settings-input-label" style="user-select: none">Bleed</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Bleed" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxBleed" /></span>
+          </div>
+          <button class="r-send-button" @click="empowerPlayer(selectedEntity); saveEntity()"><span class="text-yellow-400">EMPOWER</span></button>   
+        </div>
+      </div>
       <div class="flex justify-end">
-        <button class="r-send-button" @click="saveEntity(selectedEntity.NetId)"><span class="text-neutral-400"><Save :size="17"/></span></button>
-        <button class="r-send-button" @click="killEntity(selectedEntity.NetId)"><span class="text-red-500"><Trash2 :size="17"/></span></button>
+        <button class="r-send-button" @click="saveEntity()"><span class="text-neutral-400"><Save :size="17"/></span></button>
+        <button class="r-send-button" @click="killEntity(selectedEntity.NetId)"><span :class="'text-' + (isShiftPressed ? 'red' : 'neutral') + '-400 flex'"><Trash2 :size="17"/></span></button>
       </div>
     </div>
   </div>

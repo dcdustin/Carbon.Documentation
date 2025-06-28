@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { selectedServer } from './ControlPanel.SaveLoad'
+import { useKeyModifier } from '@vueuse/core'
 
 export const searchMaxCount = ref<number>(50)
 export const isSearching = ref<boolean>(false)
@@ -9,6 +10,7 @@ export const searchedData = ref<any | null>(null)
 export const currentSearch = ref<string>('')
 export const iconUrl = ref<string>('')
 export const isSide = ref<boolean>(false)
+export const isShiftPressed = useKeyModifier<boolean>('Shift', { initial: false })
 
 export function onSearch() {
   currentSearch.value = searchInput.value
@@ -47,19 +49,25 @@ export function killEntity(netId: number) {
     selectedEntity.value = null
   }
 
-  // EntityKill
-  selectedServer.value.sendRpc(223927051, netId)
-  searchInput.value = currentSearch.value
-  onSearch()
+  if(isShiftPressed.value || window.confirm(`Are you sure you destroy that entity?`)) {
+    // EntityKill
+    selectedServer.value.sendRpc(223927051, netId)
+    searchInput.value = currentSearch.value
+    onSearch()
+  }
 }
 
-export function saveEntity(netId: number) {
-  if(netId == 0) {
-    return
-  }
-
+export function saveEntity() {
   // EntitySave
   selectedServer.value.sendRpc(4230705942, `"${JSON.stringify(selectedEntity.value)}"`)
+}
+
+export function empowerPlayer(data: any) {
+  data.CombatEntity.Health = data.CombatEntity.MaxHealth
+  data.PlayerEntity.Thirst = data.PlayerEntity.MaxThirst
+  data.PlayerEntity.Hunger = data.PlayerEntity.MaxHunger
+  data.PlayerEntity.Rads = 0
+  data.PlayerEntity.Bleed = 0
 }
 
 export function stopEditingEntity() {
