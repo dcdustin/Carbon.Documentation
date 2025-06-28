@@ -15,6 +15,7 @@ const miniSearch = shallowRef<MiniSearch | null>(null)
 const rustVersions = shallowRef<number[]>([])
 
 const isFetchedRestData = shallowRef(false)
+const isDataFromCache = shallowRef<boolean | null>(null)
 const error = shallowRef<string | null>(null)
 
 const debouncedSearchValue = store.searchValue
@@ -223,11 +224,13 @@ async function tryLoadMiniSearch() {
 
 async function loadServers() {
   try {
-    const data = await fetchServerList()
+    const { data, isFromCache } = await fetchServerList()
 
     serverListData.value = data
 
     isFetchedRestData.value = true
+
+    isDataFromCache.value = isFromCache
 
     rustVersions.value = Array.from(new Set(data.Servers.map((s) => s.rust_version))).toSorted((a, b) => b - a)
   } catch (err) {
