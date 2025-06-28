@@ -2,11 +2,12 @@
 import { URL_SERVER_LIST } from '@/api/constants'
 import { Database, ExternalLink } from 'lucide-vue-next'
 import ServerBrowser from './ServerBrowser.vue'
+import ApiIndex from './common/ApiIndex.vue'
 </script>
 
 <template>
-  <div class="max-w-screen-lg mx-auto px-4 py-8">
-    <div class="flex flex-col gap-4 mb-4">
+  <ApiIndex>
+    <div class="mb-4 flex flex-col gap-4">
       <h1 class="text-2xl font-bold">Carbon Server Browser</h1>
       <p>Browse and find Rust servers</p>
       <div class="flex items-center gap-2">
@@ -18,12 +19,5 @@ import ServerBrowser from './ServerBrowser.vue'
       </div>
     </div>
     <ServerBrowser />
-  </div>
+  </ApiIndex>
 </template>
-
-<style scoped>
-:deep(.VPBadge) {
-  margin-left: 0;
-  transform: none;
-}
-</style>
