@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
-import { selectedEntity, stopEditingEntity, onSearch, editEntity, killEntity, saveEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
+import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, onSearch, editEntity, killEntity, saveEntity, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
-const sideIcon = ref<boolean>(false)
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -16,13 +15,12 @@ const copyToClipboard = async (text: string, id: string | number | null = null) 
   }
 }
 
-function getIcon(id: number) : string {
-  return `https://cdn.carbonmod.gg/prefabs/${id}${sideIcon.value ? '.side' : ''}.png`
-}
-
 onMounted(() => {
   const sideFlip = () => {
-    sideIcon.value = !sideIcon.value
+    if(selectedEntity.value) {
+      isSide.value = !isSide.value
+      refreshIcon()
+    }
     setTimeout(sideFlip, 3000)
   }
   setTimeout(sideFlip, 3000)
@@ -94,7 +92,7 @@ onMounted(() => {
       </div>
       
       <div>
-        <img class="h-36 w-36" :src="getIcon(selectedEntity.Id)" @error="(e: any) => e.target.src = 'https://cdn.carbonmod.gg/content/missing.jpg'" />
+        <img class="h-36 w-36" :src="iconUrl" @error="(e: any) => e.target.src = 'https://cdn.carbonmod.gg/content/missing.jpg'" />
       </div>
 
       <p class="text-xs text-neutral-500">{{ selectedEntity.Type }} [{{ selectedEntity.NetId }}]</p>

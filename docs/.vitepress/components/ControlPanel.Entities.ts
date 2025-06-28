@@ -7,6 +7,8 @@ export const selectedEntity = ref<any | null>(null)
 export const searchInput = ref<string>('')
 export const searchedData = ref<any | null>(null)
 export const currentSearch = ref<string>('')
+export const iconUrl = ref<string>('')
+export const isSide = ref<boolean>(false)
 
 export function onSearch() {
   currentSearch.value = searchInput.value
@@ -30,6 +32,8 @@ export function editEntity(netId: number) {
   // EntityDetails
   selectedServer.value.Rpcs[2650739934] = (data: any) => {
     selectedEntity.value = data.Value
+    isSide.value = true
+    refreshIcon()
   }
   selectedServer.value.sendRpc(2650739934, netId)
 }
@@ -60,4 +64,8 @@ export function saveEntity(netId: number) {
 
 export function stopEditingEntity() {
   selectedEntity.value = null
+}
+
+export function refreshIcon() {
+  iconUrl.value = `https://cdn.carbonmod.gg/prefabs/${selectedEntity.value.Id}${isSide.value ? '.side' : ''}.png`
 }
