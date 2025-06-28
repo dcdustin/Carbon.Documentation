@@ -8,37 +8,39 @@ import SearchBar from '@/components/common/SearchBar.vue'
 import { data as initialHooks } from '@/data-loaders/hooks.data'
 import { store } from '@/stores/hooks-store'
 import { useKeyModifier } from '@vueuse/core'
-import { Loader2 } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import type { Highlighter } from 'shiki'
 import { getSingletonHighlighter } from 'shiki'
 import { computed, onMounted, provide, readonly, shallowRef } from 'vue'
 import HookCard from './HookCard.vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
 import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
-const isFetchedRestData = shallowRef(false)
-const error = shallowRef<string | null>(null)
+const categories = shallowRef<string[]>([])
+const list = shallowRef<Hook[]>(initialHooks)
+
+const isFetchedRest = shallowRef(false)
+const isDataFromCache = shallowRef<boolean | null>(null)
+const error = shallowRef<string>('')
+
+const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
+const useBasicSearch = store.useBasicSearch
+const selectedCategory = store.chosenCategory
+const showOxideHooks = store.showOxideHooks
+const showCarbonHooks = store.showCarbonHooks
+
+const initialPageSize = 25
+const pageSize = 50
 
 const highlighter = shallowRef<Highlighter | null>(null)
 provide('highlighter', readonly(highlighter))
 
-const hooks = shallowRef<Hook[]>(initialHooks)
-const miniSearch = shallowRef<MiniSearch | null>(null)
-
-const categories = shallowRef<string[]>([])
-
-const selectedCategory = store.chosenCategory
-const showOxideHooks = store.showOxideHooks
-const showCarbonHooks = store.showCarbonHooks
-const debouncedSearchValue = store.searchValue
-const useBasicSearch = store.useBasicSearch
-
 const isCtrlPressed = useKeyModifier<boolean>('Control', { initial: false })
 
-const pageSize = 25
-
-const filteredHooks = computed(() => {
-  if (!hooks.value?.length) {
+const filteredList = computed(() => {
+  if (!list.value?.length) {
     return []
   }
   if (!showOxideHooks.value && !showCarbonHooks.value) {
@@ -46,10 +48,10 @@ const filteredHooks = computed(() => {
   }
 
   if (!debouncedSearchValue.value && selectedCategory.value == 'All' && showOxideHooks.value == showCarbonHooks.value) {
-    return hooks.value
+    return list.value
   }
 
-  let filtered = hooks.value
+  let filtered = list.value
 
   if (selectedCategory.value != 'All') {
     filtered = filtered.filter((hook) => hook.Category == selectedCategory.value)
@@ -81,28 +83,23 @@ const filteredHooks = computed(() => {
     } else {
       const results = miniSearch.value.search(debouncedSearchValue.value)
       const hookMap = new Map(filtered.map((hook) => [hook.FullName, hook]))
-      filtered = results.map((result) => hookMap.get(result.FullName)).filter(Boolean) as Hook[]
+      filtered = results.map((result) => hookMap.get(result.id)).filter(Boolean) as Hook[]
     }
   }
 
   return filtered
 })
 
-function getSanitizedAnchor(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
-
 function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    return
+  }
+
   const startTime = performance.now()
 
-  // should be extracted and cached...
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'FullName',
     fields: ['FullName', 'Descriptions', 'MethodName', 'TargetName', 'AssemblyName'],
-    storeFields: ['FullName'],
     searchOptions: {
       prefix: true,
       boost: {
@@ -115,6 +112,7 @@ function tryLoadMiniSearch() {
       fuzzy: 0.1,
     },
     tokenize: (text, fieldName) => {
+      // should be refactored in the future
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}]+/u // from minisearch source
       const processed = text
         .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
@@ -135,37 +133,34 @@ function tryLoadMiniSearch() {
           }
         })
       }
-      return [...new Set(processed)]
+
+      return Array.from(processed)
     },
   })
 
-  miniSearch.value.addAll(hooks.value)
+  minisearch.addAll(list.value)
 
-  const endTime = performance.now()
-  console.log(`Initialized MiniSearch in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for hooks in ${performance.now() - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
-async function loadHooks() {
+async function loadItems() {
   try {
-    const data = await fetchHooks()
-
-    if (!data) {
-      throw new Error('No data received from API')
-    }
+    const { data, isFromCache } = await fetchHooks()
 
     const flatHooks: Hook[] = []
     data.forEach((hooks) => {
       flatHooks.push(...hooks)
     })
 
-    if (!flatHooks) {
-      throw new Error('No hooks found in the data')
-    }
-
     categories.value = Array.from(data.keys())
-    hooks.value = flatHooks
 
-    isFetchedRestData.value = true
+    list.value = flatHooks
+
+    isFetchedRest.value = true
+
+    isDataFromCache.value = isFromCache
   } catch (err) {
     console.error('Failed to load hooks:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load hooks. Please try again later.'
@@ -184,76 +179,66 @@ async function tryLoadHighlighter() {
 }
 
 onMounted(async () => {
-  await Promise.all([loadHooks(), tryLoadHighlighter()])
+  await Promise.all([loadItems(), tryLoadHighlighter()])
   tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <div v-if="error" class="flex flex-col items-center justify-center py-8 text-center">
-    <div class="mb-4 text-red-500">{{ error }}</div>
-  </div>
-  <template v-else>
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search hooks..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
-      </template>
-      <template #right>
-        <div class="flex flex-row gap-4">
-          <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
-          <div class="flex flex-row items-center gap-2">
-            <CheckBox v-model="showOxideHooks">
-              <template #default>
-                <span class="text-sm">Oxide</span>
-              </template>
-            </CheckBox>
-            <CheckBox v-model="showCarbonHooks">
-              <template #default>
-                <span class="text-sm">Carbon</span>
-              </template>
-            </CheckBox>
-          </div>
-        </div>
-      </template>
-    </SearchBar>
-    <div v-if="filteredHooks && filteredHooks.length">
-      <div class="mt-4">
-        <InfinitePageScroll :list="filteredHooks" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredHooks.length }} filtered hooks, {{ isFetchedRestData ? hooks.length : '' }}
-              <Loader2 v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
-              total hooks
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredList"
+    :list="list"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRest"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search hooks..." class="sticky top-16 z-10 min-[960px]:top-20">
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #right>
+          <div class="flex flex-row gap-4">
+            <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
+            <div class="flex flex-row items-center gap-2">
+              <CheckBox v-model="showOxideHooks">
+                <template #default>
+                  <span class="text-sm">Oxide</span>
+                </template>
+              </CheckBox>
+              <CheckBox v-model="showCarbonHooks">
+                <template #default>
+                  <span class="text-sm">Carbon</span>
+                </template>
+              </CheckBox>
             </div>
           </div>
-          <div class="flex flex-col gap-5">
-            <template v-for="hook in renderedList" :key="hook.FullName">
-              <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" :id="getSanitizedAnchor(hook.FullName)" />
-            </template>
-          </div>
-          <img
-            v-if="isFetchedRestData && renderedList.length == hooks.length && hooks.length > 0"
-            src="/misc/cat-d.gif"
-            alt="evs"
-            class="mx-auto h-10 w-10 animate-bounce"
-          />
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else-if="isFetchedRestData && miniSearch" class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No hooks found matching your search</p>
-      <p v-if="!hooks || hooks.length == 0" class="text-sm">Debug: No hooks loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-    <div class="mt-8 flex flex-col gap-8 font-semibold">
-      <div v-if="!isFetchedRestData" class="flex items-center justify-center gap-2">
-        <Loader2 class="animate-spin" :size="24" />
-        <span>Loading em...</span>
-      </div>
-      <div v-if="!miniSearch" class="flex items-center justify-center gap-2">
-        <Loader2 class="animate-spin" :size="24" />
-        <span>Loading minisearch...</span>
-      </div>
-    </div>
-  </template>
+        </template>
+      </SearchBar>
+    </template>
+
+    <template #list>
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="list?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
+        />
+
+        <div class="flex flex-col gap-5">
+          <template v-for="hook in renderedList" :key="hook.FullName">
+            <HookCard :hook="hook" :isCtrlPressed="isCtrlPressed" />
+          </template>
+        </div>
+        <img
+          v-if="isFetchedRest && renderedList.length == list.length && list.length > 0"
+          src="/misc/cat-d.gif"
+          alt="evs"
+          class="mx-auto h-10 w-10 animate-bounce"
+        />
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>
