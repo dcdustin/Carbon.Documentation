@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot, ExternalLink } from 'lucide-vue-next'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { selectedEntity,
   stopEditingEntity,
   refreshIcon, 
@@ -20,6 +20,7 @@ import { selectedEntity,
 } from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
+const timer = ref<NodeJS.Timeout | null>(null)
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -37,9 +38,15 @@ onMounted(() => {
       isSide.value = !isSide.value
       refreshIcon()
     }
-    setTimeout(sideFlip, 3000)
+    timer.value = setTimeout(sideFlip, 3000)
   }
-  setTimeout(sideFlip, 3000)
+  timer.value = setTimeout(sideFlip, 3000)
+})
+onUnmounted(() => {
+  if(timer.value != null) {
+    clearTimeout(timer.value)
+    timer.value = null
+  }
 })
 </script>
 
@@ -153,7 +160,7 @@ onMounted(() => {
           <input v-model="selectedEntity.Skin" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Flags<button><Pencil :size="12" class="mx-1"/></button></span>
+          <button class="r-settings-input-label flex select-none">Flags<Pencil :size="12" class="mx-1"/></button>
           <input readonly type="text" class="r-settings-custom-input" :value="selectedEntity.Flags" />
         </div>
       </div>
@@ -181,7 +188,7 @@ onMounted(() => {
           </div>
           <div class="r-settings-input-group mt-3">
             <a :href="'http://steamcommunity.com/profiles/' + selectedEntity.PlayerEntity.UserId" target="_blank" class="r-settings-input-label flex" style="user-select: none">Steam ID <ExternalLink :size="12" class="mx-1"/></a>
-            <span class="flex r-settings-custom-input"><input type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.UserId" /></span>
+            <span class="flex r-settings-custom-input"><input readonly type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.UserId" /></span>
           </div>
         </div>
         <div class="flex">
