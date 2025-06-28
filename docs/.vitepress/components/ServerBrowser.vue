@@ -10,6 +10,7 @@ import { computed, onMounted, shallowRef } from 'vue'
 import ServerBrowserCard from './ServerBrowserCard.vue'
 import OptionSelectorMany from './common/OptionSelectorMany.vue'
 import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
 
 const serverListData = shallowRef<ServerList | null>(initialData)
 const rustVersions = shallowRef<number[]>([])
@@ -297,13 +298,12 @@ onMounted(async () => {
     <div v-if="filteredServers && filteredServers.length">
       <div class="mt-4">
         <InfinitePageScroll :list="filteredServers" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredServers.length }} filtered servers,
-              {{ isFetchedRestData ? serverListData?.Servers.length : '' }} <LoaderCircle v-if="!isFetchedRestData" class="inline animate-spin" :size="16" />
-              total servers
-            </div>
-          </div>
+          <ApiPageInfo
+            :rendered-lenght="renderedList.length"
+            :filtered-lenght="filteredServers.length"
+            :total-lenght="serverListData?.Servers.length ?? -1"
+            :is-fetched-rest-data="isFetchedRestData"
+          />
           <!-- TODO: switch to virtual list -->
           <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
             <template v-for="server in renderedList" :key="server.id">
