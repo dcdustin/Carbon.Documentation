@@ -1,5 +1,6 @@
 import { ref, shallowRef } from 'vue'
 import { command, commandIndex, tryFocusLogs } from './ControlPanel.Console'
+import { message, tryFocusChat } from './ControlPanel.Chat'
 import { activeSlot, beltSlots, clearInventory, hideInventory, mainSlots, wearSlots } from './ControlPanel.Inventory'
 import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 import { resetEntities } from './ControlPanel.Entities'
@@ -7,7 +8,6 @@ import { resetEntities } from './ControlPanel.Entities'
 export const selectedServer = ref<Server | null>(null)
 export const selectedSubTab = shallowRef<number>(0)
 export const servers = ref<Server[]>([])
-
 export const geoFlagCache = ref<{ [key: string]: string }>({})
 
 const isLoadedServers = shallowRef<boolean>(false)
@@ -117,6 +117,7 @@ export function selectServer(server: Server) {
   refreshPermissions()
   resetEntities()
   tryFocusLogs(true)
+  tryFocusChat(true)
 }
 
 export function findServer(address: string): Server {
@@ -132,8 +133,14 @@ export function selectSubTab(index: number) {
   localStorage.setItem('rcon-subtab', index.toString())
   save()
 
-  if (index == 0) {
-    tryFocusLogs(true)
+  switch(index) {
+    case 0:
+      tryFocusLogs(true)
+      break
+
+    case 1:
+      tryFocusChat(true)
+      break
   }
 }
 
@@ -149,6 +156,7 @@ function exportToJson(): string {
       case 'HeaderImage':
       case 'Description':
       case 'Logs':
+      case 'Chat':
       case 'Rpcs':
         return undefined
     }
@@ -227,6 +235,7 @@ export class Server {
   Password = ''
   Socket: WebSocket | null = null
   Logs: string[] = []
+  Chat: string[] = []
   CommandHistory: string[] = []
   AutoConnect = false
   Secure = false
@@ -234,9 +243,9 @@ export class Server {
   IsConnected = false
   IsConnecting = false
   UserConnected = false
-  ServerInfo: object | null = null
-  CarbonInfo: object | null = null
-  PlayerInfo: object | null = null
+  ServerInfo: any | null = null
+  CarbonInfo: any | null = null
+  PlayerInfo: any | null = null
   HeaderImage = ''
   Description = ''
   Rpcs: Record<number, (...args: unknown[]) => void> = {}
@@ -254,6 +263,7 @@ export class Server {
     if (selectedServer.value == this) {
       hideInventory()
       tryFocusLogs()
+      tryFocusChat()
     }
   }
 
@@ -345,6 +355,7 @@ export class Server {
       this.sendCommand('serverinfo', 2)
       this.sendCommand('playerlist', 6)
       this.sendCommand('console.tail', 7)
+      this.sendCommand('chat.tail', 8)
       this.sendCommand('c.version', 3)
       this.sendCommand('server.headerimage', 4)
       this.sendCommand('server.description', 5)
@@ -375,6 +386,16 @@ export class Server {
         }
       } catch {
         /* empty */
+      }
+
+      const match = resp.Message.match(/^\[CHAT\]\s+(.+?)\[(\d+)\]\s+:\s+(.+)$/)
+      if(match) {
+        this.appendChat({
+          Username: match[1],
+          UserId: match[2],
+          Message: match[3]
+        })
+        return
       }
 
       this.appendLog(resp.Message)
@@ -413,6 +434,14 @@ export class Server {
     tryFocusLogs(false)
   }
 
+  sendMessage(input: string, clearMessage: boolean = true) {
+    this.sendCommand(`say ${input}`, 1)
+    this.Chat.push(`SERVER: ${input}`)
+    if(clearMessage) {
+      message.value = ''
+    }
+  }
+
   sendRpc(id: number, ...args: unknown[]) {
     for (let i = 0; i < args.length; i++) {
       const arg = args[i]
@@ -421,28 +450,34 @@ export class Server {
     this.sendCommand(`c.webrcon.rpc ${id} ${args.join(' ')}`, 100)
   }
 
-  onIdentifiedCommand(id: number, data: object) {
+  onIdentifiedCommand(id: number, data: any) {
     switch (id) {
       case 0: // Rust output
       case 1: // User input
         return false
       case 2: // serverinfo
         this.ServerInfo = data
-        this.CachedHostname = this.ServerInfo.Hostname
+        this.CachedHostname = this.ServerInfo?.Hostname
         break
       case 6: // playerinfo
         this.PlayerInfo = data
-        this.PlayerInfo.forEach((player) => {
+        this.PlayerInfo?.forEach((player: any) => {
           if (!(player.Address in geoFlagCache.value)) {
             fetchGeolocation(player.Address)
           }
         })
         break
       case 7: // console.tail
-        data.forEach((log) => {
+        data.forEach((log: any) => {
           this.appendLog(log.Message as string)
         })
         tryFocusLogs(true)
+        break
+      case 8: // chat.tail
+        data.forEach((log: any) => {
+          this.appendChat(log)
+        })
+        tryFocusChat(true)
         break
       case 3: // carboninfo
         this.CarbonInfo = data
@@ -481,6 +516,11 @@ export class Server {
 
   appendLog(log: string) {
     this.Logs.push(log)
+  }
+
+  appendChat(message: any) {
+    console.log(message)
+    this.Chat.push(`<a style="color: ${message.Color}" href="http://steamcommunity.com/profiles/${message.UserId}" target="_blank">${message.Username}</a>: ${message.Message}`)
   }
 
   selectHistory(up: boolean) {
