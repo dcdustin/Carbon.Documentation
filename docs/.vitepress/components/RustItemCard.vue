@@ -36,6 +36,7 @@ function getFlags(flags: number) {
             :onerror="`this.src='${URL_ASSETS_MISSING}'`"
             :src="getItemImageUrl(item.ShortName)"
             :alt="item.DisplayName"
+            loading="lazy"
           />
         </div>
       </a>
