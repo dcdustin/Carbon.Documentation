@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 const references = [
@@ -234,7 +233,7 @@ export default defineConfig({
     },
     css: {
       postcss: {
-        plugins: [tailwindcss, autoprefixer],
+        plugins: [tailwindcss],
       },
     },
     build: {
