@@ -133,7 +133,7 @@ export function refreshPermissions() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .table-stack {
   display: ruby;
 }

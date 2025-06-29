@@ -357,4 +357,30 @@ onUnmounted(() => {
   background-color: var(--vp-button-alt-bg);
   border-bottom: 2px solid #ffffff29;
 }
+
+.r-send-button {
+  text-decoration: auto;
+  font-family: monospace;
+  color: var(--category-misc);
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color, color;
+  border-color: transparent;
+  border: transparent 1px;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0, 0);
+}
+
+.r-send-button.toggled {
+  font-weight: bolder;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.r-send-button:hover {
+  background-color: var(--category-misc);
+  color: white;
+}
 </style>
