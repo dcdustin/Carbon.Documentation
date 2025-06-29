@@ -28,7 +28,7 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   </div>
 </template>
 
-<style>
+<style scoped>
 .r-send-button {
   text-decoration: auto;
   font-family: monospace;
