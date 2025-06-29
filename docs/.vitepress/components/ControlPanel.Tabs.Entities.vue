@@ -1,9 +1,26 @@
 <script lang="ts" setup>
-import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot } from 'lucide-vue-next'
-import { ref, onMounted } from 'vue'
-import { selectedEntity, stopEditingEntity, refreshIcon, isSide, iconUrl, isShiftPressed, onSearch, editEntity, killEntity, saveEntity, empowerPlayer, isSearching, searchMaxCount, searchInput, searchedData, currentSearch } from './ControlPanel.Entities'
+import { Loader2, Pencil, Trash2, CheckCircle2, Copy, X, Save, RefreshCcw, ArrowUpFromDot, ExternalLink } from 'lucide-vue-next'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { selectedEntity,
+  stopEditingEntity,
+  refreshIcon, 
+  isSide, 
+  iconUrl, 
+  isShiftPressed, 
+  onSearch, 
+  editEntity, 
+  killEntity, 
+  saveEntity, 
+  empowerPlayer, 
+  isSearching, 
+  searchMaxCount, 
+  searchInput, 
+  searchedData, 
+  currentSearch
+} from './ControlPanel.Entities'
 
 const copiedId = ref<string | number | null>(null)
+const timer = ref<NodeJS.Timeout | null>(null)
 
 const copyToClipboard = async (text: string, id: string | number | null = null) => {
   try {
@@ -21,9 +38,15 @@ onMounted(() => {
       isSide.value = !isSide.value
       refreshIcon()
     }
-    setTimeout(sideFlip, 3000)
+    timer.value = setTimeout(sideFlip, 3000)
   }
-  setTimeout(sideFlip, 3000)
+  timer.value = setTimeout(sideFlip, 3000)
+})
+onUnmounted(() => {
+  if(timer.value != null) {
+    clearTimeout(timer.value)
+    timer.value = null
+  }
 })
 </script>
 
@@ -129,7 +152,7 @@ onMounted(() => {
       </div>
       <div class="flex">
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Owner</span>
+            <a :href="selectedEntity.Owner != 0 ? 'http://steamcommunity.com/profiles/' + selectedEntity.Owner : ''" target="_blank" class="r-settings-input-label flex select-none">Owner<ExternalLink :size="12" class="mx-1"/></a>
           <input v-model="selectedEntity.Owner" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
@@ -137,7 +160,7 @@ onMounted(() => {
           <input v-model="selectedEntity.Skin" type="text" class="r-settings-custom-input" />
         </div>
         <div class="r-settings-input-group">
-          <span class="r-settings-input-label" style="user-select: none">Flags<button><Pencil :size="12" class="mx-1"/></button></span>
+          <button class="r-settings-input-label flex select-none">Flags<Pencil :size="12" class="mx-1"/></button>
           <input readonly type="text" class="r-settings-custom-input" :value="selectedEntity.Flags" />
         </div>
       </div>
@@ -158,7 +181,17 @@ onMounted(() => {
       </div>
       <div v-if="selectedEntity.PlayerEntity">
         <strong>Player Entity</strong>
-        <div class="flex mt-3">
+        <div class="flex">
+          <div class="r-settings-input-group mt-3">
+            <span class="r-settings-input-label" style="user-select: none">Display Name</span>
+            <span class="flex r-settings-custom-input"><input type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.DisplayName" /></span>
+          </div>
+          <div class="r-settings-input-group mt-3">
+            <a :href="'http://steamcommunity.com/profiles/' + selectedEntity.PlayerEntity.UserId" target="_blank" class="r-settings-input-label flex" style="user-select: none">Steam ID <ExternalLink :size="12" class="mx-1"/></a>
+            <span class="flex r-settings-custom-input"><input readonly type="text" class="mr-2" v-model="selectedEntity.PlayerEntity.UserId" /></span>
+          </div>
+        </div>
+        <div class="flex">
           <div class="r-settings-input-group">
             <span class="r-settings-input-label" style="user-select: none">Hunger</span>
             <span class="flex r-settings-custom-input"><input type="text" class="mr-2 w-16" v-model="selectedEntity.PlayerEntity.Hunger" />/<input type="text" class="ml-2 w-24" v-model="selectedEntity.PlayerEntity.MaxHunger" /></span>

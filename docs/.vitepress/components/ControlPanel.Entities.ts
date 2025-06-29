@@ -12,6 +12,16 @@ export const iconUrl = ref<string>('')
 export const isSide = ref<boolean>(false)
 export const isShiftPressed = useKeyModifier<boolean>('Shift', { initial: false })
 
+export function resetEntities() {
+  isSearching.value = false
+  searchedData.value = null
+  searchInput.value = ''
+  searchedData.value = null
+  currentSearch.value = ''
+  iconUrl.value = ''
+  isSide.value = false
+}
+
 export function onSearch() {
   currentSearch.value = searchInput.value
   searchInput.value = ''
@@ -45,11 +55,10 @@ export function killEntity(netId: number) {
     return
   }
 
-  if(selectedEntity.value != null && selectedEntity.value.NetId == netId) {
-    selectedEntity.value = null
-  }
-
   if(isShiftPressed.value || window.confirm(`Are you sure you destroy that entity?`)) {
+    if(selectedEntity.value != null && selectedEntity.value.NetId == netId) {
+      selectedEntity.value = null
+    }
     // EntityKill
     selectedServer.value.sendRpc(223927051, netId)
     searchInput.value = currentSearch.value
