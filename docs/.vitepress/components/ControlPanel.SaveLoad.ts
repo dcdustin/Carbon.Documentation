@@ -4,8 +4,8 @@ import { activeSlot, beltSlots, clearInventory, hideInventory, mainSlots, wearSl
 import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 import { resetEntities } from './ControlPanel.Entities'
 
-export const selectedServer = ref()
-export const selectedSubTab = ref(0)
+export const selectedServer = ref<Server | null>(null)
+export const selectedSubTab = shallowRef<number>(0)
 export const servers = ref<Server[]>([])
 
 export const geoFlagCache = ref<{ [key: string]: string }>({})
