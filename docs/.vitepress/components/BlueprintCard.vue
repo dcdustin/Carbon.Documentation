@@ -74,6 +74,7 @@ async function fetchDlcData(appId: number) {
                   class="w-full h-full object-contain p-4 relative z-10"
                   :alt="blueprint.Item.DisplayName"
                   :onerror="`this.src='${URL_ASSETS_MISSING}'`"
+                  loading="lazy"
                 />
               </div>
             </a>
@@ -212,6 +213,7 @@ async function fetchDlcData(appId: number) {
                     class="w-full h-full object-contain"
                     :alt="ing.Item.DisplayName"
                     :onerror="`this.src='${URL_ASSETS_MISSING}'`"
+                    loading="lazy"
                   />
                 </div>
                 <button class="text-sm hover:text-primary" @click="showItemModal(ing.Item.Id)">
@@ -247,6 +249,7 @@ async function fetchDlcData(appId: number) {
               class="w-full h-full object-contain p-4"
               :alt="selectedIngredient.Item.DisplayName"
               :onerror="`this.src='${URL_ASSETS_MISSING}'`"
+              loading="lazy"
             />
           </div>
         </div>
@@ -318,6 +321,7 @@ async function fetchDlcData(appId: number) {
               class="w-24 h-12 object-cover rounded"
               :alt="selectedIngredient.Item.SteamDlcItem.Name"
               :onerror="`this.src='${URL_ASSETS_MISSING}'`"
+              loading="lazy"
             />
             <div>
               <div class="font-medium group-hover:text-primary">
