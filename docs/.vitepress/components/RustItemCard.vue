@@ -27,12 +27,12 @@ function getFlags(flags: number) {
 </script>
 
 <template>
-  <div class="flex gap-4 items-center">
+  <div class="flex items-center gap-4">
     <div class="flex-shrink-0">
       <a :href="`details?id=${item.Id}`" class="block">
         <div class="relative aspect-square overflow-hidden" style="width: 150px; height: 150px">
           <img
-            class="w-full h-full object-contain p-4"
+            class="h-full w-full object-contain p-4"
             :onerror="`this.src='${URL_ASSETS_MISSING}'`"
             :src="getItemImageUrl(item.ShortName)"
             :alt="item.DisplayName"
@@ -41,28 +41,20 @@ function getFlags(flags: number) {
         </div>
       </a>
     </div>
-    <div class="flex flex-col sm:gap-3 gap-2">
+    <div class="flex flex-col gap-2 sm:gap-3">
       <div class="flex flex-col gap-2">
         <a :href="`details?id=${item.Id}`" class="flex items-center gap-2">
           <h3 class="text-lg font-medium">{{ item.DisplayName }}</h3>
           <ExternalLink :size="14" class="opacity-60" />
         </a>
-        <div class="flex flex-col sm:flex-row sm:gap-4 gap-2">
+        <div class="flex flex-col gap-2 sm:flex-row sm:gap-4">
           <div class="flex items-center gap-2">
             <span class="font-mono text-sm">{{ item.Id }}</span>
-            <ButtonIconCopy
-              :getTextToCopy="() => item.Id.toString()"
-              title="Copy item ID"
-              class="opacity-60"
-            />
+            <ButtonIconCopy :getTextToCopy="() => item.Id.toString()" title="Copy item ID" class="opacity-60" />
           </div>
           <div class="flex items-center gap-2">
             <span class="font-mono text-sm">{{ item.ShortName }}</span>
-            <ButtonIconCopy
-              :getTextToCopy="() => item.ShortName"
-              title="Copy item short name"
-              class="opacity-60"
-            />
+            <ButtonIconCopy :getTextToCopy="() => item.ShortName" title="Copy item short name" class="opacity-60" />
           </div>
         </div>
       </div>
