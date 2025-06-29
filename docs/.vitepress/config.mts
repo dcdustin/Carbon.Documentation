@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import tailwindcss from 'tailwindcss'
-import autoprefixer from 'autoprefixer'
 import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 const references = [
@@ -110,7 +109,9 @@ export default defineConfig({
                 { text: 'Image Database Module', link: '/owners/modules/image-db-module' },
                 { text: 'Modal Module', link: '/owners/modules/modal-module' },
                 {
-                  text: 'Optional Modules', collapsed: true, items: [
+                  text: 'Optional Modules',
+                  collapsed: true,
+                  items: [
                     { text: 'AutoWipe Module', link: '/owners/modules/optional-modules/autowipe-module' },
                     {
                       text: 'Circular Networking Module',
@@ -126,14 +127,13 @@ export default defineConfig({
                     { text: 'Vanish Module', link: '/owners/modules/optional-modules/vanish-module' },
                     { text: 'Whitelist Module', link: '/owners/modules/optional-modules/whitelist-module' },
                   ],
-                }],
+                },
+              ],
             },
             {
               text: 'Hosting',
               collapsed: true,
-              items: [
-                { text: 'Linux GSM', link: '/owners/linux-gsm' },
-              ],
+              items: [{ text: 'Linux GSM', link: '/owners/linux-gsm' }],
             },
             { text: 'Oxide Porting', link: '/owners/oxide-porting' },
           ],
@@ -180,12 +180,13 @@ export default defineConfig({
           ],
         },
         {
-          text: 'References', items: references,
+          text: 'References',
+          items: references,
         },
         {
           text: 'Tools',
           items: tools,
-        }
+        },
       ],
     },
 
@@ -197,9 +198,9 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License. Feel free to <a href=\'https://github.com/CarbonCommunity/Carbon.Documentation\' target=\'_blank\'>help us improve</a>!',
-      copyright:
-        'All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.',
+      message:
+        "Released under the MIT License. Feel free to <a href='https://github.com/CarbonCommunity/Carbon.Documentation' target='_blank'>help us improve</a>!",
+      copyright: 'All trademarks referenced are the properties of their respective owners. © 2025 carbonmod.gg and codefling.com All rights reserved.',
     },
 
     search: {
@@ -221,20 +222,19 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern:
-        'https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path',
+      pattern: 'https://github.com/CarbonCommunity/Carbon.Documentation/edit/main/docs/:path',
       text: 'Suggest a change',
     },
   },
   vite: {
     resolve: {
       alias: {
-        '@': '/.vitepress'
+        '@': '/.vitepress',
       },
     },
     css: {
       postcss: {
-        plugins: [tailwindcss, autoprefixer],
+        plugins: [tailwindcss],
       },
     },
     build: {

@@ -31,7 +31,7 @@ export type HooksData = Map<string, Hook[]>
 export async function fetchHooks() {
   const url = URL_METDAT_CARB_HOOKS
 
-  const { data } = await fetchApiCaching<HooksData, { [key: string]: Hook[] }>(url, CACHE_TIME_ITEM_TTL, (data) => {
+  const { data, isFromCache } = await fetchApiCaching<HooksData, { [key: string]: Hook[] }>(url, CACHE_TIME_ITEM_TTL, (data) => {
     const actualMap: HooksData = new Map()
     Object.keys(data).forEach((key) => {
       actualMap.set(key, data[key])
@@ -39,5 +39,5 @@ export async function fetchHooks() {
     return actualMap
   })
 
-  return data
+  return { data, isFromCache }
 }

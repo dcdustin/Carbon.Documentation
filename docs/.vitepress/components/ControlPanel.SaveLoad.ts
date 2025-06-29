@@ -1,14 +1,16 @@
-import { ref } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { command, commandIndex, tryFocusLogs } from './ControlPanel.Console'
 import { activeSlot, beltSlots, clearInventory, hideInventory, mainSlots, wearSlots } from './ControlPanel.Inventory'
 import { refreshPermissions } from './ControlPanel.Tabs.Permissions.vue'
 import { resetEntities } from './ControlPanel.Entities'
 
-export const selectedServer = ref()
-export const selectedSubTab = ref(0)
+export const selectedServer = ref<Server | null>(null)
+export const selectedSubTab = shallowRef<number>(0)
 export const servers = ref<Server[]>([])
 
 export const geoFlagCache = ref<{ [key: string]: string }>({})
+
+const isLoadedServers = shallowRef<boolean>(false)
 
 interface CommandSend {
   Message: string
@@ -49,7 +51,7 @@ export async function fetchGeolocation(ip: string) {
     if (geoFlagCache.value && !(ip in geoFlagCache.value)) {
       geoFlagCache.value[ip] = `https://flagcdn.com/32x24/${data.country_code2.toString().toLowerCase()}.png`
     }
-  } catch(ex) {
+  } catch (ex) {
     console.log(ex)
   }
 }
@@ -203,6 +205,11 @@ export function save() {
 }
 
 export function load() {
+  if (isLoadedServers.value) {
+    return
+  }
+
+  isLoadedServers.value = true
   importFromJson(localStorage.getItem('rcon-servers') as string)
 
   const lastSelectedServer = localStorage.getItem('rcon-lastserver')
