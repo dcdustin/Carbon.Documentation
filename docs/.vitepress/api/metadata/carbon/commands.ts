@@ -13,7 +13,7 @@ export type CommandsCarbonData = CommandCarbon[]
 export async function fetchCommandsCarbon() {
   const url = URL_METDAT_CARB_COMMANDS
 
-  const { data } = await fetchApiCaching<CommandsCarbonData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<CommandsCarbonData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }
