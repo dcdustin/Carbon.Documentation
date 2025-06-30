@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_PREFABS } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_PREFABS } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 
 // fix naming issues with first letter being uppercase
 

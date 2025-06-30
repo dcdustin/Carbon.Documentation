@@ -75,7 +75,7 @@ const filteredList = computed(() => {
       filtered = filtered.filter(
         (hook) =>
           hook.FullName.toLowerCase().includes(lowerCaseSearchValue) ||
-          hook.Descriptions?.flatMap((description) => description.toLowerCase()).includes(lowerCaseSearchValue) ||
+          hook.Descriptions?.map((s) => s.toLowerCase()).some((x) => x.includes(lowerCaseSearchValue)) ||
           hook.MethodName?.toLowerCase().includes(lowerCaseSearchValue) ||
           hook.TargetName?.toLowerCase().includes(lowerCaseSearchValue) ||
           hook.AssemblyName?.toLowerCase().includes(lowerCaseSearchValue)
@@ -134,7 +134,7 @@ function tryLoadMiniSearch() {
         })
       }
 
-      return Array.from(processed)
+      return Array.from(new Set(processed))
     },
   })
 

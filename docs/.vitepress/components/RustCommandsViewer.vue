@@ -1,70 +1,74 @@
 <script setup lang="ts">
 import type { CommandRust } from '@/api/metadata/rust/commands'
 import { fetchCommandsRust } from '@/api/metadata/rust/commands'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { data as initialList } from '@/data-loaders/rust-commands.data'
 import { store } from '@/stores/rust-commands-store'
-import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import RustCommandCard from './RustCommandCard.vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
-const isLoading = shallowRef(true)
-const error = shallowRef<string | null>(null)
+const list = shallowRef<CommandRust[]>(initialList)
 
-const commands = shallowRef<CommandRust[]>([])
-const miniSearch = shallowRef<MiniSearch | null>(null)
+const isFetchedRest = shallowRef(false)
+const isDataFromCache = shallowRef<boolean | null>(null)
+const error = shallowRef<string>('')
 
 const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
+const useBasicSearch = store.useBasicSearch
 
-const pageSize = 25
+const initialPageSize = 30
+const pageSize = 50
 
-const filteredCommands = computed(() => {
-  if (!commands.value?.length) {
+const filteredList = computed(() => {
+  if (!list.value?.length) {
     return []
   }
 
   if (!debouncedSearchValue.value) {
-    return commands.value
+    return list.value
   }
 
-  // const startTime = performance.now()
+  let filtered = list.value
 
-  let filtered = commands.value
-
-  if (debouncedSearchValue.value && miniSearch.value) {
-    const results = miniSearch.value.search(debouncedSearchValue.value)
-    const commandMap = new Map(filtered.map((command) => [command.Name, command]))
-    filtered = results.map((result) => commandMap.get(result.Name)).filter(Boolean) as CommandRust[]
+  if (debouncedSearchValue.value) {
+    if (!miniSearch.value || useBasicSearch.value) {
+      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
+      filtered = filtered.filter(
+        (command) => command.Name.toLowerCase().includes(lowerCaseSearchValue) || command.Help?.toLowerCase().includes(lowerCaseSearchValue)
+      )
+    } else {
+      const results = miniSearch.value.search(debouncedSearchValue.value)
+      const commandMap = new Map(filtered.map((command) => [command.Name, command]))
+      filtered = results.map((result) => commandMap.get(result.id)).filter(Boolean) as CommandRust[]
+    }
   }
-
-  // const endTime = performance.now()
-  // console.log(`Filtered commands in ${endTime - startTime}ms`)
 
   return filtered
 })
 
 function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    return
+  }
+
   const startTime = performance.now()
 
-  // should be extracted and cached...
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'Name',
     fields: ['Name', 'Help'],
-    storeFields: ['Name'],
     searchOptions: {
       prefix: true,
       boost: {
         Name: 3,
         Help: 1,
       },
-      fuzzy: (term) => {
-        if (term == 'Name') {
-          return 0.1
-        }
-        return 0.2
-      },
+      fuzzy: 0.2,
     },
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}_]+/u // from minisearch source + underscores
@@ -77,68 +81,70 @@ function tryLoadMiniSearch() {
         processed.push(text.toLowerCase())
       }
 
-      return [...new Set(processed)]
+      return Array.from(new Set(processed))
     },
   })
 
-  miniSearch.value.addAll(commands.value)
+  minisearch.addAll(list.value)
 
-  const endTime = performance.now()
-  console.log(`Initialized MiniSearch for Rust commands in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for Rust commands in ${performance.now() - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
-async function loadCommands() {
+async function loadItems() {
   try {
-    isLoading.value = true
-    error.value = null
+    const { data, isFromCache } = await fetchCommandsRust()
 
-    const data = await fetchCommandsRust()
+    list.value = data
 
-    if (!data) {
-      throw new Error('No data received from API')
-    }
+    isFetchedRest.value = true
 
-    commands.value = data
-
-    tryLoadMiniSearch()
+    isDataFromCache.value = isFromCache
   } catch (err) {
-    console.error('Failed to load commands:', err)
-    error.value = err instanceof Error ? err.message : 'Failed to load commands. Please try again later.'
-  } finally {
-    isLoading.value = false
+    console.error('Failed to load rust commands:', err)
+    error.value = err instanceof Error ? err.message : 'Failed to load rust commands. Please try again later.'
   }
 }
 
 onMounted(async () => {
-  loadCommands()
+  await loadItems()
+  tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading commands...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search commands..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
-    </SearchBar>
-    <div v-if="filteredCommands && filteredCommands.length">
-      <div class="mt-4 flex flex-col gap-5">
-        <InfinitePageScroll :list="filteredCommands" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredCommands.length }} filtered commands, {{ commands.length }} total commands.
-            </div>
-          </div>
-          <div v-for="command in renderedList" :key="command.Name" :id="command.Name">
-            <RustCommandCard :command="command" />
-          </div>
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No commands found matching your search</p>
-      <p v-if="commands && commands.length == 0" class="text-sm">Debug: No commands loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-  </AsyncState>
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredList"
+    :list="list"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRest"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search convars..." class="sticky top-16 z-10 min-[960px]:top-20">
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #right> </template>
+      </SearchBar>
+    </template>
+
+    <template #list>
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="list?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
+        />
+        <div class="flex flex-col gap-5">
+          <template v-for="command in renderedList" :key="command.Name">
+            <RustCommandCard :id="command.Name" :command="command" />
+          </template>
+        </div>
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>

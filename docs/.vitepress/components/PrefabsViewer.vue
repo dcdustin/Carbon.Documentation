@@ -1,43 +1,45 @@
 <script setup lang="ts">
 import { fetchPrefabs, type Prefab } from '@/api/metadata/rust/prefabs'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import PrefabCard from '@/components/PrefabCard.vue'
+import { data as initialList } from '@/data-loaders/prefabs.data'
 import { store } from '@/stores/prefabs-store'
-import { Search } from 'lucide-vue-next'
 import MiniSearch, { SearchOptions } from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
-const isLoading = shallowRef(true)
+const list = shallowRef<Prefab[]>(initialList)
+
+const isFetchedRest = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
-const error = shallowRef<string | null>(null)
+const error = shallowRef<string>('')
 
-const prefabs = shallowRef<Prefab[]>([])
-
-const selectedSearchType = store.searchType
 const debouncedSearchValue = store.searchValue
 const miniSearch = store.miniSearch
+const useBasicSearch = store.useBasicSearch
+const selectedSearchType = store.searchType
 
-const pageSize = 20
+const initialPageSize = 20
+const pageSize = 30
 
 function appendSearch(component: string) {
   debouncedSearchValue.value = `${debouncedSearchValue.value.trim()} ${component}`.trim()
 }
 
-const filteredPrefabs = computed(() => {
-  if (!prefabs.value?.length) {
+const filteredList = computed(() => {
+  if (!list.value?.length) {
     return []
   }
 
   if (!debouncedSearchValue.value) {
-    return prefabs.value
+    return list.value
   }
 
-  // const startTime = performance.now()
-
-  let filtered = prefabs.value
+  let filtered = list.value
 
   const searchAsNumber = Number(debouncedSearchValue.value)
   if (!isNaN(searchAsNumber) && searchAsNumber) {
@@ -47,51 +49,56 @@ const filteredPrefabs = computed(() => {
     }
   }
 
-  if (debouncedSearchValue.value && miniSearch.value) {
-    const searchOptions: SearchOptions = { combineWith: selectedSearchType.value }
-    if (selectedSearchType.value == 'AND') {
-      searchOptions.tokenize = (text: string) => {
-        const SPACES = /[\n\r\s]+/u
-        const PARENTHESES = /(\(.+\))/g
+  if (debouncedSearchValue.value) {
+    if (!miniSearch.value || useBasicSearch.value) {
+      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
+      filtered = filtered.filter(
+        (entity) =>
+          entity.Name.toLowerCase().includes(lowerCaseSearchValue) ||
+          entity.Path?.toLowerCase().includes(lowerCaseSearchValue) ||
+          entity.Components?.map((s) => s.toLowerCase()).some((x) => x.includes(lowerCaseSearchValue))
+      )
+    } else {
+      const searchOptions: SearchOptions = { combineWith: selectedSearchType.value }
+      if (selectedSearchType.value == 'AND') {
+        searchOptions.tokenize = (text: string) => {
+          const SPACES = /[\n\r\s]+/u
+          const PARENTHESES = /(\(.+\))/g
 
-        const tokens: string[] = []
-        const matches = text.match(PARENTHESES)
-        if (matches) {
-          matches.forEach((match) => {
-            tokens.push(match.slice(1, -1))
-          })
+          const tokens: string[] = []
+          const matches = text.match(PARENTHESES)
+          if (matches) {
+            matches.forEach((match) => {
+              tokens.push(match.slice(1, -1))
+            })
+          }
+
+          const textWithoutParentheses = text.replace(PARENTHESES, '')
+          tokens.push(...textWithoutParentheses.split(SPACES))
+          const result = [...new Set(tokens.filter((token) => token.length > 1))]
+          return result
         }
-
-        const textWithoutParentheses = text.replace(PARENTHESES, '')
-        tokens.push(...textWithoutParentheses.split(SPACES))
-        const result = [...new Set(tokens.filter((token) => token.length > 1))]
-        return result
+        searchOptions.fuzzy = 0
       }
-      searchOptions.fuzzy = 0
+      const results = miniSearch.value.search(debouncedSearchValue.value, searchOptions)
+      const prefabMap = new Map(filtered.map((prefab) => [prefab.ID, prefab]))
+      filtered = results.map((result) => prefabMap.get(result.id)).filter(Boolean) as Prefab[]
     }
-    const results = miniSearch.value.search(debouncedSearchValue.value, searchOptions)
-    const prefabMap = new Map(filtered.map((prefab) => [prefab.ID, prefab]))
-    filtered = results.map((result) => prefabMap.get(result.ID)).filter(Boolean) as Prefab[]
   }
-
-  // const endTime = performance.now()
-  // console.log(`Filtered items in ${endTime - startTime}ms - ${debouncedSearchValue.value}`)
 
   return filtered
 })
 
-function tryLoadMiniSearch() {
+async function tryLoadMiniSearch() {
   if (miniSearch.value && isDataFromCache.value) {
     return
   }
 
   const startTime = performance.now()
 
-  // should be extracted and cached...
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'ID',
     fields: ['Name', 'Path', 'Components'],
-    storeFields: ['ID'],
     searchOptions: {
       prefix: true,
       boost: {
@@ -126,72 +133,72 @@ function tryLoadMiniSearch() {
             }
           })
       }
-      return [...new Set(processed)]
+      return Array.from(new Set(processed))
     },
   })
 
-  miniSearch.value.addAll(prefabs.value)
+  await minisearch.addAllAsync(list.value, { chunkSize: 4000 }) // currently the most optimal chunk size
 
-  const endTime = performance.now()
-  console.log(`Initialized MiniSearch for Rust prefabs in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for Rust prefabs in ${performance.now() - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
-async function loadPrefabs() {
+async function loadItems() {
   try {
-    isLoading.value = true
-    error.value = null
-
     const { data, isFromCache } = await fetchPrefabs()
 
-    if (!data) {
-      throw new Error('No data received from API')
-    }
+    list.value = data
 
-    prefabs.value = data
+    isFetchedRest.value = true
 
     isDataFromCache.value = isFromCache
   } catch (err) {
     console.error('Failed to load prefabs:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load prefabs. Please try again later.'
-  } finally {
-    isLoading.value = false
   }
 }
 
 onMounted(async () => {
-  await loadPrefabs()
-  tryLoadMiniSearch()
+  await loadItems()
+  await tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading prefabs...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search prefabs..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
-      <template #right>
-        <OptionSelector v-model="selectedSearchType" :options="['OR', 'AND']" label="" />
-      </template>
-    </SearchBar>
-    <div v-if="filteredPrefabs && filteredPrefabs.length">
-      <div class="mt-4 flex flex-col gap-6">
-        <InfinitePageScroll :list="filteredPrefabs" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredPrefabs.length }} filtered prefabs, {{ prefabs.length }} total prefabs.
-            </div>
-          </div>
-          <div v-for="prefab in renderedList" :key="prefab.ID" :id="prefab.ID.toString()">
-            <PrefabCard :prefab="prefab" @search-append="appendSearch" />
-          </div>
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No prefabs found matching your search</p>
-      <p v-if="prefabs && prefabs.length == 0" class="text-sm">Debug: No prefabs loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-  </AsyncState>
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredList"
+    :list="list"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRest"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search prefabs..." class="sticky top-16 z-10 min-[960px]:top-20">
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #right>
+          <OptionSelector v-model="selectedSearchType" :options="['OR', 'AND']" label="" />
+        </template>
+      </SearchBar>
+    </template>
+
+    <template #list>
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="list?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
+        />
+        <div class="flex flex-col gap-5">
+          <template v-for="prefab in renderedList" :key="prefab.ID">
+            <PrefabCard :id="prefab.ID.toString()" :prefab="prefab" @search-append="appendSearch" />
+          </template>
+        </div>
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>

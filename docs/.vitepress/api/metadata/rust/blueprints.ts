@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_BLUEPRINTS } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_BLUEPRINTS } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 import { Item } from './items'
 
 // fix naming issues with first letter being uppercase
@@ -28,7 +28,7 @@ export type BlueprintsData = Blueprint[]
 export async function fetchBlueprints() {
   const url = URL_METDAT_RUST_BLUEPRINTS
 
-  const { data } = await fetchApiCaching<BlueprintsData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<BlueprintsData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }
