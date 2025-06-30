@@ -55,6 +55,7 @@ const filteredList = computed(() => {
       filtered = results.map((result) => commandMap.get(result.id)).filter(Boolean) as CommandCarbon[]
     }
   }
+
   return filtered
 })
 
