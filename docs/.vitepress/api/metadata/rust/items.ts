@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_ITEMS } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_ITEMS } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 
 // fix naming issues with first letter being uppercase
 
@@ -66,7 +66,7 @@ export type ItemsData = Item[]
 export async function fetchItems() {
   const url = URL_METDAT_RUST_ITEMS
 
-  const { data } = await fetchApiCaching<ItemsData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<ItemsData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }

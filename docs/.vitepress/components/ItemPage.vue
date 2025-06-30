@@ -45,7 +45,7 @@ const loadItem = async (itemId: string | number) => {
       return
     }
 
-    const data = await fetchItems()
+    const { data } = await fetchItems()
     if (!Array.isArray(data)) {
       throw new Error('Data is not an array')
     }
@@ -93,7 +93,7 @@ watch(
 </script>
 
 <template>
-  <div class="max-w-screen-lg mx-auto px-4 py-8">
+  <div class="mx-auto max-w-screen-lg px-4 py-8">
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center py-8">
       <Loader2 class="animate-spin" :size="24" />
@@ -109,24 +109,20 @@ watch(
           <h1 class="text-2xl font-bold">{{ item.DisplayName }}</h1>
           <button
             @click="copyToClipboard(item.Id.toString(), item.Id)"
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            class="flex items-center bg-gray-100 px-3 py-1.5 text-sm transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             <span class="font-mono">{{ item.Id }}</span>
             <component :is="copiedId === item.Id ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
           <button
             @click="copyToClipboard(item.ShortName, 'shortname')"
-            class="flex items-center px-3 py-1.5 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            class="flex items-center bg-gray-100 px-3 py-1.5 text-sm transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             <span class="font-mono">{{ item.ShortName }}</span>
             <component :is="copiedId === item.ShortName ? CheckCircle2 : Copy" class="ml-2" :size="14" />
           </button>
         </div>
-        <a
-          :href="`${URL_METDAT_RUST_ITEMS}`"
-          target="_blank"
-          class="vp-button medium brand flex items-center gap-2"
-        >
+        <a :href="`${URL_METDAT_RUST_ITEMS}`" target="_blank" class="vp-button medium brand flex items-center gap-2">
           <Database :size="16" />
           Items API
           <ExternalLink :size="14" class="opacity-80" />
@@ -138,12 +134,7 @@ watch(
         <!-- Item Image -->
         <div class="flex-shrink-0">
           <div class="relative bg-gray-50 dark:bg-gray-800" style="width: 300px; height: 300px">
-            <img
-              :src="getItemImageUrl(item.ShortName)"
-              @error="handleImageError"
-              class="w-full h-full object-contain p-8"
-              :alt="item.DisplayName"
-            />
+            <img :src="getItemImageUrl(item.ShortName)" @error="handleImageError" class="h-full w-full object-contain p-8" :alt="item.DisplayName" />
             <div class="absolute inset-0 flex items-center justify-center" v-if="!item.Id">
               <Tag :size="48" class="text-gray-400" />
             </div>
@@ -154,7 +145,7 @@ watch(
         <div class="flex-1 space-y-4">
           <div class="dark:bg-gray-700">
             <p class="text-gray-600 dark:text-gray-300">{{ item.Description }}</p>
-            <div class="flex flex-wrap gap-1 mt-4">
+            <div class="mt-4 flex flex-wrap gap-1">
               <VPBadge v-if="item.Rarity != 0" type="danger" :text="getItemRarityText(item.Rarity)" />
 
               <VPBadge type="info" :text="`Stack: ${item.Stack}`" />
@@ -171,7 +162,7 @@ watch(
       </div>
 
       <!-- Return to Items -->
-      <div class="flex justify-center mt-8">
+      <div class="mt-8 flex justify-center">
         <div class="flex items-center gap-2">
           <ArrowLeft :size="16" class="opacity-80" />
           <a href="/references/items" class="vp-button medium brand underline"> Back to Items </a>
@@ -183,12 +174,7 @@ watch(
           <h2 class="text-xl font-bold">Item Mods</h2>
           <code>{{ item.ItemMods.join(', ') }}</code>
         </div>
-        <template
-          v-for="([key1, value1], index1) in Object.entries(item).filter(
-            ([key, value]) => key.startsWith('ItemMod_') && value != null
-          )"
-          :key="index1"
-        >
+        <template v-for="([key1, value1], index1) in Object.entries(item).filter(([key, value]) => key.startsWith('ItemMod_') && value != null)" :key="index1">
           <div class="flex flex-col gap-2">
             <h2 class="text-xl font-bold">{{ key1 }}</h2>
             <div class="flex flex-col gap-2">
@@ -202,7 +188,7 @@ watch(
     </div>
 
     <!-- Item Not Found -->
-    <div v-else class="text-center py-8">
+    <div v-else class="py-8 text-center">
       <div class="space-y-4">
         <p class="text-gray-500">Item not found</p>
         <a href="/references/items" class="vp-button medium brand"> Back to Items </a>
