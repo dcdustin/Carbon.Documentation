@@ -4,6 +4,7 @@ import { fetchCommandsCarbon } from '@/api/metadata/carbon/commands'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { data as initialList } from '@/data-loaders/carbon-commands.data'
 import { store } from '@/stores/carbon-commands-store'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
@@ -12,8 +13,8 @@ import ApiPageInfo from './common/ApiPageInfo.vue'
 import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
 import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
+const list = shallowRef<CommandCarbon[]>(initialList)
 const categories = shallowRef<string[]>([])
-const list = shallowRef<CommandCarbon[]>([])
 
 const isFetchedRest = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
