@@ -1,69 +1,73 @@
 <script setup lang="ts">
 import { fetchSwitches, type Switch } from '@/api/metadata/carbon/switches'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
+import { data as initialList } from '@/data-loaders/carbon-switches.data'
 import { store } from '@/stores/carbon-switches-store'
-import { Search } from 'lucide-vue-next'
 import MiniSearch from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
 import CarbonSwitchCard from './CarbonSwitchCard.vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
-const isLoading = shallowRef(true)
-const error = shallowRef<string | null>(null)
+const list = shallowRef<Switch[]>(initialList)
 
-const switches = shallowRef<Switch[]>([])
-const miniSearch = shallowRef<MiniSearch | null>(null)
+const isFetchedRest = shallowRef(false)
+const isDataFromCache = shallowRef<boolean | null>(null)
+const error = shallowRef<string>('')
 
 const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
+const useBasicSearch = store.useBasicSearch
 
-const pageSize = 25
+const initialPageSize = 25
+const pageSize = 50
 
-const filteredSwitches = computed(() => {
-  if (!switches.value?.length) {
+const filteredList = computed(() => {
+  if (!list.value?.length) {
     return []
   }
 
   if (!debouncedSearchValue.value) {
-    return switches.value
+    return list.value
   }
 
-  // const startTime = performance.now()
+  let filtered = list.value
 
-  let filtered = switches.value
-
-  if (debouncedSearchValue.value && miniSearch.value) {
-    const results = miniSearch.value.search(debouncedSearchValue.value)
-    const switchMap = new Map(filtered.map((switchValue) => [switchValue.Name, switchValue]))
-    filtered = results.map((result) => switchMap.get(result.Name)).filter(Boolean) as Switch[]
+  if (debouncedSearchValue.value) {
+    if (!miniSearch.value || useBasicSearch.value) {
+      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
+      filtered = filtered.filter(
+        (switchVal) => switchVal.Name.toLowerCase().includes(lowerCaseSearchValue) || switchVal.Help?.toLowerCase().includes(lowerCaseSearchValue)
+      )
+    } else {
+      const results = miniSearch.value.search(debouncedSearchValue.value)
+      const switchMap = new Map(filtered.map((switchValue) => [switchValue.Name, switchValue]))
+      filtered = results.map((result) => switchMap.get(result.id)).filter(Boolean) as Switch[]
+    }
   }
-
-  // const endTime = performance.now()
-  // console.log(`Filtered commands in ${endTime - startTime}ms`)
 
   return filtered
 })
 
 function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    return
+  }
+
   const startTime = performance.now()
 
-  // should be extracted and cached...
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'Name',
     fields: ['Name', 'Help'],
-    storeFields: ['Name'],
     searchOptions: {
       prefix: true,
       boost: {
         Name: 3,
         Help: 1,
       },
-      fuzzy: (term) => {
-        if (term == 'Name') {
-          return 0.1
-        }
-        return 0.2
-      },
+      fuzzy: 0.2,
     },
     tokenize: (text, fieldName) => {
       const SPACE_OR_PUNCTUATION = /[\n\r\p{Z}\p{P}_]+/u // from minisearch source + underscores
@@ -76,68 +80,70 @@ function tryLoadMiniSearch() {
         processed.push(text.toLowerCase())
       }
 
-      return [...new Set(processed)]
+      return Array.from(new Set(processed))
     },
   })
 
-  miniSearch.value.addAll(switches.value)
+  minisearch.addAll(list.value)
 
-  const endTime = performance.now()
-  console.log(`Initialized MiniSearch for Carbon switches in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for Carbon switches in ${performance.now() - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
-async function loadSwitches() {
+async function loadItems() {
   try {
-    isLoading.value = true
-    error.value = null
+    const { data, isFromCache } = await fetchSwitches()
 
-    const data = await fetchSwitches()
+    list.value = data
 
-    if (!data) {
-      throw new Error('No data received from API')
-    }
+    isFetchedRest.value = true
 
-    switches.value = data
-
-    tryLoadMiniSearch()
+    isDataFromCache.value = isFromCache
   } catch (err) {
-    console.error('Failed to load switches:', err)
-    error.value = err instanceof Error ? err.message : 'Failed to load switches. Please try again later.'
-  } finally {
-    isLoading.value = false
+    console.error('Failed to load carbon switches:', err)
+    error.value = err instanceof Error ? err.message : 'Failed to load carbon switches. Please try again later.'
   }
 }
 
 onMounted(async () => {
-  loadSwitches()
+  await loadItems()
+  tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading switches...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search switches..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
-    </SearchBar>
-    <div v-if="filteredSwitches && filteredSwitches.length">
-      <div class="mt-4 flex flex-col gap-5">
-        <InfinitePageScroll :list="filteredSwitches" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredSwitches.length }} filtered switches, {{ switches.length }} total switches.
-            </div>
-          </div>
-          <div v-for="switchValue in renderedList" :key="switchValue.Name" :id="switchValue.Name">
-            <CarbonSwitchCard :switchValue="switchValue" />
-          </div>
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No switches found matching your search</p>
-      <p v-if="switches && switches.length == 0" class="text-sm">Debug: No switches loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-  </AsyncState>
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredList"
+    :list="list"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRest"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search commads..." class="sticky top-16 z-10 min-[960px]:top-20">
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #right></template>
+      </SearchBar>
+    </template>
+
+    <template #list>
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="list?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
+        />
+        <div class="flex flex-col gap-5">
+          <template v-for="switchVal in renderedList" :key="switchVal.Name">
+            <CarbonSwitchCard :id="switchVal" :switchValue="switchVal" />
+          </template>
+        </div>
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>
