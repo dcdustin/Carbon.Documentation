@@ -134,7 +134,7 @@ function tryLoadMiniSearch() {
         })
       }
 
-      return Array.from(processed)
+      return Array.from(new Set(processed))
     },
   })
 
