@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_CONVARS } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_CONVARS } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 
 // fix naming issues with first letter being uppercase
 export interface ConVarRust {
@@ -19,7 +19,7 @@ export type ConVarsRustData = ConVarRust[]
 export async function fetchConVarsRust() {
   const url = URL_METDAT_RUST_CONVARS
 
-  const { data } = await fetchApiCaching<ConVarsRustData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<ConVarsRustData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }
