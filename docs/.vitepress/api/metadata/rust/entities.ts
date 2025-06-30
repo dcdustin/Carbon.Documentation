@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_ENTITIES } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_ENTITIES } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 
 // fix naming issues with first letter being uppercase
 
@@ -16,7 +16,7 @@ export type EntitiesData = Entity[]
 export async function fetchEntities() {
   const url = URL_METDAT_RUST_ENTITIES
 
-  const { data } = await fetchApiCaching<EntitiesData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<EntitiesData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }
