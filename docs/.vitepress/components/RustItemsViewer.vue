@@ -68,6 +68,7 @@ const filteredList = computed(() => {
       filtered = results.map((result) => itemMap.get(result.id)).filter(Boolean) as Item[]
     }
   }
+
   return filtered
 })
 
@@ -161,7 +162,7 @@ onMounted(async () => {
     :mini-search="miniSearch"
   >
     <template #top>
-      <SearchBar v-model="debouncedSearchValue" placeholder="Search commads..." class="sticky top-16 z-10 min-[960px]:top-20">
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search items..." class="sticky top-16 z-10 min-[960px]:top-20">
         <template #icon>
           <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
         </template>
