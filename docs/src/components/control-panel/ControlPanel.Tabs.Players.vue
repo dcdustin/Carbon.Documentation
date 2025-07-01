@@ -2,6 +2,14 @@
 import { ExternalLink, ArrowUpFromDot, Trash2 } from 'lucide-vue-next'
 import { showInventory, hideInventory, activeInventory, handleDrop, handleDrag, activeSlot, mainSlots, wearSlots, beltSlots, toolSlots } from './ControlPanel.Inventory'
 import { geoFlagCache, selectedServer } from './ControlPanel.SaveLoad'
+import { ref, onMounted, computed } from 'vue'
+import { fetchItems } from '@/api/metadata/rust/items'
+
+const selectedItemOption = ref('bleach')
+const selectedItemAmount = ref(1)
+const selectedItemSearch = ref('')
+const itemOptions: any = []
+const isOpen = ref<boolean>(false)
 
 function formatDuration(seconds: number) {
   const hrs = Math.floor(seconds / 3600)
@@ -15,6 +23,25 @@ function formatDuration(seconds: number) {
 
   return parts.join(' ')
 }
+
+function giveItem() {
+  selectedServer.value?.sendCommand(`inventory.giveto ${activeInventory.value} ${selectedItemOption.value} ${selectedItemAmount.value}`, 1)
+}
+
+const filteredOptions = computed(() => {
+  const q = selectedItemSearch.value.toLowerCase()
+  return itemOptions.filter((opt: any) => opt.value.toLowerCase().includes(q) || opt.label.toLowerCase().includes(q))
+})
+
+onMounted(async () => {
+  const { data } = await fetchItems()
+  data.forEach(item => {
+    itemOptions.push({ 
+      value: item.ShortName,
+      label: item.DisplayName
+    })
+  });
+})
 </script>
 
 <template>
@@ -28,7 +55,7 @@ function formatDuration(seconds: number) {
         <th class="vp-doc th"></th>
       </tr>
     </thead>
-    <tr v-for="player in selectedServer.PlayerInfo" :key="player.SteamID">
+    <tr v-for="player in selectedServer?.PlayerInfo" :key="player.SteamID">
       <td class="vp-doc td">
         <span style="display: flex; gap: 5px" class="ml-2 text-xs text-slate-400"
           ><img :src="geoFlagCache[player.Address]" class="size-4" /> {{ player.Ping }}ms</span
@@ -104,16 +131,39 @@ function formatDuration(seconds: number) {
             <div v-if="slot.hasItem() && slot.HasCondition" class="slot-condition" :style="'height: ' + slot.ConditionNormalized * 100 + '%;'"></div>
           </div>
         </div>
-        <div class="inventory-grid-tools mt-5">
+        <div class="inventory-grid-tools mt-5 items-center justify-center opacity-50">
           <div
             v-for="slot in toolSlots"
             :key="slot.Position"
-            class="slot-tool items-center justify-center opacity-50"
+            class="slot-tool"
             @dragover.prevent
             @drop="handleDrop(slot)"
           >
             <span v-if="slot.Container == 10" class="select-none justify-items-center text-xs opacity-50"><ArrowUpFromDot /> Drop</span>
             <span v-if="slot.Container == 11" class="select-none justify-items-center text-xs opacity-50"><Trash2 /> Discard</span>
+          </div>
+          <div class="slot-tool w-52 justify-items-center text-xs">
+            <div class="grid">
+              <div class="flex">
+                <input class="w-6 text-center" v-model="selectedItemAmount"/><span class="content-center">x</span>
+                <div class="relative w-full">
+                  <input
+                    type="text"
+                    v-model="selectedItemSearch"
+                    @focus="isOpen = true"
+                    @focusout="isOpen = false"
+                    placeholder="Select an item..."
+                    class="bg-transparent border rounded px-2 py-1 w-full" />
+
+                  <ul v-if="isOpen && filteredOptions?.length" class="absolute mt-1 z-10 w-full max-h-48 overflow-auto border rounded bg-black text-white">
+                    <li v-for="option in filteredOptions" :key="option.value" @mousedown.prevent="selectedItemSearch = selectedItemOption = option.value; isOpen = false" class="px-2 py-1 hover:bg-gray-700 cursor-pointer">
+                      {{ option.label }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button class="r-send-button w-full" @click="giveItem()">Give</button>
+            </div>
           </div>
         </div>
       </div>
@@ -135,7 +185,7 @@ function formatDuration(seconds: number) {
 }
 .inventory-grid-tools {
   display: grid;
-  grid-template-columns: repeat(2, 64px);
+  grid-template-columns: repeat(5, 64px);
   grid-gap: 6px;
 }
 
@@ -150,7 +200,6 @@ function formatDuration(seconds: number) {
 }
 
 .slot-tool {
-  width: 64px;
   height: 64px;
   background-color: rgba(255, 255, 255, 0.075);
   position: relative;
