@@ -7,7 +7,7 @@ To get started, please follow the following instructions underneath, specified f
 <iframe
 width="100%"
 height="388"
-src="https://www.youtube.com/embed/htfazTbNsPs?si=7ZIJvvrAvBA3FrUP"
+src="https://www.youtube-nocookie.com/embed/htfazTbNsPs"
 title="YouTube video player"
 frameborder="0"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

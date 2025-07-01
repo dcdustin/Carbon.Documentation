@@ -229,7 +229,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@': '/.vitepress',
+        '@': '/src',
       },
     },
     css: {
