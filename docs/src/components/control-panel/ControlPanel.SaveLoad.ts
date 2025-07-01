@@ -519,7 +519,6 @@ export class Server {
   }
 
   appendChat(message: any) {
-    console.log(message)
     this.Chat.push(`<a style="color: ${message.Color}" href="http://steamcommunity.com/profiles/${message.UserId}" target="_blank">${message.Username}</a>: ${message.Message}`)
   }
 
