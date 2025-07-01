@@ -17,9 +17,6 @@ hero:
       text: Developer Docs
       link: /devs/local-server-hosting
     - theme: alt
-      text: News
-      link: /news
-    - theme: alt
       text: Hooks
       link: /references/hooks
 
