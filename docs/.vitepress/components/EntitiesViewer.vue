@@ -1,42 +1,45 @@
 <script setup lang="ts">
 import { fetchEntities, type Entity } from '@/api/metadata/rust/entities'
-import AsyncState from '@/components/common/AsyncState.vue'
 import InfinitePageScroll from '@/components/common/InfinitePageScroll.vue'
 import OptionSelector from '@/components/common/OptionSelector.vue'
 import SearchBar from '@/components/common/SearchBar.vue'
 import EntityCard from '@/components/EntityCard.vue'
+import { data as initialList } from '@/data-loaders/entities.data'
 import { store } from '@/stores/entities-store'
-import { Search } from 'lucide-vue-next'
 import MiniSearch, { SearchOptions } from 'minisearch'
 import { computed, onMounted, shallowRef } from 'vue'
+import ApiPageInfo from './common/ApiPageInfo.vue'
+import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
+import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
 
-const isLoading = shallowRef(true)
-const error = shallowRef<string | null>(null)
+const list = shallowRef<Entity[]>(initialList)
 
-const entities = shallowRef<Entity[]>([])
-const miniSearch = shallowRef<MiniSearch | null>(null)
+const isFetchedRest = shallowRef(false)
+const isDataFromCache = shallowRef<boolean | null>(null)
+const error = shallowRef<string>('')
 
-const selectedSearchType = store.searchType
 const debouncedSearchValue = store.searchValue
+const miniSearch = store.miniSearch
+const useBasicSearch = store.useBasicSearch
+const selectedSearchType = store.searchType
 
-const pageSize = 20
+const initialPageSize = 20
+const pageSize = 30
 
 function appendSearch(component: string) {
   debouncedSearchValue.value = `${debouncedSearchValue.value.trim()} ${component}`.trim()
 }
 
-const filteredEntities = computed(() => {
-  if (!entities.value?.length) {
+const filteredList = computed(() => {
+  if (!list.value?.length) {
     return []
   }
 
   if (!debouncedSearchValue.value) {
-    return entities.value
+    return list.value
   }
 
-  // const startTime = performance.now()
-
-  let filtered = entities.value
+  let filtered = list.value
 
   const searchAsNumber = Number(debouncedSearchValue.value)
   if (!isNaN(searchAsNumber) && searchAsNumber) {
@@ -46,47 +49,57 @@ const filteredEntities = computed(() => {
     }
   }
 
-  if (debouncedSearchValue.value && miniSearch.value) {
-    const searchOptions: SearchOptions = { combineWith: selectedSearchType.value }
-    if (selectedSearchType.value == 'AND') {
-      searchOptions.tokenize = (text: string) => {
-        const SPACES = /[\n\r\s]+/u
-        const PARENTHESES = /(\(.+\))/g
+  if (debouncedSearchValue.value) {
+    if (!miniSearch.value || useBasicSearch.value) {
+      const lowerCaseSearchValue = debouncedSearchValue.value.toLowerCase()
+      filtered = filtered.filter(
+        (entity) =>
+          entity.Name.toLowerCase().includes(lowerCaseSearchValue) ||
+          entity.Path?.toLowerCase().includes(lowerCaseSearchValue) ||
+          entity.Type?.toLowerCase().includes(lowerCaseSearchValue) ||
+          entity.Components?.map((s) => s.toLowerCase()).some((x) => x.includes(lowerCaseSearchValue))
+      )
+    } else {
+      const searchOptions: SearchOptions = { combineWith: selectedSearchType.value }
+      if (selectedSearchType.value == 'AND') {
+        searchOptions.tokenize = (text: string) => {
+          const SPACES = /[\n\r\s]+/u
+          const PARENTHESES = /(\(.+\))/g
 
-        const tokens: string[] = []
-        const matches = text.match(PARENTHESES)
-        if (matches) {
-          matches.forEach((match) => {
-            tokens.push(match.slice(1, -1))
-          })
+          const tokens: string[] = []
+          const matches = text.match(PARENTHESES)
+          if (matches) {
+            matches.forEach((match) => {
+              tokens.push(match.slice(1, -1))
+            })
+          }
+
+          const textWithoutParentheses = text.replace(PARENTHESES, '')
+          tokens.push(...textWithoutParentheses.split(SPACES))
+          const result = [...new Set(tokens.filter((token) => token.length > 1))]
+          return result
         }
-
-        const textWithoutParentheses = text.replace(PARENTHESES, '')
-        tokens.push(...textWithoutParentheses.split(SPACES))
-        const result = [...new Set(tokens.filter((token) => token.length > 1))]
-        return result
+        searchOptions.fuzzy = 0
       }
-      searchOptions.fuzzy = 0
+      const results = miniSearch.value.search(debouncedSearchValue.value, searchOptions)
+      const entityMap = new Map(filtered.map((entity) => [entity.ID, entity]))
+      filtered = results.map((result) => entityMap.get(result.id)).filter(Boolean) as Entity[]
     }
-    const results = miniSearch.value.search(debouncedSearchValue.value, searchOptions)
-    const entityMap = new Map(filtered.map((entity) => [entity.ID, entity]))
-    filtered = results.map((result) => entityMap.get(result.ID)).filter(Boolean) as Entity[]
   }
-
-  // const endTime = performance.now()
-  // console.log(`Filtered items in ${endTime - startTime}ms - ${debouncedSearchValue.value}`)
 
   return filtered
 })
 
-function tryLoadMiniSearch() {
+async function tryLoadMiniSearch() {
+  if (miniSearch.value && isDataFromCache.value) {
+    return
+  }
+
   const startTime = performance.now()
 
-  // should be extracted and cached...
-  miniSearch.value = new MiniSearch({
+  const minisearch = new MiniSearch({
     idField: 'ID',
     fields: ['Name', 'Path', 'Type', 'Components'],
-    storeFields: ['ID'],
     searchOptions: {
       prefix: true,
       boost: {
@@ -122,71 +135,73 @@ function tryLoadMiniSearch() {
             }
           })
       }
-      return [...new Set(processed)]
+
+      return Array.from(new Set(processed))
     },
   })
 
-  miniSearch.value.addAll(entities.value)
+  await minisearch.addAllAsync(list.value, { chunkSize: 1000 }) // currently the most optimal chunk size
 
-  const endTime = performance.now()
-  console.log(`Initialized MiniSearch for Rust entities in ${endTime - startTime}ms`)
+  console.log(`Initialized MiniSearch for entities in ${performance.now() - startTime}ms`)
+
+  miniSearch.value = minisearch
 }
 
-async function loadEntities() {
+async function loadItems() {
   try {
-    isLoading.value = true
-    error.value = null
+    const { data, isFromCache } = await fetchEntities()
 
-    const data = await fetchEntities()
+    list.value = data
 
-    if (!data) {
-      throw new Error('No data received from API')
-    }
+    isFetchedRest.value = true
 
-    entities.value = data
-
-    tryLoadMiniSearch()
+    isDataFromCache.value = isFromCache
   } catch (err) {
     console.error('Failed to load entities:', err)
     error.value = err instanceof Error ? err.message : 'Failed to load entities. Please try again later.'
-  } finally {
-    isLoading.value = false
   }
 }
 
 onMounted(async () => {
-  loadEntities()
+  await loadItems()
+  await tryLoadMiniSearch()
 })
 </script>
 
 <template>
-  <AsyncState :isLoading="isLoading" :error="error" loadingText="Loading entities...">
-    <SearchBar v-model="debouncedSearchValue" placeholder="Search entities..." class="sticky top-16 z-10 min-[960px]:top-20">
-      <template #icon>
-        <Search class="text-gray-400" :size="20" />
-      </template>
-      <template #right>
-        <OptionSelector v-model="selectedSearchType" :options="['OR', 'AND']" label="" />
-      </template>
-    </SearchBar>
-    <div v-if="filteredEntities && filteredEntities.length">
-      <div class="mt-4 flex flex-col gap-6">
-        <InfinitePageScroll :list="filteredEntities" :pageSize="pageSize" v-slot="{ renderedList }">
-          <div class="fixed bottom-4 left-1/2 z-10 sm:left-auto sm:right-4">
-            <div class="rounded-lg bg-zinc-100/40 px-4 py-2 text-sm text-gray-500 backdrop-blur-sm dark:bg-gray-800/40">
-              Rendering {{ renderedList.length }} of {{ filteredEntities.length }} filtered entities, {{ entities.length }} total entities.
-            </div>
-          </div>
-          <div v-for="entity in renderedList" :key="entity.ID" :id="entity.ID.toString()">
-            <EntityCard :entity="entity" @search-append="appendSearch" />
-          </div>
-        </InfinitePageScroll>
-      </div>
-    </div>
-    <div v-else class="flex flex-col items-center justify-center gap-2 py-8">
-      <p>No entities found matching your search</p>
-      <p v-if="entities && entities.length == 0" class="text-sm">Debug: No entities loaded. Check console for errors.</p>
-      <p v-else-if="debouncedSearchValue" class="text-sm">Debug: Search query "{{ debouncedSearchValue }}" returned no results.</p>
-    </div>
-  </AsyncState>
+  <ApiPageStateHandler
+    :error
+    :filtered-list="filteredList"
+    :list="list"
+    :search-val="debouncedSearchValue"
+    :is-fetched-rest-data="isFetchedRest"
+    :mini-search="miniSearch"
+  >
+    <template #top>
+      <SearchBar v-model="debouncedSearchValue" placeholder="Search entities..." class="sticky top-16 z-10 min-[960px]:top-20">
+        <template #icon>
+          <SwitchSearchIcon v-model:useBasicSearch="useBasicSearch" />
+        </template>
+        <template #right>
+          <OptionSelector v-model="selectedSearchType" :options="['OR', 'AND']" label="" />
+        </template>
+      </SearchBar>
+    </template>
+
+    <template #list>
+      <InfinitePageScroll :list="filteredList" :pageSize="pageSize" :initialPageSize="initialPageSize" v-slot="{ renderedList }">
+        <ApiPageInfo
+          :rendered-lenght="renderedList.length"
+          :filtered-lenght="filteredList.length"
+          :total-lenght="list?.length ?? -1"
+          :is-fetched-rest-data="isFetchedRest"
+        />
+        <div class="flex flex-col gap-5">
+          <template v-for="entity in renderedList" :key="entity.ID">
+            <EntityCard :id="entity.ID.toString()" :entity="entity" @search-append="appendSearch" />
+          </template>
+        </div>
+      </InfinitePageScroll>
+    </template>
+  </ApiPageStateHandler>
 </template>

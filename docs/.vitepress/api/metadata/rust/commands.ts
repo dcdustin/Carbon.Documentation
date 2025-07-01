@@ -1,5 +1,5 @@
-import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_COMMANDS } from '@/api/constants'
-import { fetchApiCaching } from '@/api/fetch-api'
+import { CACHE_TIME_ITEM_TTL, URL_METDAT_RUST_COMMANDS } from '../../constants'
+import { fetchApiCaching } from '../../fetch-api'
 
 // fix naming issues with first letter being uppercase
 export interface CommandRust {
@@ -15,7 +15,7 @@ export type CommandsRustData = CommandRust[]
 export async function fetchCommandsRust() {
   const url = URL_METDAT_RUST_COMMANDS
 
-  const { data } = await fetchApiCaching<CommandsRustData>(url, CACHE_TIME_ITEM_TTL)
+  const { data, isFromCache } = await fetchApiCaching<CommandsRustData>(url, CACHE_TIME_ITEM_TTL)
 
-  return data
+  return { data, isFromCache }
 }

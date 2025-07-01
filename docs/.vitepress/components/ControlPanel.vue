@@ -19,6 +19,7 @@ import {
 } from './ControlPanel.SaveLoad'
 import { selectedEntity, stopEditingEntity } from './ControlPanel.Entities'
 import ConsoleTab from './ControlPanel.Tabs.Console.vue'
+import ChatTab from './ControlPanel.Tabs.Chat.vue'
 import PermissionsTab from './ControlPanel.Tabs.Permissions.vue'
 import PlayersTab from './ControlPanel.Tabs.Players.vue'
 import EntitiesTab from './ControlPanel.Tabs.Entities.vue'
@@ -29,6 +30,10 @@ const subTabs = [
   {
     Name: 'Console',
     Description: 'An RCon based console displaying all log output sent by the server and allows sending commands to the server.'
+  },
+  {
+    Name: 'Chat',
+    Description: 'All the chatter going on the server.'
   },
   {
     Name: 'Information',
@@ -213,7 +218,10 @@ onUnmounted(() => {
       <div v-if="selectedSubTab == 0">
         <ConsoleTab />
       </div>
-      <div v-else-if="selectedSubTab == 1">
+      <div v-else-if="selectedSubTab == 1" style="overflow: auto">
+        <ChatTab />
+      </div>
+      <div v-else-if="selectedSubTab == 2">
         <div class="r-settings-input-group">
           <span class="r-settings-input-label" style="user-select: none">Host</span>
           <p type="text" class="r-settings-custom-input transparent">{{ selectedServer.ServerInfo.Hostname }}</p>
@@ -259,13 +267,13 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <div v-else-if="selectedSubTab == 2" style="overflow: auto">
+      <div v-else-if="selectedSubTab == 3" style="overflow: auto">
         <PlayersTab />
       </div>
-      <div v-else-if="selectedSubTab == 3" style="overflow: auto">
+      <div v-else-if="selectedSubTab == 4" style="overflow: auto">
         <PermissionsTab />
       </div>
-      <div v-else-if="selectedSubTab == 4" style="overflow: auto">
+      <div v-else-if="selectedSubTab == 5" style="overflow: auto">
         <EntitiesTab />
       </div>
     </div>
@@ -348,5 +356,31 @@ onUnmounted(() => {
   opacity: 100%;
   background-color: var(--vp-button-alt-bg);
   border-bottom: 2px solid #ffffff29;
+}
+
+.r-send-button {
+  text-decoration: auto;
+  font-family: monospace;
+  color: var(--category-misc);
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color, color;
+  border-color: transparent;
+  border: transparent 1px;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0, 0);
+}
+
+.r-send-button.toggled {
+  font-weight: bolder;
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.r-send-button:hover {
+  background-color: var(--category-misc);
+  color: white;
 }
 </style>

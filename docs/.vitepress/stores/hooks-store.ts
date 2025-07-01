@@ -1,4 +1,4 @@
-import MiniSearch from 'minisearch'
+import type MiniSearch from 'minisearch'
 import { shallowRef } from 'vue'
 
 export const store = {
