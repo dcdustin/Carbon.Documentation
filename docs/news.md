@@ -8,9 +8,10 @@ import { VPBadge } from 'vitepress/theme'
 
 const news = ref<any | null>(null)
 const selectedPost = ref<any | null>(null)
+const firstPost = ref<any | null>(null)
 
 function selectPost(news: any) {
-    selectedPost.value = news
+  selectedPost.value = news
 }
 
 function hidePost() {
@@ -28,10 +29,48 @@ onMounted(async () => {
             date: new Date(mod.__pageData.frontmatter.date)
         }
     }))).sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
+    firstPost.value = news.value[0]
 })
 </script>
 
-<div class="news-grid gap-5">
+<div v-if="firstPost">
+  <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+    <div class="relative w-full h-[800px] overflow-hidden opacity-30">
+      <img
+        :src="firstPost.frontmatter.header"
+        alt="Header background"
+        class="news-hero blur-2xl absolute top-0 left-0 w-full h-full object-cover" />
+      <div class="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-b from-transparent to-neutral-900/100"></div>
+    </div>
+  </div>
+  <div class="relative z-10 overflow-y-auto h-full">
+    <button class="relative inline-block" @click="selectPost(firstPost)">
+    <div class="max-w-screen-lg mx-auto space-y-6 mt-72 flex">
+      <div>
+        <img class="transition-transform duration-200 transform hover:scale-105 justify-self-center w-[100%]" :src="firstPost.frontmatter.logo"/>
+        <div class="block my-3 uppercase">
+            <VPBadge type="info">{{ firstPost.date.toDateString() }}</VPBadge>
+            <VPBadge v-for="tag in firstPost.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+        </div>
+      </div>
+      <div>
+        <div class="text-5xl text-left mb-5 font-black uppercase">
+        <VPBadge class="mb-2" type="danger">LATEST POST</VPBadge><br>
+          {{ firstPost.frontmatter.title }}
+        </div>
+        <div class="text-2xl text-left mb-48 font-normal text-slate-400">
+          {{ firstPost.frontmatter.description }}
+        </div>
+      </div>
+    </div>
+    </button>
+  </div>
+</div>
+
+<h1 class="news-text-section">Explore</h1>
+<p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
+
+<div class="news-grid my-10 gap-5">
     <div v-for="post in news">
       <button class="relative inline-block" @click="selectPost(post)">
           <div class="transition-transform duration-200 transform hover:scale-105">
