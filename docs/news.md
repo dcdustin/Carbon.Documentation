@@ -40,7 +40,6 @@ onMounted(async () => {
             date: new Date(mod.__pageData.frontmatter.date).toDateString()
         }
     }))
-    selectPost(docsNews.value[0])
 })
 </script>
 
