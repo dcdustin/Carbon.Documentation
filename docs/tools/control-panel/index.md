@@ -6,7 +6,7 @@ sidebar: false
 ---
 
 <script setup lang="ts">
-    import ControlPanel from '@/components/ControlPanel.vue'
+    import ControlPanel from '@/components/control-panel/ControlPanel.vue'
 </script>
 
 <ClientOnly>
