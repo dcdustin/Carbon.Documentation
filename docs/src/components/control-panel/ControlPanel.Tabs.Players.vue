@@ -155,9 +155,9 @@ onMounted(async () => {
                     placeholder="Select an item..."
                     class="bg-transparent border rounded px-2 py-1 w-full" />
 
-                  <ul v-if="isOpen && filteredOptions?.length" class="absolute mt-1 z-10 w-full max-h-48 overflow-auto border rounded bg-black text-white">
+                  <ul v-if="isOpen && filteredOptions?.length" class="absolute mt-1 z-10 w-full max-h-64 overflow-auto border rounded bg-black text-white">
                     <li v-for="option in filteredOptions" :key="option.value" @mousedown.prevent="selectedItemSearch = selectedItemOption = option.value; isOpen = false" class="px-2 py-1 hover:bg-gray-700 cursor-pointer">
-                      {{ option.label }}
+                      <span class="flex"><img class="w-6" :src="`https://cdn.carbonmod.gg/items/${option.value}.png`"/> <span class="ml-2 content-center">{{ option.label }}</span></span>
                     </li>
                   </ul>
                 </div>
