@@ -19,7 +19,7 @@ function hidePost() {
 
 onMounted(async () => {
     news.value = (await Promise.all(
-    Object.entries(import.meta.glob('/news/*.md')).map(async ([path, loader]) => {
+    Object.entries(import.meta.glob('/news/**/*.md')).map(async ([path, loader]) => {
         const mod: any = await loader()
         return {
             path,
@@ -39,9 +39,9 @@ onMounted(async () => {
             <img class="absolute top-0 left-0 w-full h-full object-contain" :src="post.frontmatter.logo"/>
       </div>  
       <div class="mt-5">
-          <div class="block mb-3">
+          <div class="block mb-3 uppercase">
               <VPBadge type="info">{{ post.date.toDateString() }}</VPBadge>
-              <VPBadge class="uppercase" v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+              <VPBadge v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="text-2xl uppercase font-black text-slate-200 font-sans">{{ post.frontmatter.title }}</span><br>
           <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span>   
@@ -97,14 +97,24 @@ onMounted(async () => {
   text-transform: uppercase;
   color: white;
 }
-
 .news-text-section-author {
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 15px;
 }
-
 .news-section {
   padding: 25px !important;
   background-color: #131313d0;
+}
+
+.news-image {
+  filter: saturate(0);
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2147483647;
+}
+.news-image:active {
+  filter: saturate(1.2);
+  transform: scale(1.6);
+  position: relative;
 }
 </style>

@@ -16,7 +16,7 @@ Welcome! These docs have been crafted by community members with the approach and
 </div>
 
 <h1 class="news-text-section">Rust — References & Resources</h1>
-<img class="mt-5" src="/news/items-showcase.png"/>
+<img class="news-image mt-5" src="/news/items-showcase.png"/>
 
 <div class="news-section">
 This heavy packed documentation website is filled with loads of resources for accessing all, up-to-date in-game <a href="../../references/items" target="_blank">items</a>, <a href="../../references/prefabs" target="_blank">prefabs</a>, <a href="../../references/blueprints" target="_blank">blueprints</a>, <a href="../../references/rust-commands" target="_blank">commands</a> and more!
@@ -25,7 +25,7 @@ This heavy packed documentation website is filled with loads of resources for ac
 </div>
 
 <h1 class="news-text-section">Carbon — References & Resources</h1>
-<img class="mt-5" src="/news/hooks-showcase.png"/>
+<img class="news-image mt-5" src="/news/hooks-showcase.png"/>
 
 <div class="news-section">
 The docs are filled with lots of framework related information and resources, such as <a href="../../references/hooks" target="_blank">hooks</a>, <a href="../../references/convars" target="_blank">ConVars</a> and more!
