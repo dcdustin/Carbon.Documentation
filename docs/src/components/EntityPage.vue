@@ -5,7 +5,6 @@ import { fetchEntities } from '@/api/metadata/rust/entities'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, onUnmounted, ref, Ref, watch } from 'vue'
-import '../theme/style.css'
 
 const entity: Ref<Entity | null> = ref(null)
 const isLoading = ref(true)

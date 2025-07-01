@@ -6,7 +6,6 @@ import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Loader2, Tag } f
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, ref, Ref, watch } from 'vue'
 import { getItemCategoryText, getItemFlagText, getItemRarityText } from '../shared/constants'
-import '../theme/style.css'
 
 const item: Ref<Item | null> = ref(null)
 const isLoading = ref(true)
