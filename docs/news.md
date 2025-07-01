@@ -5,10 +5,8 @@ layout: home
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { VPBadge } from 'vitepress/theme'
-import { X } from 'lucide-vue-next'
 
-const carbonNews = ref<any | null>(null)
-const docsNews = ref<any | null>(null)
+const news = ref<any | null>(null)
 const selectedPost = ref<any | null>(null)
 
 function selectPost(news: any) {
@@ -20,19 +18,9 @@ function hidePost() {
 }
 
 onMounted(async () => {
-    carbonNews.value = await Promise.all(
-    Object.entries(import.meta.glob('/news/carbon/*.md')).map(async ([path, loader]) => {
+    news.value = await Promise.all(
+    Object.entries(import.meta.glob('/news/*.md')).map(async ([path, loader]) => {
         const mod: any = await loader()
-        return {
-            path,
-            content: mod.default,
-            frontmatter: mod.__pageData.frontmatter,
-        }
-    }))
-    docsNews.value = await Promise.all(
-    Object.entries(import.meta.glob('/news/docs/*.md')).map(async ([path, loader]) => {
-        const mod: any = await loader()
-        console.log(mod.default)
         return {
             path,
             content: mod.default,
@@ -44,22 +32,22 @@ onMounted(async () => {
 </script>
 
 <div class="news-grid gap-5">
-    <div v-for="post in docsNews">
-        <div class="transition-transform duration-200 transform hover:scale-105">
-            <button class="relative inline-block" @click="selectPost(post)">
-              <img class="opacity-25 blur-md" :src="post.frontmatter.header"/>
-              <img class="absolute top-0 left-0 w-full h-full object-contain" :src="post.frontmatter.logo"/>
-            </button>
-        </div>  
-        <div class="mt-5">
-            <div class="block mb-3">
-                <VPBadge type="info">{{ post.date }}</VPBadge>
-                <VPBadge class="uppercase" v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
-            </div>
-            <span class="text-2xl uppercase font-black text-slate-200 font-sans">{{ post.frontmatter.title }}</span><br>
-            <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span>   
-        </div>
-    </div>
+    <div v-for="post in news">
+      <button class="relative inline-block" @click="selectPost(post)">
+          <div class="transition-transform duration-200 transform hover:scale-105">
+            <img class="opacity-25 blur-md" :src="post.frontmatter.header"/>
+            <img class="absolute top-0 left-0 w-full h-full object-contain" :src="post.frontmatter.logo"/>
+      </div>  
+      <div class="mt-5">
+          <div class="block mb-3">
+              <VPBadge type="info">{{ post.date }}</VPBadge>
+              <VPBadge class="uppercase" v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+          </div>
+          <span class="text-2xl uppercase font-black text-slate-200 font-sans">{{ post.frontmatter.title }}</span><br>
+          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span>   
+      </div>
+      </button>
+  </div>
 </div>
 
 <div v-if="selectedPost" class="fixed inset-0 z-50 bg-neutral-950/100 overflow-hidden" @click="hidePost()">
