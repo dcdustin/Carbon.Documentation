@@ -6,7 +6,6 @@ import { CheckCircle2, Clock, Copy, Database, ExternalLink, Image, Loader2, Lock
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, ref, Ref, watch } from 'vue'
 import { CATEGORY_COLORS, getItemCategoryText, getItemRarityText, RARITY_COLORS } from '../shared/constants'
-import '../theme/style.css'
 
 const blueprint: Ref<Blueprint | null> = ref(null)
 const isLoading = ref(true)

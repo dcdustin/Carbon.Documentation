@@ -5,7 +5,6 @@ import { fetchPrefabs } from '@/api/metadata/rust/prefabs'
 import { ArrowLeft, CheckCircle2, Copy, Database, ExternalLink, Image, Loader2 } from 'lucide-vue-next'
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, onUnmounted, ref, Ref, watch } from 'vue'
-import '../theme/style.css'
 
 const prefab: Ref<Prefab | null> = ref(null)
 const isLoading = ref(true)

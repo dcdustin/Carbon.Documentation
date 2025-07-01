@@ -4,7 +4,6 @@ import type { ChangelogCarbon } from '@/api/metadata/carbon/changelogs'
 import { fetchChangelogsCarbon } from '@/api/metadata/carbon/changelogs'
 import { Database, ExternalLink, GitPullRequestIcon, Loader2, LucideTextCursorInput } from 'lucide-vue-next'
 import { computed, onMounted, onUnmounted, ref, Ref } from 'vue'
-import '../theme/style.css'
 import CarbonBadge from './CarbonBadge.vue'
 
 const releaseNotes: Ref<ChangelogCarbon[]> = ref([])
