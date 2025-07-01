@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { URL_SERVER_LIST } from '@/api/constants'
-import ServerBrowser from './ServerBrowser.vue'
+import ServerBrowserViewer from './ServerBrowserViewer.vue'
 import ApiIndex from './common/ApiIndex.vue'
 import ApiLinkToApi from './common/ApiLinkToApi.vue'
 </script>
@@ -12,6 +12,6 @@ import ApiLinkToApi from './common/ApiLinkToApi.vue'
       <p>Browse and find Rust servers</p>
       <ApiLinkToApi text="Server List API" :url="URL_SERVER_LIST" />
     </div>
-    <ServerBrowser />
+    <ServerBrowserViewer />
   </ApiIndex>
 </template>
