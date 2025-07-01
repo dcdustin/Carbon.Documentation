@@ -70,6 +70,7 @@ export default defineConfig({
     outlineTitle: 'On this page',
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'News', link: '/news' },
       { text: 'Owners', link: '/owners/getting-started' },
       { text: 'Developers', link: '/devs/local-server-hosting' },
       { text: 'References', items: references },
