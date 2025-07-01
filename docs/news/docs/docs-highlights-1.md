@@ -3,7 +3,6 @@ title: Docs Highlights — 1
 description: An initial introduction to the Carbon Documentation and website in general. It comes packed with lots of automatically updated content and reliable APIs for developers to use or owners to study! 
 header: news/c4c_loading_8.png
 logo: news/docs-highlights.webp
-author: Raul
 date: 2025-07-01
 tags: [docs]
 ---
@@ -20,7 +19,6 @@ Welcome! These docs have been crafted by community members with the approach and
 
 <div class="news-section">
 This heavy packed documentation website is filled with loads of resources for accessing all, up-to-date in-game <a href="../../references/items" target="_blank">items</a>, <a href="../../references/prefabs" target="_blank">prefabs</a>, <a href="../../references/blueprints" target="_blank">blueprints</a>, <a href="../../references/rust-commands" target="_blank">commands</a> and more!
-
 
 </div>
 
@@ -40,4 +38,8 @@ An in-depth understanding of the necessary changes that are done when you're tra
 
 Get started with learning the differences between Carbon and Oxide <a href="../../owners/oxide-porting" target="_blank">here</a>
 
+<h2 class="news-text-section" target="_blank">Release Notes</h2>
+We're releasing consistent updates every month with the Rust wipe and sometimes mid-month updates addressing potential bugs that were newly introduced or found as well as soft-launching Carbon features which get announced throughout the month.
+
+Read current or previous update patch notes over <a href="../../references/release-notes" target="_blank">here</a>
 </div>

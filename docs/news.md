@@ -1,5 +1,8 @@
 ---
 layout: home
+title: News
+description: A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!
+
 ---
 
 <script lang="ts" setup>
@@ -83,7 +86,7 @@ onMounted(async () => {
               <VPBadge v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="text-2xl uppercase font-black text-slate-200 font-sans">{{ post.frontmatter.title }}</span><br>
-          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span>   
+          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
       </div>
       </button>
   </div>
