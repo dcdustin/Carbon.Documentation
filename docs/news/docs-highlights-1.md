@@ -4,7 +4,7 @@ description: An initial introduction to the Carbon Documentation and website in 
 header: news/c4c_loading_8.png
 logo: news/docs-highlights.webp
 author: Raul
-date: 2025-06-05
+date: 2025-07-01
 tags: [docs]
 ---
 

@@ -18,16 +18,16 @@ function hidePost() {
 }
 
 onMounted(async () => {
-    news.value = await Promise.all(
+    news.value = (await Promise.all(
     Object.entries(import.meta.glob('/news/*.md')).map(async ([path, loader]) => {
         const mod: any = await loader()
         return {
             path,
             content: mod.default,
             frontmatter: mod.__pageData.frontmatter,
-            date: new Date(mod.__pageData.frontmatter.date).toDateString()
+            date: new Date(mod.__pageData.frontmatter.date)
         }
-    }))
+    }))).sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
 })
 </script>
 
@@ -40,7 +40,7 @@ onMounted(async () => {
       </div>  
       <div class="mt-5">
           <div class="block mb-3">
-              <VPBadge type="info">{{ post.date }}</VPBadge>
+              <VPBadge type="info">{{ post.date.toDateString() }}</VPBadge>
               <VPBadge class="uppercase" v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="text-2xl uppercase font-black text-slate-200 font-sans">{{ post.frontmatter.title }}</span><br>
@@ -65,7 +65,7 @@ onMounted(async () => {
       <div class="text-5xl text-center font-black uppercase" @click.stop>
         <img class="transition-transform duration-200 transform hover:scale-105 justify-self-center w-[60%]" :src="selectedPost.frontmatter.logo"/>
         <div class="block my-3">
-            <VPBadge type="info">{{ selectedPost.date }}</VPBadge>
+            <VPBadge type="info">{{ selectedPost.date.toDateString() }}</VPBadge>
             <VPBadge v-for="tag in selectedPost.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
         </div>
         {{ selectedPost.frontmatter.title }}
