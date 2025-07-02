@@ -63,6 +63,9 @@ const { frontmatter } = useData()
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+.news-image:hover {
+  filter: saturate(1.2);
+}
 .news-image:active {
   filter: saturate(1.2);
   transform: scale(1.75);
