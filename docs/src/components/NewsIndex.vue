@@ -3,6 +3,7 @@ import { VPBadge } from 'vitepress/theme'
 import { shallowRef, computed } from 'vue'
 import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
+import { formatDate } from '../shared/utils'
 
 const news = shallowRef<NewsPost[]>(initialData)
 const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
@@ -70,7 +71,7 @@ const searchResults = computed(() => {
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge type="info">{{ post.date.string }}</VPBadge>
+            <VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="font-sans text-2xl font-black uppercase text-slate-200">{{ post.frontmatter.title }}</span

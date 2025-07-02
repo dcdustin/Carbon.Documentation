@@ -20,7 +20,7 @@ const { frontmatter } = useData()
       <div class="mx-auto my-40 flex max-w-screen-lg flex-col items-center gap-6 text-balance">
         <img class="mx-auto w-[60%] transform transition-transform duration-200 hover:scale-105" :src="frontmatter.logo" />
         <div class="my-3 flex flex-row gap-2 uppercase">
-          <VPBadge class="text-sm" type="info">{{ formatDate(frontmatter.date).string }}</VPBadge>
+          <VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}</VPBadge>
           <VPBadge class="text-sm" v-for="tag in frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
         </div>
         <div class="text-center text-5xl font-black uppercase" @click.stop>
