@@ -46,7 +46,7 @@ onMounted(async () => {
             <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
             <div class="my-3 block uppercase">
               <VPBadge type="info">{{ firstPost.date.toDateString() }}</VPBadge>
-              <VPBadge v-for="tag in firstPost.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+              <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
           </div>
           <div>
@@ -67,7 +67,7 @@ onMounted(async () => {
   <p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
 
   <div class="news-grid my-10 gap-5">
-    <div v-for="post in news">
+    <div v-for="post in news" :key="post.path">
       <button class="relative inline-block" @click="selectPost(post)">
         <div class="transform transition-transform duration-200 hover:scale-105">
           <img class="opacity-25 blur-md" :src="post.frontmatter.header" />
@@ -76,7 +76,7 @@ onMounted(async () => {
         <div class="mt-5">
           <div class="mb-3 block uppercase">
             <VPBadge type="info">{{ post.date.toDateString() }}</VPBadge>
-            <VPBadge v-for="tag in post.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+            <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="font-sans text-2xl font-black uppercase text-slate-200">{{ post.frontmatter.title }}</span
           ><br />
@@ -100,7 +100,7 @@ onMounted(async () => {
           <img class="w-[60%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="selectedPost.frontmatter.logo" />
           <div class="my-3 block">
             <VPBadge type="info">{{ selectedPost.date.toDateString() }}</VPBadge>
-            <VPBadge v-for="tag in selectedPost.frontmatter.tags" type="tip">{{ tag }}</VPBadge>
+            <VPBadge v-for="tag in selectedPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           {{ selectedPost.frontmatter.title }}
         </div>
