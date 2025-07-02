@@ -151,11 +151,11 @@ onMounted(async () => {
   filter: saturate(0);
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 2147483647;
 }
 .news-image:active {
   filter: saturate(1.2);
-  transform: scale(1.6);
+  transform: scale(1.75);
   position: relative;
+  z-index: 2147483647;
 }
 </style>

@@ -43,3 +43,52 @@ We're releasing consistent updates every month with the Rust wipe and sometimes 
 
 Read current or previous update patch notes over <a href="../../references/release-notes" target="_blank">here</a>
 </div>
+
+<h1 class="news-text-section">Server Browser</h1>
+<img class="news-image mt-5" src="/news/serverbrowser-showcase.png"/>
+<div class="news-section">
+A highly customizable Facepunch master list-based server browser. Check it out <a href="../../tools/server-browser" target="_blank">here</a>
+</div>
+
+<h1 class="news-text-section">Control Panel</h1>
+<div class="news-section">
+High-fidelity WebRcon based control panel allowing you to manage players, entities, permissions and more, straight from your browser! Get started <a href="../../tools/control-panel" target="_blank">here</a>!
+</div>
+<img class="news-image mt-5" src="/news/controlp-1-showcase.png"/>
+<div class="news-section">
+Everything that's happening is in-browser and <strong>does not</strong> make any requests to any third-party servers (including ours).
+
+<h2 class="news-text-section">Connections</h2>
+The actual connections are also done in your browser and RCon password never leaves your network other than when sent to the server you're trying to connect.
+
+All servers and overall data is stored in your browser Local Storage.
+</div>
+
+<h3 class="news-text-section">Player and Inventory Management</h3>
+<img class="news-image mt-5" src="/news/controlp-2-showcase.png"/>
+<div class="news-section">
+Under the <strong>Players</strong> tab, you can inspect active players on the server, as well as preview and manage their inventories. Yes, manage. You can drag and drop items in their inventories, or even give them items.
+</div>
+
+<h3 class="news-text-section">Entity Search & Inspection</h3>
+<div class="flex w-[50%] h-[50%]"><img class="news-image mt-5" src="/news/controlp-3-showcase.png"/><img class="news-image mt-5" src="/news/controlp-4-showcase.png"/></div>
+<div class="news-section">
+Use the <strong>Entities</strong> tab to search for any entities active on the server and manage general properties, like position, health, and manage players' metabolism stats and more!
+</div>
+
+<h3 class="news-text-section">Permission Management</h3>
+<img class="news-image mt-5" src="/news/controlp-5-showcase.png"/>
+<div class="news-section">
+Manage permissions for plugins and modues straight from the control panel!
+</div>
+
+<h3 class="news-text-section">Chatting</h3>
+<img class="news-image mt-5" src="/news/controlp-6-showcase.png"/>
+<div class="news-section">
+Preview and interact with people chatting on your server, all within the Control Panel! (Clicking on player names opens up their Steam profile)
+</div>
+
+<h1 class="news-text-section">Join us!</h1>
+<div class="news-section">
+Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> or explore Carbon plugins over <a href="https://codefling.com/carbon" target="_blank">on Codefling</a>
+</div>
