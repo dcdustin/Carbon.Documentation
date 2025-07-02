@@ -1,24 +1,22 @@
 <script lang="ts" setup>
 import { VPBadge } from 'vitepress/theme'
-import { shallowRef } from 'vue'
+import { shallowRef, computed } from 'vue'
 import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
 
 const news = shallowRef<NewsPost[] | null>(initialData)
 const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
 const searchInput = shallowRef<string | null>(null)
-const searchResults = shallowRef<NewsPost[] | null>()
-
-function refreshSearch() {
+const searchResults = computed(() => {
   const input = searchInput.value?.toLowerCase() ?? ''
-  searchResults.value = news.value?.filter((post: NewsPost) => {
+  return news.value?.filter((post: NewsPost) => {
     const title = post.frontmatter.title?.toLowerCase() ?? ''
     const description = post.frontmatter.description?.toLowerCase() ?? ''
     const url = post.url?.toLowerCase() ?? ''
     const tags = post.frontmatter.tags ?? []
     return title.includes(input) || description.includes(input) || url.includes(input) || tags.some((tag: string) => tag.toLowerCase().includes(input))
   }) ?? []
-}
+})
 </script>
 
 <template>
@@ -57,7 +55,7 @@ function refreshSearch() {
   <p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">
-    <Search :size="16" /> <input v-model="searchInput" :keydown="refreshSearch()" placeholder="Search blog posts..." class="w-full"/>
+    <Search :size="16" /> <input v-model="searchInput" placeholder="Search blog posts..." class="w-full"/>
   </div>
 
   <div class="news-grid my-10 gap-5">
