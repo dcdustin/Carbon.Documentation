@@ -1,10 +1,12 @@
 ---
 title: Docs Highlights — 1
 description: An initial introduction to the Carbon Documentation and website in general. It comes packed with lots of automatically updated content and reliable APIs for developers to use or owners to study! 
-header: news/c4c_loading_8.png
-logo: news/docs-highlights.webp
+header: /news/c4c_loading_8.png
+logo: /news/docs-highlights.webp
 date: 2025-07-01
 tags: [docs]
+layout: news-layout
+sidebar: false
 ---
 
 <h1 class="news-text-section">Introduction</h1>
@@ -18,7 +20,14 @@ Welcome! These docs have been crafted by community members with the approach and
 <img class="news-image mt-5" src="/news/items-showcase.png"/>
 
 <div class="news-section">
-This heavy packed documentation website is filled with loads of resources for accessing all, up-to-date in-game <a href="../../references/items" target="_blank">items</a>, <a href="../../references/prefabs" target="_blank">prefabs</a>, <a href="../../references/blueprints" target="_blank">blueprints</a>, <a href="../../references/rust-commands" target="_blank">commands</a> and more!
+This heavy packed documentation website is filled with loads of resources for accessing all, up-to-date in-game information and more!
+
+- <a href="../../references/items" target="_blank">Items</a> — This section contains a comprehensive list of all items available in the game.
+- <a href="../../references/entities" target="_blank">Entities</a> — This section contains a comprehensive list of all entity prefabs available in the game.
+- <a href="../../references/prefabs" target="_blank">Prefabs</a> — This section contains a comprehensive list of all prefabs available in the game.
+- <a href="../../references/rust-convars" target="_blank">ConVars</a> — All available Rust console variables.
+- <a href="../../references/blueprints" target="_blank">Blueprints</a> — This section contains a comprehensive list of all crafting blueprints available in the game.
+- <a href="../../references/rust-commands" target="_blank">Commands</a> — Here's a full list of all currently available CarbonAuto variables you can use to expand on what Rust already provides.
 
 </div>
 
@@ -26,19 +35,33 @@ This heavy packed documentation website is filled with loads of resources for ac
 <img class="news-image mt-5" src="/news/hooks-showcase.png"/>
 
 <div class="news-section">
-The docs are filled with lots of framework related information and resources, such as <a href="../../references/hooks" target="_blank">hooks</a>, <a href="../../references/convars" target="_blank">ConVars</a> and more!
+The docs are filled with lots of framework related information and resources.
 
-<h2 class="news-text-section">Modules</h2>
+- <a href="../../references/hooks" target="_blank">Hooks</a> — This section contains a comprehensive list of all hooks available in Carbon.
+- <a href="../../references/convars" target="_blank">ConVars</a> — Here's a full list of all currently available Carbon commands you can use.
+- <a href="../../references/switches" target="_blank">Switches</a> — Here's a full list of all currently available Carbon switches you can use.
+- <a href="../../references/commands" target="_blank">Commands</a> — Here's a full list of all currently available Carbon commands you can use.
+</div>
+
+<h1 class="news-text-section">Modules</h1>
+<img class="news-image mt-5" src="/misc/admin_f.webp"/>
+<div class="news-section">
 Carbon modules are similar to plugins but are built directly into Carbon. They provide a lightweight way to add common functionality, such as managing players or increasing stack sizes.
 
 You can check them out <a href="../../owners/modules/what-are-modules" target="_blank">here</a>
+</div>
 
-<h2 class="news-text-section" target="_blank">Oxide Porting</h2>
+<h1 class="news-text-section" target="_blank">Oxide Porting</h1>
+<div class="news-section">
+<img class="news-image mt-5" src="/misc/oxide-to-carbon.webp"/>
+
 An in-depth understanding of the necessary changes that are done when you're transferring your Oxide server over to Carbon.
 
 Get started with learning the differences between Carbon and Oxide <a href="../../owners/oxide-porting" target="_blank">here</a>
+</div>
 
-<h2 class="news-text-section" target="_blank">Release Notes</h2>
+<h1 class="news-text-section" target="_blank">Release Notes</h1>
+<div class="news-section">
 We're releasing consistent updates every month with the Rust wipe and sometimes mid-month updates addressing potential bugs that were newly introduced or found as well as soft-launching Carbon features which get announced throughout the month.
 
 Read current or previous update patch notes over <a href="../../references/release-notes" target="_blank">here</a>
