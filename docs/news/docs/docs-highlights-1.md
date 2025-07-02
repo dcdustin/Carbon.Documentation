@@ -6,7 +6,6 @@ logo: /news/docs-highlights.webp
 date: 2025-07-01
 tags: [docs]
 layout: news-layout
-navbar: false
 sidebar: false
 ---
 
