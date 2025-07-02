@@ -29,7 +29,7 @@ const { frontmatter } = useData()
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ frontmatter.description }}
         </div>
-        <div class="news-content text-slate-300 opacity-80 text-pretty" @click.stop>
+        <div class="news-content text-slate-300 opacity-80 text-wrap" @click.stop>
           <Content />
         </div>
       </div>
@@ -62,6 +62,9 @@ const { frontmatter } = useData()
   filter: saturate(0);
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.news-image:hover {
+  filter: saturate(1.2);
 }
 .news-image:active {
   filter: saturate(1.2);
