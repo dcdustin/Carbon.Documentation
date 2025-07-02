@@ -97,7 +97,7 @@ onMounted(async () => {
     <div class="relative z-10 h-full overflow-y-auto">
       <div class="mx-auto my-72 max-w-screen-lg space-y-6">
         <div class="text-center text-5xl font-black uppercase" @click.stop>
-          <img class="w-[60%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="selectedPost.frontmatter.logo" />
+          <img class="mx-auto w-[60%] transform transition-transform duration-200 hover:scale-105" :src="selectedPost.frontmatter.logo" />
           <div class="my-3 block">
             <VPBadge type="info">{{ selectedPost.date.toDateString() }}</VPBadge>
             <VPBadge v-for="tag in selectedPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
