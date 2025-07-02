@@ -67,5 +67,6 @@ const { frontmatter } = useData()
   filter: saturate(1.2);
   transform: scale(1.75);
   position: relative;
+  z-index: 99999;
 }
 </style>
