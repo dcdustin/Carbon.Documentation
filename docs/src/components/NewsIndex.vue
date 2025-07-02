@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { VPBadge } from 'vitepress/theme'
 import { onMounted, shallowRef } from 'vue'
+import { data as initialData, NewsPost } from '../data-loaders/news.data'
 
-const news = shallowRef<any | null>(null)
-const selectedPost = shallowRef<any | null>(null)
-const firstPost = shallowRef<any | null>(null)
+const news = shallowRef<NewsPost[] | null>(initialData)
+const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
+const selectedPost = shallowRef<NewsPost | null>(null)
 
-function selectPost(news: any) {
+function selectPost(news: NewsPost) {
   selectedPost.value = news
 }
 
@@ -14,23 +15,9 @@ function hidePost() {
   selectedPost.value = null
 }
 
-onMounted(async () => {
-  news.value = (
-    await Promise.all(
-      Object.entries(import.meta.glob('/news/docs/*.md')).map(async ([path, loader]) => {
-        const mod: any = await loader()
-        return {
-          path,
-          content: mod.default,
-          frontmatter: mod.__pageData.frontmatter,
-          date: new Date(mod.__pageData.frontmatter.date),
-        }
-      })
-    )
-  ).sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
-  firstPost.value = news.value[0]
-})
+onMounted(async () => {})
 </script>
+
 <template>
   <div v-if="firstPost">
     <div class="pointer-events-none fixed left-0 top-0 z-0 h-full w-full">
@@ -45,7 +32,7 @@ onMounted(async () => {
           <div>
             <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
             <div class="my-3 block uppercase">
-              <VPBadge type="info">{{ firstPost.date.toDateString() }}</VPBadge>
+              <VPBadge type="info">{{ firstPost.date.string }}</VPBadge>
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
           </div>
@@ -67,7 +54,7 @@ onMounted(async () => {
   <p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
 
   <div class="news-grid my-10 gap-5">
-    <div v-for="post in news" :key="post.path">
+    <div v-for="post in news" :key="post.url">
       <button class="relative inline-block" @click="selectPost(post)">
         <div class="transform transition-transform duration-200 hover:scale-105">
           <img class="opacity-25 blur-md" :src="post.frontmatter.header" />
@@ -75,7 +62,7 @@ onMounted(async () => {
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge type="info">{{ post.date.toDateString() }}</VPBadge>
+            <VPBadge type="info">{{ post.date.string }}</VPBadge>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span class="font-sans text-2xl font-black uppercase text-slate-200">{{ post.frontmatter.title }}</span
@@ -99,7 +86,7 @@ onMounted(async () => {
         <div class="text-center text-5xl font-black uppercase" @click.stop>
           <img class="mx-auto w-[60%] transform transition-transform duration-200 hover:scale-105" :src="selectedPost.frontmatter.logo" />
           <div class="my-3 block">
-            <VPBadge type="info">{{ selectedPost.date.toDateString() }}</VPBadge>
+            <VPBadge type="info">{{ selectedPost.date.string }}</VPBadge>
             <VPBadge v-for="tag in selectedPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           {{ selectedPost.frontmatter.title }}
@@ -107,9 +94,7 @@ onMounted(async () => {
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ selectedPost.frontmatter.description }}
         </div>
-        <div class="news-content text-slate-300 opacity-80" @click.stop>
-          <component :is="selectedPost.content" />
-        </div>
+        <div class="news-content text-slate-300 opacity-80" @click.stop v-html="selectedPost.html"></div>
       </div>
     </div>
   </div>
