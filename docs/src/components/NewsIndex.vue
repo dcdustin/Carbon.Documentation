@@ -16,7 +16,7 @@ const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
       </div>
     </div>
     <div class="relative z-10 h-full overflow-y-auto">
-      <a class="relative inline-block" :href="firstPost.url" target="_blank">
+      <a class="relative inline-block" :href="firstPost.url">
         <div class="mx-auto mt-72 flex max-w-screen-lg md:flex-row flex-col">
           <div class="flex flex-col items-center">
             <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
@@ -44,7 +44,7 @@ const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
 
   <div class="news-grid my-10 gap-5">
     <div v-for="post in news" :key="post.url">
-      <a class="relative inline-block font-extrabold" :href="post.url" target="_blank">
+      <a class="relative inline-block font-extrabold" :href="post.url">
         <div class="transform transition-transform duration-200 hover:scale-105">
           <img class="opacity-25 blur-md" :src="post.frontmatter.header" />
           <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
