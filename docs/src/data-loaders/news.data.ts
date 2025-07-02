@@ -11,7 +11,7 @@ export interface NewsPost extends ContentData {
 declare const data: NewsPost[]
 export { data }
 
-export default createContentLoader('/news/docs/*.md', {
+export default createContentLoader('/news/**/*.md', {
   render: true,
   transform(rawData) {
     return rawData
