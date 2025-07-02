@@ -87,3 +87,8 @@ Manage permissions for plugins and modues straight from the control panel!
 <div class="news-section">
 Preview and interact with people chatting on your server, all within the Control Panel! (Clicking on player names opens up their Steam profile)
 </div>
+
+<h1 class="news-text-section">Join us!</h1>
+<div class="news-section">
+Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> or explore Carbon plugins over <a href="https://codefling.com/carbon" target="_blank">on Codefling</a>
+</div>
