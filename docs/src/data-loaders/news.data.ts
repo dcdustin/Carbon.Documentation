@@ -1,4 +1,5 @@
 import { ContentData, createContentLoader } from 'vitepress'
+import { formatDate } from '../shared/utils'
 
 export interface NewsPost extends ContentData {
   date: {
@@ -23,17 +24,3 @@ export default createContentLoader('/news/docs/*.md', {
       .sort((a, b) => b.date.time - a.date.time)
   },
 })
-
-function formatDate(raw: string) {
-  const date = new Date(raw)
-  date.setUTCHours(12)
-  return {
-    time: +date,
-    string: date.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }),
-  }
-}
