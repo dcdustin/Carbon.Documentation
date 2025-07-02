@@ -4,7 +4,7 @@ import { shallowRef, computed } from 'vue'
 import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
 
-const news = shallowRef<NewsPost[] | null>(initialData)
+const news = shallowRef<NewsPost[]>(initialData)
 const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
