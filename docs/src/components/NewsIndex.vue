@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
 import { VPBadge } from 'vitepress/theme'
+import { onMounted, shallowRef } from 'vue'
 
-const news = ref<any | null>(null)
-const selectedPost = ref<any | null>(null)
-const firstPost = ref<any | null>(null)
+const news = shallowRef<any | null>(null)
+const selectedPost = shallowRef<any | null>(null)
+const firstPost = shallowRef<any | null>(null)
 
 function selectPost(news: any) {
   selectedPost.value = news
