@@ -17,7 +17,7 @@ function hidePost() {
 onMounted(async () => {
   news.value = (
     await Promise.all(
-      Object.entries(import.meta.glob('/news/**/*.md')).map(async ([path, loader]) => {
+      Object.entries(import.meta.glob('/news/docs/*.md')).map(async ([path, loader]) => {
         const mod: any = await loader()
         return {
           path,
