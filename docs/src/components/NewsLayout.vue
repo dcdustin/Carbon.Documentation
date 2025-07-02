@@ -29,7 +29,7 @@ const { frontmatter } = useData()
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ frontmatter.description }}
         </div>
-        <div class="news-content text-slate-300 opacity-80" @click.stop>
+        <div class="news-content text-slate-300 opacity-80 text-pretty" @click.stop>
           <Content />
         </div>
       </div>

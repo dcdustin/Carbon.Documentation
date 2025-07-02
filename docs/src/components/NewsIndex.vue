@@ -12,7 +12,6 @@ const searchResults = computed(() => {
   if(!input) { 
     return news.value
   }
-
   return news.value?.filter((post: NewsPost) => {
     const title = post.frontmatter.title?.toLowerCase() ?? ''
     const description = post.frontmatter.description?.toLowerCase() ?? ''
