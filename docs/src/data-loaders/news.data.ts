@@ -11,7 +11,6 @@ declare const data: NewsPost[]
 export { data }
 
 export default createContentLoader('/news/docs/*.md', {
-  includeSrc: true,
   render: true,
   transform(rawData) {
     return rawData
