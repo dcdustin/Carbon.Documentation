@@ -18,7 +18,7 @@ function slugify(text: string): string {
 
 interface Props {
   text: string;
-  author: string | null;
+  author?: string;
 }
 
 const props = defineProps<Props>()
