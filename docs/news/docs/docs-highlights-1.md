@@ -70,7 +70,16 @@ Read current or previous update patch notes over <a href="../../references/relea
 <NewsSectionTitle text="Server Browser" author="evs-ptr"/>
 <NewsImage src="/news/serverbrowser-showcase.png"/>
 <NewsSection>
-A highly customizable Facepunch master list-based server browser. Check it out <a href="../../tools/server-browser" target="_blank">here</a>
+
+Carbon's integrated **Server Browser** puts the entire Rust multiplayer landscape at your fingertips. An intuitive interface, powered by a lightning-fast fuzzy index, lets you drill down from thousands of servers to the perfect match in just a few clicks.
+
+- **Smart search** - instantly match on hostname, IP (with optional port), map name or even tag keywords.
+- **Visual population meter** - colour-coded bars and exact player counts make it easy to spot crowded hubs or quiet hideaways.
+- **Deep filtering** - stack AND/OR filters for tags, pick a geographic region, lock in a specific Rust build, or set min/max player ranges.
+- **One-click join** - copy the server's `IP:Port` straight to your clipboard, ready for the in-game console.
+
+[Check it out](/tools/server-browser/)
+
 </NewsSection>
 
 <NewsSectionTitle text="Control Panel"/>
