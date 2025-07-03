@@ -1,7 +1,7 @@
 @echo off
 
 if "%1" EQU "" (
-	set TAG=edge
+	set TAG=rustbeta_release
 ) else (
 	set TAG=%1
 )
