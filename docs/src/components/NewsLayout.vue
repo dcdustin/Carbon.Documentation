@@ -1,9 +1,27 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
 import { VPBadge, VPHomeContent } from 'vitepress/theme'
+import { onMounted, onUnmounted } from 'vue'
 import { formatDate } from '../shared/utils'
 
 const { frontmatter } = useData()
+
+function switchTransparentNavBar(flag: boolean) {
+  const navBar = document.querySelector('.VPNavBar') as HTMLElement
+  if (navBar) {
+    navBar.style.backgroundColor = flag ? 'transparent' : ''
+    const divider = navBar.querySelector('.divider') as HTMLElement
+    divider.style.display = flag ? 'none' : ''
+  }
+}
+
+onMounted(async () => {
+  switchTransparentNavBar(true)
+})
+
+onUnmounted(() => {
+  switchTransparentNavBar(false)
+})
 </script>
 
 <template>
@@ -29,7 +47,7 @@ const { frontmatter } = useData()
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ frontmatter.description }}
         </div>
-        <div class="news-content text-slate-300 opacity-80 text-wrap" @click.stop>
+        <div class="news-content text-wrap text-slate-300 opacity-80" @click.stop>
           <Content />
         </div>
       </div>
