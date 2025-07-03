@@ -37,7 +37,7 @@ const searchResults = computed(() => {
           <div class="flex flex-col items-center">
             <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
             <div class="my-3 block uppercase">
-              <VPBadge type="info">{{ firstPost.date.string }}</VPBadge>
+              <VPBadge type="info">{{ firstPost.date.string }}</VPBadge><VPBadge v-if="firstPost.frontmatter.author" type="info">by {{ firstPost.frontmatter.author }}</VPBadge>
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
           </div>
