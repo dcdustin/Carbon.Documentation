@@ -34,6 +34,47 @@
           "name": "lastUpdated",
           "type": "boolean",
           "default": true
+        },
+        {
+          "title": "description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "header",
+          "name": "header",
+          "type": "string"
+        },
+        {
+          "title": "logo",
+          "name": "logo",
+          "type": "string"
+        },
+        {
+          "title": "author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "date",
+          "name": "date",
+          "type": "datetime"
+        },
+        {
+          "title": "tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "status",
+          "name": "status",
+          "type": "choice",
+          "choices": ["draft", "published"]
+        },
+        {
+          "title": "sidebar",
+          "name": "sidebar",
+          "type": "boolean"
         }
       ]
     }
