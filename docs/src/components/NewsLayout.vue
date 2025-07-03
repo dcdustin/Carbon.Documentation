@@ -60,17 +60,7 @@ onUnmounted(() => {
   opacity: 0.5;
 }
 
-.news-text-section {
-  margin-top: 150px;
-  margin-bottom: 15px;
-  font-weight: 900 !important;
-  text-transform: uppercase;
-  color: white;
-}
-.news-text-section-author {
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 15px;
-}
+
 .news-section {
   padding: 25px !important;
   background-color: #131313d0;

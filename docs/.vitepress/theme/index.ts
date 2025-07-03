@@ -3,6 +3,7 @@ import CarbonBadge from '@/components/CarbonBadge.vue'
 import CarbonButton from '@/components/CarbonButton.vue'
 import CarbonChange from '@/components/CarbonChange.vue'
 import CarbonIcons from '@/components/CarbonIcons.vue'
+import NewsSection from '@/components/news/NewsSection.vue'
 import NewsLayout from '@/components/NewsLayout.vue'
 import type { Theme } from 'vitepress'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
@@ -23,6 +24,7 @@ export default {
     app.component('CarbonBadge', CarbonBadge)
     app.component('CarbonChange', CarbonChange)
     app.component('CarbonIcons', CarbonIcons)
+    app.component('NewsSection', NewsSection)
     app.component('news-layout', NewsLayout)
     enhanceAppWithTabs(app)
   },
