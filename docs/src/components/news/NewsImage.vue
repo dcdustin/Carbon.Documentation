@@ -1,5 +1,5 @@
 <template>
-  <img class="news-image object-contain" :src="props.src"/>
+  <img class="news-image w-full h-auto object-contain" :src="props.src"/>
 </template>
 
 <script setup lang="ts">
