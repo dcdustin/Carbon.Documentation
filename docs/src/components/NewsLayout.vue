@@ -38,7 +38,7 @@ onUnmounted(() => {
       <div class="mx-auto my-40 flex max-w-screen-lg flex-col items-center gap-6 text-balance">
         <img class="mx-auto w-[60%] transform transition-transform duration-200 hover:scale-105" :src="frontmatter.logo" />
         <div class="my-3 flex flex-row gap-2 uppercase">
-          <VPBadge class="text-sm" type="info">{{ formatDate(frontmatter.date).string }}</VPBadge>
+          <VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}</VPBadge>
           <VPBadge class="text-sm" v-for="tag in frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
         </div>
         <div class="text-center text-5xl font-black uppercase" @click.stop>
@@ -55,39 +55,8 @@ onUnmounted(() => {
   </VPHomeContent>
 </template>
 
-<style>
+<style scoped>
 .news-hero {
   opacity: 0.5;
-}
-
-.news-text-section {
-  margin-top: 150px;
-  margin-bottom: 15px;
-  font-weight: 900 !important;
-  text-transform: uppercase;
-  color: white;
-}
-.news-text-section-author {
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 15px;
-}
-.news-section {
-  padding: 25px !important;
-  background-color: #131313d0;
-}
-
-.news-image {
-  filter: saturate(0);
-  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.news-image:hover {
-  filter: saturate(1.2);
-}
-.news-image:active {
-  filter: saturate(1.2);
-  transform: scale(1.75);
-  position: relative;
-  z-index: 99999;
 }
 </style>
