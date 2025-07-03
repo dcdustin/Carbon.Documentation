@@ -43,12 +43,12 @@
         {
           "title": "header",
           "name": "header",
-          "type": "string"
+          "type": "image"
         },
         {
           "title": "logo",
           "name": "logo",
-          "type": "string"
+          "type": "image"
         },
         {
           "title": "author",
