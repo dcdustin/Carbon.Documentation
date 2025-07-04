@@ -111,6 +111,12 @@
           "type": "boolean"
         },
         {
+          "title": "Hidden?",
+          "description": "Should this post not show up anywhere? (Still accessible with direct-links)",
+          "name": "hidden",
+          "type": "boolean"
+        },
+        {
           "title": "Header",
           "description": "The background header image of the blog post. Recommended a higher resolution image, and make it WEBP.",
           "name": "header",
