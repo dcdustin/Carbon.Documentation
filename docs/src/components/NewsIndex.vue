@@ -14,7 +14,7 @@ const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
   const categoryNews = news.value?.filter((post: NewsPost) => {
-      return post.frontmatter.category == props.category
+      return post.frontmatter.published && post.frontmatter.category == props.category
     })
   const input = searchInput.value?.toLowerCase() ?? ''
   if(!input) { 
@@ -32,14 +32,14 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
 </script>
 
 <template>
-  <div v-if="firstPost">
+  <div>
     <div class="pointer-events-none fixed left-0 top-0 z-0 h-full w-full">
       <div class="relative h-[800px] w-full overflow-hidden opacity-30">
-        <img :src="firstPost.frontmatter.header" alt="Header background" class="news-hero absolute left-0 top-0 h-full w-full object-cover blur-2xl" />
+        <img :src="firstPost?.frontmatter.header ?? 'https://files.facepunch.com/Alistair/130/06/2025/0n84/julyupdate2025_hero.jpg'" alt="Header background" class="news-hero absolute left-0 top-0 h-full w-full object-cover blur-2xl" />
         <div class="absolute bottom-0 left-0 h-96 w-full bg-gradient-to-b from-transparent to-neutral-900/100"></div>
       </div>
     </div>
-    <div class="relative z-10 h-full overflow-y-auto">
+    <div v-if="firstPost" class="relative z-10 h-full overflow-y-auto">
       <a class="relative inline-block" :href="firstPost.url">
         <div class="mx-auto mt-72 flex max-w-screen-lg md:flex-row flex-col">
           <div class="flex flex-col items-center">
@@ -88,6 +88,9 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
         </div>
       </a>
     </div>
+  </div>
+  <div v-if="searchResults.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
+    No blog posts with that filter
   </div>
 </template>
 
