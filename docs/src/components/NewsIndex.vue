@@ -14,7 +14,7 @@ const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
   const categoryNews = news.value?.filter((post: NewsPost) => {
-      return post.frontmatter.category == props.category
+      return post.frontmatter.published && post.frontmatter.category == props.category
     })
   const input = searchInput.value?.toLowerCase() ?? ''
   if(!input) { 
@@ -88,6 +88,9 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
         </div>
       </a>
     </div>
+  </div>
+  <div v-if="searchResults.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
+    No blog posts with that filter
   </div>
 </template>
 
