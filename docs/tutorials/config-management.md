@@ -438,3 +438,15 @@ public class ConfigExample : RustPlugin
 ```
 
 </NewsSection>
+
+<NewsSectionSubtitle text="Thanks!"/>
+<NewsSection>
+
+This tutorial was made possible thanks to awesome community members who offered help and support!
+
+**Special thanks to:**
+- **ViolationHandler.exe** - How to update the config as the plugin updates
+- **Raul** - Setting the `PluginConfig` field on `LoadDefaultConfig()`
+- **Whispers88** - General Config handling
+
+</NewsSection>
