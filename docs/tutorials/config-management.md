@@ -1,7 +1,7 @@
 ---
 title: Configuration Management
 description: Learn to create, save, load, and update Rust plugin config files using C# classes for Oxide and Carbon!
-header: /carbon-bg.webp
+header: https://files.facepunch.com/paddy/20250221/hopper_01.jpg
 date: 2025-07-04T01:04:36.171Z
 tags:
     - tutorial
@@ -14,7 +14,7 @@ category: tutorials
 published: false
 author: Bubbafett5611
 hidden: false
-logo: /misc/autowipe_a.webp
+logo: /news/config-manage.webp
 ---
 
 <NewsSectionTitle text="Introduction" author="bubbafett5611"/>
