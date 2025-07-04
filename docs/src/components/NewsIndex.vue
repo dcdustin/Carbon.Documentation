@@ -14,7 +14,7 @@ const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
   const categoryNews = news.value?.filter((post: NewsPost) => {
-      return post.frontmatter.published && post.frontmatter.category == props.category
+      return (import.meta.env.MODE == 'development' || post.frontmatter.published) && post.frontmatter.category == props.category
     })
   const input = searchInput.value?.toLowerCase() ?? ''
   if(!input) { 
