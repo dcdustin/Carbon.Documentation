@@ -63,8 +63,8 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
     </div>
   </div>
 
-  <h1 class="news-text-section">Explore</h1>
-  <p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
+  <NewsSectionTitle :text="'Explore ' + props.category"/>
+  <p>A variety of blog posts for Carbon modding framework and the docs website. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">
     <Search :size="16" /> <input v-model="searchInput" placeholder="Search blog posts..." class="w-full"/>
