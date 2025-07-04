@@ -157,7 +157,7 @@ using Newtonsoft.Json;
         public string UsePermission = "CoolPlugin.use";
     }
 
-    protected override void LoadDefaultConfig() => new Configuration();
+    protected override void LoadDefaultConfig() => PluginConfig = new Configuration();
 
 #endregion
 ```
@@ -181,7 +181,7 @@ using Newtonsoft.Json;
         public string UsePermission = "CoolPlugin.use";
     }
 
-    protected override void LoadDefaultConfig() => new Configuration();
+    protected override void LoadDefaultConfig() => PluginConfig = new Configuration();
 
     protected override void SaveConfig() => Config.WriteObject(PluginConfig, true);
 
@@ -207,7 +207,7 @@ using Newtonsoft.Json;
         public string UsePermission = "CoolPlugin.use";
     }
 
-    protected override void LoadDefaultConfig() => new Configuration();
+    protected override void LoadDefaultConfig() => PluginConfig = new Configuration();
 
     protected override void SaveConfig() => Config.WriteObject(PluginConfig, true);
 
@@ -382,7 +382,7 @@ public class ConfigExample : RustPlugin
         public bool IsEnabled = true;
     }
     
-    protected override void LoadDefaultConfig() => new Configuration();
+    protected override void LoadDefaultConfig() => PluginConfig = new Configuration();
     
     protected override void SaveConfig() => Config.WriteObject(PluginConfig, true);
     
