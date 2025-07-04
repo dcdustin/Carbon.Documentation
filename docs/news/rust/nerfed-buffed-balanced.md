@@ -5,9 +5,15 @@ header: https://files.facepunch.com/Alistair/130/05/2025/0236/juneUpdate_hero_01
 logo: https://files.facepunch.com/ashcoook/1b2911b1/Nerfed%2C%20Buffed%2C%20Balanced%20-%20Branding.png
 author: Raul
 date: 2025-06-05
-tags: [rust, update, skibidi]
+tags:
+  - rust
+  - update
+  - news
 layout: news-layout
 sidebar: false
+fmContentType: blogpost
+category: news
+published: true
 ---
 
 <h1 class="news-text-section">Jungle Polish</h1>

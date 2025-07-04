@@ -4,9 +4,16 @@ description: Woop woop!
 header: /news/modifiers-bg.jpg
 logo: /news/modifiers.png
 date: 2025-07-01
-tags: [docs]
+tags:
+    - docs
+    - tutorials
 layout: news-layout
 sidebar: false
+draft: false
+fmContentType: blogpost
+category: tutorials
+published: false
+author: Raul
 ---
 
 <h1 class="news-text-section">Introduction</h1>

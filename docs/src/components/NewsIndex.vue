@@ -5,15 +5,22 @@ import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
 import { formatDate } from '../shared/utils'
 
+interface Props {
+  category: string;
+}
+
+const props = defineProps<Props>()
 const news = shallowRef<NewsPost[]>(initialData)
-const firstPost = shallowRef<NewsPost | null>(news.value?.[0] ?? null)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
+  const categoryNews = news.value?.filter((post: NewsPost) => {
+      return post.frontmatter.category == props.category
+    })
   const input = searchInput.value?.toLowerCase() ?? ''
   if(!input) { 
-    return news.value
+    return categoryNews
   }
-  return news.value?.filter((post: NewsPost) => {
+  return categoryNews?.filter((post: NewsPost) => {
     const title = post.frontmatter.title?.toLowerCase() ?? ''
     const description = post.frontmatter.description?.toLowerCase() ?? ''
     const url = post.url?.toLowerCase() ?? ''
@@ -21,6 +28,7 @@ const searchResults = computed(() => {
     return title.includes(input) || description.includes(input) || url.includes(input) || tags.some((tag: string) => tag.toLowerCase().includes(input))
   }) ?? []
 })
+const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
 </script>
 
 <template>
@@ -71,11 +79,10 @@ const searchResults = computed(() => {
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
+            <VPBadge v-if="!post?.frontmatter?.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
-          <span class="font-sans text-2xl font-black uppercase text-slate-200">{{ post.frontmatter.title }}</span
-          ><br />
+          <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'">{{ post.frontmatter.title }}</span><br />
           <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span
           ><br />
         </div>

@@ -71,11 +71,14 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'News', link: '/news' },
-      { text: 'Owners', link: '/owners/getting-started' },
-      { text: 'Developers', link: '/devs/local-server-hosting' },
+      { text: 'Tutorials', link: '/tutorials' },
+      { text: 'Documentation', items: [
+        { text: 'Owners', link: '/owners/getting-started' },
+        { text: 'Developers', link: '/devs/local-server-hosting' },
+      ]},
       { text: 'References', items: references },
-      { text: 'Release Notes', link: '/references/release-notes/' },
       { text: 'Tools', items: tools },
+      { text: 'Release Notes', link: '/references/release-notes/' }
     ],
 
     sidebar: {
