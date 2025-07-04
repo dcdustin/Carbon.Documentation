@@ -37,15 +37,16 @@ onUnmounted(() => {
     <div class="relative">
       <div class="mx-auto my-40 flex max-w-screen-lg flex-col items-center gap-6 text-balance">
         <img class="mx-auto w-[60%] transform transition-transform duration-200 hover:scale-105" :src="frontmatter.logo" />
-        <div class="my-3 flex flex-row gap-2 uppercase">
-          <VPBadge v-if="!frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}</VPBadge>
-          <VPBadge class="text-sm" v-for="tag in frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
-        </div>
+          <div class="my-3 gap-2 text-center uppercase">
+            <VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}</VPBadge>
+            <br><VPBadge class="text-sm" v-for="tag in frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
+          </div>
         <div :class="'font-sans text-5xl font-black uppercase text-' + (frontmatter.published ? 'slate' : 'yellow') + '-200'" @click.stop>
           {{ frontmatter.title }}
         </div>
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ frontmatter.description }}
+          <br><VPBadge v-if="!frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge>
         </div>
         <div class="news-content text-wrap text-slate-300 opacity-80" @click.stop>
           <Content />
