@@ -1,13 +1,18 @@
 ---
 title: Docs Highlights — 1
-description: An initial introduction to the Carbon Documentation and website in general. It comes packed with lots of automatically updated content and reliable APIs for developers to use or owners to study! 
+description: An initial introduction to the Carbon Documentation and website in general. It comes packed with lots of automatically updated content and reliable APIs for developers to use or owners to study!
 header: /news/c4c_loading_8.png
 logo: /news/docs-highlights.webp
 author: Raul
-date: 2025-07-01
-tags: [docs]
+date: 2025-07-03T23:52:07.701Z
+tags:
+    - docs
+    - news
 layout: news-layout
+category: news
 sidebar: false
+fmContentType: blogpost
+published: true
 ---
 
 <NewsSectionTitle text="Introduction" author="raulssorban"/>

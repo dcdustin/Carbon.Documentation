@@ -1,6 +1,6 @@
 ---
 layout: home
-title: News
+title: Tutorials
 description: A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!
 ---
 
@@ -8,4 +8,4 @@ description: A variety of blog posts for Carbon and the docs website, as well as
 import NewsIndex from '@/components/NewsIndex.vue'
 </script>
 
-<NewsIndex category="news" />
+<NewsIndex category="tutorials" />
