@@ -63,7 +63,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
     </div>
   </div>
 
-  <h1 class="news-text-section">Explore</h1>
+  <NewsSectionTitle text="Explore"/>
   <p>A variety of blog posts for Carbon and the docs website, as well as tutorials. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">
