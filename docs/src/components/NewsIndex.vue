@@ -79,7 +79,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge v-if="!post?.frontmatter?.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
+            <VPBadge v-if="!post.frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'">{{ post.frontmatter.title }}</span><br />
