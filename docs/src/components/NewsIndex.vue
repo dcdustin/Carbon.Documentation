@@ -4,19 +4,24 @@ import { shallowRef, computed } from 'vue'
 import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
 import { formatDate } from '../shared/utils'
+import { useData } from 'vitepress'
 
 interface Props {
   category: string;
+  categoryName: string;
 }
 
+const {
+  frontmatter
+} = useData()
 const props = defineProps<Props>()
 const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
-  const categoryNews = news.value?.filter((post: NewsPost) => {
-      return !post.frontmatter.hidden && (import.meta.env.MODE == 'development' || post.frontmatter.published) && post.frontmatter.category == props.category
-    })
   const input = searchInput.value?.toLowerCase() ?? ''
+  const categoryNews = news.value?.filter((post: NewsPost) => {
+      return !post.frontmatter.hidden && (import.meta.env.MODE == 'development' || post.frontmatter.published) && (input.length != 0 || post.frontmatter.category == props.category)
+    })
   if(!input) { 
     return categoryNews
   }
@@ -28,7 +33,7 @@ const searchResults = computed(() => {
     return title.includes(input) || description.includes(input) || url.includes(input) || tags.some((tag: string) => tag.toLowerCase().includes(input))
   }) ?? []
 })
-const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
+const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes('collection') ? searchResults.value?.[0] ?? null : null)
 </script>
 
 <template>
@@ -43,19 +48,18 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
       <a class="relative inline-block" :href="firstPost.url">
         <div class="mx-auto mt-72 flex max-w-screen-lg md:flex-row flex-col">
           <div class="flex flex-col items-center">
-            <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
-            <VPBadge class="mb-2" type="danger">LATEST POST</VPBadge><br>
+            <img class="max-w-[500px] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
           </div>
           <div>
             <div class="mb-5 text-left text-5xl font-black uppercase">
               {{ firstPost.frontmatter.title }}
             </div>
             <div class="my-3 block uppercase">
-              <VPBadge type="info">{{ firstPost.date.string }}</VPBadge><VPBadge v-if="firstPost.frontmatter.author" type="info">by {{ firstPost.frontmatter.author }}</VPBadge>
+              <span v-if="!firstPost.frontmatter.tags.includes('collection')"><VPBadge class="text-sm" type="info"><span v-if="firstPost.frontmatter.author"> by {{ firstPost.frontmatter.author }}</span> on {{ formatDate(firstPost.frontmatter.date).string }}</VPBadge><br></span>
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
             <div class="mb-48 text-left text-2xl font-normal text-slate-400">
-              {{ firstPost.frontmatter.description }}
+              {{ firstPost.frontmatter.description }}<span class="text-base text-slate-500" v-if="firstPost.frontmatter.tags.includes('collection')"><br>Collection with {{ news.filter((newsPost: NewsPost) => !newsPost.frontmatter.hidden && newsPost.frontmatter.published && newsPost.frontmatter.category == firstPost?.frontmatter.collection).length }} posts available.</span>
             </div>
           </div>
         </div>
@@ -63,7 +67,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
     </div>
   </div>
 
-  <NewsSectionTitle :text="'Explore ' + props.category"/>
+  <NewsSectionTitle :text="'Explore ' + props.categoryName"/>
   <p>A variety of blog posts for Carbon modding framework and the docs website. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">
@@ -71,19 +75,19 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
   </div>
 
   <div class="news-grid my-10 gap-5">
-    <div v-for="post in searchResults" :key="post.url">
-      <a class="relative inline-block font-extrabold" :href="post.url">
-        <div class="transform transition-transform duration-200 hover:scale-105">
-          <img class="opacity-25 blur-md" :src="post.frontmatter.header" />
+    <div v-for="post in searchResults" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
+      <a class="relative inline-block font-extrabold no-underline" :href="post.url">
+        <div class="transform">
+          <img class="opacity-40 blur-3xl" :src="post.frontmatter.header" />
           <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge v-if="!post.frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
+            <span v-if="!post.frontmatter.tags.includes('collection')"><VPBadge class="text-sm" type="info"><span v-if="post.frontmatter.author">by {{ post.frontmatter.author }}</span> on {{ formatDate(post.frontmatter.date).string }}</VPBadge><br></span>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
-          <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'">{{ post.frontmatter.title }}</span><br>
-          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
+          <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
+          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }} <span class="text-slate-500" v-if="post.frontmatter.tags.includes('collection')">Collection with {{ news.filter((newsPost: NewsPost) => !newsPost.frontmatter.hidden && newsPost.frontmatter.published && newsPost.frontmatter.category == firstPost?.frontmatter.collection).length }} posts available.</span></span><br>
         </div>
       </a>
     </div>

@@ -24,6 +24,6 @@ export default createContentLoader([
           date: formatDate(x.frontmatter.date),
         }
       })
-      .sort((a, b) => b.date.time - a.date.time)
+      .sort((a, b) => a.frontmatter.collectionid != null && b.frontmatter.collectionid != null ? a.frontmatter.collectionid - b.frontmatter.collectionid : b.date.time - a.date.time)
   },
 })
