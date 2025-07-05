@@ -36,8 +36,8 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
 <template>
   <div>
     <div class="pointer-events-none fixed left-0 top-0 z-0 h-full w-full">
-      <div :class="'relative h-[800px] w-full overflow-hidden opacity-' + (firstPost?.frontmatter.tags.includes('collection') ? '50' : '30')">
-        <img :src="firstPost?.frontmatter.header ?? 'https://files.facepunch.com/Alistair/130/06/2025/0n84/julyupdate2025_hero.jpg'" alt="Header background" :class="'news-hero absolute left-0 top-0 h-full w-full object-cover blur-' + (firstPost?.frontmatter.tags.includes('collection') ? 'sm' : '2xl')" />
+      <div class="relative h-[800px] w-full overflow-hidden opacity-30">
+        <img :src="firstPost?.frontmatter.header ?? 'https://files.facepunch.com/Alistair/130/06/2025/0n84/julyupdate2025_hero.jpg'" alt="Header background" class="news-hero absolute left-0 top-0 h-full w-full object-cover blur-2xl" />
         <div class="absolute bottom-0 left-0 h-96 w-full bg-gradient-to-b from-transparent to-neutral-900/100"></div>
       </div>
     </div>
