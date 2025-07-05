@@ -69,13 +69,15 @@ const readMorePosts = ref<NewsPost[]>()
           <NewsImage src="/news/join-us.webp"/>
           <NewsSection>
           Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
+          </NewsSection>
 
           <NewsSectionSubtitle text="Read More"/>
+          There's more where that came from! Choose what you wanna learn about next.
           <div class="news-grid my-10 gap-5">
             <div v-for="post in readMorePosts" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
               <a class="relative inline-block font-extrabold no-underline" :href="post.url">
                 <div class="transform">
-                  <img class="opacity-40 blur-3xl" :src="post.frontmatter.header" />
+                  <img class="opacity-25 blur" :src="post.frontmatter.header" />
                   <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
                 </div>
                 <div class="mt-5">
@@ -88,7 +90,6 @@ const readMorePosts = ref<NewsPost[]>()
           <div v-if="readMorePosts?.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
             No blog posts
           </div>
-          </NewsSection>
         </div>
       </div>
     </div>
