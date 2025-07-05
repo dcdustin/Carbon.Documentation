@@ -4,12 +4,16 @@ import { shallowRef, computed } from 'vue'
 import { data as initialData, NewsPost } from '../data-loaders/news.data'
 import { Search } from 'lucide-vue-next'
 import { formatDate } from '../shared/utils'
+import { useData } from 'vitepress'
 
 interface Props {
   category: string;
   categoryName: string;
 }
 
+const {
+  frontmatter
+} = useData()
 const props = defineProps<Props>()
 const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
@@ -30,7 +34,7 @@ const searchResults = computed(() => {
     return title.includes(input) || description.includes(input) || url.includes(input) || tags.some((tag: string) => tag.toLowerCase().includes(input))
   }) ?? []
 })
-const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
+const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes('collection') ? searchResults.value?.[0] ?? null : null)
 </script>
 
 <template>
