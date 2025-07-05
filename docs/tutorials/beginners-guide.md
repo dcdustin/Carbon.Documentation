@@ -10,6 +10,7 @@ layout: home
 sidebar: false
 fmContentType: blogpost
 category: tutorials
+collection: beginners-guide
 published: true
 author: null
 hidden: false

@@ -20,7 +20,6 @@ const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
   const input = searchInput.value?.toLowerCase() ?? ''
   const categoryNews = news.value?.filter((post: NewsPost) => {
-    
       return !post.frontmatter.hidden && (import.meta.env.MODE == 'development' || post.frontmatter.published) && (input.length != 0 || post.frontmatter.category == props.category)
     })
   if(!input) { 
@@ -60,7 +59,7 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
             <div class="mb-48 text-left text-2xl font-normal text-slate-400">
-              {{ firstPost.frontmatter.description }}<span class="text-base text-slate-500" v-if="firstPost.frontmatter.tags.includes('collection')"><br>Collection with {{ news.filter((post: NewsPost) => post.frontmatter.category == props.category).length }} posts available.</span>
+              {{ firstPost.frontmatter.description }}<span class="text-base text-slate-500" v-if="firstPost.frontmatter.tags.includes('collection')"><br>Collection with {{ news.filter((newsPost: NewsPost) => !newsPost.frontmatter.hidden && newsPost.frontmatter.published && newsPost.frontmatter.category == firstPost?.frontmatter.collection).length }} posts available.</span>
             </div>
           </div>
         </div>
@@ -88,7 +87,7 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
-          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }} <span class="text-slate-500" v-if="post.frontmatter.tags.includes('collection')">Collection with {{ news.filter((post: NewsPost) => post.frontmatter.category == props.category).length }} posts available.</span></span><br>
+          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }} <span class="text-slate-500" v-if="post.frontmatter.tags.includes('collection')">Collection with {{ news.filter((newsPost: NewsPost) => !newsPost.frontmatter.hidden && newsPost.frontmatter.published && newsPost.frontmatter.category == firstPost?.frontmatter.collection).length }} posts available.</span></span><br>
         </div>
       </a>
     </div>
