@@ -18,7 +18,7 @@ published: true
 author: Bubbafett
 hidden: false
 logo: /news/localization.webp
-collectionid: 1
+collectionid: 3
 ---
 
 <NewsSectionTitle text="Introduction" author="bubbafett5611"/>
