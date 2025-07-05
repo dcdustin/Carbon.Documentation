@@ -56,7 +56,7 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
               {{ firstPost.frontmatter.title }}
             </div>
             <div class="my-3 block uppercase">
-              <VPBadge v-if="!firstPost.frontmatter.tags.includes('collection')" type="info">{{ firstPost.date.string }}</VPBadge><VPBadge v-if="firstPost.frontmatter.author" type="info">by {{ firstPost.frontmatter.author }}</VPBadge>
+              <span v-if="!firstPost.frontmatter.tags.includes('collection')"><VPBadge class="text-sm" type="info"><span v-if="firstPost.frontmatter.author"> by {{ firstPost.frontmatter.author }}</span> on {{ formatDate(firstPost.frontmatter.date).string }}</VPBadge><br></span>
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
             <div class="mb-48 text-left text-2xl font-normal text-slate-400">
@@ -76,15 +76,15 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
   </div>
 
   <div class="news-grid my-10 gap-5">
-    <div v-for="post in searchResults" :key="post.url">
+    <div v-for="post in searchResults" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
       <a class="relative inline-block font-extrabold" :href="post.url">
-        <div class="transform transition-transform duration-200 hover:scale-105">
-          <img class="opacity-25 blur-md" :src="post.frontmatter.header" />
+        <div class="transform">
+          <img class="opacity-40 blur-3xl" :src="post.frontmatter.header" />
           <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge v-if="!post.frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge v-if="!post.frontmatter.tags.includes('collection')" class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
+            <span v-if="!post.frontmatter.tags.includes('collection')"><VPBadge class="text-sm" type="info"><span v-if="post.frontmatter.author">by {{ post.frontmatter.author }}</span> on {{ formatDate(post.frontmatter.date).string }}</VPBadge><br></span>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
           <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
