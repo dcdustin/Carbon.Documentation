@@ -1,8 +1,8 @@
 ---
 title: Creating your First Plugin
 description: Let's learn to make our first plugin together!
-header: https://files.facepunch.com/s/40363b76010a.jpg
-date: 2025-07-04T21:52:21.879Z
+header: https://files.facepunch.com/Alistair/103/07/2025/9944/vlcsnap-2025-07-03-08h13m45s177-min.png
+date: 2025-07-05T21:45:36.805Z
 tags:
     - tutorial
     - first plugin
@@ -12,10 +12,10 @@ layout: news-layout
 sidebar: false
 fmContentType: blogpost
 category: beginners-guide
-published: false
+published: true
 author: Bubbafett
 hidden: false
-logo: /news/config-manage.webp
+logo: /news/first-plugin.webp
 collectionid: 1
 ---
 
