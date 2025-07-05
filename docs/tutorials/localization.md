@@ -1,23 +1,23 @@
 ---
 title: Localization
 description: Learn to create customizable, multi-language, messages for your plugins.
-header: https://files.facepunch.com/paddy/20250221/hopper_01.jpg
-date: 2025-07-04T21:52:21.879Z
+header: https://files.facepunch.com/Alistair/128/04/2025/3P09/jungleupdate_jungleruins_22.jpg
+date: 2025-07-05T13:42:51.509Z
 tags:
-    - tutorial
-    - configuration
-    - management
-    - developer
     - carbon
+    - developer
+    - locale
     - oxide
+    - tutorial
+    - lang
 layout: news-layout
 sidebar: false
 fmContentType: blogpost
 category: tutorials
-published: false
+published: true
 author: Bubbafett
 hidden: false
-logo: /news/config-manage.webp
+logo: /news/localization.webp
 ---
 <NewsSectionTitle text="Introduction" author="bubbafett5611"/>
 <NewsSection>

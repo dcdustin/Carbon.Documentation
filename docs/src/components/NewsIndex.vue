@@ -43,7 +43,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
       <a class="relative inline-block" :href="firstPost.url">
         <div class="mx-auto mt-72 flex max-w-screen-lg md:flex-row flex-col">
           <div class="flex flex-col items-center">
-            <img class="w-[100%] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
+            <img class="max-w-[500px] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
             <VPBadge class="mb-2" type="danger">LATEST POST</VPBadge><br>
           </div>
           <div>
