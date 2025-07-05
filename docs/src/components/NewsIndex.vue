@@ -7,6 +7,7 @@ import { formatDate } from '../shared/utils'
 
 interface Props {
   category: string;
+  categoryName: string;
 }
 
 const props = defineProps<Props>()
@@ -35,8 +36,8 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
 <template>
   <div>
     <div class="pointer-events-none fixed left-0 top-0 z-0 h-full w-full">
-      <div class="relative h-[800px] w-full overflow-hidden opacity-30">
-        <img :src="firstPost?.frontmatter.header ?? 'https://files.facepunch.com/Alistair/130/06/2025/0n84/julyupdate2025_hero.jpg'" alt="Header background" class="news-hero absolute left-0 top-0 h-full w-full object-cover blur-2xl" />
+      <div :class="'relative h-[800px] w-full overflow-hidden opacity-' + (firstPost?.frontmatter.tags.includes('collection') ? '50' : '30')">
+        <img :src="firstPost?.frontmatter.header ?? 'https://files.facepunch.com/Alistair/130/06/2025/0n84/julyupdate2025_hero.jpg'" alt="Header background" :class="'news-hero absolute left-0 top-0 h-full w-full object-cover blur-' + (firstPost?.frontmatter.tags.includes('collection') ? 'sm' : '2xl')" />
         <div class="absolute bottom-0 left-0 h-96 w-full bg-gradient-to-b from-transparent to-neutral-900/100"></div>
       </div>
     </div>
@@ -63,7 +64,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
     </div>
   </div>
 
-  <NewsSectionTitle :text="'Explore ' + props.category.replace('-', ' ')"/>
+  <NewsSectionTitle :text="'Explore ' + props.categoryName"/>
   <p>A variety of blog posts for Carbon modding framework and the docs website. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">

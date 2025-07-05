@@ -19,4 +19,4 @@ hidden: false
 import NewsIndex from '@/components/NewsIndex.vue'
 </script>
 
-<NewsIndex category="beginners-guide" />
+<NewsIndex category="beginners-guide" categoryName="Beginner's Guide" />
