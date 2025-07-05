@@ -77,7 +77,7 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
 
   <div class="news-grid my-10 gap-5">
     <div v-for="post in searchResults" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
-      <a class="relative inline-block font-extrabold" :href="post.url">
+      <a class="relative inline-block font-extrabold no-underline" :href="post.url">
         <div class="transform">
           <img class="opacity-40 blur-3xl" :src="post.frontmatter.header" />
           <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />

@@ -1,11 +1,14 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress'
 import { VPBadge, VPHomeContent } from 'vitepress/theme'
-import { shallowRef, onMounted, onUnmounted } from 'vue'
+import { shallowRef, ref, onMounted, onUnmounted } from 'vue'
 import { formatDate } from '../shared/utils'
+import { data as initialData, NewsPost } from '../data-loaders/news.data'
 
 const { frontmatter } = useData()
 const showAllTags = shallowRef<boolean>(false)
+const news = shallowRef<NewsPost[]>(initialData)
+const checker = shallowRef<NodeJS.Timeout | null>()
 
 function switchTransparentNavBar(flag: boolean) {
   const navBar = document.querySelector('.VPNavBar') as HTMLElement
@@ -18,11 +21,21 @@ function switchTransparentNavBar(flag: boolean) {
 
 onMounted(async () => {
   switchTransparentNavBar(true)
+
+  const callback = () => {
+    currentIndex.value = news.value.findIndex((post: NewsPost) => post.frontmatter.title == frontmatter.value.title)
+    readMorePosts.value = news.value.filter((post: NewsPost, index: number) => index != currentIndex.value && post.frontmatter.published && !post.frontmatter.hidden).slice(0, 3)
+    checker.value = setTimeout(callback, 2000)
+   }
+  checker.value = setTimeout(callback, 2000)
+  callback()
 })
 
 onUnmounted(() => {
   switchTransparentNavBar(false)
 })
+const currentIndex = ref<number>()
+const readMorePosts = ref<NewsPost[]>()
 </script>
 
 <template>
@@ -51,10 +64,30 @@ onUnmounted(() => {
         </div>
         <div class="news-content text-wrap text-slate-300 opacity-80" @click.stop>
           <Content />
+
           <NewsSectionTitle text="Join us!"/>
           <NewsImage src="/news/join-us.webp"/>
           <NewsSection>
           Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
+
+          <NewsSectionSubtitle text="Read More"/>
+          <div class="news-grid my-10 gap-5">
+            <div v-for="post in readMorePosts" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
+              <a class="relative inline-block font-extrabold no-underline" :href="post.url">
+                <div class="transform">
+                  <img class="opacity-40 blur-3xl" :src="post.frontmatter.header" />
+                  <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
+                </div>
+                <div class="mt-5">
+                  <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
+                  <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div v-if="readMorePosts?.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
+            No blog posts
+          </div>
           </NewsSection>
         </div>
       </div>
@@ -65,5 +98,15 @@ onUnmounted(() => {
 <style scoped>
 .news-hero {
   opacity: 0.5;
+}
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 50px 15px;
+  text-decoration: none;
+}
+
+.news-grid a {
+  text-decoration: none;
 }
 </style>
