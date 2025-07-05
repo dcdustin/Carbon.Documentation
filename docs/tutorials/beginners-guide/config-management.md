@@ -13,11 +13,12 @@ tags:
 layout: news-layout
 sidebar: false
 fmContentType: blogpost
-category: tutorials
+category: beginners-guide
 published: true
 author: Bubbafett
 hidden: false
 logo: /news/config-manage.webp
+collectionid: 2
 ---
 
 <NewsSectionTitle text="Introduction" author="bubbafett5611"/>

@@ -105,6 +105,12 @@
           ]
         },
         {
+          "title": "Collection ID",
+          "description": "The Collection identifier to order the blog post. Helps override the date-based sorting.",
+          "name": "collectionid",
+          "type": "number"
+        },
+        {
           "title": "Published?",
           "description": "Is this blog post publicly available?",
           "name": "published",

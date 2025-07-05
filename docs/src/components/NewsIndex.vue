@@ -13,10 +13,11 @@ const props = defineProps<Props>()
 const news = shallowRef<NewsPost[]>(initialData)
 const searchInput = shallowRef<string>('')
 const searchResults = computed(() => {
-  const categoryNews = news.value?.filter((post: NewsPost) => {
-      return !post.frontmatter.hidden && (import.meta.env.MODE == 'development' || post.frontmatter.published) && post.frontmatter.category == props.category
-    })
   const input = searchInput.value?.toLowerCase() ?? ''
+  const categoryNews = news.value?.filter((post: NewsPost) => {
+    
+      return !post.frontmatter.hidden && (import.meta.env.MODE == 'development' || post.frontmatter.published) && (input.length != 0 || post.frontmatter.category == props.category)
+    })
   if(!input) { 
     return categoryNews
   }
@@ -44,18 +45,17 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
         <div class="mx-auto mt-72 flex max-w-screen-lg md:flex-row flex-col">
           <div class="flex flex-col items-center">
             <img class="max-w-[500px] transform justify-self-center transition-transform duration-200 hover:scale-105" :src="firstPost.frontmatter.logo" />
-            <VPBadge class="mb-2" type="danger">LATEST POST</VPBadge><br>
           </div>
           <div>
             <div class="mb-5 text-left text-5xl font-black uppercase">
               {{ firstPost.frontmatter.title }}
             </div>
             <div class="my-3 block uppercase">
-              <VPBadge type="info">{{ firstPost.date.string }}</VPBadge><VPBadge v-if="firstPost.frontmatter.author" type="info">by {{ firstPost.frontmatter.author }}</VPBadge>
+              <VPBadge v-if="!firstPost.frontmatter.tags.includes('collection')" type="info">{{ firstPost.date.string }}</VPBadge><VPBadge v-if="firstPost.frontmatter.author" type="info">by {{ firstPost.frontmatter.author }}</VPBadge>
               <VPBadge v-for="tag in firstPost.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
             </div>
             <div class="mb-48 text-left text-2xl font-normal text-slate-400">
-              {{ firstPost.frontmatter.description }}
+              {{ firstPost.frontmatter.description }}<span class="text-base text-slate-500" v-if="firstPost.frontmatter.tags.includes('collection')"><br>Collection with {{ news.filter((post: NewsPost) => post.frontmatter.category == props.category).length }} posts available.</span>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
     </div>
   </div>
 
-  <NewsSectionTitle :text="'Explore ' + props.category"/>
+  <NewsSectionTitle :text="'Explore ' + props.category.replace('-', ' ')"/>
   <p>A variety of blog posts for Carbon modding framework and the docs website. Stay tuned for more!</p>
 
   <div class="flex items-center text-slate-400 gap-x-2 bg-black/30 p-3 content-fill">
@@ -79,11 +79,11 @@ const firstPost = shallowRef<NewsPost | null>(searchResults.value?.[0] ?? null)
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">
-            <VPBadge v-if="!post.frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
+            <VPBadge v-if="!post.frontmatter.published" class="text-sm" type="warning">DRAFT</VPBadge><VPBadge v-if="!post.frontmatter.tags.includes('collection')" class="text-sm" type="info">{{ formatDate(post.frontmatter.date).string }}</VPBadge><VPBadge v-if="post.frontmatter.author" class="text-sm" type="info">by {{ post.frontmatter.author }}</VPBadge>
             <VPBadge v-for="tag in post.frontmatter.tags" :key="tag" type="tip">{{ tag }}</VPBadge>
           </div>
-          <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'">{{ post.frontmatter.title }}</span><br>
-          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
+          <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
+          <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }} <span class="text-slate-500" v-if="post.frontmatter.tags.includes('collection')">Collection with {{ news.filter((post: NewsPost) => post.frontmatter.category == props.category).length }} posts available.</span></span><br>
         </div>
       </a>
     </div>
