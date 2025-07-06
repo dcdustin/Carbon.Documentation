@@ -47,7 +47,7 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
   const rnd = Math.random()
-  if (rnd > 1.1169 / 100) {
+  if (rnd > 0.1169 / 100) {
     return
   }
   const walker = document.createTreeWalker(
