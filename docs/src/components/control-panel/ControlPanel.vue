@@ -174,7 +174,7 @@ onUnmounted(() => {
         </button>
         <a
           class="r-button"
-          href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/.vitepress/components/ControlPanel.vue"
+          href="https://github.com/CarbonCommunity/Carbon.Documentation/blob/main/docs/src/components/control-panel/ControlPanel.vue"
           target="_blank"
           style="color: var(--docsearch-footer-background); font-size: small"
         >
