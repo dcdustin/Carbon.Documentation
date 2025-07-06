@@ -368,11 +368,15 @@ public class CodeGen : CarbonPlugin
 		var latest = JObject.Parse(
 			(await core.webrequest.EnqueueAsync("https://api.github.com/repos/OxideMod/Oxide.Rust/releases/latest", null, null, core))
 			.ResponseObject as string);
-		var oxideLatest = latest["assets"][1]["browser_download_url"].ToObject<string>();
-		var zip = (await core.webrequest.EnqueueDataAsync(oxideLatest, null, null, core)).ResponseObject as byte[];
-		var oxideZipPath = Path.Combine(Defines.GetTempFolder(), "oxide.zip");
-		await File.WriteAllBytesAsync(oxideZipPath, zip);
-		ZipFile.ExtractToDirectory(oxideZipPath, Defines.GetTempFolder(), true);
+		Logger.Log($"Downloading Oxide to temp {(latest != null ? "passed" : "failed")}..");
+		if (latest != null)
+		{
+			var oxideLatest = latest["assets"][1]["browser_download_url"].ToObject<string>();
+			var zip = (await core.webrequest.EnqueueDataAsync(oxideLatest, null, null, core)).ResponseObject as byte[];
+			var oxideZipPath = Path.Combine(Defines.GetTempFolder(), "oxide.zip");
+			await File.WriteAllBytesAsync(oxideZipPath, zip);
+			ZipFile.ExtractToDirectory(oxideZipPath, Defines.GetTempFolder(), true);
+		}
 	}
 
 	public static string GetFriendlyType(string type, string empty = "null")
