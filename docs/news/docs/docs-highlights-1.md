@@ -130,3 +130,5 @@ Manage permissions for plugins and modues straight from the control panel!
 <NewsSection>
 Preview and interact with people chatting on your server, all within the Control Panel! (Clicking on player names opens up their Steam profile)
 </NewsSection>
+
+<NewsReleaseNotes version="2.0.196"/>
