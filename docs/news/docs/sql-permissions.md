@@ -24,12 +24,12 @@ Forget giant `oxide.users.data` files filled with players that joined your serve
 
 </NewsSection>
 
-<NewsSectionTitle text="Motivation" author="raulssorban"/>
+<NewsSectionTitle text="Motivation"/>
 <NewsSection>
 A few years ago when Carbon was just a concept — and initially called Rexide🤮 (that name still haunts me) — one of the bigger things we wanted to do with Carbon besides dynamic patching, was to have a more performant permissions system which takes memory usage into account as well as data it stores in memory at server runtime.
 </NewsSection>
 
-<NewsSectionTitle text="Protobuf to SQL Migration"/>
+<NewsSectionTitle text="Protobuf to SQL Migration" author="raulssorban"/>
 <NewsImage src="/news/sql-1-showcase.webp"/>
 <NewsSection>
 The migration process is as simple as running a command on the server.
@@ -60,6 +60,12 @@ This month we've added a new Carbon module everyone — **that's not on Minimal 
 <NewsSectionSubtitle text="Configuration"/>
 
 The default permission is `teleportmarker.use` but is configurable, as well as the command, which defaults to `tpm`. 
+</NewsSection>
+
+<NewsSectionTitle text="Redirect URI" author="raulssorban"/>
+<NewsSection>
+
+We've added a new configuration option in Carbon's config file under the `SelfUpdating` section called `RedirectURI`, designed for the self-updating process to use as Carbon's endpoint it will automatically update from. This could be ideally used to build and maintain your own Carbon build in-house.
 </NewsSection>
 
 <NewsReleaseNotes version="2.0.196"/>
