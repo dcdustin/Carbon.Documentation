@@ -3,7 +3,7 @@
   <NewsImage src="https://files.facepunch.com/Alistair/128/04/2025/6x79/jungleupdate_rock_03.jpg" h="250px" y="20px"/>
   <NewsSection>
     <div v-if="releaseNote">
-      The following changes are for Carbon version <strong>{{ releaseNote?.Version }}</strong>.      
+      The following changes are for Carbon version <strong>{{ releaseNote?.Version }}</strong> and was released on <strong>{{ new Date(releaseNote?.Date).toDateString() }}</strong>.      
 
       <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <tbody>
