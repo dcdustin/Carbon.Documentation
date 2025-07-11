@@ -8,6 +8,7 @@ import NewsSectionTitle from '@/components/news/NewsSectionTitle.vue'
 import NewsSectionSubtitle from '@/components/news/NewsSectionSubtitle.vue'
 import NewsImage from '@/components/news/NewsImage.vue'
 import NewsImageGrid from '@/components/news/NewsImageGrid.vue'
+import NewsReleaseNotes from '@/components/news/NewsReleaseNotes.vue'
 import NewsLayout from '@/components/NewsLayout.vue'
 import type { Theme } from 'vitepress'
 import { enhanceAppWithTabs } from 'vitepress-plugin-tabs/client'
@@ -33,6 +34,7 @@ export default {
     app.component('NewsSection', NewsSection)
     app.component('NewsSectionTitle', NewsSectionTitle)
     app.component('NewsSectionSubtitle', NewsSectionSubtitle)
+    app.component('NewsReleaseNotes', NewsReleaseNotes)
     app.component('news-layout', NewsLayout)
     enhanceAppWithTabs(app)
   },

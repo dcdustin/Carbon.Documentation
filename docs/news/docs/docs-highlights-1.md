@@ -24,7 +24,7 @@ Welcome! These docs have been crafted by community members with the approach and
 </NewsSection>
 
 <NewsSectionTitle text="Rust — References & Resources"/>
-<NewsImage src="/news/items-showcase.png"/>
+<NewsImage src="/news/items-showcase.png" h="400px"/>
 
 <NewsSection>
 This heavy packed documentation website is filled with loads of resources for accessing all, up-to-date in-game information and more!
@@ -38,7 +38,7 @@ This heavy packed documentation website is filled with loads of resources for ac
 
 </NewsSection>
 <NewsSectionTitle text="Carbon — References & Resources"/>
-<NewsImage src="/news/hooks-showcase.png"/>
+<NewsImage src="/news/hooks-showcase.png" h="400px"/>
 
 <NewsSection>
 The docs are filled with lots of framework related information and resources.
@@ -74,7 +74,7 @@ Read current or previous update patch notes over <a href="../../references/relea
 </NewsSection>
 
 <NewsSectionTitle text="Server Browser" author="evs-ptr"/>
-<NewsImage src="/news/serverbrowser-showcase.png"/>
+<NewsImage src="/news/serverbrowser-showcase.png" h="400px"/>
 <NewsSection>
 
 Carbon's integrated **Server Browser** puts the entire Rust multiplayer landscape at your fingertips. An intuitive interface, powered by a lightning-fast fuzzy index, lets you drill down from thousands of servers to the perfect match in just a few clicks.
@@ -126,7 +126,9 @@ Manage permissions for plugins and modues straight from the control panel!
 </NewsSection>
 
 <NewsSectionSubtitle text="Chatting"/>
-<NewsImage src="/news/controlp-6-showcase.png"/>
+<NewsImage src="/news/controlp-6-showcase.png" h="300px"/>
 <NewsSection>
 Preview and interact with people chatting on your server, all within the Control Panel! (Clicking on player names opens up their Steam profile)
 </NewsSection>
+
+<NewsReleaseNotes version="2.0.196"/>

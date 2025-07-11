@@ -1,6 +1,6 @@
 ---
 title: Hooks
-description: Get started with understanding how hooks work.
+description: Get started with understanding how hooks work and ideal ways how and when to use them in various scenarios.
 header: https://files.facepunch.com/mattisaac/2025/June/23_14-51-ObeseShrew.jpg
 date: 2025-07-10T19:00:04.254Z
 tags:
@@ -23,5 +23,7 @@ collectionid: 4
 
 <NewsSectionTitle text="Introduction" author="raulssorban"/>
 <NewsSection>
-Test
+
+Hey there! We've all heard about [them](https://google.com)
+
 </NewsSection>
