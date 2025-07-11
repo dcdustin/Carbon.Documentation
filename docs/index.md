@@ -245,10 +245,11 @@ const contributorMembers = [
     ]
   },
   {
-    avatar: '/team/Raichu.webp',
+    avatar: '/team/Raichu.gif',
     name: 'Raichu',
     title: 'Bug Finder',
     links: [
+      { icon: 'github', link: 'https://github.com/RaichuTD' },
       { icon: 'cf', link: 'https://codefling.com/Raichu' }
     ]
   }
