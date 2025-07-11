@@ -35,21 +35,27 @@ A few years ago when Carbon was just a concept â€” and initially called RexideðŸ
 The migration process is as simple as running a command on the server.
 
 :::tip HOW TO MIGRATE
-To begin migrating, run **`c.migrate_sql`**, then a new SQLite database will be created at `<root>/servers/<identity>/carbon.perms.db`
+To begin migrating, run **`c.migrate_perms_sql`**, then a new SQLite database will be created at `<root>/servers/<identity>/carbon.perms.db`
 :::
 <NewsSectionSubtitle text="What's Happening?"/>
-The **`c.migrate_sql`** command will:
+
+The **`c.migrate_perms_sql`** command will:
 1. Copy over all of your groups and group permissions associated 
 1. User info with their associated groups and permissions 
 1. Switching your server Permissions serialization setting to SQL **without** requiring a server restart or plugin reloads.
-
-You can continue using the server as you normally would. **Your permissions system is now fully switched to SQL.**
 
 :::tip NOTICE
 An important thing to note is that while the server is active using SQL mode, the database is locked; cannot R/W to it while server's online.
 :::
 
+You can continue using the server as you normally would. **Your permissions system is now fully switched to SQL.**
 </NewsSection>
+
+:::danger ROLLBACK
+
+You can also switch back to the **Protobuf**-based permissions database with **`c.migrate_perms_proto`** which works just the same way (it imports all users, groups and their perms into the in-memory straight from the SQL database).
+:::
+
 
 <NewsSectionTitle text="Teleport Marker Module" author="bubbafett5611"/>
 <NewsImage src="/news/teleportmarker-1.webp" h="200px"/>
