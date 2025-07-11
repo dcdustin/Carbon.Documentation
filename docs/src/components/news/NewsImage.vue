@@ -1,13 +1,6 @@
 <template>
-  <div
-    :style="{ height: props.h }"
-    class="flex items-center justify-center overflow-hidden active:overflow-visible"
-  >
-    <img
-      class="news-image w-full h-fit object-contain"
-      :src="props.src"
-      :style="{ '--y': props.y }"
-    />
+  <div :style="{ height: props.h }" class="flex items-center justify-center overflow-hidden active:overflow-visible">
+    <img class="news-image w-full h-auto object-contain" :src="props.src" :style="{ '--y': props.y }"/>
   </div>
 </template>
 
@@ -37,5 +30,4 @@ const props = defineProps<Props>()
   position: relative;
   z-index: 99999;
 }
-
 </style>

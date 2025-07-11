@@ -23,12 +23,11 @@
 </template>
 
 <script setup lang="ts">
-import { URL_METDAT_CARB_CHANGELOGS } from '@/api/constants'
 import type { ChangelogCarbon } from '@/api/metadata/carbon/changelogs'
 import { fetchChangelogsCarbon } from '@/api/metadata/carbon/changelogs'
 import { onMounted, ref, Ref } from 'vue'
 import NewsSectionTitle from './NewsSectionTitle.vue'
-import { ExternalLink, Database, Loader2 } from 'lucide-vue-next'
+import { Loader2 } from 'lucide-vue-next'
 
 const releaseNotes: Ref<ChangelogCarbon[]> = ref([])
 const releaseNote: Ref<ChangelogCarbon | null> = ref(null)
