@@ -53,7 +53,7 @@ You can continue using the server as you normally would. **Your permissions syst
 
 :::danger ROLLBACK
 
-You can also switch back to the **Protobuf**-based permissions database with **`c.migrate_perms_proto`** which works just the same way (it imports all users, groups and their perms into the in-memory straight from the SQL database).
+You can also switch back to the **Protobuf**-based permissions database with **`c.migrate_perms_proto`** which works just the same way (it imports all users, groups and their perms into the in-memory Protobuf database straight from the SQL database).
 :::
 
 
