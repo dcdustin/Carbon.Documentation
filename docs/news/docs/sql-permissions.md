@@ -66,17 +66,6 @@ You can also switch back to the **Protobuf**-based permissions database with **`
 
 </NewsSection>
 
-<NewsSectionTitle text="Teleport Marker Module" author="bubbafett5611"/>
-<NewsImage src="/news/teleportmarker-1.webp" h="200px"/>
-<NewsSection>
-
-This month we've added a new Carbon module everyone — **that's not on Minimal build** — can use. It's a basic module which automatically teleports the person with the permission when you right-click on the map at the cursor's position.
-
-<NewsSectionSubtitle text="Configuration"/>
-
-The default permission is `teleportmarker.use` but is configurable, as well as the command, which defaults to `tpm`. 
-</NewsSection>
-
 <NewsSectionTitle text="Admin Extensions Module" author="bubbafett5611"/>
 <NewsImage src="/misc/admin_a.webp" h="200px"/>
 
@@ -92,6 +81,7 @@ Here are the following commands you can configure:
 - `/empower`: Will maximize all positive stats on a player (syntax: `/empower someplayer`), requiring configurable permission `adminextension.empower` for it to work
 - `/cpm`: Will send a private message to a specific player (syntax: `/cpm someplayer message`), requiring configurable permission `adminextension.cpm` for it to work
 - `/lock`: Will lock up one or all of the inventory containers of a player (syntax: `/lock someplayer [main|belt|wear|all] [0|1]`), requiring configurable permission `adminextension.lock` for it to work
+- `/tpm`: It's a toggle command which will teleport the player when they're placing a map marker to the marker position, requiring configurable permission `adminextension.tpm` for it to work
 </NewsSection>
 
 <NewsSectionTitle text="Redirect URI" author="raulssorban"/>
