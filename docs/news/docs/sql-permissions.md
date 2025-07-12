@@ -30,14 +30,24 @@ A few years ago when Carbon was just a concept â€” and initially called RexideðŸ
 </NewsSection>
 
 <NewsSectionTitle text="Protobuf to SQL Migration" author="raulssorban"/>
+
+This newly available solution is purely designed to increase overall server performance and reduce unnecessary overhead initially caused by Oxide's design.
+
 <NewsImage src="/news/sql-1-showcase.webp"/>
 <NewsSection>
+
+Since 2MB of `oxide.users.data` is the equivalent to 50K unique users, there have been server owners who have 50MB or above worth of that with hundreds of thousands of users of which percentage of active players is expectedly low.<br><br>
+
+All of these users would be not only loaded in the memory, but also saved again and again with each server save (which was to ensure consistent permission data being stored). **Migrating to SQL will no longer need the database to be saved on server save.**
+
+<NewsSectionSubtitle text="How to migrate?"/>
 The migration process is as simple as running a command on the server.
 
-:::tip HOW TO MIGRATE
+:::tip GET STARTED
 To begin migrating, run **`c.migrate_perms_sql`**, then a new SQLite database will be created at `<root>/servers/<identity>/carbon.perms.db`
 :::
-<NewsSectionSubtitle text="What's Happening?"/>
+
+<NewsSectionSubtitle text="What's happening?"/>
 
 The **`c.migrate_perms_sql`** command will:
 1. Copy over all of your groups and group permissions associated 
@@ -49,13 +59,12 @@ An important thing to note is that while the server is active using SQL mode, th
 :::
 
 You can continue using the server as you normally would. **Your permissions system is now fully switched to SQL.**
-</NewsSection>
 
-:::danger ROLLBACK
+<NewsSectionSubtitle text="Rollback / Migrating back to Proto?"/>
 
 You can also switch back to the **Protobuf**-based permissions database with **`c.migrate_perms_proto`** which works just the same way (it imports all users, groups and their perms into the in-memory Protobuf database straight from the SQL database).
-:::
 
+</NewsSection>
 
 <NewsSectionTitle text="Teleport Marker Module" author="bubbafett5611"/>
 <NewsImage src="/news/teleportmarker-1.webp" h="200px"/>
