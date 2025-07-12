@@ -68,6 +68,23 @@ This month we've added a new Carbon module everyone — **that's not on Minimal 
 The default permission is `teleportmarker.use` but is configurable, as well as the command, which defaults to `tpm`. 
 </NewsSection>
 
+<NewsSectionTitle text="Admin Extensions Module" author="bubbafett5611"/>
+<NewsImage src="/misc/admin_a.webp" h="200px"/>
+
+<NewsSection>
+
+We've also added a new module named `AdminExtensions` which is dedicated to give a configurable and first-hand chat command permission-based access to Carbon Admin Module features that you would normally need to click through.
+
+<NewsSectionSubtitle text="Configuration"/>
+
+Here are the following commands you can configure:
+- `/spectate`: Will spectate a player (syntax: `/spectate someplayer`), requiring configurable permission `adminextension.spectate` for it to work
+- `/blind`: Will blind/lock down a player (syntax: `/blind someplayer`), requiring configurable permission `adminextension.blind` for it to work
+- `/empower`: Will maximize all positive stats on a player (syntax: `/empower someplayer`), requiring configurable permission `adminextension.empower` for it to work
+- `/cpm`: Will send a private message to a specific player (syntax: `/cpm someplayer message`), requiring configurable permission `adminextension.cpm` for it to work
+- `/lock`: Will lock up one or all of the inventory containers of a player (syntax: `/lock someplayer [main|belt|wear|all] [0|1]`), requiring configurable permission `adminextension.lock` for it to work
+</NewsSection>
+
 <NewsSectionTitle text="Redirect URI" author="raulssorban"/>
 <NewsSection>
 
