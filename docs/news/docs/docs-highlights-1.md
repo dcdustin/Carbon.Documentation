@@ -121,13 +121,13 @@ Use the <strong>Entities</strong> tab to search for any entities active on the s
 
 <NewsSectionSubtitle text="Permission Management"/>
 <NewsImage src="/news/controlp-5-showcase.png"/>
-<NewsSection>
+<NewsSection marginless>
 Manage permissions for plugins and modues straight from the control panel!
 </NewsSection>
 
 <NewsSectionSubtitle text="Chatting"/>
 <NewsImage src="/news/controlp-6-showcase.png"/>
-<NewsSection>
+<NewsSection marginless>
 Preview and interact with people chatting on your server, all within the Control Panel! (Clicking on player names opens up their Steam profile)
 </NewsSection>
 
