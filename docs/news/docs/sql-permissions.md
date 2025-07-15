@@ -24,14 +24,14 @@ Forget giant `oxide.users.data` files filled with players that joined your serve
 
 </NewsSection>
 
-<NewsHeroSection img="https://files.facepunch.com/Alistair/122/04/2025/6J27/jungleUpdate_biome_02.jpg">
+<NewsHeroSection img="https://files.facepunch.com/paddy/20250314/rust_abysspack_sunkenknife_01.jpg">
 <NewsSectionTitle text="Motivation"/>
 <NewsSection>
 A few years ago when Carbon was just a concept — and initially called Rexide🤮 (that name still haunts me) — one of the bigger things we wanted to do with Carbon besides dynamic patching, was to have a more performant permissions system which takes memory usage into account as well as data it stores in memory at server runtime.
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/Alistair/128/04/2025/1C73/jungleupdate_ziggurat_20.jpg">
+<NewsHeroSection img="https://files.facepunch.com/Alistair/104/06/2025/0S59/juneupdate_silencer_both_03.jpg">
 <NewsSectionTitle text="Protobuf to SQL Migration" author="raulssorban"/>
 
 This newly available solution is purely designed to increase overall server performance and reduce unnecessary overhead initially caused by Oxide's design.
@@ -70,7 +70,7 @@ You can also switch back to the **Protobuf**-based permissions database with **`
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/Alistair/128/04/2025/9F06/jungleUpdate_biome_03.jpg">
+<NewsHeroSection img="https://files.facepunch.com/paddy/20240905/rust_202409_ttk_heroimage.jpg">
 <NewsSectionTitle text="Admin Extensions Module" author="bubbafett5611"/>
 <NewsImage src="/misc/admin_a.webp" h="200px"/>
 
