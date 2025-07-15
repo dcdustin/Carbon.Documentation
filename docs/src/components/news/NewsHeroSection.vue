@@ -3,6 +3,9 @@
     <div class="news-section-hero-media">
       <img class="news-section-hero-img" :src="props.img" />
       <div class="absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-neutral-950/35 to-neutral-900/100"></div>
+      <div class="absolute top-2 right-2 text-xs text-white/70 bg-black/50 px-2 py-1 rounded">
+        Image credit: <a :href="props.img">{{ host }}</a>
+      </div>
     </div>
     <div class="!mx-auto w-[80%] !max-w-screen-xl">
       <slot></slot>
@@ -11,10 +14,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   img: string;
 }
 
+const host = computed(() => new URL(props.img).hostname)
 const props = defineProps<Props>()
 </script>
 
