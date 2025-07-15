@@ -1,7 +1,7 @@
 <template>
   <div class="news-section-hero">
     <div class="news-section-hero-media">
-      <img :src="props.img" />
+      <img class="news-section-hero-img" :src="props.img" />
       <div class="absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-neutral-950/35 to-neutral-900/100"></div>
     </div>
     <div class="!mx-auto w-[80%] !max-w-screen-xl">
@@ -19,9 +19,18 @@ const props = defineProps<Props>()
 </script>
 
 <style>
+.news-section-hero-img {
+  transition-property: all;
+  transition-duration: 1s;
+  transform: scale(101%);
+}
+.news-section-hero:hover .news-section-hero-img {
+  transform: scale(100%);
+}
+
 .news-section-hero {
   position: relative;
-  margin-inline: calc(-1 * (100vw - 100%) / 2);
+  margin-inline: calc(-1 * (100vw - 101%) / 2);
   padding-top: 0px;
   overflow: hidden;
   filter: saturate(0%);
