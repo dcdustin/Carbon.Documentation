@@ -18,13 +18,9 @@ fmContentType: blogpost
 published: false
 ---
 
-<iframe class="aspect-video" width="100%" src="https://www.youtube-nocookie.com/embed/sszSmyhioxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 <NewsSection>
 
 Forget giant `oxide.users.data` files filled with players that joined your server about 6 years ago for 2 seconds, all of that stored in your memory. Experience seamless transition to SQL-based permission management, which only keeps in memory what is necessary.
-
-<iframe class="aspect-video" width="100%" src="https://www.youtube-nocookie.com/embed/sszSmyhioxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 </NewsSection>
 
@@ -32,9 +28,6 @@ Forget giant `oxide.users.data` files filled with players that joined your serve
 <NewsSectionTitle text="Motivation"/>
 <NewsSection>
 A few years ago when Carbon was just a concept — and initially called Rexide🤮 (that name still haunts me) — one of the bigger things we wanted to do with Carbon besides dynamic patching, was to have a more performant permissions system which takes memory usage into account as well as data it stores in memory at server runtime.
-<br><br>
-<iframe class="aspect-video" width="100%" src="https://www.youtube-nocookie.com/embed/sszSmyhioxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 </NewsSection>
 </NewsHeroSection>
 
