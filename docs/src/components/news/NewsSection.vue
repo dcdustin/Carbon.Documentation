@@ -1,8 +1,19 @@
 <template>
-  <div class="news-section">
+  <div :class="[{'mb-[150px]': !isMarginless}, 'news-section']">
     <slot></slot>
   </div>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+
+interface Props {
+  marginless?: boolean | string;
+}
+
+const props = defineProps<Props>()
+const isMarginless = computed(() => props.marginless === true || props.marginless === 'true')
+</script>
 
 <style>
 .news-section {

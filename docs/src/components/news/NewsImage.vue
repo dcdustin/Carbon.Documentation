@@ -7,8 +7,8 @@
 <script setup lang="ts">
 interface Props {
   src: string;
-  h: string;
-  y: string;
+  h?: string;
+  y?: string;
 }
 
 const props = defineProps<Props>()

@@ -84,7 +84,6 @@ const loadReleaseNotes = async () => {
 
 onMounted(async () => {
   await loadReleaseNotes()
-  console.log("donzo")
 })
 const props = defineProps<Props>()
 </script>

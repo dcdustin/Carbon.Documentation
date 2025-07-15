@@ -24,11 +24,14 @@ Forget giant `oxide.users.data` files filled with players that joined your serve
 
 </NewsSection>
 
+<NewsHeroSection img="https://files.facepunch.com/Alistair/122/04/2025/6J27/jungleUpdate_biome_02.jpg">
 <NewsSectionTitle text="Motivation"/>
 <NewsSection>
 A few years ago when Carbon was just a concept — and initially called Rexide🤮 (that name still haunts me) — one of the bigger things we wanted to do with Carbon besides dynamic patching, was to have a more performant permissions system which takes memory usage into account as well as data it stores in memory at server runtime.
 </NewsSection>
+</NewsHeroSection>
 
+<NewsHeroSection img="https://files.facepunch.com/Alistair/128/04/2025/1C73/jungleupdate_ziggurat_20.jpg">
 <NewsSectionTitle text="Protobuf to SQL Migration" author="raulssorban"/>
 
 This newly available solution is purely designed to increase overall server performance and reduce unnecessary overhead initially caused by Oxide's design.
@@ -65,7 +68,9 @@ You can continue using the server as you normally would. **Your permissions syst
 You can also switch back to the **Protobuf**-based permissions database with **`c.migrate_perms_proto`** which works just the same way (it imports all users, groups and their perms into the in-memory Protobuf database straight from the SQL database).
 
 </NewsSection>
+</NewsHeroSection>
 
+<NewsHeroSection img="https://files.facepunch.com/Alistair/128/04/2025/9F06/jungleUpdate_biome_03.jpg">
 <NewsSectionTitle text="Admin Extensions Module" author="bubbafett5611"/>
 <NewsImage src="/misc/admin_a.webp" h="200px"/>
 
@@ -83,11 +88,14 @@ Here are the following commands you can configure:
 - `/lock`: Will lock up one or all of the inventory containers of a player (syntax: `/lock someplayer [main|belt|wear|all] [0|1]`), requiring configurable permission `adminextension.lock` for it to work
 - `/tpm`: It's a toggle command which will teleport the player when they're placing a map marker to the marker position, requiring configurable permission `adminextension.tpm` for it to work
 </NewsSection>
+</NewsHeroSection>
 
+<NewsHeroSection img="https://files.facepunch.com/Alistair/122/04/2025/6J27/jungleUpdate_biome_02.jpg">
 <NewsSectionTitle text="Redirect URI" author="raulssorban"/>
 <NewsSection>
 
 We've added a new configuration option in Carbon's config file under the `SelfUpdating` section called `RedirectURI`, designed for the self-updating process to use as Carbon's endpoint it will automatically update from. This could be ideally used to build and maintain your own Carbon build in-house.
 </NewsSection>
+</NewsHeroSection>
 
 <NewsReleaseNotes version="2.0.196"/>

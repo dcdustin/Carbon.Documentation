@@ -67,10 +67,9 @@ const readMorePosts = ref<NewsPost[]>()
 
           <NewsSectionTitle text="Join us!"/>
           <NewsImage src="/news/join-us.webp"/>
-          <NewsSection>
-          Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
+          <NewsSection marginless>
+            Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
           </NewsSection>
-
           <NewsSectionSubtitle text="Read More"/>
           There's more where that came from! Choose what you wanna learn about next.
           <div class="news-grid my-10 gap-5">

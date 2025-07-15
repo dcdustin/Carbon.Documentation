@@ -4,6 +4,7 @@ import CarbonButton from '@/components/CarbonButton.vue'
 import CarbonChange from '@/components/CarbonChange.vue'
 import CarbonIcons from '@/components/CarbonIcons.vue'
 import NewsSection from '@/components/news/NewsSection.vue'
+import NewsHeroSection from '@/components/news/NewsHeroSection.vue'
 import NewsSectionTitle from '@/components/news/NewsSectionTitle.vue'
 import NewsSectionSubtitle from '@/components/news/NewsSectionSubtitle.vue'
 import NewsImage from '@/components/news/NewsImage.vue'
@@ -32,6 +33,7 @@ export default {
     app.component('NewsImage', NewsImage)
     app.component('NewsImageGrid', NewsImageGrid)
     app.component('NewsSection', NewsSection)
+    app.component('NewsHeroSection', NewsHeroSection)
     app.component('NewsSectionTitle', NewsSectionTitle)
     app.component('NewsSectionSubtitle', NewsSectionSubtitle)
     app.component('NewsReleaseNotes', NewsReleaseNotes)
