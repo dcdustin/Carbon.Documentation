@@ -95,7 +95,39 @@ Here are the following commands you can configure:
 <NewsSection>
 
 We've added a new configuration option in Carbon's config file under the `SelfUpdating` section called `RedirectURI`, designed for the self-updating process to use as Carbon's endpoint it will automatically update from. This could be ideally used to build and maintain your own Carbon build in-house.
+
+```json
+  "Analytics": {
+    "Enabled": true
+  },
+  "SelfUpdating": {
+    "Enabled": false,
+    "HookUpdates": true,
+    "RedirectUri": "https://my.endpoint/carbon.tar.gz" // [!code focus]
+  },
+  "Debugging": {
+    "ScriptDebuggingOrigin": "",
+    "HookLagSpikeThreshold": 1000
+  },
+```
 </NewsSection>
 </NewsHeroSection>
 
-<NewsReleaseNotes version="2.0.196"/>
+<NewsHeroSection img="https://files.facepunch.com/paddy/20230201/indst_storageadapter_02.jpg">
+<NewsSectionTitle text="Admin Module Hooks" author="bubbafett5611"/>
+<NewsSection>
+
+With the exposing, polish and cleanup of some of our duplicated Admin Module code, we've also introduced a few new Carbon-only hooks plugins can use.
+```cs
+- OnCarbonBlinded (BasePlayer player)
+- OnCarbonUnblinded (BasePlayer player)
+- OnCarbonEmpowerPlayerStats (BasePlayer player)
+- OnCarbonLockPlayerContainer (BasePlayer player, ItemContainer container, bool locked)
+- OnCarbonPrivateMessage (BasePlayer player, BaesPlayer target, string message)
+- OnCarbonSpectateStart (BasePlayer player, BaesPlayer target)
+- OnCarbonSpectateEnd (BasePlayer player, BaesPlayer target)
+```
+</NewsSection>
+</NewsHeroSection>
+
+<NewsReleaseNotes version="TBA"/>
