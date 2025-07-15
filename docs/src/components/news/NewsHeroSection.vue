@@ -35,7 +35,7 @@ const props = defineProps<Props>()
   overflow: hidden;
   filter: saturate(0%);
   transition-property: all;
-  transition-duration: 75ms;
+  transition-duration: 1s;
 }
 
 .news-section-hero:hover {
