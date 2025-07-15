@@ -1,5 +1,5 @@
 <template>
-  <div :class="[{'mb-[150px]': !isMarginless}, 'news-section']">
+  <div :class="[{'mb-[200px]': !isMarginless}, 'news-section']">
     <slot></slot>
   </div>
 </template>

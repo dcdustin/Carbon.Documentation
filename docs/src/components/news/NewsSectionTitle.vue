@@ -56,7 +56,7 @@ onMounted(() => {
   text-decoration: underline;
 }
 .news-text-section {
-  margin-top: 150px;
+  margin-top: 200px;
   font-weight: 900 !important;
   font-size: 38px;
   text-transform: uppercase;
