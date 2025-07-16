@@ -6,16 +6,17 @@ logo: /news/sql-perms.webp
 author: Raul
 date: 2025-07-11T15:14:38.470Z
 tags:
-    - docs
-    - news
-    - server owners
-    - sql
-    - permissions
+  - news
+  - permissions
+  - server owners
+  - sql
+  - carbon
 layout: news-layout
 category: news
 sidebar: false
 fmContentType: blogpost
 published: false
+showjoinus: true
 ---
 
 <NewsSection>
@@ -24,14 +25,14 @@ Forget giant `oxide.users.data` files filled with players that joined your serve
 
 </NewsSection>
 
-<NewsHeroSection img="https://files.facepunch.com/paddy/20250314/rust_abysspack_sunkenknife_01.jpg">
+<NewsHeroSection src="https://files.facepunch.com/paddy/20250314/rust_abysspack_sunkenknife_01.jpg">
 <NewsSectionTitle text="Motivation"/>
 <NewsSection>
 A few years ago when Carbon was just a concept — and initially called Rexide🤮 (that name still haunts me) — one of the bigger things we wanted to do with Carbon besides dynamic patching, was to have a more performant permissions system which takes memory usage into account as well as data it stores in memory at server runtime.
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/Alistair/104/06/2025/0S59/juneupdate_silencer_both_03.jpg">
+<NewsHeroSection src="https://files.facepunch.com/Alistair/104/06/2025/0S59/juneupdate_silencer_both_03.jpg">
 <NewsSectionTitle text="Protobuf to SQL Migration" author="raulssorban"/>
 
 This newly available solution is purely designed to increase overall server performance and reduce unnecessary overhead initially caused by Oxide's design.
@@ -70,7 +71,7 @@ You can also switch back to the **Protobuf**-based permissions database with **`
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/paddy/20240905/rust_202409_ttk_heroimage.jpg">
+<NewsHeroSection src="https://files.facepunch.com/paddy/20240905/rust_202409_ttk_heroimage.jpg">
 <NewsSectionTitle text="Admin Extensions Module" author="bubbafett5611"/>
 <NewsImage src="/misc/admin_a.webp" h="200px"/>
 
@@ -90,7 +91,7 @@ Here are the following commands you can configure:
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/Alistair/122/04/2025/6J27/jungleUpdate_biome_02.jpg">
+<NewsHeroSection src="https://files.facepunch.com/Alistair/122/04/2025/6J27/jungleUpdate_biome_02.jpg">
 <NewsSectionTitle text="Redirect URI" author="raulssorban"/>
 <NewsSection>
 
@@ -113,7 +114,7 @@ We've added a new configuration option in Carbon's config file under the `SelfUp
 </NewsSection>
 </NewsHeroSection>
 
-<NewsHeroSection img="https://files.facepunch.com/paddy/20230201/indst_storageadapter_02.jpg">
+<NewsHeroSection src="https://files.facepunch.com/paddy/20230201/indst_storageadapter_02.jpg">
 <NewsSectionTitle text="Admin Module Hooks" author="bubbafett5611"/>
 <NewsSection>
 
@@ -129,8 +130,15 @@ With the exposing, polish and cleanup of some of our duplicated Admin Module cod
 ```
 
 </NewsSection>
+</NewsHeroSection>
 
+<NewsHeroSection src="https://files.facepunch.com/Alistair/102/04/2025/9w14/apr2025_impactdecals_02_4k.jpg">
+<NewsSectionTitle text="Pterodactyl Profiler Crashes"/>
+<NewsSection>
 
+We've addressed a short-lasting issue where the profiler would cause `Out of Memory` crashes on certain Ubuntu distros. 
+
+</NewsSection>
 </NewsHeroSection>
 
 <NewsReleaseNotes version="TBA"/>

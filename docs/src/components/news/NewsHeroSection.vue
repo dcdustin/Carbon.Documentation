@@ -1,10 +1,10 @@
 <template>
   <div class="news-section-hero">
     <div class="news-section-hero-media">
-      <img class="news-section-hero-img" :src="props.img" />
+      <img class="news-section-hero-img" :src="props.src" />
       <div class="absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-neutral-950/35 to-neutral-900/100"></div>
       <div class="absolute top-2 right-2 text-xs text-white/70 bg-black/50 px-2 py-1 rounded">
-        Image credit: <a :href="props.img">{{ host }}</a>
+        Image credit: <a :href="props.src">{{ host }}</a>
       </div>
     </div>
     <div class="!mx-auto w-[80%] !max-w-screen-xl">
@@ -17,10 +17,10 @@
 import { computed } from 'vue'
 
 interface Props {
-  img: string;
+  src: string;
 }
 
-const host = computed(() => new URL(props.img).hostname)
+const host = computed(() => new URL(props.src).hostname)
 const props = defineProps<Props>()
 </script>
 
@@ -28,11 +28,13 @@ const props = defineProps<Props>()
 .news-section-hero-img {
   transition-property: all;
   transition-duration: 1s;
-  transform: scale(101%);
+  transform: scale(1.01);
 }
+
 .news-section-hero:hover .news-section-hero-img {
-  transform: scale(100%);
+  transform: scale(1);
 }
+
 
 .news-section-hero {
   position: relative;
@@ -62,6 +64,7 @@ const props = defineProps<Props>()
 .news-section-hero-media img {
   width: 100%;
   height: 100%;
+  object-position: 5cqh;
   object-fit: cover;
   object-position: center;
   display: block;

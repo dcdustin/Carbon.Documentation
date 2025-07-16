@@ -78,8 +78,8 @@ const firstPost = shallowRef<NewsPost | null>(!frontmatter.value.tags?.includes(
     <div v-for="post in searchResults" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
       <a class="relative inline-block font-extrabold no-underline" :href="post.url">
         <div class="transform">
-          <img class="opacity-25 blur" :src="post.frontmatter.header" />
-          <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
+          <img :class="[{'blur': post.frontmatter.logo }, 'opacity-25']" :src="post.frontmatter.header" />
+          <img v-if="post.frontmatter.logo" class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
         </div>
         <div class="mt-5">
           <div class="mb-3 block uppercase">

@@ -64,30 +64,31 @@ const readMorePosts = ref<NewsPost[]>()
         </div>
         <div class="news-content text-wrap text-slate-300 opacity-80" @click.stop>
           <Content />
-
-          <NewsSectionTitle text="Join us!"/>
-          <NewsImage src="/news/join-us.webp"/>
-          <NewsSection marginless>
-            Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
-          </NewsSection>
-          <NewsSectionSubtitle text="Read More"/>
-          There's more where that came from! Choose what you wanna learn about next.
-          <div class="news-grid my-10 gap-5">
-            <div v-for="post in readMorePosts" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
-              <a class="relative inline-block font-extrabold no-underline" :href="post.url">
-                <div class="transform">
-                  <img class="opacity-25 blur" :src="post.frontmatter.header" />
-                  <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
-                </div>
-                <div class="mt-5">
-                  <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
-                  <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
-                </div>
-              </a>
+          <div v-if="frontmatter.showjoinus == null || frontmatter.showjoinus">
+            <NewsSectionTitle text="Join us!"/>
+            <NewsImage src="/news/join-us.webp"/>
+            <NewsSection marginless>
+              Feel free to join us on our <a href="https://discord.gg/carbonmod" target="_blank">official Discord server</a> if you have any other questions!
+            </NewsSection>
+            <NewsSectionSubtitle text="Read More"/>
+            There's more where that came from! Choose what you wanna learn about next.
+            <div class="news-grid my-10 gap-5">
+              <div v-for="post in readMorePosts" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
+                <a class="relative inline-block font-extrabold no-underline" :href="post.url">
+                  <div class="transform">
+                    <img class="opacity-25 blur" :src="post.frontmatter.header" />
+                    <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
+                  </div>
+                  <div class="mt-5">
+                    <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
+                    <span class="text-sm font-normal text-slate-400">{{ post.frontmatter.description }}</span><br>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-          <div v-if="readMorePosts?.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
-            No blog posts
+            <div v-if="readMorePosts?.length == 0" class="select-none text-center w-full text-slate-500 text-xs">
+              No blog posts
+            </div>
           </div>
         </div>
       </div>
