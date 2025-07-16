@@ -51,12 +51,12 @@ const readMorePosts = ref<NewsPost[]>()
     <div class="relative">
       <div class="mx-auto my-40 flex max-w-screen-lg flex-col items-center gap-6 text-balance">
         <img class="mx-auto w-[80%]" :src="frontmatter.logo" />
-          <div class="my-3 gap-2 text-center uppercase">
-            <VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}<br></VPBadge>
-            <br><VPBadge class="text-sm" v-for="tag in (showAllTags ? frontmatter.tags : frontmatter.tags.slice(0, 4))" :key="tag" type="tip">{{ tag }}</VPBadge><button @click="showAllTags = !showAllTags" v-if="frontmatter.tags.length > 4"><VPBadge class="text-sm font-bold" type="tip">{{ showAllTags ? '-' : '+' }}</VPBadge></button>
-          </div>
         <div :class="'font-sans text-5xl font-black text-center uppercase text-' + (frontmatter.published ? 'slate' : 'yellow') + '-200'" @click.stop>
           {{ frontmatter.title }}
+        </div>
+        <div class="my-3 gap-2 text-center uppercase">
+          <VPBadge class="text-sm" type="info">posted <span v-if="frontmatter.author"> by {{ frontmatter.author }}</span> on {{ formatDate(frontmatter.date).string }}<br></VPBadge>
+          <VPBadge class="text-sm" v-for="tag in (showAllTags ? frontmatter.tags : frontmatter.tags.slice(0, 4))" :key="tag" type="tip">{{ tag }}</VPBadge><button @click="showAllTags = !showAllTags" v-if="frontmatter.tags.length > 4"><VPBadge class="text-sm font-bold" type="tip">{{ showAllTags ? '-' : '+' }}</VPBadge></button>
         </div>
         <div class="mb-48 text-center text-2xl font-normal text-slate-400" @click.stop>
           {{ frontmatter.description }}
