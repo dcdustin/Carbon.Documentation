@@ -157,10 +157,10 @@ onMounted(async () => {
   await loadItems()
   tryLoadMiniSearch()
 
-  if(params.dlcsOnly) {
+  if (params.dlcsOnly) {
+    /* @ts-expect-error as it is number */
     dlcOnly.value = params.dlcsOnly == 1
   }
-  
 })
 </script>
 
@@ -187,7 +187,7 @@ onMounted(async () => {
               </template>
             </CheckBox>
           </div>
-   </template>
+        </template>
       </SearchBar>
     </template>
 
