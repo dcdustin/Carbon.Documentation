@@ -44,7 +44,7 @@ const filteredList = computed(() => {
     return list.value
   }
 
-  let filtered = list.value.filter((item) => !dlcOnly.value || item.RedirectOf != null)
+  let filtered = list.value.filter((item) => !dlcOnly.value || item.SteamDlcItem != null || item.SteamStoreItem != null || item.RedirectOf != null)
 
   if (selectedCategory.value != 'All') {
     const categoryNumber = getItemCategoryNumber(selectedCategory.value)
