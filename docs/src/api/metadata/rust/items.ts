@@ -40,6 +40,12 @@ export interface SteamDlcItem {
   Name: string
 }
 
+export interface SteamStoreItem {
+  WorkshopId: number
+  Name: string
+  Id: number
+}
+
 export interface Item {
   Id: number
   DisplayName: string
@@ -51,6 +57,7 @@ export interface Item {
   Category: number
   Rarity: number
   SteamDlcItem: SteamDlcItem | null
+  SteamStoreItem: SteamStoreItem | null
   ItemMods: string[]
   ItemMod_Deployable: ItemModPrefabReference | null
   ItemMod_Entity: ItemModPrefabReference | null

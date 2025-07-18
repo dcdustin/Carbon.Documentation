@@ -133,7 +133,7 @@ With the exposing, polish and cleanup of some of our duplicated Admin Module cod
 </NewsHeroSection>
 
 <NewsHeroSection src="https://files.facepunch.com/Alistair/102/04/2025/9w14/apr2025_impactdecals_02_4k.jpg">
-<NewsSectionTitle text="Pterodactyl Profiler Crashes"/>
+<NewsSectionTitle text="Pterodactyl Profiler Crashes" author="raulssorban"/>
 <NewsSection>
 
 We've addressed a short-lasting issue where the profiler would cause `Out of Memory` crashes on certain Ubuntu distros. 

@@ -20,7 +20,7 @@ interface Props {
   src: string;
 }
 
-const host = computed(() => new URL(props.src).hostname)
+const host = computed(() => URL.canParse(props.src) ? new URL(props.src).hostname : props.src)
 const props = defineProps<Props>()
 </script>
 

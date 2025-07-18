@@ -12,9 +12,15 @@ import { computed, onMounted, shallowRef } from 'vue'
 import ApiPageInfo from './common/ApiPageInfo.vue'
 import ApiPageStateHandler from './common/ApiPageStateHandler.vue'
 import SwitchSearchIcon from './common/SwitchSearchIcon.vue'
+import CheckBox from '@/components/common/CheckBox.vue'
+import { useUrlSearchParams } from '@vueuse/core'
 
 const list = shallowRef<Item[]>(initialList)
 const categories = shallowRef<string[]>([])
+
+const params = useUrlSearchParams('history', {
+  removeFalsyValues: true,
+})
 
 const isFetchedRest = shallowRef(false)
 const isDataFromCache = shallowRef<boolean | null>(null)
@@ -24,6 +30,7 @@ const debouncedSearchValue = store.searchValue
 const miniSearch = store.miniSearch
 const useBasicSearch = store.useBasicSearch
 const selectedCategory = store.chosenCategory
+const dlcOnly = store.dlcOnly
 
 const initialPageSize = 10
 const pageSize = 15
@@ -33,11 +40,11 @@ const filteredList = computed(() => {
     return []
   }
 
-  if (!debouncedSearchValue.value && selectedCategory.value == 'All') {
+  if (!debouncedSearchValue.value && selectedCategory.value == 'All' && !dlcOnly.value) {
     return list.value
   }
 
-  let filtered = list.value
+  let filtered = list.value.filter((item) => !dlcOnly.value || item.SteamDlcItem != null || item.SteamStoreItem != null)
 
   if (selectedCategory.value != 'All') {
     const categoryNumber = getItemCategoryNumber(selectedCategory.value)
@@ -149,6 +156,11 @@ async function loadItems() {
 onMounted(async () => {
   await loadItems()
   tryLoadMiniSearch()
+
+  if(params.dlcsOnly) {
+    dlcOnly.value = params.dlcsOnly == 1
+  }
+  
 })
 </script>
 
@@ -168,7 +180,14 @@ onMounted(async () => {
         </template>
         <template #right>
           <OptionSelector v-model="selectedCategory" :options="['All', ...categories]" label="Category:" />
-        </template>
+          <div class="flex flex-row items-center gap-2">
+            <CheckBox v-model="dlcOnly">
+              <template #default>
+                <span class="text-sm">DLCs Only</span>
+              </template>
+            </CheckBox>
+          </div>
+   </template>
       </SearchBar>
     </template>
 
