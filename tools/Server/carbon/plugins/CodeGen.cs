@@ -486,6 +486,7 @@ public class CodeGen : CarbonPlugin
 		public ItemCategory Category;
 		public Rarity Rarity;
 		public SteamDlcItem SteamDlcItem;
+		public SteamStoreItem SteamStoreItem;
 		public string[] ItemMods;
 		public Ser_ItemModDeployable ItemMod_Deployable;
 		public Ser_ItemModEntity ItemMod_Entity;
@@ -514,6 +515,15 @@ public class CodeGen : CarbonPlugin
 				{
 					Name = definition.steamDlc.dlcName.english,
 					AppId = definition.steamDlc.dlcAppID,
+				};
+			}
+			if (definition.steamItem != null)
+			{
+				instance.SteamStoreItem = new SteamStoreItem
+				{
+					Id = definition.steamItem.id,
+					Name = definition.steamItem.displayName.english,
+					WorkshopId = definition.steamItem.workshopID
 				};
 			}
 
@@ -693,6 +703,13 @@ public class CodeGen : CarbonPlugin
 	{
 		public string Name;
 		public int AppId;
+	}
+
+	public class SteamStoreItem
+	{
+		public int Id;
+		public string Name;
+		public ulong WorkshopId;
 	}
 
 	public class Entity : Prefab
