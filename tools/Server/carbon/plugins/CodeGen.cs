@@ -485,6 +485,7 @@ public class CodeGen : CarbonPlugin
 		public ItemDefinition.Flag Flags;
 		public ItemCategory Category;
 		public Rarity Rarity;
+		public Item RedirectOf;
 		public SteamDlcItem SteamDlcItem;
 		public SteamStoreItem SteamStoreItem;
 		public string[] ItemMods;
@@ -509,6 +510,10 @@ public class CodeGen : CarbonPlugin
 			instance.Flags = definition.flags;
 			instance.Category = definition.category;
 			instance.Rarity = definition.rarity;
+			if (definition.isRedirectOf != null)
+			{
+				instance.RedirectOf = Parse<T>(definition.isRedirectOf);
+			}
 			if (definition.steamDlc != null)
 			{
 				instance.SteamDlcItem = new SteamDlcItem
