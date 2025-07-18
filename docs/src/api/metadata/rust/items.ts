@@ -56,6 +56,7 @@ export interface Item {
   Flags: number
   Category: number
   Rarity: number
+  RedirectOf: Item | null
   SteamDlcItem: SteamDlcItem | null
   SteamStoreItem: SteamStoreItem | null
   ItemMods: string[]
