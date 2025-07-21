@@ -15,7 +15,7 @@ layout: news-layout
 category: news
 sidebar: false
 fmContentType: blogpost
-published: false
+published: true
 showjoinus: true
 ---
 
