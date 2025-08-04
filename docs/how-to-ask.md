@@ -1,3 +1,9 @@
+---
+title: How to Ask
+description: how-to-ask
+search: false
+---
+
 # On the Art of Requesting Assistance: A Treatise
 
 ## A Foreword on the Social Contract of Community Support

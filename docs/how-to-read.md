@@ -1,3 +1,9 @@
+---
+title: How to Read
+description: how-to-read
+search: false
+---
+
 # On the Art of Comprehension: A Guide
 
 ## A Foreword on the Sacred Duty of Reading
