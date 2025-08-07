@@ -4,7 +4,7 @@ description: QoL improvements, bug fixes, module updates and extension hotloadin
 header: https://files.facepunch.com/paddy/20230904/homingrocketlauncher_01.jpg
 logo: /news/sql-perms.webp
 author: Raul
-date: 2025-07-11T15:14:38.470Z
+date: 2025-08-07T16:48:47.544Z
 tags:
   - news
   - permissions
