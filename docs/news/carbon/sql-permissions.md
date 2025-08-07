@@ -1,6 +1,6 @@
 ---
 title: SQLite Permissions & More
-description: Forget giant Oxide data files filled with players that joined your server about 6 years ago for 2 sec., data being stored in your memory whenever your server is online.
+description: QoL improvements, bug fixes, module updates and extension hotloading removal.
 header: https://files.facepunch.com/paddy/20230904/homingrocketlauncher_01.jpg
 logo: /news/sql-perms.webp
 author: Raul
@@ -120,15 +120,22 @@ We've added a new configuration option in Carbon's config file under the `SelfUp
 
 With the exposing, polish and cleanup of some of our duplicated Admin Module code, we've also introduced a few new Carbon-only hooks plugins can use.
 ```cs
-- OnCarbonBlinded (BasePlayer player)
-- OnCarbonUnblinded (BasePlayer player)
-- OnCarbonEmpowerPlayerStats (BasePlayer player)
-- OnCarbonLockPlayerContainer (BasePlayer player, ItemContainer container, bool locked)
-- OnCarbonPrivateMessage (BasePlayer player, BaesPlayer target, string message)
-- OnCarbonSpectateStart (BasePlayer player, BaesPlayer target)
-- OnCarbonSpectateEnd (BasePlayer player, BaesPlayer target)
+- OnCarbonBlinded (BasePlayer invoker, BasePlayer target)
+- OnCarbonUnblinded (BasePlayer invoker, BasePlayer target)
+- OnCarbonEmpowerPlayerStats (BasePlayer invoker, BasePlayer target)
+- OnCarbonLockPlayerContainer (BasePlayer invoker, BasePlayer target, ItemContainer container, bool locked)
+- OnCarbonPrivateMessage (BasePlayer invoker, BaesPlayer target, string message)
+- OnCarbonSpectateStart (BasePlayer invoker, BaesPlayer target)
+- OnCarbonSpectateEnd (BasePlayer invoker, BaesPlayer target)
 ```
 
+ModerationTools has also been merged all within AdminExtensions as it makes the most sense, and it's better to keep it all contained.
+```cs
+- OnCarbonBanPlayer (BasePlayer invoker, BasePlayer target, string reason, long expiry)
+- OnCarbonUnbanPlayer (BasePlayer invoker, BasePlayer target)
+- OnCarbonKickPlayer (BasePlayer invoker, BasePlayer target, string reason)
+- OnCarbonMutePlayer (BasePlayer invoker, BasePlayer target, bool wants reason, string reason)
+```
 </NewsSection>
 </NewsHeroSection>
 
@@ -141,4 +148,11 @@ We've addressed a short-lasting issue where the profiler would cause `Out of Mem
 </NewsSection>
 </NewsHeroSection>
 
-<NewsReleaseNotes version="TBA"/>
+<NewsHeroSection src="https://files.facepunch.com/paddy/20250314/rust_abysspack_sunkenknife_01.jpg">
+<NewsSectionTitle text="Extension and Module Removal"/>
+<NewsSection>
+Module and Extension hotloading removal comes from the sole reason of .NET disallowing us to properly unload assemblies, where instances where modules or extensions depending on other module and extensions will not properly hotload or sync up their dependencies, causing unexpected behavior.
+</NewsSection>
+</NewsHeroSection>
+
+<NewsReleaseNotes version="2.0.198"/>
