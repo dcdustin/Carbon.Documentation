@@ -237,13 +237,13 @@ const processedTags = computed(() => {
 <style scoped>
 .server-card {
   transition: all 0.2s ease;
-  border: 1px solid #222222;
+  @apply border border-zinc-300 dark:border-zinc-800;
 }
 
 .server-card:hover {
-  border-color: #333333;
+  @apply border border-zinc-400 dark:border-zinc-700;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .tag {
