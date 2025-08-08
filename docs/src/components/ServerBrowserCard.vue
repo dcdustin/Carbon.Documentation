@@ -251,26 +251,26 @@ const processedTags = computed(() => {
 }
 
 .tag:hover {
-  @apply bg-black/10 dark:bg-white/10;
+  @apply bg-black/[0.08] dark:bg-white/[0.08];
 }
 
 .tag-region {
-  @apply border-blue-500/20 bg-blue-500/10 text-blue-400;
+  @apply border-blue-600/30 bg-blue-500/10 text-blue-600 dark:border-blue-500/20 dark:bg-blue-600/10 dark:text-blue-400;
 }
 
 .tag-wipe {
-  @apply border-green-500/20 bg-green-500/10 text-green-400;
+  @apply border-green-600/30 bg-green-500/10 text-green-600 dark:border-green-500/20 dark:bg-green-600/10 dark:text-green-400;
 }
 
 .tag-difficulty {
-  @apply border-yellow-500/20 bg-yellow-500/10 text-yellow-400;
+  @apply border-yellow-600/30 bg-yellow-500/10 text-yellow-600 dark:border-yellow-500/20 dark:bg-yellow-600/10 dark:text-yellow-400;
 }
 
 .tag-feature {
-  @apply border-purple-500/20 bg-purple-500/10 text-purple-400;
+  @apply border-purple-600/30 bg-purple-500/10 text-purple-600 dark:border-purple-500/20 dark:bg-purple-600/10 dark:text-purple-400;
 }
 
 .tag-mod {
-  @apply border-red-500/20 bg-red-500/10 text-red-400;
+  @apply border-red-600/30 bg-red-500/10 text-red-600 dark:border-red-500/20 dark:bg-red-600/10 dark:text-red-400;
 }
 </style>
