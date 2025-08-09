@@ -263,7 +263,7 @@ const processedTags = computed(() => {
 }
 
 .tag {
-  @apply rounded-md border border-black/[0.07] bg-black/5 px-1.5 py-0.5 text-[0.65rem] dark:border-white/[0.07] dark:bg-white/5;
+  @apply rounded-md border border-zinc-600/30 bg-zinc-500/10 px-1.5 py-0.5 text-[0.65rem] text-zinc-600 dark:border-zinc-500/20 dark:bg-zinc-600/10 dark:text-zinc-400;
 }
 
 .tag:hover {
