@@ -111,6 +111,7 @@ const compressedTagToFeature = new Map([
 const compressedTagToMod = new Map([
   ['z', 'Modded'],
   ['o', 'Oxide'],
+  ['o^z', 'Oxide (m)'],
   ['y', 'Carbon'],
 ])
 
