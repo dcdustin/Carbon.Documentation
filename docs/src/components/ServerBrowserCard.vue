@@ -152,6 +152,8 @@ const processedTags = computed(() => {
         featureGroup.tags.push({ tag: compressedTagToFeature.get(compressedTag) || '', rawTag: tag })
       } else if (compressedTagToMod.has(compressedTag)) {
         modGroup.tags.push({ tag: compressedTagToMod.get(compressedTag) || '', rawTag: tag })
+      } else {
+        result.displayTags.push({ tag, rawTag: tag })
       }
       continue
     }
