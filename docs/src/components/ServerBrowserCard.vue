@@ -168,7 +168,7 @@ const processedTags = computed(() => {
 
     if (tag.startsWith('ts')) {
       const teamSize = parseInt(tag.slice(2))
-      if (!isNaN(teamSize) && teamSize > 0) {
+      if (!isNaN(teamSize)) {
         result.displayTags.push({ tag: `MAX TEAM: ${teamSize}`, rawTag: tag })
         continue
       }
