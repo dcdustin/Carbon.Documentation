@@ -265,7 +265,7 @@ onMounted(async () => {
       <SearchBar
         v-model="debouncedSearchValue"
         placeholder="Search servers... (hostname, IP, map, raw tags)"
-        class="sticky top-16 z-10 min-[960px]:top-20"
+        :isSticky="true"
         :isExpandable="true"
         :initialExpanded="true"
       >
