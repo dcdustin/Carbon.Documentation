@@ -64,8 +64,13 @@ const interpolateColor = computed(() => {
 })
 
 interface TagGroup {
-  tags: string[]
+  tags: Tag[]
   type: 'region' | 'wipe' | 'difficulty' | 'feature' | 'mod'
+}
+
+interface Tag {
+  tag: string
+  rawTag: string
 }
 
 const tagToRegion = new Map([
@@ -121,31 +126,31 @@ const processedTags = computed(() => {
   const tags = new Set(server.tags?.split(',').map((tag) => tag.trim()) || [])
   const result = {
     groups: [] as TagGroup[],
-    displayTags: [] as string[],
+    displayTags: [] as Tag[],
   }
 
   const wipeGroup: TagGroup = { tags: [], type: 'wipe' }
   const difficultyGroup: TagGroup = { tags: [], type: 'difficulty' }
   const featureGroup: TagGroup = { tags: [], type: 'feature' }
   const modGroup: TagGroup = { tags: [], type: 'mod' }
-  let region = ''
+  let region: Tag = { tag: '', rawTag: '' }
 
   for (const tag of tags) {
     if (tagToRegion.has(tag)) {
-      region = tagToRegion.get(tag) || ''
+      region = { tag: tagToRegion.get(tag) || '', rawTag: tag }
       continue
     }
 
     if (tag.startsWith('^')) {
       const compressedTag = tag.slice(1)
       if (compressedTagToWipe.has(compressedTag)) {
-        wipeGroup.tags.push(compressedTagToWipe.get(compressedTag) || '')
+        wipeGroup.tags.push({ tag: compressedTagToWipe.get(compressedTag) || '', rawTag: tag })
       } else if (compressedTagToDifficulty.has(compressedTag)) {
-        difficultyGroup.tags.push(compressedTagToDifficulty.get(compressedTag) || '')
+        difficultyGroup.tags.push({ tag: compressedTagToDifficulty.get(compressedTag) || '', rawTag: tag })
       } else if (compressedTagToFeature.has(compressedTag)) {
-        featureGroup.tags.push(compressedTagToFeature.get(compressedTag) || '')
+        featureGroup.tags.push({ tag: compressedTagToFeature.get(compressedTag) || '', rawTag: tag })
       } else if (compressedTagToMod.has(compressedTag)) {
-        modGroup.tags.push(compressedTagToMod.get(compressedTag) || '')
+        modGroup.tags.push({ tag: compressedTagToMod.get(compressedTag) || '', rawTag: tag })
       }
       continue
     }
@@ -153,7 +158,7 @@ const processedTags = computed(() => {
     if (tag.startsWith('born')) {
       const epoch = parseInt(tag.slice(4))
       if (!isNaN(epoch) && epoch > 0) {
-        result.displayTags.push(`WIPED: ${epochToDate(epoch)}`)
+        result.displayTags.push({ tag: `WIPED: ${epochToDate(epoch)}`, rawTag: tag })
         continue
       }
     }
@@ -161,7 +166,7 @@ const processedTags = computed(() => {
     if (tag.startsWith('ts')) {
       const teamSize = parseInt(tag.slice(2))
       if (!isNaN(teamSize) && teamSize > 0) {
-        result.displayTags.push(`MAX TEAM: ${teamSize}`)
+        result.displayTags.push({ tag: `MAX TEAM: ${teamSize}`, rawTag: tag })
         continue
       }
     }
@@ -178,7 +183,7 @@ const processedTags = computed(() => {
       !tag.startsWith('h') &&
       !tag.startsWith('stok')
     ) {
-      result.displayTags.push(tag)
+      result.displayTags.push({ tag, rawTag: tag })
     }
   }
 
@@ -216,18 +221,18 @@ const processedTags = computed(() => {
       </div>
 
       <div class="flex flex-wrap gap-x-1.5 gap-y-1">
-        <span v-if="processedTags.region" class="tag tag-region">
-          {{ processedTags.region }}
+        <span v-if="processedTags.region && processedTags.region.tag" class="tag tag-region" :title="processedTags.region.rawTag">
+          {{ processedTags.region.tag }}
         </span>
 
         <template v-for="group in processedTags.groups" :key="group.type">
-          <span v-for="tag in group.tags" :key="tag" :class="['tag', `tag-${group.type}`]">
-            {{ tag }}
+          <span v-for="tag in group.tags" :key="tag.rawTag" :class="['tag', `tag-${group.type}`]" :title="tag.rawTag">
+            {{ tag.tag }}
           </span>
         </template>
 
-        <span v-for="tag in processedTags.displayTags" :key="tag" class="tag">
-          {{ tag }}
+        <span v-for="tag in processedTags.displayTags" :key="tag.rawTag" class="tag" :title="tag.rawTag">
+          {{ tag.tag }}
         </span>
       </div>
 
