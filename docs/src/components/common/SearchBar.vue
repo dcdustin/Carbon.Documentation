@@ -69,12 +69,12 @@ onMounted(() => {
 <template>
   <div class="relative rounded-xl bg-zinc-100/40 px-4 py-4 backdrop-blur-sm dark:bg-gray-800/40" :class="{ 'pb-4': isExpandable }">
     <div class="flex min-h-8 flex-col items-start gap-4 sm:flex-row sm:items-center">
-      <div class="flex flex-1 items-center gap-4">
+      <div class="flex w-full flex-1 items-center gap-4">
         <slot name="icon">
           <Search class="text-gray-400" :size="20" />
         </slot>
         <input
-          class="w-full"
+          class="w-full text-sm sm:text-base"
           :placeholder="placeholder ?? 'Search for...'"
           type="text"
           :value="debouncedSearchValue"
