@@ -252,11 +252,18 @@ const processedTags = computed(() => {
 
 <style scoped>
 .server-card {
+  transition: all 0.2s ease;
   @apply border border-zinc-300 dark:border-zinc-800;
 }
 
+.server-card:hover {
+  @apply border border-zinc-400 dark:border-zinc-700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .tag {
-  @apply rounded-md border border-zinc-600/30 bg-zinc-500/10 px-1.5 py-0.5 text-[0.65rem] text-zinc-600 transition-colors dark:border-zinc-500/20 dark:bg-zinc-600/10 dark:text-zinc-400;
+  @apply rounded-md border border-zinc-600/30 bg-zinc-500/10 px-1.5 py-0.5 text-[0.65rem] text-zinc-600 dark:border-zinc-500/20 dark:bg-zinc-600/10 dark:text-zinc-400;
 }
 
 .tag:hover {
