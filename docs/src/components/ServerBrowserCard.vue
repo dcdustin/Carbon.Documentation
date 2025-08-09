@@ -158,6 +158,14 @@ const processedTags = computed(() => {
       }
     }
 
+    if (tag.startsWith('ts')) {
+      const teamSize = parseInt(tag.slice(2))
+      if (!isNaN(teamSize) && teamSize > 0) {
+        result.displayTags.push(`MAX TEAM: ${teamSize}`)
+        continue
+      }
+    }
+
     if (
       !tag.startsWith('mp') &&
       !tag.startsWith('cp') &&
