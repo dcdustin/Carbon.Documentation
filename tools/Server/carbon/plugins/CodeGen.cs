@@ -314,26 +314,35 @@ public class CodeGen : CarbonPlugin
 				var name = assembly.GetName().Name;
 				foreach (var type in assembly.GetTypes())
 				{
-					var hookAttributes = type.GetCustomAttributes();
-					var attributes = hookAttributes as Attribute[] ?? hookAttributes.ToArray();
-					if (!attributes.Any())
+					try
 					{
-						continue;
-					}
+						var hookAttributes = type.GetCustomAttributes();
+						var attributes = hookAttributes as Attribute[] ?? hookAttributes.ToArray();
+						if (!attributes.Any())
+						{
+							continue;
+						}
 
-					var hook = CarbonHook.Parse(attributes, name.Equals("Carbon.Hooks.Oxide"));
-					if (!hook.isValid)
+						var hook = CarbonHook.Parse(attributes, name.Equals("Carbon.Hooks.Oxide"));
+						if (!hook.isValid)
+						{
+							continue;
+						}
+
+						hooks.Add(hook);
+					}
+					catch (Exception e)
 					{
-						continue;
+						Logger.Warn($"Skipped type '{type.FullName}'");
+						Logger.Warn(e);
 					}
-
-					hooks.Add(hook);
 				}
 			}
-			catch
+			catch (Exception e)
 			{
 				var name = assembly.GetName();
-				Logger.Warn($"Skipped '{name.Name} {name.Version}'");
+				Logger.Warn($"Skipped assembly '{name.Name} {name.Version}'");
+				Logger.Warn(e);
 			}
 		}
 
@@ -343,6 +352,8 @@ public class CodeGen : CarbonPlugin
 				                  !x.Name.StartsWith("i", StringComparison.CurrentCultureIgnoreCase)) || x.Name.Equals("Init") ||
 				                 x.Name.Equals("InitLogging")).GroupBy(x => x.Category)
 					.ToDictionary(key => key.Key, value => value.ToArray()), Formatting.Indented));
+
+		Logger.Log("Hooks done");
 	}
 
 	private static void Generate_Switches()
@@ -360,7 +371,7 @@ public class CodeGen : CarbonPlugin
 		}
 	}
 
-	#region Helpers
+#region Helpers
 
 	private static async ValueTask DownloadOxideToTemp()
 	{
@@ -472,7 +483,7 @@ public class CodeGen : CarbonPlugin
 		return _builder.ToString();
 	}
 
-	#endregion
+#endregion
 
 	public class Item
 	{
@@ -514,6 +525,7 @@ public class CodeGen : CarbonPlugin
 			{
 				instance.RedirectOf = Parse<T>(definition.isRedirectOf);
 			}
+
 			if (definition.steamDlc != null)
 			{
 				instance.SteamDlcItem = new SteamDlcItem
@@ -522,6 +534,7 @@ public class CodeGen : CarbonPlugin
 					AppId = definition.steamDlc.dlcAppID,
 				};
 			}
+
 			if (definition.steamItem != null)
 			{
 				instance.SteamStoreItem = new SteamStoreItem
@@ -828,7 +841,8 @@ public class CodeGen : CarbonPlugin
 		public string Category;
 		public Parameter[] Parameters;
 
-		public string ParametersText => string.Join(", ", Parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
+		public string ParametersText => string.Join(", ",
+			Parameters.Select(x => $"{GetFriendlyType(x.typeName)} {x.name}{(x.optional ? " = default" : string.Empty)}"));
 
 		public HookFlags Flags;
 		public string[] Descriptions;
@@ -889,7 +903,7 @@ public class CodeGen : CarbonPlugin
 			}
 
 			hook.target = patchType.GetProperty("Target").GetValue(patch) as string;
-			hook.assembly = AccessToolsEx.TypeByName(hook.target)?.Assembly;
+			hook.assembly = hook.target != null ? AccessToolsEx.TypeByName(hook.target)?.Assembly : null;
 			hook.returnType = returnType?.GetType().GetProperty("Type").GetValue(returnType) as Type;
 			hook.CarbonCompatible = true;
 			hook.OxideCompatible = isOxideHooks || isOxideCompatible;
