@@ -42,6 +42,10 @@ Running any `update_*.bat` will overwrite `doorstop_config.ini` with default val
 Backup your changes before updating.
 :::
 
+:::danger Configuration Note #2
+Be aware that `debug_suspend=true` will prevent the server from starting until you attach a debugger.
+:::
+
 ## <CarbonIcons icon="play" /> Run Your Server
 
 1. Edit `run.bat` to configure:
