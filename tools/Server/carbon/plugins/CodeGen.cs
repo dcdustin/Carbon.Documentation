@@ -14,6 +14,7 @@ using API.Commands;
 using Carbon.Components;
 using Carbon.Extensions;
 using Carbon.Pooling;
+using Facepunch;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -163,28 +164,33 @@ public class CodeGen : CarbonPlugin
 	private static void Generate_Entities()
 	{
 		var entities = new List<Entity>();
+		var bundleBackend = FileSystem.Backend as AssetBundleBackend;
 
-		foreach (var prefab in FileSystem.Backend.cache)
+		foreach (var scene in bundleBackend.assetScenePrefabs)
 		{
-			if (prefab.Value is GameObject go)
+			foreach (var prefab in scene.Value)
 			{
-				var entity = go.GetComponent<BaseNetworkable>();
-
-				if (entity == null)
+				var asset = bundleBackend.Load<GameObject>(prefab.Key);
+				if (asset is GameObject go)
 				{
-					continue;
+					var entity = go.GetComponent<BaseEntity>();
+
+					if (entity == null)
+					{
+						continue;
+					}
+
+					entities.Add(new Entity
+					{
+						Path = prefab.Key,
+						Name = prefab.Value.name,
+						ID = StringPool.Get(prefab.Key),
+						Components = go.GetComponents<MonoBehaviour>().Where(x => x != null).Select(x => x.GetType().FullName).ToArray(),
+					});
 				}
-
-				entities.Add(new Entity
-				{
-					Type = entity.GetType().FullName,
-					Path = prefab.Key,
-					Name = prefab.Value.name,
-					ID = entity.prefabID,
-					Components = entity.GetComponents<MonoBehaviour>().Where(x => x != null).Select(x => x.GetType().FullName).ToArray(),
-				});
 			}
 		}
+
 
 		OsEx.File.Create(Path.Combine("carbon", "results", "entities.json"), JsonConvert.SerializeObject(entities, Formatting.Indented));
 	}
@@ -192,25 +198,30 @@ public class CodeGen : CarbonPlugin
 	private static void Generate_Prefabs()
 	{
 		var prefabs = new List<Entity>();
+		var bundleBackend = FileSystem.Backend as AssetBundleBackend;
 
-		foreach (var prefab in FileSystem.Backend.cache)
+		foreach (var scene in bundleBackend.assetScenePrefabs)
 		{
-			if (prefab.Value is GameObject go)
+			foreach (var prefab in scene.Value)
 			{
-				var entity = go.GetComponent<BaseEntity>();
-
-				if (entity != null)
+				var asset = bundleBackend.Load<GameObject>(prefab.Key);
+				if (asset is GameObject go)
 				{
-					continue;
+					var entity = go.GetComponent<BaseEntity>();
+
+					if (entity != null)
+					{
+						continue;
+					}
+
+					prefabs.Add(new Entity
+					{
+						Path = prefab.Key,
+						Name = prefab.Value.name,
+						ID = StringPool.Get(prefab.Key),
+						Components = go.GetComponents<MonoBehaviour>().Where(x => x != null).Select(x => x.GetType().FullName).ToArray(),
+					});
 				}
-
-				prefabs.Add(new Entity
-				{
-					Path = prefab.Key,
-					Name = prefab.Value.name,
-					ID = StringPool.Get(prefab.Key),
-					Components = go.GetComponents<MonoBehaviour>().Where(x => x != null).Select(x => x.GetType().FullName).ToArray(),
-				});
 			}
 		}
 
@@ -371,7 +382,7 @@ public class CodeGen : CarbonPlugin
 		}
 	}
 
-#region Helpers
+	#region Helpers
 
 	private static async ValueTask DownloadOxideToTemp()
 	{
