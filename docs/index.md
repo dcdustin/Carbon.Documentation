@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Carbon"
   text: "Modding Framework"
-  tagline: A self-updating & lightweight mod loader for Rust running latest C# and Harmony for the best performance, fully compatible with Oxide.
+  tagline: A lightweight drop-in replacement for Oxide featuring self-updating, SQL permissions and an in-game interface to install, update and configure plugins.
   actions:
     - theme: brand
       text: Get Carbon
