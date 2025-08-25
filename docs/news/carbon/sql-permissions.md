@@ -155,4 +155,5 @@ Module and Extension hotloading removal comes from the sole reason of .NET disal
 </NewsSection>
 </NewsHeroSection>
 
+<NewsReleaseNotes version="2.0.203"/>
 <NewsReleaseNotes version="2.0.202"/>
