@@ -1,3 +1,4 @@
+
 import { ref, shallowRef } from 'vue'
 import { command, commandIndex, tryFocusLogs } from './ControlPanel.Console'
 import { message, tryFocusChat } from './ControlPanel.Chat'
@@ -190,6 +191,7 @@ function importFromJson(data: string) {
         const localServer = createServer(server.Address, server.Password)
         localServer.AutoConnect = server.AutoConnect
         localServer.Secure = server.Secure
+        localServer.ShowCredentials = server.ShowCredentials
         localServer.CachedHostname = server.CachedHostname
         localServer.CommandHistory = server.CommandHistory ?? []
         addServer(localServer)
@@ -243,6 +245,8 @@ export class Server {
   IsConnected = false
   IsConnecting = false
   UserConnected = false
+  Expanded = false
+  ShowCredentials = true
   ServerInfo: any | null = null
   CarbonInfo: any | null = null
   PlayerInfo: any | null = null
@@ -344,7 +348,7 @@ export class Server {
       return
     }
 
-    this.Socket = new WebSocket((this.Secure ? 'wss' : 'ws') + '://' + this.Address + '/' + this.Password)
+    this.Socket = new WebSocket(`${(this.Secure ? 'wss' : 'ws')}://${this.Address}/${this.Password}`)
     this.IsConnecting = true
 
     this.Socket.onopen = () => {
@@ -502,6 +506,27 @@ export class Server {
     }
 
     return true
+  }
+
+  toggleExpandedView() {
+    this.Expanded = !this.Expanded
+
+    if (this.Expanded) {
+      this.ShowCredentials = false
+
+      globalThis.scrollTo(0, 0)
+      const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--vp-nav-height'))
+      const consoleTop = document.querySelector('.r-settings ~ .r-settings')?.getBoundingClientRect().top ?? 0
+
+      globalThis.scrollTo({ "top": consoleTop - (navHeight + 31) })
+    }
+
+    save()
+  }
+
+  toggleCredentials() {
+    this.ShowCredentials = !this.ShowCredentials
+    save()
   }
 
   toggleAutoConnect() {

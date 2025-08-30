@@ -7,27 +7,34 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   <div
     v-if="selectedServer"
     ref="consoleContainer"
-    class="rounded p-4 font-mono text-sm"
-    style="overflow: auto; align-content: end; background-color: var(--vp-code-copy-code-bg); min-height: 300px; max-height: 700px; scrollbar-width: none"
+    :class="['r-console-tab', { 'overscroll-contain': selectedServer.Expanded }]"
   >
     <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
   </div>
-  <div v-if="selectedServer" class="flex gap-2" style="align-items: center; background-color: var(--vp-code-copy-code-bg); padding: 10px">
-    <div style="color: var(--category-misc); font-family: monospace; font-weight: 900; user-select: none">></div>
+  <div v-if="selectedServer" class="flex gap-2 items-center color-code-copy-bg p-2.5">
+    <div class="text-category-misc font-mono font-extrabold select-none">></div>
     <input
-      style="font-family: monospace; color: var(--docsearch-muted-color)"
-      class="w-full"
+      class="w-full font-mono color-docsearch-muted"
       spellcheck="false"
       v-model="command"
       @keydown.up.prevent="selectedServer?.selectHistory(true)"
       @keydown.down.prevent="selectedServer?.selectHistory(false)"
       @keyup.enter="selectedServer?.sendCommand(command, 1)"
     />
-    <button @click="selectedServer?.clearLogs()" class="r-send-button"><span style="user-select: none">Clear</span></button>
-    <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span style="user-select: none">Send</span></button>
+    <button @click="selectedServer?.clearLogs()" class="r-send-button"><span class="select-none">Clear</span></button>
+    <button @click="selectedServer?.sendCommand(command, 1)" class="r-send-button"><span class="select-none">Send</span></button>
   </div>
 </template>
 
 <style scoped>
+  .color-code-copy-bg {
+    background-color: var(--vp-code-copy-code-bg);
+  }
 
+  .r-console-tab {
+    @apply rounded p-4 font-mono text-sm overflow-auto content-end color-code-copy-bg min-h-[300px] max-h-[1024px];
+
+    height: calc(100vh - var(--vp-nav-height) - 155px);
+    scrollbar-width: none;
+  }
 </style>
