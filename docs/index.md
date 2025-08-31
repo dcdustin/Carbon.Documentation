@@ -19,6 +19,9 @@ hero:
     - theme: alt
       text: Hooks
       link: /references/hooks
+    - theme: alt
+      text: Join Discord
+      link: https://discord.gg/carbonmod
 
 features:
   - title: High Performance
