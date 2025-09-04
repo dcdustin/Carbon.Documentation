@@ -50,7 +50,7 @@ const readMorePosts = ref<NewsPost[]>()
     </div>
     <div class="relative">
       <div class="mx-auto my-40 flex max-w-screen-lg flex-col items-center gap-6 text-balance">
-        <img class="mx-auto w-[80%]" :src="frontmatter.logo" />
+        <img class="mx-auto w-[80%]" width="1424px" height="709px" :src="frontmatter.logo" />
         <div :class="'font-sans text-5xl font-black text-center uppercase text-' + (frontmatter.published ? 'slate' : 'yellow') + '-200'" @click.stop>
           {{ frontmatter.title }}
         </div>
@@ -76,8 +76,8 @@ const readMorePosts = ref<NewsPost[]>()
               <div v-for="post in readMorePosts" :key="post.url" class="transform transition-transform duration-200 hover:scale-105">
                 <a class="relative inline-block font-extrabold no-underline" :href="post.url">
                   <div class="transform">
-                    <img class="opacity-25 blur" :src="post.frontmatter.header" />
-                    <img class="absolute left-0 top-0 h-full w-full object-contain" :src="post.frontmatter.logo" />
+                    <img class="opacity-25 blur" width="1424px" height="709px" :src="post.frontmatter.header" />
+                    <img class="absolute left-0 top-0 h-full w-full object-contain" width="1424px" height="709px" :src="post.frontmatter.logo" />
                   </div>
                   <div class="mt-5">
                     <span :class="'font-sans text-2xl font-black uppercase text-' + (post.frontmatter.published ? 'slate' : 'yellow') + '-200'"><span v-if="post.frontmatter.collectionid">{{ post.frontmatter.collectionid }}.</span> {{ post.frontmatter.title }}</span><br>
