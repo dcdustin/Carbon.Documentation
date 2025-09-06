@@ -7,7 +7,7 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   <div
     v-if="selectedServer"
     ref="consoleContainer"
-    :class="['r-console-tab', { 'overscroll-contain': selectedServer.Expanded }]"
+    :class="['r-console-tab', { 'overscroll-contain': selectedServer.Expanded, 'expanded': selectedServer.Expanded }]"
   >
     <p v-for="(line, i) in selectedServer?.Logs" :key="i" v-html="line" style="white-space: pre-wrap; text-wrap-mode: nowrap"></p>
   </div>
@@ -32,9 +32,13 @@ import { selectedServer } from './ControlPanel.SaveLoad'
   }
 
   .r-console-tab {
-    @apply rounded p-4 font-mono text-sm overflow-auto content-end color-code-copy-bg min-h-[300px] max-h-[1024px];
+    @apply rounded p-4 font-mono text-sm overflow-auto content-end color-code-copy-bg min-h-[300px] max-h-[700px];
 
-    height: calc(100vh - var(--vp-nav-height) - 155px);
     scrollbar-width: none;
+
+    &.expanded {
+      max-height: unset;
+      height: calc(100vh - var(--vp-nav-height) - 155px);
+    }
   }
 </style>

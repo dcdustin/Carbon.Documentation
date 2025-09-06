@@ -260,6 +260,8 @@ export class Server {
     this.ServerInfo = null
     this.CarbonInfo = null
     this.PlayerInfo = null
+    this.Expanded = false
+    this.ShowCredentials = true
     this.HeaderImage = ''
     this.Description = ''
     this.Socket = null
