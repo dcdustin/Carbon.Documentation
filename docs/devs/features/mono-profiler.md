@@ -17,7 +17,7 @@ You can export all profiles made using it to JSON, CSV or Proto, which you can v
 
 ## Introduction
 
-![Mono Profiler Header](/misc/mono-profiler-header.webp)
+![Mono Profiler Header](/misc/mono-profiler-header.webp){width=1640px height=502px}
 
 The Mono Profiler is a Carbon built-in feature, offering high performance and convenience, making it ideal for profiling
 the game, plugins, and more - efficiently.

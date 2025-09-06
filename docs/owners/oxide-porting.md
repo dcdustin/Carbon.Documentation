@@ -17,7 +17,7 @@ const features = [
 </script>
 
 # Oxide Porting
-![Oxide Porting](/misc/oxide-to-carbon.webp)
+![Oxide Porting](/misc/oxide-to-carbon.webp){width=1640px height=502px}
 
 An in-depth understanding of the necessary changes that are done when you're transferring your Oxide server over to Carbon.
 
